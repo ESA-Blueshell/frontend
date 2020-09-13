@@ -45,31 +45,31 @@ export default {
           icon: require("../assets/smash.png"),
           competitive: true
         },
-        // {
-        //   title: "Overwatch",
-        //   bg: require("../assets/.jpg"),
-        //   icon: require("../assets/.png"),
-        // },
-        // {
-        //   title: "Hearthstone",
-        //   bg: require("../assets/.jpg"),
-        //   icon: require("../assets/.png"),
-        // },
+        {
+          title: "Overwatch",
+          bg: require("../assets/overwatchbg.jpg"),
+          icon: require("../assets/overwatch.png"),
+        },
+        {
+          title: "Hearthstone",
+          bg: require("../assets/hearthstonebg.jpg"),
+          icon: require("../assets/hearthstone.png"),
+        },
         // {
         //   title: "Animal Crossing",
         //   bg: require("../assets/.jpg"),
         //   icon: require("../assets/.png"),
         // },
-        // {
-        //   title: "Dota 2",
-        //   bg: require("../assets/.jpg"),
-        //   icon: require("../assets/.png"),
-        // },
-        // {
-        //   title: "Minecraft",
-        //   bg: require("../assets/.jpg"),
-        //   icon: require("../assets/.png"),
-        // },
+        {
+          title: "Dota 2",
+          bg: require("../assets/dota2bg.jpg"),
+          icon: require("../assets/dota2.png"),
+        },
+        {
+          title: "Minecraft",
+          bg: require("../assets/minecraftbg.jpg"),
+          icon: require("../assets/minecraft.png"),
+        },
         // {
         //   title: "Pokémon",
         //   bg: require("../assets/.jpg"),

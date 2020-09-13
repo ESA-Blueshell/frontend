@@ -21,10 +21,11 @@ export default {
     }
   }
 }
-let bg;
+let bg= document.getElementById("background");
 window.addEventListener('scroll', function () {
-  if (!bg) {
-    bg = document.getElementById("background");
+  const newbg = document.getElementById("background");
+  if (bg !== newbg) {
+    bg = newbg;
   }
   bg.style.top = -250 - window.scrollY * 0.4 + 'px';
 })
