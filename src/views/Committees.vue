@@ -1,10 +1,13 @@
 <template>
-    <v-app>
-        <h1>Committees</h1>
-    </v-app>
+  <v-app>
+    <top-banner title="Committees"></top-banner>
+  </v-app>
 </template>
-
 <script>
+import TopBanner from "@/components/top-banner";
 
+export default {
+  components: {TopBanner}
+}
 </script>
 

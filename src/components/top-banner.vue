@@ -1,0 +1,64 @@
+<template>
+  <div class="banner">
+    <img :src="gaming" id="background" class="background parallax">
+    <div class="black overlay"></div>
+    <div style="text-align: center;height: 100%">
+      <div class="title text-h4 font-weight-light white--text">
+        {{ title }}
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'top-banner',
+  props: ["title"],
+  data: function () {
+    return {
+      gaming: require("../assets/gaming.jpg"),
+
+    }
+  }
+}
+let bg;
+window.addEventListener('scroll', function () {
+  if (!bg) {
+    bg = document.getElementById("background");
+  }
+  bg.style.top = -250 - window.scrollY * 0.4 + 'px';
+})
+</script>
+
+
+<style scoped lang="scss">
+
+
+.banner {
+  height: 300px;
+  overflow: hidden;
+  display: block;
+  position: relative;
+}
+
+.background {
+  position: absolute;
+  top: -250px;
+  width: 100%;
+  z-index: 1;
+}
+
+.title {
+  position: relative;
+  z-index: 100;
+  top: 134px;
+}
+
+.overlay {
+  position: absolute;
+  opacity: 0.4;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+</style>

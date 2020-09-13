@@ -1,36 +1,10 @@
 <template>
   <v-app>
-    <h1>Home</h1>
+    <top-banner title="Home"></top-banner>
 
     <v-container>
       <v-layout row wrap justify-center>
-        <v-flex xs10 sm5 md4 lg4 xl3 v-for="game in games" v-bind:key="game.title"
-                class="ma-3" style="overflow: hidden; border-radius: 15px">
-          <v-hover v-slot:default="{ hover }">
-
-            <v-card color="#6bd098" height="250px" hover>
-
-              <v-card-title style="display:block;" class="front">
-                <img :src="game.icon"
-                     class="front game-icon"
-                     style="position: relative;"
-                     :alt="game.title">
-
-                <h2 class="game-title white--text font-weight-bold" v-text="game.title"></h2>
-              </v-card-title>
-
-              <v-card-subtitle v-if="game.competitive" class="front white--text">
-                <p class="front" style="margin-top: 20px">COMPETITIVE</p>
-              </v-card-subtitle>
-
-              <v-slide-y-transition>
-                <v-img :src="game.bg" v-show="hover" class="game-bg"></v-img>
-              </v-slide-y-transition>
-
-            </v-card>
-
-          </v-hover>
-        </v-flex>
+        <game-card :game="game" :i="i" v-for="(game,i) in games" v-bind:key="game.title"></game-card>
       </v-layout>
     </v-container>
 
@@ -39,8 +13,11 @@
 
 <script>
 
-export default {
+import GameCard from "@/components/game-card";
+import TopBanner from "@/components/top-banner";
 
+export default {
+  components: {TopBanner, GameCard},
   data() {
     return {
       games: [
@@ -119,26 +96,5 @@ export default {
 }
 </script>
 <style>
-.front {
-  z-index: 10;
-}
-
-.game-icon {
-  max-width: 75px;
-  max-height: 75px;
-  margin-right: 20px;
-  margin-left: 7px;
-}
-
-.game-bg {
-  position: absolute !important;
-  top: 0;
-  width: 100%;
-  height: 100%
-}
-
-.game-title {
-  word-break: break-word;
-}
 
 </style>

@@ -1,8 +1,12 @@
 <template>
     <v-app>
-        <h1>Contact</h1>
+      <top-banner title="Contact"></top-banner>
     </v-app>
 </template>
 
 <script>
+import TopBanner from "@/components/top-banner";
+export default {
+  components: {TopBanner}
+}
 </script>
