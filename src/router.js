@@ -5,6 +5,7 @@ import News from './views/News.vue'
 import Events from './views/Events.vue'
 import Contact from './views/Contact.vue'
 import Committees from './views/Committees.vue'
+import Esports from './views/Esports.vue'
 
 
 Vue.use(Router)
@@ -37,6 +38,11 @@ export default new Router({
       path: '/committees',
       name: 'committees',
       component: Committees
+    },
+    {
+      path: '/esports',
+      name: 'esports',
+      component: Esports
     },
   ]
 })

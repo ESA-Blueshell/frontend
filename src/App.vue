@@ -11,6 +11,16 @@
       <v-btn class="bar-button" text dark to="/events">Events</v-btn>
       <v-btn class="bar-button" text dark to="/contact">Contact</v-btn>
       <v-btn class="bar-button" text dark to="/committees">Committees</v-btn>
+      <v-menu open-on-hover offset-y>
+        <template v-slot:activator="{ on, attrs }">
+        <v-btn class="bar-button" v-bind="attrs" v-on="on" text dark to="/esports">Esports</v-btn>
+        </template>
+        <v-list>
+          <v-list-item>League of Legends</v-list-item>
+          <v-list-item>Counter Strike:Global Offensive</v-list-item>
+          <v-list-item>Rocket League</v-list-item>
+        </v-list>
+      </v-menu>
     </v-app-bar>
     <v-main>
       <router-view/>
