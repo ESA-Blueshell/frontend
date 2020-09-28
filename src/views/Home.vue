@@ -2,9 +2,42 @@
   <v-app>
     <top-banner title="Home"></top-banner>
 
+
+    <div class="mx-auto my-10" style="max-width: 600px">
+      <p class="text-center text-h2 ma-3 font-weight-light">Who are we?</p>
+
+      <p class="text-center subtitle-1 font-weight-light">
+        We are Blueshell Esports, the gaming and esports student association at the University of
+        Twente. We house a bustling gaming community, organize regular online and offline events and
+        present opportunities for competitive play.</p>
+
+    </div>
+
+    <v-container class="mx-3 justify-center" align="center" >
+      <v-row align="center">
+        <v-col>
+
+          <p class="text-center text-h3 ma-3 font-weight-light">About us</p>
+
+        </v-col>
+        <v-col>
+          <p class="text-center text-h3 ma-3 font-weight-light">Esports</p>
+
+        </v-col>
+        <v-col>
+          <p class="text-center text-h3 ma-3 font-weight-light">Events</p>
+
+        </v-col>
+      </v-row>
+    </v-container>
+
     <v-container>
       <v-layout row wrap justify-center>
-        <game-card :game="game" :i="i" v-for="(game,i) in games" v-bind:key="game.title"></game-card>
+        <game-card :game="game"
+                   :color="i%3===0 ? `#6bd098` : i%3===1 ? `#fbc658` : `#e91e63`"
+                   v-for="(game,i) in games"
+                   v-bind:key="game.title">
+        </game-card>
       </v-layout>
     </v-container>
 

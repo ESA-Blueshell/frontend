@@ -3,7 +3,7 @@
           class="ma-3" style="overflow: hidden; border-radius: 15px">
     <v-hover v-slot:default="{ hover }">
 
-      <v-card :color="i%3===0 ? `#6bd098` : i%3===1 ? `#fbc658` : `#e91e63`" height="250px" hover>
+      <v-card :color="color" height="250px" hover>
 
         <v-card-title style="display:block">
           <img class="front game-icon" :src="game.icon" :alt="game.title">
@@ -13,6 +13,10 @@
         <v-card-subtitle class="white--text" v-if="game.competitive">
           <p style="margin-top: 20px">COMPETITIVE</p>
         </v-card-subtitle>
+
+        <v-btn class="game-button front white--text" v-if="game.competitive" rounded :color="color">
+          Go to e-sports page
+        </v-btn>
 
         <v-slide-y-transition>
           <v-img class="game-bg" :src="game.bg" v-show="hover"></v-img>
@@ -27,14 +31,14 @@
 <script>
 export default {
   name: "game-card",
-  props: ["game", "i"]
+  props: ["game", "color"]
 }
 </script>
 
 <style scoped>
 
 .front {
-  z-index: 10;
+  z-index: 2;
 }
 
 .game-icon {
@@ -54,5 +58,14 @@ export default {
 
 .game-title {
   word-break: break-word;
+}
+
+.game-button {
+  position: absolute;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  bottom: 0;
+  right: 0;
+
 }
 </style>

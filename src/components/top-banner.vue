@@ -51,7 +51,7 @@ window.addEventListener('scroll', function () {
 
 .title {
   position: relative;
-  z-index: 100;
+  z-index: 2;
   top: 134px;
 }
 
