@@ -2,7 +2,7 @@
     <v-app>
       <top-banner title="Contact"></top-banner>
         <!-- TODO: FIX THIS LATER LMAO -->
-        <div class="ma-auto ma-10" style="max-width: 600px">
+        <div class="mx-auto my-10" style="max-width: 800px">
             <p class="text-justify">
                 If you want to become a member see the <a>Join us</a>! page. If you are just looking for more information, you can contact the board at
                 <a href="mailto:board@blueshell.utwente.nl">board@blueshell.utwente.nl</a> or join the
