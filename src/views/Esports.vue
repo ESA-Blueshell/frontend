@@ -1,6 +1,6 @@
 <template>
     <v-app>
-        <top-banner title="Events"></top-banner>
+        <top-banner title="Esports"></top-banner>
     </v-app>
 </template>
 
