@@ -105,10 +105,9 @@ export default {
 
   }),
   mounted() {
-    this.currentMonth = new Date().toISOString().substring(0, 7);
     this.setToday();
     const month = this.currentMonth;
-    [month,this.prevMonth(month),this.nextMonth(month)].forEach(it => this.getEvents(it));
+    [month, this.prevMonth(month), this.nextMonth(month)].forEach(it => this.getEvents(it));
   },
   methods: {
     getEvents(month) {
@@ -136,7 +135,7 @@ export default {
 
     setToday() {
       this.focus = ''
-      this.currentMonth=new Date().toISOString().substring(0, 10)
+      this.currentMonth = new Date().toISOString().substring(0, 7)
     },
     prev() {
       this.$refs.calendar.prev()
