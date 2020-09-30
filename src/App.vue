@@ -16,9 +16,9 @@
         <v-btn class="bar-button" v-bind="attrs" v-on="on" text dark to="/esports">Esports</v-btn>
         </template>
         <v-list>
-          <v-list-item>League of Legends</v-list-item>
-          <v-list-item>Counter Strike:Global Offensive</v-list-item>
-          <v-list-item>Rocket League</v-list-item>
+          <v-list-item to="/esports/league-of-legends">League of Legends</v-list-item>
+          <v-list-item to="/esports/counter-strike-global-offensive">Counter Strike:Global Offensive</v-list-item>
+          <v-list-item to="/esports/rocket-league">Rocket League</v-list-item>
         </v-list>
       </v-menu>
     </v-app-bar>
