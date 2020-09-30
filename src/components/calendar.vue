@@ -136,6 +136,7 @@ export default {
 
     setToday() {
       this.focus = ''
+      this.currentMonth=new Date().toISOString().substring(0, 10)
     },
     prev() {
       this.$refs.calendar.prev()
