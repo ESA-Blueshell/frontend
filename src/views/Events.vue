@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <top-banner title="Events"></top-banner>
-    <div style="max-width: 800px">
+    <div class="mx-auto" style="width: 1000px">
       <calendar></calendar>
     </div>
   </v-app>
@@ -9,9 +9,9 @@
 
 <script>
 import TopBanner from "@/components/top-banner";
-import calendar from "@/components/calendar"
+import Calendar from "@/components/calendar"
 
 export default {
-  components: {TopBanner,calendar}
+  components: {TopBanner,Calendar}
 }
 </script>
