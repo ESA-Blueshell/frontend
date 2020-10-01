@@ -19,6 +19,14 @@
           <v-toolbar-title v-if="$refs.calendar" class="ml-3">
             {{ $refs.calendar.title }}
           </v-toolbar-title>
+          <v-spacer></v-spacer>
+          <v-fade-transition>
+            <v-progress-circular
+                v-if="monthsLoading > 0"
+                indeterminate
+                color="primary"
+            ></v-progress-circular>
+          </v-fade-transition>
         </v-toolbar>
       </v-sheet>
       <v-sheet height="600">
@@ -101,7 +109,8 @@ export default {
     events: [],
     dialog: false,
     monthsCollected: [],
-    currentMonth: null
+    currentMonth: null,
+    monthsLoading: 0
 
   }),
   mounted() {
@@ -114,8 +123,8 @@ export default {
       if (!this.monthsCollected.includes(month)) {
         console.log("getting events for " + month);
         this.monthsCollected.push(month)
-        //TODO: use month parameter when backend is ready
-        axios.get('http://127.0.0.1:8080/api/events')
+        this.monthsLoading++;
+        axios.get('http://127.0.0.1:8080/api/events?from=' + month)
             .then(response => {
               let res = []
               response.data.forEach(elem => {
@@ -130,6 +139,7 @@ export default {
               this.events.push(...res);
             })
             .catch(error => console.log(error))
+            .then(() => this.monthsLoading--);
       }
     },
 

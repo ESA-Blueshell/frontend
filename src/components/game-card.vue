@@ -19,7 +19,7 @@
         </v-btn>
 
         <v-slide-y-transition>
-          <v-img class="game-bg" :src="game.bg" v-show="hover"></v-img>
+          <v-img class="game-bg" :src="game.bg" v-if="hover"></v-img>
         </v-slide-y-transition>
 
       </v-card>
