@@ -39,6 +39,8 @@
             @click:event="showEvent"
             @change="updateRange">
         </v-calendar>
+
+
         <v-menu
             v-model="selectedOpen"
             :close-on-content-click="false"
@@ -48,38 +50,46 @@
           <v-card
               color="grey lighten-4"
               min-width="350px"
-              flat
+              max-width="350px"
           >
             <v-toolbar
                 :color="selectedEvent.color"
                 dark
             >
-              <v-btn icon>
-                <v-icon>mdi-pencil</v-icon>
-              </v-btn>
               <v-toolbar-title v-html="selectedEvent.name"></v-toolbar-title>
               <v-spacer></v-spacer>
-              <v-btn icon>
-                <v-icon>mdi-heart</v-icon>
-              </v-btn>
-              <v-btn icon>
-                <v-icon>mdi-dots-vertical</v-icon>
-              </v-btn>
+              <v-tooltip bottom>
+                <template v-slot:activator="{ on, attrs }">
+                  <v-btn icon v-on="on" @click="findLocation">
+                    <v-icon>mdi-google-maps</v-icon>
+                  </v-btn>
+                </template>
+                <span>Find location</span>
+              </v-tooltip>
+              <v-tooltip bottom>
+                <template v-slot:activator="{ on, attrs }">
+                  <v-btn icon v-on="on">
+                    <v-icon>mdi-calendar</v-icon>
+                  </v-btn>
+                </template>
+                <span>Add to calendar</span>
+              </v-tooltip>
             </v-toolbar>
             <v-card-text>
-              <span v-html="selectedEvent.details"></span>
+              <p>
+                {{ selectedEvent.details }}
+              </p>
+              <v-divider></v-divider>
+              <p v-if="selectedEvent.location" class="mt-4">
+                <b>Location</b>
+                <br>
+                {{ selectedEvent.location }}
+              </p>
             </v-card-text>
-            <v-card-actions>
-              <v-btn
-                  text
-                  color="secondary"
-                  @click="selectedOpen = false"
-              >
-                Cancel
-              </v-btn>
-            </v-card-actions>
           </v-card>
         </v-menu>
+
+
       </v-sheet>
     </v-col>
   </v-row>
@@ -100,13 +110,17 @@ export default {
     start: null,
     date: null,
     color: "#1976D2",
-    //todo: hmmmmmmm
-    currentlyEditing: null,
     selectedEvent: {},
     selectedElement: null,
     selectedOpen: false,
 
-    events: [],
+    events: [{
+      name: "what the fuck",
+      details: "What the fuck did you just fucking say about me, you little bitch? I'll have you know I graduated top of my class in the Navy Seals, and I've been involved in numerous secret raids on Al-Quaeda, and I have over 300 confirmed kills. I am trained in gorilla warfare and I'm the top sniper in the entire US armed forces. You are nothing to me but just another target. I will wipe you the fuck out with precision the likes of which has never been seen before on this Earth, mark my fucking words. You think you can get away with saying that shit to me over the Internet? Think again, fucker. As we speak I am contacting my secret network of spies across the USA and your IP is being traced right now so you better prepare for the storm, maggot. The storm that wipes out the pathetic little thing you call your life. You're fucking dead, kid. I can be anywhere, anytime, and I can kill you in over seven hundred ways, and that's just with my bare hands. Not only am I extensively trained in unarmed combat, but I have access to the entire arsenal of the United States Marine Corps and I will use it to its full extent to wipe your miserable ass off the face of the continent, you little shit. If only you could have known what unholy retribution your little \"clever\" comment was about to bring down upon you, maybe you would have held your fucking tongue. But you couldn't, you didn't, and now you're paying the price, you goddamn idiot. I will shit fury all over you and you will drown in it. You're fucking dead, kiddo.",
+      date: "2020-10-05",
+      start: "2020-10-05",
+      location: "global lounge enschede"
+    }],
     dialog: false,
     monthsCollected: [],
     currentMonth: null,
@@ -123,7 +137,8 @@ export default {
       if (!this.monthsCollected.includes(month)) {
         console.log("getting events for " + month);
         this.monthsCollected.push(month)
-        this.monthsLoading++;
+        setTimeout(() => this.monthsLoading++, 500);
+
         axios.get('http://127.0.0.1:8080/api/events?from=' + month)
             .then(response => {
               let res = []
@@ -132,7 +147,8 @@ export default {
                       name: elem.title,
                       details: elem.description,
                       date: elem.startTime.substring(0, 10),
-                      start: elem.startTime.substring(0, 10)
+                      start: elem.startTime.substring(0, 10),
+                      location: elem.location //todo: split up location and address (so global lounge would be location and bastille enschede would be the address)
                     });
                   }
               )
@@ -142,7 +158,6 @@ export default {
             .then(() => this.monthsLoading--);
       }
     },
-
     setToday() {
       this.focus = ''
       this.currentMonth = new Date().toISOString().substring(0, 7)
@@ -164,6 +179,7 @@ export default {
     showEvent({nativeEvent, event}) {
       const open = () => {
         this.selectedEvent = event
+        this.selectedEvent.color = "primary"
         this.selectedElement = nativeEvent.target
         setTimeout(() => {
           this.selectedOpen = true
@@ -189,7 +205,7 @@ export default {
 
       let monthInt = parseInt(currMonth);
       if (monthInt === 12) {
-        return (parseInt(currYear) + 1) + "-" + "01";
+        return (parseInt(currYear) + 1) + "-01";
       } else {
         if (monthInt >= 1 && monthInt <= 8) {
           return currYear + "-0" + (monthInt + 1);
@@ -205,7 +221,7 @@ export default {
 
       let monthInt = parseInt(currMonth);
       if (monthInt === 1) {
-        return (parseInt(currYear) - 1) + "-" + "12";
+        return (parseInt(currYear) - 1) + "-12";
       } else {
         if (monthInt >= 2 && monthInt <= 10) {
           return currYear + "-0" + (monthInt - 1);
@@ -214,6 +230,9 @@ export default {
         }
       }
     },
+    findLocation() {
+      window.open(encodeURI('https://www.google.com/maps/search/?api=1&query=' + this.selectedEvent.location))
+    }
   }
 }
 </script>
