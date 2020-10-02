@@ -10,7 +10,7 @@
           <h2 class="game-title white--text font-weight-bold" v-text="game.title"></h2>
         </v-card-title>
 
-        <v-card-subtitle class="white--text" v-if="game.competitive">
+        <v-card-subtitle class="white--text" v-if="game.esportsLink">
           <p style="margin-top: 20px">COMPETITIVE</p>
         </v-card-subtitle>
 

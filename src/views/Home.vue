@@ -58,25 +58,25 @@ export default {
           title: "League of Legends",
           bg: require("../assets/leaguebg.jpg"),
           icon: require("../assets/league.png"),
-          competitiveLink: "/esports/league-of-legends"
+          esportsLink: "/esports/league-of-legends"
         },
         {
           title: "Counter-Strike: Global Offensive",
           bg: require("../assets/csgobg.jpg"),
           icon: require("../assets/csgo.png"),
-          competitiveLink:"/esports/counter-strike-global-offensive"
+          esportsLink:"/esports/counter-strike-global-offensive"
         },
         {
           title: "Rocket League",
           bg: require("../assets/rocketleaguebg.jpg"),
           icon: require("../assets/rocketleague.png"),
-          competitiveLink: "/esports/rocket-league"
+          esportsLink: "/esports/rocket-league"
         },
         {
           title: "Super Smash Bros",
           bg: require("../assets/smashbg.jpg"),
           icon: require("../assets/smash.png"),
-          competitiveLink: "/esports/super-smash-bros"
+          esportsLink: "/esports/super-smash-bros"
         },
         {
           title: "Overwatch",
