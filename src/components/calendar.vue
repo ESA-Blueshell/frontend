@@ -46,6 +46,7 @@
             :close-on-content-click="false"
             :activator="selectedElement"
             offset-x
+            v-if="selectedEvent"
         >
           <v-card
               color="grey lighten-4"
@@ -76,14 +77,33 @@
               </v-tooltip>
             </v-toolbar>
             <v-card-text>
-              <p>
-                {{ selectedEvent.details }}
+              <p id="eventDetails">
+                {{ hundredWords(selectedEvent.details) }}
+                <br>
+                <a v-if="selectedEvent.details.split(/\s+/).length > 100" @click="expandWords">
+                  <b> read more </b>
+                </a>
               </p>
               <v-divider></v-divider>
+              <p class="mt-4">
+                <b>When</b>
+                <br>
+                {{ formatDate(selectedEvent.start) }}
+              </p>
+              <v-divider v-if="selectedEvent.location"></v-divider>
               <p v-if="selectedEvent.location" class="mt-4">
-                <b>Location</b>
+                <b>Where</b>
                 <br>
                 {{ selectedEvent.location }}
+              </p>
+              <v-divider v-if="selectedEvent.location"></v-divider>
+              <p v-if="selectedEvent.priceMember !== null && selectedEvent.pricePublic !== null"
+                 class="mt-4">
+                <b>Price</b>
+                <br>
+                Members: €{{ selectedEvent.priceMember }}
+                <br>
+                Non-members: €{{ selectedEvent.pricePublic }}
               </p>
             </v-card-text>
           </v-card>
@@ -110,7 +130,7 @@ export default {
     start: null,
     date: null,
     color: "#1976D2",
-    selectedEvent: {},
+    selectedEvent: null,
     selectedElement: null,
     selectedOpen: false,
 
@@ -118,8 +138,10 @@ export default {
       name: "what the fuck",
       details: "What the fuck did you just fucking say about me, you little bitch? I'll have you know I graduated top of my class in the Navy Seals, and I've been involved in numerous secret raids on Al-Quaeda, and I have over 300 confirmed kills. I am trained in gorilla warfare and I'm the top sniper in the entire US armed forces. You are nothing to me but just another target. I will wipe you the fuck out with precision the likes of which has never been seen before on this Earth, mark my fucking words. You think you can get away with saying that shit to me over the Internet? Think again, fucker. As we speak I am contacting my secret network of spies across the USA and your IP is being traced right now so you better prepare for the storm, maggot. The storm that wipes out the pathetic little thing you call your life. You're fucking dead, kid. I can be anywhere, anytime, and I can kill you in over seven hundred ways, and that's just with my bare hands. Not only am I extensively trained in unarmed combat, but I have access to the entire arsenal of the United States Marine Corps and I will use it to its full extent to wipe your miserable ass off the face of the continent, you little shit. If only you could have known what unholy retribution your little \"clever\" comment was about to bring down upon you, maybe you would have held your fucking tongue. But you couldn't, you didn't, and now you're paying the price, you goddamn idiot. I will shit fury all over you and you will drown in it. You're fucking dead, kiddo.",
       date: "2020-10-05",
-      start: "2020-10-05",
-      location: "global lounge enschede"
+      start: new Date("2020-10-05 21:02:11"),
+      location: "global lounge enschede",
+      priceMember: 0,
+      pricePublic: 2
     }],
     dialog: false,
     monthsCollected: [],
@@ -147,8 +169,10 @@ export default {
                       name: elem.title,
                       details: elem.description,
                       date: elem.startTime.substring(0, 10),
-                      start: elem.startTime.substring(0, 10),
-                      location: elem.location //todo: split up location and address (so global lounge would be location and bastille enschede would be the address)
+                      start: new Date(elem.startTime),
+                      location: elem.location, //todo: split up location and address (so global lounge would be location and bastille enschede would be the address)
+                      priceMember: elem.price_member,
+                      pricePublic: elem.price_public,
                     });
                   }
               )
@@ -232,6 +256,22 @@ export default {
     },
     findLocation() {
       window.open(encodeURI('https://www.google.com/maps/search/?api=1&query=' + this.selectedEvent.location))
+    },
+    hundredWords(str) {
+      return str.split(/\s+/).slice(0, 100).join(" ");
+    },
+    expandWords() {
+      document.getElementById("eventDetails").innerHTML = this.selectedEvent.details
+    },
+    formatDate(date) {
+      return new Intl.DateTimeFormat('en-US', {
+        weekday: 'long',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false
+      }).format(date).replace(',', '');
     }
   }
 }
