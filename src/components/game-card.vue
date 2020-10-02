@@ -14,7 +14,7 @@
           <p style="margin-top: 20px">COMPETITIVE</p>
         </v-card-subtitle>
 
-        <v-btn class="game-button front white--text" v-if="game.competitive" rounded :color="color">
+        <v-btn class="game-button front white--text" v-if="game.esportsLink" rounded :color="color" :to="game.esportsLink">
           Go to e-sports page
         </v-btn>
 
