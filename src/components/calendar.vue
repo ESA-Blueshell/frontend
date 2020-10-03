@@ -35,9 +35,10 @@
             v-model="focus"
             color="primary"
             :events="events"
-            :type="type"
+            type="month"
             @click:event="showEvent"
-            @change="updateRange">
+            @change="updateRange"
+            locale="en-US">
         </v-calendar>
 
 
@@ -101,9 +102,9 @@
                  class="mt-4">
                 <b>Price</b>
                 <br>
-                Members: €{{ selectedEvent.priceMember }}
+                Members: €{{ selectedEvent.memberPrice }}
                 <br>
-                Non-members: €{{ selectedEvent.pricePublic }}
+                Non-members: €{{ selectedEvent.publicPrice }}
               </p>
             </v-card-text>
           </v-card>
@@ -124,7 +125,6 @@ export default {
   data: () => ({
     today: new Date().toISOString().substring(0, 10),
     focus: new Date().toISOString().substring(0, 10),
-    type: "month",
     name: null,
     details: null,
     start: null,
@@ -171,8 +171,8 @@ export default {
                       date: elem.startTime.substring(0, 10),
                       start: new Date(elem.startTime),
                       location: elem.location, //todo: split up location and address (so global lounge would be location and bastille enschede would be the address)
-                      priceMember: elem.price_member,
-                      pricePublic: elem.price_public,
+                      memberPrice: elem.memberPrice,
+                      publicPrice: elem.publicPrice,
                     });
                   }
               )
