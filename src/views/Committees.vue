@@ -2,20 +2,20 @@
   <v-app>
     <top-banner title="Committees"></top-banner>
     <div class="mx-auto my-10" style="max-width: 800px">
-      <p>
+      <p class="body-1">
         Would you like to make the most of your student life, and experience what it is to work
         together with other students to make great things happen? If so, then perhaps joining a
         committee is something for you! Committees are groups of students that work together to
         organize events or provide services for the association, while also having a lot of fun and
         getting some professional experience.
       </p>
-      <p>
+      <p class="body-1">
         If you would like to join a meeting to see if we are something for you, or if you have a
         question, feel free to contact the board at
         <a href="mailto:internal-affairs@blueshell.utwente.nl">internal-affairs@blueshell.utwente.nl</a>
         . You could also ask us on Discord or in person at one of the events.
       </p>
-      <p>
+      <p class="body-1">
         Do you have a great idea for an event or a new committee, then be sure to contact us!
       </p>
       <v-expansion-panels accordion>

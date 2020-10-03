@@ -7,6 +7,7 @@
         Bluehell Ease Ports
       </h2>
       <v-btn class="bar-button" text dark to="/">Home</v-btn>
+      <v-btn class="bar-button" text dark to="/membership">Membership</v-btn>
       <v-btn class="bar-button" text dark to="/news">News</v-btn>
       <v-btn class="bar-button" text dark to="/events">Events</v-btn>
       <v-btn class="bar-button" text dark to="/contact">Contact</v-btn>
