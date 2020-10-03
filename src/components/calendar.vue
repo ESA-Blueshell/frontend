@@ -33,7 +33,7 @@
         <v-calendar
             ref="calendar"
             v-model="focus"
-            color="primary"
+            :color="color"
             :events="events"
             type="month"
             @click:event="showEvent"
@@ -129,7 +129,7 @@ export default {
     details: null,
     start: null,
     date: null,
-    color: "#1976D2",
+    color: "primary",
     selectedEvent: null,
     selectedElement: null,
     selectedOpen: false,
@@ -140,8 +140,8 @@ export default {
       date: "2020-10-05",
       start: new Date("2020-10-05 21:02:11"),
       location: "global lounge enschede",
-      priceMember: 0,
-      pricePublic: 2
+      memberPrice: 0,
+      publicPrice: 2,
     }],
     dialog: false,
     monthsCollected: [],
