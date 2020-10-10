@@ -20,6 +20,7 @@
           <v-list-item to="/esports/league-of-legends">League of Legends</v-list-item>
           <v-list-item to="/esports/counter-strike-global-offensive">Counter Strike:Global Offensive</v-list-item>
           <v-list-item to="/esports/rocket-league">Rocket League</v-list-item>
+          <v-list-item to="/esports/super-smash-bros">Super Smash Bros.</v-list-item>
         </v-list>
       </v-menu>
     </v-app-bar>
