@@ -28,10 +28,10 @@
         <p class="body-1">
           Then you are at the right place! Blueshell's teams are open for people of any skill level,
           thus do not hesitate to show interest. How you may ask? Well, here are some forms that can
-          help you with that. Click
-          <a href="https://forms.gle/kXPGTU6kXvRjhXnc7" class="text-decoration-none">here</a>
-          to fill in your individual interest in the esports scene. Already got a crew together?
-          Click <a href="https://forms.gle/tJ8TkeQ6cD24hjm4A" class="text-decoration-none">here</a>
+          help you with that. Click <a href="https://forms.gle/kXPGTU6kXvRjhXnc7" target="_blank"
+                                       class="text-decoration-none">here</a> to fill in your
+          individual interest in the esports scene. Already got a crew together? Click <a
+            href="https://forms.gle/tJ8TkeQ6cD24hjm4A" target="_blank" class="text-decoration-none">here</a>
           to sign your team up! </p>
         <p class="body-1">
           Are you interested in playing your favorite video game in a competitive environment with a
@@ -42,7 +42,8 @@
         </p>
         <p class="body-1">
           Still got some questions left? Do not hesitate to send an email to us at
-          <a href="mailto:esports@blueshell.utwente.nl" class="text-decoration-none">esports@blueshell.utwente.nl</a>!
+          <a href="mailto:esports@blueshell.utwente.nl" target="_blank"
+             class="text-decoration-none">esports@blueshell.utwente.nl</a>!
         </p>
       </div>
     </div>
