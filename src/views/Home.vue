@@ -13,20 +13,41 @@
 
     </div>
 
-    <v-container class="mx-3 justify-center" align="center" >
-      <v-row align="center">
-        <v-col>
-
-          <p class="text-center text-h3 ma-3 font-weight-light">About us</p>
-
+    <v-container class="mx-auto">
+      <v-row class="text-center">
+        <v-col class="mx-4">
+          <div class="expand" style="width: 100%" v-on:click="goto('/aboutus')">
+            <v-icon x-large color="red darken-2" class="icon">
+              mdi-account-group
+            </v-icon>
+            <p class="text-h3 ma-3 font-weight-thin"> About us </p>
+          </div>
+          <p class="font-weight-light">
+            Despite its memberbase, Blueshell Esports is a relatively young student association
+            with only 4 years since its inception. Learn all about our association by clicking
+            above! </p>
         </v-col>
-        <v-col>
-          <p class="text-center text-h3 ma-3 font-weight-light">Esports</p>
-
+        <v-col class="mx-4">
+          <div class="expand" style="width: 100%" v-on:click="goto('/esports')">
+            <v-icon x-large color="yellow darken-2" class="icon">
+              mdi-trophy
+            </v-icon>
+            <p class="text-h3 ma-3 font-weight-thin">Esports</p>
+          </div>
+          <p class="font-weight-light">As the name of our association suggests, esports is an
+            integral part of Blueshell. Click the icon above to find more information on what we
+            offer!</p>
         </v-col>
-        <v-col>
-          <p class="text-center text-h3 ma-3 font-weight-light">Events</p>
-
+        <v-col class="mx-4">
+          <div class="expand" style="width: 100%" v-on:click="goto('/events')">
+            <v-icon x-large color="blue darken-2" class="icon">
+              mdi-calendar
+            </v-icon>
+            <p class="text-h3 ma-3 font-weight-thin">Events</p>
+          </div>
+          <p class="font-weight-light">To keep our community entertained, Blueshell hosts events of
+            many kinds with the help of member-run committees. Click above to see the upcoming
+            events!</p>
         </v-col>
       </v-row>
     </v-container>
@@ -48,9 +69,15 @@
 
 import GameCard from "@/components/game-card";
 import TopBanner from "@/components/top-banner";
+import router from "@/router";
 
 export default {
   components: {TopBanner, GameCard},
+  methods: {
+    goto(url) {
+      router.push(url)
+    }
+  },
   data() {
     return {
       games: [
@@ -64,7 +91,7 @@ export default {
           title: "Counter-Strike: Global Offensive",
           bg: require("../assets/csgobg.jpg"),
           icon: require("../assets/csgo.png"),
-          esportsLink:"/esports/counter-strike-global-offensive"
+          esportsLink: "/esports/counter-strike-global-offensive"
         },
         {
           title: "Rocket League",
@@ -129,5 +156,11 @@ export default {
 }
 </script>
 <style>
+.expand {
+  transition: transform .2s;
+}
 
+.expand:hover .icon {
+  transform: scale(1.1) translateY(-10px);
+}
 </style>
