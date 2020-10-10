@@ -14,11 +14,13 @@
       <v-btn class="bar-button" text dark to="/committees">Committees</v-btn>
       <v-menu open-on-hover offset-y>
         <template v-slot:activator="{ on, attrs }">
-        <v-btn class="bar-button" v-bind="attrs" v-on="on" text dark to="/esports">Esports</v-btn>
+          <v-btn class="bar-button" v-bind="attrs" v-on="on" text dark to="/esports">Esports</v-btn>
         </template>
         <v-list>
           <v-list-item to="/esports/league-of-legends">League of Legends</v-list-item>
-          <v-list-item to="/esports/counter-strike-global-offensive">Counter Strike:Global Offensive</v-list-item>
+          <v-list-item to="/esports/counter-strike-global-offensive">Counter Strike:Global
+            Offensive
+          </v-list-item>
           <v-list-item to="/esports/rocket-league">Rocket League</v-list-item>
           <v-list-item to="/esports/super-smash-bros">Super Smash Bros.</v-list-item>
         </v-list>
@@ -41,6 +43,18 @@ export default {
     return {
       shellyLogo: require("./assets/shelly.png"),
     }
+  },
+  mounted: () => {
+    let keysPressed = [];
+    window.addEventListener('keydown', event => {
+      const key = event.key.toLowerCase();
+      keysPressed.push(key);
+      if (keysPressed.toString().endsWith("arrowup,arrowup,arrowdown,arrowdown,arrowleft,arrowright,arrowleft,arrowright,a,b,enter")) {
+        alert("BRUHHHHHHHHHHHHHHHHH")
+        //todo: make epic easter eggerino
+      }
+
+    });
   }
 }
 </script>
