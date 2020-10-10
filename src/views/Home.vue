@@ -13,41 +13,15 @@
 
     </div>
 
-    <v-container class="mx-auto">
-      <v-row class="text-center">
-        <v-col class="mx-4">
-          <div class="expand" style="width: 100%" v-on:click="goto('/aboutus')">
-            <v-icon x-large color="red darken-2" class="icon">
-              mdi-account-group
-            </v-icon>
-            <p class="text-h3 ma-3 font-weight-thin"> About us </p>
+    <v-container>
+      <v-row class="text-center" justify="center">
+        <v-col v-for="col in columns" v-bind:key="col.title"
+               class="mx-4" style="max-width:450px;min-width: 350px;min-height: 250px" align-self="center">
+          <div class="expand" style="width: 100%" @click="goto(col.url)">
+            <v-icon x-large :color="col.color" class="icon" v-html="col.icon"></v-icon>
+            <p class="text-h3 ma-3 font-weight-thin" v-html="col.title"></p>
           </div>
-          <p class="font-weight-light">
-            Despite its memberbase, Blueshell Esports is a relatively young student association
-            with only 4 years since its inception. Learn all about our association by clicking
-            above! </p>
-        </v-col>
-        <v-col class="mx-4">
-          <div class="expand" style="width: 100%" v-on:click="goto('/esports')">
-            <v-icon x-large color="yellow darken-2" class="icon">
-              mdi-trophy
-            </v-icon>
-            <p class="text-h3 ma-3 font-weight-thin">Esports</p>
-          </div>
-          <p class="font-weight-light">As the name of our association suggests, esports is an
-            integral part of Blueshell. Click the icon above to find more information on what we
-            offer!</p>
-        </v-col>
-        <v-col class="mx-4">
-          <div class="expand" style="width: 100%" v-on:click="goto('/events')">
-            <v-icon x-large color="blue darken-2" class="icon">
-              mdi-calendar
-            </v-icon>
-            <p class="text-h3 ma-3 font-weight-thin">Events</p>
-          </div>
-          <p class="font-weight-light">To keep our community entertained, Blueshell hosts events of
-            many kinds with the help of member-run committees. Click above to see the upcoming
-            events!</p>
+          <p class="font-weight-light mx-auto" style="max-width: 400px" v-html="col.text"></p>
         </v-col>
       </v-row>
     </v-container>
@@ -150,6 +124,29 @@ export default {
         //   bg: require("../assets/.jpg"),
         //   icon: require("../assets/.png"),
         // },
+      ],
+      columns: [
+        {
+          icon: "mdi-account-group",
+          color: "red darken-2",
+          title: "About us",
+          url: "/aboutus",
+          text: "Despite its memberbase, Blueshell Esports is a relatively young student association with only 4 years since its inception. Learn all about our association by clicking above!"
+        },
+        {
+          icon: "mdi-trophy",
+          color: "yellow darken-2",
+          title: "Esports",
+          url: "/esports",
+          text: "As the name of our association suggests, esports is an integral part of Blueshell. Click the icon above to find more information on what we offer!"
+        },
+        {
+          icon: "mdi-calendar",
+          color: "blue darken-2",
+          title: "Events",
+          url: "/events",
+          text: "To keep our community entertained, Blueshell hosts events of many kinds with the help of member-run committees. Click above to see the upcoming events!"
+        },
       ]
     }
   }
