@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <top-banner title="Esports"></top-banner>
-    <div class="mx-5">
+    <div class="mx-3">
       <div class="mx-auto my-10" style="max-width: 800px">
         <p class="text-h4 font-weight-bold">
           Blueshell's competitive scene

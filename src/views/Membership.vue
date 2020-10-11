@@ -2,7 +2,7 @@
   <v-app>
     <top-banner title="Membership"></top-banner>
 
-    <div class="mx-5">
+    <div class="mx-3">
       <div class="mx-auto" style="max-width: 800px">
         <div class="my-10">
           <p class="text-h4 font-weight-bold">

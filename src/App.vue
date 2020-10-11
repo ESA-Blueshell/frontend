@@ -2,13 +2,17 @@
   <v-app>
     <v-app-bar dark elevate-on-scroll fixed>
       <v-app-bar-nav-icon @click="drawer = true"
-                          v-if="$vuetify.breakpoint.name==='xs'"></v-app-bar-nav-icon>
-      <h2 class="align-center white--text">
-        <v-img contain :src="shellyLogo" alt="Blueshell logo" height="40">
-        </v-img>
-        Bluehell Ease Ports
-      </h2>
-      <div v-if="$vuetify.breakpoint.name!=='xs'" style="height: 100%">
+                          v-if="$vuetify.breakpoint.name==='xs' || $vuetify.breakpoint.name==='sm'">
+      </v-app-bar-nav-icon>
+      <v-toolbar-title class="ml-sm-n5 ml-md-0 ml-lg-0 ml-xl-0 ">
+        <router-link to="/">
+          <v-img contain :src="require('./assets/topbarlogo.png')" alt="Blueshell logo"
+                 style="height: 50px;width: 144px" class="mr-4">
+          </v-img>
+        </router-link>
+      </v-toolbar-title>
+      <div v-if="$vuetify.breakpoint.name!=='xs' && $vuetify.breakpoint.name!=='sm'"
+           style="height: 100%">
         <v-btn class="bar-button" text dark to="/">Home</v-btn>
         <v-btn class="bar-button" text dark to="/membership">Membership</v-btn>
         <v-btn class="bar-button" text dark to="/news">News</v-btn>

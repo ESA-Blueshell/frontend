@@ -27,7 +27,7 @@ window.addEventListener('scroll', function () {
   if (bg !== newbg) {
     bg = newbg;
   }
-  bg.style.top = -250 - window.scrollY * 0.4 + 'px';
+  bg.style.top = -250 + window.scrollY * 0.7 + 'px';
 })
 </script>
 

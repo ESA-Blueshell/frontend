@@ -2,21 +2,22 @@
   <v-app>
     <top-banner title="Home"></top-banner>
 
+    <v-container>
+      <div class="mx-auto my-10" style="max-width: 600px">
+        <p class="text-center text-h2 font-weight-light">Who are we?</p>
 
-    <div class="mx-auto my-10" style="max-width: 600px">
-      <p class="text-center text-h2 ma-3 font-weight-light">Who are we?</p>
-
-      <p class="text-center subtitle-1 font-weight-light">
-        We are Blueshell Esports, the gaming and esports student association at the University of
-        Twente. We house a bustling gaming community, organize regular online and offline events and
-        present opportunities for competitive play.</p>
-
-    </div>
+        <p class="text-center subtitle-1 font-weight-light">
+          We are Blueshell Esports, the gaming and esports student association at the University of
+          Twente. We house a bustling gaming community, organize regular online and offline events
+          and present opportunities for competitive play.</p>
+      </div>
+    </v-container>
 
     <v-container>
       <v-row class="text-center" justify="center">
         <v-col v-for="col in columns" v-bind:key="col.title"
-               class="mx-4" style="max-width:450px;min-width: 350px;min-height: 250px" align-self="center">
+               class="mx-4" style="max-width:450px;min-width: 350px;min-height: 250px"
+               align-self="center">
           <div class="expand" style="width: 100%" @click="goto(col.url)">
             <v-icon x-large :color="col.color" class="icon" v-html="col.icon"></v-icon>
             <p class="text-h3 ma-3 font-weight-thin" v-html="col.title"></p>

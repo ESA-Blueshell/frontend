@@ -2,28 +2,33 @@
   <v-app>
     <top-banner title="Committees"></top-banner>
     <div class="mx-auto my-10" style="max-width: 800px">
-      <p class="body-1">
-        Would you like to make the most of your student life, and experience what it is to work
-        together with other students to make great things happen? If so, then perhaps joining a
-        committee is something for you! Committees are groups of students that work together to
-        organize events or provide services for the association, while also having a lot of fun and
-        getting some professional experience.
-      </p>
-      <p class="body-1">
-        If you would like to join a meeting to see if we are something for you, or if you have a
-        question, feel free to contact the board at
-        <a href="mailto:internal-affairs@blueshell.utwente.nl">internal-affairs@blueshell.utwente.nl</a>
-        . You could also ask us on Discord or in person at one of the events.
-      </p>
-      <p class="body-1">
-        Do you have a great idea for an event or a new committee, then be sure to contact us!
-      </p>
+      <div class="mx-3">
+        <p class="body-1">
+          Would you like to make the most of your student life, and experience what it is to work
+          together with other students to make great things happen? If so, then perhaps joining a
+          committee is something for you! Committees are groups of students that work together to
+          organize events or provide services for the association, while also having a lot of fun
+          and
+          getting some professional experience.
+        </p>
+        <p class="body-1">
+          If you would like to join a meeting to see if we are something for you, or if you have a
+          question, feel free to contact the board at
+          <a href="mailto:internal-affairs@blueshell.utwente.nl">internal-affairs@blueshell.utwente.nl</a>
+          . You could also ask us on Discord or in person at one of the events.
+        </p>
+        <p class="body-1">
+          Do you have a great idea for an event or a new committee, then be sure to contact us!
+        </p>
+      </div>
       <v-expansion-panels accordion>
         <v-expansion-panel>
           <v-expansion-panel-header class="text-h5 font-weight-light">LegaCie
           </v-expansion-panel-header>
-          <v-expansion-panel-content><p>The LegaCie, some call it the backbone of Blueshell, others
-            will just say it is a bunch of people that like to organize a good party. That’s why the
+          <v-expansion-panel-content><p>The LegaCie, some call it the backbone of Blueshell,
+            others
+            will just say it is a bunch of people that like to organize a good party. That’s why
+            the
             Legacy organizes the monthly gamenights. Of course the gamenights should be held to
             the highest of standards, that’s why this is one the largest committees in all of
             Blueshell! But, you might ask, what does the LegaCie really do? They make sure all
@@ -40,7 +45,8 @@
         <v-expansion-panel>
           <v-expansion-panel-header class="text-h5 font-weight-light">SiteCie
           </v-expansion-panel-header>
-          <v-expansion-panel-content><p>You probably already read it from the name, but the SiteCie
+          <v-expansion-panel-content><p>You probably already read it from the name, but the
+            SiteCie
             is
             responsible for the website. They do not only help with the maintenance of this one
             but also develop a new website! This is of course still highly experimental and will
@@ -109,7 +115,8 @@
         <v-expansion-panel>
           <v-expansion-panel-header class="text-h5 font-weight-light">VACCie
           </v-expansion-panel-header>
-          <v-expansion-panel-content><p>The VACCie is named after the Valve Anti-Cheat System, which
+          <v-expansion-panel-content><p>The VACCie is named after the Valve Anti-Cheat System,
+            which
             is
             famous in the game CS:GO for catching no cheaters at all. This committee however is
             able to organize great activities in CS:GO! They organize events such as wargames,
@@ -139,7 +146,8 @@
         <v-expansion-panel>
           <v-expansion-panel-header class="text-h5 font-weight-light">ShitpostCie
           </v-expansion-panel-header>
-          <v-expansion-panel-content><p>In Lord of the rings, we had the one ring to rule them all,
+          <v-expansion-panel-content><p>In Lord of the rings, we had the one ring to rule them
+            all,
             in
             Blueshell we have one committee to rule them all. The ShitpostCie is not this
             committee however. But it is a necessary one! They make the Blueshell Discord just a
@@ -166,7 +174,8 @@
         <v-expansion-panel>
           <v-expansion-panel-header class="text-h5 font-weight-light">4FunCie
           </v-expansion-panel-header>
-          <v-expansion-panel-content><p>As the name suggests this committee is focussed around Fun!
+          <v-expansion-panel-content><p>As the name suggests this committee is focussed around
+            Fun!
             They
             are responsible for the non-game related activities Blueshell organizes. These can
             include a movienight with the scariest of movies, a gala or something like
@@ -180,7 +189,8 @@
         <v-expansion-panel>
           <v-expansion-panel-header class="text-h5 font-weight-light">PineCo
           </v-expansion-panel-header>
-          <v-expansion-panel-content><p>This name might sound oddly familiar to those who don’t mind
+          <v-expansion-panel-content><p>This name might sound oddly familiar to those who don’t
+            mind
             to
             endure a game of tedious grinding and lovely creatures a.k.a pokemon. This committee
             serves as a body to introduce new trainers to the world of pokemon (esports) through
@@ -194,7 +204,8 @@
         <v-expansion-panel>
           <v-expansion-panel-header class="text-h5 font-weight-light">GNSKCie
           </v-expansion-panel-header>
-          <v-expansion-panel-content><p>As the GNSK (Groot Nederlands Studeten Kampioenschap) comes
+          <v-expansion-panel-content><p>As the GNSK (Groot Nederlands Studeten Kampioenschap)
+            comes
             to Enschede they will be the ones preparing us for the esports here. These heroes make
             sure that on the day itself everything regarding esports will run smoothly and the
             athletes will shine in their game!</p>
@@ -203,7 +214,8 @@
         <v-expansion-panel>
           <v-expansion-panel-header class="text-h5 font-weight-light">DesignCie
           </v-expansion-panel-header>
-          <v-expansion-panel-content><p>Have you seen a flyer from Blueshell? Maybe a banner or some
+          <v-expansion-panel-content><p>Have you seen a flyer from Blueshell? Maybe a banner or
+            some
             sort of a 3D Shelly figure? Big chance that the DesignCie made this! They do
             everything which mere mortals cannot comprehend however that does not mean you cant!
             In this committee, you will gain experience designing all kinds of stuff from the easy
