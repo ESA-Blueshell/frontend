@@ -15,13 +15,25 @@
            style="height: 100%">
         <v-btn class="bar-button" text dark to="/">Home</v-btn>
         <v-btn class="bar-button" text dark to="/membership">Membership</v-btn>
+        <v-menu open-on-hover offset-y>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn class="bar-button" v-bind="attrs" v-on="on" text dark to="/aboutus">Association
+              <v-icon>mdi-chevron-down</v-icon>
+            </v-btn>
+          </template>
+          <v-list>
+            <v-list-item to="/aboutus">About us</v-list-item>
+            <v-list-item to="/board">Board</v-list-item>
+            <v-list-item to="/committees">Committees</v-list-item>
+          </v-list>
+        </v-menu>
         <v-btn class="bar-button" text dark to="/news">News</v-btn>
         <v-btn class="bar-button" text dark to="/events">Events</v-btn>
         <v-btn class="bar-button" text dark to="/contact">Contact</v-btn>
-        <v-btn class="bar-button" text dark to="/committees">Committees</v-btn>
         <v-menu open-on-hover offset-y>
           <template v-slot:activator="{ on, attrs }">
             <v-btn class="bar-button" v-bind="attrs" v-on="on" text dark to="/esports">Esports
+              <v-icon>mdi-chevron-down</v-icon>
             </v-btn>
           </template>
           <v-list>
@@ -43,6 +55,17 @@
         <v-list-item text dark to="/membership">
           <v-list-item-title> Membership</v-list-item-title>
         </v-list-item>
+        <v-list-group :value="false" color="blue lighten-1">
+          <template v-slot:activator>
+            <v-list-item-title>
+              Association
+            </v-list-item-title>
+          </template>
+          <v-list-item to="/aboutus">About us</v-list-item>
+          <v-list-item to="/board">Board</v-list-item>
+          <v-list-item to="/committees">Committees</v-list-item>
+          <v-divider dark></v-divider>
+        </v-list-group>
         <v-list-item text dark to="/news">
           <v-list-item-title> News</v-list-item-title>
         </v-list-item>
@@ -51,9 +74,6 @@
         </v-list-item>
         <v-list-item text dark to="/contact">
           <v-list-item-title> Contact</v-list-item-title>
-        </v-list-item>
-        <v-list-item text dark to="/committees">
-          <v-list-item-title> Committees</v-list-item-title>
         </v-list-item>
 
 
@@ -72,7 +92,7 @@
           <v-list-item to="/esports/rocket-league">Rocket League</v-list-item>
           <v-list-item to="/esports/super-smash-bros">Super Smash Bros.</v-list-item>
 
-
+          <v-divider dark></v-divider>
         </v-list-group>
       </v-list>
       <template v-slot:append>

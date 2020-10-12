@@ -8,9 +8,7 @@
           together with other students to make great things happen? If so, then perhaps joining a
           committee is something for you! Committees are groups of students that work together to
           organize events or provide services for the association, while also having a lot of fun
-          and
-          getting some professional experience.
-        </p>
+          and getting some professional experience. </p>
         <p class="body-1">
           If you would like to join a meeting to see if we are something for you, or if you have a
           question, feel free to contact the board at
@@ -26,14 +24,12 @@
           <v-expansion-panel-header class="text-h5 font-weight-light">LegaCie
           </v-expansion-panel-header>
           <v-expansion-panel-content><p>The LegaCie, some call it the backbone of Blueshell,
-            others
-            will just say it is a bunch of people that like to organize a good party. That’s why
-            the
-            Legacy organizes the monthly gamenights. Of course the gamenights should be held to
-            the highest of standards, that’s why this is one the largest committees in all of
-            Blueshell! But, you might ask, what does the LegaCie really do? They make sure all
+            others will just say it is a bunch of people that like to organize a good party. That’s
+            why the LegaCie organizes the monthly gamenights. Of course the gamenights should be
+            held to the highest of standards, that’s why this is one the largest committees in all
+            of Blueshell! But, you might ask, what does the LegaCie really do? They make sure all
             games are working during the gamenight, make reservations, create an amazing pubquiz
-            from time to time and all the other background stuff you wouldn’t even know
+            from time to time and all the other background stuff you wouldn't even know
             exists.</p>
             <p><b>Why join?</b></p>
             <p>As said before this is one of the largest committees in Blueshell and we can always
@@ -46,12 +42,10 @@
           <v-expansion-panel-header class="text-h5 font-weight-light">SiteCie
           </v-expansion-panel-header>
           <v-expansion-panel-content><p>You probably already read it from the name, but the
-            SiteCie
-            is
-            responsible for the website. They do not only help with the maintenance of this one
-            but also develop a new website! This is of course still highly experimental and will
-            not see any implementation in the near future. However, in the end, this will create
-            an amazing new platform that looks even better.</p>
+            SiteCie is responsible for the website. They do not only help with the maintenance of
+            this one but also develop a new website! This is of course still highly experimental and
+            will not see any implementation in the near future. However, in the end, this will
+            create an amazing new platform that looks even better.</p>
             <p><b>Why join?</b></p>
             <p>Joining this committee does not require you to have any previous knowledge of
               coding a website, you will learn this along the way. What you do require is the
@@ -92,7 +86,7 @@
           </v-expansion-panel-header>
           <v-expansion-panel-content><p>Another one of the larger committees in Blueshell. This
             committee may not be that active if you look at the event count, but they make up for
-            it in quality. They are responsible for the big LoL tournaments and the LoL cusom
+            it in quality. They are responsible for the big LoL tournaments and the LoL custom
             evenings with great success!</p>
             <p><b>Why join?</b></p>
             <p>It is a given that people with experience in LoL are greatly appreciated in this
@@ -103,8 +97,8 @@
         <v-expansion-panel>
           <v-expansion-panel-header class="text-h5 font-weight-light">OWCie
           </v-expansion-panel-header>
-          <v-expansion-panel-content><p>This committee is responsible for all overwatch events in
-            Blueshell, including the Blueshell overwatch cup. Apart from that the committee
+          <v-expansion-panel-content><p>This committee is responsible for all Overwatch events in
+            Blueshell, including the Blueshell Overwatch cup. Apart from that the committee
             members are all well versed in the Overwatch memes.</p>
             <p><b>Why join?</b></p>
             <p>This committee is meant for those that like Overwatch and would love to make others
@@ -116,12 +110,10 @@
           <v-expansion-panel-header class="text-h5 font-weight-light">VACCie
           </v-expansion-panel-header>
           <v-expansion-panel-content><p>The VACCie is named after the Valve Anti-Cheat System,
-            which
-            is
-            famous in the game CS:GO for catching no cheaters at all. This committee however is
-            able to organize great activities in CS:GO! They organize events such as wargames,
-            2v2’s, wingman tournaments or 5v5’s, which are regularly planned to satisfy the need
-            of a true skill-based shooter in Blueshell.</p>
+            which is famous in the game CS:GO for catching no cheaters at all. This committee
+            however is able to organize great activities in CS:GO! They organize events such as
+            wargames, 2v2’s, wingman tournaments or 5v5’s, which are regularly planned to satisfy
+            the need of a true skill-based shooter in Blueshell.</p>
             <p><b>Why join?</b></p>
             <p>For this committee you absolutely do not need to have a high ranking in the CS:GO
               standings. You will gain a lot of experience while organizing new events and make
@@ -160,15 +152,14 @@
           <v-expansion-panel-header class="text-h5 font-weight-light">DotaCie
           </v-expansion-panel-header>
           <v-expansion-panel-content><p>Beside League of Legends there is another large MOBA
-            represented
-            in Blueshell. This titan is of course Dota 2. Not only are there active Dota players
-            in Blueshell but there is even a committee centered around making the best Dota
+            represented in Blueshell. This titan is of course Dota 2. Not only are there active Dota
+            players in Blueshell but there is even a committee centered around making the best Dota
             activities possible. They mainly focus on setting up 5v5 custom lobbies, or getting
             groups together to play a fun match.</p>
             <p><b>Why Join?</b></p>
             <p>This committee is here for all the Dota enthusiasts. If you like Dota you should
               look into this committee. This committee is one of the lightweight committees but
-              nontheless you will certainly learn something and make new friends.</p>
+              nonetheless you will certainly learn something and make new friends.</p>
           </v-expansion-panel-content>
         </v-expansion-panel>
         <v-expansion-panel>
@@ -178,7 +169,7 @@
             Fun!
             They
             are responsible for the non-game related activities Blueshell organizes. These can
-            include a movienight with the scariest of movies, a gala or something like
+            include a movie night with the scariest of movies, a gala or something like
             lasergaming. If it is not a game it is for the 4FunCie</p>
             <p><b>Why Join?</b></p>
             <p>This committee will not only give you a lot of experience but are also some of the
@@ -234,10 +225,7 @@
 import TopBanner from "@/components/top-banner";
 
 export default {
-  components: {TopBanner},
-  data: function () {
-    return {}
-  }
+  components: {TopBanner}
 }
 </script>
 

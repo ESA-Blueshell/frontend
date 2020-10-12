@@ -7,6 +7,8 @@ import Contact from './views/Contact.vue'
 import Committees from './views/Committees.vue'
 import Membership from './views/Membership.vue'
 import Esports from './views/Esports.vue'
+import AboutUs from "@/views/AboutUs";
+import Board from "@/views/Board";
 
 
 Vue.use(Router)
@@ -56,6 +58,16 @@ export default new Router({
       path: '/membership',
       name: 'membership',
       component: Membership
+    },
+    {
+      path: '/aboutus',
+      name: 'aboutus',
+      component: AboutUs
+    },
+    {
+      path: '/board',
+      name: 'board',
+      component: Board
     },
   ]
 })
