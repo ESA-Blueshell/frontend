@@ -7,8 +7,12 @@ import Contact from './views/Contact.vue'
 import Committees from './views/Committees.vue'
 import Membership from './views/Membership.vue'
 import Esports from './views/Esports.vue'
-import AboutUs from "@/views/AboutUs";
-import Board from "@/views/Board";
+import AboutUs from "./views/AboutUs";
+import Board from "./views/Board";
+import League from "./views/esports/League";
+import Smash from "./views/esports/Smash";
+import Csgo from "./views/esports/Csgo";
+import RocketLeague from "./views/esports/RocketLeague";
 
 
 Vue.use(Router)
@@ -68,6 +72,26 @@ export default new Router({
       path: '/board',
       name: 'board',
       component: Board
+    },
+    {
+      path: '/esports/league-of-legends',
+      name: 'league',
+      component: League
+    },
+    {
+      path: '/esports/super-smash-bros',
+      name: 'smash',
+      component: Smash
+    },
+    {
+      path: '/esports/counter-strike-global-offensive',
+      name: 'csgo',
+      component: Csgo
+    },
+    {
+      path: '/esports/rocket-league',
+      name: 'rocketleague',
+      component: RocketLeague
     },
   ]
 })
