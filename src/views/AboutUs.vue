@@ -3,7 +3,7 @@
     <top-banner title="Association"></top-banner>
     <div class="mx-3">
       <div class="mx-auto my-10" style="max-width: 800px">
-        <p class="text-h4 font-weight-bold">
+        <p class="text-h4 font-weight-light">
           About us
         </p>
         <p class="body-1">
@@ -14,7 +14,7 @@
           different part of the association and the community. That means, whether you are burning
           with a competitive spirit, or looking for a chill night of couch games and drinks, there's
           enough space for everyone in Blueshell. </p>
-        <p class="text-h4 font-weight-bold">History</p>
+        <p class="text-h4 font-weight-light">History</p>
         <p class="body-1">
           Since its foundation in 1961, the University of Twente has developed many associations,
           ranging from large study associations to small cultural ones. With such an enormous

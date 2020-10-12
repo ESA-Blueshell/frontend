@@ -5,7 +5,7 @@
     <div class="mx-3">
       <div class="mx-auto" style="max-width: 800px">
         <div class="my-10">
-          <p class="text-h4 font-weight-bold">
+          <p class="text-h4 font-weight-light">
             Interested in becoming a member?
           </p>
 
@@ -33,7 +33,7 @@
           </p>
         </div>
         <div class="my-10">
-          <p class="text-h4 font-weight-bold">
+          <p class="text-h4 font-weight-light">
             How to become a member?
           </p>
           <p class="body-1">
@@ -65,7 +65,7 @@
         </div>
         <div class="my-10">
 
-          <p class="text-h4 font-weight-bold">
+          <p class="text-h4 font-weight-light">
             Contribution
           </p>
           <p>

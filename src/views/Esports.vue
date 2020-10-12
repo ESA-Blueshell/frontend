@@ -3,7 +3,7 @@
     <top-banner title="Esports"></top-banner>
     <div class="mx-3">
       <div class="mx-auto my-10" style="max-width: 800px">
-        <p class="text-h4 font-weight-bold">
+        <p class="text-h4 font-weight-light">
           Blueshell's competitive scene
         </p>
         <p class="body-1">
@@ -22,7 +22,7 @@
           </v-col>
         </v-row>
 
-        <p class="text-h4 font-weight-bold">
+        <p class="text-h4 font-weight-light">
           Interested in competitive play?
         </p>
         <p class="body-1">

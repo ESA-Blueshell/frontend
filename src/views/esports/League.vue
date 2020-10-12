@@ -23,7 +23,7 @@
                     We are also open to having more teams for League of Legends and we are actually
                     looking to build a team for the next season of Talent League. If you are
                     interested in trialing, contact the Commissioner of Esports,
-                    ElDonte#0002<!-- TODO: lmao -->, on
+                    King Cookie#4902, on
                     <a href="https://discord.gg/WyDhbAP" target="_blank"
                        class="text-decoration-none">Discord</a>!
                 </p>

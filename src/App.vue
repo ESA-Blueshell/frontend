@@ -38,7 +38,7 @@
           </template>
           <v-list>
             <v-list-item to="/esports/league-of-legends">League of Legends</v-list-item>
-            <v-list-item to="/esports/counter-strike-global-offensive">Counter Strike:Global
+            <v-list-item to="/esports/counter-strike-global-offensive">Counter Strike: Global
               Offensive
             </v-list-item>
             <v-list-item to="/esports/rocket-league">Rocket League</v-list-item>
@@ -86,7 +86,7 @@
 
           <v-list-item to="/esports">Competitive scene</v-list-item>
           <v-list-item to="/esports/league-of-legends">League of Legends</v-list-item>
-          <v-list-item to="/esports/counter-strike-global-offensive">Counter Strike:Global
+          <v-list-item to="/esports/counter-strike-global-offensive">Counter Strike: Global
             Offensive
           </v-list-item>
           <v-list-item to="/esports/rocket-league">Rocket League</v-list-item>
