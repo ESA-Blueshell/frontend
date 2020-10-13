@@ -45,6 +45,8 @@
             <v-list-item to="/esports/super-smash-bros">Super Smash Bros.</v-list-item>
           </v-list>
         </v-menu>
+        <!-- TODO: ALIGN THIS TO THE RIGHT -->
+        <v-btn class="bar-button" text dark>Login</v-btn>
       </div>
     </v-app-bar>
     <v-navigation-drawer v-model="drawer" app temporary dark>
@@ -94,6 +96,11 @@
 
           <v-divider dark></v-divider>
         </v-list-group>
+
+        <v-list-item text dark to="/news">
+          <v-list-item-title>Login</v-list-item-title>
+        </v-list-item>
+
       </v-list>
       <template v-slot:append>
         <div class="mx-4">
