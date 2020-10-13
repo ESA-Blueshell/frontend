@@ -46,9 +46,8 @@
           </v-list>
         </v-menu>
       </div>
-      <!-- TODO: ALIGN THIS TO THE RIGHT -->
       <v-spacer></v-spacer>
-      <v-btn class="bar-button" text dark>Login</v-btn>
+      <v-btn class="bar-button" text dark to="/login">Login</v-btn>
     </v-app-bar>
     <v-navigation-drawer v-model="drawer" app temporary dark>
       <v-list nav>
@@ -98,7 +97,7 @@
           <v-divider dark></v-divider>
         </v-list-group>
 
-        <v-list-item text dark to="/news">
+        <v-list-item text dark to="/login">
           <v-list-item-title>Login</v-list-item-title>
         </v-list-item>
 
@@ -134,7 +133,19 @@
     <v-main>
       <router-view/>
     </v-main>
-    <v-footer class="theme--dark">
+    <v-footer dark>
+      <v-btn icon href="mailto:board@blueshell.utwente.nl">
+        <v-icon>mdi-email</v-icon>
+      </v-btn>
+      <v-btn icon href="https://www.facebook.com/BlueshellEsports/" target="_blank">
+        <v-icon>mdi-facebook</v-icon>
+      </v-btn>
+      <v-btn icon href="https://www.instagram.com/blueshellesports/" target="_blank">
+        <v-icon>mdi-instagram</v-icon>
+      </v-btn>
+      <v-btn icon href="https://twitter.com/BlueshellESA" target="_blank">
+        <v-icon>mdi-twitter</v-icon>
+      </v-btn>
       <v-spacer></v-spacer>
       <div class="white--text">&copy; {{ new Date().getFullYear() }}</div>
     </v-footer>
