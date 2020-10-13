@@ -45,9 +45,10 @@
             <v-list-item to="/esports/super-smash-bros">Super Smash Bros.</v-list-item>
           </v-list>
         </v-menu>
-        <!-- TODO: ALIGN THIS TO THE RIGHT -->
-        <v-btn class="bar-button" text dark>Login</v-btn>
       </div>
+      <!-- TODO: ALIGN THIS TO THE RIGHT -->
+      <v-spacer></v-spacer>
+      <v-btn class="bar-button" text dark>Login</v-btn>
     </v-app-bar>
     <v-navigation-drawer v-model="drawer" app temporary dark>
       <v-list nav>
