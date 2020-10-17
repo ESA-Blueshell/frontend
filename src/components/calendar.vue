@@ -35,6 +35,7 @@
             v-model="focus"
             :color="color"
             :events="events"
+            :weekdays="weekdays"
             type="month"
             @click:event="showEvent"
             locale="en-US">
@@ -69,7 +70,7 @@
               </v-tooltip>
               <v-tooltip bottom>
                 <template v-slot:activator="{ on, attrs }">
-                  <v-btn icon v-on="on">
+                  <v-btn icon v-on="on" @click="addToCal">
                     <v-icon>mdi-calendar</v-icon>
                   </v-btn>
                 </template>
@@ -132,6 +133,8 @@ export default {
     selectedEvent: null,
     selectedElement: null,
     selectedOpen: false,
+    //TODO: change to blueshell calendar ID!!
+    calendarId: "c_kqp2ru792pn7ghnra32802b3mg@group.calendar.google.com",
 
     events: [{
       name: "what the fuck",
@@ -139,11 +142,13 @@ export default {
       date: "2020-10-05",
       start: new Date("2020-10-05 21:02:11"),
       location: "global lounge Enschede",
+      googleId: "M2ZkcmtrcWxxYnRmOTRqcGZyZGM2NjdkNmQgY19rcXAycnU3OTJwbjdnaG5yYTMyODAyYjNtZ0Bn",
       memberPrice: 0,
       publicPrice: 2,
     }],
     dialog: false,
     monthsCollected: [],
+    weekdays: [1, 2, 3, 4, 5, 6, 0],
     currentMonth: null,
     monthsLoading: 0
 
@@ -172,7 +177,8 @@ export default {
                       location: elem.location, //todo: split up location and address (so global lounge would be location and bastille Enschede would be the address)
                       memberPrice: elem.memberPrice,
                       publicPrice: elem.publicPrice,
-                    });
+                      googleId: elem.googleId,
+                    })
                   }
               )
               this.events.push(...res);
@@ -252,6 +258,9 @@ export default {
     },
     findLocation() {
       window.open(encodeURI('https://www.google.com/maps/search/?api=1&query=' + this.selectedEvent.location))
+    },
+    addToCal() {
+      window.open(encodeURI('https://calendar.google.com/event?action=TEMPLATE&tmeid=' + this.selectedEvent.googleId + '&tmsrc=' + this.calendarId))
     },
     hundredWords(str) {
       return str.split(/\s+/).slice(0, 100).join(" ");
