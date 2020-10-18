@@ -1,6 +1,7 @@
 <template>
   <v-row class="fill-height">
     <v-col>
+      <!-- Start of the top bar. Includes today, previous and forward buttons and current month. -->
       <v-sheet height="64">
         <v-toolbar flat>
           <v-btn outlined class="mr-4" color="grey darken-2" @click="setToday">
@@ -20,28 +21,31 @@
             {{ $refs.calendar.title }}
           </v-toolbar-title>
           <v-spacer></v-spacer>
+          <!-- Circle loading thingy (only appears after the user's been waiting for new events for 0.5s) -->
           <v-fade-transition>
             <v-progress-circular
                 v-if="monthsLoading > 0"
                 indeterminate
-                color="primary"
-            ></v-progress-circular>
+                color="primary">
+            </v-progress-circular>
           </v-fade-transition>
         </v-toolbar>
       </v-sheet>
+      <!-- End of the top bar -->
       <v-sheet height="600">
+        <!-- The actual calendar -->
         <v-calendar
             ref="calendar"
             v-model="focus"
-            :color="color"
             :events="events"
             :weekdays="weekdays"
+            color="primary"
             type="month"
             @click:event="showEvent"
             locale="en-US">
         </v-calendar>
 
-
+        <!-- Start of the menu that pops up when selecting an event -->
         <v-menu
             v-model="selectedOpen"
             :close-on-content-click="false"
@@ -49,15 +53,8 @@
             offset-x
             v-if="selectedEvent"
         >
-          <v-card
-              color="grey lighten-4"
-              min-width="350px"
-              max-width="350px"
-          >
-            <v-toolbar
-                :color="selectedEvent.color"
-                dark
-            >
+          <v-card color="grey lighten-4" min-width="350px" max-width="350px">
+            <v-toolbar :color="selectedEvent.color" dark>
               <v-toolbar-title v-html="selectedEvent.name"></v-toolbar-title>
               <v-spacer></v-spacer>
               <v-tooltip bottom>
@@ -78,14 +75,18 @@
               </v-tooltip>
             </v-toolbar>
             <v-card-text>
-              <p id="eventDetails">
-                {{ hundredWords(selectedEvent.details) }}
-                <br>
-                <a v-if="selectedEvent.details.split(/\s+/).length > 100" @click="expandWords">
-                  <b> read more </b>
-                </a>
-              </p>
-              <v-divider></v-divider>
+              <div id="eventDetails" v-if="selectedEvent.details">
+                <p>
+                  <span
+                      v-html="expand ? selectedEvent.details : hundredWords(selectedEvent.details)+'...'"></span>
+                  <br v-if="!expand">
+                  <a v-if="!expand && selectedEvent.details.split(/\s+/).length > 100"
+                     @click="expandWords">
+                    <b>read more</b>
+                  </a>
+                </p>
+              </div>
+              <v-divider v-if="selectedEvent.details"></v-divider>
               <p class="mt-4">
                 <b>When</b>
                 <br>
@@ -97,7 +98,8 @@
                 <br>
                 {{ selectedEvent.location }}
               </p>
-              <v-divider v-if="selectedEvent.location"></v-divider>
+              <v-divider
+                  v-if="selectedEvent.memberPrice !== null && selectedEvent.publicPrice !== null"></v-divider>
               <p v-if="selectedEvent.memberPrice !== null && selectedEvent.publicPrice !== null"
                  class="mt-4">
                 <b>Price</b>
@@ -125,28 +127,12 @@ export default {
   data: () => ({
     today: new Date().toISOString().substring(0, 10),
     focus: new Date().toISOString().substring(0, 10),
-    name: null,
-    details: null,
-    start: null,
-    date: null,
-    color: "primary",
     selectedEvent: null,
     selectedElement: null,
     selectedOpen: false,
-    //TODO: change to blueshell calendar ID!!
-    calendarId: "c_kqp2ru792pn7ghnra32802b3mg@group.calendar.google.com",
-
-    events: [{
-      name: "what the fuck",
-      details: "What the fuck did you just fucking say about me, you little bitch? I'll have you know I graduated top of my class in the Navy Seals, and I've been involved in numerous secret raids on Al-Quaeda, and I have over 300 confirmed kills. I am trained in gorilla warfare and I'm the top sniper in the entire US armed forces. You are nothing to me but just another target. I will wipe you the fuck out with precision the likes of which has never been seen before on this Earth, mark my fucking words. You think you can get away with saying that shit to me over the Internet? Think again, fucker. As we speak I am contacting my secret network of spies across the USA and your IP is being traced right now so you better prepare for the storm, maggot. The storm that wipes out the pathetic little thing you call your life. You're fucking dead, kid. I can be anywhere, anytime, and I can kill you in over seven hundred ways, and that's just with my bare hands. Not only am I extensively trained in unarmed combat, but I have access to the entire arsenal of the United States Marine Corps and I will use it to its full extent to wipe your miserable ass off the face of the continent, you little shit. If only you could have known what unholy retribution your little \"clever\" comment was about to bring down upon you, maybe you would have held your fucking tongue. But you couldn't, you didn't, and now you're paying the price, you goddamn idiot. I will shit fury all over you and you will drown in it. You're fucking dead, kiddo.",
-      date: "2020-10-05",
-      start: new Date("2020-10-05 21:02:11"),
-      location: "global lounge Enschede",
-      googleId: "M2ZkcmtrcWxxYnRmOTRqcGZyZGM2NjdkNmQgY19rcXAycnU3OTJwbjdnaG5yYTMyODAyYjNtZ0Bn",
-      memberPrice: 0,
-      publicPrice: 2,
-    }],
-    dialog: false,
+    calendarId: "blueshellesports@gmail.com",
+    events: [],
+    expand: false,
     monthsCollected: [],
     weekdays: [1, 2, 3, 4, 5, 6, 0],
     currentMonth: null,
@@ -207,6 +193,7 @@ export default {
 
     showEvent({nativeEvent, event}) {
       const open = () => {
+        this.expand = false
         this.selectedEvent = event
         this.selectedEvent.color = "primary"
         this.selectedElement = nativeEvent.target
@@ -224,6 +211,7 @@ export default {
 
       nativeEvent.stopPropagation()
     },
+    // Get the next month. Formatting: yyyy-MM
     nextMonth(month) {
       const splitTime = month.split("-");
       const currYear = splitTime[0];
@@ -240,6 +228,7 @@ export default {
         }
       }
     },
+    // Get the previous month. Formatting: yyyy-MM
     prevMonth(month) {
       const splitTime = month.split("-");
       const currYear = splitTime[0];
@@ -257,7 +246,11 @@ export default {
       }
     },
     findLocation() {
-      window.open(encodeURI('https://www.google.com/maps/search/?api=1&query=' + this.selectedEvent.location))
+      if (this.selectedEvent.location.includes("iscord")) {
+        window.open(encodeURI('https://discord.gg/23YMFQy'));
+      } else {
+        window.open(encodeURI('https://www.google.com/maps/search/?api=1&query=' + this.selectedEvent.location));
+      }
     },
     addToCal() {
       window.open(encodeURI('https://calendar.google.com/event?action=TEMPLATE&tmeid=' + this.selectedEvent.googleId + '&tmsrc=' + this.calendarId))
@@ -266,7 +259,7 @@ export default {
       return str.split(/\s+/).slice(0, 100).join(" ");
     },
     expandWords() {
-      document.getElementById("eventDetails").innerHTML = this.selectedEvent.details
+      this.expand = true
     },
     formatDate(date) {
       return new Intl.DateTimeFormat('en-US', {
