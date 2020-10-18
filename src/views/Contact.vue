@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-main>
     <top-banner title="Contact"></top-banner>
     <!-- TODO: FIX THIS LATER LMAO -->
 
@@ -25,7 +25,7 @@
         </p>
       </div>
     </div>
-  </v-app>
+  </v-main>
 </template>
 
 <script>

@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-main>
     <top-banner title="Events"></top-banner>
     <div class="mx-5">
       <div class="mx-auto" style="width: 1000px">
@@ -16,7 +16,7 @@
         </p>
       </div>
     </div>
-  </v-app>
+  </v-main>
 </template>
 
 <script>

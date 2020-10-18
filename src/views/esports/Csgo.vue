@@ -1,5 +1,5 @@
 <template>
-    <v-app>
+    <v-main>
         <top-banner title="Counter-Strike: Global Offensive"></top-banner>
         <div class="mx-3">
             <div class="mx-auto my-10" style="max-width: 800px">
@@ -30,7 +30,7 @@
                 </ul>
             </div>
         </div>
-    </v-app>
+    </v-main>
 </template>
 
 <script>

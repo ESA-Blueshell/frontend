@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-main>
     <top-banner title="Home"></top-banner>
 
     <v-container>
@@ -37,7 +37,7 @@
       </v-layout>
     </v-container>
 
-  </v-app>
+  </v-main>
 </template>
 
 <script>

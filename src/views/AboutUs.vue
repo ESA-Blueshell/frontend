@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-main>
     <top-banner title="Association"></top-banner>
     <div class="mx-3">
       <div class="mx-auto my-10" style="max-width: 800px">
@@ -39,7 +39,7 @@
           hope to become an integral part of the University of Twente's community! </p>
       </div>
     </div>
-  </v-app>
+  </v-main>
 </template>
 
 <script>

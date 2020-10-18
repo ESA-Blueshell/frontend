@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-main>
     <top-banner title="Membership"></top-banner>
 
     <div class="mx-3">
@@ -88,7 +88,7 @@
         </div>
       </div>
     </div>
-  </v-app>
+  </v-main>
 </template>
 
 <script>

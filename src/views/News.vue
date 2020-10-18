@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-main>
     <top-banner title="News"></top-banner>
     <!-- TODO: CREATE PAGES FOR NEWS -->
     <v-list>
@@ -17,7 +17,7 @@
         </v-list-item-content>
       </v-list-item>
     </v-list>
-  </v-app>
+  </v-main>
 </template>
 <script>
 import TopBanner from "@/components/top-banner";

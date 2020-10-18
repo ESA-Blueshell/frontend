@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-main>
     <top-banner title="Board"></top-banner>
     <div class="mx-auto my-10" style="max-width: 800px">
       <div class="mx-3">
@@ -47,7 +47,7 @@
         </v-expansion-panel>
       </v-expansion-panels>
     </div>
-  </v-app>
+  </v-main>
 </template>
 
 <script>
