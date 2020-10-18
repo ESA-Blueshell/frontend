@@ -1,7 +1,7 @@
 <template>
   <v-main>
     <top-banner title="Events"></top-banner>
-    <div class="mx-5">
+    <div class="mx-3">
       <div class="mx-auto" style="width: 1000px">
         <calendar></calendar>
       </div>
