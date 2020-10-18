@@ -25,6 +25,7 @@
             <v-list-item to="/aboutus">About us</v-list-item>
             <v-list-item to="/board">Board</v-list-item>
             <v-list-item to="/committees">Committees</v-list-item>
+            <v-list-item to="/documents">Documents</v-list-item>
           </v-list>
         </v-menu>
         <v-btn class="bar-button" text dark to="/news">News</v-btn>
@@ -66,6 +67,7 @@
           <v-list-item to="/aboutus">About us</v-list-item>
           <v-list-item to="/board">Board</v-list-item>
           <v-list-item to="/committees">Committees</v-list-item>
+          <v-list-item to="/documents">Documents</v-list-item>
           <v-divider dark></v-divider>
         </v-list-group>
         <v-list-item text dark to="/news">

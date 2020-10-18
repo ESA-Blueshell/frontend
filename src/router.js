@@ -13,6 +13,7 @@ import League from "./views/esports/League";
 import Smash from "./views/esports/Smash";
 import Csgo from "./views/esports/Csgo";
 import RocketLeague from "./views/esports/RocketLeague";
+import Documents from "@/views/Documents";
 
 
 Vue.use(Router)
@@ -62,6 +63,11 @@ export default new Router({
       path: '/membership',
       name: 'membership',
       component: Membership
+    },
+    {
+      path: '/documents',
+      name: 'documents',
+      component: Documents
     },
     {
       path: '/aboutus',
