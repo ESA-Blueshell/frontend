@@ -46,6 +46,19 @@
             <v-list-item to="/esports/super-smash-bros">Super Smash Bros.</v-list-item>
           </v-list>
         </v-menu>
+        <v-menu open-on-hover offset-y>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn class="bar-button" v-bind="attrs" v-on="on" text dark
+                   to="/partners/become-a-partner">Partners
+              <v-icon>mdi-chevron-down</v-icon>
+            </v-btn>
+          </template>
+          <v-list>
+            <v-list-item to="/partners/become-a-partner">Become a partner!</v-list-item>
+            <v-list-item to="/partners/el-nino">El Niño – Digital Development</v-list-item>
+            <v-list-item to="/partners/ogd-ict">OGD ICT-diensten</v-list-item>
+          </v-list>
+        </v-menu>
       </div>
       <v-spacer></v-spacer>
       <v-btn class="bar-button" text dark to="/login">Login</v-btn>
@@ -99,6 +112,17 @@
           <v-divider dark></v-divider>
         </v-list-group>
 
+        <v-list-group :value="false" color="blue lighten-1">
+          <template v-slot:activator>
+            <v-list-item-title>
+              Partners
+            </v-list-item-title>
+          </template>
+          <v-list-item to="/partners/become-a-partner">Become a partner!</v-list-item>
+          <v-list-item to="/partners/el-nino">El Niño – Digital Development</v-list-item>
+          <v-list-item to="/partners/ogd-ict">OGD ICT-diensten</v-list-item>
+          <v-divider dark></v-divider>
+        </v-list-group>
         <v-list-item text dark to="/login">
           <v-list-item-title>Login</v-list-item-title>
         </v-list-item>
