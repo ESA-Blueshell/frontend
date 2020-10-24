@@ -54,6 +54,8 @@
             v-if="selectedEvent"
         >
           <v-card color="grey lighten-4" min-width="350px" max-width="350px">
+            <!-- Start of the toolbar in the selected event menu -->
+            <!-- Includes the event's title and the location and add to calendar buttons -->
             <v-toolbar :color="selectedEvent.color" dark>
               <v-toolbar-title v-html="selectedEvent.name"></v-toolbar-title>
               <v-spacer></v-spacer>
@@ -78,9 +80,9 @@
               <div id="eventDetails" v-if="selectedEvent.details">
                 <p>
                   <span
-                      v-html="expand || selectedEvent.details.split(/\s+/).length <= 100 ? selectedEvent.details : hundredWords(selectedEvent.details)+'...'"></span>
-                  <br v-if="!expand  && selectedEvent.details.split(/\s+/).length > 100">
-                  <a v-if="!expand && selectedEvent.details.split(/\s+/).length > 100"
+                      v-html="expand || !selectedLong ? selectedEvent.details : hundredWords(selectedEvent.details)+'...'"></span>
+                  <br v-if="!expand && selectedLong">
+                  <a v-if="!expand && selectedLong"
                      @click="expandWords">
                     <b>read more</b>
                   </a>
@@ -111,8 +113,19 @@
             </v-card-text>
           </v-card>
         </v-menu>
-
-
+        <!-- Snackbar that pops up when failing to get events -->
+        <v-snackbar v-model="snackbar">
+          Uh oh, looks like we can't connect to the server :/
+          <template v-slot:action="{ attrs }">
+            <v-btn
+                color="blue"
+                text
+                v-bind="attrs"
+                @click="snackbar = false">
+              Close
+            </v-btn>
+          </template>
+        </v-snackbar>
       </v-sheet>
     </v-col>
   </v-row>
@@ -128,6 +141,7 @@ export default {
     today: new Date().toISOString().substring(0, 10),
     focus: new Date().toISOString().substring(0, 10),
     selectedEvent: null,
+    selectedLong: null,
     selectedElement: null,
     selectedOpen: false,
     calendarId: "blueshellesports@gmail.com",
@@ -136,8 +150,8 @@ export default {
     monthsCollected: [],
     weekdays: [1, 2, 3, 4, 5, 6, 0],
     currentMonth: null,
-    monthsLoading: 0
-
+    monthsLoading: 0,
+    snackbar: false
   }),
   mounted() {
     this.setToday();
@@ -160,7 +174,7 @@ export default {
                       details: elem.description,
                       date: elem.startTime.substring(0, 10),
                       start: new Date(elem.startTime),
-                      location: elem.location, //todo: split up location and address (so global lounge would be location and bastille Enschede would be the address)
+                      location: elem.location,
                       memberPrice: elem.memberPrice,
                       publicPrice: elem.publicPrice,
                       googleId: elem.googleId,
@@ -169,7 +183,10 @@ export default {
               )
               this.events.push(...res);
             })
-            .catch(error => console.log(error))
+            .catch(error => {
+              console.log(error)
+              this.snackbar = true
+            })
             .then(() => this.monthsLoading--);
       }
     },
@@ -190,12 +207,14 @@ export default {
       this.getEvents(this.nextMonth(this.currentMonth))
     },
 
-
+    // idfk man i just copied this from the vuetify documentation (https://vuetifyjs.com/en/components/calendars/#events)
+    // apparently it triggers when you click on an event which is pretty neat i guess
     showEvent({nativeEvent, event}) {
       const open = () => {
         this.expand = false
         this.selectedEvent = event
         this.selectedEvent.color = "primary"
+        this.selectedLong = this.selectedEvent && this.selectedEvent.details.split(/\s+/).length > 100
         this.selectedElement = nativeEvent.target
         setTimeout(() => {
           this.selectedOpen = true
@@ -245,6 +264,8 @@ export default {
         }
       }
     },
+    // Triggers when the location button is clicked on an event.
+    // Opens a search on google maps with the location if the location isn't discord
     findLocation() {
       if (this.selectedEvent.location.includes("iscord")) {
         window.open(encodeURI('https://discord.gg/23YMFQy'));
@@ -252,15 +273,19 @@ export default {
         window.open(encodeURI('https://www.google.com/maps/search/?api=1&query=' + this.selectedEvent.location));
       }
     },
+    // Triggers when the add to calendar button is clicked on an event.
+    // Opens google calendar with the id of the event so all data is instantly filled in
     addToCal() {
       window.open(encodeURI('https://calendar.google.com/event?action=TEMPLATE&tmeid=' + this.selectedEvent.googleId + '&tmsrc=' + this.calendarId))
     },
+    // Reduces a string to 100 words
     hundredWords(str) {
       return str.split(/\s+/).slice(0, 100).join(" ");
     },
     expandWords() {
       this.expand = true
     },
+    // Format a date object to "Weekday MM dd, HH:mm"
     formatDate(date) {
       return new Intl.DateTimeFormat('en-US', {
         weekday: 'long',

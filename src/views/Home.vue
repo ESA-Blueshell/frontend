@@ -18,7 +18,7 @@
         <v-col v-for="col in columns" v-bind:key="col.title"
                class="mx-4" style="max-width:450px;min-width: 350px;min-height: 250px"
                align-self="center">
-          <div class="expand" style="width: 100%" @click="goto(col.url)">
+          <div class="expand" style="width: 100%; cursor: pointer" @click="goto(col.url)">
             <v-icon x-large :color="col.color" class="icon" v-html="col.icon"></v-icon>
             <p class="text-h3 ma-3 font-weight-thin" v-html="col.title"></p>
           </div>

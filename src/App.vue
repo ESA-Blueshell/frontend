@@ -2,7 +2,7 @@
   <v-app>
     <v-app-bar dark elevate-on-scroll fixed>
       <v-app-bar-nav-icon @click="drawer = true"
-                          v-if="$vuetify.breakpoint.name==='xs' || $vuetify.breakpoint.name==='sm'">
+                          v-if="$vuetify.breakpoint.mdAndDown">
       </v-app-bar-nav-icon>
       <v-toolbar-title class="ml-sm-n5 ml-md-0 ml-lg-0 ml-xl-0 ">
         <router-link to="/">
@@ -11,7 +11,7 @@
           </v-img>
         </router-link>
       </v-toolbar-title>
-      <div v-if="$vuetify.breakpoint.name!=='xs' && $vuetify.breakpoint.name!=='sm'"
+      <div v-if="$vuetify.breakpoint.lgAndUp"
            style="height: 100%">
         <v-btn class="bar-button" text dark to="/">Home</v-btn>
         <v-btn class="bar-button" text dark to="/membership">Membership</v-btn>
