@@ -78,8 +78,8 @@
               <div id="eventDetails" v-if="selectedEvent.details">
                 <p>
                   <span
-                      v-html="expand ? selectedEvent.details : hundredWords(selectedEvent.details)+'...'"></span>
-                  <br v-if="!expand">
+                      v-html="expand || selectedEvent.details.split(/\s+/).length <= 100 ? selectedEvent.details : hundredWords(selectedEvent.details)+'...'"></span>
+                  <br v-if="!expand  && selectedEvent.details.split(/\s+/).length > 100">
                   <a v-if="!expand && selectedEvent.details.split(/\s+/).length > 100"
                      @click="expandWords">
                     <b>read more</b>
