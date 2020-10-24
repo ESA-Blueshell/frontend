@@ -66,12 +66,13 @@
     <v-navigation-drawer v-model="drawer" app temporary dark>
       <v-list nav>
         <v-list-item text dark to="/">
-          <v-list-item-title> Home</v-list-item-title>
+          <v-list-item-title>Home</v-list-item-title>
         </v-list-item>
         <v-list-item text dark to="/membership">
-          <v-list-item-title> Membership</v-list-item-title>
+          <v-list-item-title>Membership</v-list-item-title>
         </v-list-item>
-        <v-list-group :value="false" color="blue lighten-1">
+        <v-list-group :value="false" color="blue lighten-1" class="mb-2">
+          <!-- why the fuck do list-groups not get a bottom margin but list items do what the fuck it's like they don't want us to use them in a navbar aaaaa -->
           <template v-slot:activator>
             <v-list-item-title>
               Association
@@ -84,9 +85,9 @@
           <v-divider dark></v-divider>
         </v-list-group>
         <v-list-item text dark to="/events">
-          <v-list-item-title> Events</v-list-item-title>
+          <v-list-item-title>Events</v-list-item-title>
         </v-list-item>
-        <v-list-group :value="false" color="blue lighten-1">
+        <v-list-group :value="false" color="blue lighten-1" class="mb-2">
           <template v-slot:activator>
             <v-list-item-title>
               Esports
@@ -102,9 +103,9 @@
           <v-divider dark></v-divider>
         </v-list-group>
         <v-list-item text dark to="/news">
-          <v-list-item-title> News</v-list-item-title>
+          <v-list-item-title>News</v-list-item-title>
         </v-list-item>
-        <v-list-group :value="false" color="blue lighten-1">
+        <v-list-group :value="false" color="blue lighten-1" class="mb-2">
           <template v-slot:activator>
             <v-list-item-title>
               Partners
@@ -116,7 +117,7 @@
           <v-divider dark></v-divider>
         </v-list-group>
         <v-list-item text dark to="/contact">
-          <v-list-item-title> Contact</v-list-item-title>
+          <v-list-item-title>Contact</v-list-item-title>
         </v-list-item>
         <v-list-item text dark to="/login">
           <v-list-item-title>Login</v-list-item-title>
