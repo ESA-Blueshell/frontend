@@ -9,16 +9,16 @@
           any questions about them, please contact the board.
         </p>
         <p class="body-1">
-          <a href="https://esa-blueshell.nl/wp-content/uploads/2018/01/20171212-Statuten.pdf"
+          <a href="https://esa-blueshell.nl/api/download/20171212-Statuten.pdf"
              class="text-decoration-none" target="_blank">
             Statutes (Dutch)</a></p>
         <p class="body-1">
-          <a href="https://esa-blueshell.nl/wp-content/uploads/2018/01/20180109-Huishoudelijk-Reglement-Blueshell-E-Sports.pdf"
+          <a href="https://esa-blueshell.nl/api/download/20180109-Huishoudelijk-Reglement-Blueshell-E-Sports.pdf"
              class="text-decoration-none" target="_blank">
             Internal Regulations (Dutch)
           </a></p>
         <p class="body-1">
-          <a href="https://esa-blueshell.nl/wp-content/uploads/2019/10/Privacybeleid-Blueshell.pdf"
+          <a href="https://esa-blueshell.nl/api/download/Privacybeleid-Blueshell.pdf"
              class="text-decoration-none" target="_blank">
             Privacy Policy (Dutch)
           </a></p>
@@ -27,7 +27,7 @@
           where to start:
         </p>
         <p class="body-1">
-          <a href="https://esa-blueshell.nl/wp-content/uploads/2019/12/Esports-Manual.pdf"
+          <a href="https://esa-blueshell.nl/api/download/Esports-Manual.pdf"
              class="text-decoration-none" target="_blank">
             Esports Manual
           </a></p>
