@@ -77,18 +77,19 @@
               </v-tooltip>
             </v-toolbar>
             <v-card-text>
-              <div id="eventDetails" v-if="selectedEvent.details">
-                <p>
+              <p v-if="selectedEvent.details">
                   <span
                       v-html="expand || !selectedLong ? selectedEvent.details : hundredWords(selectedEvent.details)+'...'"></span>
-                  <br v-if="!expand && selectedLong">
-                  <a v-if="!expand && selectedLong"
-                     @click="expandWords">
-                    <b>read more</b>
-                  </a>
-                </p>
-              </div>
-              <v-divider v-if="selectedEvent.details"></v-divider>
+                <br v-if="!expand && selectedLong">
+                <a v-if="!expand && selectedLong"
+                   @click="expandWords">
+                  <b>read more</b>
+                </a>
+              </p>
+              <p v-else>
+                No description...
+              </p>
+              <v-divider></v-divider>
               <p class="mt-4">
                 <b>When</b>
                 <br>
@@ -101,8 +102,8 @@
                 {{ selectedEvent.location }}
               </p>
               <v-divider
-                  v-if="selectedEvent.memberPrice !== null && selectedEvent.publicPrice !== null"></v-divider>
-              <p v-if="selectedEvent.memberPrice !== null && selectedEvent.publicPrice !== null"
+                  v-if="selectedEvent.memberPrice !== 0 && selectedEvent.publicPrice !== 0"></v-divider>
+              <p v-if="selectedEvent.memberPrice !== 0 && selectedEvent.publicPrice !== 0"
                  class="mt-4">
                 <b>Price</b>
                 <br>
@@ -165,7 +166,7 @@ export default {
         this.monthsCollected.push(month)
         setTimeout(() => this.monthsLoading++, 500);
 
-        axios.get('http://127.0.0.1:8080/api/events?from=' + month)
+        axios.get('http://esa-blueshell.nl/api/events?from=' + month)
             .then(response => {
               let res = []
               response.data.forEach(elem => {
@@ -214,7 +215,7 @@ export default {
         this.expand = false
         this.selectedEvent = event
         this.selectedEvent.color = "primary"
-        this.selectedLong = this.selectedEvent && this.selectedEvent.details.split(/\s+/).length > 100
+        this.selectedLong = this.selectedEvent && this.selectedEvent.details && this.selectedEvent.details.split(/\s+/).length > 100
         this.selectedElement = nativeEvent.target
         setTimeout(() => {
           this.selectedOpen = true
@@ -295,6 +296,10 @@ export default {
         minute: '2-digit',
         hour12: false
       }).format(date).replace(',', '');
+    },
+    eventsByDate(date) {
+      console.log(date.toLocaleString());
+      return this.events.filter((event) => date.toLocaleString() === event.date);
     }
   }
 }

@@ -12,7 +12,9 @@
         <p class="body-1">
           You can add all our events to your personal Google Calendar agenda by clicking <a
             href="https://calendar.google.com/calendar/b/1?cid=Ymx1ZXNoZWxsZXNwb3J0c0BnbWFpbC5jb20"
-            target="_blank" class="text-decoration-none">here</a>! If you want to add only a single event, you can click on at and click on the "add to calendar" button.
+            target="_blank" class="text-decoration-none">here</a>! If you want to add only a single
+          event, you can click on at and click on the "add to calendar" button. Beware that when you
+          copy an event, it isn't synchronized with the Blueshell calendar anymore.
         </p>
       </div>
     </div>
