@@ -41,6 +41,10 @@
                    v-bind:key="game.title">
         </game-card>
       </v-layout>
+
+      <p class="mx-auto mt-4 mb-8 text-center text-h3 font-weight-light">
+        And many more!
+      </p>
     </v-container>
 
     <v-container>
@@ -110,41 +114,42 @@ export default {
           bg: require("../assets/hearthstonebg.jpg"),
           icon: require("../assets/hearthstone.png"),
         },
-        // {
-        //   title: "Animal Crossing",
-        //   bg: require("../assets/.jpg"),
-        //   icon: require("../assets/.png"),
-        // },
         {
-          title: "Dota 2",
-          bg: require("../assets/dota2bg.jpg"),
-          icon: require("../assets/dota2.png"),
+          title: "Animal Crossing",
+          bg: require("../assets/animalcrossingbg.jpg"),
+          icon: require("../assets/animalcrossing.png"),
         },
+        // rip in pepperonis dotacie
+        // {
+        //   title: "Dota 2",
+        //   bg: require("../assets/dota2bg.jpg"),
+        //   icon: require("../assets/dota2.png"),
+        // },
         {
           title: "Minecraft",
           bg: require("../assets/minecraftbg.jpg"),
           icon: require("../assets/minecraft.png"),
         },
-        // {
-        //   title: "Pokémon",
-        //   bg: require("../assets/.jpg"),
-        //   icon: require("../assets/.png"),
-        // },
-        // {
-        //   title: "Team Fight Tactics",
-        //   bg: require("../assets/.jpg"),
-        //   icon: require("../assets/.png"),
-        // },
-        // {
-        //   title: "Valorant",
-        //   bg: require("../assets/.jpg"),
-        //   icon: require("../assets/.png"),
-        // },
-        // {
-        //   title: "World of Warcraft",
-        //   bg: require("../assets/.jpg"),
-        //   icon: require("../assets/.png"),
-        // },
+        {
+          title: "Pokémon",
+          bg: require("../assets/pokemonbg.jpg"),
+          icon: require("../assets/pokemon.png"),
+        },
+        {
+          title: "Team Fight Tactics",
+          bg: require("../assets/tftbg.jpg"),
+          icon: require("../assets/tft.png"),
+        },
+        {
+          title: "Valorant",
+          bg: require("../assets/valorantbg.jpg"),
+          icon: require("../assets/valorant.png"),
+        },
+        {
+          title: "World of Warcraft",
+          bg: require("../assets/wowbg.jpg"),
+          icon: require("../assets/wow.png"),
+        },
       ],
       columns: [
         {

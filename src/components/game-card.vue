@@ -10,7 +10,7 @@
               style="cursor: default; overflow: hidden;border-radius: 15px">
 
         <v-card-title style="display:block">
-          <img class="front game-icon" :src="game.icon" :alt="game.title">
+          <img class="front game-icon" :src="game.icon" :alt="game.title + ' icon'">
           <h2 class="game-title white--text font-weight-bold" v-text="game.title"></h2>
         </v-card-title>
 
