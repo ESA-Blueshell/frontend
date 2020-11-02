@@ -146,8 +146,14 @@
       <v-btn icon href="https://twitter.com/BlueshellESA" target="_blank">
         <v-icon>mdi-twitter</v-icon>
       </v-btn>
+      <v-btn href="https://www.elnino.tech/" target="_blank">
+        El Niño
+      </v-btn>
+      <v-btn href="https://www.ogd.nl/" target="_blank">
+        OGD
+      </v-btn>
       <v-spacer></v-spacer>
-      <div class="white--text">&copy; {{ new Date().getFullYear() }}</div>
+      <div class="white--text">SITECIE GANG &copy; {{ new Date().getFullYear() }}</div>
     </v-footer>
   </v-app>
 </template>
@@ -174,7 +180,7 @@ export default {
       const key = event.key.toLowerCase();
       keysPressed.push(key);
       if (keysPressed.toString().endsWith("arrowup,arrowup,arrowdown,arrowdown,arrowleft,arrowright,arrowleft,arrowright,a,b,enter")) {
-        alert("BRUHHHHHHHHHHHHHHHHH")
+        alert("BIG SITECIE ENERGY")
         //todo: make epic easter eggerino
       }
 

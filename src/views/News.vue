@@ -62,6 +62,7 @@ export default {
       ]
     }
   },
+  //TODO: TEST IF BACKEND CONNECTIVITY WORKS
   mounted() {
     axios
     .get('http://127.0.0.1:8080/api/news')
