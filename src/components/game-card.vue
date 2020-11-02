@@ -1,12 +1,16 @@
 <template>
-  <v-flex xs10 sm5 md4 lg4 xl3 v-bind:key="game.title"
-          class="ma-3" style="overflow: hidden; border-radius: 15px">
-    <v-hover v-slot:default="{ hover }">
-
-      <v-card :color="color" height="250px" hover>
+  <v-hover v-slot:default="{ hover }">
+    <v-flex xs10 sm5 md5 lg5 xl3
+            v-bind:key="game.title"
+            class="ma-3 transition-swing"
+            style="border-radius: 15px"
+            :class="`elevation-${hover ? 20 : 4}`">
+      <v-card :color="color"
+              height="250px"
+              style="cursor: default; overflow: hidden;border-radius: 15px">
 
         <v-card-title style="display:block">
-          <img class="front game-icon" :src="game.icon" :alt="game.title">
+          <img class="front game-icon" :src="game.icon" :alt="game.title + ' icon'">
           <h2 class="game-title white--text font-weight-bold" v-text="game.title"></h2>
         </v-card-title>
 
@@ -14,18 +18,20 @@
           <p style="margin-top: 20px">COMPETITIVE</p>
         </v-card-subtitle>
 
-        <v-btn class="game-button front white--text" v-if="game.esportsLink" rounded :color="color" :to="game.esportsLink">
+        <v-btn class="game-button front white--text"
+               v-if="game.esportsLink"
+               :color="color"
+               :to="game.esportsLink"
+               rounded>
           Go to e-sports page
         </v-btn>
 
         <v-slide-y-transition>
           <v-img class="game-bg" :src="game.bg" v-if="hover"></v-img>
         </v-slide-y-transition>
-
       </v-card>
-
-    </v-hover>
-  </v-flex>
+    </v-flex>
+  </v-hover>
 </template>
 
 <script>

@@ -2,7 +2,7 @@
   <v-app>
     <v-app-bar dark elevate-on-scroll fixed>
       <v-app-bar-nav-icon @click="drawer = true"
-                          v-if="$vuetify.breakpoint.name==='xs' || $vuetify.breakpoint.name==='sm'">
+                          v-if="$vuetify.breakpoint.mdAndDown">
       </v-app-bar-nav-icon>
       <v-toolbar-title class="ml-sm-n5 ml-md-0 ml-lg-0 ml-xl-0 ">
         <router-link to="/">
@@ -11,7 +11,7 @@
           </v-img>
         </router-link>
       </v-toolbar-title>
-      <div v-if="$vuetify.breakpoint.name!=='xs' && $vuetify.breakpoint.name!=='sm'"
+      <div v-if="$vuetify.breakpoint.lgAndUp"
            style="height: 100%">
         <v-btn class="bar-button" text dark to="/">Home</v-btn>
         <v-btn class="bar-button" text dark to="/membership">Membership</v-btn>
@@ -25,11 +25,10 @@
             <v-list-item to="/aboutus">About us</v-list-item>
             <v-list-item to="/board">Board</v-list-item>
             <v-list-item to="/committees">Committees</v-list-item>
+            <v-list-item to="/documents">Documents</v-list-item>
           </v-list>
         </v-menu>
-        <v-btn class="bar-button" text dark to="/news">News</v-btn>
         <v-btn class="bar-button" text dark to="/events">Events</v-btn>
-        <v-btn class="bar-button" text dark to="/contact">Contact</v-btn>
         <v-menu open-on-hover offset-y>
           <template v-slot:activator="{ on, attrs }">
             <v-btn class="bar-button" v-bind="attrs" v-on="on" text dark to="/esports">Esports
@@ -45,6 +44,21 @@
             <v-list-item to="/esports/super-smash-bros">Super Smash Bros.</v-list-item>
           </v-list>
         </v-menu>
+        <v-btn class="bar-button" text dark to="/news">News</v-btn>
+        <v-menu open-on-hover offset-y>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn class="bar-button" v-bind="attrs" v-on="on" text dark
+                   to="/partners/become-a-partner">Partners
+              <v-icon>mdi-chevron-down</v-icon>
+            </v-btn>
+          </template>
+          <v-list>
+            <v-list-item to="/partners/become-a-partner">Become a partner!</v-list-item>
+            <v-list-item to="/partners/el-nino">El Niño – Digital Development</v-list-item>
+            <v-list-item to="/partners/ogd-ict">OGD ICT-diensten</v-list-item>
+          </v-list>
+        </v-menu>
+        <v-btn class="bar-button" text dark to="/contact">Contact</v-btn>
       </div>
       <v-spacer></v-spacer>
       <v-btn class="bar-button" text dark to="/login">Login</v-btn>
@@ -52,12 +66,13 @@
     <v-navigation-drawer v-model="drawer" app temporary dark>
       <v-list nav>
         <v-list-item text dark to="/">
-          <v-list-item-title> Home</v-list-item-title>
+          <v-list-item-title>Home</v-list-item-title>
         </v-list-item>
         <v-list-item text dark to="/membership">
-          <v-list-item-title> Membership</v-list-item-title>
+          <v-list-item-title>Membership</v-list-item-title>
         </v-list-item>
-        <v-list-group :value="false" color="blue lighten-1">
+        <v-list-group :value="false" color="blue lighten-1" class="mb-2">
+          <!-- why the fuck do list-groups not get a bottom margin but list items do what the fuck it's like they don't want us to use them in a navbar aaaaa -->
           <template v-slot:activator>
             <v-list-item-title>
               Association
@@ -66,26 +81,18 @@
           <v-list-item to="/aboutus">About us</v-list-item>
           <v-list-item to="/board">Board</v-list-item>
           <v-list-item to="/committees">Committees</v-list-item>
+          <v-list-item to="/documents">Documents</v-list-item>
           <v-divider dark></v-divider>
         </v-list-group>
-        <v-list-item text dark to="/news">
-          <v-list-item-title> News</v-list-item-title>
-        </v-list-item>
         <v-list-item text dark to="/events">
-          <v-list-item-title> Events</v-list-item-title>
+          <v-list-item-title>Events</v-list-item-title>
         </v-list-item>
-        <v-list-item text dark to="/contact">
-          <v-list-item-title> Contact</v-list-item-title>
-        </v-list-item>
-
-
-        <v-list-group :value="false" color="blue lighten-1">
+        <v-list-group :value="false" color="blue lighten-1" class="mb-2">
           <template v-slot:activator>
             <v-list-item-title>
               Esports
             </v-list-item-title>
           </template>
-
           <v-list-item to="/esports">Competitive scene</v-list-item>
           <v-list-item to="/esports/league-of-legends">League of Legends</v-list-item>
           <v-list-item to="/esports/counter-strike-global-offensive">Counter Strike: Global
@@ -93,10 +100,25 @@
           </v-list-item>
           <v-list-item to="/esports/rocket-league">Rocket League</v-list-item>
           <v-list-item to="/esports/super-smash-bros">Super Smash Bros.</v-list-item>
-
           <v-divider dark></v-divider>
         </v-list-group>
-
+        <v-list-item text dark to="/news">
+          <v-list-item-title>News</v-list-item-title>
+        </v-list-item>
+        <v-list-group :value="false" color="blue lighten-1" class="mb-2">
+          <template v-slot:activator>
+            <v-list-item-title>
+              Partners
+            </v-list-item-title>
+          </template>
+          <v-list-item to="/partners/become-a-partner">Become a partner!</v-list-item>
+          <v-list-item to="/partners/el-nino">El Niño – Digital Development</v-list-item>
+          <v-list-item to="/partners/ogd-ict">OGD ICT-diensten</v-list-item>
+          <v-divider dark></v-divider>
+        </v-list-group>
+        <v-list-item text dark to="/contact">
+          <v-list-item-title>Contact</v-list-item-title>
+        </v-list-item>
         <v-list-item text dark to="/login">
           <v-list-item-title>Login</v-list-item-title>
         </v-list-item>
@@ -130,9 +152,9 @@
         </div>
       </template>
     </v-navigation-drawer>
-    <v-main>
-      <router-view/>
-    </v-main>
+    <!--    <v-main>-->
+    <router-view/>
+    <!--    </v-main>-->
     <v-footer dark>
       <v-btn icon href="mailto:board@blueshell.utwente.nl">
         <v-icon>mdi-email</v-icon>

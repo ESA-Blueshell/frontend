@@ -1,6 +1,6 @@
 <template>
-  <v-app>
-    <top-banner title="Home"></top-banner>
+  <v-main>
+    <main-banner></main-banner>
 
     <v-container>
       <div class="mx-auto my-10" style="max-width: 600px">
@@ -27,7 +27,13 @@
       </v-row>
     </v-container>
 
+    <discord-banner></discord-banner>
+
     <v-container>
+      <p class="mx-auto my-16 text-center text-h2">
+        Games we play
+      </p>
+
       <v-layout row wrap justify-center>
         <game-card :game="game"
                    :color="i%3===0 ? `#6bd098` : i%3===1 ? `#fbc658` : `#e91e63`"
@@ -35,19 +41,37 @@
                    v-bind:key="game.title">
         </game-card>
       </v-layout>
+
+      <p class="mx-auto mt-4 mb-8 text-center text-h3 font-weight-light">
+        And many more!
+      </p>
     </v-container>
 
-  </v-app>
+    <v-container>
+      <v-row justify="center" align="center">
+        <v-col v-for="partner in partners" v-bind:key="partner.url" md="3">
+          <v-img :src="partner.logo"
+                 max-width="400"
+                 class="mx-auto expand"
+                 @click="goto(partner.url)">
+          </v-img>
+        </v-col>
+      </v-row>
+
+    </v-container>
+
+  </v-main>
 </template>
 
 <script>
 
 import GameCard from "@/components/game-card";
-import TopBanner from "@/components/top-banner";
+import MainBanner from "@/components/main-banner";
 import router from "@/router";
+import DiscordBanner from "@/components/discord-banner";
 
 export default {
-  components: {TopBanner, GameCard},
+  components: {DiscordBanner, MainBanner, GameCard},
   methods: {
     goto(url) {
       router.push(url)
@@ -90,41 +114,42 @@ export default {
           bg: require("../assets/hearthstonebg.jpg"),
           icon: require("../assets/hearthstone.png"),
         },
-        // {
-        //   title: "Animal Crossing",
-        //   bg: require("../assets/.jpg"),
-        //   icon: require("../assets/.png"),
-        // },
         {
-          title: "Dota 2",
-          bg: require("../assets/dota2bg.jpg"),
-          icon: require("../assets/dota2.png"),
+          title: "Animal Crossing",
+          bg: require("../assets/animalcrossingbg.jpg"),
+          icon: require("../assets/animalcrossing.png"),
         },
+        // rip in pepperonis dotacie
+        // {
+        //   title: "Dota 2",
+        //   bg: require("../assets/dota2bg.jpg"),
+        //   icon: require("../assets/dota2.png"),
+        // },
         {
           title: "Minecraft",
           bg: require("../assets/minecraftbg.jpg"),
           icon: require("../assets/minecraft.png"),
         },
-        // {
-        //   title: "Pokémon",
-        //   bg: require("../assets/.jpg"),
-        //   icon: require("../assets/.png"),
-        // },
-        // {
-        //   title: "Team Fight Tactics",
-        //   bg: require("../assets/.jpg"),
-        //   icon: require("../assets/.png"),
-        // },
-        // {
-        //   title: "Valorant",
-        //   bg: require("../assets/.jpg"),
-        //   icon: require("../assets/.png"),
-        // },
-        // {
-        //   title: "World of Warcraft",
-        //   bg: require("../assets/.jpg"),
-        //   icon: require("../assets/.png"),
-        // },
+        {
+          title: "Pokémon",
+          bg: require("../assets/pokemonbg.jpg"),
+          icon: require("../assets/pokemon.png"),
+        },
+        {
+          title: "Team Fight Tactics",
+          bg: require("../assets/tftbg.jpg"),
+          icon: require("../assets/tft.png"),
+        },
+        {
+          title: "Valorant",
+          bg: require("../assets/valorantbg.jpg"),
+          icon: require("../assets/valorant.png"),
+        },
+        {
+          title: "World of Warcraft",
+          bg: require("../assets/wowbg.jpg"),
+          icon: require("../assets/wow.png"),
+        },
       ],
       columns: [
         {
@@ -148,6 +173,16 @@ export default {
           url: "/events",
           text: "To keep our community entertained, Blueshell hosts events of many kinds with the help of member-run committees. Click above to see the upcoming events!"
         },
+      ],
+      partners: [
+        {
+          logo: require("../assets/elnino.png"),
+          url: "/partners/el-nino"
+        },
+        {
+          logo: require("../assets/OGD.png"),
+          url: "/partners/ogd-ict"
+        }
       ]
     }
   }
@@ -156,6 +191,7 @@ export default {
 <style>
 .expand {
   transition: transform .2s;
+  cursor: pointer;
 }
 
 .expand:hover .icon {

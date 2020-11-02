@@ -13,6 +13,10 @@ import League from "./views/esports/League";
 import Smash from "./views/esports/Smash";
 import Csgo from "./views/esports/Csgo";
 import RocketLeague from "./views/esports/RocketLeague";
+import Documents from "@/views/Documents";
+import ElNino from "@/views/partners/ElNino";
+import Partners from "@/views/partners/Partners";
+import Ogd from "@/views/partners/Ogd";
 
 
 Vue.use(Router)
@@ -64,6 +68,11 @@ export default new Router({
       component: Membership
     },
     {
+      path: '/documents',
+      name: 'documents',
+      component: Documents
+    },
+    {
       path: '/aboutus',
       name: 'aboutus',
       component: AboutUs
@@ -92,6 +101,21 @@ export default new Router({
       path: '/esports/rocket-league',
       name: 'rocketleague',
       component: RocketLeague
+    },
+    {
+      path: '/partners/become-a-partner',
+      name: 'becomeapartner',
+      component: Partners
+    },
+    {
+      path: '/partners/el-nino',
+      name: 'elnino',
+      component: ElNino
+    },
+    {
+      path: '/partners/ogd-ict',
+      name: 'ogd',
+      component: Ogd
     },
   ]
 })

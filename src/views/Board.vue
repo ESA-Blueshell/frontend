@@ -1,8 +1,8 @@
 <template>
-  <v-app>
+  <v-main>
     <top-banner title="Board"></top-banner>
-    <div class="mx-auto my-10" style="max-width: 800px">
-      <div class="mx-3">
+    <div class="mx-3">
+      <div class="mx-auto my-10" style="max-width: 800px">
         <p class="text-h4 font-weight-bold text-center">
           Current board
         </p>
@@ -10,7 +10,6 @@
         <p class="body-1">
           uhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
         </p>
-      </div>
       <v-expansion-panels accordion>
         <v-expansion-panel>
           <v-expansion-panel-header class="text-h5 font-weight-light">3rd board
@@ -46,8 +45,9 @@
           </v-expansion-panel-content>
         </v-expansion-panel>
       </v-expansion-panels>
+      </div>
     </div>
-  </v-app>
+  </v-main>
 </template>
 
 <script>

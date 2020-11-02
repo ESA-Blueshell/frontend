@@ -1,15 +1,15 @@
 <template>
-  <v-app>
+  <v-main>
     <top-banner title="Contact"></top-banner>
     <!-- TODO: FIX THIS LATER LMAO -->
 
-    <div class="mx-5">
+    <div class="mx-3">
       <div class="mx-auto my-10" style="max-width: 800px">
         <p class="body-1">
           If you want to become a member see the <a>Join us</a>! page. If you are just looking for
           more information, you can contact the board at
           <a href="mailto:board@blueshell.utwente.nl">board@blueshell.utwente.nl</a> or join the
-          <a href="https://discord.gg/WyDhbAP">Discord</a> and send a PM to the board members.
+          <a href="https://discord.gg/WyDhbAP" target="_blank">Discord</a> and send a PM to the board members.
         </p>
         <p class="body-1">
           Do you want to ask your question in person? Usually, you can find a board member in the
@@ -25,7 +25,7 @@
         </p>
       </div>
     </div>
-  </v-app>
+  </v-main>
 </template>
 
 <script>
