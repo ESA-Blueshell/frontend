@@ -1,16 +1,17 @@
 <template>
-  <v-hover v-slot:default="{ hover }">
-    <v-flex xs10 sm5 md5 lg5 xl3
-            v-bind:key="game.title"
-            class="ma-3 transition-swing"
-            style="border-radius: 15px"
-            :class="`elevation-${hover ? 20 : 4}`">
+  <v-col cols="10" sm="9" md="6" lg="5" xl="4"
+         class="transition-swing">
+    <v-hover v-slot:default="{ hover }">
       <v-card :color="color"
               height="250px"
+              :class="`elevation-${hover ? 20 : 4}`"
               style="cursor: default; overflow: hidden;border-radius: 15px">
 
         <v-card-title style="display:block">
-          <img class="front game-icon" :src="game.icon" :alt="game.title + ' icon'">
+          <img class="game-icon"
+               v-bind:class="game.hideLogo? '' :'front'"
+               :src="game.icon"
+               :alt="game.title + ' icon'">
           <h2 class="game-title white--text font-weight-bold" v-text="game.title"></h2>
         </v-card-title>
 
@@ -30,8 +31,8 @@
           <v-img class="game-bg" :src="game.bg" v-if="hover"></v-img>
         </v-slide-y-transition>
       </v-card>
-    </v-flex>
-  </v-hover>
+    </v-hover>
+  </v-col>
 </template>
 
 <script>

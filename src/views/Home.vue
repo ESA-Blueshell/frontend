@@ -34,13 +34,13 @@
         Games we play
       </p>
 
-      <v-layout row wrap justify-center>
+      <v-row wrap align="center" justify="center" class="mx-auto" style="max-width: 1400px">
         <game-card :game="game"
                    :color="i%3===0 ? `#6bd098` : i%3===1 ? `#fbc658` : `#e91e63`"
                    v-for="(game,i) in games"
                    v-bind:key="game.title">
         </game-card>
-      </v-layout>
+      </v-row>
 
       <p class="mx-auto mt-4 mb-8 text-center text-h3 font-weight-light">
         And many more!
@@ -65,13 +65,14 @@
 
 <script>
 
-import GameCard from "@/components/game-card";
 import MainBanner from "@/components/main-banner";
 import router from "@/router";
 import DiscordBanner from "@/components/discord-banner";
+import GameIcon from "@/components/game-icon";
+import GameCard from "@/components/game-card";
 
 export default {
-  components: {DiscordBanner, MainBanner, GameCard},
+  components: {GameCard, GameIcon, DiscordBanner, MainBanner},
   methods: {
     goto(url) {
       router.push(url)
@@ -110,21 +111,10 @@ export default {
           icon: require("../assets/overwatch.png"),
         },
         {
-          title: "Hearthstone",
-          bg: require("../assets/hearthstonebg.jpg"),
-          icon: require("../assets/hearthstone.png"),
-        },
-        {
           title: "Animal Crossing",
           bg: require("../assets/animalcrossingbg.jpg"),
           icon: require("../assets/animalcrossing.png"),
         },
-        // rip in pepperonis dotacie
-        // {
-        //   title: "Dota 2",
-        //   bg: require("../assets/dota2bg.jpg"),
-        //   icon: require("../assets/dota2.png"),
-        // },
         {
           title: "Minecraft",
           bg: require("../assets/minecraftbg.jpg"),
@@ -149,6 +139,12 @@ export default {
           title: "World of Warcraft",
           bg: require("../assets/wowbg.jpg"),
           icon: require("../assets/wow.png"),
+        },
+        {
+          title: "Card games",
+          bg: require("../assets/cardgamesbg.jpg"),
+          icon: require("../assets/hearthstone.png"),
+          hideLogo: true,
         },
       ],
       columns: [

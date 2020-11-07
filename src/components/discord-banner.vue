@@ -1,5 +1,5 @@
 <template>
-  <div class="banner">
+  <div class="banner" v-bind:style="$vuetify.breakpoint.smAndUp?{ height: '150px'}:{ height: '200px' }">
     <v-row class="mx-auto container" align="center" justify="center"
            v-if="$vuetify.breakpoint.mdAndUp">
       <v-col>
@@ -39,7 +39,6 @@ export default {
 
 <style scoped>
 .banner {
-  height: 150px;
   background-size: cover;
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../assets/goom.jpg") fixed center;
 }
