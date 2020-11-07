@@ -29,23 +29,17 @@
 
     <discord-banner></discord-banner>
 
-    <v-container>
-      <p class="mx-auto my-16 text-center text-h2">
+<!--    <v-container>-->
+      <p class="mx-auto text-center text-h2">
         Games we play
       </p>
+      <game-icons :games="games"></game-icons>
 
-      <v-row wrap align="center" justify="center" class="mx-auto" style="max-width: 1400px">
-        <game-card :game="game"
-                   :color="i%3===0 ? `#6bd098` : i%3===1 ? `#fbc658` : `#e91e63`"
-                   v-for="(game,i) in games"
-                   v-bind:key="game.title">
-        </game-card>
-      </v-row>
-
-      <p class="mx-auto mt-4 mb-8 text-center text-h3 font-weight-light">
-        And many more!
+      <p class="mx-auto text-center text-h2">
+        Cringe games
       </p>
-    </v-container>
+      <game-icons :games="communityGames"></game-icons>
+<!--    </v-container>-->
 
     <v-container>
       <v-row justify="center" align="center">
@@ -68,11 +62,10 @@
 import MainBanner from "@/components/main-banner";
 import router from "@/router";
 import DiscordBanner from "@/components/discord-banner";
-import GameIcon from "@/components/game-icon";
-import GameCard from "@/components/game-card";
+import GameIcons from "@/components/game-icons";
 
 export default {
-  components: {GameCard, GameIcon, DiscordBanner, MainBanner},
+  components: {GameIcons, DiscordBanner, MainBanner},
   methods: {
     goto(url) {
       router.push(url)
@@ -80,6 +73,7 @@ export default {
   },
   data() {
     return {
+      hoveredGame: null,
       games: [
         {
           title: "League of Legends",
@@ -105,6 +99,8 @@ export default {
           icon: require("../assets/smash.png"),
           esportsLink: "/esports/super-smash-bros"
         },
+      ],
+      communityGames: [
         {
           title: "Overwatch",
           bg: require("../assets/overwatchbg.jpg"),

@@ -4,7 +4,7 @@
     <v-hover v-slot:default="{ hover }">
       <v-card :color="color"
               height="250px"
-              :class="`elevation-${hover ? 20 : 4}`"
+              :class="'elevation-${hover ? 20 : 4}'"
               style="cursor: default; overflow: hidden;border-radius: 15px">
 
         <v-card-title style="display:block">
