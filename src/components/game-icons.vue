@@ -1,6 +1,7 @@
 <template>
   <div>
-    <v-row wrap align="center" justify="center" align-content="center" class="mx-auto mb-6" style="max-width: 1400px">
+    <v-row wrap align="center" justify="center" align-content="center" class="mx-auto mb-6"
+           style="max-width: 1400px">
       <v-col class="mx-1 transition-swing"
              style="border-radius: 15px;padding: 4px"
              cols="2" sm="1" md="1" lg="1" xl="1"
@@ -27,8 +28,8 @@
         <v-carousel-item
             v-for="game in games"
             v-bind:key="game.title"
-            @mouseenter="hoverCarousel=true"
-            @mouseleave="hoverCarousel=false"
+            @mouseenter="hover"
+            @mouseleave="unhover"
         >
           <v-sheet height="100%" tile>
             <v-row class="fill-height">
@@ -64,7 +65,9 @@ export default {
     hover(i) {
       setTimeout(() => {
         this.showPopup++;
-        this.currentGame = i;
+        if (i !== null) {
+          this.currentGame = i;
+        }
       }, 1)
     },
     unhover() {

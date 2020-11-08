@@ -60,8 +60,8 @@
         </v-menu>
         <v-btn class="bar-button" text dark to="/contact">Contact</v-btn>
       </div>
-      <v-spacer></v-spacer>
-      <v-btn class="bar-button" text dark to="/login">Login</v-btn>
+<!--      <v-spacer/>-->
+<!--      <v-btn class="bar-button" text dark to="/login">Login</v-btn>-->
     </v-app-bar>
     <v-navigation-drawer v-model="drawer" app temporary dark>
       <v-list nav>
@@ -119,9 +119,9 @@
         <v-list-item text dark to="/contact">
           <v-list-item-title>Contact</v-list-item-title>
         </v-list-item>
-        <v-list-item text dark to="/login">
-          <v-list-item-title>Login</v-list-item-title>
-        </v-list-item>
+<!--        <v-list-item text dark to="/login">-->
+<!--          <v-list-item-title>Login</v-list-item-title>-->
+<!--        </v-list-item>-->
 
       </v-list>
       <template v-slot:append>
@@ -168,7 +168,7 @@
       <v-btn icon href="https://twitter.com/BlueshellESA" target="_blank">
         <v-icon>mdi-twitter</v-icon>
       </v-btn>
-      <v-spacer></v-spacer>
+      <v-spacer/>
       <div class="white--text">&copy; {{ new Date().getFullYear() }}</div>
     </v-footer>
   </v-app>

@@ -1,6 +1,6 @@
 <template>
   <v-main>
-    <main-banner></main-banner>
+    <main-banner/>
 
     <v-container>
       <div class="mx-auto my-10" style="max-width: 600px">
@@ -27,7 +27,7 @@
       </v-row>
     </v-container>
 
-    <discord-banner></discord-banner>
+    <discord-banner/>
 
 <!--    <v-container>-->
       <p class="mx-auto text-center text-h2">
