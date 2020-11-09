@@ -36,6 +36,7 @@
             </v-btn>
           </template>
           <v-list>
+            <v-list-item to="/esports">Competitive scene</v-list-item>
             <v-list-item to="/esports/league-of-legends">League of Legends</v-list-item>
             <v-list-item to="/esports/counter-strike-global-offensive">Counter Strike: Global
               Offensive
