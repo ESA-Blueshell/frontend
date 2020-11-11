@@ -1,5 +1,5 @@
 <template>
-  <v-row class="fill-height">
+  <v-row justify="center" align="center" class="fill-height">
     <v-col>
       <!-- Start of the top bar. Includes today, previous and forward buttons and current month. -->
       <v-sheet height="64">
@@ -32,7 +32,7 @@
         </v-toolbar>
       </v-sheet>
       <!-- End of the top bar -->
-      <v-sheet height="600">
+      <v-sheet class="mx-auto" height="600">
         <!-- The actual calendar -->
         <v-calendar
             ref="calendar"
@@ -101,9 +101,10 @@
                 <br>
                 {{ selectedEvent.location }}
               </p>
+              <!-- I want to die -->
               <v-divider
-                  v-if="selectedEvent.memberPrice !== 0 && selectedEvent.publicPrice !== 0"></v-divider>
-              <p v-if="selectedEvent.memberPrice !== 0 && selectedEvent.publicPrice !== 0"
+                  v-if="selectedEvent.memberPrice !== 0 && selectedEvent.publicPrice !== 0 && selectedEvent.memberPrice !== '' && selectedEvent.publicPrice !== '' && selectedEvent.memberPrice !== null && selectedEvent.publicPrice !== null"></v-divider>
+              <p v-if="selectedEvent.memberPrice !== 0 && selectedEvent.publicPrice !== 0 && selectedEvent.memberPrice !== '' && selectedEvent.publicPrice !== '' && selectedEvent.memberPrice !== null && selectedEvent.publicPrice !== null"
                  class="mt-4">
                 <b>Price</b>
                 <br>
@@ -162,11 +163,11 @@ export default {
   methods: {
     getEvents(month) {
       if (!this.monthsCollected.includes(month)) {
-        console.log("getting events for " + month);
         this.monthsCollected.push(month)
         setTimeout(() => this.monthsLoading++, 500);
 
-        axios.get('http://esa-blueshell.nl/api/events?from=' + month)
+        axios.get('http://localhost:8080/api/events?from=' + month)
+            // axios.get('http://esa-blueshell.nl/api/events?from=' + month)
             .then(response => {
               let res = []
               response.data.forEach(elem => {
@@ -184,8 +185,7 @@ export default {
               )
               this.events.push(...res);
             })
-            .catch(error => {
-              console.log(error)
+            .catch(() => {
               this.snackbar = true
             })
             .then(() => this.monthsLoading--);
@@ -298,7 +298,6 @@ export default {
       }).format(date).replace(',', '');
     },
     eventsByDate(date) {
-      console.log(date.toLocaleString());
       return this.events.filter((event) => date.toLocaleString() === event.date);
     }
   }

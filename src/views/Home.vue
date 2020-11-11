@@ -1,6 +1,6 @@
 <template>
   <v-main>
-    <main-banner></main-banner>
+    <main-banner/>
 
     <v-container>
       <div class="mx-auto my-10" style="max-width: 600px">
@@ -27,25 +27,19 @@
       </v-row>
     </v-container>
 
-    <discord-banner></discord-banner>
+    <discord-banner/>
 
-    <v-container>
-      <p class="mx-auto my-16 text-center text-h2">
+<!--    <v-container>-->
+      <p class="mx-auto text-center text-h2">
         Games we play
       </p>
+      <game-icons :games="games"></game-icons>
 
-      <v-layout row wrap justify-center>
-        <game-card :game="game"
-                   :color="i%3===0 ? `#6bd098` : i%3===1 ? `#fbc658` : `#e91e63`"
-                   v-for="(game,i) in games"
-                   v-bind:key="game.title">
-        </game-card>
-      </v-layout>
-
-      <p class="mx-auto mt-4 mb-8 text-center text-h3 font-weight-light">
-        And many more!
+      <p class="mx-auto text-center text-h2">
+        Cringe games
       </p>
-    </v-container>
+      <game-icons :games="communityGames"></game-icons>
+<!--    </v-container>-->
 
     <v-container>
       <v-row justify="center" align="center">
@@ -65,13 +59,13 @@
 
 <script>
 
-import GameCard from "@/components/game-card";
 import MainBanner from "@/components/main-banner";
 import router from "@/router";
 import DiscordBanner from "@/components/discord-banner";
+import GameIcons from "@/components/game-icons";
 
 export default {
-  components: {DiscordBanner, MainBanner, GameCard},
+  components: {GameIcons, DiscordBanner, MainBanner},
   methods: {
     goto(url) {
       router.push(url)
@@ -79,6 +73,7 @@ export default {
   },
   data() {
     return {
+      hoveredGame: null,
       games: [
         {
           title: "League of Legends",
@@ -104,27 +99,18 @@ export default {
           icon: require("../assets/smash.png"),
           esportsLink: "/esports/super-smash-bros"
         },
+      ],
+      communityGames: [
         {
           title: "Overwatch",
           bg: require("../assets/overwatchbg.jpg"),
           icon: require("../assets/overwatch.png"),
         },
         {
-          title: "Hearthstone",
-          bg: require("../assets/hearthstonebg.jpg"),
-          icon: require("../assets/hearthstone.png"),
-        },
-        {
           title: "Animal Crossing",
           bg: require("../assets/animalcrossingbg.jpg"),
           icon: require("../assets/animalcrossing.png"),
         },
-        // rip in pepperonis dotacie
-        // {
-        //   title: "Dota 2",
-        //   bg: require("../assets/dota2bg.jpg"),
-        //   icon: require("../assets/dota2.png"),
-        // },
         {
           title: "Minecraft",
           bg: require("../assets/minecraftbg.jpg"),
@@ -149,6 +135,12 @@ export default {
           title: "World of Warcraft",
           bg: require("../assets/wowbg.jpg"),
           icon: require("../assets/wow.png"),
+        },
+        {
+          title: "Card games",
+          bg: require("../assets/cardgamesbg.jpg"),
+          icon: require("../assets/hearthstone.png"),
+          hideLogo: true,
         },
       ],
       columns: [

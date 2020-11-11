@@ -2,10 +2,10 @@
   <v-main>
     <top-banner title="Events"></top-banner>
     <div class="mx-3">
-      <div class="mx-auto" style="width: 1000px">
+      <div class="mx-auto" style="max-width: 1000px">
         <calendar></calendar>
       </div>
-      <div class="mx-auto my-5" style="width: 800px">
+      <div class="mx-auto my-5" style="max-width: 800px">
         <p class="text-h4 font-weight-light">
           Add it to your own calendar!
         </p>

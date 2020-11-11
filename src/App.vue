@@ -36,6 +36,7 @@
             </v-btn>
           </template>
           <v-list>
+            <v-list-item to="/esports">Competitive scene</v-list-item>
             <v-list-item to="/esports/league-of-legends">League of Legends</v-list-item>
             <v-list-item to="/esports/counter-strike-global-offensive">Counter Strike: Global
               Offensive
@@ -60,8 +61,8 @@
         </v-menu>
         <v-btn class="bar-button" text dark to="/contact">Contact</v-btn>
       </div>
-      <v-spacer></v-spacer>
-      <v-btn class="bar-button" text dark to="/login">Login</v-btn>
+<!--      <v-spacer/>-->
+<!--      <v-btn class="bar-button" text dark to="/login">Login</v-btn>-->
     </v-app-bar>
     <v-navigation-drawer v-model="drawer" app temporary dark>
       <v-list nav>
@@ -119,9 +120,9 @@
         <v-list-item text dark to="/contact">
           <v-list-item-title>Contact</v-list-item-title>
         </v-list-item>
-        <v-list-item text dark to="/login">
-          <v-list-item-title>Login</v-list-item-title>
-        </v-list-item>
+<!--        <v-list-item text dark to="/login">-->
+<!--          <v-list-item-title>Login</v-list-item-title>-->
+<!--        </v-list-item>-->
 
       </v-list>
       <template v-slot:append>
@@ -168,6 +169,7 @@
       <v-btn icon href="https://twitter.com/BlueshellESA" target="_blank">
         <v-icon>mdi-twitter</v-icon>
       </v-btn>
+<<<<<<< HEAD
       <v-btn href="https://www.elnino.tech/" target="_blank">
         El Niño
       </v-btn>
@@ -176,6 +178,10 @@
       </v-btn>
       <v-spacer></v-spacer>
       <div class="white--text">SITECIE GANG &copy; {{ new Date().getFullYear() }}</div>
+=======
+      <v-spacer/>
+      <div class="white--text">&copy; {{ new Date().getFullYear() }}</div>
+>>>>>>> 06bd98d778e63aa92b64f1622db7134586c9ee5f
     </v-footer>
   </v-app>
 </template>
