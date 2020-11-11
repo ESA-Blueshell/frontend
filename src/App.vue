@@ -169,7 +169,6 @@
       <v-btn icon href="https://twitter.com/BlueshellESA" target="_blank">
         <v-icon>mdi-twitter</v-icon>
       </v-btn>
-<<<<<<< HEAD
       <v-btn href="https://www.elnino.tech/" target="_blank">
         El Niño
       </v-btn>
@@ -178,10 +177,6 @@
       </v-btn>
       <v-spacer></v-spacer>
       <div class="white--text">SITECIE GANG &copy; {{ new Date().getFullYear() }}</div>
-=======
-      <v-spacer/>
-      <div class="white--text">&copy; {{ new Date().getFullYear() }}</div>
->>>>>>> 06bd98d778e63aa92b64f1622db7134586c9ee5f
     </v-footer>
   </v-app>
 </template>
