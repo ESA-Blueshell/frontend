@@ -101,9 +101,10 @@
                 <br>
                 {{ selectedEvent.location }}
               </p>
+              <!-- I want to die -->
               <v-divider
-                  v-if="selectedEvent.memberPrice !== 0 && selectedEvent.publicPrice !== 0"></v-divider>
-              <p v-if="selectedEvent.memberPrice !== 0 && selectedEvent.publicPrice !== 0"
+                  v-if="selectedEvent.memberPrice !== 0 && selectedEvent.publicPrice !== 0 && selectedEvent.memberPrice !== '' && selectedEvent.publicPrice !== '' && selectedEvent.memberPrice !== null && selectedEvent.publicPrice !== null"></v-divider>
+              <p v-if="selectedEvent.memberPrice !== 0 && selectedEvent.publicPrice !== 0 && selectedEvent.memberPrice !== '' && selectedEvent.publicPrice !== '' && selectedEvent.memberPrice !== null && selectedEvent.publicPrice !== null"
                  class="mt-4">
                 <b>Price</b>
                 <br>
@@ -165,7 +166,8 @@ export default {
         this.monthsCollected.push(month)
         setTimeout(() => this.monthsLoading++, 500);
 
-        axios.get('http://esa-blueshell.nl/api/events?from=' + month)
+        axios.get('http://localhost:8080/api/events?from=' + month)
+            // axios.get('http://esa-blueshell.nl/api/events?from=' + month)
             .then(response => {
               let res = []
               response.data.forEach(elem => {
