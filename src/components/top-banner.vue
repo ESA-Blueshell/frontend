@@ -1,6 +1,6 @@
 <template>
   <div class="banner">
-    <img :src="gaming" id="background" class="background parallax">
+    <v-parallax :src="gaming" class="background"></v-parallax>
     <div class="black overlay"></div>
     <div style="text-align: center;height: 100%">
       <div class="title text-h4 font-weight-light white--text">
@@ -21,16 +21,6 @@ export default {
     }
   }
 }
-let bg;
-window.addEventListener('scroll', function () {
-  const newbg = document.getElementById("background");
-  if (bg !== newbg) {
-    bg = newbg;
-  }
-  if (bg) {
-    bg.style.top = -250 + window.scrollY * 0.7 + 'px';
-  }
-})
 </script>
 
 
@@ -46,7 +36,7 @@ window.addEventListener('scroll', function () {
 
 .background {
   position: absolute;
-  top: -250px;
+  height: 100%;
   width: 100%;
   z-index: 1;
 }

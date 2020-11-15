@@ -1,7 +1,9 @@
 <template>
   <div>
     <div class="banner">
-      <div class="mx-auto text-center" style="top: 300px; position: relative">
+      <v-parallax :src="require('../assets/gaming.jpg')" height="900" class="background"></v-parallax>
+      <div class="black overlay"></div>
+      <div class="mx-auto text-center" style="top: 300px; position: relative;z-index: 3;">
         <p id="blueshell" class="white--text text-h3 text-sm-h1 text-md-h1 text-lg-h1 text-xl-h1">
           BLUESHELL
         </p>
@@ -38,6 +40,22 @@ export default {
 
 .banner {
   height: 900px;
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../assets/gaming.jpg") center/cover fixed;
+  overflow: hidden;
+//  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../assets/gaming.jpg") center/cover fixed;
+}
+
+.background {
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+  height: 900px;
+}
+
+.overlay {
+  position: absolute;
+  opacity: 0.6;
+  width: 100%;
+  height: 900px;
+  z-index: 2;
 }
 </style>
