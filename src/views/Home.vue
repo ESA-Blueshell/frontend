@@ -31,12 +31,12 @@
 
 <!--    <v-container>-->
       <p class="mx-auto text-center text-h2">
-        Games we play
+        Esports we play
       </p>
       <game-icons :games="games"></game-icons>
 
       <p class="mx-auto text-center text-h2">
-        Cringe games
+        Community games
       </p>
       <game-icons :games="communityGames"></game-icons>
 <!--    </v-container>-->
@@ -140,7 +140,11 @@ export default {
           title: "Card games",
           bg: require("../assets/cardgamesbg.jpg"),
           icon: require("../assets/hearthstone.png"),
-          hideLogo: true,
+        },
+        {
+          title: "Strategy ganes",
+          bg: require("../assets/stratbg.jpg"),
+          icon: require("../assets/strat.png"),
         },
       ],
       columns: [
