@@ -41,6 +41,7 @@
             :weekdays="weekdays"
             color="primary"
             type="month"
+            @change="monthChange"
             @click:event="showEvent"
             locale="en-US">
         </v-calendar>
@@ -57,18 +58,23 @@
             <!-- Start of the toolbar in the selected event menu -->
             <!-- Includes the event's title and the location and add to calendar buttons -->
             <v-toolbar :color="selectedEvent.color" dark>
+              <!-- Name of the event -->
               <v-toolbar-title v-html="selectedEvent.name"></v-toolbar-title>
               <v-spacer></v-spacer>
+              <!-- Start of the "Find location" button. Check the documentation for v-tooltip to find out how this works exactly -->
               <v-tooltip bottom>
                 <template v-slot:activator="{ on, attrs }">
+                  <!-- The actual button -->
                   <v-btn icon v-on="on" @click="findLocation">
                     <v-icon>mdi-google-maps</v-icon>
                   </v-btn>
                 </template>
                 <span>Find location</span>
               </v-tooltip>
+              <!-- Start of the "Add to calendar" button. Check the documentation for v-tooltip to find out how this works exactly -->
               <v-tooltip bottom>
                 <template v-slot:activator="{ on, attrs }">
+                  <!-- The actual button -->
                   <v-btn icon v-on="on" @click="addToCal">
                     <v-icon>mdi-calendar</v-icon>
                   </v-btn>
@@ -77,9 +83,14 @@
               </v-tooltip>
             </v-toolbar>
             <v-card-text>
+              <!-- Description of the event -->
               <p v-if="selectedEvent.details">
-                  <span
-                      v-html="expand || !selectedLong ? selectedEvent.details : hundredWords(selectedEvent.details)+'...'"></span>
+                <!-- In the span is the actual text of the event -->
+                <!-- If the expand variable is true show the fill message, otherwise only show the first 100 words -->
+                <span
+                    v-html="expand || !selectedLong ? selectedEvent.details : hundredWords(selectedEvent.details)+'...'"></span>
+                <!-- Only show the "read more" if the message is long -->
+                <!-- If it's clicked expand will be set to true and the full message will be shown -->
                 <br v-if="!expand && selectedLong">
                 <a v-if="!expand && selectedLong"
                    @click="expandWords">
@@ -89,27 +100,28 @@
               <p v-else>
                 No description...
               </p>
+              <!-- Starting time of the event -->
               <v-divider></v-divider>
               <p class="mt-4">
                 <b>When</b>
                 <br>
                 {{ formatDate(selectedEvent.start) }}
               </p>
+              <!-- Only show this part if there is a location for this event (should always be true tho) -->
               <v-divider v-if="selectedEvent.location"></v-divider>
               <p v-if="selectedEvent.location" class="mt-4">
                 <b>Where</b>
                 <br>
                 {{ selectedEvent.location }}
               </p>
+              <!-- Only show this part if there is a price for this event -->
               <!-- I want to die -->
               <v-divider
                   v-if="selectedEvent.memberPrice !== 0 && selectedEvent.publicPrice !== 0 && selectedEvent.memberPrice !== '' && selectedEvent.publicPrice !== '' && selectedEvent.memberPrice !== null && selectedEvent.publicPrice !== null"></v-divider>
               <p v-if="selectedEvent.memberPrice !== 0 && selectedEvent.publicPrice !== 0 && selectedEvent.memberPrice !== '' && selectedEvent.publicPrice !== '' && selectedEvent.memberPrice !== null && selectedEvent.publicPrice !== null"
                  class="mt-4">
-                <b>Price</b>
-                <br>
-                Members: €{{ selectedEvent.memberPrice }}
-                <br>
+                <b>Price</b><br>
+                Members: €{{ selectedEvent.memberPrice }} <br>
                 Non-members: €{{ selectedEvent.publicPrice }}
               </p>
             </v-card-text>
@@ -197,15 +209,35 @@ export default {
     },
     prev() {
       this.$refs.calendar.prev()
-
-      this.currentMonth = this.prevMonth(this.currentMonth);
-      this.getEvents(this.prevMonth(this.currentMonth))
     },
     next() {
       this.$refs.calendar.next()
+    },
+    //Triggers when the month changes and gets new events accordingly
+    monthChange({start}) {
+      let newMonth = start.year + '-' + (start.month < 10 ? '0' : '') + start.month;
+      // console.log(newMonth)
+      if (this.currentMonth != null) {
+        if (this.compareMonths(this.currentMonth,newMonth)) {
+          this.getEvents(this.prevMonth(newMonth))
+        } else {
+          this.getEvents(this.nextMonth(newMonth))
+        }
+      }
+      this.currentMonth = newMonth;
+    },
+    //Return true if m1 is later than m2 (formatting: "yyyy-mm")
+    compareMonths(m1, m2) {
+      let splitM1 = m1.split('-');
+      let splitM2 = m2.split('-');
 
-      this.currentMonth = this.nextMonth(this.currentMonth);
-      this.getEvents(this.nextMonth(this.currentMonth))
+      if (splitM1[0] > splitM2[0]) {
+        return true;
+      }
+      if (splitM1[0] < splitM2[0]) {
+        return false;
+      }
+      return splitM1[1] > splitM2[1];
     },
 
     // idfk man i just copied this from the vuetify documentation (https://vuetifyjs.com/en/components/calendars/#events)
