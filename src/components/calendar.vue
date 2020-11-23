@@ -39,7 +39,8 @@
             v-model="focus"
             :events="events"
             :weekdays="weekdays"
-            color="primary"
+            color="blue lighten-1"
+            event-color="primary"
             type="month"
             @change="monthChange"
             @click:event="showEvent"
@@ -88,7 +89,7 @@
                 <!-- In the span is the actual text of the event -->
                 <!-- If the expand variable is true show the fill message, otherwise only show the first 100 words -->
                 <span
-                    v-html="expand || !selectedLong ? selectedEvent.details : hundredWords(selectedEvent.details)+'...'"></span>
+                    v-html="expand || !selectedLong ? cleanup(selectedEvent.details) : cleanup(hundredWords(selectedEvent.details))+'...'"></span>
                 <!-- Only show the "read more" if the message is long -->
                 <!-- If it's clicked expand will be set to true and the full message will be shown -->
                 <br v-if="!expand && selectedLong">
@@ -173,6 +174,43 @@ export default {
     [month, this.prevMonth(month), this.nextMonth(month)].forEach(it => this.getEvents(it));
   },
   methods: {
+    // Clean up the given description
+    // 1. turn newlines into html <br>
+    // 2. remove lines starting with 'location: ', 'time: ', etc.
+    cleanup(description) {
+      // If string is not html, replace all newlines with <br>
+      if (!description.match(/<\/?[a-z][\s\S]*>/i)) {
+        description = description.replaceAll('\n', '<br>');
+      }
+      let splitDesc = description.split('<br>');
+      let res = '';
+      splitDesc.forEach((line) => {
+        // Check if the line starts with 'location: ', 'time: ', etc. if it does, skip this line
+        if (!line.toLowerCase().startsWith('location:') && !line.toLowerCase().startsWith('time:') && !line.toLowerCase().startsWith('type:')) {
+          //If we want to add the line. We will have to fix links
+          //If the line is already html, we still want to change it such that it opens the link in a new tab.
+          if (line.match(/<\/?[a-z][\s\S]*>/i)) {
+            line = line.replaceAll('<a ', '<a target="_blank" ')
+          } else if (line.split(' ').some((word) => word.match(/(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)/i))) {
+            // Otherwise we check if there is even a link in this line.
+            // If there is, go through all words in the line and reaplace each link with a proper html element
+            let lineRes = "";
+            line.split(' ').forEach((word) => {
+              if (word.match(/(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)/i)) {
+                lineRes += `  <a href="${word}" target="_blank">${word}</a>`;
+              } else {
+                lineRes += ` ${word}`;
+              }
+            });
+            lineRes.replace(' ', '');
+            line = lineRes;
+          }
+          // Add the line to the result
+          res += '<br>' + line;
+        }
+      });
+      return res.replace('<br>', '');
+    },
     getEvents(month) {
       if (!this.monthsCollected.includes(month)) {
         this.monthsCollected.push(month)
@@ -218,7 +256,7 @@ export default {
       let newMonth = start.year + '-' + (start.month < 10 ? '0' : '') + start.month;
       // console.log(newMonth)
       if (this.currentMonth != null) {
-        if (this.compareMonths(this.currentMonth,newMonth)) {
+        if (this.compareMonths(this.currentMonth, newMonth)) {
           this.getEvents(this.prevMonth(newMonth))
         } else {
           this.getEvents(this.nextMonth(newMonth))
@@ -313,7 +351,7 @@ export default {
     },
     // Reduces a string to 100 words
     hundredWords(str) {
-      return str.split(/\s+/).slice(0, 100).join(" ");
+      return str.split(' ').slice(0, 100).join(' ');
     },
     expandWords() {
       this.expand = true
