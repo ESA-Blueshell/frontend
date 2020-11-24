@@ -61,8 +61,8 @@
         </v-menu>
         <v-btn class="bar-button" text dark to="/contact">Contact</v-btn>
       </div>
-<!--      <v-spacer/>-->
-<!--      <v-btn class="bar-button" text dark to="/login">Login</v-btn>-->
+      <!--      <v-spacer/>-->
+      <!--      <v-btn class="bar-button" text dark to="/login">Login</v-btn>-->
     </v-app-bar>
     <v-navigation-drawer v-model="drawer" app temporary dark>
       <v-list nav>
@@ -120,9 +120,9 @@
         <v-list-item text dark to="/contact">
           <v-list-item-title>Contact</v-list-item-title>
         </v-list-item>
-<!--        <v-list-item text dark to="/login">-->
-<!--          <v-list-item-title>Login</v-list-item-title>-->
-<!--        </v-list-item>-->
+        <!--        <v-list-item text dark to="/login">-->
+        <!--          <v-list-item-title>Login</v-list-item-title>-->
+        <!--        </v-list-item>-->
 
       </v-list>
       <template v-slot:append>
@@ -178,6 +178,11 @@
       <v-spacer></v-spacer>
       <div class="white--text">SITECIE GANG &copy; {{ new Date().getFullYear() }}</div>
     </v-footer>
+    <v-snackbar rounded v-model="poggers" timeout="105000">
+      <audio controls autoplay v-if="poggers">
+        <source src="./assets/blueshellanthem.mp3" type="audio/mpeg">
+      </audio>
+    </v-snackbar>
   </v-app>
 </template>
 
@@ -186,10 +191,10 @@ import router from "@/router";
 
 export default {
   data() {
-
     return {
       drawer: false,
       shellyLogo: require("./assets/shelly.png"),
+      poggers: false,
     }
   },
   methods: {
@@ -197,12 +202,14 @@ export default {
       router.push(url)
     }
   },
-  mounted: () => {
+  mounted() {
     let keysPressed = [];
     window.addEventListener('keydown', event => {
       const key = event.key.toLowerCase();
       keysPressed.push(key);
+      console.log(keysPressed)
       if (keysPressed.toString().endsWith("arrowup,arrowup,arrowdown,arrowdown,arrowleft,arrowright,arrowleft,arrowright,a,b,enter")) {
+        this.poggers = true
         alert("BIG SITECIE ENERGY")
         //todo: make epic easter eggerino
       }
