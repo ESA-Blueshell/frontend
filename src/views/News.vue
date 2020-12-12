@@ -9,9 +9,8 @@
             <h6>{{ item.news_type[0].toUpperCase() + item.news_type.slice(1) }}</h6>
             <h2>{{ item.title }}</h2>
             <p v-html="item.content">
-              <!-- TODO: MAKE READ MORE LINK TO FULL NEWS ARTICLE -->
-<!--              {{ item.content }} <a href="/events">Read more...</a>-->
             </p>
+<!--            <router-link :to="'/news/' + i">Read more... </router-link>-->
             <h5>By <b>{{ item.creator_username }}</b>, {{ item.posted_at.slice(0, 10) }}</h5>
           </div>
         </v-list-item-content>
@@ -38,14 +37,14 @@ export default {
   },
   mounted() {
     this.$http
-    .get('http://127.0.0.1:8080/api/news')
+    .get('news/')
     .then(response => (this.news = response.data))
     .catch(error => console.log(error))
   },
   methods: {
     getWords(str) {
       return str.split(/\s+/).slice(0,100).join(" ");
-    }
+    },
   },
   components: {TopBanner}
 }

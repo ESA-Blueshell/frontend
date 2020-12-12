@@ -17,6 +17,7 @@ import Documents from "@/views/Documents";
 import ElNino from "@/views/partners/ElNino";
 import Partners from "@/views/partners/Partners";
 import Ogd from "@/views/partners/Ogd";
+import Article from "@/views/Article";
 
 
 Vue.use(Router)
@@ -41,6 +42,10 @@ export default new Router({
       path: '/news',
       name: 'news',
       component: News
+    },
+    {
+      path: '/news/:id',
+      component: Article
     },
     {
       path: '/events',
