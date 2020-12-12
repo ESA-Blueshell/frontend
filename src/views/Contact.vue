@@ -6,7 +6,11 @@
     <div class="mx-3">
       <div class="mx-auto my-10" style="max-width: 800px">
         <p class="body-1">
+<<<<<<< HEAD
           If you want to become a member see the <router-link :to="/membership/">Join us!</router-link> page. If you are just looking for
+=======
+          If you want to become a member see the <router-link to="/membership">Join us!</router-link> page. If you are just looking for
+>>>>>>> 3f4f6d1db674055a4015ea39583cbe4c2b7860b7
           more information, you can contact the board at
           <a href="mailto:board@blueshell.utwente.nl">board@blueshell.utwente.nl</a> or join the
           <a href="https://discord.gg/WyDhbAP" target="_blank">Discord</a> and send a PM to the board members.
