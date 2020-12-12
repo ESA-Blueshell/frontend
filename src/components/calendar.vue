@@ -1,5 +1,5 @@
 <template>
-  <v-row class="fill-height">
+  <v-row justify="center" align="center" class="fill-height">
     <v-col>
       <!-- Start of the top bar. Includes today, previous and forward buttons and current month. -->
       <v-sheet height="64">
@@ -32,15 +32,17 @@
         </v-toolbar>
       </v-sheet>
       <!-- End of the top bar -->
-      <v-sheet height="600">
+      <v-sheet class="mx-auto" height="600">
         <!-- The actual calendar -->
         <v-calendar
             ref="calendar"
             v-model="focus"
             :events="events"
             :weekdays="weekdays"
-            color="primary"
+            color="blue lighten-1"
+            event-color="primary"
             type="month"
+            @change="monthChange"
             @click:event="showEvent"
             locale="en-US">
         </v-calendar>
@@ -57,18 +59,23 @@
             <!-- Start of the toolbar in the selected event menu -->
             <!-- Includes the event's title and the location and add to calendar buttons -->
             <v-toolbar :color="selectedEvent.color" dark>
+              <!-- Name of the event -->
               <v-toolbar-title v-html="selectedEvent.name"></v-toolbar-title>
               <v-spacer></v-spacer>
+              <!-- Start of the "Find location" button. Check the documentation for v-tooltip to find out how this works exactly -->
               <v-tooltip bottom>
                 <template v-slot:activator="{ on, attrs }">
+                  <!-- The actual button -->
                   <v-btn icon v-on="on" @click="findLocation">
                     <v-icon>mdi-google-maps</v-icon>
                   </v-btn>
                 </template>
                 <span>Find location</span>
               </v-tooltip>
+              <!-- Start of the "Add to calendar" button. Check the documentation for v-tooltip to find out how this works exactly -->
               <v-tooltip bottom>
                 <template v-slot:activator="{ on, attrs }">
+                  <!-- The actual button -->
                   <v-btn icon v-on="on" @click="addToCal">
                     <v-icon>mdi-calendar</v-icon>
                   </v-btn>
@@ -77,37 +84,45 @@
               </v-tooltip>
             </v-toolbar>
             <v-card-text>
-              <div id="eventDetails" v-if="selectedEvent.details">
-                <p>
-                  <span
-                      v-html="expand || !selectedLong ? selectedEvent.details : hundredWords(selectedEvent.details)+'...'"></span>
-                  <br v-if="!expand && selectedLong">
-                  <a v-if="!expand && selectedLong"
-                     @click="expandWords">
-                    <b>read more</b>
-                  </a>
-                </p>
-              </div>
-              <v-divider v-if="selectedEvent.details"></v-divider>
+              <!-- Description of the event -->
+              <p v-if="selectedEvent.details">
+                <!-- In the span is the actual text of the event -->
+                <!-- If the expand variable is true show the fill message, otherwise only show the first 100 words -->
+                <span
+                    v-html="expand || !selectedLong ? cleanup(selectedEvent.details) : cleanup(hundredWords(selectedEvent.details))+'...'"></span>
+                <!-- Only show the "read more" if the message is long -->
+                <!-- If it's clicked expand will be set to true and the full message will be shown -->
+                <br v-if="!expand && selectedLong">
+                <a v-if="!expand && selectedLong"
+                   @click="expandWords">
+                  <b>read more</b>
+                </a>
+              </p>
+              <p v-else>
+                No description...
+              </p>
+              <!-- Starting time of the event -->
+              <v-divider></v-divider>
               <p class="mt-4">
                 <b>When</b>
                 <br>
                 {{ formatDate(selectedEvent.start) }}
               </p>
+              <!-- Only show this part if there is a location for this event (should always be true tho) -->
               <v-divider v-if="selectedEvent.location"></v-divider>
               <p v-if="selectedEvent.location" class="mt-4">
                 <b>Where</b>
                 <br>
                 {{ selectedEvent.location }}
               </p>
+              <!-- Only show this part if there is a price for this event -->
+              <!-- I want to die -->
               <v-divider
-                  v-if="selectedEvent.memberPrice !== null && selectedEvent.publicPrice !== null"></v-divider>
-              <p v-if="selectedEvent.memberPrice !== null && selectedEvent.publicPrice !== null"
+                  v-if="selectedEvent.memberPrice !== 0 && selectedEvent.publicPrice !== 0 && selectedEvent.memberPrice !== '' && selectedEvent.publicPrice !== '' && selectedEvent.memberPrice !== null && selectedEvent.publicPrice !== null"></v-divider>
+              <p v-if="selectedEvent.memberPrice !== 0 && selectedEvent.publicPrice !== 0 && selectedEvent.memberPrice !== '' && selectedEvent.publicPrice !== '' && selectedEvent.memberPrice !== null && selectedEvent.publicPrice !== null"
                  class="mt-4">
-                <b>Price</b>
-                <br>
-                Members: €{{ selectedEvent.memberPrice }}
-                <br>
+                <b>Price</b><br>
+                Members: €{{ selectedEvent.memberPrice }} <br>
                 Non-members: €{{ selectedEvent.publicPrice }}
               </p>
             </v-card-text>
@@ -159,13 +174,49 @@ export default {
     [month, this.prevMonth(month), this.nextMonth(month)].forEach(it => this.getEvents(it));
   },
   methods: {
+    // Clean up the given description
+    // 1. turn newlines into html <br>
+    // 2. remove lines starting with 'location: ', 'time: ', etc.
+    cleanup(description) {
+      // If string is not html, replace all newlines with <br>
+      if (!description.match(/<\/?[a-z][\s\S]*>/i)) {
+        description = description.replaceAll('\n', '<br>');
+      }
+      let splitDesc = description.split('<br>');
+      let res = '';
+      splitDesc.forEach((line) => {
+        // Check if the line starts with 'location: ', 'time: ', etc. if it does, skip this line
+        if (!line.toLowerCase().startsWith('location:') && !line.toLowerCase().startsWith('time:') && !line.toLowerCase().startsWith('type:')) {
+          //If we want to add the line. We will have to fix links
+          //If the line is already html, we still want to change it such that it opens the link in a new tab.
+          if (line.match(/<\/?[a-z][\s\S]*>/i)) {
+            line = line.replaceAll('<a ', '<a target="_blank" ')
+          } else if (line.split(' ').some((word) => word.match(/(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)/i))) {
+            // Otherwise we check if there is even a link in this line.
+            // If there is, go through all words in the line and reaplace each link with a proper html element
+            let lineRes = "";
+            line.split(' ').forEach((word) => {
+              if (word.match(/(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)/i)) {
+                lineRes += `  <a href="${word}" target="_blank">${word}</a>`;
+              } else {
+                lineRes += ` ${word}`;
+              }
+            });
+            lineRes.replace(' ', '');
+            line = lineRes;
+          }
+          // Add the line to the result
+          res += '<br>' + line;
+        }
+      });
+      return res.replace('<br>', '');
+    },
     getEvents(month) {
       if (!this.monthsCollected.includes(month)) {
-        console.log("getting events for " + month);
         this.monthsCollected.push(month)
         setTimeout(() => this.monthsLoading++, 500);
 
-        axios.get('http://127.0.0.1:8080/api/events?from=' + month)
+        this.$http.get('events?from=' + month)
             .then(response => {
               let res = []
               response.data.forEach(elem => {
@@ -183,8 +234,7 @@ export default {
               )
               this.events.push(...res);
             })
-            .catch(error => {
-              console.log(error)
+            .catch(() => {
               this.snackbar = true
             })
             .then(() => this.monthsLoading--);
@@ -196,15 +246,35 @@ export default {
     },
     prev() {
       this.$refs.calendar.prev()
-
-      this.currentMonth = this.prevMonth(this.currentMonth);
-      this.getEvents(this.prevMonth(this.currentMonth))
     },
     next() {
       this.$refs.calendar.next()
+    },
+    //Triggers when the month changes and gets new events accordingly
+    monthChange({start}) {
+      let newMonth = start.year + '-' + (start.month < 10 ? '0' : '') + start.month;
+      // console.log(newMonth)
+      if (this.currentMonth != null) {
+        if (this.compareMonths(this.currentMonth, newMonth)) {
+          this.getEvents(this.prevMonth(newMonth))
+        } else {
+          this.getEvents(this.nextMonth(newMonth))
+        }
+      }
+      this.currentMonth = newMonth;
+    },
+    //Return true if m1 is later than m2 (formatting: "yyyy-mm")
+    compareMonths(m1, m2) {
+      let splitM1 = m1.split('-');
+      let splitM2 = m2.split('-');
 
-      this.currentMonth = this.nextMonth(this.currentMonth);
-      this.getEvents(this.nextMonth(this.currentMonth))
+      if (splitM1[0] > splitM2[0]) {
+        return true;
+      }
+      if (splitM1[0] < splitM2[0]) {
+        return false;
+      }
+      return splitM1[1] > splitM2[1];
     },
 
     // idfk man i just copied this from the vuetify documentation (https://vuetifyjs.com/en/components/calendars/#events)
@@ -214,7 +284,7 @@ export default {
         this.expand = false
         this.selectedEvent = event
         this.selectedEvent.color = "primary"
-        this.selectedLong = this.selectedEvent && this.selectedEvent.details.split(/\s+/).length > 100
+        this.selectedLong = this.selectedEvent && this.selectedEvent.details && this.selectedEvent.details.split(/\s+/).length > 100
         this.selectedElement = nativeEvent.target
         setTimeout(() => {
           this.selectedOpen = true
@@ -280,7 +350,7 @@ export default {
     },
     // Reduces a string to 100 words
     hundredWords(str) {
-      return str.split(/\s+/).slice(0, 100).join(" ");
+      return str.split(' ').slice(0, 100).join(' ');
     },
     expandWords() {
       this.expand = true
@@ -295,6 +365,9 @@ export default {
         minute: '2-digit',
         hour12: false
       }).format(date).replace(',', '');
+    },
+    eventsByDate(date) {
+      return this.events.filter((event) => date.toLocaleString() === event.date);
     }
   }
 }
