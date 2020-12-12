@@ -142,7 +142,7 @@ export default {
           icon: require("../assets/hearthstone.png"),
         },
         {
-          title: "Strategy ganes",
+          title: "Strategy games",
           bg: require("../assets/stratbg.jpg"),
           icon: require("../assets/strat.png"),
         },
