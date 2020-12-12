@@ -207,7 +207,6 @@ export default {
     window.addEventListener('keydown', event => {
       const key = event.key.toLowerCase();
       keysPressed.push(key);
-      console.log(keysPressed)
       if (keysPressed.toString().endsWith("arrowup,arrowup,arrowdown,arrowdown,arrowleft,arrowright,arrowleft,arrowright,a,b,enter")) {
         this.poggers = true
         alert("BIG SITECIE ENERGY")
