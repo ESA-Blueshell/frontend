@@ -6,12 +6,12 @@
       <v-list-item v-for="(item, i) in news" :key="i">
         <v-list-item-content>
           <div class="mx-auto my-10" style="max-width: 800px">
-            <h6>{{ item.news_type[0].toUpperCase() + item.news_type.slice(1) }}</h6>
+            <h6>{{ item.newsType[0].toUpperCase() + item.newsType.slice(1) }}</h6>
             <h2>{{ item.title }}</h2>
             <p v-html="item.content">
             </p>
-<!--            <router-link :to="'/news/' + i">Read more... </router-link>-->
-            <h5>By <b>{{ item.creator_username }}</b>, {{ item.posted_at.slice(0, 10) }}</h5>
+            <router-link :to="'/news/' + item.id">Read more... </router-link>
+            <h5>By <b>{{ item.creatorUsername }}</b>, {{ item.postedAt.slice(0, 10) }}</h5>
           </div>
         </v-list-item-content>
       </v-list-item>
@@ -27,7 +27,6 @@
 </template>
 <script>
 import TopBanner from "@/components/top-banner";
-import axios from 'axios';
 export default {
   data() {
     return {
