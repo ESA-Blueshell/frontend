@@ -9,8 +9,8 @@ import Axios from 'axios';
 
 Vue.config.productionTip = false
 
-Axios.defaults.baseURL = "http://localhost:8080/api/"
-// Axios.defaults.baseURL = "https://esa-blueshell.nl/api/"
+// Axios.defaults.baseURL = "http://localhost:8080/api/"
+Axios.defaults.baseURL = "https://esa-blueshell.nl/api/"
 Vue.prototype.$http = Axios
 Vue.$http = Axios
 
