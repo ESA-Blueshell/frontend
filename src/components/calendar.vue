@@ -216,8 +216,7 @@ export default {
         this.monthsCollected.push(month)
         setTimeout(() => this.monthsLoading++, 500);
 
-        axios.get('http://localhost:8080/api/events?from=' + month)
-            // axios.get('http://esa-blueshell.nl/api/events?from=' + month)
+        this.$http.get('events?from=' + month)
             .then(response => {
               let res = []
               response.data.forEach(elem => {

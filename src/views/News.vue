@@ -37,7 +37,7 @@ export default {
     }
   },
   mounted() {
-    axios
+    this.$http
     .get('http://127.0.0.1:8080/api/news')
     .then(response => (this.news = response.data))
     .catch(error => console.log(error))
