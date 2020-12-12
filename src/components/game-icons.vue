@@ -91,8 +91,8 @@ export default {
 <style scoped lang="scss">
 .overlay {
   position: absolute;
-  bottom: 60px;
-  height: 40%;
+  bottom: 0;
+  height: 60px;
   width: 100%;
   z-index: 500;
   background-color: rgba(0, 0, 0, 0.5);

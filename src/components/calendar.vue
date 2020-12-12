@@ -178,7 +178,6 @@ export default {
     // 1. turn newlines into html <br>
     // 2. remove lines starting with 'location: ', 'time: ', etc.
     cleanup(description) {
-      console.log(description)
       // If string is not html, replace all newlines with <br>
       if (!description.match(/<\/?[a-z][\s\S]*>/i)) {
         description = description.replace(/\n/, '<br>');
