@@ -164,7 +164,9 @@ export default {
     weekdays: [1, 2, 3, 4, 5, 6, 0],
     currentMonth: null,
     monthsLoading: 0,
-    snackbar: false
+    snackbar: false,
+    linkRegex: /^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)&/i,
+    htmlRegex: /<\/?[a-z][\s\S]*>/i
   }),
   mounted() {
     this.setToday();
@@ -187,14 +189,14 @@ export default {
         if (!line.toLowerCase().startsWith('location:') && !line.toLowerCase().startsWith('time:') && !line.toLowerCase().startsWith('type:')) {
           //If we want to add the line. We will have to fix links
           //If the line is already html, we still want to change it such that it opens the link in a new tab.
-          if (line.match(/<\/?[a-z][\s\S]*>/i)) {
+          if (line.match(this.htmlRegex)) {
             line = line.replace(/<a /, '<a target="_blank" ')
-          } else if (line.split(' ').some((word) => word.match(/(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)/i))) {
+          } else if (line.split(' ').some((word) => word.match(this.linkRegex))) {
             // Otherwise we check if there is even a link in this line.
             // If there is, go through all words in the line and reaplace each link with a proper html element
             let lineRes = "";
             line.split(' ').forEach((word) => {
-              if (word.match(/(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)/i)) {
+              if (word.match(this.linkRegex)) {
                 lineRes += `  <a href="${word}" target="_blank">${word}</a>`;
               } else {
                 lineRes += ` ${word}`;
