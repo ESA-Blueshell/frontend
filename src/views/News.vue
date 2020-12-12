@@ -6,7 +6,7 @@
       <v-list-item v-for="(item, i) in news" :key="i">
         <v-list-item-content>
           <div class="mx-auto my-10" style="max-width: 800px">
-            <h6>{{ item.newsType[0].toUpperCase() + item.newsType.slice(1) }}</h6>
+            <h6>{{ item.newsType }}</h6>
             <h2>{{ item.title }}</h2>
             <p v-html="item.content">
             </p>
