@@ -2,9 +2,9 @@
   <div>
     <v-row wrap align="center" justify="center" align-content="center" class="mx-auto mb-6"
            style="max-width: 1400px">
-      <v-col class="mx-1 transition-swing"
-             style="border-radius: 15px;padding: 4px"
-             cols="2" sm="2" md="1" lg="1" xl="1"
+      <v-col class="mx-3 my-2 transition-swing"
+             style="border-radius: 15px;padding: 4px; background-color: #f5f5f5"
+             cols="2" sm="1" md="1" lg="1" xl="1"
              align-self="center"
              v-for="(game,i) in games"
              v-bind:key="game.title"
@@ -12,7 +12,7 @@
              @mouseenter="hover(i)"
              @mouseleave="unhover"
       >
-        <v-img :src="game.icon" @click="goto(game.esportsLink)"/>
+            <v-img class="ma-2" :src="game.icon" @click="goto(game.esportsLink)"/>
       </v-col>
     </v-row>
 

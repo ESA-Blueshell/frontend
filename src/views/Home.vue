@@ -30,12 +30,12 @@
     <discord-banner/>
 
 <!--    <v-container>-->
-      <p class="mx-auto text-center text-h2">
+      <p class="mx-auto text-center text-h2 mt-6">
         Esports we play
       </p>
       <game-icons :games="games"></game-icons>
 
-      <p class="mx-auto text-center text-h2">
+      <p class="mx-auto text-center text-h2 mt-4">
         Community games
       </p>
       <game-icons :games="communityGames"></game-icons>
