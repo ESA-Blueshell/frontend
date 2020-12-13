@@ -10,39 +10,54 @@
             <h2>{{ item.title }}</h2>
             <p v-html="item.content">
             </p>
-            <router-link :to="'/news/' + item.id">Read more... </router-link>
+            <router-link :to="'/news/' + item.id">Read more...</router-link>
             <h5>By <b>{{ item.creatorUsername }}</b>, {{ item.postedAt.slice(0, 10) }}</h5>
           </div>
         </v-list-item-content>
       </v-list-item>
     </v-list>
     <!-- TODO: FIX THIS LATER -->
-<!--  <div class = "text-center">-->
-<!--    <v-pagination-->
-<!--      v-model="page"-->
-<!--      :length="3"-->
-<!--      ></v-pagination>-->
-<!--  </div>-->
+    <!--  <div class = "text-center">-->
+    <!--    <v-pagination-->
+    <!--      v-model="page"-->
+    <!--      :length="3"-->
+    <!--      ></v-pagination>-->
+    <!--  </div>-->
+    <v-snackbar v-model="snackbar" timeout="10000">
+      Uh oh, looks like we can't connect to the server :/ <br>
+      Just ping @SiteCie on Discord and we'll look into it
+      <template v-slot:action="{ attrs }">
+        <v-btn
+            color="blue"
+            text
+            v-bind="attrs"
+            @click="snackbar = false">
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
   </v-main>
 </template>
 <script>
 import TopBanner from "@/components/top-banner";
+
 export default {
   data() {
     return {
       news: [],
+      snackbar: false,
       page: 1
     }
   },
   mounted() {
     this.$http
-    .get('news/')
-    .then(response => (this.news = response.data))
-    .catch(error => console.log(error))
+        .get('news/')
+        .then(response => this.news = response.data)
+        .catch(() => this.snackbar = true)
   },
   methods: {
     getWords(str) {
-      return str.split(/\s+/).slice(0,100).join(" ");
+      return str.split(/\s+/).slice(0, 100).join(" ");
     },
   },
   components: {TopBanner}

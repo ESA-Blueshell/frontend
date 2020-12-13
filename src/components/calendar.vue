@@ -129,8 +129,9 @@
           </v-card>
         </v-menu>
         <!-- Snackbar that pops up when failing to get events -->
-        <v-snackbar v-model="snackbar">
-          Uh oh, looks like we can't connect to the server :/
+        <v-snackbar v-model="snackbar" timeout="10000">
+          Uh oh, looks like we can't connect to the server :/ <br>
+          Just ping @SiteCie on Discord and we'll look into it
           <template v-slot:action="{ attrs }">
             <v-btn
                 color="blue"
@@ -234,9 +235,7 @@ export default {
               )
               this.events.push(...res);
             })
-            .catch(() => {
-              this.snackbar = true
-            })
+            .catch(() => this.snackbar = true)
             .then(() => this.monthsLoading--);
       }
     },
