@@ -165,7 +165,7 @@ export default {
     currentMonth: null,
     monthsLoading: 0,
     snackbar: false,
-    linkRegex: /^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)&/i,
+    linkRegex: /^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)/i,
     htmlRegex: /<\/?[a-z][\s\S]*>/i
   }),
   mounted() {
@@ -180,7 +180,7 @@ export default {
     cleanup(description) {
       // If string is not html, replace all newlines with <br>
       if (!description.match(/<\/?[a-z][\s\S]*>/i)) {
-        description = description.replace(/\n/, '<br>');
+        description = description.replaceAll(/\n/g, '<br>');
       }
       let splitDesc = description.split('<br>');
       let res = '';
@@ -190,7 +190,7 @@ export default {
           //If we want to add the line. We will have to fix links
           //If the line is already html, we still want to change it such that it opens the link in a new tab.
           if (line.match(this.htmlRegex)) {
-            line = line.replace(/<a /, '<a target="_blank" ')
+            line = line.replaceAll(/<a /g, '<a target="_blank" ')
           } else if (line.split(' ').some((word) => word.match(this.linkRegex))) {
             // Otherwise we check if there is even a link in this line.
             // If there is, go through all words in the line and reaplace each link with a proper html element
