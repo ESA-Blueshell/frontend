@@ -6,6 +6,7 @@ import 'vuetify/dist/vuetify.min.css'
 import vuetify from './plugins/vuetify';
 import '@mdi/font/css/materialdesignicons.css'
 import Axios from 'axios';
+import './styles/variables.sass';
 
 Vue.config.productionTip = false
 
@@ -15,8 +16,8 @@ Vue.prototype.$http = Axios
 Vue.$http = Axios
 
 new Vue({
-  router,
-  store,
-  vuetify,
-  render: h => h(App)
+    router,
+    store,
+    vuetify,
+    render: h => h(App)
 }).$mount('#app')
