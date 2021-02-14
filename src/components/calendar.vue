@@ -55,7 +55,7 @@
             offset-x
             v-if="selectedEvent"
         >
-          <v-card color="grey lighten-4" min-width="350px" max-width="350px">
+          <v-card color="grey lighten-4" max-width="350px">
             <!-- Start of the toolbar in the selected event menu -->
             <!-- Includes the event's title and the location and add to calendar buttons -->
             <v-toolbar :color="selectedEvent.color" dark>
@@ -84,6 +84,9 @@
               </v-tooltip>
             </v-toolbar>
             <v-card-text>
+              <!-- Show the title fully if the length is greater than 14 characters (then it's usually cut off) -->
+              <h4 v-if="selectedEvent.name.length > 14" v-html="selectedEvent.name"/>
+              <v-divider class="my-2" v-if="selectedEvent.name.length > 14"/>
               <!-- Description of the event -->
               <p v-if="selectedEvent.details">
                 <!-- In the span is the actual text of the event -->
@@ -102,15 +105,15 @@
                 No description...
               </p>
               <!-- Starting time of the event -->
-              <v-divider></v-divider>
-              <p class="mt-4">
+              <v-divider class="my-2"/>
+              <p>
                 <b>When</b>
                 <br>
                 {{ formatDate(selectedEvent.start) }}
               </p>
               <!-- Only show this part if there is a location for this event (should always be true tho) -->
-              <v-divider v-if="selectedEvent.location"></v-divider>
-              <p v-if="selectedEvent.location" class="mt-4">
+              <v-divider class="my-2" v-if="selectedEvent.location"/>
+              <p v-if="selectedEvent.location">
                 <b>Where</b>
                 <br>
                 {{ selectedEvent.location }}
@@ -118,7 +121,7 @@
               <!-- Only show this part if there is a price for this event -->
               <!-- I want to die -->
               <v-divider
-                  v-if="selectedEvent.memberPrice !== 0 && selectedEvent.publicPrice !== 0 && selectedEvent.memberPrice !== '' && selectedEvent.publicPrice !== '' && selectedEvent.memberPrice !== null && selectedEvent.publicPrice !== null"></v-divider>
+                  v-if="selectedEvent.memberPrice !== 0 && selectedEvent.publicPrice !== 0 && selectedEvent.memberPrice !== '' && selectedEvent.publicPrice !== '' && selectedEvent.memberPrice !== null && selectedEvent.publicPrice !== null"/>
               <p v-if="selectedEvent.memberPrice !== 0 && selectedEvent.publicPrice !== 0 && selectedEvent.memberPrice !== '' && selectedEvent.publicPrice !== '' && selectedEvent.memberPrice !== null && selectedEvent.publicPrice !== null"
                  class="mt-4">
                 <b>Price</b><br>
