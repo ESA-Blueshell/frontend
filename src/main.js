@@ -16,8 +16,9 @@ Vue.prototype.$http = Axios
 Vue.$http = Axios
 
 new Vue({
+    el: '#app',
     router,
     store,
     vuetify,
     render: h => h(App)
-}).$mount('#app')
+})

@@ -17,7 +17,8 @@
       <v-row class="text-center" justify="center">
         <v-col v-for="col in columns" v-bind:key="col.title"
                class="mx-4" style="max-width:450px;min-width: 350px;min-height: 250px"
-               align-self="center">
+               align-self="center"
+               :id="'column '+ col.title">
           <div class="expand" style="width: 100%" @click="goto(col.url)">
             <v-icon x-large :color="col.color" class="icon" v-html="col.icon"></v-icon>
             <p class="text-h3 ma-3 font-weight-thin" v-html="col.title"></p>
@@ -29,17 +30,17 @@
 
     <discord-banner/>
 
-<!--    <v-container>-->
-      <p class="mx-auto text-center text-h2 mt-6">
-        Esports we play
-      </p>
-      <game-icons :games="games"></game-icons>
+    <!--    <v-container>-->
+    <p class="mx-auto text-center text-h2 mt-6">
+      Esports we play
+    </p>
+    <game-icons :games="games"></game-icons>
 
-      <p class="mx-auto text-center text-h2 mt-4">
-        Community games
-      </p>
-      <game-icons :games="communityGames"></game-icons>
-<!--    </v-container>-->
+    <p class="mx-auto text-center text-h2 mt-4">
+      Community games
+    </p>
+    <game-icons :games="communityGames"></game-icons>
+    <!--    </v-container>-->
 
     <v-container>
       <v-row justify="center" align="center">
@@ -63,6 +64,7 @@ import MainBanner from "@/components/main-banner";
 import router from "@/router";
 import DiscordBanner from "@/components/discord-banner";
 import GameIcons from "@/components/game-icons";
+import store from '@/store'
 
 export default {
   components: {GameIcons, DiscordBanner, MainBanner},
@@ -180,6 +182,25 @@ export default {
           url: "/partners/ogd-ict"
         }
       ]
+    }
+  },
+  mounted() {
+
+    console.log(store.state.shitSite)
+    if (store.state.shitSite) {
+      var ps = document.getElementsByTagName("p");
+      for (let i = 0; i < ps.length; i++) {
+        ps[i].style += ";font-family: 'Shitfont', sans-serif !important"
+      }
+      var lis = document.getElementsByTagName("li");
+      for (let i = 0; i < lis.length; i++) {
+        lis[i].style += ";font-family: 'Shitfont', sans-serif !important"
+      }
+      var buttonTexts = document.getElementsByClassName("v-btn__content");
+      for (let i = 0; i < buttonTexts.length; i++) {
+        buttonTexts[i].style += ";font-family: 'Shitfont', sans-serif !important"
+      }
+      // document.getElementById("column Esports").
     }
   }
 }

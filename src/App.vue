@@ -183,11 +183,19 @@
         <source src="./assets/blueshellanthem.mp3" type="audio/mpeg">
       </audio>
     </v-snackbar>
+
+    <v-snackbar rounded v-model="shitSnack" timeout="-1">
+      toggle shitsite
+      <v-switch @change="toggleShit()">
+
+      </v-switch>
+    </v-snackbar>
   </v-app>
 </template>
 
 <script>
 import router from "@/router";
+import store from '@/store';
 
 export default {
   data() {
@@ -195,11 +203,15 @@ export default {
       drawer: false,
       shellyLogo: require("./assets/shelly.png"),
       poggers: false,
+      shitSnack: store.state.enableShitability,
     }
   },
   methods: {
     goto(url) {
       router.push(url)
+    },
+    toggleShit(){
+      store.commit('toggleShit');
     }
   },
   mounted() {
