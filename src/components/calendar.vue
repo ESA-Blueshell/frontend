@@ -60,7 +60,11 @@
             <!-- Includes the event's title and the location and add to calendar buttons -->
             <v-toolbar :color="selectedEvent.color" dark>
               <!-- Name of the event -->
-              <v-toolbar-title v-html="selectedEvent.name"></v-toolbar-title>
+              <v-toolbar-title v-if="selectedEvent.name.length < 15" v-html="selectedEvent.name"/>
+              <marquee-text v-else :repeat="3" :duration="10" >
+                <v-toolbar-title class="mr-5" v-html="selectedEvent.name"/>
+              </marquee-text>
+
               <v-spacer></v-spacer>
               <!-- Start of the "Find location" button. Check the documentation for v-tooltip to find out how this works exactly -->
               <v-tooltip bottom>
@@ -84,9 +88,6 @@
               </v-tooltip>
             </v-toolbar>
             <v-card-text>
-              <!-- Show the title fully if the length is greater than 14 characters (then it's usually cut off) -->
-              <h4 v-if="selectedEvent.name.length > 14" v-html="selectedEvent.name"/>
-              <v-divider class="my-2" v-if="selectedEvent.name.length > 14"/>
               <!-- Description of the event -->
               <p v-if="selectedEvent.details">
                 <!-- In the span is the actual text of the event -->
@@ -151,9 +152,13 @@
 </template>
 
 <script>
+import MarqueeText from 'vue-marquee-text-component'
 
 export default {
   name: "Calendar",
+  components: {
+    MarqueeText
+  },
   data: () => ({
     today: new Date().toISOString().substring(0, 10),
     focus: new Date().toISOString().substring(0, 10),
@@ -375,6 +380,12 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
+.v-calendar .v-event {
+  height: auto !important;
+}
 
+.v-calendar .v-event .pl-1 {
+  white-space: normal !important;
+}
 </style>
