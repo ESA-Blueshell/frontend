@@ -29,6 +29,35 @@
                 color="primary">
             </v-progress-circular>
           </v-fade-transition>
+          <v-menu
+              bottom
+              right
+          >
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn
+                  outlined
+                  color="grey darken-2"
+                  v-bind="attrs"
+                  v-on="on"
+              >
+                <span>{{ type }}</span>
+                <v-icon right>
+                  mdi-menu-down
+                </v-icon>
+              </v-btn>
+            </template>
+            <v-list>
+              <v-list-item @click="type = 'day'">
+                <v-list-item-title>Day</v-list-item-title>
+              </v-list-item>
+              <v-list-item @click="type = 'week'">
+                <v-list-item-title>Week</v-list-item-title>
+              </v-list-item>
+              <v-list-item @click="type = 'month'">
+                <v-list-item-title>Month</v-list-item-title>
+              </v-list-item>
+            </v-list>
+          </v-menu>
         </v-toolbar>
       </v-sheet>
       <!-- End of the top bar -->
@@ -41,10 +70,12 @@
             :weekdays="weekdays"
             color="blue lighten-1"
             event-color="primary"
-            type="month"
+            :type="this.type"
             @change="monthChange"
             @click:event="showEvent"
-            locale="en-US">
+            @click:more="viewDay"
+            @click:date="viewDay"
+            locale="en-NL">
         </v-calendar>
 
         <!-- Start of the menu that pops up when selecting an event -->
@@ -61,7 +92,7 @@
             <v-toolbar :color="selectedEvent.color" dark>
               <!-- Name of the event -->
               <v-toolbar-title v-if="selectedEvent.name.length < 15" v-html="selectedEvent.name"/>
-              <marquee-text v-else :repeat="3" :duration="10" >
+              <marquee-text v-else :repeat="3" :duration="10">
                 <v-toolbar-title class="mr-5" v-html="selectedEvent.name"/>
               </marquee-text>
 
@@ -167,6 +198,7 @@ export default {
     selectedElement: null,
     selectedOpen: false,
     calendarId: "blueshellesports@gmail.com",
+    type: 'month',
     events: [],
     expand: false,
     monthsCollected: [],
@@ -234,10 +266,12 @@ export default {
                       details: elem.description,
                       date: elem.startTime.substring(0, 10),
                       start: new Date(elem.startTime),
+                      end: new Date(elem.endTime),
                       location: elem.location,
                       memberPrice: elem.memberPrice,
                       publicPrice: elem.publicPrice,
                       googleId: elem.googleId,
+                      timed: !!elem.endTime
                     })
                   }
               )
@@ -306,6 +340,10 @@ export default {
       }
 
       nativeEvent.stopPropagation()
+    },
+    viewDay({date}) {
+      this.focus = date
+      this.type = 'day'
     },
     // Get the next month. Formatting: yyyy-MM
     nextMonth(month) {
@@ -383,9 +421,22 @@ export default {
 <style>
 .v-calendar .v-event {
   height: auto !important;
+  max-height: calc((100% - 50px)) !important;
 }
 
 .v-calendar .v-event .pl-1 {
   white-space: normal !important;
+}
+
+.v-calendar .v-event strong {
+  display: none;
+}
+
+.v-calendar .v-event-timed .pl-1 {
+  white-space: normal !important;
+}
+
+.v-menu__content {
+  min-width: 0 !important;
 }
 </style>
