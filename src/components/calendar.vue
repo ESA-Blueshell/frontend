@@ -23,7 +23,7 @@
           <v-spacer></v-spacer>
           <!-- Circle loading thingy (only appears after the user's been waiting for new events for 0.5s) -->
           <v-fade-transition>
-            <v-progress-circular
+            <v-progress-circular class="mr-3"
                 v-if="monthsLoading > 0"
                 indeterminate
                 color="primary">
