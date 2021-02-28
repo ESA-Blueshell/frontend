@@ -71,6 +71,7 @@
             color="blue lighten-1"
             event-color="primary"
             :type="this.type"
+            :interval-format="intervalFormat"
             @change="monthChange"
             @click:event="showEvent"
             @click:more="viewDay"
@@ -141,7 +142,7 @@
               <p>
                 <b>When</b>
                 <br>
-                {{ formatDate(selectedEvent.start) }}
+                {{ formatDate(selectedEvent.start, selectedEvent.end) }}
               </p>
               <!-- Only show this part if there is a location for this event (should always be true tho) -->
               <v-divider class="my-2" v-if="selectedEvent.location"/>
@@ -266,7 +267,7 @@ export default {
                       details: elem.description,
                       date: elem.startTime.substring(0, 10),
                       start: new Date(elem.startTime),
-                      end: new Date(elem.endTime),
+                      end: elem.endTime ? new Date(elem.endTime) : undefined,
                       location: elem.location,
                       memberPrice: elem.memberPrice,
                       publicPrice: elem.publicPrice,
@@ -345,6 +346,9 @@ export default {
       this.focus = date
       this.type = 'day'
     },
+    intervalFormat(interval) {
+      return interval.time
+    },
     // Get the next month. Formatting: yyyy-MM
     nextMonth(month) {
       const splitTime = month.split("-");
@@ -401,15 +405,32 @@ export default {
       this.expand = true
     },
     // Format a date object to "Weekday MM dd, HH:mm"
-    formatDate(date) {
-      return new Intl.DateTimeFormat('en-US', {
-        weekday: 'long',
-        month: 'long',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit',
-        hour12: false
-      }).format(date).replace(',', '');
+    formatDate(start, end) {
+      let str;
+      if (end) {
+
+        str = new Intl.DateTimeFormat('en-US', {
+          weekday: 'long',
+          month: 'long',
+          day: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit',
+          hour12: false
+        }).format(start).replace(',', '');
+        str += " - ";
+        str += new Intl.DateTimeFormat('en-US', {
+          hour: '2-digit',
+          minute: '2-digit',
+          hour12: false
+        }).format(end);
+      } else {
+        str = new Intl.DateTimeFormat('en-US', {
+          weekday: 'long',
+          month: 'long',
+          day: 'numeric'
+        }).format(start)
+      }
+      return str;
     },
     eventsByDate(date) {
       return this.events.filter((event) => date.toLocaleString() === event.date);
