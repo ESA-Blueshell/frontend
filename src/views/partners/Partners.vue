@@ -16,7 +16,7 @@
           these members with a potential contact with a company close to their interest, we are
           currently looking for more collaborations with local companies. As our member base is
           getting bigger, so is the number of study backgrounds. While a large part of the members
-          (25%) has an IT-background, all studies are currently represented.
+          (60%) has an IT-background, all studies are currently represented.
         </p>
         <p class="body-1">
           As an association we are open for a collaboration with any kind of Twente-based company.
@@ -26,7 +26,7 @@
           discuss the possibilities or to plan a meeting!
         </p>
         <p class="body-1">
-          Mail: <a href="mailto:external@blueshell.utwente.nl">external@blueshell.utwente.nl</a>
+          Mail: <a href="mailto:external-affairs@blueshell.utwente.nl">external-affairs@blueshell.utwente.nl</a>
         </p>
       </div>
     </div>

@@ -16,7 +16,6 @@ import RocketLeague from "./views/esports/RocketLeague";
 import Documents from "@/views/Documents";
 import ElNino from "@/views/partners/ElNino";
 import Partners from "@/views/partners/Partners";
-import Ogd from "@/views/partners/Ogd";
 import Article from "@/views/Article";
 
 
@@ -116,11 +115,6 @@ export default new Router({
       path: '/partners/el-nino',
       name: 'elnino',
       component: ElNino
-    },
-    {
-      path: '/partners/ogd-ict',
-      name: 'ogd',
-      component: Ogd
     },
   ]
 })

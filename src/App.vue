@@ -56,7 +56,6 @@
           <v-list>
             <v-list-item to="/partners/become-a-partner">Become a partner!</v-list-item>
             <v-list-item to="/partners/el-nino">El Niño – Digital Development</v-list-item>
-            <v-list-item to="/partners/ogd-ict">OGD ICT-diensten</v-list-item>
           </v-list>
         </v-menu>
         <v-btn class="bar-button" text dark to="/contact">Contact</v-btn>
@@ -114,7 +113,6 @@
           </template>
           <v-list-item to="/partners/become-a-partner">Become a partner!</v-list-item>
           <v-list-item to="/partners/el-nino">El Niño – Digital Development</v-list-item>
-          <v-list-item to="/partners/ogd-ict">OGD ICT-diensten</v-list-item>
           <v-divider dark></v-divider>
         </v-list-group>
         <v-list-item text dark to="/contact">
@@ -171,9 +169,6 @@
       </v-btn>
       <v-btn href="https://www.elnino.tech/" target="_blank">
         El Niño
-      </v-btn>
-      <v-btn href="https://www.ogd.nl/" target="_blank">
-        OGD
       </v-btn>
       <v-spacer></v-spacer>
       <div class="white--text">SITECIE GANG &copy; {{ new Date().getFullYear() }}</div>

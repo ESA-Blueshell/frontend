@@ -41,7 +41,7 @@
       <game-icons :games="communityGames"></game-icons>
 <!--    </v-container>-->
 
-    <v-container>
+    <v-container class="my-16">
       <v-row justify="center" align="center">
         <v-col v-for="partner in partners" v-bind:key="partner.url" md="3">
           <v-img :src="partner.logo"
@@ -175,10 +175,6 @@ export default {
           logo: require("../assets/elnino.png"),
           url: "/partners/el-nino"
         },
-        {
-          logo: require("../assets/OGD.png"),
-          url: "/partners/ogd-ict"
-        }
       ]
     }
   }
