@@ -8,7 +8,7 @@
         </p>
         <p class="body-1">
           We are Blueshell Esports, Twente's very own gaming and esports association, and the
-          largest in the Netherlands! With over 200 members, 14 member-run committees representing
+          largest in the Netherlands! With over 200 members, 15 member-run committees representing
           different games and activities, and weekly online and offline events, we aim to connect
           our members in any which way they want. Each event is organized in order to represent a
           different part of the association and the community. That means, whether you are burning

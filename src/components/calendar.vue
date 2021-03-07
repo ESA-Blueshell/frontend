@@ -23,41 +23,21 @@
           <v-spacer></v-spacer>
           <!-- Circle loading thingy (only appears after the user's been waiting for new events for 0.5s) -->
           <v-fade-transition>
-            <v-progress-circular class="mr-3"
+            <v-progress-circular
+                class="mr-3"
                 v-if="monthsLoading > 0"
                 indeterminate
                 color="primary">
             </v-progress-circular>
           </v-fade-transition>
-          <v-menu
-              bottom
-              right
-          >
-            <template v-slot:activator="{ on, attrs }">
-              <v-btn
-                  outlined
-                  color="grey darken-2"
-                  v-bind="attrs"
-                  v-on="on"
-              >
-                <span>{{ type }}</span>
-                <v-icon right>
-                  mdi-menu-down
-                </v-icon>
-              </v-btn>
-            </template>
-            <v-list>
-              <v-list-item @click="type = 'day'">
-                <v-list-item-title>Day</v-list-item-title>
-              </v-list-item>
-              <v-list-item @click="type = 'week'">
-                <v-list-item-title>Week</v-list-item-title>
-              </v-list-item>
-              <v-list-item @click="type = 'month'">
-                <v-list-item-title>Month</v-list-item-title>
-              </v-list-item>
-            </v-list>
-          </v-menu>
+          <v-btn
+              outlined
+              color="grey darken-2"
+              v-if="this.type==='day'"
+              @click="viewMonth"
+          ><v-icon class="ml-n2 mr-1">mdi-arrow-left</v-icon>
+            back
+          </v-btn>
         </v-toolbar>
       </v-sheet>
       <!-- End of the top bar -->
@@ -345,6 +325,9 @@ export default {
     viewDay({date}) {
       this.focus = date
       this.type = 'day'
+    },
+    viewMonth() {
+      this.type = 'month'
     },
     intervalFormat(interval) {
       return interval.time
