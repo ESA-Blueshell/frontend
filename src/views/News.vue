@@ -1,15 +1,13 @@
 <template>
   <v-main>
     <top-banner title="News"></top-banner>
-    <!-- TODO: CREATE PAGES FOR NEWS -->
     <v-list>
       <v-list-item v-for="(item, i) in news" :key="i">
         <v-list-item-content>
           <div class="mx-auto my-10" style="max-width: 800px">
             <h6>{{ item.newsType }}</h6>
             <h2>{{ item.title }}</h2>
-            <p v-html="item.content">
-            </p>
+            <p>{{ getWords(item.content) }} ...</p>
             <router-link :to="'/news/' + item.id">Read more...</router-link>
             <h5>By <b>{{ item.creatorUsername }}</b>, {{ item.postedAt.slice(0, 10) }}</h5>
           </div>
@@ -57,6 +55,7 @@ export default {
   },
   methods: {
     getWords(str) {
+      str = str.replace(/(<([^>]+)>)/gi, "");
       return str.split(/\s+/).slice(0, 100).join(" ");
     },
   },
