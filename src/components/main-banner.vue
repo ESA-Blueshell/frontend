@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="banner">
-      <v-parallax :src="require('../assets/gaming.jpg')" height="900" class="background"></v-parallax>
+      <v-parallax :src="require('../assets/banner.png')" height="900" class="background"></v-parallax>
       <div class="black overlay"></div>
       <div class="mx-auto text-center" style="top: 300px; position: relative;z-index: 3;">
         <p id="blueshell" class="white--text text-h1 text-sm-h1 text-md-h1 text-lg-h1 text-xl-h1"
