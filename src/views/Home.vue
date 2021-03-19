@@ -89,75 +89,61 @@ export default {
       hoveredGame: null,
       games: [
         {
+          title: "Huniepop",
+          bg: require("../assets/huniepopbg.jpg"),
+          icon: require("../assets/huniepop.png"),
+        },
+        {
+          title: "Club Penguin ban any%",
+          bg: require("../assets/clubpenguinbg.jpg"),
+          icon: require("../assets/clubpenguin.png"),
+        },
+        {
           title: "League of Legends",
           bg: require("../assets/leaguebg.jpg"),
           icon: require("../assets/league.png"),
-          esportsLink: "/esports/league-of-legends"
-        },
-        {
-          title: "Counter-Strike: Global Offensive",
-          bg: require("../assets/csgobg.jpg"),
-          icon: require("../assets/csgo.png"),
-          esportsLink: "/esports/counter-strike-global-offensive"
-        },
-        {
-          title: "Rocket League",
-          bg: require("../assets/rocketleaguebg.jpg"),
-          icon: require("../assets/rocketleague.png"),
-          esportsLink: "/esports/rocket-league"
-        },
-        {
-          title: "Super Smash Bros",
-          bg: require("../assets/smashbg.jpg"),
-          icon: require("../assets/smash.png"),
-          esportsLink: "/esports/super-smash-bros"
         },
       ],
       communityGames: [
         {
-          title: "Overwatch",
-          bg: require("../assets/overwatchbg.jpg"),
-          icon: require("../assets/overwatch.png"),
+          title: "Cool meth games",
+          bg: require("../assets/coolmathgamesbg.jpg"),
+          icon: require("../assets/coolmathgames.png"),
         },
         {
-          title: "Animal Crossing",
-          bg: require("../assets/animalcrossingbg.jpg"),
-          icon: require("../assets/animalcrossing.png"),
+          title: "Candy Crush Saga™",
+          bg: require("../assets/candycrushbg.jpg"),
+          icon: require("../assets/candycrush.png"),
         },
         {
-          title: "Minecraft",
-          bg: require("../assets/minecraftbg.jpg"),
-          icon: require("../assets/minecraft.png"),
+          title: "E. T.",
+          bg: require("../assets/etbg.jpg"),
+          icon: require("../assets/et.png"),
         },
         {
-          title: "Pokémon",
-          bg: require("../assets/pokemonbg.jpg"),
-          icon: require("../assets/pokemon.png"),
+          title: "Marvel's Avengers",
+          bg: require("../assets/avengersbg.jpg"),
+          icon: require("../assets/avengers.png"),
         },
         {
-          title: "Team Fight Tactics",
-          bg: require("../assets/tftbg.jpg"),
-          icon: require("../assets/tft.png"),
+          title: "Amoung us",
+          bg: require("../assets/amongusbg.jpg"),
+          icon: require("../assets/amongus.png"),
         },
         {
-          title: "Valorant",
-          bg: require("../assets/valorantbg.jpg"),
-          icon: require("../assets/valorant.png"),
+          title: "Amonog us",
+          bg: require("../assets/amongusbg.jpg"),
+          icon: require("../assets/amongus.png"),
         },
         {
-          title: "World of Warcraft",
-          bg: require("../assets/wowbg.jpg"),
-          icon: require("../assets/wow.png"),
+          title: "Among us",
+          bg: require("../assets/amongusbg.jpg"),
+          icon: require("../assets/amongus.png"),
         },
         {
-          title: "Card games",
-          bg: require("../assets/cardgamesbg.jpg"),
-          icon: require("../assets/hearthstone.png"),
-        },
-        {
-          title: "Strategy games",
-          bg: require("../assets/stratbg.jpg"),
-          icon: require("../assets/strat.png"),
+          title: "Ş̸͙͇͕͔̤̱̩̯̮̰͈̯̠̰͉̩̿̊̅͜U̴̢͉̦̜͔̫̜̪̟̩̘͕̪̼͓̩̻̤͆͗̌̈́̊̒̕̕͝Ş̴͉̜̲̣͙̖̖̉̈́̐ ̷̛͇͖̰̊́̌̑̋͆̑͝S̶̤̞͙͙̩̗͚̋̏́̔̈́͊̾͛̀̌͘̚͜Ǔ̸̦̹͎̰͚̈̀͊̑̓͝S̷̡̨̛͈͇̝͖̩͇̩̙͉̹͙̏̑̇͐͒͌͊̅͌̿̋̓̔́͌̚͝ ̵̢̨̛̬̩̝̝̦͈̟̥̼̰̻̝͎̹͓́͋̄̈́́͋̏̓̎̈̈̔̾͆̽͝S̸̨̯̫͚̫̘͇͙̼̳̗̮̗̪̰̲̫̥̈́̎̓̋̉̅͌̏̕͜U̶̧̢̮̺̜̬̭͇̣̰̠͙̳̘͕̯̓̓͊̑̉̏́͆̿̅̑͛͗̃͛̌̚͝S̷̛̯͙̯̈́̑̾̈́͒́͊̂͋̂͊̈́̓̂͝ ̷̢̫̳̠̗̻̮̝̭̳̹̥̣̖̒̊͑́́̃͆̊̐S̴̪̩̯̗̞͇̙͖͈̖̥͋̃̊̔̾̌̓̔̿̅̄̕͝U̶͖͇̍͑̊̈́̌̀̐̔͊̀͑̂̋̌̀́̋͋͠ͅS̵̱͔̄̇̅̀͑̎͘ ̴̖͍͈̣͇̩͖̪̼̙̗̦͕̫̆̊͜ͅͅS̴̩̯͑̋͒̾̆͂̈̏̔́̈́́̇̓̆͌͠Ṵ̷̩̳̘̟̱̜̮̼̤͑̾̍̽̄͌̀́̑͐̐̈̾͝͝Ṣ̵̨̼̥̰͕̮̰̰͖̾̏͘ͅ ̵̨̱́̅̈́̾̊͗̀̄̔͝S̴̡̛͍͎̓̎́͗͒̈̅͌̄͋̅̈͊̈́̚̕̚͠U̷̧̝͎̙̜̥̫̥͉̇̓̌̍́̔͋̂͂̂͗͘͘͝Ş̶̹̣̞̩̺͙̩̻̦̫̗̎͜ͅ ̸̨̧͇̤̱̙̼̼̪͈̓͜S̸̡̧̢̗̱̗͈̪͚̰̽̓̏Ṳ̴̈́̈́̋͋̑̎̊͆̉̍̈̄̓̌͋͆͂̕̕S̶̛̹͕͈̝̗̠͇͂̏̎̾̒̉͒̿̈́̅̚͘͠",
+          bg: require("../assets/susbg.jpg"),
+          icon: require("../assets/amongus.png"),
         },
       ],
       columns: [
@@ -184,36 +170,10 @@ export default {
         },
       ],
       partners: [
-        {
-          logo: require("../assets/elnino.png"),
-          url: "/partners/el-nino"
-        },
-        {
-          logo: require("../assets/ett.png"),
-          url: "/partners/ett"
-        },
+
       ]
     }
   },
-  // mounted() {
-  //
-  //   // console.log(store.state.shitSite)
-  //   // if (store.state.shitSite) {
-  //   //   var ps = document.getElementsByTagName("p");
-  //   //   for (let i = 0; i < ps.length; i++) {
-  //   //     ps[i].style += ";font-family: 'Shitfont', sans-serif !important"
-  //   //   }
-  //   //   var lis = document.getElementsByTagName("li");
-  //   //   for (let i = 0; i < lis.length; i++) {
-  //   //     lis[i].style += ";font-family: 'Shitfont', sans-serif !important"
-  //   //   }
-  //   //   var buttonTexts = document.getElementsByClassName("v-btn__content");
-  //   //   for (let i = 0; i < buttonTexts.length; i++) {
-  //   //     buttonTexts[i].style += ";font-family: 'Shitfont', sans-serif !important"
-  //   //   }
-  //     // document.getElementById("column Esports").
-  //   }
-  // }
 }
 </script>
 <style>
