@@ -13,7 +13,7 @@
       </div>
     </v-container>
 
-    <v-container>
+    <v-container class="mb-10">
       <v-row class="text-center" justify="center">
         <v-col v-for="col in columns" v-bind:key="col.title"
                class="mx-4" style="max-width:450px;min-width: 350px;min-height: 250px"
@@ -31,20 +31,31 @@
     <discord-banner/>
 
     <!--    <v-container>-->
-    <p class="mx-auto text-center text-h2 mt-6">
-      Esports we play
+    <p class="mx-auto text-center text-h2 mt-10">
+      Games we play
+    </p>
+    <p class="mx-auto text-center text-h4 font-weight-light mb-3">
+      Competitive
     </p>
     <game-icons :games="games"></game-icons>
 
-    <p class="mx-auto text-center text-h2 mt-4">
-      Community games
+    <p class="mx-auto text-center text-h4 font-weight-light mt-4 mb-3">
+      Community
     </p>
     <game-icons :games="communityGames"></game-icons>
     <!--    </v-container>-->
 
-    <v-container>
-      <v-row justify="center" align="center">
-        <v-col v-for="partner in partners" v-bind:key="partner.url" md="3">
+    <discord-banner class="mt-10"/>
+
+
+
+
+    <v-container class="mt-10 mb-16">
+      <p class="mx-auto text-center text-h2">
+       Our partners
+      </p>
+      <v-row justify="space-around" align="center" class="mt-6" >
+        <v-col v-for="partner in partners" v-bind:key="partner.url" md="auto" >
           <v-img :src="partner.logo"
                  max-width="400"
                  class="mx-auto expand"
@@ -178,31 +189,31 @@ export default {
           url: "/partners/el-nino"
         },
         {
-          logo: require("../assets/OGD.png"),
-          url: "/partners/ogd-ict"
-        }
+          logo: require("../assets/ett.png"),
+          url: "/partners/ett"
+        },
       ]
     }
   },
-  mounted() {
-
-    console.log(store.state.shitSite)
-    if (store.state.shitSite) {
-      var ps = document.getElementsByTagName("p");
-      for (let i = 0; i < ps.length; i++) {
-        ps[i].style += ";font-family: 'Shitfont', sans-serif !important"
-      }
-      var lis = document.getElementsByTagName("li");
-      for (let i = 0; i < lis.length; i++) {
-        lis[i].style += ";font-family: 'Shitfont', sans-serif !important"
-      }
-      var buttonTexts = document.getElementsByClassName("v-btn__content");
-      for (let i = 0; i < buttonTexts.length; i++) {
-        buttonTexts[i].style += ";font-family: 'Shitfont', sans-serif !important"
-      }
-      // document.getElementById("column Esports").
-    }
-  }
+  // mounted() {
+  //
+  //   // console.log(store.state.shitSite)
+  //   // if (store.state.shitSite) {
+  //   //   var ps = document.getElementsByTagName("p");
+  //   //   for (let i = 0; i < ps.length; i++) {
+  //   //     ps[i].style += ";font-family: 'Shitfont', sans-serif !important"
+  //   //   }
+  //   //   var lis = document.getElementsByTagName("li");
+  //   //   for (let i = 0; i < lis.length; i++) {
+  //   //     lis[i].style += ";font-family: 'Shitfont', sans-serif !important"
+  //   //   }
+  //   //   var buttonTexts = document.getElementsByClassName("v-btn__content");
+  //   //   for (let i = 0; i < buttonTexts.length; i++) {
+  //   //     buttonTexts[i].style += ";font-family: 'Shitfont', sans-serif !important"
+  //   //   }
+  //     // document.getElementById("column Esports").
+  //   }
+  // }
 }
 </script>
 <style>

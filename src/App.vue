@@ -183,19 +183,17 @@
         <source src="./assets/blueshellanthem.mp3" type="audio/mpeg">
       </audio>
     </v-snackbar>
-
-    <v-snackbar rounded v-model="shitSnack" timeout="-1">
-      toggle shitsite
-      <v-switch @change="toggleShit()">
-
-      </v-switch>
-    </v-snackbar>
+    <audio id="discord">
+      <source src="./assets/discord.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="knocking">
+      <source src="./assets/knocking.mp3" type="audio/mpeg">
+    </audio>
   </v-app>
 </template>
 
 <script>
 import router from "@/router";
-import store from '@/store';
 
 export default {
   data() {
@@ -203,16 +201,12 @@ export default {
       drawer: false,
       shellyLogo: require("./assets/shelly.png"),
       poggers: false,
-      shitSnack: store.state.enableShitability,
     }
   },
   methods: {
     goto(url) {
       router.push(url)
     },
-    toggleShit(){
-      store.commit('toggleShit');
-    }
   },
   mounted() {
     let keysPressed = [];
@@ -226,6 +220,25 @@ export default {
       }
 
     });
+
+    playDiscord()
+    playKnocking()
+
+
+    function playDiscord() {
+      setTimeout(() => {
+        document.getElementById('discord').play()
+        console.log('get fucked')
+        playDiscord()
+      }, 1000 * (15 + Math.random() * 120))
+    }
+    function playKnocking() {
+      setTimeout(() => {
+        document.getElementById('knocking').play()
+        console.log('get fucked')
+        playKnocking()
+      }, 1000 * (20 + Math.random() * 120))
+    }
   }
 }
 </script>
