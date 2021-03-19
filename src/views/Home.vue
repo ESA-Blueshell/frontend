@@ -175,7 +175,7 @@ export default {
         },
         {
           title: "Amonog us",
-          bg: require("../assets/amongusbg.jpg"),
+          bg: require("../assets/achungus.jpg"),
           icon: require("../assets/amongus.png"),
         },
         {
