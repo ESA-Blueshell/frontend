@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar dark elevate-on-scroll fixed>
+    <v-app-bar dark color="brown darken-4" elevate-on-scroll fixed>
       <v-app-bar-nav-icon @click="drawer = true"
                           v-if="$vuetify.breakpoint.mdAndDown">
       </v-app-bar-nav-icon>
@@ -55,8 +55,8 @@
           </template>
           <v-list>
             <v-list-item to="/partners/become-a-partner">Become a partner!</v-list-item>
-            <v-list-item to="/partners/el-nino">El Niño – Digital Development</v-list-item>
-            <v-list-item to="/partners/ogd-ict">OGD ICT-diensten</v-list-item>
+<!--            <v-list-item to="/partners/el-nino">El Niño – Digital Development</v-list-item>-->
+<!--            <v-list-item to="/partners/ogd-ict">OGD ICT-diensten</v-list-item>-->
           </v-list>
         </v-menu>
         <v-btn class="bar-button" text dark to="/contact">Contact</v-btn>
@@ -113,8 +113,8 @@
             </v-list-item-title>
           </template>
           <v-list-item to="/partners/become-a-partner">Become a partner!</v-list-item>
-          <v-list-item to="/partners/el-nino">El Niño – Digital Development</v-list-item>
-          <v-list-item to="/partners/ogd-ict">OGD ICT-diensten</v-list-item>
+<!--          <v-list-item to="/partners/el-nino">El Niño – Digital Development</v-list-item>-->
+<!--          <v-list-item to="/partners/ogd-ict">OGD ICT-diensten</v-list-item>-->
           <v-divider dark></v-divider>
         </v-list-group>
         <v-list-item text dark to="/contact">
@@ -156,7 +156,7 @@
     <!--    <v-main>-->
     <router-view/>
     <!--    </v-main>-->
-    <v-footer dark>
+    <v-footer dark color="brown darken-4">
       <v-btn icon href="mailto:board@blueshell.utwente.nl">
         <v-icon>mdi-email</v-icon>
       </v-btn>
@@ -169,12 +169,12 @@
       <v-btn icon href="https://twitter.com/BlueshellESA" target="_blank">
         <v-icon>mdi-twitter</v-icon>
       </v-btn>
-      <v-btn href="https://www.elnino.tech/" target="_blank">
-        El Niño
-      </v-btn>
-      <v-btn href="https://www.ogd.nl/" target="_blank">
-        OGD
-      </v-btn>
+<!--      <v-btn href="https://www.elnino.tech/" target="_blank">-->
+<!--        El Niño-->
+<!--      </v-btn>-->
+<!--      <v-btn href="https://www.ogd.nl/" target="_blank">-->
+<!--        OGD-->
+<!--      </v-btn>-->
       <v-spacer></v-spacer>
       <div class="white--text">SITECIE GANG &copy; {{ new Date().getFullYear() }}</div>
     </v-footer>

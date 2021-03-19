@@ -7,7 +7,7 @@
         <p class="text-center text-h2 font-weight-light">Who are we?</p>
 
         <p class="text-center subtitle-1 font-weight-light">
-          We are Blueshell Esports, the gaming and esports student association at the University of
+          We are Shitshell Esports, the gaming and esports student association at the University of
           Twente. We house a bustling gaming community, organize regular online and offline events
           and present opportunities for competitive play.</p>
       </div>
@@ -50,21 +50,21 @@
 
 
 
-    <v-container class="mt-10 mb-16">
-      <p class="mx-auto text-center text-h2">
-       Our partners
-      </p>
-      <v-row justify="space-around" align="center" class="mt-6" >
-        <v-col v-for="partner in partners" v-bind:key="partner.url" md="auto" >
-          <v-img :src="partner.logo"
-                 max-width="400"
-                 class="mx-auto expand"
-                 @click="goto(partner.url)">
-          </v-img>
-        </v-col>
-      </v-row>
+<!--    <v-container class="mt-10 mb-16">-->
+<!--      <p class="mx-auto text-center text-h2">-->
+<!--       Our partners-->
+<!--      </p>-->
+<!--      <v-row justify="space-around" align="center" class="mt-6" >-->
+<!--        <v-col v-for="partner in partners" v-bind:key="partner.url" md="auto" >-->
+<!--          <v-img :src="partner.logo"-->
+<!--                 max-width="400"-->
+<!--                 class="mx-auto expand"-->
+<!--                 @click="goto(partner.url)">-->
+<!--          </v-img>-->
+<!--        </v-col>-->
+<!--      </v-row>-->
 
-    </v-container>
+<!--    </v-container>-->
 
   </v-main>
 </template>
@@ -75,7 +75,7 @@ import MainBanner from "@/components/main-banner";
 import router from "@/router";
 import DiscordBanner from "@/components/discord-banner";
 import GameIcons from "@/components/game-icons";
-import store from '@/store'
+// import store from '@/store'
 
 export default {
   components: {GameIcons, DiscordBanner, MainBanner},
@@ -166,21 +166,21 @@ export default {
           color: "red darken-2",
           title: "About us",
           url: "/aboutus",
-          text: "Despite its memberbase, Blueshell Esports is a relatively young student association with only 4 years since its inception. Learn all about our association by clicking above!"
+          text: "Despite its memberbase, Shitshell Esports is a relatively young student association with only 4 years since its inception. Learn all about our association by clicking above!"
         },
         {
           icon: "mdi-trophy",
           color: "yellow darken-2",
           title: "Esports",
           url: "/esports",
-          text: "As the name of our association suggests, esports is an integral part of Blueshell. Click the icon above to find more information on what we offer!"
+          text: "As the name of our association suggests, esports is an integral part of Shitshell. Click the icon above to find more information on what we offer!"
         },
         {
           icon: "mdi-calendar",
           color: "blue darken-2",
           title: "Events",
           url: "/events",
-          text: "To keep our community entertained, Blueshell hosts events of many kinds with the help of member-run committees. Click above to see the upcoming events!"
+          text: "To keep our community entertained, Shitshell hosts events of many kinds with the help of member-run committees. Click above to see the upcoming events!"
         },
       ],
       partners: [

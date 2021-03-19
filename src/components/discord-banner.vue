@@ -5,7 +5,7 @@
            v-if="$vuetify.breakpoint.mdAndUp">
       <v-col md="auto">
         <p class="white--text text-h4 font-weight-thin mb-0" style="float: left">
-          Want to get to know us better?
+          Want to leave hate messages?
         </p>
       </v-col>
       <v-spacer></v-spacer>

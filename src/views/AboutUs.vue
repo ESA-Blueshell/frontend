@@ -1,42 +1,21 @@
 <template>
   <v-main>
-    <top-banner title="Association"></top-banner>
+    <top-banner title="About me"></top-banner>
     <div class="mx-3">
       <div class="mx-auto my-10" style="max-width: 800px">
         <p class="text-h4 font-weight-light">
           About us
         </p>
         <p class="body-1">
-          We are Blueshell Esports, Twente's very own gaming and esports association, and the
-          largest in the Netherlands! With over 200 members, 14 member-run committees representing
-          different games and activities, and weekly online and offline events, we aim to connect
-          our members in any which way they want. Each event is organized in order to represent a
-          different part of the association and the community. That means, whether you are burning
-          with a competitive spirit, or looking for a chill night of couch games and drinks, there's
-          enough space for everyone in Blueshell. </p>
+          SHITSHELL LORE </p>
         <p class="text-h4 font-weight-light">History</p>
         <p class="body-1">
-          Since its foundation in 1961, the University of Twente has developed many associations,
-          ranging from large study associations to small cultural ones. With such an enormous
-          variety of content, almost any student would have no problem finding an association that
-          matches their interests. However, until 2017, the university did not have an esports or
-          gaming association. </p>
+          SHITSHELL LORE. </p>
         <p class="body-1">
-          One evening, over a couple of beers, two Civil Engineering students decided that it should
-          certainly be possible for gamers, and those interested within Twente, to be able to get
-          together regularly. It all began with some talks with the Student Union and the formation
-          of the first board along with three other good friends. These preparations led to the
-          Kick-in market of 2017, where they were overwhelmed with over 120 interested students,
-          already topping that of other associations. </p>
+          SHITSHELL LORE </p>
         <p class="body-1">
-          Fast forward a few months to December 12th, 2017, where the first board signed the
-          official Statutes, inaugurating Blueshell Esports as an official association. From there,
-          Blueshell has provided its members with regular activities, acted as a social platform to
-          meet fellow members, and invites anyone interested in gaming within the Twente region to
-          come and hang out. </p>
-        <p class="body-1"> Now in the fourth year of Blueshell's existence, our member base and
-          opportunities continue to grow. With the help from our enthusiastic members and board, we
-          hope to become an integral part of the University of Twente's community! </p>
+          SHITSHELL LORE </p>
+        <p class="body-1"> SHITSHELL LORE </p>
       </div>
     </div>
   </v-main>

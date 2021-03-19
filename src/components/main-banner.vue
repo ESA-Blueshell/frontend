@@ -6,15 +6,15 @@
       <div class="mx-auto text-center" style="top: 300px; position: relative;z-index: 3;">
         <p id="blueshell" class="white--text text-h1 text-sm-h1 text-md-h1 text-lg-h1 text-xl-h1"
         >
-          BLUESHELL
+          SHITSHELL
         </p>
         <p class="white--text text-h5 font-weight-light font-italic">
-          The largest student esports association in the Netherlands!
+          Welcome to my blog!
         </p>
         <v-btn x-large color="primary" rounded @click="$router.push('/membership')"
                class="mt-5"
                style="font-size: 30px;height: 50px;">
-         join now
+         pay me
         </v-btn>
       </div>
     </div>
