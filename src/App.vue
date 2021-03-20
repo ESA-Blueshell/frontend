@@ -190,13 +190,15 @@
       <source src="./assets/knocking.mp3" type="audio/mpeg">
     </audio>
     <div
-        style="z-index: 200;width: 400px;height: 240px;position: fixed;bottom: 20px;left: 20px;background-color: red;border-radius: 10px"
+        style="z-index: 200;width: 400px;height: 240px;position: fixed;bottom: -240px;left: 20px;background-color: red;border-radius: 10px"
         id="rickrolldiv">
       <p id="rickrolltext"
          style="color: yellow;font-family: 'Comic Sans MS',serif !important;font-weight: bold;position: absolute;top: 14px;left: 6px;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;">
         yOu woN'T bElieVE wHAT HapPEnS at 1:57!!
       </p>
-      <v-icon id="rickrollclose" style="position: absolute;top: 2px;right: 10px;cursor: pointer">mdi-close</v-icon>
+      <v-icon id="rickrollclose" style="position: absolute;top: 2px;right: 10px;cursor: pointer">
+        mdi-close
+      </v-icon>
       <video width="320" height="180" id="rickroll" loop
              style="left: 50px;top: 50px;position: absolute;">
         <source src="./assets/rickroll.mp4" type="video/mp4">
@@ -267,7 +269,58 @@ export default {
       rickroll.volume = 0.6
     }
 
-    rickrollclose.addEventListener('mouseover', () => {
+
+    function toTopLeft() {
+      rickrolldiv.style.top = '20px'
+      rickrolldiv.style.bottom = null
+      rickrolldiv.style.left = '20px'
+      rickrolldiv.style.right = null
+    }
+
+    function toTopRight() {
+      rickrolldiv.style.top = '20px'
+      rickrolldiv.style.bottom = null
+      rickrolldiv.style.left = null
+      rickrolldiv.style.right = '20px'
+    }
+
+    function toBottomLeft() {
+      rickrolldiv.style.top = null
+      rickrolldiv.style.bottom = '20px'
+      rickrolldiv.style.left = '20px'
+      rickrolldiv.style.right = null
+    }
+
+    function toBottomRight() {
+      rickrolldiv.style.top = null
+      rickrolldiv.style.bottom = '20px'
+      rickrolldiv.style.left = null
+      rickrolldiv.style.right = '20px'
+    }
+
+    function playRickRollRecursive() {
+      rickroll.play()
+      if (rickroll.paused) {
+        setTimeout(playRickRollRecursive, 500)
+      } else {
+        moveRickrollUp()
+      }
+    }
+
+    playRickRollRecursive()
+
+    function moveRickrollUp() {
+      let bottom = parseInt(rickrolldiv.style.bottom.split('px')[0])
+      if (bottom > 20) {
+        rickrollclose.addEventListener('mouseover', moveRickroll)
+        return;
+      }
+      rickrolldiv.style.bottom = (bottom + 4 + Math.floor(Math.random() * 4)) + 'px'
+
+      setTimeout(moveRickrollUp,100 + Math.random()*100)
+    }
+
+    function moveRickroll(){
       let number = Math.random()
       if (!rickrolldiv.style.right && !rickrolldiv.style.top) {
         if (number < 0.3) {
@@ -301,46 +354,8 @@ export default {
         } else {
           toBottomRight()
         }
-
-      }
-    })
-
-    function toTopLeft() {
-      rickrolldiv.style.top = '20px'
-      rickrolldiv.style.bottom = null
-      rickrolldiv.style.left = '20px'
-      rickrolldiv.style.right = null
-    }
-
-    function toTopRight() {
-      rickrolldiv.style.top = '20px'
-      rickrolldiv.style.bottom = null
-      rickrolldiv.style.left = null
-      rickrolldiv.style.right = '20px'
-    }
-
-    function toBottomLeft() {
-      rickrolldiv.style.top = null
-      rickrolldiv.style.bottom = '20px'
-      rickrolldiv.style.left = '20px'
-      rickrolldiv.style.right = null
-    }
-
-    function toBottomRight() {
-      rickrolldiv.style.top = null
-      rickrolldiv.style.bottom = '20px'
-      rickrolldiv.style.left = null
-      rickrolldiv.style.right = '20px'
-    }
-
-    function playRickRollRecursive() {
-      rickroll.play()
-      if (rickroll.pause) {
-        setTimeout(playRickRollRecursive, 500)
       }
     }
-
-    playRickRollRecursive()
 
     function changerickrolltext() {
       if (rickrolltext.style.color === 'yellow') {
