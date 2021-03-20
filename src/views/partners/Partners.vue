@@ -1,6 +1,6 @@
 <template>
   <v-main>
-    <top-banner title="Become a partner!"></top-banner>
+    <top-banner title="Partners"></top-banner>
     <div class="mx-3">
       <div class="mx-auto my-10" style="max-width: 800px">
         <p class="body-1">

@@ -170,6 +170,9 @@
       <v-btn href="https://www.elnino.tech/" target="_blank">
         El Niño
       </v-btn>
+      <v-btn href="https://esportsteamtwente.nl/" target="_blank">
+        ETT
+      </v-btn>
       <v-spacer></v-spacer>
       <div class="white--text">SITECIE GANG &copy; {{ new Date().getFullYear() }}</div>
     </v-footer>

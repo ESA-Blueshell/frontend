@@ -1,6 +1,6 @@
 <template>
   <v-main>
-    <top-banner :title="news.title"></top-banner>
+    <top-banner title="news"></top-banner>
     <div class="mx-auto my-10" style="max-width: 800px">
       <h6>{{ news.newsType }}</h6>
       <h2>{{ news.title }}</h2>

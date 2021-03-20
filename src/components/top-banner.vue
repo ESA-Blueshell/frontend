@@ -1,10 +1,11 @@
 <template>
-  <div class="banner">
+  <div class="banner mt-16">
     <v-parallax :src="gaming" class="background"></v-parallax>
     <div class="black overlay"></div>
     <div style="text-align: center;height: 100%">
-      <div class="title text-h4 font-weight-light white--text">
-        {{ title }}
+      <div class="text-h2 font-weight-bold white--text title "
+      style="letter-spacing: 5px !important">
+        {{ title.toUpperCase() }}
       </div>
     </div>
   </div>
@@ -44,7 +45,8 @@ export default {
 .title {
   position: relative;
   z-index: 2;
-  top: 134px;
+  top: 120px;
+  letter-spacing: 5px !important;
 }
 
 .overlay {

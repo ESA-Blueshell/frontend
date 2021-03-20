@@ -5,6 +5,7 @@ import store from './store'
 import 'vuetify/dist/vuetify.min.css'
 import vuetify from './plugins/vuetify';
 import '@mdi/font/css/materialdesignicons.css'
+import './styles/variables.sass';
 import Axios from 'axios';
 
 Vue.config.productionTip = false
@@ -13,6 +14,7 @@ Vue.config.productionTip = false
 Axios.defaults.baseURL = "https://esa-blueshell.nl/api/"
 Vue.prototype.$http = Axios
 Vue.$http = Axios
+
 
 new Vue({
   router,

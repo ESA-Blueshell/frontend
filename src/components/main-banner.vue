@@ -4,18 +4,20 @@
       <v-parallax :src="require('../assets/gaming.jpg')" height="900" class="background"></v-parallax>
       <div class="black overlay"></div>
       <div class="mx-auto text-center" style="top: 300px; position: relative;z-index: 3;">
-        <p id="blueshell" class="white--text text-h3 text-sm-h1 text-md-h1 text-lg-h1 text-xl-h1">
+        <p id="blueshell" class="white--text text-h1 text-sm-h1 text-md-h1 text-lg-h1 text-xl-h1"
+        >
           BLUESHELL
         </p>
-        <p class="white--text text-h5 font-weight-light">
+        <p class="white--text text-h5 font-weight-light font-italic">
           The largest student esports association in the Netherlands!
         </p>
-        <v-btn rounded color="primary" @click="$router.push('/membership')">
-          join now!
+        <v-btn x-large color="primary" rounded @click="$router.push('/membership')"
+               class="mt-5"
+               style="font-size: 30px;height: 50px;">
+         join now
         </v-btn>
       </div>
     </div>
-    <div style="height: 50px"></div>
   </div>
 </template>
 
@@ -36,6 +38,8 @@ export default {
 
 #blueshell {
   font-family: "Blueshell", sans-serif !important;
+  font-size: 200px !important;
+  height: 150px;
 }
 
 .banner {
