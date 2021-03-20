@@ -2,7 +2,6 @@
   <v-main>
     <main-banner/>
 
-
     <v-container>
       <div class="mx-auto my-10" style="max-width: 600px">
         <p class="text-center text-h2 font-weight-light">Who are we?</p>
@@ -46,7 +45,8 @@
     <game-icons :games="communityGames"></game-icons>
     <!--    </v-container>-->
 
-    <discord-banner class="mt-10"/>
+
+    <socials-banner class="mt-16"/>
 
 
   </v-main>
@@ -57,14 +57,19 @@
 import MainBanner from "@/components/main-banner";
 import router from "@/router";
 import DiscordBanner from "@/components/discord-banner";
+import SocialsBanner from "@/components/socials-banner";
 import GameIcons from "@/components/game-icons";
-// import store from '@/store'
 
 export default {
-  components: {GameIcons, DiscordBanner, MainBanner},
+  components: {SocialsBanner, GameIcons, DiscordBanner, MainBanner},
   methods: {
     goto(url) {
-      router.push(url)
+      if (url.includes('https://')) {
+        let win = window.open(url, '_blank');
+        win.focus();
+      } else {
+        router.push(url)
+      }
     }
   },
   data() {
