@@ -55,8 +55,8 @@
           </template>
           <v-list>
             <v-list-item to="/partners/become-a-partner">Become a partner!</v-list-item>
-<!--            <v-list-item to="/partners/el-nino">El Niño – Digital Development</v-list-item>-->
-<!--            <v-list-item to="/partners/ogd-ict">OGD ICT-diensten</v-list-item>-->
+            <!--            <v-list-item to="/partners/el-nino">El Niño – Digital Development</v-list-item>-->
+            <!--            <v-list-item to="/partners/ogd-ict">OGD ICT-diensten</v-list-item>-->
           </v-list>
         </v-menu>
         <v-btn class="bar-button" text dark to="/contact">Contact</v-btn>
@@ -113,8 +113,8 @@
             </v-list-item-title>
           </template>
           <v-list-item to="/partners/become-a-partner">Become a partner!</v-list-item>
-<!--          <v-list-item to="/partners/el-nino">El Niño – Digital Development</v-list-item>-->
-<!--          <v-list-item to="/partners/ogd-ict">OGD ICT-diensten</v-list-item>-->
+          <!--          <v-list-item to="/partners/el-nino">El Niño – Digital Development</v-list-item>-->
+          <!--          <v-list-item to="/partners/ogd-ict">OGD ICT-diensten</v-list-item>-->
           <v-divider dark></v-divider>
         </v-list-group>
         <v-list-item text dark to="/contact">
@@ -169,12 +169,12 @@
       <v-btn icon href="https://twitter.com/BlueshellESA" target="_blank">
         <v-icon>mdi-twitter</v-icon>
       </v-btn>
-<!--      <v-btn href="https://www.elnino.tech/" target="_blank">-->
-<!--        El Niño-->
-<!--      </v-btn>-->
-<!--      <v-btn href="https://www.ogd.nl/" target="_blank">-->
-<!--        OGD-->
-<!--      </v-btn>-->
+      <!--      <v-btn href="https://www.elnino.tech/" target="_blank">-->
+      <!--        El Niño-->
+      <!--      </v-btn>-->
+      <!--      <v-btn href="https://www.ogd.nl/" target="_blank">-->
+      <!--        OGD-->
+      <!--      </v-btn>-->
       <v-spacer></v-spacer>
       <div class="white--text">SITECIE GANG &copy; {{ new Date().getFullYear() }}</div>
     </v-footer>
@@ -189,6 +189,18 @@
     <audio id="knocking">
       <source src="./assets/knocking.mp3" type="audio/mpeg">
     </audio>
+    <div
+        style="z-index: 200;width: 400px;height: 240px;position: fixed;bottom: 20px;left: 20px;background-color: red;border-radius: 10px"
+        id="rickrolldiv">
+      <p style="color: yellow;font-family: 'Comic Sans MS',serif !important;position: absolute;top: 14px;left: 6px">
+        yOu woN'T bElieVE wHAT HapPEnS at 1:57!!
+      </p>
+      <v-icon style="position: absolute;top: 2px;right: 10px">mdi-close</v-icon>
+      <video width="320" height="180" id="rickroll" loop controls
+             style="left: 50px;top: 50px;position: absolute;">
+        <source src="./assets/rickroll.mp4" type="video/mp4">
+      </video>
+    </div>
   </v-app>
 </template>
 
@@ -224,7 +236,6 @@ export default {
     playDiscord()
     playKnocking()
 
-
     function playDiscord() {
       setTimeout(() => {
         document.getElementById('discord').play()
@@ -232,6 +243,7 @@ export default {
         playDiscord()
       }, 1000 * (15 + Math.random() * 120))
     }
+
     function playKnocking() {
       setTimeout(() => {
         document.getElementById('knocking').play()
@@ -239,6 +251,95 @@ export default {
         playKnocking()
       }, 1000 * (20 + Math.random() * 120))
     }
+
+
+    let rickroll = document.getElementById('rickroll')
+    let rickrolldiv = document.getElementById('rickrolldiv')
+
+    rickroll.onpause = () => {
+      rickroll.play()
+    }
+    rickroll.volume = 0.5
+    rickroll.onvolumechange = () => {
+      rickroll.volume = 0.5
+    }
+
+    rickrolldiv.addEventListener('mouseover', () => {
+      let number = Math.random()
+      if (!rickrolldiv.style.right && !rickrolldiv.style.top) {
+        if (number < 0.3) {
+          toBottomRight()
+        } else if (number > 0.6) {
+          toTopLeft()
+        } else {
+          toTopRight()
+        }
+      } else if (!rickrolldiv.style.right && rickrolldiv.style.top) {
+        if (number < 0.3) {
+          toTopRight()
+        } else if (number > 0.6) {
+          toBottomRight()
+        } else {
+          toBottomLeft()
+        }
+      } else if (rickrolldiv.style.right && !rickrolldiv.style.top) {
+        if (number < 0.3) {
+          toBottomLeft()
+        } else if (number > 0.6) {
+          toTopRight()
+        } else {
+          toTopLeft()
+        }
+      } else if (rickrolldiv.style.right && rickrolldiv.style.top) {
+        if (number < 0.3) {
+          toTopLeft()
+        } else if (number > 0.6) {
+          toBottomLeft()
+        } else {
+          toBottomRight()
+        }
+
+      }
+    })
+
+    function toTopLeft() {
+      rickrolldiv.style.top = '20px'
+      rickrolldiv.style.bottom = null
+      rickrolldiv.style.left = '20px'
+      rickrolldiv.style.right = null
+    }
+
+    function toTopRight() {
+      rickrolldiv.style.top = '20px'
+      rickrolldiv.style.bottom = null
+      rickrolldiv.style.left = null
+      rickrolldiv.style.right = '20px'
+    }
+
+    function toBottomLeft() {
+      rickrolldiv.style.top = null
+      rickrolldiv.style.bottom = '20px'
+      rickrolldiv.style.left = '20px'
+      rickrolldiv.style.right = null
+    }
+
+    function toBottomRight() {
+      rickrolldiv.style.top = null
+      rickrolldiv.style.bottom = '20px'
+      rickrolldiv.style.left = null
+      rickrolldiv.style.right = '20px'
+    }
+
+    function playRickRollRecursive() {
+      rickroll.play()
+      if (rickroll.pause) {
+        setTimeout(playRickRollRecursive, 500)
+      }
+    }
+
+    playRickRollRecursive()
+
+
   }
 }
 </script>

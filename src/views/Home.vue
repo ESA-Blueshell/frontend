@@ -1,45 +1,8 @@
 <template>
   <v-main>
     <main-banner/>
-    <v-dialog
-        v-model="dialog"
 
-        max-width="290"
-    >
-      <template v-slot:activator="{ on, attrs }">
-        <v-btn
-            color="primary"
-            dark
-            v-bind="attrs"
-            v-on="on"
-        >
-          Open Dialog
-        </v-btn>
-      </template>
-      <v-card>
-        <v-card-title class="headline">
-          Use Google's location service?
-        </v-card-title>
-        <v-card-text>Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.</v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn
-              color="green darken-1"
-              text
-              @click="dialog = false"
-          >
-            Disagree
-          </v-btn>
-          <v-btn
-              color="green darken-1"
-              text
-              @click="dialog = false"
-          >
-            Agree
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
+
     <v-container>
       <div class="mx-auto my-10" style="max-width: 600px">
         <p class="text-center text-h2 font-weight-light">Who are we?</p>
@@ -85,24 +48,6 @@
 
     <discord-banner class="mt-10"/>
 
-
-
-
-<!--    <v-container class="mt-10 mb-16">-->
-<!--      <p class="mx-auto text-center text-h2">-->
-<!--       Our partners-->
-<!--      </p>-->
-<!--      <v-row justify="space-around" align="center" class="mt-6" >-->
-<!--        <v-col v-for="partner in partners" v-bind:key="partner.url" md="auto" >-->
-<!--          <v-img :src="partner.logo"-->
-<!--                 max-width="400"-->
-<!--                 class="mx-auto expand"-->
-<!--                 @click="goto(partner.url)">-->
-<!--          </v-img>-->
-<!--        </v-col>-->
-<!--      </v-row>-->
-
-<!--    </v-container>-->
 
   </v-main>
 </template>
@@ -212,9 +157,7 @@ export default {
           text: "To keep our community entertained, Shitshell hosts events of many kinds with the help of member-run committees. Click above to see the upcoming events!"
         },
       ],
-      partners: [
-
-      ]
+      partners: []
     }
   },
 }
