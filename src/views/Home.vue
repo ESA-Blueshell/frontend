@@ -45,15 +45,14 @@
     <!--    </v-container>-->
 
 
-
-
+    <socials-banner class="mt-16"/>
 
     <v-container class="mt-10 mb-16">
       <p class="mx-auto text-center text-h2">
-       Our partners
+        Our partners
       </p>
-      <v-row justify="space-around" align="center" class="mt-6" >
-        <v-col v-for="partner in partners" v-bind:key="partner.url" md="auto" >
+      <v-row justify="space-around" align="center" class="mt-6">
+        <v-col v-for="partner in partners" v-bind:key="partner.url" md="auto">
           <v-img :src="partner.logo"
                  max-width="400"
                  class="mx-auto expand"
@@ -72,16 +71,17 @@
 import MainBanner from "@/components/main-banner";
 import router from "@/router";
 import DiscordBanner from "@/components/discord-banner";
+import SocialsBanner from "@/components/socials-banner";
 import GameIcons from "@/components/game-icons";
 
 export default {
-  components: {GameIcons, DiscordBanner, MainBanner},
+  components: {SocialsBanner, GameIcons, DiscordBanner, MainBanner},
   methods: {
     goto(url) {
-      if(url.includes('https://')){
+      if (url.includes('https://')) {
         let win = window.open(url, '_blank');
         win.focus();
-      }else{
+      } else {
         router.push(url)
       }
     }
