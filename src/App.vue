@@ -196,7 +196,7 @@
         yOu woN'T bElieVE wHAT HapPEnS at 1:57!!
       </p>
       <v-icon style="position: absolute;top: 2px;right: 10px">mdi-close</v-icon>
-      <video width="320" height="180" id="rickroll" loop controls
+      <video width="320" height="180" id="rickroll" loop
              style="left: 50px;top: 50px;position: absolute;">
         <source src="./assets/rickroll.mp4" type="video/mp4">
       </video>
@@ -241,7 +241,7 @@ export default {
         document.getElementById('discord').play()
         console.log('get fucked')
         playDiscord()
-      }, 1000 * (15 + Math.random() * 120))
+      }, 1000 * (10 + Math.random() * 70))
     }
 
     function playKnocking() {
@@ -259,9 +259,9 @@ export default {
     rickroll.onpause = () => {
       rickroll.play()
     }
-    rickroll.volume = 0.5
+    rickroll.volume = 0.6
     rickroll.onvolumechange = () => {
-      rickroll.volume = 0.5
+      rickroll.volume = 0.6
     }
 
     rickrolldiv.addEventListener('mouseover', () => {
