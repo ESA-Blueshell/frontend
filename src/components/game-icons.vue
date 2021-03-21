@@ -39,7 +39,7 @@
                      eager
                      style="position: absolute;top: 0;z-index: 400;height: 100%"/>
               <div style="display: table" class="overlay">
-                <p style="display: table-cell; vertical-align: middle;"
+                <p style="display: table-cell; vertical-align: middle;font-family: 'Shitfont',serif !important;"
                    class="mx-auto my-4 text-center text-h4 font-weight-light white--text">
                   {{ game.title }}
                 </p>

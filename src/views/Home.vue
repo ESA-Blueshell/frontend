@@ -31,15 +31,18 @@
     <discord-banner/>
 
     <!--    <v-container>-->
-    <p class="mx-auto text-center text-h2 mt-10">
+    <p class="mx-auto text-center text-h2 mt-10"
+       style="font-family: 'Shitfont',serif !important;font-weight: bold !important;">
       Games we play
     </p>
-    <p class="mx-auto text-center text-h4 font-weight-light mb-3">
+    <p class="mx-auto text-center text-h4 font-weight-light mb-3"
+       style="font-family: 'Shitfont',serif !important;">
       Competitive
     </p>
     <game-icons :games="games"></game-icons>
 
-    <p class="mx-auto text-center text-h4 font-weight-light mt-4 mb-3">
+    <p class="mx-auto text-center text-h4 font-weight-light mt-4 mb-3"
+       style="font-family: 'Shitfont',serif !important;">
       Community
     </p>
     <game-icons :games="communityGames"></game-icons>
