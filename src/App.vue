@@ -405,7 +405,7 @@
         </v-card-title>
         <v-card-text>
           <h3>
-          just curious to see how your day is going :)
+            just curious to see how your day is going :)
           </h3>
         </v-card-text>
         <v-card-actions>
@@ -474,6 +474,10 @@ export default {
       dialog: false,
       rickrollDialog: false,
       goodDialog: false,
+      rickroll: null,
+      rickrolldiv: null,
+      rickrolltext: null,
+      rickrollclose: null,
     }
   },
   methods: {
@@ -484,6 +488,9 @@ export default {
     closedialog() {
       this.dialog = false;
       this.$emit("dialog");
+
+      setTimeout(this.playRickRollRecursive, 4000)
+
     },
     showRickrollDialog() {
       this.rickrollDialog = true
@@ -491,13 +498,93 @@ export default {
     closeRickrollDialog() {
       this.rickrollDialog = false;
       this.$emit("rickrollDialog");
-      this.goodDialog=true;
+      this.goodDialog = true;
     },
     closeGoodDialog() {
       this.goodDialog = false;
       this.$emit("goodDialog");
     },
-  },
+    toTopLeft() {
+      this.rickrolldiv.style.top = (Math.floor(Math.random() * 50)) + 'px'
+      this.rickrolldiv.style.bottom = null
+      this.rickrolldiv.style.left = (Math.floor(Math.random() * 50)) + 'px'
+      this.rickrolldiv.style.right = null
+    }, toTopRight() {
+      this.rickrolldiv.style.top = (Math.floor(Math.random() * 50)) + 'px'
+      this.rickrolldiv.style.bottom = null
+      this.rickrolldiv.style.left = null
+      this.rickrolldiv.style.right = (Math.floor(Math.random() * 50)) + 'px'
+    }, toBottomLeft() {
+      this.rickrolldiv.style.top = null
+      this.rickrolldiv.style.bottom = (Math.floor(Math.random() * 50)) + 'px'
+      this.rickrolldiv.style.left = (Math.floor(Math.random() * 50)) + 'px'
+      this.rickrolldiv.style.right = null
+    }, toBottomRight() {
+      this.rickrolldiv.style.top = null
+      this.rickrolldiv.style.bottom = (Math.floor(Math.random() * 50)) + 'px'
+      this.rickrolldiv.style.left = null
+      this.rickrolldiv.style.right = (Math.floor(Math.random() * 50)) + 'px'
+    }, playRickRollRecursive() {
+      this.rickroll.play()
+      if (this.rickroll.paused) {
+        setTimeout(this.playRickRollRecursive, 500)
+      } else {
+        this.moveRickrollUp()
+      }
+    }, moveRickrollUp() {
+      let bottom = parseInt(this.rickrolldiv.style.bottom.split('px')[0])
+      if (bottom > 20) {
+        this.rickrollclose.addEventListener('mouseover', this.moveRickroll)
+        return;
+      }
+      this.rickrolldiv.style.bottom = (bottom + 4 + Math.floor(Math.random() * 4)) + 'px'
+
+      setTimeout(this.moveRickrollUp, 100 + Math.random() * 100)
+    }, moveRickroll() {
+      let number = Math.random()
+      if (!this.rickrolldiv.style.right && !this.rickrolldiv.style.top) {
+        if (number < 0.3) {
+          this.toBottomRight()
+        } else if (number > 0.6) {
+          this.toTopLeft()
+        } else {
+          this.toTopRight()
+        }
+      } else if (!this.rickrolldiv.style.right && this.rickrolldiv.style.top) {
+        if (number < 0.3) {
+          this.toTopRight()
+        } else if (number > 0.6) {
+          this.toBottomRight()
+        } else {
+          this.toBottomLeft()
+        }
+      } else if (this.rickrolldiv.style.right && !this.rickrolldiv.style.top) {
+        if (number < 0.3) {
+          this.toBottomLeft()
+        } else if (number > 0.6) {
+          this.toTopRight()
+        } else {
+          this.toTopLeft()
+        }
+      } else if (this.rickrolldiv.style.right && this.rickrolldiv.style.top) {
+        if (number < 0.3) {
+          this.toTopLeft()
+        } else if (number > 0.6) {
+          this.toBottomLeft()
+        } else {
+          this.toBottomRight()
+        }
+      }
+    }, changerickrolltext() {
+      if (this.rickrolltext.style.color === 'yellow') {
+        this.rickrolltext.style.color = 'blue'
+      } else {
+        this.rickrolltext.style.color = 'yellow'
+      }
+      setTimeout(this.changerickrolltext, 500)
+    }
+  }
+  ,
   mounted() {
     let keysPressed = [];
     window.addEventListener('keydown', event => {
@@ -546,117 +633,22 @@ export default {
 
     //<editor-fold desc="rickroll">
 
-    let rickroll = document.getElementById('rickroll')
-    let rickrolldiv = document.getElementById('rickrolldiv')
-    let rickrolltext = document.getElementById('rickrolltext')
-    let rickrollclose = document.getElementById('rickrollclose')
+    this.rickroll = document.getElementById('rickroll')
+    this.rickrolldiv = document.getElementById('rickrolldiv')
+    this.rickrolltext = document.getElementById('rickrolltext')
+    this.rickrollclose = document.getElementById('rickrollclose')
 
-    rickroll.onpause = () => {
-      rickroll.play()
+
+    this.rickroll.onpause = () => {
+      this.rickroll.play()
     }
-    rickroll.volume = 0.6
-    rickroll.onvolumechange = () => {
-      rickroll.volume = 0.6
-    }
-
-
-    function toTopLeft() {
-      rickrolldiv.style.top = (Math.floor(Math.random() * 50)) + 'px'
-      rickrolldiv.style.bottom = null
-      rickrolldiv.style.left = (Math.floor(Math.random() * 50)) + 'px'
-      rickrolldiv.style.right = null
+    this.rickroll.volume = 0.6
+    this.rickroll.onvolumechange = () => {
+      this.rickroll.volume = 0.6
     }
 
-    function toTopRight() {
-      rickrolldiv.style.top = (Math.floor(Math.random() * 50)) + 'px'
-      rickrolldiv.style.bottom = null
-      rickrolldiv.style.left = null
-      rickrolldiv.style.right = (Math.floor(Math.random() * 50)) + 'px'
-    }
 
-    function toBottomLeft() {
-      rickrolldiv.style.top = null
-      rickrolldiv.style.bottom = (Math.floor(Math.random() * 50)) + 'px'
-      rickrolldiv.style.left = (Math.floor(Math.random() * 50)) + 'px'
-      rickrolldiv.style.right = null
-    }
-
-    function toBottomRight() {
-      rickrolldiv.style.top = null
-      rickrolldiv.style.bottom = (Math.floor(Math.random() * 50)) + 'px'
-      rickrolldiv.style.left = null
-      rickrolldiv.style.right = (Math.floor(Math.random() * 50)) + 'px'
-    }
-
-    function playRickRollRecursive() {
-      rickroll.play()
-      if (rickroll.paused) {
-        setTimeout(playRickRollRecursive, 500)
-      } else {
-        moveRickrollUp()
-      }
-    }
-
-    playRickRollRecursive()
-
-    function moveRickrollUp() {
-      let bottom = parseInt(rickrolldiv.style.bottom.split('px')[0])
-      if (bottom > 20) {
-        rickrollclose.addEventListener('mouseover', moveRickroll)
-        return;
-      }
-      rickrolldiv.style.bottom = (bottom + 4 + Math.floor(Math.random() * 4)) + 'px'
-
-      setTimeout(moveRickrollUp, 100 + Math.random() * 100)
-    }
-
-    function moveRickroll() {
-      let number = Math.random()
-      if (!rickrolldiv.style.right && !rickrolldiv.style.top) {
-        if (number < 0.3) {
-          toBottomRight()
-        } else if (number > 0.6) {
-          toTopLeft()
-        } else {
-          toTopRight()
-        }
-      } else if (!rickrolldiv.style.right && rickrolldiv.style.top) {
-        if (number < 0.3) {
-          toTopRight()
-        } else if (number > 0.6) {
-          toBottomRight()
-        } else {
-          toBottomLeft()
-        }
-      } else if (rickrolldiv.style.right && !rickrolldiv.style.top) {
-        if (number < 0.3) {
-          toBottomLeft()
-        } else if (number > 0.6) {
-          toTopRight()
-        } else {
-          toTopLeft()
-        }
-      } else if (rickrolldiv.style.right && rickrolldiv.style.top) {
-        if (number < 0.3) {
-          toTopLeft()
-        } else if (number > 0.6) {
-          toBottomLeft()
-        } else {
-          toBottomRight()
-        }
-      }
-    }
-
-    function changerickrolltext() {
-      if (rickrolltext.style.color === 'yellow') {
-        rickrolltext.style.color = 'blue'
-      } else {
-        rickrolltext.style.color = 'yellow'
-      }
-      setTimeout(changerickrolltext, 500)
-    }
-
-    changerickrolltext()
+    this.changerickrolltext()
 
     //</editor-fold>
 
