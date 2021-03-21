@@ -401,7 +401,7 @@
     >
       <v-card>
         <v-card-title>
-          <h1>Hi, how are you</h1>
+          <h1>Hi, how is your day so far?</h1>
         </v-card-title>
         <v-card-text>
           <h3>
@@ -530,6 +530,9 @@ export default {
         setTimeout(this.playRickRollRecursive, 500)
       } else {
         this.moveRickrollUp()
+
+        this.playDiscord()
+        setTimeout(this.playKnocking, 10000)
       }
     }, moveRickrollUp() {
       let bottom = parseInt(this.rickrolldiv.style.bottom.split('px')[0])
@@ -582,9 +585,30 @@ export default {
         this.rickrolltext.style.color = 'yellow'
       }
       setTimeout(this.changerickrolltext, 500)
-    }
-  }
-  ,
+    },
+    playDiscord() {
+      setTimeout(() => {
+        if (!document.getElementById('knocking').paused) {
+          setTimeout(this.playKnocking, 5000)
+          return
+        }
+        document.getElementById('discord').play()
+        console.log('get fucked')
+        this.playDiscord()
+      }, 1000 * (20 + Math.random() * 70))
+    }, playKnocking() {
+      setTimeout(() => {
+        if (!document.getElementById('discord').paused) {
+          setTimeout(this.playKnocking, 5000)
+          return
+        }
+
+        document.getElementById('knocking').play()
+        console.log('get fucked')
+        this.playKnocking()
+      }, 1000 * (30 + Math.random() * 120))
+    },
+  },
   mounted() {
     let keysPressed = [];
     window.addEventListener('keydown', event => {
@@ -598,38 +622,6 @@ export default {
 
     });
 
-
-    //<editor-fold desc="sounds">
-
-    playDiscord()
-    setTimeout(playKnocking, 20000)
-
-    function playDiscord() {
-      setTimeout(() => {
-        if (!document.getElementById('knocking').paused) {
-          setTimeout(playKnocking, 5000)
-          return
-        }
-        document.getElementById('discord').play()
-        console.log('get fucked')
-        playDiscord()
-      }, 1000 * (20 + Math.random() * 70))
-    }
-
-    function playKnocking() {
-      setTimeout(() => {
-        if (!document.getElementById('discord').paused) {
-          setTimeout(playKnocking, 5000)
-          return
-        }
-
-        document.getElementById('knocking').play()
-        console.log('get fucked')
-        playKnocking()
-      }, 1000 * (30 + Math.random() * 120))
-    }
-
-    //</editor-fold>
 
     //<editor-fold desc="rickroll">
 
@@ -691,6 +683,7 @@ export default {
     }
 
   }
+
 }
 </script>
 
