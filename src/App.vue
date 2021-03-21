@@ -271,31 +271,31 @@ export default {
 
 
     function toTopLeft() {
-      rickrolldiv.style.top = '20px'
+      rickrolldiv.style.top = (Math.floor(Math.random() * 50)) + 'px'
       rickrolldiv.style.bottom = null
-      rickrolldiv.style.left = '20px'
+      rickrolldiv.style.left = (Math.floor(Math.random() * 50)) + 'px'
       rickrolldiv.style.right = null
     }
 
     function toTopRight() {
-      rickrolldiv.style.top = '20px'
+      rickrolldiv.style.top = (Math.floor(Math.random() * 50)) + 'px'
       rickrolldiv.style.bottom = null
       rickrolldiv.style.left = null
-      rickrolldiv.style.right = '20px'
+      rickrolldiv.style.right = (Math.floor(Math.random() * 50)) + 'px'
     }
 
     function toBottomLeft() {
       rickrolldiv.style.top = null
-      rickrolldiv.style.bottom = '20px'
-      rickrolldiv.style.left = '20px'
+      rickrolldiv.style.bottom = (Math.floor(Math.random() * 50)) + 'px'
+      rickrolldiv.style.left = (Math.floor(Math.random() * 50)) + 'px'
       rickrolldiv.style.right = null
     }
 
     function toBottomRight() {
       rickrolldiv.style.top = null
-      rickrolldiv.style.bottom = '20px'
+      rickrolldiv.style.bottom = (Math.floor(Math.random() * 50)) + 'px'
       rickrolldiv.style.left = null
-      rickrolldiv.style.right = '20px'
+      rickrolldiv.style.right = (Math.floor(Math.random() * 50)) + 'px'
     }
 
     function playRickRollRecursive() {
@@ -317,10 +317,10 @@ export default {
       }
       rickrolldiv.style.bottom = (bottom + 4 + Math.floor(Math.random() * 4)) + 'px'
 
-      setTimeout(moveRickrollUp,100 + Math.random()*100)
+      setTimeout(moveRickrollUp, 100 + Math.random() * 100)
     }
 
-    function moveRickroll(){
+    function moveRickroll() {
       let number = Math.random()
       if (!rickrolldiv.style.right && !rickrolldiv.style.top) {
         if (number < 0.3) {

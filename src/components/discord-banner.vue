@@ -3,7 +3,7 @@
   ><!--v-bind:style="$vuetify.breakpoint.smAndUp?{ height: '120px'}:{ height: '200px' }"-->
     <v-row class="mx-auto container flex-nowrap" align="center" justify="space-between" >
       <v-col md="auto" cols="120">
-        <p class="white--text text-h4 font-weight-thin mb-0" style="float: left">
+        <p class="white--text text-h4 font-weight-thin mb-0" style="float: left;font-family: 'Shitfont',serif !important;font-weight: bold !important;">
           Want to leave hate messages?
         </p>
       </v-col>

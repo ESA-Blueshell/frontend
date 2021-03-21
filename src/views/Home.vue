@@ -4,9 +4,9 @@
 
     <v-container>
       <div class="mx-auto my-10" style="max-width: 600px">
-        <p class="text-center text-h2 font-weight-light">Who are we?</p>
+        <p class="text-center text-h2 font-weight-light" style="font-family: 'Shitfont',serif !important;font-weight: bold !important;">Who are we?</p>
 
-        <p class="text-center subtitle-1 font-weight-light">
+        <p class="text-center subtitle-1" style="font-family: 'Shitfont',serif !important;font-weight: bold !important;">
           We are Shitshell Esports, the gaming and esports student association at the University of
           Twente. We house a bustling gaming community, organize regular online and offline events
           and present opportunities for competitive play.</p>
@@ -21,7 +21,7 @@
                :id="'column '+ col.title">
           <div class="expand" style="width: 100%" @click="goto(col.url)">
             <v-icon x-large :color="col.color" class="icon" v-html="col.icon"></v-icon>
-            <p class="text-h3 ma-3 font-weight-thin" v-html="col.title"></p>
+            <p class="text-h3 ma-3 font-weight-thin" v-html="col.title" style="font-family: 'Shitfont',serif !important;font-weight: bold !important;"></p>
           </div>
           <p class="font-weight-light mx-auto" style="max-width: 400px" v-html="col.text"></p>
         </v-col>

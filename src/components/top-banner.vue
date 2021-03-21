@@ -4,7 +4,7 @@
     <div class="black overlay"></div>
     <div style="text-align: center;height: 100%">
       <div class="text-h2 font-weight-bold white--text title "
-      style="letter-spacing: 5px !important">
+      style="letter-spacing: 20px !important;font-family: 'Shitfont',serif !important;font-weight: bold !important;">
         {{ title.toUpperCase() }}
       </div>
     </div>

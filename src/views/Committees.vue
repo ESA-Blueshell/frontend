@@ -21,10 +21,10 @@
       </div>
       <v-expansion-panels accordion>
         <v-expansion-panel v-for="committee in committees" v-bind:key="committee.name">
-          <v-expansion-panel-header class="text-h5 font-weight-light">
+          <v-expansion-panel-header class="text-h5 font-weight-light" style="font-family: 'Shitfont',serif !important;font-weight: bold !important;">
             {{ committee.name }}
           </v-expansion-panel-header>
-          <v-expansion-panel-content>
+          <v-expansion-panel-content style="font-size: larger !important;">
             <p>
               {{ committee.description }}
             </p>
