@@ -237,14 +237,14 @@ export default {
     });
 
     playDiscord()
-    playKnocking()
+    setTimeout(playKnocking,20000)
 
     function playDiscord() {
       setTimeout(() => {
         document.getElementById('discord').play()
         console.log('get fucked')
         playDiscord()
-      }, 1000 * (10 + Math.random() * 70))
+      }, 1000 * (20 + Math.random() * 70))
     }
 
     function playKnocking() {
@@ -252,7 +252,7 @@ export default {
         document.getElementById('knocking').play()
         console.log('get fucked')
         playKnocking()
-      }, 1000 * (20 + Math.random() * 120))
+      }, 1000 * (30 + Math.random() * 120))
     }
 
 
