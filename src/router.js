@@ -15,6 +15,7 @@ import Csgo from "./views/esports/Csgo";
 import RocketLeague from "./views/esports/RocketLeague";
 import Documents from "@/views/Documents";
 import Article from "@/views/Article";
+import Blog from "@/views/Blog";
 
 
 Vue.use(Router)
@@ -103,6 +104,11 @@ export default new Router({
       path: '/esports/rocket-league',
       name: 'rocketleague',
       component: RocketLeague
+    },
+    {
+      path: '/blog',
+      name: 'blog',
+      component: Blog
     },
   ]
 })

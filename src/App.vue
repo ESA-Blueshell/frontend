@@ -60,6 +60,7 @@
           </v-list>
         </v-menu>
         <v-btn class="bar-button" text dark to="/contact">Contact</v-btn>
+        <v-btn class="bar-button" text dark to="/blog">My Blog</v-btn>
       </div>
       <!--      <v-spacer/>-->
       <!--      <v-btn class="bar-button" text dark to="/login">Login</v-btn>-->
@@ -119,6 +120,9 @@
         </v-list-group>
         <v-list-item text dark to="/contact">
           <v-list-item-title>Contact</v-list-item-title>
+        </v-list-item>
+        <v-list-item text dark to="/blog">
+          <v-list-item-title>My Blog</v-list-item-title>
         </v-list-item>
         <!--        <v-list-item text dark to="/login">-->
         <!--          <v-list-item-title>Login</v-list-item-title>-->
@@ -537,7 +541,9 @@ export default {
     }, moveRickrollUp() {
       let bottom = parseInt(this.rickrolldiv.style.bottom.split('px')[0])
       if (bottom > 20) {
-        this.rickrollclose.addEventListener('mouseover', this.moveRickroll)
+        this.rickrollclose.addEventListener('mouseover', ()=>{
+        setTimeout(  this.moveRickroll,100)
+      })
         return;
       }
       this.rickrolldiv.style.bottom = (bottom + 4 + Math.floor(Math.random() * 4)) + 'px'
