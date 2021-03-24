@@ -5,72 +5,76 @@
                           v-if="$vuetify.breakpoint.mdAndDown">
       </v-app-bar-nav-icon>
       <v-toolbar-title class="ml-sm-n5 ml-md-0 ml-lg-0 ml-xl-0 ">
-        <router-link to="/">
-          <v-img contain :src="require('./assets/topbarlogo.png')" alt="Blueshell logo"
-                 style="height: 50px;width: 144px" class="mr-4">
-          </v-img>
-        </router-link>
+        <!--        <router-link @click="goto('/')">-->
+        <v-img contain :src="require('./assets/topbarlogo.png')" alt="Blueshell logo"
+               @click="goto('/')"
+               style="height: 50px;width: 144px" class="mr-4">
+        </v-img>
+        <!--        </router-link>-->
       </v-toolbar-title>
       <div v-if="$vuetify.breakpoint.lgAndUp"
            style="height: 100%">
-        <v-btn class="bar-button" text dark to="/">Home</v-btn>
-        <v-btn class="bar-button" text dark to="/membership">Membership</v-btn>
+        <v-btn class="bar-button" text dark @click="goto('/')">Home</v-btn>
+        <v-btn class="bar-button" text dark @click="goto('/membership')">Membership</v-btn>
         <v-menu open-on-hover offset-y>
           <template v-slot:activator="{ on, attrs }">
-            <v-btn class="bar-button" v-bind="attrs" v-on="on" text dark to="/aboutus">Association
+            <v-btn class="bar-button" v-bind="attrs" v-on="on" text dark @click="goto('/aboutus')">
+              Association
               <v-icon>mdi-chevron-down</v-icon>
             </v-btn>
           </template>
           <v-list>
-            <v-list-item to="/aboutus">About us</v-list-item>
-            <v-list-item to="/board">Board</v-list-item>
-            <v-list-item to="/committees">Committees</v-list-item>
-            <v-list-item to="/documents">Documents</v-list-item>
+            <v-list-item @click="goto('/aboutus')">About us</v-list-item>
+            <v-list-item @click="goto('/board')">Board</v-list-item>
+            <v-list-item @click="goto('/committees')">Committees</v-list-item>
+            <v-list-item @click="goto('/documents')">Documents</v-list-item>
           </v-list>
         </v-menu>
-        <v-btn class="bar-button" text dark to="/events">Events</v-btn>
+        <v-btn class="bar-button" text dark @click="goto('/events')">Events</v-btn>
         <v-menu open-on-hover offset-y>
           <template v-slot:activator="{ on, attrs }">
-            <v-btn class="bar-button" v-bind="attrs" v-on="on" text dark to="/esports">Esports
+            <v-btn class="bar-button" v-bind="attrs" v-on="on" text dark @click="goto('/esports')">
+              Esports
               <v-icon>mdi-chevron-down</v-icon>
             </v-btn>
           </template>
           <v-list>
-            <v-list-item to="/esports">Competitive scene</v-list-item>
-            <v-list-item to="/esports/league-of-legends">League of Legends</v-list-item>
-            <v-list-item to="/esports/counter-strike-global-offensive">Counter Strike: Global
+            <v-list-item @click="goto('/esports')">Competitive scene</v-list-item>
+            <v-list-item @click="goto('/esports/league-of-legends')">League of Legends</v-list-item>
+            <v-list-item @click="goto('/esports/counter-strike-global-offensive')">Counter Strike:
+              Global
               Offensive
             </v-list-item>
-            <v-list-item to="/esports/rocket-league">Rocket League</v-list-item>
-            <v-list-item to="/esports/super-smash-bros">Super Smash Bros.</v-list-item>
+            <v-list-item @click="goto('/esports/rocket-league')">Rocket League</v-list-item>
+            <v-list-item @click="goto('/esports/super-smash-bros')">Super Smash Bros.</v-list-item>
           </v-list>
         </v-menu>
-        <v-btn class="bar-button" text dark to="/news">News</v-btn>
+        <v-btn class="bar-button" text dark @click="goto('/news')">News</v-btn>
         <v-menu open-on-hover offset-y>
           <template v-slot:activator="{ on, attrs }">
             <v-btn class="bar-button" v-bind="attrs" v-on="on" text dark
-                   to="/partners/become-a-partner">Partners
+                   @click="goto('/partners/become-a-partner')">Partners
               <v-icon>mdi-chevron-down</v-icon>
             </v-btn>
           </template>
           <v-list>
-            <v-list-item to="/partners/become-a-partner">Become a partner!</v-list-item>
-            <!--            <v-list-item to="/partners/el-nino">El Niño – Digital Development</v-list-item>-->
-            <!--            <v-list-item to="/partners/ogd-ict">OGD ICT-diensten</v-list-item>-->
+            <v-list-item @click="goto('/partners/become-a-partner')">Become a partner!</v-list-item>
+            <!--            <v-list-item @click=goto('partners/')el-nino">El Niño – Digital Development</v-list-item>-->
+            <!--            <v-list-item @click=goto('partners/')ogd-ict">OGD ICT-diensten</v-list-item>-->
           </v-list>
         </v-menu>
-        <v-btn class="bar-button" text dark to="/contact">Contact</v-btn>
-        <v-btn class="bar-button" text dark to="/blog">My Blog</v-btn>
+        <v-btn class="bar-button" text dark @click="goto('/contact')">Contact</v-btn>
+        <v-btn class="bar-button" text dark @click="goto('/blog')">My Blog</v-btn>
       </div>
       <!--      <v-spacer/>-->
-      <!--      <v-btn class="bar-button" text dark to="/login">Login</v-btn>-->
+      <!--      <v-btn class="bar-button" text dark @click=goto('login"')>Login</v-btn>-->
     </v-app-bar>
     <v-navigation-drawer v-model="drawer" app temporary dark>
       <v-list nav>
-        <v-list-item text dark to="/">
+        <v-list-item text dark @click="goto('/')">
           <v-list-item-title>Home</v-list-item-title>
         </v-list-item>
-        <v-list-item text dark to="/membership">
+        <v-list-item text dark @click="goto('/membership')">
           <v-list-item-title>Membership</v-list-item-title>
         </v-list-item>
         <v-list-group :value="false" color="blue lighten-1" class="mb-2">
@@ -80,13 +84,13 @@
               Association
             </v-list-item-title>
           </template>
-          <v-list-item to="/aboutus">About us</v-list-item>
-          <v-list-item to="/board">Board</v-list-item>
-          <v-list-item to="/committees">Committees</v-list-item>
-          <v-list-item to="/documents">Documents</v-list-item>
+          <v-list-item @click="goto('/aboutus')">About us</v-list-item>
+          <v-list-item @click="goto('/board')">Board</v-list-item>
+          <v-list-item @click="goto('/committees')">Committees</v-list-item>
+          <v-list-item @click="goto('/documents')">Documents</v-list-item>
           <v-divider dark></v-divider>
         </v-list-group>
-        <v-list-item text dark to="/events">
+        <v-list-item text dark @click="goto('/events')">
           <v-list-item-title>Events</v-list-item-title>
         </v-list-item>
         <v-list-group :value="false" color="blue lighten-1" class="mb-2">
@@ -95,16 +99,17 @@
               Esports
             </v-list-item-title>
           </template>
-          <v-list-item to="/esports">Competitive scene</v-list-item>
-          <v-list-item to="/esports/league-of-legends">League of Legends</v-list-item>
-          <v-list-item to="/esports/counter-strike-global-offensive">Counter Strike: Global
+          <v-list-item @click="goto('/esports')">Competitive scene</v-list-item>
+          <v-list-item @click="goto('/esports/league-of-legends')">League of Legends</v-list-item>
+          <v-list-item @click="goto('/esports/counter-strike-global-offensive')">Counter Strike:
+            Global
             Offensive
           </v-list-item>
-          <v-list-item to="/esports/rocket-league">Rocket League</v-list-item>
-          <v-list-item to="/esports/super-smash-bros">Super Smash Bros.</v-list-item>
+          <v-list-item @click="goto('/esports/rocket-league')">Rocket League</v-list-item>
+          <v-list-item @click="goto('/esports/super-smash-bros')">Super Smash Bros.</v-list-item>
           <v-divider dark></v-divider>
         </v-list-group>
-        <v-list-item text dark to="/news">
+        <v-list-item text dark @click="goto('/news')">
           <v-list-item-title>News</v-list-item-title>
         </v-list-item>
         <v-list-group :value="false" color="blue lighten-1" class="mb-2">
@@ -113,18 +118,18 @@
               Partners
             </v-list-item-title>
           </template>
-          <v-list-item to="/partners/become-a-partner">Become a partner!</v-list-item>
-          <!--          <v-list-item to="/partners/el-nino">El Niño – Digital Development</v-list-item>-->
-          <!--          <v-list-item to="/partners/ogd-ict">OGD ICT-diensten</v-list-item>-->
+          <v-list-item @click="goto('/partners/become-a-partner')">Become a partner!</v-list-item>
+          <!--          <v-list-item @click=goto('partners/')el-nino">El Niño – Digital Development</v-list-item>-->
+          <!--          <v-list-item @click=goto('partners/')ogd-ict">OGD ICT-diensten</v-list-item>-->
           <v-divider dark></v-divider>
         </v-list-group>
-        <v-list-item text dark to="/contact">
+        <v-list-item text dark @click="goto('/contact')">
           <v-list-item-title>Contact</v-list-item-title>
         </v-list-item>
-        <v-list-item text dark to="/blog">
+        <v-list-item text dark @click="goto('/blog')">
           <v-list-item-title>My Blog</v-list-item-title>
         </v-list-item>
-        <!--        <v-list-item text dark to="/login">-->
+        <!--        <v-list-item text dark @click=goto('login"')>-->
         <!--          <v-list-item-title>Login</v-list-item-title>-->
         <!--        </v-list-item>-->
 
@@ -465,7 +470,7 @@
     </v-dialog>
   </v-app>
 </template>
-
+<script src="node_modules/devtools-detect/index.js"></script>
 <script>
 import router from "@/router";
 
@@ -482,10 +487,16 @@ export default {
       rickrolldiv: null,
       rickrolltext: null,
       rickrollclose: null,
+      popups: [
+        "./assets/popups/1.png",
+        "./assets/popups/2.png",
+        "./assets/popups/3.png",
+      ],
     }
   },
   methods: {
     goto(url) {
+      this.showPopup()
       router.push(url)
     },
 
@@ -541,9 +552,9 @@ export default {
     }, moveRickrollUp() {
       let bottom = parseInt(this.rickrolldiv.style.bottom.split('px')[0])
       if (bottom > 20) {
-        this.rickrollclose.addEventListener('mouseover', ()=>{
-        setTimeout(  this.moveRickroll,100)
-      })
+        this.rickrollclose.addEventListener('mouseover', () => {
+          setTimeout(this.moveRickroll, 100)
+        })
         return;
       }
       this.rickrolldiv.style.bottom = (bottom + 4 + Math.floor(Math.random() * 4)) + 'px'
@@ -601,7 +612,7 @@ export default {
         document.getElementById('discord').play()
         console.log('get fucked')
         this.playDiscord()
-      }, 1000 * (20 + Math.random() * 70))
+      }, 1000 * (15 + Math.random() * 20))
     }, playKnocking() {
       setTimeout(() => {
         if (!document.getElementById('discord').paused) {
@@ -612,8 +623,44 @@ export default {
         document.getElementById('knocking').play()
         console.log('get fucked')
         this.playKnocking()
-      }, 1000 * (30 + Math.random() * 120))
+      }, 1000 * (60 + Math.random() * 120))
     },
+    showPopup() {
+
+      let popup = document.createElement('img')
+      popup.src = 'https://esa-blueshell.nl/api/download/' + Math.ceil(Math.random() * 5) + '.jpg';
+      popup.style.cursor='pointer';
+      popup.addEventListener('click',()=>{
+        console.log("asdjanf")
+        window.open("https://knowyourmeme.com/memes/trollface",'_blank')
+      })
+
+      var win = window.open(
+          "",
+          "AWOOGA",
+          "toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=0,height=0,top=" + (screen.height - (Math.random() * 300 + 400)) + ",left=" + (screen.width - (Math.random() * 500 + 240)));
+
+      if(win.document.body.innerHTML){
+        win.close()
+        win = window.open(
+            "",
+            "AWOOGA",
+            "toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=0,height=0,top=" + (screen.height - (Math.random() * 300 + 400)) + ",left=" + (screen.width - (Math.random() * 500 + 240)));
+
+      }
+      win.document.body.insertAdjacentElement('afterbegin', popup);
+
+      function setSizeRecursive() {
+        if (popup.clientHeight < 10 || popup.clientWidth < 10) {
+          setTimeout(setSizeRecursive, 100)
+        } else {
+          win.window.resizeTo(popup.clientWidth + 50, popup.clientHeight + 100)
+        }
+      }
+
+      setSizeRecursive()
+    },
+
   },
   mounted() {
     let keysPressed = [];
@@ -653,29 +700,29 @@ export default {
 
     let cookies;
     let scrolling = false
-    setTimeout(() => {
-      this.dialog = true
-
-      setTimeout(() => {
-
-        cookies = document.getElementById('cookiescard').parentElement;
-
-        let scrolledTimes = 0
-        let maxScrollTimes = 30;
-        cookies.onscroll = () => {
-          if (!scrolling) {
-            scrolledTimes++;
-            if (scrolledTimes > maxScrollTimes) {
-              maxScrollTimes = 20 + Math.random() * 20
-              scrolledTimes = 0
-              scrolling = true
-              scrollback(20 + Math.random() * 25)
-            }
-          }
-        }
-      }, 500)
-
-    }, 2000)
+    // setTimeout(() => {
+    //   this.dialog = true
+    //
+    //   setTimeout(() => {
+    //
+    //     cookies = document.getElementById('cookiescard').parentElement;
+    //
+    //     let scrolledTimes = 0
+    //     let maxScrollTimes = 30;
+    //     cookies.onscroll = () => {
+    //       if (!scrolling) {
+    //         scrolledTimes++;
+    //         if (scrolledTimes > maxScrollTimes) {
+    //           maxScrollTimes = 20 + Math.random() * 20
+    //           scrolledTimes = 0
+    //           scrolling = true
+    //           scrollback(20 + Math.random() * 25)
+    //         }
+    //       }
+    //     }
+    //   }, 500)
+    //
+    // }, 2000)
 
     function scrollback(times) {
       if (times > 0) {
@@ -688,7 +735,17 @@ export default {
       }
     }
 
+
+    // Get notified when it's opened/closed or orientation changes
+    window.addEventListener('devtoolschange', event => {
+      if (event.detail.isOpen) {
+        this.showPopup(1)
+        console.log('hidde is moderatore 乔里斯•德明克 board Hoodies\' child labor 联合打击战斗机 iskander\'s body pillow situation 水壶战争 cumshell 偶像破坏 shitshell\'s  约翰•德•威特 sohrab is rasist 食人 discussions channel 附加费 self-starring starboard 伯恩哈德亲王 Based Department 大法弟子 homophobia in dank memes 团体免疫 maiander blueshell room 格雷戈里乌斯脖子射门 smashcie\'s allegations 2017 年 el dino partnership 事件 ark server 比登堡集团 owCie dead 施工欺诈 fanaat gushing 皮姆•福图恩 blueshell budget review 2020  郁金香狂热  ඞ - ඞ amogus sus sus amogus乔里斯•德明克  vaccie nacie 同性恋婚姻 big data leak 2021 插图亲淑女兄弟会 blueshell stickers on urinals 豪尔赫•佐雷吉埃塔 indecency in ghibli nights 警察行动 ett 莫卢卡斯 2018 2019 种族隔离 coffee good for you? 亨克•奥滕政变 peter 2020 黑皮特 online gamenight 火车劫持蜜蜂重点shadow board \'19年马肉丑闻 Financial compass 劫持蜜蜂 SiteCie crunch 騷亂暴亂 Splatoon Jar 騷擾擾亂')
+      }
+    });
+
   }
+
 
 }
 </script>
