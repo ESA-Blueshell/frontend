@@ -50,19 +50,6 @@
           </v-list>
         </v-menu>
         <v-btn class="bar-button" text dark @click="goto('/news')">News</v-btn>
-        <v-menu open-on-hover offset-y>
-          <template v-slot:activator="{ on, attrs }">
-            <v-btn class="bar-button" v-bind="attrs" v-on="on" text dark
-                   @click="goto('/partners/become-a-partner')">Partners
-              <v-icon>mdi-chevron-down</v-icon>
-            </v-btn>
-          </template>
-          <v-list>
-            <v-list-item @click="goto('/partners/become-a-partner')">Become a partner!</v-list-item>
-            <!--            <v-list-item @click=goto('partners/')el-nino">El Niño – Digital Development</v-list-item>-->
-            <!--            <v-list-item @click=goto('partners/')ogd-ict">OGD ICT-diensten</v-list-item>-->
-          </v-list>
-        </v-menu>
         <v-btn class="bar-button" text dark @click="goto('/contact')">Contact</v-btn>
         <v-btn class="bar-button" text dark @click="goto('/blog')">My Blog</v-btn>
       </div>
@@ -112,17 +99,6 @@
         <v-list-item text dark @click="goto('/news')">
           <v-list-item-title>News</v-list-item-title>
         </v-list-item>
-        <v-list-group :value="false" color="blue lighten-1" class="mb-2">
-          <template v-slot:activator>
-            <v-list-item-title>
-              Partners
-            </v-list-item-title>
-          </template>
-          <v-list-item @click="goto('/partners/become-a-partner')">Become a partner!</v-list-item>
-          <!--          <v-list-item @click=goto('partners/')el-nino">El Niño – Digital Development</v-list-item>-->
-          <!--          <v-list-item @click=goto('partners/')ogd-ict">OGD ICT-diensten</v-list-item>-->
-          <v-divider dark></v-divider>
-        </v-list-group>
         <v-list-item text dark @click="goto('/contact')">
           <v-list-item-title>Contact</v-list-item-title>
         </v-list-item>
@@ -229,7 +205,7 @@
         </v-card-title>
         <v-card-text>
           <p>This is the Cookie Policy for Shitshell ease port, accessible from <a
-              href="https://knowyourmeme.com/memes/trollface" target="_blank">esa-blueshell.nl</a>
+              href="https://images-ext-2.discordapp.net/external/E179MQwXxZUFkccEPIOG-xS8VPBuQdLi4ZnrNXglcpM/%3F1296494117/https/i.kym-cdn.com/photos/images/newsfeed/000/096/044/trollface.jpg" target="_blank">esa-blueshell.nl</a>
           </p>
           <p><strong>What Are Cookies</strong></p>
           <p>As is common practice with almost all professional websites this site uses cookies,
@@ -239,9 +215,9 @@
             being stored however this may downgrade or 'break' certain elements of the sites
             functionality.</p>
           <p>For more general information on cookies, please read <a
-              href="https://knowyourmeme.com/memes/trollface">"What Are Cookies"</a>.
+              href="https://images-ext-2.discordapp.net/external/E179MQwXxZUFkccEPIOG-xS8VPBuQdLi4ZnrNXglcpM/%3F1296494117/https/i.kym-cdn.com/photos/images/newsfeed/000/096/044/trollface.jpg">"What Are Cookies"</a>.
             Information regarding cookies from this Cookies Policy are from <a
-                href="https://knowyourmeme.com/memes/trollface">the Privacy Policy Generator</a>.
+                href="https://images-ext-2.discordapp.net/external/E179MQwXxZUFkccEPIOG-xS8VPBuQdLi4ZnrNXglcpM/%3F1296494117/https/i.kym-cdn.com/photos/images/newsfeed/000/096/044/trollface.jpg">the Privacy Policy Generator</a>.
           </p>
           <p><strong>How We Use Cookies</strong></p>
           <p>We use cookies for a variety of reasons detailed below. Unfortunately in most cases
@@ -256,7 +232,7 @@
             usually result in also disabling certain functionality and features of the this site.
             Therefore it is recommended that you do not disable cookies. This Cookies Policy was
             created with the help of the <a
-                href="https://knowyourmeme.com/memes/trollface">Cookies Policy
+                href="https://images-ext-2.discordapp.net/external/E179MQwXxZUFkccEPIOG-xS8VPBuQdLi4ZnrNXglcpM/%3F1296494117/https/i.kym-cdn.com/photos/images/newsfeed/000/096/044/trollface.jpg">Cookies Policy
               Generator from CookiePolicyGenerator.com</a>.</p>
           <p><strong>The Cookies We Set</strong></p>
           <ul>
@@ -380,7 +356,7 @@
             one of our preferred contact methods:</p>
           <ul>
             <li>Email: uhhhhhhhhhhhhhhhh</li>
-            <li>By visiting this link: <a href="https://knowyourmeme.com/memes/trollface"
+            <li>By visiting this link: <a href="https://images-ext-2.discordapp.net/external/E179MQwXxZUFkccEPIOG-xS8VPBuQdLi4ZnrNXglcpM/%3F1296494117/https/i.kym-cdn.com/photos/images/newsfeed/000/096/044/trollface.jpg"
                                           target="_blank">esa-blueshell.nl</a></li>
             <li>Phone: 06 12345678</li>
           </ul>
@@ -475,6 +451,7 @@
 </template>
 <script>
 import router from "@/router";
+// eslint-disable-next-line no-unused-vars
 import devTools from 'devtools-detect'
 
 export default {
@@ -618,7 +595,7 @@ export default {
         document.getElementById('discord').play()
         console.log('get fucked')
         this.playDiscord()
-      }, 1000 * (15 + Math.random() * 20))
+      }, 1000 * (20 + Math.random() * 20))
     }, playKnocking() {
       setTimeout(() => {
         if (!document.getElementById('discord').paused) {
@@ -629,27 +606,25 @@ export default {
         document.getElementById('knocking').play()
         console.log('get fucked')
         this.playKnocking()
-      }, 1000 * (60 + Math.random() * 100))
+      }, 1000 * (60 + Math.random() * 80))
     },
     showPopup() {
-
       let popup = document.createElement('img')
       popup.src = 'https://esa-blueshell.nl/api/download/' + Math.ceil(Math.random() * 5) + '.jpg';
       popup.style.cursor = 'pointer';
       popup.addEventListener('click', () => {
-        console.log("asdjanf")
-        window.open("https://knowyourmeme.com/memes/trollface", '_blank')
+        window.open("https://images-ext-2.discordapp.net/external/E179MQwXxZUFkccEPIOG-xS8VPBuQdLi4ZnrNXglcpM/%3F1296494117/https/i.kym-cdn.com/photos/images/newsfeed/000/096/044/trollface.jpg", '_blank')
       })
 
-      var win = window.open(
-          "",
+      let win = window.open(
+          "about:blank",
           "AWOOGA",
           "toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=100,height=100,top=" + (screen.height - Math.floor((Math.random() * 300))) + ",left=" + (screen.width - Math.floor((Math.random() * 6000 + 40))));
 
       if (win.document.body.innerHTML) {
         win.close()
         win = window.open(
-            "",
+            "about:blank",
             "AWOOGA",
             "toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=100,height=100,top=" + (screen.height - (Math.floor(Math.random() * 300))) + ",left=" + (screen.width - Math.floor((Math.random() * 6000 + 40))));
 
