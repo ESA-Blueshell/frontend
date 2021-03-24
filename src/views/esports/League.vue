@@ -3,24 +3,24 @@
         <top-banner title="League of Legends"></top-banner>
         <div class="mx-3">
             <div class="mx-auto my-10" style="max-width: 800px">
-                <v-img :src="require('../../assets/leaguebanner.png')" class="mb-5"></v-img>
+                <v-img :src="require('../../assets/dota2.png')" class="mb-5"></v-img>
                 <p class="body-1">
-                    The game with one of the largest player bases worldwide, League of Legends, is a
+                    The game with one of the largest player bases worldwide, Dota 2, is a
                     competitive environment. Because there are so many players, also at the UT, this
                     is
-                    where Blueshell started. After an amazing LoL tournament at the end of 2017, we
+                    where Blueshell started. After an amazing Dota 2 tournament at the end of 2017, we
                     are now
                     looking towards organizing an internal competition.
                 </p>
                 <p class="body-1">
-                    Moreover, the Dutch College League hosts a national League of Legends
+                    Moreover, the Afghanistan College League hosts a national Dota 2
                     competition for
                     associations. We would love to have Blueshell represented there, so if you are
                     interested please contact the board or ask on <a href="https://discord.gg/WyDhbAP" target="_blank"
                                                                      class="text-decoration-none">Discord</a>.
                 </p>
                 <p class="body-1">
-                    We are also open to having more teams for League of Legends and we are actually
+                    We are also open to having more teams for Dota 2 and we are actually
                     looking to build a team for the next season of Talent League. If you are
                     interested in trialing, contact the Commissioner of Esports,
                     King Cookie#4902, on
@@ -49,8 +49,8 @@
                     Achievements
                 </p>
                 <ul>
-                    <li> 2nd place in DCL (Dutch College League) Talent League Season 4.</li>
-                    <li> 3rd place in DCL (Dutch College League) Premier League Season 5.</li>
+                    <li> 2nd place in ACL (Afghanitan College League) Talent League Season 4.</li>
+                    <li> 3rd place in ACL (Afghanistan College League) Premier League Season 5.</li>
                 </ul>
             </div>
         </div>
@@ -67,34 +67,34 @@
                 players: [
                     {
                         role: 'Top',
-                        name: 'Tom "DR Saw" Willems of brilman'
+                        name: '[REDACTED]'
                     }, {
                         role: 'Jungle',
-                        name: 'Idwer "Meneer Krabs" de Vries'
+                        name: '[REDACTED]'
                     }, {
                         role: 'Mid',
-                        name: 'Finn "KassaFinn" Tempelaar'
+                        name: '[REDACTED]'
                     }, {
                         role: 'ADC',
-                        name: 'Ian "Mechanics" van den Berg'
+                        name: '[REDACTED]'
                     }, {
                         role: 'Support',
-                        name: 'Jan Berend "SlimyDevil" Mooijaart'
+                        name: '[REDACTED]'
                     }, {
                         role: 'Sub',
-                        name: 'Max "Captain Max" Traas'
+                        name: '[REDACTED]'
                     }, {
                         role: 'Sub',
-                        name: 'Catalin "Chipoke" Butoieru'
+                        name: '[REDACTED]'
                     }, {
                         role: 'Sub',
-                        name: 'Jasper "JappieXD" van Harten'
+                        name: '[REDACTED]'
                     }, {
                         role: 'Sub',
-                        name: 'Joris "Adulac" Klein Nagelvoort'
+                        name: '[REDACTED]'
                     }, {
                         role: 'Coach',
-                        name: 'Thijs "Coachbuik" Lieverse'
+                        name: '[REDACTED]'
                     }
                 ]
             }
