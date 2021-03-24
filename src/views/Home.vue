@@ -122,6 +122,11 @@ export default {
           icon: require("../assets/avengers.png"),
         },
         {
+          title: "Click me",
+          bg: require("../assets/bluechickenbg.jpg"),
+          icon: require("../assets/bluechicken.png"),
+        },
+        {
           title: "Amoung us",
           bg: require("../assets/amongusbg.jpg"),
           icon: require("../assets/amongus.png"),

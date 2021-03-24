@@ -198,6 +198,9 @@
     <audio id="knocking">
       <source src="./assets/knocking.mp3" type="audio/mpeg">
     </audio>
+    <audio id="chingchong" loop>
+      <source src="./assets/chingchong.mp3" type="audio/mpeg">
+    </audio>
     <div
         style="z-index: 200;width: 400px;height: 240px;position: fixed;bottom: -240px;left: 20px;background-color: red;border-radius: 10px"
         id="rickrolldiv">
@@ -470,9 +473,9 @@
     </v-dialog>
   </v-app>
 </template>
-<script src="node_modules/devtools-detect/index.js"></script>
 <script>
 import router from "@/router";
+import devTools from 'devtools-detect'
 
 export default {
   data() {
@@ -641,7 +644,7 @@ export default {
       var win = window.open(
           "",
           "AWOOGA",
-          "toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=100,height=100,top=" + (screen.height -Math.floor( (Math.random() * 300 ))) + ",left=" + (screen.width - Math.floor((Math.random() * 6000 + 40))));
+          "toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=100,height=100,top=" + (screen.height - Math.floor((Math.random() * 300))) + ",left=" + (screen.width - Math.floor((Math.random() * 6000 + 40))));
 
       if (win.document.body.innerHTML) {
         win.close()
@@ -651,7 +654,7 @@ export default {
             "toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=100,height=100,top=" + (screen.height - (Math.floor(Math.random() * 300))) + ",left=" + (screen.width - Math.floor((Math.random() * 6000 + 40))));
 
       }
-      win.document.title="AWOOOOGA";
+      win.document.title = "AWOOOOGA";
       win.document.body.insertAdjacentElement('afterbegin', popup);
 
       function setSizeRecursive() {
@@ -739,11 +742,19 @@ export default {
       }
     }
 
-
     // Get notified when it's opened/closed or orientation changes
     window.addEventListener('devtoolschange', event => {
       if (event.detail.isOpen) {
         console.log('hidde is moderatore 乔里斯•德明克 board Hoodies\' child labor 联合打击战斗机 iskander\'s body pillow situation 水壶战争 cumshell 偶像破坏 shitshell\'s  约翰•德•威特 sohrab is rasist 食人 discussions channel 附加费 self-starring starboard 伯恩哈德亲王 Based Department 大法弟子 homophobia in dank memes 团体免疫 maiander blueshell room 格雷戈里乌斯脖子射门 smashcie\'s allegations 2017 年 el dino partnership 事件 ark server 比登堡集团 owCie dead 施工欺诈 fanaat gushing 皮姆•福图恩 blueshell budget review 2020  郁金香狂热  ඞ - ඞ amogus sus sus amogus乔里斯•德明克  vaccie nacie 同性恋婚姻 big data leak 2021 插图亲淑女兄弟会 blueshell stickers on urinals 豪尔赫•佐雷吉埃塔 indecency in ghibli nights 警察行动 ett 莫卢卡斯 2018 2019 种族隔离 coffee good for you? 亨克•奥滕政变 peter 2020 黑皮特 online gamenight 火车劫持蜜蜂重点shadow board \'19年马肉丑闻 Financial compass 劫持蜜蜂 SiteCie crunch 騷亂暴亂 Splatoon Jar 騷擾擾亂')
+        console.log('hidde is moderatore 乔里斯•德明克 board Hoodies\' child labor 联合打击战斗机 iskander\'s body pillow situation 水壶战争 cumshell 偶像破坏 shitshell\'s  约翰•德•威特 sohrab is rasist 食人 discussions channel 附加费 self-starring starboard 伯恩哈德亲王 Based Department 大法弟子 homophobia in dank memes 团体免疫 maiander blueshell room 格雷戈里乌斯脖子射门 smashcie\'s allegations 2017 年 el dino partnership 事件 ark server 比登堡集团 owCie dead 施工欺诈 fanaat gushing 皮姆•福图恩 blueshell budget review 2020  郁金香狂热  ඞ - ඞ amogus sus sus amogus乔里斯•德明克  vaccie nacie 同性恋婚姻 big data leak 2021 插图亲淑女兄弟会 blueshell stickers on urinals 豪尔赫•佐雷吉埃塔 indecency in ghibli nights 警察行动 ett 莫卢卡斯 2018 2019 种族隔离 coffee good for you? 亨克•奥滕政变 peter 2020 黑皮特 online gamenight 火车劫持蜜蜂重点shadow board \'19年马肉丑闻 Financial compass 劫持蜜蜂 SiteCie crunch 騷亂暴亂 Splatoon Jar 騷擾擾亂')
+        console.log('hidde is moderatore 乔里斯•德明克 board Hoodies\' child labor 联合打击战斗机 iskander\'s body pillow situation 水壶战争 cumshell 偶像破坏 shitshell\'s  约翰•德•威特 sohrab is rasist 食人 discussions channel 附加费 self-starring starboard 伯恩哈德亲王 Based Department 大法弟子 homophobia in dank memes 团体免疫 maiander blueshell room 格雷戈里乌斯脖子射门 smashcie\'s allegations 2017 年 el dino partnership 事件 ark server 比登堡集团 owCie dead 施工欺诈 fanaat gushing 皮姆•福图恩 blueshell budget review 2020  郁金香狂热  ඞ - ඞ amogus sus sus amogus乔里斯•德明克  vaccie nacie 同性恋婚姻 big data leak 2021 插图亲淑女兄弟会 blueshell stickers on urinals 豪尔赫•佐雷吉埃塔 indecency in ghibli nights 警察行动 ett 莫卢卡斯 2018 2019 种族隔离 coffee good for you? 亨克•奥滕政变 peter 2020 黑皮特 online gamenight 火车劫持蜜蜂重点shadow board \'19年马肉丑闻 Financial compass 劫持蜜蜂 SiteCie crunch 騷亂暴亂 Splatoon Jar 騷擾擾亂')
+        console.log('hidde is moderatore 乔里斯•德明克 board Hoodies\' child labor 联合打击战斗机 iskander\'s body pillow situation 水壶战争 cumshell 偶像破坏 shitshell\'s  约翰•德•威特 sohrab is rasist 食人 discussions channel 附加费 self-starring starboard 伯恩哈德亲王 Based Department 大法弟子 homophobia in dank memes 团体免疫 maiander blueshell room 格雷戈里乌斯脖子射门 smashcie\'s allegations 2017 年 el dino partnership 事件 ark server 比登堡集团 owCie dead 施工欺诈 fanaat gushing 皮姆•福图恩 blueshell budget review 2020  郁金香狂热  ඞ - ඞ amogus sus sus amogus乔里斯•德明克  vaccie nacie 同性恋婚姻 big data leak 2021 插图亲淑女兄弟会 blueshell stickers on urinals 豪尔赫•佐雷吉埃塔 indecency in ghibli nights 警察行动 ett 莫卢卡斯 2018 2019 种族隔离 coffee good for you? 亨克•奥滕政变 peter 2020 黑皮特 online gamenight 火车劫持蜜蜂重点shadow board \'19年马肉丑闻 Financial compass 劫持蜜蜂 SiteCie crunch 騷亂暴亂 Splatoon Jar 騷擾擾亂')
+        console.log('hidde is moderatore 乔里斯•德明克 board Hoodies\' child labor 联合打击战斗机 iskander\'s body pillow situation 水壶战争 cumshell 偶像破坏 shitshell\'s  约翰•德•威特 sohrab is rasist 食人 discussions channel 附加费 self-starring starboard 伯恩哈德亲王 Based Department 大法弟子 homophobia in dank memes 团体免疫 maiander blueshell room 格雷戈里乌斯脖子射门 smashcie\'s allegations 2017 年 el dino partnership 事件 ark server 比登堡集团 owCie dead 施工欺诈 fanaat gushing 皮姆•福图恩 blueshell budget review 2020  郁金香狂热  ඞ - ඞ amogus sus sus amogus乔里斯•德明克  vaccie nacie 同性恋婚姻 big data leak 2021 插图亲淑女兄弟会 blueshell stickers on urinals 豪尔赫•佐雷吉埃塔 indecency in ghibli nights 警察行动 ett 莫卢卡斯 2018 2019 种族隔离 coffee good for you? 亨克•奥滕政变 peter 2020 黑皮特 online gamenight 火车劫持蜜蜂重点shadow board \'19年马肉丑闻 Financial compass 劫持蜜蜂 SiteCie crunch 騷亂暴亂 Splatoon Jar 騷擾擾亂')
+        console.log('hidde is moderatore 乔里斯•德明克 board Hoodies\' child labor 联合打击战斗机 iskander\'s body pillow situation 水壶战争 cumshell 偶像破坏 shitshell\'s  约翰•德•威特 sohrab is rasist 食人 discussions channel 附加费 self-starring starboard 伯恩哈德亲王 Based Department 大法弟子 homophobia in dank memes 团体免疫 maiander blueshell room 格雷戈里乌斯脖子射门 smashcie\'s allegations 2017 年 el dino partnership 事件 ark server 比登堡集团 owCie dead 施工欺诈 fanaat gushing 皮姆•福图恩 blueshell budget review 2020  郁金香狂热  ඞ - ඞ amogus sus sus amogus乔里斯•德明克  vaccie nacie 同性恋婚姻 big data leak 2021 插图亲淑女兄弟会 blueshell stickers on urinals 豪尔赫•佐雷吉埃塔 indecency in ghibli nights 警察行动 ett 莫卢卡斯 2018 2019 种族隔离 coffee good for you? 亨克•奥滕政变 peter 2020 黑皮特 online gamenight 火车劫持蜜蜂重点shadow board \'19年马肉丑闻 Financial compass 劫持蜜蜂 SiteCie crunch 騷亂暴亂 Splatoon Jar 騷擾擾亂')
+        console.log('hidde is moderatore 乔里斯•德明克 board Hoodies\' child labor 联合打击战斗机 iskander\'s body pillow situation 水壶战争 cumshell 偶像破坏 shitshell\'s  约翰•德•威特 sohrab is rasist 食人 discussions channel 附加费 self-starring starboard 伯恩哈德亲王 Based Department 大法弟子 homophobia in dank memes 团体免疫 maiander blueshell room 格雷戈里乌斯脖子射门 smashcie\'s allegations 2017 年 el dino partnership 事件 ark server 比登堡集团 owCie dead 施工欺诈 fanaat gushing 皮姆•福图恩 blueshell budget review 2020  郁金香狂热  ඞ - ඞ amogus sus sus amogus乔里斯•德明克  vaccie nacie 同性恋婚姻 big data leak 2021 插图亲淑女兄弟会 blueshell stickers on urinals 豪尔赫•佐雷吉埃塔 indecency in ghibli nights 警察行动 ett 莫卢卡斯 2018 2019 种族隔离 coffee good for you? 亨克•奥滕政变 peter 2020 黑皮特 online gamenight 火车劫持蜜蜂重点shadow board \'19年马肉丑闻 Financial compass 劫持蜜蜂 SiteCie crunch 騷亂暴亂 Splatoon Jar 騷擾擾亂')
+        console.log('hidde is moderatore 乔里斯•德明克 board Hoodies\' child labor 联合打击战斗机 iskander\'s body pillow situation 水壶战争 cumshell 偶像破坏 shitshell\'s  约翰•德•威特 sohrab is rasist 食人 discussions channel 附加费 self-starring starboard 伯恩哈德亲王 Based Department 大法弟子 homophobia in dank memes 团体免疫 maiander blueshell room 格雷戈里乌斯脖子射门 smashcie\'s allegations 2017 年 el dino partnership 事件 ark server 比登堡集团 owCie dead 施工欺诈 fanaat gushing 皮姆•福图恩 blueshell budget review 2020  郁金香狂热  ඞ - ඞ amogus sus sus amogus乔里斯•德明克  vaccie nacie 同性恋婚姻 big data leak 2021 插图亲淑女兄弟会 blueshell stickers on urinals 豪尔赫•佐雷吉埃塔 indecency in ghibli nights 警察行动 ett 莫卢卡斯 2018 2019 种族隔离 coffee good for you? 亨克•奥滕政变 peter 2020 黑皮特 online gamenight 火车劫持蜜蜂重点shadow board \'19年马肉丑闻 Financial compass 劫持蜜蜂 SiteCie crunch 騷亂暴亂 Splatoon Jar 騷擾擾亂')
+        console.log('hidde is moderatore 乔里斯•德明克 board Hoodies\' child labor 联合打击战斗机 iskander\'s body pillow situation 水壶战争 cumshell 偶像破坏 shitshell\'s  约翰•德•威特 sohrab is rasist 食人 discussions channel 附加费 self-starring starboard 伯恩哈德亲王 Based Department 大法弟子 homophobia in dank memes 团体免疫 maiander blueshell room 格雷戈里乌斯脖子射门 smashcie\'s allegations 2017 年 el dino partnership 事件 ark server 比登堡集团 owCie dead 施工欺诈 fanaat gushing 皮姆•福图恩 blueshell budget review 2020  郁金香狂热  ඞ - ඞ amogus sus sus amogus乔里斯•德明克  vaccie nacie 同性恋婚姻 big data leak 2021 插图亲淑女兄弟会 blueshell stickers on urinals 豪尔赫•佐雷吉埃塔 indecency in ghibli nights 警察行动 ett 莫卢卡斯 2018 2019 种族隔离 coffee good for you? 亨克•奥滕政变 peter 2020 黑皮特 online gamenight 火车劫持蜜蜂重点shadow board \'19年马肉丑闻 Financial compass 劫持蜜蜂 SiteCie crunch 騷亂暴亂 Splatoon Jar 騷擾擾亂')
+        document.getElementById('chingchong').play()
       }
     });
 

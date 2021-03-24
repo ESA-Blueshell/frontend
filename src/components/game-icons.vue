@@ -12,7 +12,7 @@
              @mouseenter="hover(i)"
              @mouseleave="unhover"
       >
-            <v-img class="ma-2" :src="game.icon" @click="goto(game.esportsLink)"/>
+        <v-img class="ma-2" :src="game.icon" @click="goto(game.esportsLink)"/>
       </v-col>
     </v-row>
 
@@ -40,7 +40,15 @@
                      style="position: absolute;top: 0;z-index: 400;height: 100%"/>
               <div style="display: table" class="overlay">
                 <p style="display: table-cell; vertical-align: middle;font-family: 'Shitfont',serif !important;"
-                   class="mx-auto my-4 text-center text-h4 font-weight-light white--text">
+                   class="mx-auto my-4 text-center text-h4 font-weight-light white--text"
+
+                   v-if="game.title !== 'Click me'">
+                  {{ game.title }}
+                </p>
+                <p style="display: table-cell; vertical-align: middle;font-family: 'Shitfont',serif !important;cursor: pointer;"
+                   class="mx-auto my-4 text-center text-h4 font-weight-light white--text"
+                   @click="openStal"
+                   v-else>
                   {{ game.title }}
                 </p>
               </div>
@@ -83,6 +91,9 @@ export default {
       if (link) {
         router.push(link);
       }
+    },
+    openStal(){
+      window.open('https://minecraftstal.com/','_blank')
     }
   }
 }
