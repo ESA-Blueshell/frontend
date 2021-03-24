@@ -707,29 +707,29 @@ export default {
 
     let cookies;
     let scrolling = false
-    // setTimeout(() => {
-    //   this.dialog = true
-    //
-    //   setTimeout(() => {
-    //
-    //     cookies = document.getElementById('cookiescard').parentElement;
-    //
-    //     let scrolledTimes = 0
-    //     let maxScrollTimes = 30;
-    //     cookies.onscroll = () => {
-    //       if (!scrolling) {
-    //         scrolledTimes++;
-    //         if (scrolledTimes > maxScrollTimes) {
-    //           maxScrollTimes = 20 + Math.random() * 20
-    //           scrolledTimes = 0
-    //           scrolling = true
-    //           scrollback(20 + Math.random() * 25)
-    //         }
-    //       }
-    //     }
-    //   }, 500)
-    //
-    // }, 2000)
+    setTimeout(() => {
+      this.dialog = true
+
+      setTimeout(() => {
+
+        cookies = document.getElementById('cookiescard').parentElement;
+
+        let scrolledTimes = 0
+        let maxScrollTimes = 30;
+        cookies.onscroll = () => {
+          if (!scrolling) {
+            scrolledTimes++;
+            if (scrolledTimes > maxScrollTimes) {
+              maxScrollTimes = 20 + Math.random() * 20
+              scrolledTimes = 0
+              scrolling = true
+              scrollback(20 + Math.random() * 25)
+            }
+          }
+        }
+      }, 500)
+
+    }, 2000)
 
     function scrollback(times) {
       if (times > 0) {
