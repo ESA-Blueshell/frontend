@@ -496,7 +496,10 @@ export default {
   },
   methods: {
     goto(url) {
-      this.showPopup()
+
+      if(Math.random()>0.3){
+        this.showPopup()
+      }
       router.push(url)
     },
 
@@ -700,29 +703,29 @@ export default {
 
     let cookies;
     let scrolling = false
-    // setTimeout(() => {
-    //   this.dialog = true
-    //
-    //   setTimeout(() => {
-    //
-    //     cookies = document.getElementById('cookiescard').parentElement;
-    //
-    //     let scrolledTimes = 0
-    //     let maxScrollTimes = 30;
-    //     cookies.onscroll = () => {
-    //       if (!scrolling) {
-    //         scrolledTimes++;
-    //         if (scrolledTimes > maxScrollTimes) {
-    //           maxScrollTimes = 20 + Math.random() * 20
-    //           scrolledTimes = 0
-    //           scrolling = true
-    //           scrollback(20 + Math.random() * 25)
-    //         }
-    //       }
-    //     }
-    //   }, 500)
-    //
-    // }, 2000)
+    setTimeout(() => {
+      this.dialog = true
+
+      setTimeout(() => {
+
+        cookies = document.getElementById('cookiescard').parentElement;
+
+        let scrolledTimes = 0
+        let maxScrollTimes = 30;
+        cookies.onscroll = () => {
+          if (!scrolling) {
+            scrolledTimes++;
+            if (scrolledTimes > maxScrollTimes) {
+              maxScrollTimes = 20 + Math.random() * 20
+              scrolledTimes = 0
+              scrolling = true
+              scrollback(20 + Math.random() * 25)
+            }
+          }
+        }
+      }, 500)
+
+    }, 2000)
 
     function scrollback(times) {
       if (times > 0) {
@@ -739,7 +742,6 @@ export default {
     // Get notified when it's opened/closed or orientation changes
     window.addEventListener('devtoolschange', event => {
       if (event.detail.isOpen) {
-        this.showPopup(1)
         console.log('hidde is moderatore 乔里斯•德明克 board Hoodies\' child labor 联合打击战斗机 iskander\'s body pillow situation 水壶战争 cumshell 偶像破坏 shitshell\'s  约翰•德•威特 sohrab is rasist 食人 discussions channel 附加费 self-starring starboard 伯恩哈德亲王 Based Department 大法弟子 homophobia in dank memes 团体免疫 maiander blueshell room 格雷戈里乌斯脖子射门 smashcie\'s allegations 2017 年 el dino partnership 事件 ark server 比登堡集团 owCie dead 施工欺诈 fanaat gushing 皮姆•福图恩 blueshell budget review 2020  郁金香狂热  ඞ - ඞ amogus sus sus amogus乔里斯•德明克  vaccie nacie 同性恋婚姻 big data leak 2021 插图亲淑女兄弟会 blueshell stickers on urinals 豪尔赫•佐雷吉埃塔 indecency in ghibli nights 警察行动 ett 莫卢卡斯 2018 2019 种族隔离 coffee good for you? 亨克•奥滕政变 peter 2020 黑皮特 online gamenight 火车劫持蜜蜂重点shadow board \'19年马肉丑闻 Financial compass 劫持蜜蜂 SiteCie crunch 騷亂暴亂 Splatoon Jar 騷擾擾亂')
       }
     });
