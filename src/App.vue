@@ -629,7 +629,7 @@ export default {
         document.getElementById('knocking').play()
         console.log('get fucked')
         this.playKnocking()
-      }, 1000 * (60 + Math.random() * 120))
+      }, 1000 * (60 + Math.random() * 100))
     },
     showPopup() {
 
