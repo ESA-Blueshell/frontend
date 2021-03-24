@@ -25,9 +25,12 @@
             {{ committee.name }}
           </v-expansion-panel-header>
           <v-expansion-panel-content style="font-size: larger !important;">
-            <p>
+            <p v-if="committee.name !=='DegeneraCie'">
               {{ committee.description }}
             </p>
+            <video autoplay loop controls v-else>
+              <source src="../assets/fuckanime.mp4"  type="audio/mp4">
+            </video>
             <p v-if="committee.why"><b>
               Why join?
             </b></p>
@@ -60,6 +63,9 @@ export default {
           name: "SmashCie",
           description: "Currently in jail for certain allegations.",
           why: "Join ShitpostCie."
+        }, {
+          name: "DegeneraCie",
+          why: "no."
         }, {
           name: "MediaCie",
           description: "Hasn't made a single montage video 0/10.",
