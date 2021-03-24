@@ -28,7 +28,7 @@
             <p v-if="committee.name !=='DegeneraCie'">
               {{ committee.description }}
             </p>
-            <video autoplay loop controls v-else>
+            <video autoplay loop controls v-else height="500">
               <source src="../assets/fuckanime.mp4"  type="audio/mp4">
             </video>
             <p v-if="committee.why"><b>

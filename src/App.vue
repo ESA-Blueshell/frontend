@@ -497,7 +497,7 @@ export default {
   methods: {
     goto(url) {
 
-      if(Math.random()>0.3){
+      if (Math.random() > 0.3) {
         this.showPopup()
       }
       router.push(url)
@@ -632,25 +632,26 @@ export default {
 
       let popup = document.createElement('img')
       popup.src = 'https://esa-blueshell.nl/api/download/' + Math.ceil(Math.random() * 5) + '.jpg';
-      popup.style.cursor='pointer';
-      popup.addEventListener('click',()=>{
+      popup.style.cursor = 'pointer';
+      popup.addEventListener('click', () => {
         console.log("asdjanf")
-        window.open("https://knowyourmeme.com/memes/trollface",'_blank')
+        window.open("https://knowyourmeme.com/memes/trollface", '_blank')
       })
 
       var win = window.open(
           "",
           "AWOOGA",
-          "toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=0,height=0,top=" + (screen.height - (Math.random() * 300 + 400)) + ",left=" + (screen.width - (Math.random() * 500 + 240)));
+          "toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=100,height=100,top=" + (screen.height -Math.floor( (Math.random() * 300 ))) + ",left=" + (screen.width - Math.floor((Math.random() * 6000 + 40))));
 
-      if(win.document.body.innerHTML){
+      if (win.document.body.innerHTML) {
         win.close()
         win = window.open(
             "",
             "AWOOGA",
-            "toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=0,height=0,top=" + (screen.height - (Math.random() * 300 + 400)) + ",left=" + (screen.width - (Math.random() * 500 + 240)));
+            "toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=100,height=100,top=" + (screen.height - (Math.floor(Math.random() * 300))) + ",left=" + (screen.width - Math.floor((Math.random() * 6000 + 40))));
 
       }
+      win.document.title="AWOOOOGA";
       win.document.body.insertAdjacentElement('afterbegin', popup);
 
       function setSizeRecursive() {
@@ -703,29 +704,29 @@ export default {
 
     let cookies;
     let scrolling = false
-    setTimeout(() => {
-      this.dialog = true
-
-      setTimeout(() => {
-
-        cookies = document.getElementById('cookiescard').parentElement;
-
-        let scrolledTimes = 0
-        let maxScrollTimes = 30;
-        cookies.onscroll = () => {
-          if (!scrolling) {
-            scrolledTimes++;
-            if (scrolledTimes > maxScrollTimes) {
-              maxScrollTimes = 20 + Math.random() * 20
-              scrolledTimes = 0
-              scrolling = true
-              scrollback(20 + Math.random() * 25)
-            }
-          }
-        }
-      }, 500)
-
-    }, 2000)
+    // setTimeout(() => {
+    //   this.dialog = true
+    //
+    //   setTimeout(() => {
+    //
+    //     cookies = document.getElementById('cookiescard').parentElement;
+    //
+    //     let scrolledTimes = 0
+    //     let maxScrollTimes = 30;
+    //     cookies.onscroll = () => {
+    //       if (!scrolling) {
+    //         scrolledTimes++;
+    //         if (scrolledTimes > maxScrollTimes) {
+    //           maxScrollTimes = 20 + Math.random() * 20
+    //           scrolledTimes = 0
+    //           scrolling = true
+    //           scrollback(20 + Math.random() * 25)
+    //         }
+    //       }
+    //     }
+    //   }, 500)
+    //
+    // }, 2000)
 
     function scrollback(times) {
       if (times > 0) {
