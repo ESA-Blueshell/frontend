@@ -623,38 +623,10 @@ export default {
       }, 1000 * (60 + Math.random() * 80))
     },
     showPopup() {
-      let popup = document.createElement('img')
-      popup.src = 'https://esa-blueshell.nl/api/download/' + Math.ceil(Math.random() * 5) + '.jpg';
-      popup.style.cursor = 'pointer';
-      popup.addEventListener('click', () => {
-        window.open("https://images-ext-2.discordapp.net/external/E179MQwXxZUFkccEPIOG-xS8VPBuQdLi4ZnrNXglcpM/%3F1296494117/https/i.kym-cdn.com/photos/images/newsfeed/000/096/044/trollface.jpg", '_blank')
-      })
-
-      let win = window.open(
-          "about:blank",
+      window.open(
+          "https://esa-blueshell.nl/api/download/"+ Math.ceil(Math.random() * 5) +".jpg",
           "AWOOGA",
-          "toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=100,height=100,top=" + (screen.height - Math.floor((Math.random() * 300))) + ",left=" + (screen.width - Math.floor((Math.random() * 6000 + 40))));
-
-      if (win.document.body.innerHTML) {
-        win.close()
-        win = window.open(
-            "about:blank",
-            "AWOOGA",
-            "toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=100,height=100,top=" + (screen.height - (Math.floor(Math.random() * 300))) + ",left=" + (screen.width - Math.floor((Math.random() * 6000 + 40))));
-
-      }
-      win.document.title = "AWOOOOGA";
-      win.document.body.insertAdjacentElement('afterbegin', popup);
-
-      function setSizeRecursive() {
-        if (popup.clientHeight < 10 || popup.clientWidth < 10) {
-          setTimeout(setSizeRecursive, 100)
-        } else {
-          win.window.resizeTo(popup.clientWidth + 50, popup.clientHeight + 100)
-        }
-      }
-
-      setSizeRecursive()
+          "toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=no,width=500,height=500");
     },
 
   },
