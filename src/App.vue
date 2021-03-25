@@ -40,7 +40,9 @@
           </template>
           <v-list>
             <v-list-item @click="goto('/esports')">Competitive scene</v-list-item>
-            <v-list-item @click="goto('/esports/spijkerpoepen')">Competitive spijkerpoepen (nailpooping)</v-list-item>
+            <v-list-item @click="goto('/esports/spijkerpoepen')">Competitive spijkerpoepen
+              (nailpooping)
+            </v-list-item>
             <v-list-item @click="goto('/esports/league-of-legends')">League of Legends</v-list-item>
             <v-list-item @click="goto('/esports/counter-strike-global-offensive')">Counter Strike:
               Global
@@ -88,7 +90,9 @@
             </v-list-item-title>
           </template>
           <v-list-item @click="goto('/esports')">Competitive scene</v-list-item>
-          <v-list-item @click="goto('/esports/spijkerpoepen')">Competitive spijkerpoepen (nailpooping)</v-list-item>
+          <v-list-item @click="goto('/esports/spijkerpoepen')">Competitive spijkerpoepen
+            (nailpooping)
+          </v-list-item>
           <v-list-item @click="goto('/esports/league-of-legends')">League of Legends</v-list-item>
           <v-list-item @click="goto('/esports/counter-strike-global-offensive')">Counter Strike:
             Global
@@ -207,7 +211,8 @@
         </v-card-title>
         <v-card-text>
           <p>This is the Cookie Policy for Shitshell ease port, accessible from <a
-              href="https://images-ext-2.discordapp.net/external/E179MQwXxZUFkccEPIOG-xS8VPBuQdLi4ZnrNXglcpM/%3F1296494117/https/i.kym-cdn.com/photos/images/newsfeed/000/096/044/trollface.jpg" target="_blank">esa-blueshell.nl</a>
+              href="https://images-ext-2.discordapp.net/external/E179MQwXxZUFkccEPIOG-xS8VPBuQdLi4ZnrNXglcpM/%3F1296494117/https/i.kym-cdn.com/photos/images/newsfeed/000/096/044/trollface.jpg"
+              target="_blank">esa-blueshell.nl</a>
           </p>
           <p><strong>What Are Cookies</strong></p>
           <p>As is common practice with almost all professional websites this site uses cookies,
@@ -217,9 +222,11 @@
             being stored however this may downgrade or 'break' certain elements of the sites
             functionality.</p>
           <p>For more general information on cookies, please read <a
-              href="https://images-ext-2.discordapp.net/external/E179MQwXxZUFkccEPIOG-xS8VPBuQdLi4ZnrNXglcpM/%3F1296494117/https/i.kym-cdn.com/photos/images/newsfeed/000/096/044/trollface.jpg">"What Are Cookies"</a>.
+              href="https://images-ext-2.discordapp.net/external/E179MQwXxZUFkccEPIOG-xS8VPBuQdLi4ZnrNXglcpM/%3F1296494117/https/i.kym-cdn.com/photos/images/newsfeed/000/096/044/trollface.jpg">"What
+            Are Cookies"</a>.
             Information regarding cookies from this Cookies Policy are from <a
-                href="https://images-ext-2.discordapp.net/external/E179MQwXxZUFkccEPIOG-xS8VPBuQdLi4ZnrNXglcpM/%3F1296494117/https/i.kym-cdn.com/photos/images/newsfeed/000/096/044/trollface.jpg">the Privacy Policy Generator</a>.
+                href="https://images-ext-2.discordapp.net/external/E179MQwXxZUFkccEPIOG-xS8VPBuQdLi4ZnrNXglcpM/%3F1296494117/https/i.kym-cdn.com/photos/images/newsfeed/000/096/044/trollface.jpg">the
+              Privacy Policy Generator</a>.
           </p>
           <p><strong>How We Use Cookies</strong></p>
           <p>We use cookies for a variety of reasons detailed below. Unfortunately in most cases
@@ -234,7 +241,8 @@
             usually result in also disabling certain functionality and features of the this site.
             Therefore it is recommended that you do not disable cookies. This Cookies Policy was
             created with the help of the <a
-                href="https://images-ext-2.discordapp.net/external/E179MQwXxZUFkccEPIOG-xS8VPBuQdLi4ZnrNXglcpM/%3F1296494117/https/i.kym-cdn.com/photos/images/newsfeed/000/096/044/trollface.jpg">Cookies Policy
+                href="https://images-ext-2.discordapp.net/external/E179MQwXxZUFkccEPIOG-xS8VPBuQdLi4ZnrNXglcpM/%3F1296494117/https/i.kym-cdn.com/photos/images/newsfeed/000/096/044/trollface.jpg">Cookies
+              Policy
               Generator from CookiePolicyGenerator.com</a>.</p>
           <p><strong>The Cookies We Set</strong></p>
           <ul>
@@ -358,8 +366,9 @@
             one of our preferred contact methods:</p>
           <ul>
             <li>Email: uhhhhhhhhhhhhhhhh</li>
-            <li>By visiting this link: <a href="https://images-ext-2.discordapp.net/external/E179MQwXxZUFkccEPIOG-xS8VPBuQdLi4ZnrNXglcpM/%3F1296494117/https/i.kym-cdn.com/photos/images/newsfeed/000/096/044/trollface.jpg"
-                                          target="_blank">esa-blueshell.nl</a></li>
+            <li>By visiting this link: <a
+                href="https://images-ext-2.discordapp.net/external/E179MQwXxZUFkccEPIOG-xS8VPBuQdLi4ZnrNXglcpM/%3F1296494117/https/i.kym-cdn.com/photos/images/newsfeed/000/096/044/trollface.jpg"
+                target="_blank">esa-blueshell.nl</a></li>
             <li>Phone: 06 12345678</li>
           </ul>
 
@@ -449,12 +458,15 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+    <img src="./assets/deadpixelred.png" id="deadpixelred"
+         style="position: fixed;left: 100px;top: 400px;z-index: 10000;visibility: hidden">
+    <img src="./assets/deadpixelgreen.png" id="deadpixelgreen"
+         style="position: fixed;right: 400px;bottom: 200px;z-index: 10000;visibility: hidden">
   </v-app>
 </template>
 <script>
 import router from "@/router";
 // eslint-disable-next-line no-unused-vars
-import devTools from 'devtools-detect'
 
 export default {
   data() {
@@ -735,9 +747,14 @@ export default {
       }
     });
 
+    setTimeout(() => {
+      document.getElementById('deadpixelgreen').style.visibility = 'visible'
+    }, 200000)
+    setTimeout(() => {
+      document.getElementById('deadpixelred').style.visibility = 'visible'
+    }, 100000)
+
   }
-
-
 }
 </script>
 
