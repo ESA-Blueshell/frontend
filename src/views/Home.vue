@@ -133,7 +133,7 @@ export default {
         },
         {
           title: "Amonog us",
-          bg: require("../assets/achungus.jpg"),
+          bg: require("../assets/amongusbg.jpg"),
           icon: require("../assets/amongus.png"),
         },
         {

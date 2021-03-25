@@ -40,6 +40,7 @@
           </template>
           <v-list>
             <v-list-item @click="goto('/esports')">Competitive scene</v-list-item>
+            <v-list-item @click="goto('/esports/spijkerpoepen')">Competitive spijkerpoepen (nailpooping)</v-list-item>
             <v-list-item @click="goto('/esports/league-of-legends')">League of Legends</v-list-item>
             <v-list-item @click="goto('/esports/counter-strike-global-offensive')">Counter Strike:
               Global
@@ -87,6 +88,7 @@
             </v-list-item-title>
           </template>
           <v-list-item @click="goto('/esports')">Competitive scene</v-list-item>
+          <v-list-item @click="goto('/esports/spijkerpoepen')">Competitive spijkerpoepen (nailpooping)</v-list-item>
           <v-list-item @click="goto('/esports/league-of-legends')">League of Legends</v-list-item>
           <v-list-item @click="goto('/esports/counter-strike-global-offensive')">Counter Strike:
             Global

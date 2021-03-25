@@ -14,8 +14,8 @@
           respective game’s icon.
         </p>
 
-        <v-row class="my-10">
-          <v-col cols="3" v-for="game in games" v-bind:key="game.url">
+        <v-row class="my-10" justify="center">
+          <v-col cols="2" v-for="game in games" v-bind:key="game.url">
             <router-link :to="game.url">
               <v-img :src="game.icon" class="expand"></v-img>
             </router-link>
@@ -66,6 +66,10 @@ export default {
     return {
       games: [
         {
+          icon: require('../assets/spijkerpoepen.png'),
+          url: '/esports/spijkerpoepen'
+        },
+        {
           icon: require('../assets/league.png'),
           url: '/esports/league-of-legends'
         },
@@ -80,7 +84,7 @@ export default {
         {
           icon: require('../assets/smash.png'),
           url: '/esports/super-smash-bros'
-        }
+        },
       ]
     }
   }

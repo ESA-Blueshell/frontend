@@ -16,6 +16,7 @@ import RocketLeague from "./views/esports/RocketLeague";
 import Documents from "@/views/Documents";
 import Article from "@/views/Article";
 import Blog from "@/views/Blog";
+import Spijkerpoepen from "@/views/esports/Spijkerpoepen";
 
 
 Vue.use(Router)
@@ -104,6 +105,11 @@ export default new Router({
       path: '/esports/rocket-league',
       name: 'rocketleague',
       component: RocketLeague
+    },
+    {
+      path: '/esports/spijkerpoepen',
+      name: 'spijkerpoepen',
+      component: Spijkerpoepen
     },
     {
       path: '/blog',
