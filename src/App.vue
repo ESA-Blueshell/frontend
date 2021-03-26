@@ -209,154 +209,107 @@
         <v-card-title>
           <h1>Cookie Policy for Shitshell ease port</h1>
         </v-card-title>
-        <v-card-text>
-          <p>This is the Cookie Policy for Shitshell ease port, accessible from <a
-              href="https://images-ext-2.discordapp.net/external/E179MQwXxZUFkccEPIOG-xS8VPBuQdLi4ZnrNXglcpM/%3F1296494117/https/i.kym-cdn.com/photos/images/newsfeed/000/096/044/trollface.jpg"
-              target="_blank">esa-blueshell.nl</a>
+        <v-card-text style="font-size: large">
+          <p>
+            Ok so apparently there's this thing called cookies and i need to ask for permission to
+            get them. Sooooo, can i get them? pls? ..... <br>
+            No, ok cool.. honestly it's fine it's not like I want your cookies or anything!! B-Baka.
           </p>
           <p><strong>What Are Cookies</strong></p>
-          <p>As is common practice with almost all professional websites this site uses cookies,
-            which are tiny files that are downloaded to your computer, to improve your experience.
-            This page describes what information they gather, how we use it and why we sometimes
-            need to store these cookies. We will also share how you can prevent these cookies from
-            being stored however this may downgrade or 'break' certain elements of the sites
-            functionality.</p>
-          <p>For more general information on cookies, please read <a
-              href="https://images-ext-2.discordapp.net/external/E179MQwXxZUFkccEPIOG-xS8VPBuQdLi4ZnrNXglcpM/%3F1296494117/https/i.kym-cdn.com/photos/images/newsfeed/000/096/044/trollface.jpg">"What
-            Are Cookies"</a>.
-            Information regarding cookies from this Cookies Policy are from <a
-                href="https://images-ext-2.discordapp.net/external/E179MQwXxZUFkccEPIOG-xS8VPBuQdLi4ZnrNXglcpM/%3F1296494117/https/i.kym-cdn.com/photos/images/newsfeed/000/096/044/trollface.jpg">the
-              Privacy Policy Generator</a>.
+          <p>
+            Today when I walked into my economics class I saw something I dread every time I close
+            my eyes. Someone had brought their new gaming laptop to class. The Forklift he used to
+            bring it was still running idle at the back. I started sweating as I sat down and gazed
+            over at the 700lb beast that was his laptop. He had already reinforced his desk with
+            steel support beams and was in the process of finding an outlet for a power cable
+            thicker than Amy
+            Schumer's thigh. I start shaking. I keep telling myself I'm going to be alright and that
+            there's nothing to worry about. He somehow finds a fucking outlet. Tears are running
+            down my cheeks as I send my last texts to my family saying I love them. The teacher
+            starts the lecture, and the student turns his laptop on. The colored lights on his RGB
+            Backlit
+            keyboard flare to life like a nuclear flash, and a deep humming fills my ears and shakes
+            my very soul. The entire city power grid goes dark. The classroom begins to shake as the
+            massive fans begin to spin. In mere seconds my world has gone from vibrant life, to a
+            dark, earth shattering void where my body is getting torn apart by the 150mph gale force
+            winds and the 500 decibel groan of the cooling fans. As my body finally surrenders, I
+            weep, as my school and my city go under. I fucking hate gaming laptops.
           </p>
           <p><strong>How We Use Cookies</strong></p>
-          <p>We use cookies for a variety of reasons detailed below. Unfortunately in most cases
-            there are no industry standard options for disabling cookies without completely
-            disabling the functionality and features they add to this site. It is recommended that
-            you leave on all cookies if you are not sure whether you need them or not in case they
-            are used to provide a service that you use.</p>
+          <p>
+            My mum (82F) told me (12M) to do the dishes (16) but I (12M) was too busy playing
+            Fortnite (3 kills) so I (12M) grabbed my controller (DualShock 4) and threw it at her
+            (138kph). She fucking died, and I (12M) went to prison (18 years). While in prison I
+            (12M) incited several riots (3) and assumed leadership of a gang responsible for
+            smuggling drugs (cocaine) into the country. I (12M) also ordered the assassination of
+            several celebrities (Michael Jackson, Elvis Presley and Jeffrey Epstein) and planned a
+            terrorist attack (9/11). Reddit, AITA?
+          </p>
+
           <p><strong>Disabling Cookies</strong></p>
-          <p>You can prevent the setting of cookies by adjusting the settings on your browser (see
-            your browser Help for how to do this). Be aware that disabling cookies will affect the
-            functionality of this and many other websites that you visit. Disabling cookies will
-            usually result in also disabling certain functionality and features of the this site.
-            Therefore it is recommended that you do not disable cookies. This Cookies Policy was
-            created with the help of the <a
-                href="https://images-ext-2.discordapp.net/external/E179MQwXxZUFkccEPIOG-xS8VPBuQdLi4ZnrNXglcpM/%3F1296494117/https/i.kym-cdn.com/photos/images/newsfeed/000/096/044/trollface.jpg">Cookies
-              Policy
-              Generator from CookiePolicyGenerator.com</a>.</p>
+          <p>
+            Wtf am I jerking off to? How has my life gone so downhill that I'm jacking off to
+            drawings? I think I know why my dad left. It's because he knew what I would be doing in
+            20 years from now. Is this my life now. Do I Really get fucking aroused when I see a
+            stickman with boobs, I do. Who am I inside? I don't know because I'm too busy jerking
+            off to stickmen with boobs.
+          </p>
+
           <p><strong>The Cookies We Set</strong></p>
+          <p>
+            Is het hebben van dochters de ultieme hoorndragerij?
+          </p>
           <ul>
             <li>
               <p>Account related cookies</p>
-              <p>If you create an account with us then we will use cookies for the management of the
-                signup process and general administration. These cookies will usually be deleted
-                when you log out however in some cases they may remain afterwards to remember your
-                site preferences when logged out.</p>
+              <p>
+                Ik kan niet iets ergers verzinnen of bevatten dat meer hoorndragelijkers is dan een
+                dochter hebben. Denk er even rationeel over. Je voedt, kleedt, verzorgt en teelt een
+                meisje voor ten minste 18 jaar puur zodat ze weg gaat en door een andere man
+                geplunderd kan worden. Al het harde werk dat je stopt in je beeldschone kleine
+                engeltje - haar verhaaltjes voorlezen voor het slapen, haar naar sport brengen en
+                weer ophalen, een gezonde en gebalanceerde maaltijd voor haar klaarmaken, haar de
+                belangrijkste levenslessen bijbrengen, met haar spelen. Alles resulteert naar één
+                consequentie: haar lichaam zal meer genoten worden door de man die haar uiteindelijk
+                in elke gaatje ketst.
+              </p>
             </li>
             <li>
               <p>Login related cookies</p>
-              <p>We use cookies when you are logged in so that we can remember this fact. This
-                prevents you from having to log in every single time you visit a new page. These
-                cookies are typically removed or cleared when you log out to ensure that you can
-                only access restricted features and areas when logged in.</p>
+              <p>
+                De perfecte dochter opgevoed? Geweldig. Wie profiteert hier van? Als je geluk hebt,
+                een willekeurige man die niets met haar te maken had toen ze opgroeide, die met haar
+                gaat trouwen. Hij heeft de privilege om haar elke nacht vol te blaffen in haar
+                strakke poes. Hij zal de voordelen ervaren van haar aardige en beminnelijke
+                persoonlijkheid waar jij verantwoordelijk voor was.
+              </p>
             </li>
             <li>
-              <p>Email newsletters related cookies</p>
-              <p>This site offers newsletter or email subscription services and cookies may be used
-                to remember if you are already registered and whether to show certain notifications
-                which might only be valid to subscribed/unsubscribed users.</p>
-            </li>
-            <li>
-              <p>Orders processing related cookies</p>
-              <p>This site offers e-commerce or payment facilities and some cookies are essential to
-                ensure that your order is remembered between pages so that we can process it
-                properly.</p>
-            </li>
-            <li>
-              <p>Surveys related cookies</p>
-              <p>From time to time we offer user surveys and questionnaires to provide you with
-                interesting insights, helpful tools, or to understand our user base more accurately.
-                These surveys may use cookies to remember who has already taken part in a survey or
-                to provide you with accurate results after you change pages.</p>
-            </li>
-            <li>
-              <p>Forms related cookies</p>
-              <p>When you submit data to through a form such as those found on contact pages or
-                comment forms cookies may be set to remember your user details for future
-                correspondence.</p>
-            </li>
-            <li>
-              <p>Site preferences cookies</p>
-              <p>In order to provide you with a great experience on this site we provide the
-                functionality to set your preferences for how this site runs when you use it. In
-                order to remember your preferences we need to set cookies so that this information
-                can be called whenever you interact with a page is affected by your preferences.</p>
+              <p>Doxxing related cookies</p>
+              <p>
+                Als een man die een dochter heeft, ben je LETTERLIJK 20 jaar van je leven aan het
+                opofferen om een meisje op te voeden zodat een andere man van haar geniet. Het is
+                simpelweg de ULTIEME EN DEFINITIEVE hoorndragerij. Denk er logisch over na
+              </p>
             </li>
           </ul>
-          <p><strong>Third Party Cookies</strong></p>
-          <p>In some special cases we also use cookies provided by trusted third parties. The
-            following section details which third party cookies you might encounter through this
-            site.</p>
-          <ul>
-            <li>
-              <p>This site uses Google Analytics which is one of the most widespread and trusted
-                analytics solution on the web for helping us to understand how you use the site and
-                ways that we can improve your experience. These cookies may track things such as how
-                long you spend on the site and the pages that you visit so we can continue to
-                produce engaging content.</p>
-              <p>For more information on Google Analytics cookies, see the official Google Analytics
-                page.</p>
-            </li>
-            <li>
-              <p>Third party analytics are used to track and measure usage of this site so that we
-                can continue to produce engaging content. These cookies may track things such as how
-                long you spend on the site or pages you visit which helps us to understand how we
-                can improve the site for you.</p>
-            </li>
-            <li>
-              <p>From time to time we test new features and make subtle changes to the way that the
-                site is delivered. When we are still testing new features these cookies may be used
-                to ensure that you receive a consistent experience whilst on the site whilst
-                ensuring we understand which optimisations our users appreciate the most.</p>
-            </li>
-            <li>
-              <p>As we sell products it's important for us to understand statistics about how many
-                of the visitors to our site actually make a purchase and as such this is the kind of
-                data that these cookies will track. This is important to you as it means that we can
-                accurately make business predictions that allow us to monitor our advertising and
-                product costs to ensure the best possible price.</p>
-            </li>
 
-            <li>
-              <p>The Google AdSense service we use to serve advertising uses a DoubleClick cookie to
-                serve more relevant ads across the web and limit the number of times that a given ad
-                is shown to you.</p>
-              <p>For more information on Google AdSense see the official Google AdSense privacy
-                FAQ.</p>
-            </li>
-            <li>
-              <p>We use adverts to offset the costs of running this site and provide funding for
-                further development. The behavioural advertising cookies used by this site are
-                designed to ensure that we provide you with the most relevant adverts where possible
-                by anonymously tracking your interests and presenting similar things that may be of
-                interest.</p>
-            </li>
-            <li>
-              <p>Several partners advertise on our behalf and affiliate tracking cookies simply
-                allow us to see if our customers have come to the site through one of our partner
-                sites so that we can credit them appropriately and where applicable allow our
-                affiliate partners to provide any bonus that they may provide you for making a
-                purchase.</p>
-            </li>
-            <li>
-              <p>We also use social media buttons and/or plugins on this site that allow you to
-                connect with your social network in various ways. For these to work the following
-                social media sites including; {List the social networks whose features you have
-                integrated with your site?:12}, will set cookies through our site which may be used
-                to enhance your profile on their site or contribute to the data they hold for
-                various purposes outlined in their respective privacy policies.</p>
-            </li>
-          </ul>
+          <p><strong>Third Party Cookies</strong></p>
+          <p>
+            Nani the fuck did you just fucking iimasu about watashi, you chiisai bitch desuka?
+            Watashi’ll have anata know that watashi graduated top of my class in Nihongo 3, and
+            watashi’ve been involved in iroirona Nihongo tutoring sessions, and watashi have over
+            sanbyaku perfect test scores. Watashi am trained in kanji, and watashi is the top letter
+            writer in all of southern California. Anata are nothing to watashi but just another
+            weaboo. Watashi will korosu anata the fuck out with vocabulary the likes of which has
+            never been mimasu’d before on this continent, mark watashino fucking words. Anata thinks
+            anata can get away with hanashimasing that kuso to watashi over the intaaneto? Omou
+            again, fucker. As we hanashimasu, watashi am contacting watashino secret netto of otakus
+            across the USA, and anatano IP is being traced right now so you better junbishimasu for
+            the ame, ujimushi. The ame that korosu’s the pathetic chiisai thing anata calls anatano
+            life. You’re fucking shinimashita’d, akachan.
+          </p>
+
           <p><strong>More Information</strong></p>
           <p>Hopefully that has clarified things for you and as was previously mentioned if there is
             something that you aren't sure whether you need or not it's usually safer to leave
@@ -365,13 +318,12 @@
           <p>However if you are still looking for more information then you can contact us through
             one of our preferred contact methods:</p>
           <ul>
-            <li>Email: uhhhhhhhhhhhhhhhh</li>
+            <li>Email: e@mail.com</li>
             <li>By visiting this link: <a
                 href="https://images-ext-2.discordapp.net/external/E179MQwXxZUFkccEPIOG-xS8VPBuQdLi4ZnrNXglcpM/%3F1296494117/https/i.kym-cdn.com/photos/images/newsfeed/000/096/044/trollface.jpg"
                 target="_blank">esa-blueshell.nl</a></li>
             <li>Phone: 06 12345678</li>
           </ul>
-
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
@@ -547,7 +499,7 @@ export default {
         this.moveRickrollUp()
 
         this.playDiscord()
-        setTimeout(()=>{
+        setTimeout(() => {
           document.getElementById('knocking').play()
           console.log('get fucked')
           this.playKnocking()
@@ -729,7 +681,7 @@ export default {
     let dust = document.getElementById('dust');
 
     function increaseDustRecursive() {
-      if (parseFloat(dust.style.opacity) < 1) {
+      if (parseFloat(dust.style.opacity) < 0.7) {
         dust.style.opacity = (parseFloat(dust.style.opacity) * 1.05).toString()
         setTimeout(increaseDustRecursive, 5000)
       }

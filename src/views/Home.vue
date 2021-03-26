@@ -96,9 +96,9 @@ export default {
           icon: require("../assets/clubpenguin.png"),
         },
         {
-          title: "League of Legends",
-          bg: require("../assets/leaguebg.jpg"),
-          icon: require("../assets/league.png"),
+          title: "VRchat",
+          bg: require("../assets/vrchatbg.gif"),
+          icon: require("../assets/vrchat.png"),
         },
         {
           title: "Competitive spijkerpoepen",
@@ -157,23 +157,23 @@ export default {
         {
           icon: "mdi-account-group",
           color: "red darken-2",
-          title: "About us",
+          title: "About me",
           url: "/aboutus",
-          text: "Despite its memberbase, Shitshell Esports is a relatively young student association with only 4 years since its inception. Learn all about our association by clicking above!"
+          text: "Despite its memerbase, Shitshell Esports is a relatively young student association with only 4 years since its inception, unfortunately still not legal in any country. Learn all about me by clicking above!"
         },
         {
           icon: "mdi-trophy",
           color: "yellow darken-2",
           title: "Esports",
           url: "/esports",
-          text: "As the name of our association suggests, esports is an integral part of Shitshell. Click the icon above to find more information on what we offer!"
+          text: "As the name of our association suggests, E-Sports is an integral part of Shitshell. Click the icon above to find more information on what we offer!"
         },
         {
           icon: "mdi-calendar",
           color: "blue darken-2",
           title: "Events",
           url: "/events",
-          text: "To keep our community entertained, Shitshell hosts events of many kinds with the help of member-run committees. Click above to see the upcoming events!"
+          text: "To keep our community entertained, Shitshell hosts events of many kinds with the help of incapable committees. Click above to see the upcoming events!"
         },
       ],
       partners: []
