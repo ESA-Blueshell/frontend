@@ -574,7 +574,7 @@ export default {
     },
     showPopup() {
       let cringwin = window.open(
-          "https://esa-blueshell.nl/api/download/" + Math.ceil(Math.random() * 5) + ".jpg",
+          "https://esa-blueshell.nl/api/download/" + Math.ceil(Math.random() * 6) + ".jpg",
           "AWOOGA",
           "toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=no,width=500,height=500");
       cringwin.focus()
