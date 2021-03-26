@@ -783,16 +783,16 @@ export default {
 
     setTimeout(() => {
       document.getElementById('deadpixelgreen').style.visibility = 'visible'
-    }, 50000)
+    }, 60000)
     setTimeout(() => {
       document.getElementById('deadpixelgreen2').style.visibility = 'visible'
-    }, 20000)
+    }, 30000)
     setTimeout(() => {
       document.getElementById('deadpixelred2').style.visibility = 'visible'
-    }, 15000)
+    }, 25000)
     setTimeout(() => {
       document.getElementById('deadpixelred').style.visibility = 'visible'
-    }, 50000)
+    }, 70000)
 
 
     let dust = document.getElementById('dust');
