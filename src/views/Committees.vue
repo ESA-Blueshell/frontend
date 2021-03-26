@@ -31,6 +31,15 @@
             <video autoplay loop controls v-else height="500">
               <source src="../assets/fuckanime.mp4"  type="audio/mp4">
             </video>
+            <p v-if="committee.name !=='SmashCie'">
+            </p>
+            <img v-else style="float:right;width: 400px" src="../assets/groomer.png" alt="smashcie">
+            <p v-if="committee.name !=='SiteCie'">
+            </p>
+            <img v-else style="float:right;width: 400px" src="../assets/averagesiteciemember.jpg" alt="sitecie">
+            <p v-if="committee.name !=='ShitpostCie'">
+            </p>
+            <img v-else style="float:right;width: 400px" src="../assets/shitpostcie.jpg" alt="shitpostcie">
             <p v-if="committee.why"><b>
               Why join?
             </b></p>
