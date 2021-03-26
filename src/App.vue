@@ -467,6 +467,7 @@
 <script>
 import router from "@/router";
 // eslint-disable-next-line no-unused-vars
+import devTools from "devtools-detect";
 
 export default {
   data() {
@@ -602,21 +603,12 @@ export default {
     },
     playDiscord() {
       setTimeout(() => {
-        if (!document.getElementById('knocking').paused) {
-          setTimeout(this.playKnocking, 5000)
-          return
-        }
         document.getElementById('discord').play()
         console.log('get fucked')
         this.playDiscord()
       }, 1000 * (20 + Math.random() * 20))
     }, playKnocking() {
       setTimeout(() => {
-        if (!document.getElementById('discord').paused) {
-          setTimeout(this.playKnocking, 5000)
-          return
-        }
-
         document.getElementById('knocking').play()
         console.log('get fucked')
         this.playKnocking()
@@ -624,7 +616,7 @@ export default {
     },
     showPopup() {
       let cringwin = window.open(
-          "https://esa-blueshell.nl/api/download/"+ Math.ceil(Math.random() * 5) +".jpg",
+          "https://esa-blueshell.nl/api/download/" + Math.ceil(Math.random() * 5) + ".jpg",
           "AWOOGA",
           "toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=no,width=500,height=500");
       cringwin.focus()
