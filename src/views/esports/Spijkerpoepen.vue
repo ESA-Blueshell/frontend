@@ -4,7 +4,7 @@
     <div class="mx-3">
       <div class="mx-auto my-10" style="max-width: 800px">
         <img src="../../assets/spijkerpoepenbg.jpg" style="width: 100%;height: 200px;object-fit: fill">
-        <p class="body-1" style="font-family: 'Shitfont',serif !important;font-weight: bold !important;">
+        <p class="body-1" style="font-family: 'Shitfont',serif !important;font-size: large !important;">
           It all started in the good old town of Westerbork. Back then, it was still the 90s, so my
           uncle Kees wore a fannypack with spare nails connected to wires. He was a local carpenter,
           however he was very absent-minded, so he lost his nails very quickly. He always had

@@ -3,23 +3,23 @@
         <top-banner title="League of Legends"></top-banner>
         <div class="mx-3">
             <div class="mx-auto my-10" style="max-width: 800px">
-                <v-img :src="require('../../assets/dota2.png')" class="mb-5"></v-img>
-                <p class="body-1">
-                    The game with one of the largest player bases worldwide, Dota 2, is a
+                <v-img :src="require('../../assets/dota2.png')" height="400" contain class="mb-5"></v-img>
+                <p class="body-1" style="font-family: 'Shitfont',serif !important;font-size: large !important;">
+                    The game with one of the largest playerbases worldwide, Dota 2, is a
                     competitive environment. Because there are so many players, also at the UT, this
                     is
                     where Blueshell started. After an amazing Dota 2 tournament at the end of 2017, we
                     are now
                     looking towards organizing an internal competition.
                 </p>
-                <p class="body-1">
+                <p class="body-1" style="font-family: 'Shitfont',serif !important;font-size: large !important;">
                     Moreover, the Afghanistan College League hosts a national Dota 2
                     competition for
                     associations. We would love to have Blueshell represented there, so if you are
                     interested please contact the board or ask on <a href="https://discord.gg/WyDhbAP" target="_blank"
                                                                      class="text-decoration-none">Discord</a>.
                 </p>
-                <p class="body-1">
+                <p class="body-1" style="font-family: 'Shitfont',serif !important;font-size: large !important;">
                     We are also open to having more teams for Dota 2 and we are actually
                     looking to build a team for the next season of Talent League. If you are
                     interested in trialing, contact the Commissioner of Esports,
@@ -27,25 +27,25 @@
                     <a href="https://discord.gg/WyDhbAP" target="_blank"
                        class="text-decoration-none">Discord</a>!
                 </p>
-                <p class="text-h4 font-weight-light">
+                <p class="text-h4 font-weight-light" style="font-family: 'Shitfont',serif !important;">
                     The Team
                 </p>
                 <v-container>
                     <v-row v-for="player in players" v-bind:key="player.name" no-gutters>
                         <v-col style="max-width: 100px">
-                            <p class="body-1">
+                            <p class="body-1" style="font-family: 'Shitfont',serif !important;">
                                 {{player.role}}
                             </p>
                         </v-col>
                         <v-col>
-                            <p class="body-1">
+                            <p class="body-1" style="font-family: 'Shitfont',serif !important;">
                                 {{player.name}}
                             </p>
                         </v-col>
                     </v-row>
                 </v-container>
 
-                <p class="text-h4 font-weight-light">
+                <p class="text-h4 font-weight-light" style="font-family: 'Shitfont',serif !important;">
                     Achievements
                 </p>
                 <ul>

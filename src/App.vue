@@ -415,7 +415,7 @@
     <img src="./assets/deadpixelgreen.png" id="deadpixelgreen"
          style="position: fixed;right: 400px;bottom: 200px;z-index: 10000;visibility: hidden">
     <img src="./assets/dust.png" id="dust"
-         style="position: fixed;height: 100%; width: 100%; object-fit: cover;z-index: 9999;pointer-events: none;opacity: 0.01;">
+         style="position: fixed;height: 100%; width: 100%; object-fit: cover;z-index: 9999;pointer-events: none;opacity: 0.02;">
   </v-app>
 </template>
 <script>
