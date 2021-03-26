@@ -462,6 +462,8 @@
          style="position: fixed;left: 100px;top: 400px;z-index: 10000;visibility: hidden">
     <img src="./assets/deadpixelgreen.png" id="deadpixelgreen"
          style="position: fixed;right: 400px;bottom: 200px;z-index: 10000;visibility: hidden">
+    <img src="./assets/dust.png" id="dust"
+         style="position: fixed;height: 100%; width: 100%; object-fit: cover;z-index: 9999;pointer-events: none;opacity: 0.01;">
   </v-app>
 </template>
 <script>
@@ -545,7 +547,11 @@ export default {
         this.moveRickrollUp()
 
         this.playDiscord()
-        setTimeout(this.playKnocking, 10000)
+        setTimeout(()=>{
+          document.getElementById('knocking').play()
+          console.log('get fucked')
+          this.playKnocking()
+        }, 1000 * (10 + Math.random() * 10))
       }
     }, moveRickrollUp() {
       let bottom = parseInt(this.rickrolldiv.style.bottom.split('px')[0])
@@ -719,6 +725,17 @@ export default {
       document.getElementById('deadpixelred').style.visibility = 'visible'
     }, 100000)
 
+
+    let dust = document.getElementById('dust');
+
+    function increaseDustRecursive() {
+      if (parseFloat(dust.style.opacity) < 1) {
+        dust.style.opacity = (parseFloat(dust.style.opacity) * 1.05).toString()
+        setTimeout(increaseDustRecursive, 5000)
+      }
+    }
+
+    increaseDustRecursive()
   }
 }
 </script>
