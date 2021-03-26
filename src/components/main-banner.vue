@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="banner">
-      <v-parallax :src="require('../assets/banner.png')" height="900"
+      <v-parallax :src="require('../assets/banner.jpg')" height="900"
                   class="background"></v-parallax>
       <div class="black overlay"></div>
       <div class="mx-auto text-center" style="top: 300px; position: relative;z-index: 3;">

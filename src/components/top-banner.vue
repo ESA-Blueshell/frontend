@@ -1,13 +1,16 @@
 <template>
   <div class="banner mt-16">
-    <v-parallax :src="gaming" class="background"></v-parallax>
-    <div class="black overlay"></div>
-    <div style="text-align: center;height: 100%">
-      <div class="text-h2 font-weight-bold white--text title "
-      style="letter-spacing: 20px !important;font-family: 'Shitfont',serif !important;font-weight: bold !important;">
-        {{ title.toUpperCase() }}
+    <v-parallax :src="gaming" class="background">
+      <div class="black overlay"></div>
+      <div style="text-align: center;height: 100%">
+        <div class="text-h2 font-weight-bold white--text title "
+             style="letter-spacing: 20px !important;font-family: 'Shitfont',serif !important;font-weight: bold !important;">
+          {{ title.toUpperCase() }}
+        </div>
       </div>
-    </div>
+    </v-parallax>
+
+
   </div>
 </template>
 
@@ -17,7 +20,7 @@ export default {
   props: ["title"],
   data: function () {
     return {
-      gaming: require("../assets/gaming.jpg"),
+      gaming: require("../assets/banner.jpg"),
 
     }
   }
@@ -25,7 +28,7 @@ export default {
 </script>
 
 
-<style scoped lang="scss">
+<style scoped>
 
 
 .banner {
@@ -36,15 +39,15 @@ export default {
 }
 
 .background {
-  position: absolute;
-  height: 100%;
+  position: relative;
   width: 100%;
+  bottom: 0;
   z-index: 1;
 }
 
 .title {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   top: 120px;
   letter-spacing: 5px !important;
 }
@@ -56,4 +59,6 @@ export default {
   height: 100%;
   z-index: 2;
 }
+
+
 </style>

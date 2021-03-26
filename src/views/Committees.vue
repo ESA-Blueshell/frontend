@@ -33,7 +33,7 @@
             </video>
             <p v-if="committee.name !=='SmashCie'">
             </p>
-            <img v-else style="float:right;width: 400px" src="../assets/groomer.png" alt="smashcie">
+            <img v-else style="float:right;width: 400px" src="../assets/groomer.jpg" alt="smashcie">
             <p v-if="committee.name !=='SiteCie'">
             </p>
             <img v-else style="float:right;width: 400px" src="../assets/averagesiteciemember.jpg" alt="sitecie">
