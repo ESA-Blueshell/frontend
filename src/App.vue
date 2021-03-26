@@ -292,6 +292,113 @@
                 simpelweg de ULTIEME EN DEFINITIEVE hoorndragerij. Denk er logisch over na
               </p>
             </li>
+
+            <li>
+              <p>Orders processing related cookies</p>
+              <p>
+                Decades of nolife FPS gaming have honed my hand-eye coordination to peak human
+                performance. My carefully conditioned reaction times and twitch reflexes easily beat
+                those of the black-tailed mongoose known for its speed, and I am capable of moving
+                my forearm muscles with robotic precision. Carefully listening to enemy footsteps in
+                Counter-Strike has tuned my hearing to the point where I can hear the heartbeat and
+                respiration of a hare fifty yards away, and immediately pinpoint its location in
+                complete darkness. Identifying enemy weaponry and equipment by its sound has
+                familiarized me with thousands of military and civilian weapons and vehicles; I can
+                easily recognise a Hind-D even over the sound of a thunderstorm. Peering at
+                individual pixels while holding the most minuscule of corners has sharpened my
+                eyesight to almost raptorian levels. Camouflage is all but useless against me. I can
+                read 12pt text written in Comic Sans from up to 74 feet away, and can identify a
+                monitor's refresh rate with three hertz precision up to 638Hz. Wearing my stylish
+                and comfortable Gunnar™ gaming glasses has protected my eyes from near-sightedness
+                as a result of staring at a screen all day. My incredibly low mouse sensitivity has
+                toned my upper body muscles to those of a professional athlete. Being perfectly
+                ambidextrous, I alternate my mouse hand to balance the gains on both sides of my
+                body. Playing Ingress and Pokemon Go during scrimming off-days has kept my lower
+                body in shape too. I have not only improved physically, but mentally as well. Tens
+                of thousands of shitposts on various community forums such as HLTV, Crossfire, and
+                more recently Reddit have made me a social and literary genius. My shotcalling
+                experience has transformed me into an inspiring leader, and playing CS:GO
+                matchmaking in the EU has given me an understanding of international relations
+                rivaling that of most foreign ministers. I might have a promising career in politics
+                ahead of me once I quit esports after achieving everything a gamer could possibly
+                want to achieve. Having to learn dozens of different games and hundreds or thousands
+                of different maps has improved my memory and learning capabilities. My natural
+                genius and calm, analytical character have obviously helped greatly as well. During
+                the time it takes for me to walk from the bicycle rack to the front door of the
+                grocery store, I can memorize the license number of every car in the parking lot and
+                perfectly recall them days later. Interacting with the international gaming
+                community has made me fluent in five languages, including Japanese, Russian, and
+                Korean. I speak them all with only the slightest accent, completely imperceivable to
+                all but the most astute of listeners, and write them with impeccable grammar. My
+                combined vocabulary across all the languages I know is over 150 000 words. This is
+                what it means to be a gamer. I am by no stretch the only one. There are many like
+                myself, and we are the future of mankind.
+              </p>
+            </li>
+            <li>
+              <p>Surveys related cookies</p>
+              <p>
+                Using an alt account because of people trace this back to me my reelection chances
+                might get hurt.<br>
+                I (74M) am finishing up my first term as President of the United States of America.
+                Let me tell you, America is an incredible country, probably one of the best
+                countries in the whole nation. As my reelection comes closer and closer, my opponent
+                Sleepy Joe has been leading in approval ratings, and I began to get worried. Let me
+                tell you, I am the best at being worried. Just ask anybody in my administration, I
+                get worried like no other president. Anyways, I was considering putting Sleepy Joe
+                to sleep for good, which I think is a service not only to his family, but also the
+                nation as a whole. I was going to ask my good pal Putin to borrow some of that
+                poison he’s using to silence the libtards in his country. So Reddit, am I the
+                asshole?<br>
+                EDIT: I’m not Donald Trump.<br>
+                EDIT 2: Stop saying I’m Donald Trump.<br>
+                EDIT 3: Bitches I got the nuclear launch codes keep testing me and you can say bye
+                bye to the Caribbean’s.<br>
+                EDIT 4: Adios Bahamas.
+              </p>
+            </li>
+            <li>
+              <p>Forms related cookies</p>
+              <p>
+                My boyfriend and I have been dating for almost a year now and we’ve been living
+                together for about 2 months. He is very sweet and caring. He has spent plenty of
+                time with me since he got furloughed, but he also spends a considerable amount of
+                time browsing Reddit. I understand that everyone needs space and this is his “alone
+                time”, so I try not to get involved in his “alone time” business. He often likes to
+                quote memes he picks up online. It was dorky in a cute way until about a week ago
+                when he became obsessed with this pogchamp meme.<br>
+                First, he wanted me to call him “my little pogchamp” and rub his belly while we were
+                watching anime. I did because, like I said, it was dorky and cute. The next night,
+                he asked me to call him “pogchamp” in bed. I said it but it was kind of a turnoff
+                because of how oddly obsessed he is with it. 3 nights ago, I wanted to be intimate
+                with him and he asked me to say “Ugh fine, I guess you are my little pogchamp. Come
+                here.” I did but I really didn’t want to. As I was saying it, he popped the biggest
+                boner. Then he had me put on his cat ear gaming headphones while we had sex.<br>
+                The next night he asked me to do the same thing. I was honest and told him it turns
+                me off. He then begged me until his face was bright red and sweaty. I told him to
+                get over it and he literally stormed out of the room and slept on the couch. I tried
+                to convince myself he was just having a bad night, but last night he just stood next
+                to the bed and said “Are you gonna do it?” I told him to stop being silly and he
+                went straight to the couch again!<br>
+                Today while he was at Walmart buying lotion and tissues, I found his laptop open on
+                the couch with a Reddit video of this anime cat girl speaking the exact meme he had
+                been asking me to say. Since I assume he found this meme from Reddit, I am asking
+                Reddit for advice. I am legitimately concerned that my boyfriend is sexually
+                obsessed with an anime cat girl reciting a meme and that it is seriously affecting
+                our physical relationship to the point where he is more attracted to it than me. Am
+                I crazy to think this or are my concerns valid?
+              </p>
+            </li>
+            <li>
+              <p>Site preferences cookies</p>
+              <p>
+                My female friend was crying about how fat she was and I was trying to comfort her by
+                telling her that she didn’t look that fat but she kept accusing me of lying to make
+                her feel bad so I thought that saying “maybe your just a heckin chonker” would cheer
+                her up and lighten the mood but she just looked at me and left. I hope she realised
+                that I was only being nice and that she is being irrational.
+              </p>
+            </li>
           </ul>
 
           <p><strong>Third Party Cookies</strong></p>
@@ -414,6 +521,10 @@
          style="position: fixed;left: 100px;top: 400px;z-index: 10000;visibility: hidden">
     <img src="./assets/deadpixelgreen.png" id="deadpixelgreen"
          style="position: fixed;right: 400px;bottom: 200px;z-index: 10000;visibility: hidden">
+    <img src="./assets/deadpixelgreen.png" id="deadpixelgreen2"
+         style="position: fixed;left: 700px;top: 600px;z-index: 10000;visibility: hidden">
+    <img src="./assets/deadpixelred.png" id="deadpixelred2"
+         style="position: fixed;right: 600px;bottom: 600px;z-index: 10000;visibility: hidden">
     <img src="./assets/dust.png" id="dust"
          style="position: fixed;height: 100%; width: 100%; object-fit: cover;z-index: 9999;pointer-events: none;opacity: 0.02;">
   </v-app>
@@ -672,10 +783,16 @@ export default {
 
     setTimeout(() => {
       document.getElementById('deadpixelgreen').style.visibility = 'visible'
-    }, 200000)
+    }, 50000)
+    setTimeout(() => {
+      document.getElementById('deadpixelgreen2').style.visibility = 'visible'
+    }, 20000)
+    setTimeout(() => {
+      document.getElementById('deadpixelred2').style.visibility = 'visible'
+    }, 15000)
     setTimeout(() => {
       document.getElementById('deadpixelred').style.visibility = 'visible'
-    }, 100000)
+    }, 50000)
 
 
     let dust = document.getElementById('dust');
