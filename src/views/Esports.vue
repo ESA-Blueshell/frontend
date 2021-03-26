@@ -3,10 +3,10 @@
     <top-banner title="Esports"></top-banner>
     <div class="mx-3">
       <div class="mx-auto my-10" style="max-width: 800px">
-        <p class="text-h4 font-weight-light">
+        <p class="text-h4 font-weight-light" style="font-family: 'Shitfont',serif !important;">
           Blueshell's competitive scene
         </p>
-        <p class="body-1">
+        <p class="body-1" style="font-family: 'Shitfont',serif !important;font-size: large !important;">
           As our association’s name suggests, esports is an important part of Blueshell. Whether
           you’re looking to take your game to the next level and compete against other universities,
           or just looking for a group to compete together within Clash or the Blueshell tournaments,
@@ -22,10 +22,10 @@
           </v-col>
         </v-row>
 
-        <p class="text-h4 font-weight-light">
+        <p class="text-h4 font-weight-light" style="font-family: 'Shitfont',serif !important;">
           Interested in competitive play?
         </p>
-        <p class="body-1">
+        <p class="body-1" style="font-family: 'Shitfont',serif !important;font-size: large !important;">
           Then you are at the right place! Blueshell's teams are open for people of any skill level,
           thus do not hesitate to show interest. How you may ask? Well, here are some forms that can
           help you with that. Click <a href="https://forms.gle/kXPGTU6kXvRjhXnc7" target="_blank"
@@ -33,14 +33,14 @@
           individual interest in the esports scene. Already got a crew together? Click <a
             href="https://forms.gle/tJ8TkeQ6cD24hjm4A" target="_blank" class="text-decoration-none">here</a>
           to sign your team up! </p>
-        <p class="body-1">
+        <p class="body-1" style="font-family: 'Shitfont',serif !important;font-size: large !important;">
           Are you interested in playing your favorite video game in a competitive environment with a
           team of fellow Blueshell members, but we don’t have a team for that game yet? Do not
           worry! With your initiative and the help of Blueshell a lot is possible. Contact the board
           for more information about this, and maybe you are the first team of Blueshell to play for
           your favorite game.
         </p>
-        <p class="body-1">
+        <p class="body-1" style="font-family: 'Shitfont',serif !important;font-size: large !important;">
           Still got some questions left? Do not hesitate to send an email to us at
           <a href="mailto:esports@blueshell.utwente.nl" target="_blank"
              class="text-decoration-none">esports@blueshell.utwente.nl</a>!
