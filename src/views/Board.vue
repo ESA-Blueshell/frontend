@@ -119,7 +119,7 @@
             225g plain flour<br>
             ½ tsp bicarbonate of soda<br>
             ¼ tsp salt<br>
-            200g plain chocolate chips or chunks<br>
+            200g plain chocolate chips<br>
           </strong>
           <br> <strong> STEP 1:</strong>
           Heat the oven to 190C/fan170C/gas 5 and line
@@ -133,8 +133,7 @@
           Sift 225g plain flour, ½ tsp bicarbonate of soda and ¼
           tsp salt into the bowl and mix it in with a wooden spoon.
           <br><strong> STEP 5:</strong>
-          Add 200g plain chocolate chips or chunks and stir
-          well.
+          Add 200g plain chocolate chips and the 5 tbsp of cum and stir well.
           <br> <strong> STEP 6:</strong>
           Use a teaspoon to make small scoops of the mixture,
           spacing them well apart on the baking trays. This mixture should make about 30
