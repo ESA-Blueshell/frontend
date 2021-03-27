@@ -9,7 +9,7 @@
           {{ title.toUpperCase() }}
         </div>
         <div class="text-h2 font-weight-bold white--text title "
-             style="letter-spacing: 20px !important;font-family: monospace !important;font-weight: normal !important;color: green"
+             style="letter-spacing: 20px !important;font-family: monospace !important;font-weight: normal !important;color: green !important;"
         v-else>
           {{ title.toLowerCase() }}
         </div>
