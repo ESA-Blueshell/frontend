@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
-import News from './views/News.vue'
 import Events from './views/Events.vue'
 import Contact from './views/Contact.vue'
 import Committees from './views/Committees.vue'
@@ -14,7 +13,6 @@ import Smash from "./views/esports/Smash";
 import Csgo from "./views/esports/Csgo";
 import RocketLeague from "./views/esports/RocketLeague";
 import Documents from "@/views/Documents";
-import Article from "@/views/Article";
 import Blog from "@/views/Blog";
 import Spijkerpoepen from "@/views/esports/Spijkerpoepen";
 
@@ -36,15 +34,6 @@ export default new Router({
       path: '/',
       name: 'home',
       component: Home
-    },
-    {
-      path: '/news',
-      name: 'news',
-      component: News
-    },
-    {
-      path: '/news/:id',
-      component: Article
     },
     {
       path: '/events',

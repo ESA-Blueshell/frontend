@@ -52,7 +52,6 @@
             <v-list-item @click="goto('/esports/super-smash-bros')">Super Smash Bros.</v-list-item>
           </v-list>
         </v-menu>
-        <v-btn class="bar-button" text dark @click="goto('/news')">News</v-btn>
         <v-btn class="bar-button" text dark @click="goto('/contact')">Contact</v-btn>
         <v-btn class="bar-button" text dark @click="goto('/blog')">My Blog</v-btn>
       </div>
@@ -102,9 +101,6 @@
           <v-list-item @click="goto('/esports/super-smash-bros')">Super Smash Bros.</v-list-item>
           <v-divider dark></v-divider>
         </v-list-group>
-        <v-list-item text dark @click="goto('/news')">
-          <v-list-item-title>News</v-list-item-title>
-        </v-list-item>
         <v-list-item text dark @click="goto('/contact')">
           <v-list-item-title>Contact</v-list-item-title>
         </v-list-item>
