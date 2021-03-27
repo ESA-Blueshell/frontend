@@ -114,6 +114,7 @@
             80g light brown muscovado sugar<br>
             80g granulated sugar<br>
             2 tsp vanilla extract<br>
+            5 tbsp cum<br>
             1 large egg<br>
             225g plain flour<br>
             ½ tsp bicarbonate of soda<br>
@@ -168,9 +169,11 @@
           Jose - Commissioner of external affairs
         </p>
         <div>
-          <!--      <img style="float:right;width: 400px" src="../assets/jose.jpg" alt="Commissioner of external affairs">-->
-          <p>
-          </p>
+          <img style="float:right;width: 400px" src="../assets/jose.png"
+               alt="Commissioner of external affairs">
+          <video controls width="400">
+            <source src="../assets/espanol.mp4">
+          </video>
         </div>
 
         <v-expansion-panels accordion>
