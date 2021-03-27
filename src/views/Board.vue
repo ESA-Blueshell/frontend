@@ -149,8 +149,23 @@
           Iskander - Treasurer
         </p>
         <div>
-          <!--        <img style="float:right;width: 400px" src="../assets/iskander.jpg" alt="Treasurer">-->
+          <img style="float:right;width: 400px" src="../assets/iskander.jpg" alt="Treasurer">
           <p>
+            Yakuzacie, i am not mad at you. I just haven't been able to realise fast enough that the
+            things you say have been jokes. I am truly sorry and I do hope i can make this up to
+            you. I don't hate you or anything but if you want to be mad at me then go ahead i pretty
+            much fucking deserve it. All I've wanted in this year is to get along with people and
+            not upset them. I do hope I haven't fucked our friendship and that we still like each
+            other as friends. Whatever goes on in the future fuck knows but what's is to come next I
+            do not really care anymore, I have been a dick to you and I know it. I do hope we can
+            talk and sort something out as right now I am certainly not up for losing more mates, I
+            let a game get to me how fucking retarded am I this has been bothering me all night now
+            and I just want to point out to you that I am sorry and I am willing to make it up to
+            you. Its up to you now whether you accept me as a friend or dont but I fucked up all
+            this time and I know that I just let it get to me and in the end i just couldn't keep it
+            in and just go so fed up as a person can only take so much that I didn't want to unleash
+            anger I just thought to do the wise thing. I am now leaving this choice to you whatever
+            happens, happens I fucking deserve it.
           </p>
         </div>
 

@@ -5,39 +5,49 @@
     <div class="mx-3">
       <div class="mx-auto" style="max-width: 800px">
         <div class="my-10">
-          <p class="text-h4 font-weight-light">
+          <p class="text-h4 "
+             style="font-family: Shitfont,serif !important;font-weight: bold !important">
             Shitshell has decided to join the hype and made an OnlyFans!
           </p>
 
-          <p class="body-1">
+          <p>
           </p>
-          <ul class="body-1">
+          <ul>
             <li>Exclusive pictures and videos featuring Shitshell</li>
             <li>Never seen before ShitpostCie scrapped events</li>
             <li>Full member access to our official Discord server.</li>
           </ul>
         </div>
-        <div class="my-10">
-          <p class="text-h4 font-weight-light">
+        <h1>JOIN NOW!!!! <a href="https://onlyfans.com/notshellybtw" target="_blank">https://onlyfans.com/notshellybtw</a>
+        </h1>
+        <div class=" my-10">
+          <p class="text-h4 "
+             style="font-family: Shitfont,serif !important;font-weight: bold !important;">
             Tier 1
           </p>
-          <p class="body-1">
-            Please fill in stuff I didn't have imagination at 4 AM. Please fill in stuff I didn't have imagination at 4 AM.
-            Please fill in stuff I didn't have imagination at 4 AM. Please fill in stuff I didn't have imagination at 4 AM.
+          <img style="width: 200px" src="../assets/tier1.jpg">
+          <p>
+            Turtleye™ will draw your waifu giving birth dynamically<br>
           </p>
-          <p class="text-h4 font-weight-light">
+        </div>
+        <div class=" my-10">
+          <p class="text-h4"
+             style="font-family: Shitfont,serif !important;font-weight: bold !important">
             Tier 2
           </p>
-          <p class="body-1">
-            Please fill in stuff I didn't have imagination at 4 AM. Please fill in stuff I didn't have imagination at 4 AM.
-            Please fill in stuff I didn't have imagination at 4 AM. Please fill in stuff I didn't have imagination at 4 AM.
+          <img style="width: 400px" src="../assets/tier2.jpg">
+          <p>
+            Horny shelly role on discord, where you get access to hidden NSFW channels in Blueshell
           </p>
-          <p class="text-h4 font-weight-light">
+        </div>
+        <div class=" my-10">
+          <p class="text-h4 "
+             style="font-family: Shitfont,serif !important;font-weight: bold !important">
             Tier 3
           </p>
-          <p class="body-1">
-            Please fill in stuff I didn't have imagination at 4 AM. Please fill in stuff I didn't have imagination at 4 AM.
-            Please fill in stuff I didn't have imagination at 4 AM. Please fill in stuff I didn't have imagination at 4 AM.
+          <img style="width: 400px" src="../assets/tier3.jpg">
+          <p>
+            Meet&Greet with Shitshell in the red light district of Zimbabwe
           </p>
         </div>
       </div>
