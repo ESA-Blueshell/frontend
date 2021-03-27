@@ -4,8 +4,14 @@
       <div class="black overlay"></div>
       <div style="text-align: center;height: 100%">
         <div class="text-h2 font-weight-bold white--text title "
-             style="letter-spacing: 20px !important;font-family: 'Shitfont',serif !important;font-weight: bold !important;">
+             style="letter-spacing: 20px !important;font-family: 'Shitfont',serif !important;font-weight: bold !important;"
+        v-if="title !== 'Documents'">
           {{ title.toUpperCase() }}
+        </div>
+        <div class="text-h2 font-weight-bold white--text title "
+             style="letter-spacing: 20px !important;font-family: monospace !important;font-weight: normal !important;color: green"
+        v-else>
+          {{ title.toLowerCase() }}
         </div>
       </div>
     </v-parallax>
