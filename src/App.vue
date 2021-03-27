@@ -605,11 +605,11 @@ export default {
       } else {
         this.moveRickrollUp()
 
-        this.playDiscord()
         setTimeout(() => {
           document.getElementById('knocking').play()
           console.log('get fucked')
           this.playKnocking()
+          this.playDiscord()
         }, 1000 * (10 + Math.random() * 10))
       }
     }, moveRickrollUp() {
