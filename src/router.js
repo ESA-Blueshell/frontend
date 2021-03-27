@@ -15,6 +15,7 @@ import RocketLeague from "./views/esports/RocketLeague";
 import Documents from "@/views/Documents";
 import Blog from "@/views/Blog";
 import Spijkerpoepen from "@/views/esports/Spijkerpoepen";
+import NotFound from "@/views/NotFound";
 
 
 Vue.use(Router)
@@ -105,5 +106,10 @@ export default new Router({
       name: 'blog',
       component: Blog
     },
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'NotFound',
+      component: NotFound
+    }
   ]
 })

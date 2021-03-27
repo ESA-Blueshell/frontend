@@ -142,7 +142,7 @@
           Bake for 8–10 mins until they are light brown on the
           edges and still slightly soft in the centre if you press them.
           <br> <strong> STEP 8:</strong>
-          Leave on the tray for a couple of mins to set and then lift onto a cooling rack.</p>
+          Leave on the tray for a couple of mins to set and then lift onto a cooling rack.
         </div>
 
         <p class="text-h4" style="font-family: 'Shitfont',serif !important;font-weight: bold">
