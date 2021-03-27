@@ -7,7 +7,17 @@
           About us
         </p>
         <p class="body-1">
-          SHITSHELL LORE </p>
+          C O R E V A L U E S <br>
+          O <br>
+          R <br>
+          E <br>
+          V <br>
+          A <br>
+          L <br>
+          U <br>
+          E <br>
+          S <br>
+        </p>
         <p class="text-h4 font-weight-light">History</p>
         <p class="body-1">
           SHITSHELL LORE. </p>

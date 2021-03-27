@@ -19,7 +19,7 @@
 
         <p class="text-h4"
            style="font-family: 'Shitfont',serif !important;font-weight: bold;text-align: right">
-          Jose - Secretary/Commissioner of Esports
+          Ivo - Secretary/Commissioner of Esports
         </p>
         <div>
 <!--          <img style="float:left;width: 400px" src="../assets/ivo.jpg" alt="Secretary/Commissioner of Esports">  -->
