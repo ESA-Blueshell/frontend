@@ -17,6 +17,7 @@
           <i>>login: andrei <br>
           >password: andrei </i> <br>
           >login successful <br>
+          >cd ../blueshell <br>
           >ls <br>
           >/blueshell-frontend /blueshell-api /blueshell-keylogger /documents <br>
           >cd /documents <br>
