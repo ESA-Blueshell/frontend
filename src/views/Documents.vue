@@ -1,8 +1,8 @@
 <template>
   <v-main>
     <top-banner title="Documents"></top-banner>
-    <div class="black">
-    <div class="mx-3 my-10">
+    <div class="black" style="height: 100%;width: 100%;position: fixed;">
+    <div>
       <div class="mx-auto" style="max-width: 800px">
         <p class="body-1 green--text" style="font-family: monospace !important">
           >ssh pi@blueshell-server <br>
@@ -23,8 +23,7 @@
           >ls <br>
           >Meeting_11252020.pdf <br>
           >scp shitshell@shitpostcie Meeting_11252020.pdf <br>
-<!--          pls fix or add it in the api to download it-->
-          <a href="../assets/Meeting_11252020.pdf" class="text-decoration-none" target="_blank"> ACCESS HERE </a> <br>
+          <a href="https://esa-blueshell.nl/api/download/Meeting_11252020.pdf" class="text-decoration-none" target="_blank"> ACCESS HERE </a> <br>
         </p>
       </div>
     </div>
