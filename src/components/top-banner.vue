@@ -1,6 +1,6 @@
 <template>
   <div class="banner mt-16">
-    <v-parallax :src="gaming" class="background">
+    <v-parallax v-if="title !== 'Membership'" :src="gaming" class="background">
       <div class="black overlay"></div>
       <div style="text-align: center;height: 100%">
         <div class="text-h2 font-weight-bold white--text title "
@@ -9,6 +9,15 @@
         </div>
       </div>
     </v-parallax>
+      <v-parallax v-else :src="onlyfans" class="background">
+        <div class="black overlay"></div>
+        <div style="text-align: center;height: 100%">
+          <div class="text-h2 font-weight-bold white--text title "
+               style="letter-spacing: 20px !important;font-family: 'Shitfont',serif !important;font-weight: bold !important;">
+            {{ title.toUpperCase() }}
+          </div>
+        </div>
+      </v-parallax>
 
 
   </div>
@@ -21,7 +30,7 @@ export default {
   data: function () {
     return {
       gaming: require("../assets/banner.jpg"),
-
+      onlyfans: require("../assets/onlyfans.png"),
     }
   }
 }
