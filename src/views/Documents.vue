@@ -22,15 +22,6 @@
              class="text-decoration-none" target="_blank">
             Privacy Policy (Dutch)
           </a></p>
-        <p class="body-1">
-          For those interested in the Esports side of the association, the following document is
-          where to start:
-        </p>
-        <p class="body-1">
-          <a href="https://esa-blueshell.nl/api/download/Esports-Manual.pdf"
-             class="text-decoration-none" target="_blank">
-            Esports Manual
-          </a></p>
       </div>
     </div>
   </v-main>
