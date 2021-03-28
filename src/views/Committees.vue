@@ -25,9 +25,14 @@
             {{ committee.name }}
           </v-expansion-panel-header>
           <v-expansion-panel-content style="font-size: larger !important;">
-            <p v-if="committee.name !=='DegeneraCie'">
+            <p v-if="committee.name !=='DegeneraCie' && committee.name !== 'NintenCo'">
               {{ committee.description }}
             </p>
+
+            <video autoplay loop controls  v-else-if="committee.name === 'NintenCo'">
+              <source src="../assets/nintenco.mp4"  type="audio/mp4">
+
+            </video>
             <video autoplay loop controls v-else height="500">
               <source src="../assets/fuckanime.mp4"  type="audio/mp4">
             </video>
@@ -40,6 +45,25 @@
             <p v-if="committee.name !=='ShitpostCie'">
             </p>
             <img v-else style="float:right;width: 400px" src="../assets/shitpostcie.jpg" alt="shitpostcie">
+
+
+
+
+
+            <p v-if="committee.name !=='PineCo'">
+            </p>
+            <img v-else style="float:right;width: 400px" src="../assets/pineco.png" alt="nintenco">
+
+            <p v-if="committee.name !=='LoLCie'">
+            </p>
+            <img v-else style="float:right;width: 400px" src="../assets/lolcie.jpg" alt="nintenco">
+
+            <p v-if="committee.name !=='LegaCie'">
+            </p>
+            <img v-else style="float:right;width: 400px" src="../assets/legacie.png" alt="nintenco">
+
+
+
             <p v-if="committee.why"><b>
               Why join?
             </b></p>
@@ -118,6 +142,9 @@ export default {
         }, {
           name: "DesignCie",
           description: "They can't make a single meme 0/10",
+          why: "Join ShitpostCie."
+        }, {
+          name: "NintenCo",
           why: "Join ShitpostCie."
         }
       ]
