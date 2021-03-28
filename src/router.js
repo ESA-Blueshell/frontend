@@ -17,6 +17,7 @@ import Documents from "@/views/Documents";
 import ElNino from "@/views/partners/ElNino";
 import Partners from "@/views/partners/Partners";
 import Article from "@/views/Article";
+import NotFound from "@/views/NotFound";
 
 
 Vue.use(Router)
@@ -116,5 +117,10 @@ export default new Router({
       name: 'elnino',
       component: ElNino
     },
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'NotFound',
+      component: NotFound
+    }
   ]
 })
