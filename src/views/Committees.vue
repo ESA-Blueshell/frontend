@@ -53,6 +53,10 @@ export default {
           description: 'A committee responsible for organizing social events.',
         },
         {
+          name: 'AcquiCie',
+          description: 'A committee responsible for helping Commissioner of External Affairs in sponsorship ventures.',
+        },
+        {
           name: 'ChessCie',
           description: 'A committee responsible for organizing chess events.',
         },
@@ -79,6 +83,10 @@ export default {
         {
           name: 'MediaCie',
           description: 'A committee responsible for live-streams of the association.',
+        },
+        {
+          name: 'ModeraCie',
+          description: 'A committee responsible for helping the board with Discord server moderation.',
         },
         {
           name: 'NintenCo',
