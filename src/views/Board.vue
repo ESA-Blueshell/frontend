@@ -149,7 +149,7 @@
           Iskander - Treasurer
         </p>
         <div>
-          <img style="float:right;width: 400px" src="../assets/iskander.jpg" alt="Treasurer">
+          <img style="float:right;width: 400px" src="../assets/iskander.png" alt="Treasurer">
           <p>
             Yakuzacie, i am not mad at you. I just haven't been able to realise fast enough that the
             things you say have been jokes. I am truly sorry and I do hope i can make this up to
@@ -188,6 +188,7 @@
           <video controls width="400">
             <source src="../assets/espanol.mp4">
           </video>
+          <img style="width: 400px" src="../assets/bear.jpg">
         </div>
 
         <v-expansion-panels accordion>
