@@ -6,9 +6,9 @@
       </v-app-bar-nav-icon>
       <v-toolbar-title class="ml-sm-n5 ml-md-0 ml-lg-0 ml-xl-0 ">
         <!--        <router-link @click="goto('/')">-->
-        <v-img contain :src="require('./assets/topbarlogo.png')" alt="Blueshell logo"
+        <v-img contain :src="require('./assets/topbarkino.png')" alt="Blueshell logo"
                @click="goto('/')"
-               style="height: 50px;width: 144px" class="mr-4">
+               style="height: 64px;width: 173px;cursor: pointer;" class="mr-4">
         </v-img>
         <!--        </router-link>-->
       </v-toolbar-title>

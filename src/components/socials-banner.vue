@@ -1,10 +1,10 @@
 <template>
   <div class="banner"
   ><!--v-bind:style="$vuetify.breakpoint.smAndUp?{ height: '120px'}:{ height: '200px' }"-->
-    <v-row class="mx-auto container flex-nowrap" align="center" justify="space-between" >
-      <v-col  md="auto" cols="120">
-        <p class="white--text text-h4 font-weight-thin mb-0" style="float: left">
-          Follow us on Social Media
+    <v-row class="mx-auto container flex-nowrap" align="center" justify="space-between">
+      <v-col md="auto" cols="120">
+        <p class="white--text text-h4 font-weight-thin mb-0" style="float: left;font-family: 'Shitfont',serif !important;">
+          Follow me on Social Media
         </p>
       </v-col>
       <v-spacer></v-spacer>
@@ -32,8 +32,7 @@ export default {
 
 <style scoped>
 .banner {
-  background-size: cover;
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../assets/goom2.jpg") fixed center;
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../assets/evergiven.jpg") center;
 }
 
 .container {

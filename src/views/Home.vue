@@ -54,6 +54,7 @@
     <game-icons :games="communityGames"></game-icons>
     <!--    </v-container>-->
 
+    <socials-banner class="mt-10"></socials-banner>
 
   </v-main>
 </template>
@@ -64,9 +65,10 @@ import MainBanner from "@/components/main-banner";
 import router from "@/router";
 import DiscordBanner from "@/components/discord-banner";
 import GameIcons from "@/components/game-icons";
+import SocialsBanner from "@/components/socials-banner";
 
 export default {
-  components: {GameIcons, DiscordBanner, MainBanner},
+  components: {SocialsBanner, GameIcons, DiscordBanner, MainBanner},
   methods: {
     goto(url) {
       if (url.includes('https://')) {
