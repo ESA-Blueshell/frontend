@@ -3,52 +3,37 @@
     <top-banner title="About me"></top-banner>
     <div class="mx-3">
       <div class="mx-auto my-10" style="max-width: 800px">
-        <p class="text-h4" style="font-weight: bold !important;font-family: 'Shitfont',serif !important">
+        <p class="text-h4"
+           style="font-weight: bold !important;font-family: 'Shitfont',serif !important">
           About us
         </p>
-        <p >
-          C O R E V A L U E S <br>
-          O <br>
-          R <br>
-          E <br>
-          V <br>
-          A <br>
-          L <br>
-          U <br>
-          E <br>
-          S <br>
+        <p>
           Who are we? Before I, like, start talking about myself, I need to talk about my core
-          values. What are core values? Core values are like the most important thing of any
-          organization. Like, without core values, you are like nothing. Like, you have nothing. No
-          core. And no values. Therefore you, like, define core values. Like, core values make or
-          break your organization, like, any good organization. Code of conducts are not needed,
-          like, core values say already everything. So, I was like, let's make some core values. So
-          I came to, like, some core values I think are very important.
-        </p>
-
+          values. What are core values? They are the bread and butter of any association. Core
+          values makes sure you never have to read the statuten ever again or care about already
+          pre-existing rules. Therefore we came up with the ones defining shitshell:
         <ul>
-          <li>
-            <video controls width="400">
-              <source src="../assets/gaming.mp4">
-            </video>
-          </li>
-          <li>
-            <video controls width="400">
-              <source src="../assets/the game.mp4">
-            </video>
-
-          </li>
-          <li>
-
-          </li>
-          <li>
-
-          </li>
-          <li>
-
-          </li>
+          <li>Gaming</li>
+          <li>Gamers</li>
+          <li>Gamboys</li>
+          <li>Gaymurs</li>
         </ul>
-        <p class="text-h4" style="font-weight: bold !important;font-family: 'Shitfont',serif !important">History</p>
+        <div style="overflow: auto;">
+          <video controls autoplay loop style="float: left;width: 50%">
+            <source src="../assets/gaming.mp4" type="video/mp4">
+          </video>
+          <video controls autoplay loop style="float: right;width: 50%">
+            <source src="../assets/the game.mp4" type="video/mp4">
+          </video>
+          <video controls autoplay loop style="float: left;width: 50%">
+            <source src="../assets/fortnite.mp4" type="video/mp4">
+          </video>
+          <video controls autoplay loop style="float: right;width: 50%">
+            <source src="../assets/gaminggaming.mp4" type="video/mp4">
+          </video>
+        </div>
+        <p class="text-h4 mt-10"
+           style="font-weight: bold !important;font-family: 'Shitfont',serif !important">History</p>
         <p>
           My name is Shitshell. Just like any turtle, I was born on the beaches of normandy in 1944.
           It was a beatiful day, the sun shined, I felt good cracking my eggshells to say hello to
