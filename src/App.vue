@@ -53,7 +53,7 @@
           </v-list>
         </v-menu>
         <v-btn class="bar-button" text dark @click="goto('/contact')">Contact</v-btn>
-        <v-btn class="bar-button" text dark @click="goto('/blog')">My Blog</v-btn>
+        <v-btn class="bar-button" text dark @click="goto('/blog')">Shitshell's Lair</v-btn>
       </div>
       <!--      <v-spacer/>-->
       <!--      <v-btn class="bar-button" text dark @click=goto('login"')>Login</v-btn>-->
@@ -102,7 +102,7 @@
           <v-list-item-title>Contact</v-list-item-title>
         </v-list-item>
         <v-list-item text dark @click="goto('/blog')">
-          <v-list-item-title>My Blog</v-list-item-title>
+          <v-list-item-title>Shitshell's Lair</v-list-item-title>
         </v-list-item>
         <!--        <v-list-item text dark @click=goto('login"')>-->
         <!--          <v-list-item-title>Login</v-list-item-title>-->
