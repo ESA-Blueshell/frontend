@@ -113,22 +113,22 @@
         <div class="mx-4">
           <v-row>
             <v-col>
-              <v-btn icon href="mailto:board@blueshell.utwente.nl">
+              <v-btn icon href="mailto:shitpostcie@gmail.com">
                 <v-icon>mdi-email</v-icon>
               </v-btn>
             </v-col>
             <v-col>
-              <v-btn icon href="https://www.facebook.com/BlueshellEsports/" target="_blank">
+              <v-btn icon href="https://www.facebook.com/japanologyleiden/" target="_blank">
                 <v-icon>mdi-facebook</v-icon>
               </v-btn>
             </v-col>
             <v-col>
-              <v-btn icon href="https://www.instagram.com/blueshellesports/" target="_blank">
+              <v-btn icon href="https://www.youtube.com/watch?v=mghhLqu31cQ" target="_blank">
                 <v-icon>mdi-instagram</v-icon>
               </v-btn>
             </v-col>
             <v-col>
-              <v-btn icon href="https://twitter.com/BlueshellESA" target="_blank">
+              <v-btn icon href="https://twitter.com/obamassurname/status/1370859015933206532" target="_blank">
                 <v-icon>mdi-twitter</v-icon>
               </v-btn>
             </v-col>
@@ -141,16 +141,16 @@
     <router-view/>
     <!--    </v-main>-->
     <v-footer dark color="brown darken-4">
-      <v-btn icon href="mailto:board@blueshell.utwente.nl">
+      <v-btn icon href="mailto:shitpostcie@gmail.com">
         <v-icon>mdi-email</v-icon>
       </v-btn>
-      <v-btn icon href="https://www.facebook.com/BlueshellEsports/" target="_blank">
+      <v-btn icon href="https://www.facebook.com/japanologyleiden/" target="_blank">
         <v-icon>mdi-facebook</v-icon>
       </v-btn>
-      <v-btn icon href="https://www.instagram.com/blueshellesports/" target="_blank">
+      <v-btn icon href="https://www.youtube.com/watch?v=mghhLqu31cQ" target="_blank">
         <v-icon>mdi-instagram</v-icon>
       </v-btn>
-      <v-btn icon href="https://twitter.com/BlueshellESA" target="_blank">
+      <v-btn icon href="https://twitter.com/obamassurname/status/1370859015933206532" target="_blank">
         <v-icon>mdi-twitter</v-icon>
       </v-btn>
       <v-spacer></v-spacer>

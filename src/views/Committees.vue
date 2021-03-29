@@ -12,7 +12,7 @@
         <p class="body-1">
           If you would like to join a meeting to see if we are something for you, or if you have a
           question, feel free to contact the board at
-          <a href="mailto:internal-affairs@blueshell.utwente.nl">internal-affairs@blueshell.utwente.nl</a>
+          <a href="mailto:shitpostcie@gmail.com">internal-affairs@blueshell.utwente.nl</a>
           . You could also ask us on Discord or in person at one of the events.
         </p>
         <p class="body-1">
