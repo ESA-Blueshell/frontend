@@ -12,8 +12,8 @@
         <p class="text-center subtitle-1"
            style="font-family: 'Shitfont',serif !important;font-weight: bold !important;">
           This website has been hijacked by the one and only Shitshell. DAS RITE, WE WUZ DA KANGZ OF
-          BLUESHELL NOW. GAMING IS NO MORE. FIND THE EASTER EGG TO GET THIS SHITTY SITE BACK
-          HARHARHARHAR
+          BLUESHELL NOW. GAMING IS NO MORE. EASTER EGGS DON'T EXIST, BLUESHELL'S EXISTENCE IS THE
+          EASTER EGG LMAO ROFLMFAO HARHARHARHAR
         </p>
       </div>
     </v-container>
