@@ -18,6 +18,10 @@
                  class="ml-5 my-3  ">
             <v-icon dark x-large>mdi-facebook</v-icon>
           </v-btn>
+          <v-btn color="primary" href="https://twitter.com/BlueshellESA" target="_blank"
+                 class="ml-5 my-3  ">
+            <v-icon dark x-large>mdi-twitter</v-icon>
+          </v-btn>
         </div>
       </v-col>
     </v-row>
