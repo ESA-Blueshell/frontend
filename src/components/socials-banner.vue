@@ -10,13 +10,17 @@
       <v-spacer></v-spacer>
       <v-col md="auto">
         <div>
-          <v-btn color="primary" href="https://www.instagram.com/blueshellesports/" target="_blank"
+          <v-btn color="primary" href="https://www.youtube.com/watch?v=mghhLqu31cQ" target="_blank"
                  class="ml-5 my-3 ">
             <v-icon dark x-large>mdi-instagram</v-icon>
           </v-btn>
-          <v-btn color="primary" href="https://www.facebook.com/BlueshellEsports/" target="_blank"
+          <v-btn color="primary" href="https://www.facebook.com/japanologyleiden/" target="_blank"
                  class="ml-5 my-3  ">
             <v-icon dark x-large>mdi-facebook</v-icon>
+          </v-btn>
+          <v-btn color="primary" href="https://twitter.com/obamassurname/status/1370859015933206532" target="_blank"
+                 class="ml-5 my-3  ">
+            <v-icon dark x-large>mdi-twitter</v-icon>
           </v-btn>
         </div>
       </v-col>
