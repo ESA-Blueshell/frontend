@@ -154,6 +154,9 @@
         <v-icon>mdi-twitter</v-icon>
       </v-btn>
       <v-spacer></v-spacer>
+      <v-btn icon href="https://esa-blueshell.nl:28315" target="_blank">
+        <v-icon>take me back to the normal site</v-icon>
+      </v-btn>
       <div class="white--text">SITECIE GANG &copy; {{ new Date().getFullYear() }}</div>
     </v-footer>
     <v-snackbar rounded v-model="poggers" timeout="105000">
