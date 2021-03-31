@@ -154,8 +154,8 @@
         <v-icon>mdi-twitter</v-icon>
       </v-btn>
       <v-spacer></v-spacer>
-      <v-btn href="https://esa-blueshell.nl:28315" target="_blank" style="font-family: 'Shitfont',serif !important;">
-        <v-icon>take me back to the normal site</v-icon>
+      <v-btn href="https://esa-blueshell.nl:28315" target="_blank" >
+        take me back to the normal site
       </v-btn>
       <div class="white--text">SITECIE GANG &copy; {{ new Date().getFullYear() }}</div>
     </v-footer>
