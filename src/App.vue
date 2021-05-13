@@ -38,11 +38,8 @@
           <v-list>
             <v-list-item to="/esports">Competitive scene</v-list-item>
             <v-list-item to="/esports/league-of-legends">League of Legends</v-list-item>
-            <v-list-item to="/esports/counter-strike-global-offensive">Counter Strike: Global
-              Offensive
-            </v-list-item>
-            <v-list-item to="/esports/rocket-league">Rocket League</v-list-item>
-            <v-list-item to="/esports/super-smash-bros">Super Smash Bros.</v-list-item>
+            <v-list-item to="/esports/counter-strike-global-offensive">Counter Strike: Global Offensive</v-list-item>
+            <v-list-item to="/esports/valorant">Valorant</v-list-item>
           </v-list>
         </v-menu>
         <v-btn class="bar-button" text dark to="/news">News</v-btn>
@@ -95,11 +92,8 @@
           </template>
           <v-list-item to="/esports">Competitive scene</v-list-item>
           <v-list-item to="/esports/league-of-legends">League of Legends</v-list-item>
-          <v-list-item to="/esports/counter-strike-global-offensive">Counter Strike: Global
-            Offensive
-          </v-list-item>
-          <v-list-item to="/esports/rocket-league">Rocket League</v-list-item>
-          <v-list-item to="/esports/super-smash-bros">Super Smash Bros.</v-list-item>
+          <v-list-item to="/esports/counter-strike-global-offensive">Counter Strike: Global Offensive</v-list-item>
+          <v-list-item to="/esports/valorant">Valorant</v-list-item>
           <v-divider dark></v-divider>
         </v-list-group>
         <v-list-item text dark to="/news">

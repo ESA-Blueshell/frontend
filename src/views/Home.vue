@@ -103,23 +103,22 @@ export default {
           esportsLink: "/esports/counter-strike-global-offensive"
         },
         {
+          title: "Valorant",
+          bg: require("../assets/valorantbg.jpg"),
+          icon: require("../assets/valorant.png"),
+          esportsLink: "/esports/valorant"
+        },
+      ],
+      communityGames: [
+        {
           title: "Rocket League",
           bg: require("../assets/rocketleaguebg.jpg"),
           icon: require("../assets/rocketleague.png"),
-          esportsLink: "/esports/rocket-league"
         },
         {
           title: "Super Smash Bros",
           bg: require("../assets/smashbg.jpg"),
           icon: require("../assets/smash.png"),
-          esportsLink: "/esports/super-smash-bros"
-        },
-      ],
-      communityGames: [
-        {
-          title: "Overwatch",
-          bg: require("../assets/overwatchbg.jpg"),
-          icon: require("../assets/overwatch.png"),
         },
         {
           title: "Animal Crossing",
@@ -140,11 +139,6 @@ export default {
           title: "Team Fight Tactics",
           bg: require("../assets/tftbg.jpg"),
           icon: require("../assets/tft.png"),
-        },
-        {
-          title: "Valorant",
-          bg: require("../assets/valorantbg.jpg"),
-          icon: require("../assets/valorant.png"),
         },
         {
           title: "World of Warcraft",

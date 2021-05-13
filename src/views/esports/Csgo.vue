@@ -1,44 +1,60 @@
 <template>
-    <v-main>
-        <top-banner title="Counter-Strike: Global Offensive"></top-banner>
-        <div class="mx-3">
-            <div class="mx-auto my-10" style="max-width: 800px">
-                <v-img :src="require('../../assets/csgobanner.png')" class="mb-5"></v-img>
-                <p class="body-1">
-                    Blueshell currently has one team for CSGO. We are going to go for semi-pro
-                    tournaments and open signup tournaments such as ESL CSGO Challengers or FACEIT
-                    tournaments with our main team as most of our players have semi-pro or high tier
-                    experience.
-                </p>
-                <p class="text-h4 font-weight-light">
-                    The Team
-                </p>
-                <p class="body-1">
-                    Joran 'MacVanish' Hagen<br>
-                    Teun "Hyzaq" Kok<br>
-                    Tim "Sjonnie" Blok<br>
-                    Vlad Daniil "shkodder" Popov<br>
-                    Hielke “Klutch1G” Kleijsen<br>
-                    Max “romkie” Veldman<br>
-                    Tim "DUCKI3S" van de Veen
-                </p>
-                <p class="text-h4 font-weight-light">
-                    Achievements
-                </p>
-                <ul>
-                    <li>3rd place in Dutch College CS:GO League Season 1.</li>
-                </ul>
-            </div>
-        </div>
-    </v-main>
+  <v-main>
+    <top-banner title="Counter-Strike: Global Offensive"></top-banner>
+    <div class="mx-3">
+      <div class="mx-auto my-10" style="max-width: 800px">
+        <p class="body-1">
+          With shooters’ prevalence in the global esports scene, Blueshell Esports’s CS:GO teams are
+          trying to climb up the charts with those sweet headshots! Below you can find our
+          competitive CS:GO team(s).
+        </p>
+      </div>
+    </div>
+    <team :team="hypers"></team>
+  </v-main>
 </template>
 
 <script>
-    import TopBanner from "../../components/top-banner";
+import TopBanner from "../../components/top-banner";
+import Team from "@/components/team";
 
-    export default {
-        components: {TopBanner},
+export default {
+  components: {Team, TopBanner},
+  data: () => {
+    return {
+      hypers: {
+        name: 'BS HyperS',
+        bg: require('../../assets/csgoesports1.jpg'),
+        players: [
+          {
+            name: 'Thomas Rijgersberg',
+            ign: 'LpC'
+          },
+          {
+            name: 'Jonas Valentijn',
+            ign: 'Clunky'
+          },
+          {
+            name: 'Gorkem Cardak',
+            ign: 'SonGoku'
+          },
+          {
+            name: 'Reiner Algra',
+            ign: 'Reign'
+          },
+          {
+            name: 'Wilco Strijker',
+            ign: 'FreeFall'
+          },
+          {
+            name: 'Ivo Heitlager',
+            ign: 'King Cookie'
+          }
+        ]
+      }
     }
+  }
+}
 </script>
 
 <style scoped>
