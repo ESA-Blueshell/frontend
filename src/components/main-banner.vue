@@ -12,7 +12,7 @@
                   BLUESHELL
                 </p>
                 <p class="white--text text-h5 font-weight-light font-italic">
-                  The largest student esports association in the Netherlands!
+                  Student esports and gaming association of the Twente region!
                 </p>
                 <v-btn x-large color="primary" rounded @click="$router.push('/membership')"
                        class="mt-5"
