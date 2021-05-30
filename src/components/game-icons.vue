@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <v-main>
     <v-row wrap align="center" justify="center" align-content="center" class="mx-auto mb-6"
-           style="max-width: 1400px">
+           style="max-width: 1400px;z-index: 10000">
       <v-col class="mx-3 my-2 transition-swing"
-             style="border-radius: 15px;padding: 4px; background-color: #f5f5f5"
+             style="border-radius: 15px;padding: 4px; background-color: #f5f5f5;z-index: 10000000"
              cols="2" sm="1" md="1" lg="1" xl="1"
              align-self="center"
              v-for="(game,i) in games"
@@ -12,44 +12,37 @@
              @mouseenter="hover(i)"
              @mouseleave="unhover"
       >
-            <v-img class="ma-2" :src="game.icon" @click="goto(game.esportsLink)"/>
+        <v-img class="ma-2" :src="game.icon" @click="goto(game.esportsLink)"/>
       </v-col>
     </v-row>
-
-    <v-expand-transition>
+    <div style="top:0px;left:0px;width:100%;height:100%;position: absolute">
       <v-carousel id="carousel"
-                  class="mx-auto elevation-8"
-                  style="max-height: 337.5px;max-width: 600px;border-radius: 30px"
                   hide-delimiters
                   :show-arrows="false"
-                  v-show="showPopup || hoverCarousel"
                   v-model="currentGame"
                   light
-                  :height="9.0 * $vuetify.breakpoint.width / 16.0"
+                  style="height: 100%"
       >
-        <v-carousel-item
-            v-for="game in games"
-            v-bind:key="game.title"
-            @mouseenter="hover(null)"
-            @mouseleave="unhover"
+        <v-carousel-item v-for="game in games"
+                         v-bind:key="game.title"
+                         @mouseenter="hover(null)"
+                         @mouseleave="unhover"
         >
-          <v-responsive :aspect-ratio="16/9">
-            <v-sheet height="100%" tile>
-              <v-img :src="game.bg"
-                     eager
-                     style="position: absolute;top: 0;z-index: 400;height: 100%"/>
-              <div style="display: table" class="overlay">
-                <p style="display: table-cell; vertical-align: middle;"
-                   class="mx-auto my-4 text-center text-h4 font-weight-light white--text">
-                  {{ game.title }}
-                </p>
-              </div>
-            </v-sheet>
-          </v-responsive>
+          <v-sheet height="100%" tile>
+            <v-img :src="game.bg"
+                   eager
+                   style="position: absolute;top: 0;height: 100%;width: 100%"/>
+            <div style="display: table" class="overlay">
+              <p style="display: table-cell; vertical-align: middle;"
+                 class="mx-auto my-4 text-center text-h4 font-weight-light white--text">
+                {{ game.title }}
+              </p>
+            </div>
+          </v-sheet>
         </v-carousel-item>
       </v-carousel>
-    </v-expand-transition>
-  </div>
+    </div>
+  </v-main>
 </template>
 
 <script>
@@ -88,15 +81,20 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 .overlay {
   position: absolute;
   bottom: 0;
   height: 60px;
   width: 100%;
-  z-index: 500;
+  //z-index: 500;
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 30px;
   overflow: hidden;
+}
+
+// hackerman
+.v-carousel__item {
+  height: 100% !important;
 }
 </style>

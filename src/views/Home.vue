@@ -29,23 +29,9 @@
 
     <discord-banner/>
 
-    <!--    <v-container>-->
-    <p class="mx-auto text-center text-h2 mt-10">
-      Games we play
-    </p>
-    <p class="mx-auto text-center text-h4 font-weight-light mb-3">
-      Competitive
-    </p>
-    <game-icons :games="games"></game-icons>
+    <games-we-play :games="games" class="pt-3"></games-we-play>
 
-    <p class="mx-auto text-center text-h4 font-weight-light mt-4 mb-3">
-      Community
-    </p>
-    <game-icons :games="communityGames"></game-icons>
-    <!--    </v-container>-->
-
-
-    <socials-banner class="mt-16"/>
+    <socials-banner/>
 
     <v-container class="mt-10 mb-16">
       <p class="mx-auto text-center text-h2">
@@ -72,10 +58,10 @@ import MainBanner from "@/components/main-banner";
 import router from "@/router";
 import DiscordBanner from "@/components/discord-banner";
 import SocialsBanner from "@/components/socials-banner";
-import GameIcons from "@/components/game-icons";
+import GamesWePlay from "@/components/games-we-play";
 
 export default {
-  components: {SocialsBanner, GameIcons, DiscordBanner, MainBanner},
+  components: {GamesWePlay, SocialsBanner, DiscordBanner, MainBanner},
   methods: {
     goto(url) {
       if (url.includes('https://')) {
@@ -91,70 +77,73 @@ export default {
       hoveredGame: null,
       games: [
         {
-          title: "League of Legends",
-          bg: require("../assets/leaguebg.jpg"),
-          icon: require("../assets/league.png"),
-          esportsLink: "/esports/league-of-legends"
+          categoryName: "Competitive",
+          titles: [
+            {
+              title: "League of Legends",
+              bg: require("../assets/leaguebg.jpg"),
+              icon: require("../assets/league.png"),
+              esportsLink: "/esports/league-of-legends"
+            },
+            {
+              title: "Counter-Strike: Global Offensive",
+              bg: require("../assets/csgobg.jpg"),
+              icon: require("../assets/csgo.png"),
+              esportsLink: "/esports/counter-strike-global-offensive"
+            },
+            {
+              title: "Valorant",
+              bg: require("../assets/valorantbg.jpg"),
+              icon: require("../assets/valorant.png"),
+              esportsLink: "/esports/valorant"
+            },
+          ]
         },
         {
-          title: "Counter-Strike: Global Offensive",
-          bg: require("../assets/csgobg.jpg"),
-          icon: require("../assets/csgo.png"),
-          esportsLink: "/esports/counter-strike-global-offensive"
-        },
-        {
-          title: "Valorant",
-          bg: require("../assets/valorantbg.jpg"),
-          icon: require("../assets/valorant.png"),
-          esportsLink: "/esports/valorant"
-        },
-      ],
-      communityGames: [
-        {
-          title: "Rocket League",
-          bg: require("../assets/rocketleaguebg.jpg"),
-          icon: require("../assets/rocketleague.png"),
-        },
-        {
-          title: "Super Smash Bros",
-          bg: require("../assets/smashbg.jpg"),
-          icon: require("../assets/smash.png"),
-        },
-        {
-          title: "Animal Crossing",
-          bg: require("../assets/animalcrossingbg.jpg"),
-          icon: require("../assets/animalcrossing.png"),
-        },
-        {
-          title: "Minecraft",
-          bg: require("../assets/minecraftbg.jpg"),
-          icon: require("../assets/minecraft.png"),
-        },
-        {
-          title: "Pokémon",
-          bg: require("../assets/pokemonbg.jpg"),
-          icon: require("../assets/pokemon.png"),
-        },
-        {
-          title: "Team Fight Tactics",
-          bg: require("../assets/tftbg.jpg"),
-          icon: require("../assets/tft.png"),
-        },
-        {
-          title: "World of Warcraft",
-          bg: require("../assets/wowbg.jpg"),
-          icon: require("../assets/wow.png"),
-        },
-        {
-          title: "Card games",
-          bg: require("../assets/cardgamesbg.jpg"),
-          icon: require("../assets/hearthstone.png"),
-        },
-        {
-          title: "Strategy games",
-          bg: require("../assets/stratbg.jpg"),
-          icon: require("../assets/strat.png"),
-        },
+          categoryName: "Community",
+          titles: [
+            {
+              title: "Rocket League",
+              bg: require("../assets/rocketleaguebg.jpg"),
+              icon: require("../assets/rocketleague.png"),
+            },
+            {
+              title: "Super Smash Bros",
+              bg: require("../assets/smashbg.jpg"),
+              icon: require("../assets/smash.png"),
+            },
+            {
+              title: "Animal Crossing",
+              bg: require("../assets/animalcrossingbg.jpg"),
+              icon: require("../assets/animalcrossing.png"),
+            },
+            {
+              title: "Minecraft",
+              bg: require("../assets/minecraftbg.jpg"),
+              icon: require("../assets/minecraft.png"),
+            },
+            {
+              title: "Pokémon",
+              bg: require("../assets/pokemonbg.jpg"),
+              icon: require("../assets/pokemon.png"),
+            },
+            {
+              title: "Team Fight Tactics",
+              bg: require("../assets/tftbg.jpg"),
+              icon: require("../assets/tft.png"),
+            },
+            {
+              title: "World of Warcraft",
+              bg: require("../assets/wowbg.jpg"),
+              icon: require("../assets/wow.png"),
+            },
+            {
+              title: "Strategy games",
+              bg: require("../assets/stratbg.jpg"),
+              icon: require("../assets/strat.png"),
+            },
+          ]
+        }
       ],
       columns: [
         {
