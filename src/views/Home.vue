@@ -29,7 +29,7 @@
 
     <discord-banner/>
 
-    <games-we-play :games="games" class="pt-3"></games-we-play>
+    <games-we-play :games="games" class="pt-3 pb-3"></games-we-play>
 
     <socials-banner/>
 
@@ -111,6 +111,11 @@ export default {
               title: "Super Smash Bros",
               bg: require("../assets/smashbg.jpg"),
               icon: require("../assets/smash.png"),
+            },
+            {
+              title: "Dota 2",
+              bg: require("../assets/dota2bg.jpg"),
+              icon: require("../assets/dota2.png"),
             },
             {
               title: "Animal Crossing",
