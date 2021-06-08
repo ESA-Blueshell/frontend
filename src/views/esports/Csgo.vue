@@ -39,7 +39,7 @@ export default {
             ign: 'SonGoku'
           },
           {
-            name: 'Reiner Algra',
+            name: 'Reinier Algra',
             ign: 'Reign'
           },
           {
