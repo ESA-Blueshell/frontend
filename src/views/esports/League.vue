@@ -33,7 +33,7 @@ export default {
             ign: 'DepressedBySoloQ'
           },
           {
-            name: 'Swen Vosslamber',
+            name: 'Sven Vosslamber',
             ign: 'Swirliix'
           },
           {
