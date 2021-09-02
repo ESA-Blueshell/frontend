@@ -69,12 +69,12 @@
             Contribution
           </p>
           <p>
-            The membership fees for the academic year 2020/2021 are:
+            The membership fees for the academic year 2021/2022 are:
           </p>
           <ul>
-            <li><b>€10</b> for a full year membership;</li>
-            <li><b>€7.50</b> for a half-year membership*;</li>
-            <li><b>€5</b> for an Alumni membership.</li>
+            <li><b>€15</b> for a full year membership;</li>
+            <li><b>€10</b> for a half-year membership*;</li>
+            <li><b>€10</b> for an Alumni membership.</li>
           </ul>
           <p class="body-1">
             <br>
@@ -84,6 +84,11 @@
             The membership fee can be paid in cash or transferred to the bank account of Blueshell
             Esports (NL19 INGB 00080964 62 attn of Treasurer of Blueshell). Further details can be
             found on the membership form.
+
+            Another option is via a
+            <a href="https://esa-blueshell.nl/api/download/Direct_Debit_Mandate.pdf"
+               target="_blank" class="text-decoration-none">
+              Direct Debit Mandate</a>, allowing a one time or recurring payment by direct debit.
           </p>
         </div>
       </div>
