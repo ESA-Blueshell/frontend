@@ -9,7 +9,7 @@
             <h6>{{ item.newsType }}</h6>
             <h2>{{ item.title }}</h2>
             <p>{{ getWords(item.content) }} ...</p>
-            <router-link :to="'/news/' + item.id" style="text-decoration: none;">Read more...</router-link>
+            <router-link :to="'/news/article/' + item.id" style="text-decoration: none;">Read more...</router-link>
             <h5 style="margin-top: 10px">By <b>{{ item.creatorUsername }}</b>, {{ item.postedAt.slice(0, 10) }}</h5>
           </div>
         </v-list-item-content>

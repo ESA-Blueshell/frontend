@@ -17,6 +17,7 @@ import Partners from "@/views/partners/Partners";
 import Article from "@/views/Article";
 import NotFound from "@/views/NotFound";
 import Valorant from "@/views/esports/Valorant";
+import ArticleEditor from "@/views/ArticleEditor";
 
 
 Vue.use(Router)
@@ -43,8 +44,12 @@ export default new Router({
       component: News
     },
     {
-      path: '/news/:id',
+      path: '/news/article/:id',
       component: Article
+    },
+    {
+      path: '/news/create',
+      component: ArticleEditor
     },
     {
       path: '/events',
