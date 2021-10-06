@@ -22,7 +22,7 @@
             <v-icon x-large :color="col.color" class="icon" v-html="col.icon"></v-icon>
             <p class="text-h3 ma-3 font-weight-thin" v-html="col.title"></p>
           </div>
-          <p class="font-weight-light mx-auto" style="max-width: 400px" v-html="col.text"></p>
+          <p class="body-1 font-weight-light mx-auto" style="max-width: 400px" v-html="col.text"></p>
         </v-col>
       </v-row>
     </v-container>

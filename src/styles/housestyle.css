@@ -1,0 +1,59 @@
+.v-btn {
+    letter-spacing: 0
+}
+
+@font-face {
+    font-family: 'Fugaz One';
+    src: url('/fonts/FugazOne-regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Barlow Semi Condensed';
+    src: url('/fonts/BarlowSemiCondensed-Light.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Barlow Semi Condensed';
+    src: url('/fonts/BarlowSemiCondensed-SemiBold.ttf') format('truetype');
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: 'Blueshell';
+    src: local("Blueshell"), url('/fonts/Blueshell.woff2') format('woff2'), url('/fonts/Blueshell.ttf') format('truetype');
+}
+
+.v-application .text-h1 {
+    font-family: "Fugaz One", sans-serif !important;
+    text-transform: uppercase;
+    font-size: 90px;
+}
+
+.v-application .text-h2 {
+    font-family: "Fugaz One", sans-serif !important;
+    text-transform: uppercase;
+    font-size: 38px;
+}
+
+.v-application .text-h3 {
+    font-family: "Barlow Semi Condensed", sans-serif !important;
+    font-size: 26px
+}
+
+.v-application .v-btn {
+    font-family: "Fugaz One", sans-serif !important;
+    text-transform: uppercase;
+}
+
+.v-application .text-h4, .v-application .text-h5, .v-application .text-h6 {
+    font-family: "Barlow Semi Condensed", sans-serif !important;
+    font-weight: bold;
+}
+
+.v-application .subtitle-1, .v-application .subtitle-2, .v-application .body-1, .v-application .body-2, .v-application .caption, .v-application .overline {
+    font-family: "Barlow Semi Condensed", sans-serif !important;
+}
+
+.v-application {
+    font-family: "Barlow Semi Condensed", sans-serif;
+}

@@ -80,7 +80,7 @@
               <v-spacer></v-spacer>
               <!-- Start of the "Find location" button. Check the documentation for v-tooltip to find out how this works exactly -->
               <v-tooltip bottom>
-                <template v-slot:activator="{ on, attrs }">
+                <template v-slot:activator="{ on }">
                   <!-- The actual button -->
                   <v-btn icon v-on="on" @click="findLocation">
                     <v-icon>mdi-google-maps</v-icon>
@@ -90,7 +90,7 @@
               </v-tooltip>
               <!-- Start of the "Add to calendar" button. Check the documentation for v-tooltip to find out how this works exactly -->
               <v-tooltip bottom>
-                <template v-slot:activator="{ on, attrs }">
+                <template v-slot:activator="{ on }">
                   <!-- The actual button -->
                   <v-btn icon v-on="on" @click="addToCal">
                     <v-icon>mdi-calendar</v-icon>

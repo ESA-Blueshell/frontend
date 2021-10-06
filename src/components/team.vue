@@ -10,7 +10,7 @@
                  v-if="$vuetify.breakpoint.mdAndUp">
       <v-row justify="center" align-content="center" align="center">
         <v-col md="5" lg="4" xl="4" v-if="!nameRight">
-          <p class="text-h1 font-italic" style="font-family: 'Bebas', sans-serif !important;">
+          <p class="text-h1 font-italic">
             {{ team.name }}
           </p>
         </v-col>
@@ -57,8 +57,7 @@
         </v-col>
 
         <v-col cols="4" v-if="nameRight">
-          <p class="text-h1 font-italic text-right"
-             style="font-family: 'Bebas',sans-serif !important;">
+          <p class="text-h1 font-italic text-right">
             {{ team.name }}
           </p>
         </v-col>
@@ -72,8 +71,7 @@
     <v-container fill-height fluid style="background: rgba(0,0,0,0.6)" class="py-5"
                  v-else>
       <v-row justify="center">
-        <p class="text-h1 font-italic text-center"
-           style="font-family: 'Bebas', sans-serif !important;">
+        <p class="text-h1 font-italic text-center">
           {{ team.name }}
         </p>
       </v-row>
@@ -137,12 +135,6 @@ export default {
 </script>
 
 <style scoped>
-
-@font-face {
-  font-family: 'Bebas';
-  src: local("Bebas"),
-  url('../assets/BebasNeue-Regular.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
-}
 
 .v-parallax {
   height: auto !important;

@@ -11,7 +11,13 @@
                    v-bind:style="$vuetify.breakpoint.mdAndUp?{ 'font-size': '200px !important'} : ($vuetify.breakpoint.smAndUp?{ 'font-size': '130px !important'}:{})">
                   BLUESHELL
                 </p>
-                <p class="white--text text-h5 font-weight-light font-italic">
+
+                <!--                <p id="blueshell"-->
+                <!--                   class="white&#45;&#45;text text-h1"-->
+                <!--                   v-bind:style="$vuetify.breakpoint.mdAndUp?{ 'font-size': '150px !important'} : ($vuetify.breakpoint.sm?{ 'font-size': '100px !important'}: ($vuetify.breakpoint.xs?{ 'font-size': '60px !important'}:{}))">-->
+                <!--                  BLUESHELL-->
+                <!--                </p>-->
+                <p class="white--text text-h3 font-weight-light font-italic">
                   Student esports and gaming association of the Twente region!
                 </p>
                 <v-btn x-large color="primary" rounded @click="$router.push('/membership')"
@@ -36,16 +42,36 @@ export default {
 
 
 <style scoped lang="scss">
-@font-face {
-  font-family: 'Blueshell';
-  src: local("Blueshell"),
-  url('../assets/Blueshell.woff2') format('woff2'), /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-  url('../assets/Blueshell.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
-}
 
 #blueshell {
-  font-family: "Blueshell", sans-serif !important;
   height: 150px;
 }
+
+//:root {
+//  --panel-width: 20px
+//}
+//
+//.banner {
+//  position: absolute;
+//  width: var(--panel-width);
+//  height: 900px;
+//  transform: skew(-20deg);
+//  -webkit-animation: ltr;
+//  -o-animation: ltr;
+//  animation: ltr ;
+//  animation-duration: 5s;
+//  animation-iteration-count: infinite;
+//
+//}
+//
+//@keyframes ltr {
+//  from {
+//    right: calc(100% + var(--panel-width));
+//  }
+//  to {
+//    right: calc(-1 * var(--panel-width));
+//  }
+//
+//}
 
 </style>
