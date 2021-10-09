@@ -34,7 +34,7 @@
           </p>
 
           <p class="body-1 mb-0" style="text-align: left; font-weight: bold">
-            Tjebbe “Issie54” Iskander Sterck - Treasurer
+            Mart "xX_Vissoepje_Xx" Ordelmans - Treasurer
           </p>
         </div>
 
