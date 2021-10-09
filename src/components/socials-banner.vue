@@ -38,7 +38,7 @@ export default {
 .banner {
   background-size: cover;
   /*background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../assets/goom2.jpg") fixed center;*/
-  background: #272727
+  background: #1E1E1E
 }
 
 .container {

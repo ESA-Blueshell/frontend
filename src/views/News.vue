@@ -3,18 +3,21 @@
     <top-banner title="News"></top-banner>
     <v-list class="mx-auto" style="max-width: 800px">
       <template v-for="(item, i) in news">
-      <v-list-item :key="i">
-        <v-list-item-content>
-          <div class="mx-auto my-4">
-            <h6>{{ item.newsType }}</h6>
-            <h2>{{ item.title }}</h2>
-            <p>{{ getWords(item.content) }} ...</p>
-            <router-link :to="'/news/article/' + item.id" style="text-decoration: none;">Read more...</router-link>
-            <h5 style="margin-top: 10px">By <b>{{ item.creatorUsername }}</b>, {{ item.postedAt.slice(0, 10) }}</h5>
-          </div>
-        </v-list-item-content>
-      </v-list-item>
-        <v-divider :key="i" v-if="i !== (news.length - 1)"></v-divider>
+        <v-list-item :key="i">
+          <v-list-item-content>
+            <div class="mx-auto my-4">
+              <h6>{{ item.newsType }}</h6>
+              <h2>{{ item.title }}</h2>
+              <p>{{ getWords(item.content) }} ...</p>
+              <router-link :to="'/news/article/' + item.id" style="text-decoration: none;">Read
+                more...
+              </router-link>
+              <h5 style="margin-top: 10px">By <b>{{ item.creatorUsername }}</b>,
+                {{ item.postedAt.slice(0, 10) }}</h5>
+            </div>
+          </v-list-item-content>
+        </v-list-item>
+        <v-divider :key="i+'divider'" v-if="i !== (news.length - 1)"></v-divider>
       </template>
     </v-list>
     <!-- TODO: FIX THIS LATER -->

@@ -2,6 +2,9 @@
     letter-spacing: 0
 }
 
+.theme--dark.v-sheet{
+    background-color: #1E1E1E !important;
+}
 @font-face {
     font-family: 'Fugaz One';
     src: url('/fonts/FugazOne-regular.ttf') format('truetype');
