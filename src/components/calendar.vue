@@ -4,15 +4,15 @@
       <!-- Start of the top bar. Includes today, previous and forward buttons and current month. -->
       <v-sheet height="64">
         <v-toolbar flat>
-          <v-btn outlined class="mr-4" color="grey darken-2" @click="setToday">
+          <v-btn outlined class="mr-4" color="accent" @click="setToday">
             Today
           </v-btn>
-          <v-btn fab text small color="grey darken-2" @click="prev">
+          <v-btn fab text small color="accent" @click="prev">
             <v-icon>
               mdi-chevron-left
             </v-icon>
           </v-btn>
-          <v-btn fab text small color="grey darken-2" @click="next">
+          <v-btn fab text small color="accent" @click="next">
             <v-icon>
               mdi-chevron-right
             </v-icon>
@@ -32,7 +32,7 @@
           </v-fade-transition>
           <v-btn
               outlined
-              color="grey darken-2"
+              color="accent"
               v-if="this.type==='day'"
               @click="viewMonth"
           ><v-icon class="ml-n2 mr-1">mdi-arrow-left</v-icon>
@@ -48,7 +48,7 @@
             v-model="focus"
             :events="events"
             :weekdays="weekdays"
-            color="blue lighten-1"
+            color="primary lighten-1"
             event-color="primary"
             :type="this.type"
             :interval-format="intervalFormat"
@@ -67,7 +67,7 @@
             offset-x
             v-if="selectedEvent"
         >
-          <v-card color="grey lighten-4" max-width="350px">
+          <v-card max-width="350px">
             <!-- Start of the toolbar in the selected event menu -->
             <!-- Includes the event's title and the location and add to calendar buttons -->
             <v-toolbar :color="selectedEvent.color" dark>
@@ -150,7 +150,7 @@
           Just ping @SiteCie on Discord and we'll look into it
           <template v-slot:action="{ attrs }">
             <v-btn
-                color="blue"
+                color="primary"
                 text
                 v-bind="attrs"
                 @click="snackbar = false">

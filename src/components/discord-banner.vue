@@ -1,5 +1,5 @@
 <template>
-  <div class="banner"
+  <div :style="{background: $vuetify.theme.dark?$vuetify.theme.themes.dark.background:$vuetify.theme.themes.light.background}"
   ><!--v-bind:style="$vuetify.breakpoint.smAndUp?{ height: '120px'}:{ height: '200px' }"-->
     <v-row class="mx-auto container flex-nowrap" align="center" justify="space-between" >
       <v-col md="auto" cols="120">
@@ -27,11 +27,11 @@ export default {
 </script>
 
 <style scoped>
-.banner {
-  background-size: cover;
-  /*background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../assets/goom.jpg") fixed center;*/
-  background: #1E1E1E
-}
+/*.banner {*/
+/*  background-size: cover;*/
+/*  !*background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../assets/goom.jpg") fixed center;*!*/
+/*  background: #1E1E1E*/
+/*}*/
 
 .container {
   max-width: 1100px;

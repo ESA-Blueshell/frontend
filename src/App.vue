@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app v-bind:style="{'list-style-image':$vuetify.theme.dark?'url(/listitemdark.svg)':'url(/listitemlight.svg)'}">
     <v-app-bar dark elevate-on-scroll fixed>
       <v-app-bar-nav-icon @click="drawer = true"
                           v-if="$vuetify.breakpoint.mdAndDown">
@@ -168,7 +168,26 @@
         ETT
       </v-btn>
       <v-spacer></v-spacer>
-      <div class="white--text">SITECIE GANG &copy; {{ new Date().getFullYear() }}</div>
+
+      <div class="white--text mr-4">SITECIE GANG &copy; {{ new Date().getFullYear() }}</div>
+
+      <v-tooltip v-if="!$vuetify.theme.dark" top>
+        <template v-slot:activator="{ on }">
+          <v-btn v-on="on" color="primary" x-small fab @click="darkMode" rounded>
+            <v-icon class="mr-1">mdi-moon-waxing-crescent</v-icon>
+          </v-btn>
+        </template>
+        <span>Toggle dark mode</span>
+      </v-tooltip>
+
+      <v-tooltip v-else top>
+        <template v-slot:activator="{ on }">
+          <v-btn v-on="on" color="background" x-small fab @click="darkMode" rounded>
+            <v-icon color="accent">mdi-white-balance-sunny</v-icon>
+          </v-btn>
+        </template>
+        <span>Toggle dark mode</span>
+      </v-tooltip>
     </v-footer>
     <v-snackbar rounded v-model="poggers" timeout="105000">
       <audio controls autoplay v-if="poggers">
@@ -192,6 +211,9 @@ export default {
   methods: {
     goto(url) {
       router.push(url)
+    },
+    darkMode() {
+      this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
     }
   },
   mounted() {

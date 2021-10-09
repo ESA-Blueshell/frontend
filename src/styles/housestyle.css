@@ -2,12 +2,14 @@
     letter-spacing: 0
 }
 
-.theme--dark.v-sheet{
-    background-color: #1E1E1E !important;
+.theme--dark.v-application {
+    background-color: #1E1E1E;
 }
-
-li {
-    list-style-image: url(/listitem.svg);
+.theme--dark.v-toolbar.v-sheet{
+    background-color: #1E1E1E;
+}
+.v-toolbar{
+    transition: inherit;
 }
 
 @font-face {
