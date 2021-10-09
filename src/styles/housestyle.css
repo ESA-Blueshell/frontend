@@ -18,12 +18,27 @@
     border: 1px transparent solid;
 }
 
-:is(:hover,[aria-expanded="true"]).v-btn.theme--dark {
+:is(:hover,[aria-expanded="true"],[aria-current="page"]).v-btn.theme--dark {
     color: #A8FF00;
     border: 1px #A8FF00 solid;
 }
 
-:is(:hover,[aria-expanded="true"],.v-btn--outlined).v-btn.theme--dark .v-btn__content {
+:is(:hover,[aria-expanded="true"],[aria-current="page"]).v-btn.theme--dark .v-btn__content {
+    color: white;
+}
+
+
+
+.v-list-item.theme--dark:not(.v-btn--outlined) {
+    border: 1px transparent solid;
+}
+
+:is(:hover,[aria-expanded="true"],[aria-current="page"]).v-list-item.theme--dark {
+    color: #A8FF00;
+    border: 1px #A8FF00 solid;
+}
+
+:is(:hover,[aria-expanded="true"],[aria-current="page"]).v-list-item.theme--dark :is(.v-list-item__title, .v-list-item__icon) {
     color: white;
 }
 

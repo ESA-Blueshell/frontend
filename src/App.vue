@@ -176,23 +176,14 @@
 
       <div class="white--text mr-4">SITECIE GANG &copy; {{ new Date().getFullYear() }}</div>
 
-      <v-tooltip v-if="!$vuetify.theme.dark" top>
-        <template v-slot:activator="{ on }">
-          <v-btn v-on="on" color="primary" x-small fab @click="darkMode" rounded>
-            <v-icon class="mr-1">mdi-moon-waxing-crescent</v-icon>
-          </v-btn>
-        </template>
-        <span>Toggle dark mode</span>
-      </v-tooltip>
+<!--  Dark mode toggle    -->
+      <v-btn color="primary" x-small fab @click="darkMode" rounded v-if="!$vuetify.theme.dark">
+        <v-icon class="mr-1">mdi-moon-waxing-crescent</v-icon>
+      </v-btn>
+      <v-btn color="background" x-small fab @click="darkMode" rounded v-else>
+        <v-icon color="accent">mdi-white-balance-sunny</v-icon>
+      </v-btn>
 
-      <v-tooltip v-else top>
-        <template v-slot:activator="{ on }">
-          <v-btn v-on="on" color="background" x-small fab @click="darkMode" rounded>
-            <v-icon color="accent">mdi-white-balance-sunny</v-icon>
-          </v-btn>
-        </template>
-        <span>Toggle dark mode</span>
-      </v-tooltip>
     </v-footer>
     <v-snackbar rounded v-model="poggers" timeout="105000">
       <audio controls autoplay v-if="poggers">
@@ -219,7 +210,7 @@ export default {
     },
     darkMode() {
       this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
-      localStorage.setItem('darkMode',this.$vuetify.theme.dark.toString())
+      localStorage.setItem('darkMode', this.$vuetify.theme.dark.toString())
     }
   },
   mounted() {

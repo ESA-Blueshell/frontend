@@ -1,10 +1,12 @@
 <template>
-  <v-parallax :src="gaming" height="364">
+  <v-parallax :src="gaming" :height="$vuetify.breakpoint.lgAndUp ? 364 :264">
     <v-container fill-height fluid style="background: rgba(0,0,0,0.5)">
       <v-row>
         <v-col>
-          <div class="text-h2 font-weight-bold white--text text-center mt-16"
-               style="letter-spacing: 5px !important">
+          <div class="text-h1 font-weight-bold white--text text-center mt-16"
+               style="letter-spacing: 5px !important;line-height: normal !important;"
+               v-bind:style="$vuetify.breakpoint.lgAndUp? {} : $vuetify.breakpoint.mdOnly?{ 'font-size': '70px !important'} : $vuetify.breakpoint.smOnly? { 'font-size': '50px !important'} : { 'font-size': '40px !important'}"
+          >
             {{ title.toUpperCase() }}
           </div>
         </v-col>
