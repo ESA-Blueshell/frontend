@@ -9,8 +9,13 @@
 
 @font-face {
     font-family: 'Barlow Semi Condensed';
-    src: url('/fonts/BarlowSemiCondensed-Light.ttf') format('truetype');
+    src: url('/fonts/BarlowSemiCondensed-Regular.ttf') format('truetype');
 }
+
+/*@font-face {*/
+/*    font-family: 'Barlow Semi Condensed';*/
+/*    src: url('/fonts/BarlowSemiCondensed-Light.ttf') format('truetype');*/
+/*}*/
 
 @font-face {
     font-family: 'Barlow Semi Condensed';
