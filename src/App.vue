@@ -1,5 +1,6 @@
 <template>
-  <v-app v-bind:style="{'list-style-image':$vuetify.theme.dark?'url(/listitemdark.svg)':'url(/listitemlight.svg)'}">
+  <v-app
+      v-bind:style="{'list-style-image':$vuetify.theme.dark?'url(/listitemdark.svg)':'url(/listitemlight.svg)'}">
     <v-app-bar dark elevate-on-scroll fixed>
       <v-app-bar-nav-icon @click="drawer = true"
                           v-if="$vuetify.breakpoint.mdAndDown">
@@ -38,7 +39,9 @@
           <v-list>
             <v-list-item to="/esports">Competitive scene</v-list-item>
             <v-list-item to="/esports/league-of-legends">League of Legends</v-list-item>
-            <v-list-item to="/esports/counter-strike-global-offensive">Counter Strike: Global Offensive</v-list-item>
+            <v-list-item to="/esports/counter-strike-global-offensive">Counter Strike: Global
+              Offensive
+            </v-list-item>
             <v-list-item to="/esports/valorant">Valorant</v-list-item>
           </v-list>
         </v-menu>
@@ -92,7 +95,9 @@
           </template>
           <v-list-item to="/esports">Competitive scene</v-list-item>
           <v-list-item to="/esports/league-of-legends">League of Legends</v-list-item>
-          <v-list-item to="/esports/counter-strike-global-offensive">Counter Strike: Global Offensive</v-list-item>
+          <v-list-item to="/esports/counter-strike-global-offensive">Counter Strike: Global
+            Offensive
+          </v-list-item>
           <v-list-item to="/esports/valorant">Valorant</v-list-item>
           <v-divider dark></v-divider>
         </v-list-group>
@@ -214,6 +219,7 @@ export default {
     },
     darkMode() {
       this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
+      localStorage.setItem('darkMode',this.$vuetify.theme.dark.toString())
     }
   },
   mounted() {

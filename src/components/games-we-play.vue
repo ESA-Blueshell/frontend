@@ -24,8 +24,8 @@
                @mouseenter="hover(i,j)"
                @mouseleave="unhover"
                @click="goto(game.esportsLink)"
-               v-bind:style="{cursor: game.esportsLink ? 'pointer' : 'auto', 'background-color':  (!showPopup && !hoverCarousel) || (currentGame!==null && i===currentGame.y && j===currentGame.x ) ? '#F5F5F5aa' : '#F5F5F544'}"
-        >
+               v-bind:style="{cursor: game.esportsLink ? 'pointer' : 'auto', 'background-color':  !($vuetify.theme.dark && (!showPopup && !hoverCarousel)) && ((!showPopup && !hoverCarousel) || (currentGame!==null && i===currentGame.y && j===currentGame.x )) ? '#F5F5F5aa' : '#F5F5F544'}"
+        ><!-- I NEVER WANT TO LOOK AT THIS FUCKED LOGIC AGAIN AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA-->
           <v-img class="ma-2" :src="game.icon" eager/>
         </v-col>
       </v-row>

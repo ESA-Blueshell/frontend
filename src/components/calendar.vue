@@ -32,7 +32,6 @@
           </v-fade-transition>
           <v-btn
               outlined
-              color="accent"
               v-if="this.type==='day'"
               @click="viewMonth"
           ><v-icon class="ml-n2 mr-1">mdi-arrow-left</v-icon>

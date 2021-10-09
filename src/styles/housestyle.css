@@ -5,12 +5,28 @@
 .theme--dark.v-application {
     background-color: #1E1E1E;
 }
-.theme--dark.v-toolbar.v-sheet{
+
+.theme--dark.v-toolbar.v-sheet {
     background-color: #1E1E1E;
 }
-.v-toolbar{
+
+.v-toolbar {
     transition: inherit;
 }
+
+.v-btn.theme--dark:not(.v-btn--outlined) {
+    border: 1px transparent solid;
+}
+
+:is(:hover,[aria-expanded="true"]).v-btn.theme--dark {
+    color: #A8FF00;
+    border: 1px #A8FF00 solid;
+}
+
+:is(:hover,[aria-expanded="true"],.v-btn--outlined).v-btn.theme--dark .v-btn__content {
+    color: white;
+}
+
 
 @font-face {
     font-family: 'Fugaz One';
