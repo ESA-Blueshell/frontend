@@ -18,12 +18,22 @@
     border: 1px transparent solid;
 }
 
-:is(:hover,[aria-expanded="true"],[aria-current="page"]).v-btn.theme--dark {
+/*
+CSS MOMENT
+
+CSS MOMENT
+*/
+:is(:hover,[aria-expanded="true"],[aria-current="page"]).v-btn.theme--dark:not(.primary):not(.v-btn--round) {
     color: #A8FF00;
     border: 1px #A8FF00 solid;
 }
 
-:is(:hover,[aria-expanded="true"],[aria-current="page"],.v-btn--outlined).v-btn.theme--dark .v-btn__content {
+/*
+CSS MOMENT
+
+CSS MOMENT
+*/
+:is(:hover,[aria-expanded="true"],[aria-current="page"],.v-btn--outlined).v-btn.theme--dark:not(.primary):not(.v-btn--round) .v-btn__content {
     color: white;
 }
 
