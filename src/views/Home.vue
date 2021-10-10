@@ -162,7 +162,7 @@ export default {
           icon: "mdi-trophy",
           color: "yellow darken-2",
           title: "Esports",
-          url: "/esports",
+          url: "/esports/competitive-scene",
           text: "As the name of our association suggests, esports is an integral part of Blueshell. Click the icon above to find more information on what we offer!"
         },
         {

@@ -67,7 +67,7 @@ export default new Router({
       component: Committees
     },
     {
-      path: '/esports',
+      path: '/esports/competitive-scene',
       name: 'esports',
       component: Esports
     },

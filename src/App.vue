@@ -32,12 +32,12 @@
         <v-btn class="bar-button" text dark to="/events">Events</v-btn>
         <v-menu open-on-hover offset-y>
           <template v-slot:activator="{ on, attrs }">
-            <v-btn class="bar-button" v-bind="attrs" v-on="on" text dark to="/esports">Esports
+            <v-btn class="bar-button" v-bind="attrs" v-on="on" text dark to="/esports/competitive-scene">Esports
               <v-icon>mdi-chevron-down</v-icon>
             </v-btn>
           </template>
           <v-list>
-            <v-list-item to="/esports">Competitive scene</v-list-item>
+            <v-list-item to="/esports/competitive-scene">Competitive scene</v-list-item>
             <v-list-item to="/esports/league-of-legends">League of Legends</v-list-item>
             <v-list-item to="/esports/counter-strike-global-offensive">Counter Strike: Global
               Offensive
@@ -93,7 +93,7 @@
               Esports
             </v-list-item-title>
           </template>
-          <v-list-item to="/esports">Competitive scene</v-list-item>
+          <v-list-item to="/esports/competitive-scene">Competitive scene</v-list-item>
           <v-list-item to="/esports/league-of-legends">League of Legends</v-list-item>
           <v-list-item to="/esports/counter-strike-global-offensive">Counter Strike: Global
             Offensive
