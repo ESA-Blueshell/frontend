@@ -38,7 +38,6 @@ CSS MOMENT
 }
 
 
-
 :is(.v-list--nav,.v-menu__content) .v-list-item.theme--dark:not(.v-btn--outlined) {
     border: 1px transparent solid;
 }
@@ -47,15 +46,19 @@ CSS MOMENT
     color: #A8FF00;
     border: 1px #A8FF00 solid;
 }
+
 /*
 CSS MOMENT
 
 CSS MOMENT
 */
-:is(.v-list--nav,.v-menu__content) :is(:hover,[aria-expanded="true"],[aria-current="page"]).v-list-item.theme--dark :is(.v-list-item__title,.v-list-item__icon,.v-list-item--link) {
+:is(.v-list--nav,.v-menu__content) :is(:hover,[aria-expanded="true"],[aria-current="page"]).v-list-item.theme--dark:is(.v-list-item__title,.v-list-item__icon,.v-list-item--link) {
     color: white;
 }
 
+.v-divider.theme--dark {
+    border-color: #A8FF00;
+}
 
 @font-face {
     font-family: 'Fugaz One';
