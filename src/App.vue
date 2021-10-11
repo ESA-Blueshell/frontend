@@ -65,12 +65,23 @@
       <v-spacer/>
 
       <!--  Dark mode toggle    -->
-      <v-btn color="primary" x-small fab @click="darkMode" rounded v-if="!$vuetify.theme.dark">
-        <v-icon class="mr-1">mdi-moon-waxing-crescent</v-icon>
-      </v-btn>
-      <v-btn color="background" x-small fab @click="darkMode" rounded v-else>
-        <v-icon color="accent">mdi-white-balance-sunny</v-icon>
-      </v-btn>
+      <v-tooltip bottom>
+        <template v-slot:activator="{ on, attrs }">
+          <div v-on="on" v-bind="attrs" class="mr-4">
+            <v-btn small icon @click="darkMode" rounded>
+              <transition name="roll" mode="out-in">
+                <v-icon key="1" color="white" v-if="!$vuetify.theme.dark" style="transition: unset">
+                  mdi-moon-waxing-crescent
+                </v-icon>
+                <v-icon key="2" color="accent" v-else style="transition: unset">
+                  mdi-white-balance-sunny
+                </v-icon>
+              </transition>
+            </v-btn>
+          </div>
+        </template>
+        <span>Toggle dark mode</span>
+      </v-tooltip>
 
       <!--      <v-btn class="bar-button" text dark to="/login">Login</v-btn>-->
     </v-app-bar>
@@ -237,5 +248,22 @@ export default {
   margin: 2px;
   height: 100% !important;
 }
+
+.roll-enter-active {
+  animation: rotate-in 0.5s;
+}
+
+@keyframes rotate-in {
+  0% {
+    transform: rotate(-45deg);
+  }
+  50% {
+    transform: rotate(22.5deg);
+  }
+  100% {
+    transform: rotate(0);
+  }
+}
+
 
 </style>
