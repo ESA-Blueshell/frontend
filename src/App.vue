@@ -32,7 +32,8 @@
         <v-btn class="bar-button" text dark to="/events">Events</v-btn>
         <v-menu open-on-hover offset-y>
           <template v-slot:activator="{ on, attrs }">
-            <v-btn class="bar-button" v-bind="attrs" v-on="on" text dark to="/esports/competitive-scene">Esports
+            <v-btn class="bar-button" v-bind="attrs" v-on="on" text dark
+                   to="/esports/competitive-scene">Esports
               <v-icon>mdi-chevron-down</v-icon>
             </v-btn>
           </template>
@@ -60,7 +61,17 @@
         </v-menu>
         <v-btn class="bar-button" text dark to="/contact">Contact</v-btn>
       </div>
-      <!--      <v-spacer/>-->
+
+      <v-spacer/>
+
+      <!--  Dark mode toggle    -->
+      <v-btn color="primary" x-small fab @click="darkMode" rounded v-if="!$vuetify.theme.dark">
+        <v-icon class="mr-1">mdi-moon-waxing-crescent</v-icon>
+      </v-btn>
+      <v-btn color="background" x-small fab @click="darkMode" rounded v-else>
+        <v-icon color="accent">mdi-white-balance-sunny</v-icon>
+      </v-btn>
+
       <!--      <v-btn class="bar-button" text dark to="/login">Login</v-btn>-->
     </v-app-bar>
     <v-navigation-drawer v-model="drawer" app temporary dark>
@@ -175,15 +186,6 @@
       <v-spacer></v-spacer>
 
       <div class="white--text mr-4">SITECIE GANG &copy; {{ new Date().getFullYear() }}</div>
-
-<!--  Dark mode toggle    -->
-      <v-btn color="primary" x-small fab @click="darkMode" rounded v-if="!$vuetify.theme.dark">
-        <v-icon class="mr-1">mdi-moon-waxing-crescent</v-icon>
-      </v-btn>
-      <v-btn color="background" x-small fab @click="darkMode" rounded v-else>
-        <v-icon color="accent">mdi-white-balance-sunny</v-icon>
-      </v-btn>
-
     </v-footer>
     <v-snackbar rounded v-model="poggers" timeout="105000">
       <audio controls autoplay v-if="poggers">
