@@ -24,7 +24,6 @@ CSS MOMENT
 CSS MOMENT
 */
 :is(:hover,[aria-expanded="true"],[aria-current="page"]).v-btn.theme--dark:not(.primary):not(.v-btn--round) {
-    color: #A8FF00;
     border: 1px #A8FF00 solid;
 }
 
@@ -43,7 +42,6 @@ CSS MOMENT
 }
 
 :is(.v-list--nav,.v-menu__content) :is(:hover,[aria-expanded="true"],[aria-current="page"]).v-list-item.theme--dark {
-    color: #A8FF00;
     border: 1px #A8FF00 solid;
 }
 
