@@ -7,9 +7,7 @@
       </v-app-bar-nav-icon>
       <v-toolbar-title class="ml-sm-n5 ml-md-0 ml-lg-0 ml-xl-0 ">
         <router-link to="/">
-          <v-img contain :src="require('./assets/topbarlogo.png')" alt="Blueshell logo"
-                 style="height: 50px;width: 144px" class="mr-4">
-          </v-img>
+          <img :src="require('./assets/topbarlogo.png')"  alt="Blueshell logo" style="height: 64px;max-width: 260px" class="mr-3">
         </router-link>
       </v-toolbar-title>
       <div v-if="$vuetify.breakpoint.lgAndUp"
@@ -67,7 +65,7 @@
       <!--  Dark mode toggle    -->
       <v-tooltip bottom>
         <template v-slot:activator="{ on, attrs }">
-          <div v-on="on" v-bind="attrs" class="mr-4">
+          <div v-on="on" v-bind="attrs">
             <v-btn small icon @click="darkMode" rounded>
               <transition name="roll" mode="out-in">
                 <v-icon key="1" color="white" v-if="!$vuetify.theme.dark" style="transition: unset">
@@ -213,7 +211,6 @@ export default {
   data() {
     return {
       drawer: false,
-      shellyLogo: require("./assets/shelly.png"),
       poggers: false,
     }
   },
