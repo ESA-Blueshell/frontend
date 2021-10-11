@@ -7,10 +7,12 @@
           <v-list-item-content>
             <div class="mx-auto my-4">
               <h6>{{ item.newsType }}</h6>
-              <h2>{{ item.title }}</h2>
+              <router-link :to="'/news/article/' + item.id" style="text-decoration: none; color: inherit; ">
+                <h2>{{ item.title }}</h2>
+              </router-link>
               <p>{{ getWords(item.content) }} ...</p>
-              <router-link :to="'/news/article/' + item.id" style="text-decoration: none;">Read
-                more...
+              <router-link :to="'/news/article/' + item.id" style="text-decoration: none;">
+                Read more...
               </router-link>
               <h5 style="margin-top: 10px">By <b>{{ item.creatorUsername }}</b>,
                 {{ item.postedAt.slice(0, 10) }}</h5>
