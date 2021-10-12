@@ -5,7 +5,7 @@ import store from './store'
 import 'vuetify/dist/vuetify.min.css'
 import vuetify from './plugins/vuetify';
 import '@mdi/font/css/materialdesignicons.css'
-import './styles/housestyle.css';
+import './assets/housestyle.css';
 import Axios from 'axios';
 
 Vue.config.productionTip = false
