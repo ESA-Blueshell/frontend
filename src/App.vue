@@ -220,7 +220,7 @@ export default {
     },
     darkMode() {
       this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
-      localStorage.setItem('darkMode', this.$vuetify.theme.dark.toString())
+      localStorage.setItem('esa-blueshell.nl:darkMode', this.$vuetify.theme.dark.toString())
     }
   },
   mounted() {
