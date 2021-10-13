@@ -54,12 +54,12 @@ CSS MOMENT
 
 @font-face {
     font-family: 'Fugaz One';
-    src: url('/fonts/FugazOne-regular.ttf') format('truetype');
+    src: url('/FugazOne-regular.ttf') format('truetype');
 }
 
 @font-face {
     font-family: 'Barlow Semi Condensed';
-    src: url('/fonts/BarlowSemiCondensed-Regular.ttf') format('truetype');
+    src: url('/BarlowSemiCondensed-Regular.ttf') format('truetype');
 }
 
 /*@font-face {*/
@@ -69,13 +69,13 @@ CSS MOMENT
 
 @font-face {
     font-family: 'Barlow Semi Condensed';
-    src: url('/fonts/BarlowSemiCondensed-SemiBold.ttf') format('truetype');
+    src: url('/BarlowSemiCondensed-SemiBold.ttf') format('truetype');
     font-weight: bold;
 }
 
 @font-face {
     font-family: 'Blueshell';
-    src: local("Blueshell"), url('/fonts/Blueshell.woff2') format('woff2'), url('/fonts/Blueshell.ttf') format('truetype');
+    src: local("Blueshell"), url('/Blueshell.woff2') format('woff2'), url('/Blueshell.ttf') format('truetype');
 }
 
 .v-application .text-h1 {
