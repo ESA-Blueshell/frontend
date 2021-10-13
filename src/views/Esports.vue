@@ -4,14 +4,30 @@
     <div class="mx-3">
       <div class="mx-auto my-10" style="max-width: 800px">
         <p class="text-h4 font-weight-light">
-          Blueshell's competitive scene
+          Blueshell's Competitive Scene
+        </p>
+
+        <p class="body-1">
+          Esports is an important component of Blueshell. There are several student leagues that
+          serves the purpose of bringing student teams together in fiery competitive play. We make a
+          distinction between <i>College Leagues</i> and <i>Tournaments</i>.
         </p>
         <p class="body-1">
-          As our association’s name suggests, esports is an important part of Blueshell. Whether
-          you’re looking to take your game to the next level and compete against other universities,
-          or just looking for a group to compete together within Clash or the Blueshell tournaments,
-          we got you covered! Below, you can see what teams we currently have by clicking on the
-          respective game’s icon.
+          We have teams for Student League such as League of Legends' Dutch College League (DCL).
+          These leagues are played in a series of games and seasons to determine which university
+          has the best and strongest team. For current leagues, we recruit members and make teams.
+          The number of teams depends on how the college leagues are structured and whether they
+          have multiple divisions. Furthermore, we will always try to look for more opportunities on
+          a national level and find new games.
+        </p>
+        <p class="body-1">
+          Tournaments are a rare or yearly occurrence where third party organizations (LAN parties,
+          non-profit organizations, companies, football clubs) organize an event catered to one or
+          more competitive games. They have no 'seasons' of competitive play. For these types of
+          tournaments, we unfortunately do not have any active teams yet.
+        </p>
+        <p class="body-1">
+          Click on one of the icons below to check out the teams we have for these games.
         </p>
 
         <v-row class="my-10" justify="center">
@@ -26,24 +42,11 @@
           Interested in competitive play?
         </p>
         <p class="body-1">
-          Then you are at the right place! Blueshell's teams are open for people of any skill level,
-          thus do not hesitate to show interest. How you may ask? Well, here are some forms that can
-          help you with that. Click <a href="https://forms.gle/kXPGTU6kXvRjhXnc7" target="_blank"
-                                       class="text-decoration-none">here</a> to fill in your
-          individual interest in the esports scene. Already got a crew together? Click <a
-            href="https://forms.gle/tJ8TkeQ6cD24hjm4A" target="_blank" class="text-decoration-none">here</a>
-          to sign your team up! </p>
-        <p class="body-1">
-          Are you interested in playing your favorite video game in a competitive environment with a
-          team of fellow Blueshell members, but we don’t have a team for that game yet? Do not
-          worry! With your initiative and the help of Blueshell a lot is possible. Contact the board
-          for more information about this, and maybe you are the first team of Blueshell to play for
-          your favorite game.
-        </p>
-        <p class="body-1">
-          Still got some questions left? Do not hesitate to send an email to us at
-          <a href="mailto:esports@blueshell.utwente.nl" target="_blank"
-             class="text-decoration-none">esports@blueshell.utwente.nl</a>!
+          Are you interested representing Blueshell Esports in your competitive pursuit? Whether you
+          have a team or not, we would gladly welcome you and help you become the best version of
+          yourself! Please contact <a href="mailto:esports@blueshell.utwente.nl" target="_blank"
+                                      class="text-decoration-none">esports@blueshell.utwente.nl</a>
+          to discuss the details.
         </p>
       </div>
     </div>
