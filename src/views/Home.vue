@@ -179,6 +179,10 @@ export default {
           url: "/partners/el-nino"
         },
         {
+          logo: require("../assets/brunen.png"),
+          url: "https://brunen.nl/"
+        },
+        {
           logo: require("../assets/ett.png"),
           url: "https://esportsteamtwente.nl/"
         },
