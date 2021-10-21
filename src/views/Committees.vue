@@ -70,7 +70,7 @@ export default {
         },
         {
           name: 'LegaCie',
-          description: 'Have you seen a flyer from Blueshell? Maybe a banner or some sort of a 3D Shelly figure? Big chance that the DesignCie made this! They do everything which mere mortals cannot comprehend however that does not mean you cant! This committee is essential to Blueshell as it is the primary way of making promotion to those yet unfamiliar with this amazing association.',
+          description: 'The LegaCie is an amazing committee that organises the monthly gamenight and when they\'re feeling wonky they might even organise a pubquiz. In addition, we host our personal movie nights so there is some good committee bonding. Join us, and always have a spot at every gamenight',
         },
         {
           name: 'LoLCie',
@@ -90,7 +90,7 @@ export default {
         },
         {
           name: 'NintenCo',
-          description: 'ChessCie is a community of styleful people who so happen to enjoy chess. We do team-building activities to get to know the other members of ChessCie better as this improves the quality and effectiveness of our highly efficient meetings. This guarantees that ChessCie events are and will always be by far the best organized events in Blueshell.',
+          description: 'We Nintendo fans bundle our strength together to organize fun Nintendo-related events. From Nintendo Nights to specific Nintendo games (new and old), the possibilities are endless!',
         },
         {
           name: 'ServerCie',
