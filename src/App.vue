@@ -189,6 +189,9 @@
       <v-btn href="https://www.elnino.tech/" target="_blank">
         El Niño
       </v-btn>
+      <v-btn href="https://www.brunen.nl/" target="_blank">
+        Brunen
+      </v-btn>
       <v-btn href="https://esportsteamtwente.nl/" target="_blank">
         ETT
       </v-btn>
