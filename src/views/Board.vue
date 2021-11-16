@@ -9,9 +9,8 @@
 
 
         <p class="body-1">
-          Every year our association grows and takes a new shape, and in its 5th year, the board
-          ensures the trend of evolution continues! We present you with the 5th board of Blueshell
-          Esports!
+          Every year, our association grows and takes on new shapes. We present you the fifth board
+          of Blueshell Esports, as they will stay ahead of the competition!
         </p>
         <v-img src="../assets/boardImage.jpg"></v-img>
 
