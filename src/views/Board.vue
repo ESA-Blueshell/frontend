@@ -6,13 +6,16 @@
         <p class="text-h4 font-weight-bold text-center">
           Current board
         </p>
+
+
         <p class="body-1">
           Every year our association grows and takes a new shape, and in its 5th year, the board
           ensures the trend of evolution continues! We present you with the 5th board of Blueshell
           Esports!
         </p>
+        <v-img src="../assets/boardImage.jpg"></v-img>
 
-        <div class="d-flex flex-column">
+        <div class="d-flex flex-column mt-4">
           <p class="body-1 mb-0" style="text-align: left; font-weight: bold">
             Daniël "thiefzz" Floor - Chairman
           </p>
