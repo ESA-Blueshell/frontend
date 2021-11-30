@@ -11,6 +11,7 @@
       </div>
     </div>
     <team :team="hypers"></team>
+    <team :team="revenge"></team>
   </v-main>
 </template>
 
@@ -27,16 +28,16 @@ export default {
         bg: require('../../assets/csgoesports1.jpg'),
         players: [
           {
-            name: 'Thomas Rijgersberg',
-            ign: 'LpC'
+            name: 'Antons Naumenko',
+            ign: 'DextoxTea'
           },
           {
             name: 'Jonas Valentijn',
             ign: 'Clunky'
           },
           {
-            name: 'Gorkem Cardak',
-            ign: 'SonGoku'
+            name: 'Mario Walvis',
+            ign: 'TheCheeser'
           },
           {
             name: 'Reinier Algra',
@@ -46,10 +47,54 @@ export default {
             name: 'Wilco Strijker',
             ign: 'FreeFall'
           },
+        ],
+        coaches: [
+          {
+            name: 'Horan Jagen',
+            ign: 'DerpHagen'
+          }
+        ],
+        substitutes: [
+          {
+            name: 'Tim Blok',
+            ign: 'Sjonnie'
+          },
           {
             name: 'Ivo Heitlager',
             ign: 'King Cookie'
           }
+        ]
+      },
+      revenge: {
+        name: 'BS Revenge',
+        bg: require('../../assets/csgoesports2.jpg'),
+        players: [
+          {
+            name: '',
+            ign: 'Vinnyjj'
+          },
+          {
+            name: '',
+            ign: 'Mart10'
+          },
+          {
+            name: '',
+            ign: 'CaptainGork'
+          },
+          {
+            name: '',
+            ign: 'm1nml'
+          },
+          {
+            name: '',
+            ign: 'GuacamoleMen'
+          },
+        ],
+        substitutes: [
+          {
+            name: '',
+            ign: 'YSLyoungthug'
+          },
         ]
       }
     }

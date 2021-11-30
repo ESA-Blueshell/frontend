@@ -11,8 +11,8 @@
       </div>
     </div>
 
-    <team :team="primus" :name-right="false"></team>
-    <team :team="fristiFighters" :name-right="true"></team>
+    <team :team="goombaStompers" :name-right="false"></team>
+<!--    <team :team="fristiFighters" :name-right="true"></team>-->
   </v-main>
 </template>
 
@@ -24,29 +24,29 @@ export default {
   components: {Team, TopBanner},
   data: () => {
     return {
-      primus: {
-        name: 'BS Primus',
+      goombaStompers: {
+        name: 'Blueshell Goombastompers',
         bg: require('../../assets/leagueesportsbg1.jpg'),
         players: [
           {
-            name: 'Enzo Vicento',
-            ign: 'DepressedBySoloQ'
+            name: 'Jungjun Mok',
+            ign: 'Aiden'
           },
           {
-            name: 'Sven Vosslamber',
-            ign: 'Swirliix'
+            name: 'Bas Arkesteijn',
+            ign: 'xOmegafire'
           },
           {
             name: 'Hidde Veldkamp',
             ign: 'Lateralus'
           },
           {
-            name: 'Ziad Elleithy',
-            ign: 'ZenoXed'
+            name: 'Sterk Bruijn',
+            ign: 'Reflection'
           },
           {
-            name: 'Mart Ordelmans',
-            ign: 'Vis Soepje'
+            name: 'Anthonie van Bemmelen',
+            ign: 'Mahonix'
           }
         ],
         coaches: [
@@ -62,7 +62,7 @@ export default {
           }
         ]
       },
-      fristiFighters: {
+      fristiFighters: { // TODO: soontm
         name: 'BS Fristi Fighters',
         bg: require('../../assets/leagueesportsbg2.jpg'),
         players: [
