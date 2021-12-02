@@ -22,7 +22,8 @@
             <v-icon x-large :color="col.color" class="icon" v-html="col.icon"></v-icon>
             <p class="text-h3 ma-3 font-weight-thin" v-html="col.title"></p>
           </div>
-          <p class="body-1 font-weight-light mx-auto" style="max-width: 400px" v-html="col.text"></p>
+          <p class="body-1 font-weight-light mx-auto" style="max-width: 400px"
+             v-html="col.text"></p>
         </v-col>
       </v-row>
     </v-container>
@@ -37,10 +38,10 @@
       <p class="mx-auto text-center text-h2">
         Our partners
       </p>
-      <v-row justify="space-around" align="center" class="mt-6">
-        <v-col v-for="partner in partners" v-bind:key="partner.url" md="auto">
-          <v-img :src="partner.logo"
-                 max-width="400"
+      <v-row justify="space-around" align="center" class="mt-6 mx-auto" style="max-width: 1100px">
+        <v-col v-for="partner in partners" v-bind:key="partner.url" md="6">
+          <v-img :src="$vuetify.theme.dark?partner.logoDark:partner.logo"
+                 max-width="450"
                  class="mx-auto expand"
                  @click="goto(partner.url)">
           </v-img>
@@ -176,14 +177,22 @@ export default {
       partners: [
         {
           logo: require("../assets/elnino.png"),
+          logoDark: require("../assets/elnino.png"),
           url: "/partners/el-nino"
         },
         {
           logo: require("../assets/brunen.png"),
-          url: "https://brunen.nl/"
+          logoDark: require("../assets/brunendark.png"),
+          url: "/partners/brunen"
+        },
+        {
+          logo: require("../assets/dekimo.png"),
+          logoDark: require("../assets/dekimodark.png"),
+          url: "/partners/dekimo"
         },
         {
           logo: require("../assets/ett.png"),
+          logoDark: require("../assets/ettdark.png"),
           url: "https://esportsteamtwente.nl/"
         },
       ]

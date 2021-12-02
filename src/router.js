@@ -13,6 +13,8 @@ import League from "./views/esports/League";
 import Csgo from "./views/esports/Csgo";
 import Documents from "@/views/Documents";
 import ElNino from "@/views/partners/ElNino";
+import Brunen from "@/views/partners/Brunen";
+import Dekimo from "@/views/partners/Dekimo";
 import Partners from "@/views/partners/Partners";
 import Article from "@/views/Article";
 import NotFound from "@/views/NotFound";
@@ -119,6 +121,21 @@ export default new Router({
       path: '/partners/el-nino',
       name: 'elnino',
       component: ElNino
+    },
+    {
+      path: '/partners/brunen',
+      name: 'brunen',
+      component: Brunen
+    },
+    {
+      path: '/partners/dekimo',
+      name: 'dekimo',
+      component: Dekimo
+    },
+    {
+      path: '/account/articleEditor',
+      name: 'articleEditor',
+      component: ArticleEditor
     },
     {
       path: '/:pathMatch(.*)*',
