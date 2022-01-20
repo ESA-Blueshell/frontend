@@ -32,11 +32,7 @@
           </p>
 
           <p class="body-1 mb-0" style="text-align: left; font-weight: bold">
-            Bob "Bobbuz" Even - Commissioner of Esports
-          </p>
-
-          <p class="body-1 mb-0" style="text-align: left; font-weight: bold">
-            Mart "xX_Vissoepje_Xx" Ordelmans - Treasurer
+            Bob "Bobbuz" Even - Commissioner of Esports and Treasurer
           </p>
         </div>
 
