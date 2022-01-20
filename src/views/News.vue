@@ -1,13 +1,27 @@
 <template>
   <v-main>
     <top-banner title="News"></top-banner>
+
+
+    <div class="mx-3">
+      <div class="mx-auto my-5" style="max-width: 800px">
+        <p class="text-h4 font-weight-light">
+          Subscribe to the monthly <a
+            href="https://e0b439d3.sibforms.com/serve/MUIEAIqizJ5g_Rr8BTIJ87Y5ig2C01AXGSiJCeW1VbDKfPRmZ62U6xG90StYCYm7jBUENcyoymK3NG26fqqC_Zj1M8qdIbMeJYr1Kuom0Ph9gOjfvoosc7Ty4rjHv7lQEg04HFGjVKQiUYHN_QFpY_PlzXjZoqwFV-5qiY5VNjLforWZ_luKK4TgS7yONAix1AHKTBLKIF0M6LWN"
+            target="_blank" class="text-decoration-none">
+          Blueshell newsletter</a> to stay up to date with events and the association!
+        </p>
+      </div>
+    </div>
+
     <v-list class="mx-auto" style="max-width: 800px">
       <template v-for="(item, i) in news">
         <v-list-item :key="i">
           <v-list-item-content>
             <div class="mx-auto my-4">
               <h6>{{ item.newsType }}</h6>
-              <router-link :to="'/news/article/' + item.id" style="text-decoration: none; color: inherit; ">
+              <router-link :to="'/news/article/' + item.id"
+                           style="text-decoration: none; color: inherit; ">
                 <h2>{{ item.title }}</h2>
               </router-link>
               <p>{{ getWords(item.content) }} ...</p>

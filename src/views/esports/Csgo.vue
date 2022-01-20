@@ -11,7 +11,7 @@
       </div>
     </div>
     <team :team="hypers"></team>
-    <team :team="revenge"></team>
+    <team :team="revenge" name-right="bruh"></team>
   </v-main>
 </template>
 

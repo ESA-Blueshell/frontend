@@ -26,7 +26,7 @@
           discuss the possibilities or to plan a meeting!
         </p>
         <p class="body-1">
-          Mail: <a href="mailto:external-affairs@blueshell.utwente.nl">external-affairs@blueshell.utwente.nl</a>
+          Mail: <a href="mailto:external-affairs@blueshell.utwente.nl" target="_blank" class="text-decoration-none">external-affairs@blueshell.utwente.nl</a>
         </p>
       </div>
     </div>

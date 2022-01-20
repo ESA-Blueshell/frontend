@@ -12,7 +12,8 @@
         <p class="body-1">
           If you would like to join a meeting to see if we are something for you, or if you have a
           question, feel free to contact the board at
-          <a href="mailto:internal-affairs@blueshell.utwente.nl">internal-affairs@blueshell.utwente.nl</a>
+          <a href="mailto:internal-affairs@blueshell.utwente.nl" target="_blank"
+             class="text-decoration-none">internal-affairs@blueshell.utwente.nl</a>
           . You could also ask us on Discord or in person at one of the events.
         </p>
         <p class="body-1">
@@ -117,7 +118,7 @@ export default {
           description: ' The VACCie is named after the Valve Anti-Cheat System, which is famous in the game CS:GO for catching no cheaters at all. This committee however is able to organize great activities in CS:GO! They organize events such as wargames, 2v2’s, wingman tournaments or 5v5’s, which are regularly planned to satisfy the need of a true skill-based shooter in Blueshell.',
         },
         {
-          name:'PrCie',
+          name: 'PrCie',
           description: 'The PRCie is a new committee which focuses on the communication strategy towards members and tries to reach new members with marketing and promotion campaigns.',
         },
         {
