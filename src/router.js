@@ -19,6 +19,8 @@ import Partners from "@/views/partners/Partners";
 import Article from "@/views/Article";
 import NotFound from "@/views/NotFound";
 import Valorant from "@/views/esports/Valorant";
+import Login from "@/views/Login";
+import Account from "@/views/login/Account";
 import ArticleEditor from "@/views/ArticleEditor";
 
 
@@ -131,6 +133,16 @@ export default new Router({
       path: '/partners/dekimo',
       name: 'dekimo',
       component: Dekimo
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: Login
+    },
+    {
+      path: '/account',
+      name: 'account',
+      component: Account
     },
     {
       path: '/account/articleEditor',
