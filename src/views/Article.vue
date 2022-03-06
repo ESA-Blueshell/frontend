@@ -2,8 +2,8 @@
   <v-main>
     <top-banner title="news"></top-banner>
     <div class="mx-auto my-10" style="max-width: 800px">
-      <h6>{{ news.newsType }}</h6>
-      <h2>{{ news.title }}</h2>
+      <p class="text-h5">{{ news.newsType }}</p>
+      <p class="text-h4 font-weight-thin">{{ news.title }}</p>
       <p v-html="news.content">
       </p>
       <h5>By <b>{{ news.creatorUsername }}</b>,
@@ -59,6 +59,20 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 
+.theme--dark .quote {
+  color: #A8FF00;
+}
+
+.quote {
+  color: gray;
+  text-align: center;
+  font-style: italic;
+  font-size: 1.2rem;
+}
+
+.v-application p.text-h5 {
+  margin-bottom: 0;
+}
 </style>
