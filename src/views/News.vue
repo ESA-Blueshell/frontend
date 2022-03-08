@@ -14,7 +14,9 @@
       </div>
     </div>
 
-    <v-list class="mx-auto" style="max-width: 800px">
+    <v-skeleton-loader v-if="news === []" class="mx-auto" max-width="800" type="card">
+    </v-skeleton-loader>
+    <v-list v-else class="mx-auto" style="max-width: 800px">
       <template v-for="(item, i) in news">
         <v-list-item :key="i">
           <v-list-item-content>
@@ -36,13 +38,13 @@
         <v-divider :key="i+'divider'" v-if="i !== (news.length - 1)"></v-divider>
       </template>
     </v-list>
-    <!-- TODO: FIX THIS LATER -->
-    <!--  <div class = "text-center">-->
-    <!--    <v-pagination-->
-    <!--      v-model="page"-->
-    <!--      :length="3"-->
-    <!--      ></v-pagination>-->
-    <!--  </div>-->
+    <v-pagination v-model="page"
+                  :length="totalPages"
+                  total-visible="3"
+                  next-icon="mdi-menu-right"
+                  prev-icon="mdi-menu-left"
+                  @input="handlePageChange">
+    </v-pagination>
     <v-snackbar v-model="snackbar" timeout="10000">
       Uh oh, looks like we can't connect to the server :/ <br>
       Just ping @SiteCie on Discord and we'll look into it
@@ -66,13 +68,20 @@ export default {
     return {
       news: [],
       snackbar: false,
-      page: 1
+      page: 0,
+      totalPages: 0,
+      pageSize: 3,
     }
   },
   mounted() {
     this.$http
-        .get('news/')
-        .then(response => this.news = response.data)
+        .get('newsPageable?size=3&page=' + this.page)
+        .then((response) => {
+          this.news = response.data.content;
+          this.page = response.data.pageable.pageNumber;
+          this.totalPages = response.data.totalPages;
+          this.pageSize = response.data.pageable.pageSize;
+        console.log("CHECKING FIRST TIME: ", this.news, this.page, this.totalPages, this.pageSize);})
         .catch(() => this.snackbar = true)
   },
   methods: {
@@ -80,6 +89,18 @@ export default {
       str = str.replace(/(<([^>]+)>)/gi, "");
       return str.split(/\s+/).slice(0, 100).join(" ");
     },
+
+    handlePageChange(value) {
+      this.$http
+          .get('newsPageable?size=3&page=' + (value - 1))
+          .then((response) => {
+            this.news = response.data.content;
+            this.totalPages = response.data.totalPages;
+            this.pageSize = response.data.pageable.pageSize;
+            this.page = response.data.pageable.pageNumber + 1;
+          console.log("CHECKING: ", this.news, this.totalPages, this.pageSize, this.page);})
+          .catch(() => this.snackbar = true)
+    }
   },
   components: {TopBanner}
 }
