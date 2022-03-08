@@ -15,7 +15,6 @@
 </template>
 
 <script>
-import router from "@/router";
 
 export default {
   name: "Account",
@@ -23,29 +22,12 @@ export default {
     accountData: null
   }),
   mounted() {
-    const toLogin = () => router.push('/login')
-
-
-    if (!this.$store.getters.getToken) {
-      toLogin()
-      return;
-    }
-
-
     this.$http
         .get('users/1', {headers: {'Authorization': `Bearer ${this.$store.getters.getToken}`}})
-        .then(response => this.accountData = response.data)
-        .catch(error => {
-          console.log(error)
-          //Check if the error is because the server is down or if token in invalid
-          switch (error.response.status) {
-            case 401:
-              toLogin()
-              break
-            default:
-              console.log(error)
-              alert("oh no the request went all fucky")
-              break
+        .then(response => {
+          if (response) {
+            console.log(response)
+            this.accountData = response.data
           }
         })
   }

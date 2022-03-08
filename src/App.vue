@@ -7,7 +7,8 @@
       </v-app-bar-nav-icon>
       <v-toolbar-title class="ml-sm-n5 ml-md-0 ml-lg-0 ml-xl-0 ">
         <router-link to="/">
-          <img :src="require('./assets/topbarlogo.png')"  alt="Blueshell logo" style="height: 64px;max-width: 260px" class="mr-3">
+          <img :src="require('./assets/topbarlogo.png')" alt="Blueshell logo"
+               style="height: 64px;max-width: 260px" class="mr-3">
         </router-link>
       </v-toolbar-title>
       <div v-if="$vuetify.breakpoint.lgAndUp"
@@ -211,6 +212,19 @@
         <source src="./assets/blueshellanthem.mp3" type="audio/mpeg">
       </audio>
     </v-snackbar>
+    <v-snackbar v-model="networkError" timeout="10000">
+      Uh oh, looks like we can't connect to the server :/ <br>
+      Just ping @SiteCie on Discord and we'll look into it
+      <template v-slot:action="{ attrs }">
+        <v-btn
+            color="blue"
+            text
+            v-bind="attrs"
+            @click="networkError = false">
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
   </v-app>
 </template>
 
@@ -223,6 +237,16 @@ export default {
       drawer: false,
       poggers: false,
     }
+  },
+  computed: {
+    networkError: {
+      get() {
+        return this.$store.state.networkError
+      },
+      set(value) {
+        this.$store.commit('setNetworkError', value)
+      }
+    },
   },
   methods: {
     goto(url) {

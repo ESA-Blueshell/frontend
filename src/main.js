@@ -7,6 +7,7 @@ import vuetify from './plugins/vuetify';
 import '@mdi/font/css/materialdesignicons.css'
 import './styles/housestyle.css';
 import Axios from 'axios';
+import axios from "axios";
 
 Vue.config.productionTip = false
 
@@ -15,10 +16,29 @@ Axios.defaults.baseURL = "http://localhost:8080/api/"
 Vue.prototype.$http = Axios
 Vue.$http = Axios
 
-
-new Vue({
+let vue = new Vue({
   router,
   store,
   vuetify,
   render: h => h(App)
-}).$mount('#app')
+});
+
+//Handle errors when requesting something from the backend.
+axios.interceptors.response.use(
+  undefined,
+  (error => {
+      // If the request got rejected, go to the login page to get some permissions
+      // Otherwise, set the networkError value in vuex to show the snackbar saying there is an error
+      if (error.response.status === 401) {
+        router.push({
+          path: '/login',
+          query: {redirect: vue.$route.fullPath}
+        })
+      } else {
+        store.commit('setNetworkError', true)
+      }
+    }
+  )
+)
+
+vue.$mount('#app')

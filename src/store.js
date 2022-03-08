@@ -24,21 +24,24 @@ export default new Vuex.Store({
   state: {
     token: getCookie('token') || null,
     expiryTime: null,
+    networkError: false,
   },
   mutations: {
-    setToken(state, payload) {
-      state.token = payload
-      document.cookie = `token=${payload};SameSite=strict;Secure`
-    }
+    setToken(state, value) {
+      state.token = value
+      document.cookie = `token=${value};SameSite=strict;Secure`
+    },
+    setNetworkError(state, value) {
+      state.networkError = value
+    },
   },
   actions: {},
   getters: {
     getToken: state => state.token,
-    getOrLogin: function (state) {
-      if (state.token) {
-        return state.token
-      }
-
-    }
+    tokenExpired: () => {
+      // console.log(state)
+      //TODO: implement this
+      return false
+    },
   },
 })

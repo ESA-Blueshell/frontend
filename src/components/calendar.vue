@@ -143,20 +143,6 @@
             </v-card-text>
           </v-card>
         </v-menu>
-        <!-- Snackbar that pops up when failing to get events -->
-        <v-snackbar v-model="snackbar" timeout="10000">
-          Uh oh, looks like we can't connect to the server :/ <br>
-          Just ping @SiteCie on Discord and we'll look into it
-          <template v-slot:action="{ attrs }">
-            <v-btn
-                color="primary"
-                text
-                v-bind="attrs"
-                @click="snackbar = false">
-              Close
-            </v-btn>
-          </template>
-        </v-snackbar>
       </v-sheet>
     </v-col>
   </v-row>
@@ -185,7 +171,6 @@ export default {
     weekdays: [1, 2, 3, 4, 5, 6, 0],
     currentMonth: null,
     monthsLoading: 0,
-    snackbar: false,
     linkRegex: /^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)/i,
     htmlRegex: /<\/?[a-z][\s\S]*>/i
   }),
@@ -257,7 +242,6 @@ export default {
               )
               this.events.push(...res);
             })
-            .catch(() => this.snackbar = true)
             .then(() => this.monthsLoading--);
       }
     },

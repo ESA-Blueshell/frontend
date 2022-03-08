@@ -43,19 +43,6 @@
     <!--      :length="3"-->
     <!--      ></v-pagination>-->
     <!--  </div>-->
-    <v-snackbar v-model="snackbar" timeout="10000">
-      Uh oh, looks like we can't connect to the server :/ <br>
-      Just ping @SiteCie on Discord and we'll look into it
-      <template v-slot:action="{ attrs }">
-        <v-btn
-            color="blue"
-            text
-            v-bind="attrs"
-            @click="snackbar = false">
-          Close
-        </v-btn>
-      </template>
-    </v-snackbar>
   </v-main>
 </template>
 <script>
@@ -65,7 +52,6 @@ export default {
   data() {
     return {
       news: [],
-      snackbar: false,
       page: 1
     }
   },
@@ -73,7 +59,6 @@ export default {
     this.$http
         .get('news/')
         .then(response => this.news = response.data)
-        .catch(() => this.snackbar = true)
   },
   methods: {
     getWords(str) {

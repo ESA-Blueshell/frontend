@@ -18,19 +18,6 @@
         <v-icon>mdi-facebook</v-icon>
       </v-btn>
     </div>
-    <v-snackbar v-model="snackbar" timeout="10000">
-      Uh oh, looks like we can't connect to the server :/ <br>
-      Just ping @SiteCie on Discord and we'll look into it
-      <template v-slot:action="{ attrs }">
-        <v-btn
-            color="blue"
-            text
-            v-bind="attrs"
-            @click="snackbar = false">
-          Close
-        </v-btn>
-      </template>
-    </v-snackbar>
   </v-main>
 </template>
 
@@ -41,7 +28,6 @@ export default {
   components: {TopBanner},
   data() {
     return {
-      snackbar: false,
       news: []
     }
   },
@@ -49,7 +35,6 @@ export default {
     this.$http
         .get('news/' + this.$route.params.id)
         .then(response => this.news = response.data)
-        .catch(() => this.snackbar = true)
   },
   methods: {
     thisURL() {

@@ -77,19 +77,24 @@ export default {
         this.$http
             .post('authenticate', {
 
-                username: this.username,
-                password: this.password
-            },
-                {data:{
+                  username: this.username,
+                  password: this.password
+                },
+                {
+                  data: {
                     username: this.username,
                     password: this.password
-                  }})
+                  }
+                })
             .then(response => {
               console.log(response)
               this.$store.commit('setToken', response.data.token)
 
-              // Go to account page
-              router.push('/account')
+              // Go to redirect page or home page
+              //TODO: maybe change this to account page? not sure
+              console.log(this.$route)
+              console.log(this.$route.query)
+              router.push(this.$route.query.redirect || '/')
             })
             .catch(() => {
               this.snackbar = true

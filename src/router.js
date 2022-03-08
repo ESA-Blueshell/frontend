@@ -23,17 +23,19 @@ import Login from "@/views/Login";
 import Account from "@/views/login/Account";
 import ArticleEditor from "@/views/ArticleEditor";
 
+import store from './store'
+
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
-  scrollBehavior (to, from, savedPosition) {
+  scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {
       return savedPosition
     } else {
-      return { x: 0, y: 0 }
+      return {x: 0, y: 0}
     }
   },
   routes: [
@@ -142,12 +144,14 @@ export default new Router({
     {
       path: '/account',
       name: 'account',
-      component: Account
+      component: Account,
+      meta: {requiresAuth: true}
     },
     {
       path: '/account/articleEditor',
       name: 'articleEditor',
-      component: ArticleEditor
+      component: ArticleEditor,
+      meta: {requiresAuth: true}
     },
     {
       path: '/:pathMatch(.*)*',
@@ -155,4 +159,19 @@ export default new Router({
       component: NotFound
     }
   ]
+});
+
+
+router.beforeEach((to, from, next) => {
+  if (to.meta.requiresAuth && store.getters.tokenExpired) {
+    next({
+      path: '/login',
+      query: {redirect: to.fullPath},
+    })
+  } else {
+    next()
+  }
 })
+
+
+export default router
