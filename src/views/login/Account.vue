@@ -2,9 +2,9 @@
   <v-main>
     <div class="mt-16"></div>
     <div v-if="this.accountData">
-      <div class="mb-2" v-for="key in Object.keys(this.accountData)" v-bind:key="key">
+      <div v-for="key in Object.keys(this.accountData)" v-bind:key="key">
         <p>
-          {{ key }}: {{ this.accountData[key] }}
+          {{ key }}: {{ accountData[key] }}
         </p>
       </div>
     </div>
@@ -34,7 +34,7 @@ export default {
 
     this.$http
         .get('users/1', {headers: {'Authorization': `Bearer ${this.$store.getters.getToken}`}})
-        .then(response => this.news = response.data)
+        .then(response => this.accountData = response.data)
         .catch(error => {
           console.log(error)
           //Check if the error is because the server is down or if token in invalid
