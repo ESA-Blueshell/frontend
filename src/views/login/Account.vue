@@ -26,12 +26,7 @@ export default {
 
     this.$http
         .get(`users/${login.userId}`, {headers: {'Authorization': `Bearer ${login.token}`}})
-        .then(response => {
-          if (response) {
-            console.log(response)
-            this.accountData = response.data
-          }
-        })
+        .then(response => this.accountData = response.data)
   }
 }
 </script>

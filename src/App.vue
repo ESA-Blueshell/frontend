@@ -8,7 +8,7 @@
       <v-toolbar-title class="ml-sm-n5 ml-md-0 ml-lg-0 ml-xl-0 ">
         <router-link to="/">
           <img :src="require('./assets/topbarlogo.png')" alt="Blueshell logo"
-               style="height: 64px;max-width: 260px" class="mr-3">
+               style="max-height: 64px;max-width: 260px" class="mr-3">
         </router-link>
       </v-toolbar-title>
       <div v-if="$vuetify.breakpoint.lgAndUp"
@@ -68,7 +68,7 @@
       <!--  Dark mode toggle    -->
       <v-tooltip bottom>
         <template v-slot:activator="{ on, attrs }">
-          <div v-on="on" v-bind="attrs">
+          <div v-on="on" v-bind="attrs" style="margin: 16px !important;">
             <v-btn small icon @click="darkMode" rounded>
               <transition name="roll" mode="out-in">
                 <v-icon key="1" color="white" v-if="!$vuetify.theme.dark" style="transition: unset">
@@ -84,8 +84,22 @@
         <span>Toggle dark mode</span>
       </v-tooltip>
 
-      <!--      <v-btn class="bar-button" text dark to="/login">Login</v-btn>-->
+      <!-- LOGIN BUTTON/ACCOUNT DROPDOWN MENU -->
+      <v-btn class="bar-button" text dark to="/login" v-if="!loggedIn">Log In</v-btn>
+      <v-menu open-on-hover offset-y v-else>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn class="bar-button" v-bind="attrs" v-on="on" text dark
+                 to="/account">
+            <v-icon large>mdi-account</v-icon>
+          </v-btn>
+        </template>
+        <v-list>
+          <v-list-item to="/account">Account</v-list-item>
+          <v-list-item @click="logOut">Log Out</v-list-item>
+        </v-list>
+      </v-menu>
     </v-app-bar>
+
     <v-navigation-drawer v-model="drawer" app temporary dark>
       <v-list nav>
         <v-list-item text dark to="/">
@@ -247,6 +261,11 @@ export default {
         this.$store.commit('setNetworkError', value)
       }
     },
+    loggedIn: {
+      get() {
+        return this.$store.state.login
+      },
+    },
   },
   methods: {
     goto(url) {
@@ -255,6 +274,14 @@ export default {
     darkMode() {
       this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
       localStorage.setItem('esa-blueshell.nl:darkMode', this.$vuetify.theme.dark.toString())
+    },
+    logOut() {
+      // Let the cookie expire and redirect if the page is logged in only
+      document.cookie = 'login=;expires=Thu, 01 Jan 1970 00:00:01 GMT'
+      this.$store.commit('setLogin', null)
+      if (this.$route.meta.requiresAuth) {
+        this.goto('/')
+      }
     }
   },
   mounted() {

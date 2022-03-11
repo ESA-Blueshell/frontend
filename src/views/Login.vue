@@ -3,28 +3,23 @@
     <top-banner title="Login"></top-banner>
 
     <div class="mx-3">
-      <div class="mx-auto my-5" style="max-width: 800px">
-        <p class="text-h4 font-weight-light">
-          Token: {{ this.$store.getters.getToken }}
-        </p>
-      </div>
-
       <v-form v-model="valid" class="mx-auto mt-10" style="max-width: 500px" ref="form">
         <v-text-field
             v-model="username"
-            ref="username"
             :rules="usernameRules"
             label="Username"
-            required/>
+            required
+            @keydown.enter="login"
+            ref="username"/>
         <v-text-field
             v-model="password"
+            :rules="passwordRules"
+            label="Password"
+            required
             @keydown.enter="login"
             @click:append="showPass = !showPass"
             :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
-            :type="showPass ? 'text' : 'password'"
-            :rules="passwordRules"
-            label="Password"
-            required/>
+            :type="showPass ? 'text' : 'password'"/>
         <v-btn
             class="mt-4"
             :disabled="!valid"
@@ -33,9 +28,7 @@
           Login
         </v-btn>
       </v-form>
-
     </div>
-
 
     <v-snackbar v-model="snackbar" timeout="10000">
       Incorrect login
@@ -72,6 +65,11 @@ export default {
       v => !!v || 'Password is required',
     ],
   }),
+  mounted() {
+    if (!this.$store.getters.tokenExpired) {
+      this.$router.push('/account')
+    }
+  },
   methods: {
     login() {
       // Check if form is valid (meaning username and password are not empty)
