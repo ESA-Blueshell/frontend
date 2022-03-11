@@ -163,7 +163,7 @@ const router = new Router({
 
 
 router.beforeEach((to, from, next) => {
-  if (to.meta.requiresAuth && store.getters.tokenExpired) {
+  if (to.meta.requiresAuth && (store.getters.getLogin == null || store.getters.tokenExpired)) {
     next({
       path: '/login',
       query: {redirect: to.fullPath},

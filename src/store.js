@@ -4,7 +4,7 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 
-function getCookie(cname) {
+function getJsonCookie(cname) {
   let name = cname + "=";
   let decodedCookie = decodeURIComponent(document.cookie);
   let ca = decodedCookie.split(';');
@@ -14,7 +14,7 @@ function getCookie(cname) {
       c = c.substring(1);
     }
     if (c.indexOf(name) === 0) {
-      return c.substring(name.length, c.length);
+      return JSON.parse(c.substring(name.length, c.length));
     }
   }
   return "";
@@ -22,14 +22,13 @@ function getCookie(cname) {
 
 export default new Vuex.Store({
   state: {
-    token: getCookie('token') || null,
-    expiryTime: null,
+    login: getJsonCookie('login') || null,
     networkError: false,
   },
   mutations: {
-    setToken(state, value) {
-      state.token = value
-      document.cookie = `token=${value};SameSite=strict;Secure`
+    setLogin(state, value) {
+      state.login = value
+      document.cookie = `login=${JSON.stringify(value)};SameSite=strict;Secure`
     },
     setNetworkError(state, value) {
       state.networkError = value
@@ -37,11 +36,7 @@ export default new Vuex.Store({
   },
   actions: {},
   getters: {
-    getToken: state => state.token,
-    tokenExpired: () => {
-      // console.log(state)
-      //TODO: implement this
-      return false
-    },
+    getLogin: state => state.login,
+    tokenExpired: state => state.login == null || new Date().getTime() > state.login.expiration,
   },
 })

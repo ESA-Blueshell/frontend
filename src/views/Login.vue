@@ -12,6 +12,7 @@
       <v-form v-model="valid" class="mx-auto mt-10" style="max-width: 500px" ref="form">
         <v-text-field
             v-model="username"
+            ref="username"
             :rules="usernameRules"
             label="Username"
             required/>
@@ -73,30 +74,18 @@ export default {
   }),
   methods: {
     login() {
+      // Check if form is valid (meaning username and password are not empty)
       if (this.$refs.form.validate()) {
-        this.$http
-            .post('authenticate', {
-
-                  username: this.username,
-                  password: this.password
-                },
-                {
-                  data: {
-                    username: this.username,
-                    password: this.password
-                  }
-                })
+        // Send authenticate request
+        this.$http.post('authenticate', {username: this.username, password: this.password})
             .then(response => {
-              console.log(response)
-              this.$store.commit('setToken', response.data.token)
-
+              // Store response
+              this.$store.commit('setLogin', response.data)
               // Go to redirect page or home page
-              //TODO: maybe change this to account page? not sure
-              console.log(this.$route)
-              console.log(this.$route.query)
               router.push(this.$route.query.redirect || '/')
             })
             .catch(() => {
+              // Show Incorrect login snackbar
               this.snackbar = true
             })
       }

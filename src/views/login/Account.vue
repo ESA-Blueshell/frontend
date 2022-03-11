@@ -22,8 +22,10 @@ export default {
     accountData: null
   }),
   mounted() {
+    const login = this.$store.getters.getLogin
+
     this.$http
-        .get('users/1', {headers: {'Authorization': `Bearer ${this.$store.getters.getToken}`}})
+        .get(`users/${login.userId}`, {headers: {'Authorization': `Bearer ${login.token}`}})
         .then(response => {
           if (response) {
             console.log(response)
