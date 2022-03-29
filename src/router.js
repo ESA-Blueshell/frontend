@@ -24,6 +24,7 @@ import Account from "@/views/login/Account";
 import ArticleEditor from "@/views/ArticleEditor";
 
 import store from './store'
+import CreateEvent from "@/views/login/events/CreateEvent";
 
 
 Vue.use(Router)
@@ -151,6 +152,12 @@ const router = new Router({
       path: '/account/articleEditor',
       name: 'articleEditor',
       component: ArticleEditor,
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/events/create',
+      name: 'createEvent',
+      component: CreateEvent,
       meta: {requiresAuth: true}
     },
     {
