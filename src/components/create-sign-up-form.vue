@@ -15,7 +15,7 @@
       </v-list>
     </v-menu>
 
-    <div v-for="(question,i) in form" v-bind:key="i" class="question">
+    <div v-for="(question,i) in form" v-bind:key="i" class="mt-4">
       <v-text-field v-model="question.prompt" :label="`Question ${i+1}`">
         <template v-slot:append-outer>
           <v-tooltip top v-if="question.type === 'radio' || question.type === 'checkbox'">
@@ -62,20 +62,20 @@
         </v-text-field>
       </div>
 
-      <v-divider v-if="i !== form.length-1"/>
+      <v-divider v-if="i !== form.length-1" class="mt-4"/>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "sign-up-form",
+  name: "create-sign-up-form",
+  // Form can be filled with objects. Each object will be a question/part of the question form
+  // Three types are possible: 'open', 'checkbox' and 'radio'
+  // Each object should have a 'prompt' attribute
+  // For 'checkbox' and 'radio' a 'options' array of options should be included
+  props: ['form'],
   data: () => ({
-    // Form can be filled with objects. Each object will be a question/part of the question form
-    // Three types are possible: 'open', 'checkbox' and 'radio'
-    // Each object should have a 'prompt' attribute
-    // For 'checkbox' and 'radio' a 'options' array of options should be included
-    form: []
   }),
   methods: {
     createQuestion(type) {

@@ -25,6 +25,8 @@ import ArticleEditor from "@/views/ArticleEditor";
 
 import store from './store'
 import CreateEvent from "@/views/login/events/CreateEvent";
+import EventManager from "@/views/login/events/EventManager";
+import EditEvent from "@/views/login/events/EditEvent";
 
 
 Vue.use(Router)
@@ -158,6 +160,18 @@ const router = new Router({
       path: '/events/create',
       name: 'createEvent',
       component: CreateEvent,
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/events/edit/:id',
+      name: 'editEvent',
+      component: EditEvent,
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/events/manage',
+      name: 'eventManager',
+      component: EventManager,
       meta: {requiresAuth: true}
     },
     {
