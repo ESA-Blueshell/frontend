@@ -52,15 +52,12 @@ export default {
         .then(response => {
           let event = response.data
 
-          console.log(event)
-
-
           this.event.title = event.title
           this.event.location = event.location
           this.event.description = event.description
 
-          this.event.memberPrice = event.memberPrice.toString()
-          this.event.publicPrice = event.publicPrice.toString()
+          this.event.memberPrice = event.memberPrice ? event.memberPrice.toString() : '0'
+          this.event.publicPrice = event.publicPrice ? event.publicPrice.toString() : '0'
 
 
           this.event.membersOnly = event.membersOnly
