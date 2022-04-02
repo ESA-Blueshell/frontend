@@ -18,17 +18,30 @@
                       {{ event.title }}
                     </v-list-item-title>
                     <v-list-item-subtitle>
-                      {{ new Date(Date.parse(event.startTime)).toLocaleDateString('en-NL') }}
+                      {{ formatStartEndTime(event) }}
                     </v-list-item-subtitle>
                     {{ event.description ? event.description.slice(0, 100) : 'No description...' }}
                   </v-list-item-content>
 
-                  <!--              <v-list-item-action-text v-if="Object.keys(idToCommittee).length > 1">-->
+
                   <v-list-item-action-text>
                     {{ idToCommittee[event.committee] }}
                   </v-list-item-action-text>
                   <v-list-item-action>
-                    <v-tooltip top>
+
+                    <v-tooltip left>
+                      <template v-slot:activator="{ on, attrs }">
+                        <v-btn v-bind="attrs" v-on="on"
+                               icon
+                               :disabled="!event.signUp"
+                               @click="$router.push('signups/'+event.id)">
+                          <v-icon>mdi-list-status</v-icon>
+                        </v-btn>
+                      </template>
+                      <span>Check signups</span>
+                    </v-tooltip>
+
+                    <v-tooltip left>
                       <template v-slot:activator="{ on, attrs }">
                         <v-btn v-bind="attrs" v-on="on"
                                icon
@@ -39,14 +52,14 @@
                       <span>Edit event</span>
                     </v-tooltip>
 
-                    <v-tooltip top>
+                    <v-tooltip left>
                       <template v-slot:activator="{ on: tooltip }">
                         <v-btn v-bind="attrs" v-on="{ ...tooltip, ...dialog }"
                                icon @click="eventToDelete = event">
                           <v-icon>mdi-delete</v-icon>
                         </v-btn>
                       </template>
-                      <span>Edit event</span>
+                      <span>Delete event</span>
                     </v-tooltip>
                   </v-list-item-action>
                 </v-list-item>
@@ -62,10 +75,10 @@
 
           <v-card>
             <v-card-title>
-              <span
-                  class="text-h5">Are you sure you want to delete this event: {{
-                  eventToDelete ? eventToDelete.title : 'NO EVENT????'
-                }}</span>
+              <span class="text-h5">
+                Are you sure you want to delete this event:
+                {{ eventToDelete ? eventToDelete.title : 'NO EVENT????' }}
+              </span>
             </v-card-title>
             <v-card-text>
               There will be no undo
@@ -86,6 +99,10 @@
             </v-card-actions>
           </v-card>
         </v-dialog>
+
+        <p class="text-h5" v-if="events.length === 0">
+          Doesn't look like you have any upcoming events 😔😔😔 maybe create one? or two?
+        </p>
 
 
         <v-img :src="require('../../../assets/noCommittees.jpg')"
@@ -137,6 +154,28 @@ export default {
               this.eventToDelete = null
             }
           })
+    },
+    formatStartEndTime(event) {
+      let startTime = new Date(Date.parse(event.startTime))
+      let endTime = new Date(Date.parse(event.endTime))
+
+      let result = startTime.toLocaleString('en-NL', {
+        weekday: 'long',
+        day: 'numeric',
+        month: 'long',
+        hour: '2-digit',
+        minute: '2-digit'
+      })
+      result += '-'
+
+      if (startTime.getDate() !== endTime.getDate()) {
+        result += endTime.toLocaleString('en-NL', {day: 'numeric', month: 'long'})
+      }
+      result += endTime.toLocaleString('en-NL', {
+        hour: '2-digit',
+        minute: '2-digit'
+      });
+      return result
     },
   }
 }

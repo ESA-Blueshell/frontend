@@ -21,6 +21,7 @@ export default {
   name: 'EditEvent',
   components: {EventForm, TopBanner},
   data: () => ({
+    //TODO: make event a default prop in the event-form component
     event: {
       title: '',
       location: '',

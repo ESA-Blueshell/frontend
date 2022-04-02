@@ -27,6 +27,8 @@ import store from './store'
 import CreateEvent from "@/views/login/events/CreateEvent";
 import EventManager from "@/views/login/events/EventManager";
 import EditEvent from "@/views/login/events/EditEvent";
+import UpcomingEvents from "@/views/login/events/UpcomingEvents";
+import EventSignUps from "@/views/login/events/EventSignUps";
 
 
 Vue.use(Router)
@@ -172,6 +174,18 @@ const router = new Router({
       path: '/events/manage',
       name: 'eventManager',
       component: EventManager,
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/events/upcoming',
+      name: 'upcomingEvents',
+      component: UpcomingEvents,
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/events/signups/:id',
+      name: 'eventSignUps',
+      component: EventSignUps,
       meta: {requiresAuth: true}
     },
     {
