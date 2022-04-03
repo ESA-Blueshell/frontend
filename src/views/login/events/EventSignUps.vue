@@ -12,17 +12,17 @@
           </p>
           <template v-if="question.type === 'open'">
             <p v-for="response in responses" v-bind:key="response">
-              User {{ response.user }}: {{ response.options[i] }}
+              User {{ response.user }}: {{ response.formAnswers[i] }}
             </p>
           </template>
           <template v-else-if="question.type === 'radio'">
             <p v-for="response in responses" v-bind:key="response">
-              User {{ response.user }}: {{ response.options[i] }}
+              User {{ response.user }}: {{ response.formAnswers[i] }}
             </p>
           </template>
           <template v-if="question.type === 'checkbox'">
             <p v-for="response in responses" v-bind:key="response">
-              User {{ response.user }}: {{ response.options[i] }}
+              User {{ response.user }}: {{ response.formAnswers[i] }}
             </p>
           </template>
         </div>
@@ -51,7 +51,7 @@ export default {
     this.$http.get('events/signups/all/' + this.$route.params.id, {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
         .then(response => {
           this.responses = response.data
-          this.responses.forEach(response => response.options = JSON.parse(response.options))
+          this.responses.forEach(response => response.formAnswers = JSON.parse(response.formAnswers))
         })
   },
 }

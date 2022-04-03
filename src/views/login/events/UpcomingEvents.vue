@@ -35,30 +35,30 @@
 
               <v-list-item-action>
 
-                <v-btn disabled icon v-if="!event.signUp">
+                <v-btn v-if="!event.signUp" disabled icon>
                   <v-icon>mdi-checkbox-blank</v-icon>
                 </v-btn>
 
-                <v-tooltip left
-                           v-else-if="eventIdToSignUpForm[event.id] !== undefined && !event.signUpForm">
+                <v-tooltip v-else-if="eventIdToSignUpForm[event.id] !== undefined && !event.signUpForm"
+                           left>
                   <template v-slot:activator="{ on, attrs }">
-                    <v-btn v-bind="attrs" v-on="on"
-                           icon
-                           :loading="submittingId === event.id"
-                           @click="removeSignUp(event.id)">
+                    <v-btn :loading="submittingId === event.id" icon
+                           v-bind="attrs"
+                           @click="removeSignUp(event.id)"
+                           v-on="on">
                       <v-icon>mdi-checkbox-marked</v-icon>
                     </v-btn>
                   </template>
                   <span>Remove sign-up</span>
                 </v-tooltip>
 
-                <v-tooltip left
-                           v-else-if="!event.signUpForm && eventIdToSignUpForm[event.id] === undefined">
+                <v-tooltip v-else-if="!event.signUpForm && eventIdToSignUpForm[event.id] === undefined"
+                           left>
                   <template v-slot:activator="{ on, attrs }">
-                    <v-btn v-bind="attrs" v-on="on"
-                           icon
-                           :loading="submittingId === event.id"
-                           @click="signUp(event.id)">
+                    <v-btn :loading="submittingId === event.id" icon
+                           v-bind="attrs"
+                           @click="signUp(event.id)"
+                           v-on="on">
                       <v-icon>mdi-checkbox-blank</v-icon>
                     </v-btn>
                   </template>
@@ -66,12 +66,12 @@
                 </v-tooltip>
 
                 <template v-else-if="event.signUpForm">
-                  <v-tooltip left v-if="eventIdToSignUpForm[event.id] !== undefined">
+                  <v-tooltip v-if="eventIdToSignUpForm[event.id] !== undefined" left>
                     <template v-slot:activator="{ on, attrs }">
-                      <v-btn v-bind="attrs" v-on="on"
-                             icon
-                             :loading="submittingId === event.id"
-                             @click="removeSignUp(event.id)">
+                      <v-btn :loading="submittingId === event.id" icon
+                             v-bind="attrs"
+                             @click="removeSignUp(event.id)"
+                             v-on="on">
                         <v-icon>mdi-close</v-icon>
                       </v-btn>
                     </template>
@@ -79,9 +79,9 @@
                   </v-tooltip>
                   <v-tooltip left>
                     <template v-slot:activator="{ on, attrs }">
-                      <v-btn v-bind="attrs" v-on="on"
-                             icon
-                             @click="signingUpFor= (signingUpFor ? null : event.id)">
+                      <v-btn icon v-bind="attrs"
+                             @click="signingUpFor= (signingUpFor ? null : event.id)"
+                             v-on="on">
                         <v-icon>mdi-list-status</v-icon>
                       </v-btn>
                     </template>
@@ -95,14 +95,14 @@
             </v-list-item>
 
             <v-expand-transition v-bind:key="event.id">
-              <div class="form-border mx-auto rounded-b-xl" v-if="signingUpFor === event.id">
+              <div v-if="signingUpFor === event.id" class="form-border mx-auto rounded-b-xl">
                 <sign-up-form
+                    :answers-prop="eventIdToSignUpForm[event.id] ? JSON.parse(eventIdToSignUpForm[event.id]) : defaultAnswers(event.signUpForm)"
                     :event-id="event.id"
                     :form="JSON.parse(event.signUpForm)"
-                    :answers-prop="eventIdToSignUpForm[event.id] ? JSON.parse(eventIdToSignUpForm[event.id]) : defaultAnswers(event.signUpForm)"
-                    v-on:submitting="submittingId=event.id"
-                    v-on:close="signingUpFor=null;submittingId=false;refreshSignUp(event.id)"
                     class="form mx-auto"
+                    v-on:close="signingUpFor=null;submittingId=false;refreshSignUp(event.id)"
+                    v-on:submitting="submittingId=event.id"
                 />
               </div>
             </v-expand-transition>
@@ -136,6 +136,7 @@ export default {
       this.$http.post('events/signups/' + eventId, '', {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
           .then(() => {
             this.submittingId = null
+            this.signingUpFor = null
             this.$set(this.eventIdToSignUpForm, eventId, null)
           });
     },
@@ -144,6 +145,7 @@ export default {
       this.$http.delete('events/signups/' + eventId, {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
           .then(() => {
             this.submittingId = null
+            this.signingUpFor = null
             this.$delete(this.eventIdToSignUpForm, eventId)
           });
 
@@ -151,7 +153,7 @@ export default {
     refreshSignUp(eventId) {
       this.$http.get('events/signups/' + eventId, {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
           .then(response => {
-            this.$set(this.eventIdToSignUpForm, response.data.event, response.data.options)
+            this.$set(this.eventIdToSignUpForm, response.data.event, response.data.formAnswers)
           })
     },
     defaultAnswers(form) {
@@ -185,7 +187,7 @@ export default {
         .then(response => this.events = response.data);
 
     this.$http.get('events/signups', {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
-        .then(response => response.data.forEach(signUp => this.eventIdToSignUpForm[signUp.event] = signUp.options));
+        .then(response => response.data.forEach(signUp => this.eventIdToSignUpForm[signUp.event] = signUp.formAnswers));
   }
 }
 </script>
