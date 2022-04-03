@@ -2,7 +2,7 @@
   <v-main>
     <top-banner :title="eventTitle ? eventTitle : 'Create Event'"/>
 
-    <div class="mx-3">
+    <div class="mx-3 mb-8">
       <div class="mx-auto mt-10" style="max-width: 800px">
         <event-form ref="form" v-on:submit="create" v-on:title="updateTitle"/>
       </div>
@@ -50,16 +50,12 @@ export default {
             signUpForm: signUpForm,
 
           }, {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
-      //     .then(response => {
-      //
-      //     })
-      //     .catch(() => {
-      //       // Show Incorrect login snackbar
-      //       this.snackbar = true
-      //     })
-      // let signUpForm = this.$refs.signUpForm.$data.form
-      // console.log(JSON.stringify(signUpForm))
-      // console.log('VALID!!')
+          .then(response => {
+            if (response !== undefined && (response.status === 201 || response.status === 200)) {
+              this.$router.push('../manage')
+            }
+          })
+
     },
   },
 }

@@ -2,7 +2,7 @@
   <v-main>
     <top-banner :title="(event && event.title) ? event.title : 'Edit Event'"/>
 
-    <div class="mx-3">
+    <div class="mx-3 mb-8">
       <div class="mx-auto mt-10" style="max-width: 800px">
         <event-form v-if="event !== null" ref="form" :event="event" v-on:submit="update"/>
       </div>
@@ -83,13 +83,10 @@ export default {
           }, {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
           .then(response => {
             if (response !== undefined && (response.status === 201 || response.status === 200)) {
-              this.$router.push('../manager')
+              this.$router.push('../manage')
             }
           })
 
-      // let signUpForm = this.$refs.signUpForm.$data.form
-      // console.log(JSON.stringify(signUpForm))
-      // console.log('VALID!!')
     },
   },
 }

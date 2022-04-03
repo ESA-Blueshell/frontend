@@ -85,6 +85,7 @@
       </v-tooltip>
 
       <!-- LOGIN BUTTON/ACCOUNT DROPDOWN MENU -->
+      <!-- TODO: make this work for touch screens (aka put it in the sidebar)-->
       <v-btn class="bar-button" text dark to="/login" v-if="!loggedIn">Log In</v-btn>
       <v-menu open-on-hover offset-y v-else>
         <template v-slot:activator="{ on, attrs }">
@@ -95,6 +96,8 @@
         </template>
         <v-list>
           <v-list-item to="/account">Account</v-list-item>
+          <v-list-item to="/events/upcoming">Upcoming events</v-list-item>
+          <v-list-item to="/events/manage">Manage events</v-list-item>
           <v-list-item @click="logOut">Log Out</v-list-item>
         </v-list>
       </v-menu>
