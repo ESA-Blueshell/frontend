@@ -7,6 +7,7 @@
           <v-text-field
               v-model="event.title"
               :rules="[v => !!v || 'Title is required']"
+              @input="$emit('title', event.title)"
               label="Event name"
               required
               ref="title"/>
@@ -168,7 +169,36 @@ import CreateSignUpForm from "@/components/create-sign-up-form";
 export default {
   name: "event-form",
   components: {CreateSignUpForm},
-  props: ['event'],
+  props: {
+    event: {
+      type: Object,
+      default: () => ({
+        title: '',
+        location: '',
+        description: '',
+
+        memberPrice: '0',
+        publicPrice: '0',
+
+        membersOnly: false,
+        visible: true,
+        signUp: false,
+
+        startDate: '',
+        endDate: '',
+        startTime: '',
+        endTime: '',
+
+        committeeId: '',
+        image: null,
+
+        signUpForm: [],
+
+        enableSignUpForm: false,
+        endDateSame: true,
+      })
+    }
+  },
   data: () => ({
     valid: false,
 
@@ -204,7 +234,7 @@ export default {
         this.event.endDate = this.event.startDate
       }
 
-      this.$emit('submit');
+      this.$emit('submit', this.event);
     }
   },
   mounted() {

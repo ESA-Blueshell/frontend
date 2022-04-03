@@ -227,7 +227,7 @@
       </audio>
     </v-snackbar>
     <v-snackbar v-model="networkError" timeout="10000">
-      Uh oh, looks like we can't connect to the server :/ <br>
+      Something went wrong when trying to communicate with the server :/ <br>
       Just ping @SiteCie on Discord and we'll look into it
       <template v-slot:action="{ attrs }">
         <v-btn

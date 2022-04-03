@@ -1,11 +1,10 @@
 <template>
   <v-main>
-    <!--    <top-banner :title="title ? title : 'Create Event'" :image="imageUrl"/>-->
-    <top-banner title="Edit Event"/>
+    <top-banner :title="(event && event.title) ? event.title : 'Edit Event'"/>
 
     <div class="mx-3">
       <div class="mx-auto mt-10" style="max-width: 800px">
-        <event-form v-bind:event="event" v-on:submit="update()" ref="form"/>
+        <event-form v-if="event !== null" ref="form" :event="event" v-on:submit="update"/>
       </div>
 
     </div>
@@ -21,93 +20,71 @@ export default {
   name: 'EditEvent',
   components: {EventForm, TopBanner},
   data: () => ({
-    //TODO: make event a default prop in the event-form component
-    event: {
-      title: '',
-      location: '',
-      description: '',
-
-      memberPrice: '0',
-      publicPrice: '0',
-
-      membersOnly: false,
-      visible: true,
-      signUp: false,
-
-      startDate: '',
-      endDate: '',
-      startTime: '',
-      endTime: '',
-
-      committeeId: '',
-      image: null,
-
-      signUpForm: [],
-
-      enableSignUpForm: false,
-      endDateSame: true,
-    }
+    event: null
   }),
   mounted() {
     this.$http.get('events/' + this.$route.params.id, {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
         .then(response => {
-          let event = response.data
+          if (response !== undefined) {
+            let event = response.data
 
-          this.event.title = event.title
-          this.event.location = event.location
-          this.event.description = event.description
+            this.event = {
+              title: event.title,
+              location: event.location,
+              description: event.description,
 
-          this.event.memberPrice = event.memberPrice ? event.memberPrice.toString() : '0'
-          this.event.publicPrice = event.publicPrice ? event.publicPrice.toString() : '0'
+              memberPrice: event.memberPrice ? event.memberPrice.toString() : '0',
+              publicPrice: event.publicPrice ? event.publicPrice.toString() : '0',
 
+              membersOnly: event.membersOnly,
+              visible: event.visible,
+              signUp: event.signUp,
 
-          this.event.membersOnly = event.membersOnly
-          this.event.visible = event.visible
-          this.event.signUp = event.signUp
+              startDate: event.startTime.split('T')[0],
+              endDate: event.endTime.split('T')[0],
+              startTime: event.startTime.split('T')[1].slice(0, 5),
+              endTime: event.endTime.split('T')[1].slice(0, 5),
 
+              committeeId: event.committee,
+              image: event.image,
 
-          this.event.startDate = event.startTime.split('T')[0]
-          this.event.endDate = event.endTime.split('T')[0]
-          this.event.startTime = event.startTime.split('T')[1].slice(0, 5)
-          this.event.endTime = event.endTime.split('T')[1].slice(0, 5)
+              signUpForm: event.signUpForm ? JSON.parse(event.signUpForm) : [],
 
-          this.event.endDateSame = this.event.startDate === this.event.endDate
-
-          this.event.committeeId = event.committee
-          this.event.image = event.image
-
-          this.event.signUpForm = event.signUpForm ? JSON.parse(event.signUpForm) : []
-          this.event.enableSignUpForm = this.event.signUpForm.length > 0
-
+              enableSignUpForm: !!event.signUpForm,
+              endDateSame: event.startDate === event.endDate,
+            }
+          }
         })
   },
   methods: {
-    update() {
-      // //Timestamp must be yyyy-mm-dd hh:mm:ss as a string
-      let startTime = `${this.event.startDate} ${this.event.startTime}:00`
-      let endTime = `${this.event.endDate} ${this.event.endTime}:00`
+    update(event) {
+      //Timestamp must be yyyy-mm-dd hh:mm:ss as a string
+      let startTime = `${event.startDate} ${event.startTime}:00`
+      let endTime = `${event.endDate} ${event.endTime}:00`
 
-      let signUpForm = this.event.signUpForm ? JSON.stringify(this.event.signUpForm) : null
+      let signUpForm = event.signUpForm.length > 0 ? JSON.stringify(event.signUpForm) : null
 
 
       this.$http.put('events/' + this.$route.params.id,
           {
-            title: this.event.title,
-            description: this.event.description,
-            location: this.event.location,
+            title: event.title,
+            description: event.description,
+            location: event.location,
             startTime: startTime,
             endTime: endTime,
-            memberPrice: this.event.memberPrice,
-            publicPrice: this.event.publicPrice,
-            visible: this.event.visible,
-            membersOnly: this.event.membersOnly,
-            signUp: this.event.signUp,
-            committeeId: this.event.committeeId,
+            memberPrice: event.memberPrice,
+            publicPrice: event.publicPrice,
+            visible: event.visible,
+            membersOnly: event.membersOnly,
+            signUp: event.signUp,
+            committeeId: event.committeeId,
             signUpForm: signUpForm,
 
           }, {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
-          .then(() => {
-            console.log('submitted???')
+          .then(response => {
+            if (response !== undefined && (response.status === 201 || response.status === 200)) {
+              this.$router.push('../manager')
+            }
           })
 
       // let signUpForm = this.$refs.signUpForm.$data.form

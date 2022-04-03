@@ -1,11 +1,10 @@
 <template>
   <v-main>
-    <!--    <top-banner :title="title ? title : 'Create Event'" :image="imageUrl"/>-->
-    <top-banner title="Create Event"/>
+    <top-banner :title="eventTitle ? eventTitle : 'Create Event'"/>
 
     <div class="mx-3">
       <div class="mx-auto mt-10" style="max-width: 800px">
-        <event-form v-bind:event="event" v-on:submit="create()" ref="form"/>
+        <event-form ref="form" v-on:submit="create" v-on:title="updateTitle"/>
       </div>
 
     </div>
@@ -21,54 +20,33 @@ export default {
   name: 'CreateEvent',
   components: {EventForm, TopBanner},
   data: () => ({
-    event: {
-      title: '',
-      location: '',
-      description: '',
-
-      memberPrice: '0',
-      publicPrice: '0',
-
-      membersOnly: false,
-      visible: true,
-      signUp: false,
-
-      startDate: '',
-      endDate: '',
-      startTime: '',
-      endTime: '',
-
-      committeeId: '',
-      image: null,
-
-      signUpForm: [],
-
-      enableSignUpForm: false,
-      endDateSame: true,
-    }
+    eventTitle: null
   }),
   methods: {
-    create() {
+    updateTitle(newTitle) {
+      this.eventTitle = newTitle
+    },
+    create(event) {
       //Timestamp must be yyyy-mm-dd hh:mm:ss as a string
-      let startTime = `${this.event.startDate} ${this.event.startTime}:00`
-      let endTime = `${this.event.endDate} ${this.event.endTime}:00`
+      let startTime = `${event.startDate} ${event.startTime}:00`
+      let endTime = `${event.endDate} ${event.endTime}:00`
 
-      let signUpForm = this.event.signUpForm ? JSON.stringify(this.event.signUpForm) : null
+      let signUpForm = event.signUpForm.length > 0 ? JSON.stringify(event.signUpForm) : null
 
 
       this.$http.post('events',
           {
-            title: this.event.title,
-            description: this.event.description,
-            location: this.event.location,
+            title: event.title,
+            description: event.description,
+            location: event.location,
             startTime: startTime,
             endTime: endTime,
-            memberPrice: this.event.memberPrice,
-            publicPrice: this.event.publicPrice,
-            visible: this.event.visible,
-            membersOnly: this.event.membersOnly,
-            signUp: this.event.signUp,
-            committeeId: this.event.committeeId,
+            memberPrice: event.memberPrice,
+            publicPrice: event.publicPrice,
+            visible: event.visible,
+            membersOnly: event.membersOnly,
+            signUp: event.signUp,
+            committeeId: event.committeeId,
             signUpForm: signUpForm,
 
           }, {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})

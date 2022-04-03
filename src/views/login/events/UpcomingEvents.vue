@@ -95,18 +95,19 @@
             </v-list-item>
 
             <v-expand-transition v-bind:key="event.id">
-              <sign-up-form
-                  v-if="signingUpFor === event.id"
-                  :event-id="event.id"
-                  :form="JSON.parse(event.signUpForm)"
-                  :answers-prop="eventIdToSignUpForm[event.id] ? JSON.parse(eventIdToSignUpForm[event.id]) : defaultAnswers(event.signUpForm)"
-                  v-on:submitting="submittingId=event.id"
-                  v-on:close="signingUpFor=null;submittingId=false;refreshSignUp(event.id)"
-                  class="mx-auto mb-2 form"
-                  style=""/>
+              <div class="form-border mx-auto rounded-b-xl" v-if="signingUpFor === event.id">
+                <sign-up-form
+                    :event-id="event.id"
+                    :form="JSON.parse(event.signUpForm)"
+                    :answers-prop="eventIdToSignUpForm[event.id] ? JSON.parse(eventIdToSignUpForm[event.id]) : defaultAnswers(event.signUpForm)"
+                    v-on:submitting="submittingId=event.id"
+                    v-on:close="signingUpFor=null;submittingId=false;refreshSignUp(event.id)"
+                    class="form mx-auto"
+                />
+              </div>
             </v-expand-transition>
 
-            <v-divider v-if="i < events.length - 1" v-bind:key="i"/>
+            <v-divider v-if="i < events.length - 1 && signingUpFor !== event.id" v-bind:key="i"/>
           </template>
         </v-list>
 
@@ -190,12 +191,14 @@ export default {
 </script>
 
 <style scoped>
-.form {
-  max-width: 750px;
-  padding: 16px;
+.form-border {
   border-width: 1px;
   border-color: var(--v-accent-base);
-  border-radius: 8px;
   border-style: solid;
 }
+
+.form {
+  padding: 16px;
+}
+
 </style>
