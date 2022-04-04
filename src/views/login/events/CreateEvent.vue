@@ -27,7 +27,7 @@ export default {
       this.eventTitle = newTitle
     },
     create(event) {
-      //Timestamp must be yyyy-mm-dd hh:mm:ss as a string
+      //Timestamp passed to backend must be yyyy-mm-dd hh:mm:ss as a string
       let startTime = `${event.startDate} ${event.startTime}:00`
       let endTime = `${event.endDate} ${event.endTime}:00`
 

@@ -39,8 +39,9 @@
                   <v-icon>mdi-checkbox-blank</v-icon>
                 </v-btn>
 
-                <v-tooltip v-else-if="eventIdToSignUpForm[event.id] !== undefined && !event.signUpForm"
-                           left>
+                <v-tooltip
+                    v-else-if="eventIdToSignUpForm[event.id] !== undefined && !event.signUpForm"
+                    left>
                   <template v-slot:activator="{ on, attrs }">
                     <v-btn :loading="submittingId === event.id" icon
                            v-bind="attrs"
@@ -52,8 +53,9 @@
                   <span>Remove sign-up</span>
                 </v-tooltip>
 
-                <v-tooltip v-else-if="!event.signUpForm && eventIdToSignUpForm[event.id] === undefined"
-                           left>
+                <v-tooltip
+                    v-else-if="!event.signUpForm && eventIdToSignUpForm[event.id] === undefined"
+                    left>
                   <template v-slot:activator="{ on, attrs }">
                     <v-btn :loading="submittingId === event.id" icon
                            v-bind="attrs"
@@ -97,13 +99,14 @@
             <v-expand-transition v-bind:key="event.id">
               <div v-if="signingUpFor === event.id" class="form-border mx-auto rounded-b-xl">
                 <sign-up-form
-                    :answers-prop="eventIdToSignUpForm[event.id] ? JSON.parse(eventIdToSignUpForm[event.id]) : defaultAnswers(event.signUpForm)"
+                    :answers="eventIdToSignUpForm[event.id] ? JSON.parse(eventIdToSignUpForm[event.id]) : defaultAnswers(event.signUpForm)"
                     :event-id="event.id"
                     :form="JSON.parse(event.signUpForm)"
                     class="form mx-auto"
                     v-on:close="signingUpFor=null;submittingId=false;refreshSignUp(event.id)"
                     v-on:submitting="submittingId=event.id"
                 />
+
               </div>
             </v-expand-transition>
 
