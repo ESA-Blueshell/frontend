@@ -1,0 +1,180 @@
+<template>
+  <v-main>
+    <top-banner title="Committee Manager"/>
+    <div class="mx-3">
+      <div class="mx-auto my-10" style="max-width: 800px">
+
+        <v-btn
+            :disabled="noCommittees"
+            :loading="creatingLoading"
+            block
+            :tile="creatingCommittee"
+            :outlined="creatingCommittee"
+            @click="creatingCommittee = !creatingCommittee">
+          {{ creatingCommittee ? 'Stop creating committee' : 'Create new committee'}}
+
+        </v-btn>
+
+        <v-expand-transition>
+          <div v-if="creatingCommittee"
+               class="form-border mx-auto rounded-b-xl"
+          style="border-top-width: 0">
+            <edit-committee class="form"
+                            new-committee
+                            v-on:close="getCommittees();creatingCommittee=false;creatingLoading=false;"
+                            v-on:submitting="creatingLoading=true"/>
+          </div>
+        </v-expand-transition>
+
+
+        <v-dialog max-width="400" v-bind:value="committeeToDelete">
+          <template v-slot:activator="{ on: dialog, attrs }">
+
+
+            <v-list two-line>
+              <template v-for="(committee,i) in committees">
+                <v-list-item v-bind:key="committee.name">
+                  <v-list-item-content>
+                    <v-list-item-title class="text-h6">
+                      {{ committee.name }}
+                    </v-list-item-title>
+                    <v-list-item-subtitle>
+                      {{ committee.members.length }}
+                      member{{ committee.members.length === 1 ? '' : 's' }}
+                    </v-list-item-subtitle>
+                  </v-list-item-content>
+
+                  <v-list-item-action>
+                    <v-tooltip left>
+                      <template v-slot:activator="{ on, attrs }">
+                        <v-btn :loading="submittingId === committee.id" icon
+                               v-bind="attrs"
+                               @click="editingCommitteeId= (editingCommitteeId ? null : committee.id)"
+                               v-on="on">
+                          <v-icon>mdi-pencil</v-icon>
+                        </v-btn>
+                      </template>
+                      <span>Edit committee</span>
+                    </v-tooltip>
+                    <v-tooltip v-if="$store.getters.isBoard" left>
+                      <template v-slot:activator="{ on: tooltip }">
+                        <v-btn icon v-bind="attrs"
+                               @click="committeeToDelete = committee"
+                               v-on="{ ...tooltip, ...dialog }">
+                          <v-icon>mdi-delete</v-icon>
+                        </v-btn>
+                      </template>
+                      <span>Delete committee</span>
+                    </v-tooltip>
+                  </v-list-item-action>
+                </v-list-item>
+
+                <v-expand-transition v-bind:key="committee.name">
+                  <div v-if="editingCommitteeId === committee.id"
+                       class="form-border mx-auto rounded-b-xl">
+                    <edit-committee :committee="committee" class="form"
+                                    v-on:close="editingCommitteeId=null;submittingId=null"
+                                    v-on:submitting="submittingId=committee.id"/>
+                  </div>
+                </v-expand-transition>
+
+                <v-divider v-bind:key="i"
+                    v-if="i < committees.length - 1 && editingCommitteeId !== committee.id"
+                ></v-divider>
+              </template>
+            </v-list>
+          </template>
+
+
+          <v-card>
+            <v-card-title>
+              <span class="text-h5">
+                Are you sure you want to delete this committee:
+                {{ committeeToDelete ? committeeToDelete.name : 'NO committeee????' }}
+              </span>
+            </v-card-title>
+            <v-card-text>
+              There will be no undo
+            </v-card-text>
+            <v-card-actions>
+              <v-spacer/>
+              <v-btn
+                  text
+                  @click="committeeToDelete=null">
+                No
+              </v-btn>
+              <v-btn
+                  color="red"
+                  text
+                  @click="deleteCommittee">
+                Yes
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+
+
+        <v-img v-if="noCommittees"
+               :src="require('../../assets/noCommittees.jpg')"/>
+
+      </div>
+    </div>
+  </v-main>
+</template>
+
+<script>
+import TopBanner from "@/components/top-banner";
+import EditCommittee from "@/components/edit-committee";
+
+export default {
+  name: "CommitteeManager",
+  components: {EditCommittee, TopBanner},
+  data: () => ({
+    committees: [],
+    committeeToDelete: null,
+    editingCommitteeId: null,
+    submittingId: null,
+    creatingCommittee: false,
+    creatingLoading: false,
+    noCommittees: false,
+  }),
+  mounted() {
+    // Get the user's committees
+    this.getCommittees()
+  },
+  methods: {
+    getCommittees() {
+      this.$http.get('committees?editable=true', {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
+          .then(response => {
+            if (response.data.length > 0) {
+              this.committees = response.data
+            } else {
+              this.noCommittees = true
+            }
+          })
+    },
+    deleteCommittee() {
+      this.$http.delete('committees/' + this.committeeToDelete.id, {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
+          .then(response => {
+            if (response.status === 200) {
+              this.committees = this.committees.filter(committee => committee.id !== this.committeeToDelete.id)
+              this.committeeToDelete = null
+            }
+          })
+    },
+  },
+}
+</script>
+
+<style scoped>
+
+.form-border {
+  border-width: 1px;
+  border-color: var(--v-accent-base);
+  border-style: solid;
+}
+
+.form {
+  padding: 16px;
+}
+</style>

@@ -29,6 +29,7 @@ import EventManager from "@/views/login/events/EventManager";
 import EditEvent from "@/views/login/events/EditEvent";
 import UpcomingEvents from "@/views/login/events/UpcomingEvents";
 import EventSignUps from "@/views/login/events/EventSignUps";
+import CommitteeManager from "@/views/login/CommitteeManager";
 
 
 Vue.use(Router)
@@ -76,6 +77,12 @@ const router = new Router({
       path: '/committees',
       name: 'committees',
       component: Committees
+    },
+    {
+      path: '/committees/manage',
+      name: 'committeeManager',
+      component: CommitteeManager,
+      meta: {requiresAuth: true}
     },
     {
       path: '/esports',

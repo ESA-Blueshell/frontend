@@ -38,5 +38,6 @@ export default new Vuex.Store({
   getters: {
     getLogin: state => state.login,
     tokenExpired: state => state.login == null || new Date().getTime() > state.login.expiration,
+    isBoard: state => state.login.board,
   },
 })
