@@ -66,7 +66,7 @@
         <v-col>
           <v-checkbox
               v-model="event.visible"
-              :rules="[v => !!v || 'For now, non-public events are not supported, cry about it']"
+              :rules="[v => !v || $store.getters.isBoard || 'Sorry, only board members can create/update public events']"
               label="Make public"/>
 
         </v-col>
@@ -116,7 +116,7 @@
               v-model="event.committeeId"
               :disabled="!committees"
               :items="committees"
-              :rules="[v => (!!v || !event.visible) || 'A representative committee is required for public events']"
+              :rules="[v => !!v || 'A representative committee is required']"
               item-text="name"
               item-value="id"
               label="Representative committee"/>
@@ -184,7 +184,7 @@ export default {
         publicPrice: '0',
 
         membersOnly: false,
-        visible: true,
+        visible: false,
         signUp: false,
 
         startDate: '',
