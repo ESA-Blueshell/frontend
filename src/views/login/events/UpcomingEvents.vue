@@ -103,7 +103,7 @@
                     :event-id="event.id"
                     :form="JSON.parse(event.signUpForm)"
                     class="form mx-auto"
-                    v-on:close="signingUpFor=null;submittingId=false;refreshSignUp(event.id)"
+                    v-on:close="signingUpFor=null;submittingId=null;refreshSignUp(event.id)"
                     v-on:submitting="submittingId=event.id"
                 />
 

@@ -33,9 +33,17 @@ export default {
 
       let signUpForm = event.signUpForm.length > 0 ? JSON.stringify(event.signUpForm) : null
 
+      if (event.image) {
+        // Encode the file using the FileReader API
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          // Use a regex to remove data url part
+          let base64Image = reader.result
+              .replace('data:', '')
+              .replace(/^.+,/, '');
+          let fileExtension = '.' + event.image.name.split('.').pop();
 
-      this.$http.post('events',
-          {
+          console.log({
             title: event.title,
             description: event.description,
             location: event.location,
@@ -48,13 +56,58 @@ export default {
             signUp: event.signUp,
             committeeId: event.committeeId,
             signUpForm: signUpForm,
-
-          }, {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
-          .then(response => {
-            if (response !== undefined && (response.status === 201 || response.status === 200)) {
-              this.$router.push('../manage')
-            }
+            base64Image: base64Image,
+            fileExtension: fileExtension,
           })
+          this.$http.post('events',
+              {
+                title: event.title,
+                description: event.description,
+                location: event.location,
+                startTime: startTime,
+                endTime: endTime,
+                memberPrice: event.memberPrice,
+                publicPrice: event.publicPrice,
+                visible: event.visible,
+                membersOnly: event.membersOnly,
+                signUp: event.signUp,
+                committeeId: event.committeeId,
+                signUpForm: signUpForm,
+                base64Image: base64Image,
+                fileExtension: fileExtension,
+              }, {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
+              .then(response => {
+                if (response !== undefined && (response.status === 201 || response.status === 200)) {
+                  this.$router.push('manage')
+                }
+              })
+        };
+        reader.readAsDataURL(event.image);
+
+      } else {
+        this.$http.post('events',
+            {
+              title: event.title,
+              description: event.description,
+              location: event.location,
+              startTime: startTime,
+              endTime: endTime,
+              memberPrice: event.memberPrice,
+              publicPrice: event.publicPrice,
+              visible: event.visible,
+              membersOnly: event.membersOnly,
+              signUp: event.signUp,
+              committeeId: event.committeeId,
+              signUpForm: signUpForm,
+
+            }, {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
+            .then(response => {
+              if (response !== undefined && (response.status === 201 || response.status === 200)) {
+                this.$router.push('manage')
+              }
+            })
+      }
+
 
     },
   },

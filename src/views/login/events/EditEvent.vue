@@ -4,7 +4,7 @@
 
     <div class="mx-3 mb-8">
       <div class="mx-auto mt-10" style="max-width: 800px">
-        <event-form v-if="event !== null" ref="form" :event="event" v-on:submit="update"/>
+        <event-form v-if="event !== null" ref="form" :event="event" :has-promo="hasPromo" v-on:submit="update"/>
       </div>
 
     </div>
@@ -20,13 +20,16 @@ export default {
   name: 'EditEvent',
   components: {EventForm, TopBanner},
   data: () => ({
-    event: null
+    event: null,
+    hasPromo: false,
   }),
   mounted() {
     this.$http.get('events/' + this.$route.params.id, {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
         .then(response => {
           if (response !== undefined) {
             let event = response.data
+
+            this.hasPromo = !!event.banner
 
             this.event = {
               title: event.title,
@@ -65,8 +68,17 @@ export default {
       let signUpForm = event.signUpForm.length > 0 ? JSON.stringify(event.signUpForm) : null
 
 
-      this.$http.put('events/' + this.$route.params.id,
-          {
+      if (event.image) {
+        // Encode the file using the FileReader API
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          // Use a regex to remove data url part
+          let base64Image = reader.result
+              .replace('data:', '')
+              .replace(/^.+,/, '');
+          let fileExtension = '.' + event.image.name.split('.').pop();
+
+          console.log({
             title: event.title,
             description: event.description,
             location: event.location,
@@ -79,14 +91,57 @@ export default {
             signUp: event.signUp,
             committeeId: event.committeeId,
             signUpForm: signUpForm,
-
-          }, {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
-          .then(response => {
-            if (response !== undefined && (response.status === 201 || response.status === 200)) {
-              this.$router.push('../manage')
-            }
+            base64Image: base64Image,
+            fileExtension: fileExtension,
           })
+          this.$http.put('events/' + this.$route.params.id,
+              {
+                title: event.title,
+                description: event.description,
+                location: event.location,
+                startTime: startTime,
+                endTime: endTime,
+                memberPrice: event.memberPrice,
+                publicPrice: event.publicPrice,
+                visible: event.visible,
+                membersOnly: event.membersOnly,
+                signUp: event.signUp,
+                committeeId: event.committeeId,
+                signUpForm: signUpForm,
+                base64Image: base64Image,
+                fileExtension: fileExtension,
+              }, {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
+              .then(response => {
+                if (response !== undefined && (response.status === 201 || response.status === 200)) {
+                  this.$router.push('../manage')
+                }
+              })
+        };
+        reader.readAsDataURL(event.image);
 
+      } else {
+        this.$http.put('events/' + this.$route.params.id,
+            {
+              title: event.title,
+              description: event.description,
+              location: event.location,
+              startTime: startTime,
+              endTime: endTime,
+              memberPrice: event.memberPrice,
+              publicPrice: event.publicPrice,
+              visible: event.visible,
+              membersOnly: event.membersOnly,
+              signUp: event.signUp,
+              committeeId: event.committeeId,
+              signUpForm: signUpForm,
+
+            }, {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
+            .then(response => {
+              if (response !== undefined && (response.status === 201 || response.status === 200)) {
+                this.$router.push('../manage')
+              }
+            })
+      }
     },
   },
 }

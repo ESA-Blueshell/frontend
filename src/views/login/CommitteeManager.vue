@@ -12,7 +12,6 @@
             :outlined="creatingCommittee"
             @click="creatingCommittee = !creatingCommittee">
           {{ creatingCommittee ? 'Stop creating committee' : 'Create new committee'}}
-
         </v-btn>
 
         <v-expand-transition>
@@ -144,7 +143,7 @@ export default {
   },
   methods: {
     getCommittees() {
-      this.$http.get('committees?editable=true', {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
+      this.$http.get('committees?fullCommittees=true', {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
           .then(response => {
             if (response.data.length > 0) {
               this.committees = response.data

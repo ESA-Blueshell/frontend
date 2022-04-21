@@ -2,8 +2,8 @@
   <v-main>
     <div class="mt-16"></div>
     <div v-if="this.accountData">
-      <div v-for="key in Object.keys(this.accountData)" v-bind:key="key">
-        <p>
+      <div v-for="key in Object.keys(this.accountData)" v-bind:key="key" >
+        <p v-if="accountData[key] !== null">
           {{ key }}: {{ accountData[key] }}
         </p>
       </div>
@@ -26,7 +26,10 @@ export default {
 
     this.$http
         .get(`users/${login.userId}`, {headers: {'Authorization': `Bearer ${login.token}`}})
-        .then(response => this.accountData = response.data)
+        .then(response => {
+          console.log(response.data)
+          return this.accountData = response.data
+        })
   }
 }
 </script>

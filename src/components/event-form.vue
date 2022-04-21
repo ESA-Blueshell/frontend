@@ -126,6 +126,8 @@
               v-model="event.image"
               accept="image/*"
               label="Promo image"
+              persistent-hint
+              :hint="hasPromo?'This event already has a promo image, only select a file here if you want to overwrite the old one':null"
               show-size
           />
         </v-col>
@@ -198,6 +200,10 @@ export default {
         enableSignUpForm: false,
         endDateSame: true,
       })
+    },
+    hasPromo: {
+      type: Boolean,
+      default: () => false
     }
   },
   data: () => ({
