@@ -5,19 +5,32 @@
       <div class="mx-auto my-10" style="max-width: 800px">
         <v-list two-line>
           <template v-for="(event,i) in events">
-            <v-list-item v-bind:key="event.title+event.startTime">
-              <v-list-item-content>
+            <v-list-item v-bind:key="event.title+event.startTime"
+                         v-bind:style="{ 'background-image': !event.banner ? '' :  $vuetify.theme.dark ? `linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${event.banner})` : `linear-gradient(to bottom, rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url(${event.banner})`}"
+                         style="background-size: cover;background-position: center;backdrop-filter: blur(2px);">
+              <v-list-item-content @click="expandEvent(event, i)"
+                                   v-bind:style="{ 'cursor': event.description.length > 150 ? 'pointer' : 'auto'}">
                 <v-list-item-title class="text-h6">
                   {{ event.title }}
                 </v-list-item-title>
                 <v-list-item-subtitle>
                   {{ formatStartEndTime(event) }}
                 </v-list-item-subtitle>
-                {{
-                  event.description ?
-                      event.description.slice(0, 150) + (event.description.length > 150 ? '...' : '') :
-                      'No description...'
-                }}
+
+                <v-expand-transition>
+                  <div v-if="expandedEvent !== i || !event.description">
+                    {{
+                      event.description ?
+                          event.description.slice(0, 150) + (event.description.length > 150 ? '...' : '') :
+                          'No description...'
+                    }}
+                  </div>
+                </v-expand-transition>
+                <v-expand-transition>
+                  <div v-if="expandedEvent === i && event.description">
+                    {{ event.description }}
+                  </div>
+                </v-expand-transition>
               </v-list-item-content>
 
               <v-list-item-action-text class="ml-2 text-right" style="width: 90px">
@@ -132,6 +145,7 @@ export default {
     eventIdToSignUpForm: {},
     signingUpFor: null,
     submittingId: null,
+    expandedEvent: null,
   }),
   methods: {
     signUp(eventId) {
@@ -183,6 +197,11 @@ export default {
         minute: '2-digit'
       });
       return result
+    },
+    expandEvent(event, i) {
+      if (event.description.length > 150 && !getSelection().toString()) {
+        this.expandedEvent = this.expandedEvent !== i ? i : null
+      }
     },
   },
   mounted() {

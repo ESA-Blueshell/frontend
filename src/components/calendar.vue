@@ -34,7 +34,8 @@
               outlined
               v-if="this.type==='day'"
               @click="viewMonth"
-          ><v-icon class="ml-n2 mr-1">mdi-arrow-left</v-icon>
+          >
+            <v-icon class="ml-n2 mr-1">mdi-arrow-left</v-icon>
             back
           </v-btn>
         </v-toolbar>
@@ -98,7 +99,14 @@
                 <span>Add to calendar</span>
               </v-tooltip>
             </v-toolbar>
+
+            <!-- Promo image -->
+            <img v-if="selectedEvent.banner" :src="selectedEvent.banner"
+                 style="width: 100%; object-fit: contain"/>
+
             <v-card-text>
+
+
               <!-- Description of the event -->
               <p v-if="selectedEvent.details">
                 <!-- In the span is the actual text of the event -->
@@ -236,7 +244,8 @@ export default {
                       memberPrice: elem.memberPrice,
                       publicPrice: elem.publicPrice,
                       googleId: elem.googleId,
-                      timed: !!elem.endTime
+                      timed: !!elem.endTime,
+                      banner: elem.banner,
                     })
                   }
               )
