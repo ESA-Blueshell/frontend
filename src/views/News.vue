@@ -81,7 +81,7 @@ export default {
           this.page = response.data.pageable.pageNumber;
           this.totalPages = response.data.totalPages;
           this.pageSize = response.data.pageable.pageSize;
-        console.log("CHECKING FIRST TIME: ", this.news, this.page, this.totalPages, this.pageSize);})
+        })
         .catch(() => this.snackbar = true)
   },
   methods: {
@@ -98,7 +98,7 @@ export default {
             this.totalPages = response.data.totalPages;
             this.pageSize = response.data.pageable.pageSize;
             this.page = response.data.pageable.pageNumber + 1;
-          console.log("CHECKING: ", this.news, this.totalPages, this.pageSize, this.page);})
+          })
           .catch(() => this.snackbar = true)
     }
   },
