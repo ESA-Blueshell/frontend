@@ -55,7 +55,9 @@
           <v-list>
             <v-list-item to="/partners/become-a-partner">Become a partner!</v-list-item>
             <v-list-item to="/partners/el-nino">El Niño – Digital Development</v-list-item>
-            <v-list-item to="/partners/brunen">Brunen</v-list-item>
+           <!--  Pay up fools
+           <v-list-item to="/partners/brunen">Brunen</v-list-item>
+           -->
             <v-list-item to="/partners/dekimo">Dekimo</v-list-item>
           </v-list>
         </v-menu>
@@ -134,7 +136,9 @@
           </template>
           <v-list-item to="/partners/become-a-partner">Become a partner!</v-list-item>
           <v-list-item to="/partners/el-nino">El Niño – Digital Development</v-list-item>
+          <!-- Pay up fools
           <v-list-item to="/partners/brunen">Brunen</v-list-item>
+          -->
           <v-list-item to="/partners/dekimo">Dekimo</v-list-item>
           <v-divider dark></v-divider>
         </v-list-group>
@@ -155,18 +159,23 @@
               </v-btn>
             </v-col>
             <v-col>
-              <v-btn icon href="https://www.facebook.com/BlueshellEsports/" target="_blank">
-                <v-icon>mdi-facebook</v-icon>
-              </v-btn>
-            </v-col>
-            <v-col>
               <v-btn icon href="https://www.instagram.com/blueshellesports/" target="_blank">
                 <v-icon>mdi-instagram</v-icon>
               </v-btn>
+              <v-col>
+                <v-btn icon href="https://www.facebook.com/BlueshellEsports/" target="_blank">
+                  <v-icon>mdi-facebook</v-icon>
+                </v-btn>
+              </v-col>
             </v-col>
             <v-col>
               <v-btn icon href="https://twitter.com/BlueshellESA" target="_blank">
                 <v-icon>mdi-twitter</v-icon>
+              </v-btn>
+            </v-col>
+            <v-col>
+              <v-btn icon href="https://www.linkedin.com/company/blueshell-esports" target="_blank">
+                <v-icon>mdi-linkedin</v-icon>
               </v-btn>
             </v-col>
           </v-row>
@@ -190,12 +199,17 @@
       <v-btn icon href="https://twitter.com/BlueshellESA" target="_blank">
         <v-icon>mdi-twitter</v-icon>
       </v-btn>
+      <v-btn icon href="https://www.linkedin.com/company/blueshell-esports" target="_blank">
+        <v-icon>mdi-linkedin</v-icon>
+      </v-btn>
       <v-btn href="https://www.elnino.tech/" target="_blank">
         El Niño
       </v-btn>
+      <!-- HAVEN'T PAID YET
       <v-btn href="https://www.brunen.nl/" target="_blank">
         Brunen
       </v-btn>
+      -->
       <v-btn href="https://www.dekimo.com/" target="_blank">
         Dekimo
       </v-btn>

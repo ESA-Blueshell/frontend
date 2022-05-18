@@ -22,6 +22,10 @@
                  class="ml-5 my-3  ">
             <v-icon dark x-large>mdi-twitter</v-icon>
           </v-btn>
+          <v-btn color="primary" href="https://www.linkedin.com/company/blueshell-esports" target="_blank"
+                 class="ml-5 my-3  ">
+            <v-icon dark x-large>mdi-linkedin</v-icon>
+          </v-btn>
         </div>
       </v-col>
     </v-row>
