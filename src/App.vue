@@ -199,6 +199,9 @@
       <v-btn icon href="https://twitter.com/BlueshellESA" target="_blank">
         <v-icon>mdi-twitter</v-icon>
       </v-btn>
+      <v-btn icon href="https://www.linkedin.com/company/blueshell-esports" target="_blank">
+        <v-icon>mdi-linkedin</v-icon>
+      </v-btn>
       <v-btn href="https://www.elnino.tech/" target="_blank">
         El Niño
       </v-btn>
