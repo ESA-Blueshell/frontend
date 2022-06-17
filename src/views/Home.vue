@@ -181,11 +181,6 @@ export default {
           url: "/partners/el-nino"
         },
         {
-          logo: require("../assets/brunen.png"),
-          logoDark: require("../assets/brunendark.png"),
-          url: "/partners/brunen"
-        },
-        {
           logo: require("../assets/dekimo.png"),
           logoDark: require("../assets/dekimodark.png"),
           url: "/partners/dekimo"

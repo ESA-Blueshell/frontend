@@ -55,9 +55,6 @@
           <v-list>
             <v-list-item to="/partners/become-a-partner">Become a partner!</v-list-item>
             <v-list-item to="/partners/el-nino">El Niño – Digital Development</v-list-item>
-           <!--  Pay up fools
-           <v-list-item to="/partners/brunen">Brunen</v-list-item>
-           -->
             <v-list-item to="/partners/dekimo">Dekimo</v-list-item>
           </v-list>
         </v-menu>
@@ -136,9 +133,6 @@
           </template>
           <v-list-item to="/partners/become-a-partner">Become a partner!</v-list-item>
           <v-list-item to="/partners/el-nino">El Niño – Digital Development</v-list-item>
-          <!-- Pay up fools
-          <v-list-item to="/partners/brunen">Brunen</v-list-item>
-          -->
           <v-list-item to="/partners/dekimo">Dekimo</v-list-item>
           <v-divider dark></v-divider>
         </v-list-group>
@@ -204,10 +198,6 @@
       </v-btn>
       <v-btn href="https://www.elnino.tech/" target="_blank">
         El Niño
-      </v-btn>
-      <!-- HAVEN'T PAID YET
-      <v-btn href="https://www.brunen.nl/" target="_blank">
-        Brunen
       </v-btn>
       -->
       <v-btn href="https://www.dekimo.com/" target="_blank">
