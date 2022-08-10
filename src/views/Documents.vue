@@ -11,17 +11,26 @@
         <p class="body-1">
           <a href="https://esa-blueshell.nl/api/download/20171212-Statuten.pdf"
              class="text-decoration-none" target="_blank">
-            Statutes (Dutch)</a></p>
+            Statutes (Dutch)</a>
+        </p>
         <p class="body-1">
           <a href="https://esa-blueshell.nl/api/download/20180109-Huishoudelijk-Reglement-Blueshell-E-Sports.pdf"
              class="text-decoration-none" target="_blank">
             Internal Regulations (Dutch)
-          </a></p>
+          </a>
+        </p>
         <p class="body-1">
           <a href="https://esa-blueshell.nl/api/download/Privacybeleid-Blueshell.pdf"
              class="text-decoration-none" target="_blank">
             Privacy Policy (Dutch)
-          </a></p>
+          </a>
+        </p>
+        <p class="body-1">
+          <a href="https://esa-blueshell.nl/api/download/Code_of_Conduct_Blueshell_Esports.pdf"
+             class="text-decoration-none" target="_blank">
+            Code of Conduct (English)
+          </a>
+        </p>
       </div>
     </div>
   </v-main>
