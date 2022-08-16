@@ -27,6 +27,12 @@
             @click="login">
           Login
         </v-btn>
+        <v-btn
+            class="mt-4 ml-4"
+            color="primary"
+            to="account/create">
+          Create Account
+        </v-btn>
       </v-form>
     </div>
 

@@ -30,6 +30,7 @@ import EditEvent from "@/views/login/events/EditEvent";
 import UpcomingEvents from "@/views/login/events/UpcomingEvents";
 import EventSignUps from "@/views/login/events/EventSignUps";
 import CommitteeManager from "@/views/login/CommitteeManager";
+import CreateAccount from "@/views/login/CreateAccount";
 
 
 Vue.use(Router)
@@ -158,6 +159,11 @@ const router = new Router({
       name: 'account',
       component: Account,
       meta: {requiresAuth: true}
+    },
+    {
+      path: '/account/create',
+      name: 'accountCreation',
+      component: CreateAccount,
     },
     {
       path: '/account/articleEditor',
