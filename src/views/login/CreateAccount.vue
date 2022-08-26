@@ -42,9 +42,11 @@
       </v-form>
     </div>
 
-    <div v-else-if="succeeded" class="mx-3">
-      Your account has successfully been created! Head over to your email to confirm your account.
-      If you can't find the email, make sure to check your spam folder.
+
+    <div v-else-if="succeeded" class="mx-auto my-10" style="max-width: 600px">
+      <p class="text-center subtitle-1 font-weight-light">
+        Your account has successfully been created! Head over to your email to confirm your account.
+        If you can't find the email, make sure to check your spam folder.</p>
     </div>
 
     <v-snackbar v-model="snackbar" timeout="10000">
@@ -79,13 +81,14 @@ export default {
     passwordAgain: '',
     email: '',
     usernameRules: [
-      v => !!v || 'Username is required',
+      v => (!!v && /[a-zA-Z0-9]+/.test(v)) || 'Username is required and must only contain alphanumeric characters',
     ],
     passwordRules: [
       v => !!v || 'Password is required',
     ],
     emailRules: [
-      v => !!v || 'Email is required',
+      // Tier 3 email validation https://howtodoinjava.com/java/regex/java-regex-validate-email-address/
+      v => (!!v && /^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$/.test(v)) || 'Email is required',
     ],
   }),
   methods: {

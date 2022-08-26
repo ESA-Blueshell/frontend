@@ -28,7 +28,7 @@ Axios.interceptors.response.use(
   undefined,
   (error => {
       // If the request got rejected, go to the login page to get some permissions
-      // Otherwise, set the networkError value in vuex to show the snackbar saying there is an error
+      // Otherwise, set the networkError value in vuex to show the snackbar saying there is an error and rethrow
       if (error.response.status === 401) {
         router.push({
           path: '/login',
@@ -36,6 +36,7 @@ Axios.interceptors.response.use(
         })
       } else {
         store.commit('setNetworkError', true)
+        throw error
       }
     }
   )

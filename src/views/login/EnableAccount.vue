@@ -2,12 +2,16 @@
   <v-main>
     <top-banner title="Enable account"></top-banner>
 
-    <div v-if="!succeeded" class="mx-3 pb-10">
-      Trying to enable your account...
+    <div v-if="!succeeded" class="mx-auto my-10" style="max-width: 600px">
+      <p class="text-center subtitle-1 font-weight-light">
+        Trying to enable your account...
+      </p>
     </div>
 
-    <div v-else-if="succeeded" class="mx-3">
-      Your account has successfully been activated! You'll shortly be redirected to our login page.
+    <div v-else-if="succeeded" class="mx-auto my-10" style="max-width: 600px">
+      <p class="text-center subtitle-1 font-weight-light">
+        Your account has successfully been activated! You'll shortly be redirected to our login page.
+      </p>
     </div>
 
     <v-snackbar v-model="snackbar" timeout="10000">
