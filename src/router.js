@@ -31,6 +31,7 @@ import UpcomingEvents from "@/views/login/events/UpcomingEvents";
 import EventSignUps from "@/views/login/events/EventSignUps";
 import CommitteeManager from "@/views/login/CommitteeManager";
 import CreateAccount from "@/views/login/CreateAccount";
+import EnableAccount from "@/views/login/EnableAccount";
 
 
 Vue.use(Router)
@@ -164,6 +165,11 @@ const router = new Router({
       path: '/account/create',
       name: 'accountCreation',
       component: CreateAccount,
+    },
+    {
+      path: '/account/enable',
+      name: 'enableAccount',
+      component: EnableAccount
     },
     {
       path: '/account/articleEditor',
