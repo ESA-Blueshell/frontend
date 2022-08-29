@@ -7,7 +7,8 @@
       </v-app-bar-nav-icon>
       <v-toolbar-title class="ml-sm-n5 ml-md-0 ml-lg-0 ml-xl-0 ">
         <router-link to="/">
-          <img :src="require('./assets/topbarlogo.png')"  alt="Blueshell logo" style="height: 64px;max-width: 260px" class="mr-3">
+          <img :src="require('./assets/topbarlogo.png')" alt="Blueshell logo"
+               class="mr-3" style="height: 64px;max-width: 260px">
         </router-link>
       </v-toolbar-title>
       <div v-if="$vuetify.breakpoint.lgAndUp"
@@ -64,23 +65,16 @@
       <v-spacer/>
 
       <!--  Dark mode toggle    -->
-      <v-tooltip bottom>
-        <template v-slot:activator="{ on, attrs }">
-          <div v-on="on" v-bind="attrs">
-            <v-btn small icon @click="darkMode" rounded>
-              <transition name="roll" mode="out-in">
-                <v-icon key="1" color="white" v-if="!$vuetify.theme.dark" style="transition: unset">
-                  mdi-moon-waxing-crescent
-                </v-icon>
-                <v-icon key="2" color="accent" v-else style="transition: unset">
-                  mdi-white-balance-sunny
-                </v-icon>
-              </transition>
-            </v-btn>
-          </div>
-        </template>
-        <span>Toggle dark mode</span>
-      </v-tooltip>
+      <v-btn small icon @click="darkMode" rounded class="mr-1">
+        <transition name="roll" mode="out-in">
+          <v-icon key="1" color="white" v-if="!$vuetify.theme.dark" style="transition: unset">
+            mdi-moon-waxing-crescent
+          </v-icon>
+          <v-icon key="2" color="accent" v-else style="transition: unset">
+            mdi-white-balance-sunny
+          </v-icon>
+        </transition>
+      </v-btn>
 
       <!--      <v-btn class="bar-button" text dark to="/login">Login</v-btn>-->
     </v-app-bar>
