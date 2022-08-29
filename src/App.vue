@@ -193,7 +193,6 @@
       <v-btn href="https://www.elnino.tech/" target="_blank">
         El Niño
       </v-btn>
-      -->
       <v-btn href="https://www.dekimo.com/" target="_blank">
         Dekimo
       </v-btn>
