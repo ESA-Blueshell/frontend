@@ -23,7 +23,7 @@
       />
 
       <p class="mx-3 text-h5" v-if="events.length === 0">
-        Doesn't look like you have any upcoming events 😔😔😔 maybe create one? or two?
+        Doesn't look like you have any upcoming events for your committees 😔😔😔 maybe create one? or two?
       </p>
 
 

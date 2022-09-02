@@ -9,7 +9,7 @@
                          v-bind:style="{ 'background-image': !event.banner ? '' :  $vuetify.theme.dark ? `linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${event.banner})` : `linear-gradient(to bottom, rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url(${event.banner})`}"
                          style="background-size: cover;background-position: center;backdrop-filter: blur(2px);">
               <v-list-item-content @click="expandEvent(event, i)"
-                                   v-bind:style="{ 'cursor': event.description.length > 150 ? 'pointer' : 'auto'}">
+                                   v-bind:style="{ 'cursor': event.description && event.description.length > 150 ? 'pointer' : 'auto'}">
                 <v-list-item-title class="text-h6">
                   {{ event.title }}
                 </v-list-item-title>
@@ -199,7 +199,7 @@ export default {
       return result
     },
     expandEvent(event, i) {
-      if (event.description.length > 150 && !getSelection().toString()) {
+      if (event.description && event.description.length > 150 && !getSelection().toString()) {
         this.expandedEvent = this.expandedEvent !== i ? i : null
       }
     },
