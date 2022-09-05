@@ -8,7 +8,7 @@
       <v-toolbar-title class="ml-sm-n5 ml-md-0 ml-lg-0 ml-xl-0 ">
         <router-link to="/">
           <img :src="require('./assets/topbarlogo.png')" alt="Blueshell logo"
-               style="max-height: 64px;max-width: 260px" class="mr-3">
+               style="max-height: 64px;max-width: 260px; width: 100%" class="mr-3">
         </router-link>
       </v-toolbar-title>
       <div v-if="$vuetify.breakpoint.lgAndUp"
@@ -66,31 +66,22 @@
       <v-spacer/>
 
       <!--  Dark mode toggle    -->
-      <v-tooltip bottom>
-        <template v-slot:activator="{ on, attrs }">
-          <div v-on="on" v-bind="attrs" style="margin: 16px !important;">
-            <v-btn small icon @click="darkMode" rounded>
-              <transition name="roll" mode="out-in">
-                <v-icon key="1" color="white" v-if="!$vuetify.theme.dark" style="transition: unset">
-                  mdi-moon-waxing-crescent
-                </v-icon>
-                <v-icon key="2" color="accent" v-else style="transition: unset">
-                  mdi-white-balance-sunny
-                </v-icon>
-              </transition>
-            </v-btn>
-          </div>
-        </template>
-        <span>Toggle dark mode</span>
-      </v-tooltip>
+      <v-btn small icon @click="darkMode" rounded class="mr-4">
+        <transition name="roll" mode="out-in">
+          <v-icon key="1" color="white" v-if="!$vuetify.theme.dark" style="transition: unset">
+            mdi-moon-waxing-crescent
+          </v-icon>
+          <v-icon key="2" color="accent" v-else style="transition: unset">
+            mdi-white-balance-sunny
+          </v-icon>
+        </transition>
+      </v-btn>
 
       <!-- LOGIN BUTTON/ACCOUNT DROPDOWN MENU -->
-      <!-- TODO: make this work for touch screens (aka put it in the sidebar)-->
       <v-btn class="bar-button" text dark to="/login" v-if="!loggedIn">Log In</v-btn>
-      <v-menu open-on-hover offset-y v-else>
+      <v-menu offset-y v-else>
         <template v-slot:activator="{ on, attrs }">
-          <v-btn class="bar-button" v-bind="attrs" v-on="on" text dark
-                 to="/account">
+          <v-btn class="bar-button" v-bind="attrs" v-on="on" text dark>
             <v-icon large>mdi-account</v-icon>
           </v-btn>
         </template>
