@@ -107,7 +107,7 @@ export default {
       //Send new user object to backend
       const login = this.$store.getters.getLogin
       this.$http
-          .put(`createAccount`, this.accountData, {headers: {'Authorization': `Bearer ${login.token}`}})
+          .put(`users/${login.userId}`, this.accountData, {headers: {'Authorization': `Bearer ${login.token}`}})
           .then(() => {
             this.editing = false;
 

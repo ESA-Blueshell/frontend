@@ -48,7 +48,7 @@
                       <template v-slot:activator="{ on, attrs }">
                         <v-btn :loading="submittingId === committee.id" icon
                                v-bind="attrs"
-                               @click="editingCommitteeId= (editingCommitteeId ? null : committee.id)"
+                               @click="editingCommitteeId= (editingCommitteeId===committee.id ? null : committee.id)"
                                v-on="on">
                           <v-icon>mdi-pencil</v-icon>
                         </v-btn>

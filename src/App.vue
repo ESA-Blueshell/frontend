@@ -98,6 +98,7 @@
           <v-list-item to="/account">Account</v-list-item>
           <v-list-item to="/events/upcoming">Upcoming events</v-list-item>
           <v-list-item to="/events/manage" v-if="$store.getters.isActive">Manage events</v-list-item>
+          <v-list-item to="/committees/manage" v-if="$store.getters.isBoard">Manage committees</v-list-item>
           <v-list-item @click="logOut">Log Out</v-list-item>
         </v-list>
       </v-menu>
