@@ -3,13 +3,37 @@
     <top-banner title="My account"/>
     <div class="mx-3">
       <div class="mx-auto my-10" style="max-width: 800px">
+        <p class="text-h3">Hello {{ this.accountData != null ? this.accountData.firstName : '' }}!</p>
+
+        <p>
+          On this page you can view your account data and edit it below. Fields like your name and e-mail address
+          cannot be changed. You should contact board or sitecie on discord if you would like to change any of these
+          fields
+        </p>
+        <p>
+          On the "Upcoming events" page you will find all of the events that have been planned. Here, you can sign up
+          for events that have it enabled, either by clicking the sign-up checkbox or filling in the sign-up form. (no
+          more google forms baybee)
+        </p>
+        <p v-if="$store.getters.isActive">
+          With the event manager, you can create and edit an upcoming event for one of the committees you're in. Once an
+          event is created it will have to be approved by board {{ $store.getters.isBoard ? '(yes, you)' : '' }} before
+          it will go public.
+        </p>
+        <p v-if="$store.getters.isBoard">
+          Using the committee manager you can manage the committees in the association (duh). You can crate a committee,
+          give it a description and add any members to it.
+        </p>
+
         <div v-if="this.accountData">
           <v-form ref="form" v-model="valid">
-            <v-row align="end">
-              <v-col cols="auto" align-self="end">
+            <v-row>
+              <v-spacer/>
+              <v-col cols="auto">
                 <v-tooltip top>
                   <template v-slot:activator="{ on, attrs }">
                     <v-btn icon @click="save" :disabled="!valid"
+                           :loading="submitting"
                            v-bind="attrs" v-on="on">
                       <v-icon>mdi-content-save</v-icon>
                     </v-btn>
@@ -76,6 +100,22 @@
             <!-- TODO: do something with this-->
             <!--          <v-checkbox disabled label="Paid contribution?" v-model="accountData.contributionPaid"/>-->
 
+
+            <v-row>
+              <v-spacer/>
+              <v-col cols="auto">
+                <v-tooltip top>
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-btn icon @click="save" :disabled="!valid"
+                           :loading="submitting"
+                           v-bind="attrs" v-on="on">
+                      <v-icon>mdi-content-save</v-icon>
+                    </v-btn>
+                  </template>
+                  <span>Save changes</span>
+                </v-tooltip>
+              </v-col>
+            </v-row>
           </v-form>
         </div>
 
@@ -97,7 +137,8 @@ export default {
   data: () => ({
     accountData: null,
     oldAccountData: null,
-    valid: true
+    valid: true,
+    submitting: false
   }),
   methods: {
     copyObject(obj) {
@@ -105,13 +146,14 @@ export default {
     },
     save() {
       if (this.$refs.form.validate()) {
+        this.submitting = true
         //Send new user object to backend
         const login = this.$store.getters.getLogin
         this.$http
             .put(`users/${login.userId}`, this.accountData, {headers: {'Authorization': `Bearer ${login.token}`}})
             .then(() => {
-              this.editing = false;
-            }).catch();
+              this.submitting = false
+            });
       }
     },
   },
