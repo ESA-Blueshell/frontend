@@ -20,19 +20,25 @@
             @click:append="showPass = !showPass"
             :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
             :type="showPass ? 'text' : 'password'"/>
-        <v-btn
-            class="mt-4"
-            :disabled="!valid"
-            color="primary"
-            @click="login">
-          Login
-        </v-btn>
-        <v-btn
-            class="mt-4 ml-4"
-            color="primary"
-            to="account/create">
-          Create Account
-        </v-btn>
+        <v-row class="mt-4">
+          <v-col cols="auto">
+            <v-btn
+                outlined
+                color="accent"
+                to="account/create">
+              Create Account
+            </v-btn>
+          </v-col>
+          <v-spacer/>
+          <v-col cols="auto">
+            <v-btn
+                :disabled="!valid"
+                color="primary"
+                @click="login">
+              Login
+            </v-btn>
+          </v-col>
+        </v-row>
       </v-form>
     </div>
 

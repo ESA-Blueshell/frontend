@@ -4,25 +4,53 @@
 
     <div v-if="!succeeded" class="mx-3 pb-10">
       <v-form class="mx-auto mt-10" style="max-width: 500px" ref="form">
+        <v-row>
+          <v-col cols="4">
+            <v-text-field
+                v-model="initials"
+                :rules="initialsRules"
+                label="Initials"
+                ref="initials"/>
+          </v-col>
+          <v-col cols="8">
+            <v-text-field
+                v-model="firstName"
+                :rules="firstNameRules"
+                label="First name"
+                ref="firstName"/>
+          </v-col>
+        </v-row>
+        <v-row class="mt-n7 mb-n5">
+          <v-col cols="4">
+            <v-text-field
+                v-model="prefix"
+                label="Prefix"
+                ref="prefix"/>
+          </v-col>
+          <v-col cols="8">
+            <v-text-field
+                v-model="lastName"
+                :rules="lastNameRules"
+                label="Last name"
+                ref="lastName"/>
+          </v-col>
+        </v-row>
         <v-text-field
             v-model="username"
             :rules="usernameRules"
             label="Username"
-            required
             ref="username"/>
         <v-text-field
             v-model="password"
             :rules="passwordRules"
             label="Password"
-            required
             @click:append="showPass = !showPass"
             :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
             :type="showPass ? 'text' : 'password'"/>
         <v-text-field
             v-model="passwordAgain"
-            :rules="passwordRules"
+            :rules="[ v => !!v || 'Password is required', v => v===this.password || 'The passwords should be the same' ]"
             label="Password (repeated)"
-            required
             @click:append="showPass = !showPass"
             :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
             :type="showPass ? 'text' : 'password'"/>
@@ -32,13 +60,17 @@
             label="Email"
             required
             ref="email"/>
-        <v-btn
-            class="mt-4"
-            :disabled="clicked"
-            color="primary"
-            @click="createAccount">
-          Create account
-        </v-btn>
+        <v-row>
+          <v-spacer/>
+          <v-col cols="auto">
+            <v-btn
+                :loading="clicked"
+                color="primary"
+                @click="createAccount">
+              Create account
+            </v-btn>
+          </v-col>
+        </v-row>
       </v-form>
     </div>
 
@@ -77,30 +109,39 @@ export default {
     succeeded: false,
     showPass: false,
     username: '',
+    initials: '',
+    firstName: '',
+    prefix: '',
+    lastName: '',
     password: '',
     passwordAgain: '',
     email: '',
     usernameRules: [
-      v => (!!v && /[a-zA-Z0-9]+/.test(v)) || 'Username is required and must only contain alphanumeric characters',
+      v => !!v || 'Username is required',
+      v => /^[a-zA-Z0-9]+$/.test(v) || 'Username must only contain alphanumeric characters',
+    ],
+    initialsRules: [
+      v => !!v || 'Initials are required',
+    ],
+    firstNameRules: [
+      v => !!v || 'First name is required',
+    ],
+    lastNameRules: [
+      v => !!v || 'Last name is required',
     ],
     passwordRules: [
       v => !!v || 'Password is required',
     ],
     emailRules: [
       // Tier 3 email validation https://howtodoinjava.com/java/regex/java-regex-validate-email-address/
-      v => (!!v && /^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$/.test(v)) || 'Email is required',
+      v => !!v || 'Email is required',
+      v => (!!v && /^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$/.test(v)) || 'Enter a valid e-mail address',
     ],
   }),
   methods: {
     createAccount() {
       // Check if form is valid (meaning all fields are not empty)
       if (!this.$refs.form.validate()) {
-        return
-      }
-
-      if (!this.passwordsEqual()) {
-        this.snackbar = true
-        this.snackbarText = 'Passwords must match.'
         return
       }
 
@@ -111,22 +152,23 @@ export default {
         username: this.username,
         password: this.password,
         email: this.email,
+        firstName: this.firstName,
+        prefix: this.prefix,
+        lastName: this.lastName,
+        initials: this.initials,
       })
-      .then(() => {
-        this.succeeded = true
-      })
-      .catch(() => {
-        // Show login taken snackbar
-        this.snackbar = true
-        this.snackbarText = 'This username cannot be used.'
-      })
-      .finally(() => {
-        this.clicked = false
-      })
+          .then(() => {
+            this.succeeded = true
+          })
+          .catch(() => {
+            // Show login taken snackbar
+            this.snackbar = true
+            this.snackbarText = 'This username cannot be used.'
+          })
+          .finally(() => {
+            this.clicked = false
+          })
     },
-    passwordsEqual() {
-      return this.password !== '' && this.password === this.passwordAgain
-    }
   }
 }
 </script>

@@ -19,7 +19,7 @@ import Partners from "@/views/partners/Partners";
 import Article from "@/views/Article";
 import NotFound from "@/views/NotFound";
 import Valorant from "@/views/esports/Valorant";
-import Login from "@/views/Login";
+import Login from "@/views/login/Login";
 import Account from "@/views/login/Account";
 import ArticleEditor from "@/views/ArticleEditor";
 
