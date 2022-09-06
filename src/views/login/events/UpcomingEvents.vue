@@ -6,12 +6,12 @@
         <v-list two-line>
           <template v-for="(event,i) in events">
             <v-list-item v-bind:key="event.title+event.startTime"
-                         v-bind:style="{ 'background-image': !event.banner ? '' :  $vuetify.theme.dark ? `linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${event.banner})` : `linear-gradient(to bottom, rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url(${event.banner})`}"
+                         v-bind:style="{ 'background-image': !event.banner ? '' :  $vuetify.theme.dark ? `linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(${event.banner})` : `linear-gradient(to bottom, rgba(255,255,255,0.6), rgba(255,255,255,0.6)), url(${event.banner})`}"
                          style="background-size: cover;background-position: center;backdrop-filter: blur(2px);">
               <v-list-item-content @click="expandEvent(event, i)"
                                    v-bind:style="{ 'cursor': event.description && event.description.length > 150 ? 'pointer' : 'auto'}">
                 <v-list-item-title class="text-h6">
-                  {{ event.title }}
+                  {{ ((!$store.getters.isMember && event.membersOnly) ? 'Members-only event: ' : '') + event.title }}
                 </v-list-item-title>
                 <v-list-item-subtitle>
                   {{ formatStartEndTime(event) }}
@@ -33,12 +33,15 @@
                 </v-expand-transition>
               </v-list-item-content>
 
-              <v-list-item-action-text class="ml-2 text-right" style="width: 90px">
+              <v-list-item-action-text class="ml-2 text-right" style="width: 100px">
                 <template v-if="submittingId === event.id">
                   Submitting sign-up
                 </template>
                 <template v-else-if="eventIdToSignUpForm[event.id] !== undefined">
                   Signed up!
+                </template>
+                <template v-else-if="event.signUp && event.membersOnly && !$store.getters.isMember">
+                  Members-only event
                 </template>
                 <template v-else-if="event.signUp">
                   Not signed up
@@ -57,9 +60,9 @@
                     left>
                   <template v-slot:activator="{ on, attrs }">
                     <v-btn :loading="submittingId === event.id" icon
-                           v-bind="attrs"
                            @click="removeSignUp(event.id)"
-                           v-on="on">
+                           :disabled="event.membersOnly && !$store.getters.isMember"
+                           v-bind="attrs" v-on="on">
                       <v-icon>mdi-checkbox-marked</v-icon>
                     </v-btn>
                   </template>
@@ -71,9 +74,9 @@
                     left>
                   <template v-slot:activator="{ on, attrs }">
                     <v-btn :loading="submittingId === event.id" icon
-                           v-bind="attrs"
+                           :disabled="event.membersOnly && !$store.getters.isMember"
                            @click="signUp(event.id)"
-                           v-on="on">
+                           v-bind="attrs" v-on="on">
                       <v-icon>mdi-checkbox-blank</v-icon>
                     </v-btn>
                   </template>
@@ -84,9 +87,9 @@
                   <v-tooltip v-if="eventIdToSignUpForm[event.id] !== undefined" left>
                     <template v-slot:activator="{ on, attrs }">
                       <v-btn :loading="submittingId === event.id" icon
-                             v-bind="attrs"
                              @click="removeSignUp(event.id)"
-                             v-on="on">
+                             :disabled="event.membersOnly && !$store.getters.isMember"
+                             v-bind="attrs" v-on="on">
                         <v-icon>mdi-close</v-icon>
                       </v-btn>
                     </template>
@@ -94,9 +97,10 @@
                   </v-tooltip>
                   <v-tooltip left>
                     <template v-slot:activator="{ on, attrs }">
-                      <v-btn icon v-bind="attrs"
+                      <v-btn icon
                              @click="signingUpFor= (signingUpFor ? null : event.id)"
-                             v-on="on">
+                             :disabled="event.membersOnly && !$store.getters.isMember"
+                             v-bind="attrs" v-on="on">
                         <v-icon>mdi-list-status</v-icon>
                       </v-btn>
                     </template>

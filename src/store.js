@@ -40,5 +40,6 @@ export default new Vuex.Store({
     tokenExpired: state => state.login == null || new Date().getTime() > state.login.expiration,
     isBoard: state => state.login.roles.includes("BOARD"),
     isActive: state => state.login.roles.includes("COMMITTEE"),
+    isMember: state => state.login.roles.includes("MEMBER"),
   },
 })
