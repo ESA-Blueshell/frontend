@@ -78,19 +78,19 @@ CSS MOMENT
     src: local("Blueshell"), url('/fonts/Blueshell.woff2') format('woff2'), url('/fonts/Blueshell.ttf') format('truetype');
 }
 
-.v-application .text-h1 {
+.v-application .text-h1, .v-application h1 {
     font-family: "Fugaz One", sans-serif !important;
     text-transform: uppercase;
     font-size: 90px;
 }
 
-.v-application .text-h2 {
+.v-application .text-h2, .v-application h2 {
     font-family: "Fugaz One", sans-serif !important;
     text-transform: uppercase;
     font-size: 38px;
 }
 
-.v-application .text-h3 {
+.v-application .text-h3, .v-application h3 {
     font-family: "Barlow Semi Condensed", sans-serif !important;
     font-size: 26px
 }
@@ -100,7 +100,7 @@ CSS MOMENT
     text-transform: uppercase;
 }
 
-.v-application .text-h4, .v-application .text-h5, .v-application .text-h6 {
+.v-application .text-h4, .v-application h4, .v-application .text-h5, .v-application h5, .v-application .text-h6, .v-application h6 {
     font-family: "Barlow Semi Condensed", sans-serif !important;
     font-weight: bold;
 }
@@ -111,4 +111,12 @@ CSS MOMENT
 
 .v-application {
     font-family: "Barlow Semi Condensed", sans-serif;
+}
+
+.v-application.theme--dark ul li{
+    list-style-image: url('/listitemdark.svg')
+}
+
+.v-application ul li{
+    list-style-image: url('/listitemlight.svg')
 }

@@ -13,7 +13,9 @@
               <v-list-item-subtitle>
                 {{ formatStartEndTime(event) }}
               </v-list-item-subtitle>
-              {{ event.description ? event.description.slice(0, 100) + (event.description.length > 100 ? '...' : '') : 'No description...' }}
+              <span v-html="event.description ?
+                             $root.markdownToHtml(event.description.slice(0, 150) + (event.description.length > 150 ? '...' : '')) :
+                              'No description...'"/>
             </v-list-item-content>
 
 

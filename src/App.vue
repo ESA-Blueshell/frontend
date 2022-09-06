@@ -1,6 +1,5 @@
 <template>
-  <v-app
-      v-bind:style="{'list-style-image':$vuetify.theme.dark?'url(/listitemdark.svg)':'url(/listitemlight.svg)'}">
+  <v-app>
     <v-app-bar dark elevate-on-scroll fixed>
       <v-app-bar-nav-icon @click="drawer = true"
                           v-if="$vuetify.breakpoint.mdAndDown">

@@ -18,18 +18,13 @@
                 </v-list-item-subtitle>
 
                 <v-expand-transition>
-                  <div v-if="expandedEvent !== i || !event.description">
-                    {{
-                      event.description ?
-                          event.description.slice(0, 150) + (event.description.length > 150 ? '...' : '') :
-                          'No description...'
-                    }}
-                  </div>
+                  <div v-if="expandedEvent !== i || !event.description"
+                       v-html="event.description ?
+                                         $root.markdownToHtml(event.description.slice(0, 150) + (event.description.length > 150 ? '...' : '')) :
+                                          'No description...'"/>
                 </v-expand-transition>
                 <v-expand-transition>
-                  <div v-if="expandedEvent === i && event.description">
-                    {{ event.description }}
-                  </div>
+                  <div v-if="expandedEvent === i && event.description" v-html="$root.markdownToHtml(event.description)"/>
                 </v-expand-transition>
               </v-list-item-content>
 
