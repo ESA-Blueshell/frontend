@@ -11,13 +11,13 @@
             :tile="creatingCommittee"
             :outlined="creatingCommittee"
             @click="creatingCommittee = !creatingCommittee">
-          {{ creatingCommittee ? 'Stop creating committee' : 'Create new committee'}}
+          {{ creatingCommittee ? 'Stop creating committee' : 'Create new committee' }}
         </v-btn>
 
         <v-expand-transition>
           <div v-if="creatingCommittee"
                class="form-border mx-auto rounded-b-xl"
-          style="border-top-width: 0">
+               style="border-top-width: 0">
             <edit-committee class="form"
                             new-committee
                             v-on:close="getCommittees();creatingCommittee=false;creatingLoading=false;"
@@ -38,8 +38,7 @@
                       {{ committee.name }}
                     </v-list-item-title>
                     <v-list-item-subtitle>
-                      {{ committee.members.length }}
-                      member{{ committee.members.length === 1 ? '' : 's' }}
+                      {{ committee.members.length }} member{{ committee.members.length === 1 ? '' : 's' }}
                     </v-list-item-subtitle>
                   </v-list-item-content>
 
@@ -78,7 +77,7 @@
                 </v-expand-transition>
 
                 <v-divider v-bind:key="i"
-                    v-if="i < committees.length - 1 && editingCommitteeId !== committee.id"
+                           v-if="i < committees.length - 1 && editingCommitteeId !== committee.id"
                 ></v-divider>
               </template>
             </v-list>
@@ -89,7 +88,7 @@
             <v-card-title>
               <span class="text-h5">
                 Are you sure you want to delete this committee:
-                {{ committeeToDelete ? committeeToDelete.name : 'NO committeee????' }}
+                {{ committeeToDelete ? committeeToDelete.name : '' }}
               </span>
             </v-card-title>
             <v-card-text>

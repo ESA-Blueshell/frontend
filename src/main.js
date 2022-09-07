@@ -17,6 +17,14 @@ Vue.prototype.$http = Axios
 Vue.$http = Axios
 
 const showdown = require("showdown")
+showdown.setOption('openLinksInNewWindow', true)
+showdown.setOption('headerLevelStart', 2)
+showdown.setOption('simplifiedAutoLink', true)
+showdown.setOption('strikethrough', true)
+showdown.setOption('tables', true)
+showdown.setOption('emoji', true)
+showdown.setOption('underline', true)
+const converter = new showdown.Converter()
 const xss = require("xss")
 
 let vue = new Vue({
@@ -28,7 +36,7 @@ let vue = new Vue({
     return {}
   },
   methods: {
-    markdownToHtml: text => xss(new showdown.Converter().makeHtml(text))
+    markdownToHtml: text => xss(converter.makeHtml(text.replaceAll('<html-blob>', '').replaceAll('</html-blob>', '').trim())),
   }
 });
 
