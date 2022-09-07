@@ -112,7 +112,7 @@
                 <!-- In the span is the actual text of the event -->
                 <!-- If the expand variable is true show the fill message, otherwise only show the first 100 words -->
                 <span
-                    v-html="expand || !selectedLong ? cleanup(selectedEvent.details) : cleanup(hundredWords(selectedEvent.details))+'...'"></span>
+                    v-html="expand || !selectedLong ? $root.markdownToHtml(selectedEvent.details) : $root.markdownToHtml(hundredWords(selectedEvent.details))+'...'"></span>
                 <!-- Only show the "read more" if the message is long -->
                 <!-- If it's clicked expand will be set to true and the full message will be shown -->
                 <br v-if="!expand && selectedLong">
