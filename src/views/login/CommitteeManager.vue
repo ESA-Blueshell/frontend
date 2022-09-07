@@ -5,7 +5,6 @@
       <div class="mx-auto my-10" style="max-width: 800px">
 
         <v-btn
-            :disabled="noCommittees"
             :loading="creatingLoading"
             block
             :tile="creatingCommittee"
