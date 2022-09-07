@@ -12,12 +12,12 @@
           </p>
           <template v-if="question.type === 'open'">
             <p v-for="response in responses" v-bind:key="response.discord">
-              {{ response.fullName }}: {{ response.formAnswers[i] }}
+              <b>{{ response.fullName }}:</b> {{ response.formAnswers[i] }}
             </p>
           </template>
           <template v-else-if="question.type === 'radio'">
             <p v-for="response in responses" v-bind:key="response.discord">
-              {{ response.fullName }}: {{ response.formAnswers[i] }}
+              <b>{{ response.fullName }}:</b> {{ response.formAnswers[i] }}
             </p>
             <v-container>
               <v-row v-for="(option,j) in question.options" v-bind:key="j">
@@ -32,36 +32,37 @@
           </template>
           <template v-if="question.type === 'checkbox'">
             <p v-for="response in responses" v-bind:key="response.discord">
-              {{ response.fullName }}: {{ response.formAnswers[i] }}
+              <b>{{ response.fullName }}:</b> {{ response.formAnswers[i].map(answer => question.options[answer]).join(', ') }}
             </p>
-            <v-container><template v-for="(option,j) in question.options">
-              <v-row  v-bind:key="j"  @click="toggle(i,j)">
-                <v-col>
-                  {{ option }}
-                </v-col>
-                <v-col cols="1">
-                  {{ responses.filter(response => response.formAnswers[i].includes(j)).length }}
-                </v-col>
+            <v-container>
+              <template v-for="(option,j) in question.options">
+                <v-row v-bind:key="j" @click="toggle(i,j)">
+                  <v-col>
+                    {{ option }}
+                  </v-col>
+                  <v-col cols="1">
+                    {{ responses.filter(response => response.formAnswers[i].includes(j)).length }}
+                  </v-col>
 
-                <v-container class="py-0 pl-16">
-                  <v-expand-transition>
-                    <div v-if="expandTab.includes((i,j))">
-                      <v-row
-                          v-for="response in responses.filter(response => response.formAnswers[i].includes(j))"
-                          v-bind:key="response.discord">
-                        <v-col>
-                          {{ response.fullName }}
-                        </v-col>
-                        <v-col>
-                          {{ response.discord }}
-                        </v-col>
-                      </v-row>
-                    </div>
-                  </v-expand-transition>
-                </v-container>
+                  <v-container class="py-0 pl-16">
+                    <v-expand-transition>
+                      <div v-if="expandTab.includes((i,j))">
+                        <v-row
+                            v-for="response in responses.filter(response => response.formAnswers[i].includes(j))"
+                            v-bind:key="response.discord">
+                          <v-col>
+                            {{ response.fullName }}
+                          </v-col>
+                          <v-col>
+                            {{ response.discord }}
+                          </v-col>
+                        </v-row>
+                      </div>
+                    </v-expand-transition>
+                  </v-container>
 
-              </v-row>
-              <v-divider  v-bind:key="j" ></v-divider>
+                </v-row>
+                <v-divider v-bind:key="'div'+j"></v-divider>
               </template>
             </v-container>
           </template>

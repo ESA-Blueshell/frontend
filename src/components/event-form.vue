@@ -157,6 +157,7 @@
 
     <v-btn
         :disabled="!valid"
+        :loading="submitting"
         block
         class="mt-4"
         color="primary"
@@ -208,6 +209,7 @@ export default {
   },
   data: () => ({
     valid: false,
+    submitting: false,
 
     priceRules: [
       v => !isNaN(Number(v)) || 'Price must a number',
@@ -242,6 +244,7 @@ export default {
       }
 
       if (this.$refs.form.validate()) {
+        this.submitting = true;
         this.$emit('submit', this.event);
       }
     }

@@ -19,7 +19,7 @@
 
       <v-text-field
           v-if="question.type === 'open'"
-          v-model="answers[i]"
+          v-model="answersData[i]"
           :rules="[v => !!v || 'An answer is required']"
           class="pt-0"
           hide-details="auto"/>

@@ -4,7 +4,8 @@
       <v-list two-line>
         <template v-for="(event,i) in events">
           <v-list-item v-bind:key="event.title+event.startTime"
-                       v-bind:style="{ 'background-image': !event.banner ? '' :  $vuetify.theme.dark ? `linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${event.banner})` : `linear-gradient(to bottom, rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url(${event.banner})`}"
+                       v-bind:style="{ 'background-image': !event.banner ? '' :
+                                  $vuetify.theme.dark ? `linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(${event.banner})` : `linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(255,255,255,0.8)), url(${event.banner})`}"
                        style="background-size: cover;background-position: center;backdrop-filter: blur(2px);">
             <v-list-item-content>
               <v-list-item-title class="text-h6">

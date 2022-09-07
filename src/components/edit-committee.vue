@@ -26,10 +26,8 @@
         <v-col cols="4">
           <v-text-field
               v-model="member.role"
-              :rules="[v => !!v || 'A role is required']"
               hide-details="auto"
-              label="Role"
-              required/>
+              label="Role"/>
         </v-col>
         <v-col cols="8">
           <v-autocomplete
