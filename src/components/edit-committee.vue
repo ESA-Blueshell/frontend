@@ -92,7 +92,7 @@ export default {
     // Method used by the autocomplete
     filterUsers(user, queryText) {
       return user.username.toLocaleLowerCase().indexOf(queryText.toLocaleLowerCase()) > -1 ||
-          user.discord.toLocaleLowerCase().indexOf(queryText.toLocaleLowerCase()) > -1 ||
+          (user.discord && user.discord.toLocaleLowerCase().indexOf(queryText.toLocaleLowerCase()) > -1) ||
           user.fullName.toLocaleLowerCase().indexOf(queryText.toLocaleLowerCase()) > -1
     },
     // Method used by the autocomplete, converts user to string which is shown in the list
