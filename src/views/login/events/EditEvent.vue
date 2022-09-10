@@ -65,7 +65,7 @@ export default {
       let startTime = `${event.startDate} ${event.startTime}:00`
       let endTime = `${event.endDate} ${event.endTime}:00`
 
-      let signUpForm = event.signUpForm.length > 0 ? JSON.stringify(event.signUpForm) : null
+      let signUpForm = event.signUpForm.length > 0 && event.enableSignUpForm ? JSON.stringify(event.signUpForm) : null
 
 
       if (event.image) {
@@ -78,22 +78,6 @@ export default {
               .replace(/^.+,/, '');
           let fileExtension = '.' + event.image.name.split('.').pop();
 
-          console.log({
-            title: event.title,
-            description: event.description,
-            location: event.location,
-            startTime: startTime,
-            endTime: endTime,
-            memberPrice: event.memberPrice,
-            publicPrice: event.publicPrice,
-            visible: event.visible,
-            membersOnly: event.membersOnly,
-            signUp: event.signUp,
-            committeeId: event.committeeId,
-            signUpForm: signUpForm,
-            base64Image: base64Image,
-            fileExtension: fileExtension,
-          })
           this.$http.put('events/' + this.$route.params.id,
               {
                 title: event.title,
@@ -134,7 +118,6 @@ export default {
               signUp: event.signUp,
               committeeId: event.committeeId,
               signUpForm: signUpForm,
-
             }, {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
             .then(response => {
               if (response !== undefined && (response.status === 201 || response.status === 200)) {

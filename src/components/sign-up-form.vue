@@ -19,7 +19,7 @@
 
       <v-text-field
           v-if="question.type === 'open'"
-          v-model="answersData[i]"
+          v-model="answers[i]"
           :rules="[v => !!v || 'An answer is required']"
           class="pt-0"
           hide-details="auto"/>
@@ -46,7 +46,7 @@
       </div>
     </div>
 
-    <v-btn block @click="submit">
+    <v-btn block @click="submit" class="mt-4">
       Save sign-up form
     </v-btn>
   </v-form>

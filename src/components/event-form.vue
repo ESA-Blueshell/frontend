@@ -66,7 +66,7 @@
         <v-col>
           <v-checkbox
               v-model="event.visible"
-              :rules="[v => !v || $store.getters.isBoard || 'Sorry, only board members can create/update public events']"
+              :rules="[v => !v || wasPublic || $store.getters.isBoard || 'Sorry, only board members can create/update public events']"
               label="Make public"/>
 
         </v-col>
@@ -132,6 +132,8 @@
           />
         </v-col>
       </v-row>
+
+
       <v-row>
         <v-col>
 
@@ -151,6 +153,21 @@
         <v-col>
           <create-sign-up-form ref="signUpForm" :form="event.signUpForm"/>
         </v-col>
+      </v-row>
+
+      <v-row>
+        <v-expand-transition>
+          <v-alert
+              v-if="mounted && (
+                  (hadSignUp && !event.signUp) ||
+                  (oldEnableSignUpForm && !event.enableSignUpForm) ||
+                  (oldEnableSignUpForm && oldSignUpForm.length > 0 && oldSignUpForm !== JSON.stringify(event.signUpForm)))"
+              type="warning" prominent
+              :outlined="$vuetify.theme.dark">
+            Woah there! Looks like you made some changes to the sign-up form. Keep in mind that when you submit any
+            changes to the form, all existing sign-ups <b>will be removed</b>!
+          </v-alert>
+        </v-expand-transition>
       </v-row>
     </v-container>
 
@@ -213,12 +230,14 @@ export default {
 
     priceRules: [
       v => !isNaN(Number(v)) || 'Price must a number',
-      v => !v.includes('e') || 'Come one dude, no exponents',
+      v => !v.includes('e') || 'Come on dude, no exponents',
       v => Number(v) >= 0 || 'Negative prices? Criiinge',
     ],
-
-    // enableSignUpForm: false,
-    // endDateSame: true,
+    wasPublic: true,
+    hadSignUp: false,
+    oldEnableSignUpForm: false,
+    oldSignUpForm: [],
+    mounted: false,
 
     committees: [],
   }),
@@ -254,6 +273,12 @@ export default {
     this.$http.get('committees', {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
         .then(response => this.committees = response.data)
 
+    // Save some data to know what changed to give the user a warning
+    this.wasPublic = this.event.visible;
+    this.hadSignUp = this.event.signUp;
+    this.oldEnableSignUpForm = this.event.enableSignUpForm;
+    this.oldSignUpForm = JSON.stringify(this.event.signUpForm);
+    this.mounted = true;
   }
 }
 </script>
