@@ -99,7 +99,7 @@ export default {
                 if (response !== undefined && (response.status === 201 || response.status === 200)) {
                   this.$router.push('../manage')
                 }
-              })
+              }).catch(() => this.$refs.form.submitting = false)
         };
         reader.readAsDataURL(event.image);
 
@@ -123,7 +123,7 @@ export default {
               if (response !== undefined && (response.status === 201 || response.status === 200)) {
                 this.$router.push('../manage')
               }
-            })
+            }).catch(()=>this.$refs.form.submitting=false)
       }
     },
   },

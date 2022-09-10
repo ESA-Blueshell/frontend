@@ -43,22 +43,6 @@ export default {
               .replace(/^.+,/, '');
           let fileExtension = '.' + event.image.name.split('.').pop();
 
-          console.log({
-            title: event.title,
-            description: event.description,
-            location: event.location,
-            startTime: startTime,
-            endTime: endTime,
-            memberPrice: event.memberPrice,
-            publicPrice: event.publicPrice,
-            visible: event.visible,
-            membersOnly: event.membersOnly,
-            signUp: event.signUp,
-            committeeId: event.committeeId,
-            signUpForm: signUpForm,
-            base64Image: base64Image,
-            fileExtension: fileExtension,
-          })
           this.$http.post('events',
               {
                 title: event.title,
@@ -80,7 +64,7 @@ export default {
                 if (response !== undefined && (response.status === 201 || response.status === 200)) {
                   this.$router.push('manage')
                 }
-              })
+              }).catch(() => this.$refs.form.submitting = false)
         };
         reader.readAsDataURL(event.image);
 
