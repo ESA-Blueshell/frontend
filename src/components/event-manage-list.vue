@@ -19,8 +19,7 @@
                               'No description...'"/>
             </v-list-item-content>
 
-
-            <v-list-item-action-text>
+            <v-list-item-action-text v-if="$vuetify.breakpoint.smAndUp">
               {{ idToCommittee[event.committee] }}
             </v-list-item-action-text>
             <v-list-item-action>

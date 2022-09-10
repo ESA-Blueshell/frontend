@@ -12,11 +12,12 @@
               <p id="blueshell"
                  class="white--text text-h2 text-sm-h1 text-md-h1 text-lg-h1 text-xl-h1"
                  style="height: 150px"
-                 v-bind:style="$vuetify.breakpoint.mdAndUp?{ 'font-size': '200px !important'} : ($vuetify.breakpoint.smAndUp?{ 'font-size': '130px !important'}:{})">
+                 v-bind:style="$vuetify.breakpoint.mdAndUp?{ 'font-size': '175px !important'} : ($vuetify.breakpoint.smAndUp?{ 'font-size': '110px !important'}:{})">
                 BLUESHELL
               </p>
 
-              <p class="white--text text-h3 font-weight-light font-italic">
+              <p class="white--text font-weight-light font-italic"
+                 :class="{'text-h3': $vuetify.breakpoint.mdAndUp, 'text-h4': $vuetify.breakpoint.smAndDown}">
                 Student esports and gaming association of the Twente region!
               </p>
               <v-btn class="mt-5" color="primary" rounded style="font-size: 30px;height: 50px;"
