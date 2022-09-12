@@ -233,6 +233,35 @@
         </v-btn>
       </template>
     </v-snackbar>
+
+
+    <!-- Cookie dialog -->
+    <v-dialog v-model="cookieDialog" width="560">
+      <v-card>
+        <v-card-title class="text-h2">
+          {{ $vuetify.breakpoint.xs ? 'Cookies' : 'Accept cookies' }}
+        </v-card-title>
+
+        <v-card-text class="body-1">
+          We know these cookie popups are getting insane but don't worry, this is the only time you'll see this. We use
+          cookies for saving your login, to remember if you enabled dark mode or not and possibly some other useful
+          stuff that we will forget to write about here when we make it. You can read more about our Cookie Policy in
+          the Privacy Policy document on
+          <router-link to="/documents">the documents page</router-link>
+          .
+        </v-card-text>
+
+        <v-divider></v-divider>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="primary" text
+                 @click="$store.commit('acceptCookies');cookieDialog = false">
+            Got it
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-app>
 </template>
 
@@ -244,6 +273,7 @@ export default {
     return {
       drawer: false,
       poggers: false,
+      cookieDialog: false,
     }
   },
   computed: {
@@ -279,6 +309,11 @@ export default {
     }
   },
   mounted() {
+    //Cookie garbage
+    if (!this.$store.getters.cookiesAccepted) {
+      this.cookieDialog = true
+    }
+
     let keysPressed = [];
     window.addEventListener('keydown', event => {
       const key = event.key.toLowerCase();

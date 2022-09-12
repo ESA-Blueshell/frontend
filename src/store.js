@@ -23,12 +23,16 @@ function getJsonCookie(cname) {
 export default new Vuex.Store({
   state: {
     login: getJsonCookie('login') || null,
+    cookies: getJsonCookie('cookies') || false,
     networkError: false,
   },
   mutations: {
     setLogin(state, value) {
       state.login = value
       document.cookie = `login=${JSON.stringify(value)};SameSite=strict;Secure;path=/`
+    },
+    acceptCookies() {
+      document.cookie = `cookies=true;SameSite=strict;Secure;path=/`
     },
     setNetworkError(state, value) {
       state.networkError = value
@@ -37,6 +41,7 @@ export default new Vuex.Store({
   actions: {},
   getters: {
     getLogin: state => state.login,
+    cookiesAccepted: state => state.cookies,
     tokenExpired: state => state.login == null || new Date().getTime() > state.login.expiration,
     isBoard: state => state.login.roles.includes("BOARD"),
     isActive: state => state.login.roles.includes("COMMITTEE"),
