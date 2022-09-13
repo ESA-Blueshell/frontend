@@ -1,6 +1,5 @@
 <template>
-  <v-app
-      v-bind:style="{'list-style-image':$vuetify.theme.dark?'url(/listitemdark.svg)':'url(/listitemlight.svg)'}">
+  <v-app>
     <v-app-bar dark elevate-on-scroll fixed>
       <v-app-bar-nav-icon @click="drawer = true"
                           v-if="$vuetify.breakpoint.mdAndDown">
@@ -8,7 +7,7 @@
       <v-toolbar-title class="ml-sm-n5 ml-md-0 ml-lg-0 ml-xl-0 ">
         <router-link to="/">
           <img :src="require('./assets/topbarlogo.png')" alt="Blueshell logo"
-               class="mr-3" style="height: 64px;max-width: 260px">
+               style="max-height: 64px;max-width: 260px; width: 100%" class="mr-3">
         </router-link>
       </v-toolbar-title>
       <div v-if="$vuetify.breakpoint.lgAndUp"
@@ -65,7 +64,7 @@
       <v-spacer/>
 
       <!--  Dark mode toggle    -->
-      <v-btn small icon @click="darkMode" rounded class="mr-1">
+      <v-btn small icon @click="darkMode" rounded class="mr-4">
         <transition name="roll" mode="out-in">
           <v-icon key="1" color="white" v-if="!$vuetify.theme.dark" style="transition: unset">
             mdi-moon-waxing-crescent
@@ -76,8 +75,24 @@
         </transition>
       </v-btn>
 
-      <!--      <v-btn class="bar-button" text dark to="/login">Login</v-btn>-->
+      <!-- LOGIN BUTTON/ACCOUNT DROPDOWN MENU -->
+      <v-btn class="bar-button" text dark to="/login" v-if="!loggedIn">Log In</v-btn>
+      <v-menu offset-y v-else>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn class="bar-button" v-bind="attrs" v-on="on" text dark>
+            <v-icon large>mdi-account</v-icon>
+          </v-btn>
+        </template>
+        <v-list>
+          <v-list-item to="/account">Account</v-list-item>
+          <v-list-item to="/events/upcoming">Upcoming events</v-list-item>
+          <v-list-item to="/events/manage" v-if="$store.getters.isActive">Manage events</v-list-item>
+          <v-list-item to="/committees/manage" v-if="$store.getters.isBoard">Manage committees</v-list-item>
+          <v-list-item @click="logOut">Log Out</v-list-item>
+        </v-list>
+      </v-menu>
     </v-app-bar>
+
     <v-navigation-drawer v-model="drawer" app temporary dark>
       <v-list nav>
         <v-list-item text dark to="/">
@@ -208,6 +223,47 @@
         <source src="./assets/blueshellanthem.mp3" type="audio/mpeg">
       </audio>
     </v-snackbar>
+    <v-snackbar v-model="networkError" timeout="10000">
+      Something went wrong when trying to communicate with the server :/ <br>
+      Just ping @SiteCie on Discord and we'll look into it
+      <template v-slot:action="{ attrs }">
+        <v-btn
+            color="blue"
+            text
+            v-bind="attrs"
+            @click="networkError = false">
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
+
+
+    <!-- Cookie dialog -->
+    <v-dialog v-model="cookieDialog" width="560">
+      <v-card>
+        <v-card-title class="text-h2">
+          {{ $vuetify.breakpoint.xs ? 'Cookies' : 'Accept cookies' }}
+        </v-card-title>
+
+        <v-card-text class="body-1">
+          We know these cookie popups are getting insane but don't worry, this is the only time you'll see this. We use
+          cookies for saving your login and possibly some other useful stuff that we will forget to write about here
+          when we make it. You can read more about our Cookie Policy on
+          <router-link to="/documents">the documents page</router-link>
+          .
+        </v-card-text>
+
+        <v-divider></v-divider>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="primary" text
+                 @click="$store.commit('acceptCookies');cookieDialog = false">
+            Got it
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-app>
 </template>
 
@@ -219,7 +275,23 @@ export default {
     return {
       drawer: false,
       poggers: false,
+      cookieDialog: false,
     }
+  },
+  computed: {
+    networkError: {
+      get() {
+        return this.$store.state.networkError
+      },
+      set(value) {
+        this.$store.commit('setNetworkError', value)
+      }
+    },
+    loggedIn: {
+      get() {
+        return this.$store.state.login
+      },
+    },
   },
   methods: {
     goto(url) {
@@ -228,9 +300,22 @@ export default {
     darkMode() {
       this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
       localStorage.setItem('esa-blueshell.nl:darkMode', this.$vuetify.theme.dark.toString())
+    },
+    logOut() {
+      // Let the cookie expire and redirect if the page is logged in only
+      document.cookie = 'login=;expires=Thu, 01 Jan 1970 00:00:01 GMT'
+      this.$store.commit('setLogin', null)
+      if (this.$route.meta.requiresAuth) {
+        this.goto('/')
+      }
     }
   },
   mounted() {
+    //Cookie garbage
+    if (!this.$store.getters.cookiesAccepted) {
+      this.cookieDialog = true
+    }
+
     let keysPressed = [];
     window.addEventListener('keydown', event => {
       const key = event.key.toLowerCase();

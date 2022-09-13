@@ -10,15 +10,53 @@ import Axios from 'axios';
 
 Vue.config.productionTip = false
 
-//Axios.defaults.baseURL = "http://localhost:8080/api/"
-Axios.defaults.baseURL = "https://esa-blueshell.nl/api/"
+Axios.defaults.baseURL = "http://localhost:8080/api/"
+// Axios.defaults.baseURL = "https://esa-blueshell.nl/api/"
+
 Vue.prototype.$http = Axios
 Vue.$http = Axios
 
+const showdown = require("showdown")
+showdown.setOption('openLinksInNewWindow', true)
+showdown.setOption('headerLevelStart', 2)
+showdown.setOption('simplifiedAutoLink', true)
+showdown.setOption('strikethrough', true)
+showdown.setOption('tables', true)
+showdown.setOption('emoji', true)
+showdown.setOption('underline', true)
+const converter = new showdown.Converter()
+const xss = require("xss")
 
-new Vue({
+let vue = new Vue({
   router,
   store,
   vuetify,
-  render: h => h(App)
-}).$mount('#app')
+  render: h => h(App),
+  data() {
+    return {}
+  },
+  methods: {
+    markdownToHtml: text => xss(converter.makeHtml(text.replaceAll('<html-blob>', '').replaceAll('</html-blob>', '').trim())),
+  }
+});
+
+//Handle errors when requesting something from the backend.
+Axios.interceptors.response.use(
+  undefined,
+  (error => {
+      // If the request got rejected, go to the login page to get some permissions
+      // Otherwise, set the networkError value in vuex to show the snackbar saying there is an error and rethrow
+      if (error.response.status === 401) {
+        router.push({
+          path: '/login',
+          query: {redirect: vue.$route.fullPath}
+        })
+      } else {
+        store.commit('setNetworkError', true)
+        throw error
+      }
+    }
+  )
+)
+
+vue.$mount('#app')

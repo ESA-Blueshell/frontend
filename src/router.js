@@ -18,19 +18,31 @@ import Partners from "@/views/partners/Partners";
 import Article from "@/views/Article";
 import NotFound from "@/views/NotFound";
 import Valorant from "@/views/esports/Valorant";
+import Login from "@/views/login/Login";
+import Account from "@/views/login/Account";
 import ArticleEditor from "@/views/ArticleEditor";
+
+import store from './store'
+import CreateEvent from "@/views/login/events/CreateEvent";
+import EventManager from "@/views/login/events/EventManager";
+import EditEvent from "@/views/login/events/EditEvent";
+import UpcomingEvents from "@/views/login/events/UpcomingEvents";
+import EventSignUps from "@/views/login/events/EventSignUps";
+import CommitteeManager from "@/views/login/CommitteeManager";
+import CreateAccount from "@/views/login/CreateAccount";
+import EnableAccount from "@/views/login/EnableAccount";
 
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
-  scrollBehavior (to, from, savedPosition) {
+  scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {
       return savedPosition
     } else {
-      return { x: 0, y: 0 }
+      return {x: 0, y: 0}
     }
   },
   routes: [
@@ -66,6 +78,12 @@ export default new Router({
       path: '/committees',
       name: 'committees',
       component: Committees
+    },
+    {
+      path: '/committees/manage',
+      name: 'committeeManager',
+      component: CommitteeManager,
+      meta: {requiresAuth: true}
     },
     {
       path: '/esports',
@@ -127,9 +145,61 @@ export default new Router({
       component: Dekimo
     },
     {
+      path: '/login',
+      name: 'login',
+      component: Login
+    },
+    {
+      path: '/account',
+      name: 'account',
+      component: Account,
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/account/create',
+      name: 'accountCreation',
+      component: CreateAccount,
+    },
+    {
+      path: '/account/enable',
+      name: 'enableAccount',
+      component: EnableAccount
+    },
+    {
       path: '/account/articleEditor',
       name: 'articleEditor',
-      component: ArticleEditor
+      component: ArticleEditor,
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/events/create',
+      name: 'createEvent',
+      component: CreateEvent,
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/events/edit/:id',
+      name: 'editEvent',
+      component: EditEvent,
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/events/manage',
+      name: 'eventManager',
+      component: EventManager,
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/events/upcoming',
+      name: 'upcomingEvents',
+      component: UpcomingEvents,
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/events/signups/:id',
+      name: 'eventSignUps',
+      component: EventSignUps,
+      meta: {requiresAuth: true}
     },
     {
       path: '/:pathMatch(.*)*',
@@ -137,4 +207,19 @@ export default new Router({
       component: NotFound
     }
   ]
+});
+
+
+router.beforeEach((to, from, next) => {
+  if (to.meta.requiresAuth && (store.getters.getLogin == null || store.getters.tokenExpired)) {
+    next({
+      path: '/login',
+      query: {redirect: to.fullPath},
+    })
+  } else {
+    next()
+  }
 })
+
+
+export default router

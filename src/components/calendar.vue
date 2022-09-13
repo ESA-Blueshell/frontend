@@ -34,7 +34,8 @@
               outlined
               v-if="this.type==='day'"
               @click="viewMonth"
-          ><v-icon class="ml-n2 mr-1">mdi-arrow-left</v-icon>
+          >
+            <v-icon class="ml-n2 mr-1">mdi-arrow-left</v-icon>
             back
           </v-btn>
         </v-toolbar>
@@ -98,13 +99,20 @@
                 <span>Add to calendar</span>
               </v-tooltip>
             </v-toolbar>
+
+            <!-- Promo image -->
+            <img v-if="selectedEvent.banner" :src="selectedEvent.banner"
+                 style="width: 100%; object-fit: contain"/>
+
             <v-card-text>
+
+
               <!-- Description of the event -->
               <p v-if="selectedEvent.details">
                 <!-- In the span is the actual text of the event -->
                 <!-- If the expand variable is true show the fill message, otherwise only show the first 100 words -->
                 <span
-                    v-html="expand || !selectedLong ? cleanup(selectedEvent.details) : cleanup(hundredWords(selectedEvent.details))+'...'"></span>
+                    v-html="expand || !selectedLong ? $root.markdownToHtml(selectedEvent.details) : $root.markdownToHtml(hundredWords(selectedEvent.details))+'...'"></span>
                 <!-- Only show the "read more" if the message is long -->
                 <!-- If it's clicked expand will be set to true and the full message will be shown -->
                 <br v-if="!expand && selectedLong">
@@ -143,20 +151,6 @@
             </v-card-text>
           </v-card>
         </v-menu>
-        <!-- Snackbar that pops up when failing to get events -->
-        <v-snackbar v-model="snackbar" timeout="10000">
-          Uh oh, looks like we can't connect to the server :/ <br>
-          Just ping @SiteCie on Discord and we'll look into it
-          <template v-slot:action="{ attrs }">
-            <v-btn
-                color="primary"
-                text
-                v-bind="attrs"
-                @click="snackbar = false">
-              Close
-            </v-btn>
-          </template>
-        </v-snackbar>
       </v-sheet>
     </v-col>
   </v-row>
@@ -185,7 +179,6 @@ export default {
     weekdays: [1, 2, 3, 4, 5, 6, 0],
     currentMonth: null,
     monthsLoading: 0,
-    snackbar: false,
     linkRegex: /^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)/i,
     htmlRegex: /<\/?[a-z][\s\S]*>/i
   }),
@@ -251,13 +244,13 @@ export default {
                       memberPrice: elem.memberPrice,
                       publicPrice: elem.publicPrice,
                       googleId: elem.googleId,
-                      timed: !!elem.endTime
+                      timed: !!elem.endTime,
+                      banner: elem.banner,
                     })
                   }
               )
               this.events.push(...res);
             })
-            .catch(() => this.snackbar = true)
             .then(() => this.monthsLoading--);
       }
     },

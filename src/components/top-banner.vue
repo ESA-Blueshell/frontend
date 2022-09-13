@@ -1,5 +1,5 @@
 <template>
-  <v-parallax :src="gaming" :height="$vuetify.breakpoint.lgAndUp ? 364 :264">
+  <v-parallax :height="$vuetify.breakpoint.lgAndUp ? 364 : 264" :src="gaming">
     <v-container fill-height fluid style="background: rgba(0,0,0,0.5)">
       <v-row>
         <v-col>
@@ -19,16 +19,19 @@
 export default {
   name: 'top-banner',
   props: ["title"],
-  data: function () {
-    return {
-      gaming: require("../assets/gaming.jpg"),
-
-    }
-  }
+  data: () => ({
+    gaming: require("../assets/gaming.jpg"),
+  })
 }
 </script>
 
 
-<style scoped lang="scss">
-
+<style lang="scss" scoped>
+.custom-image {
+  z-index: -99;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto
+}
 </style>

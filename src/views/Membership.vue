@@ -69,7 +69,7 @@
             Contribution
           </p>
           <p>
-            The membership fees for the academic year 2021/2022 are:
+            The membership fees for the academic year 2022/2023 are:
           </p>
           <ul>
             <li><b>€15</b> for a full year membership;</li>

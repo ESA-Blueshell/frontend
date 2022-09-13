@@ -1,0 +1,146 @@
+<template>
+  <!--
+
+  -->
+  <v-form ref="form" v-model="valid">
+    <v-text-field
+        ref="title"
+        v-model="committee.name"
+        :rules="[v => !!v || 'name is required']"
+        label="Committee name"
+        required/>
+
+    <v-textarea
+        ref="description"
+        v-model="committee.description"
+        :rules="[v => !!v || 'Description is required']"
+        label="Description"
+        outlined
+        required/>
+
+    <v-btn block outlined @click="addMember">
+      Add member
+    </v-btn>
+    <v-container>
+      <v-row v-for="(member,i) in committee.members" v-bind:key="i" dense>
+        <v-col cols="4">
+          <v-text-field
+              v-model="member.role"
+              hide-details="auto"
+              label="Role"/>
+        </v-col>
+        <v-col cols="8">
+          <v-autocomplete
+              v-if="memberSelectItems"
+              v-model="member.user"
+              :filter="filterUsers"
+              :item-text="userToDisplay"
+              :items="memberSelectItems"
+              :rules="[v => !!v || 'Select a member',
+                       v => (!!v && committee.members.filter(member => member.user && member.user.username === v.username).length === 1) || 'A member can\'t be in the same committee twice']"
+              hide-details="auto"
+              hide-no-data
+              label="Member name"
+              return-object>
+            <template v-slot:append-outer>
+              <v-btn icon @click="committee.members.splice(i,1)">
+                <v-icon>mdi-close</v-icon>
+              </v-btn>
+            </template>
+          </v-autocomplete>
+        </v-col>
+      </v-row>
+    </v-container>
+
+    <v-btn block @click="submit">
+      Save committee
+    </v-btn>
+  </v-form>
+</template>
+
+<script>
+export default {
+  name: "edit-committee",
+  props: {
+    committee: {
+      type: Object,
+      default: () => ({
+        name: '',
+        description: '',
+        members: []
+      })
+    },
+    newCommittee: {
+      type: Boolean,
+      default: false
+    },
+  },
+  data: () => ({
+    valid: false,
+    users: [],
+    memberSelectItems: null,
+    autocomplete: [],
+  }),
+  mounted() {
+    this.$http.get('users/members', {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
+        .then(response => this.memberSelectItems = response.data)
+  },
+  methods: {
+    addMember() {
+      this.committee.members.push({role: '', user: null})
+    },
+    // Method used by the autocomplete
+    filterUsers(user, queryText) {
+      return user.username.toLocaleLowerCase().indexOf(queryText.toLocaleLowerCase()) > -1 ||
+          (user.discord && user.discord.toLocaleLowerCase().indexOf(queryText.toLocaleLowerCase()) > -1) ||
+          user.fullName.toLocaleLowerCase().indexOf(queryText.toLocaleLowerCase()) > -1
+    },
+    // Method used by the autocomplete, converts user to string which is shown in the list
+    userToDisplay(user) {
+      // Check if the full name is unique
+      if (this.memberSelectItems.filter(otherUser => otherUser.fullName === user.fullName).length === 1) {
+        return user.fullName;
+      }
+      // Check if the discord tag is unique
+      if (this.memberSelectItems.filter(otherUser => otherUser.discord === user.discord).length === 1) {
+        return `${user.fullName} (${user.discord})`;
+      }
+      // Give up and just display the username as well
+      return `${user.fullName} (${user.discord}/${user.username})`;
+    },
+    submit() {
+      if (this.$refs.form.validate()) {
+        this.$emit('submitting')
+
+        if (this.newCommittee) {
+          this.$http.post('committees',
+              JSON.stringify(this.committee),
+              {
+                headers: {
+                  'Authorization': `Bearer ${this.$store.getters.getLogin.token}`,
+                  'Content-Type': 'application/json'
+                }
+              }).then(response => {
+            if (response !== undefined && (response.status === 201 || response.status === 200)) {
+              this.$emit('close');
+            }
+          })
+        } else {
+          this.$http.put('committees/' + this.committee.id,
+              JSON.stringify(this.committee),
+              {
+                headers: {
+                  'Authorization': `Bearer ${this.$store.getters.getLogin.token}`,
+                  'Content-Type': 'application/json'
+                }
+              }).then(response => {
+            if (response !== undefined && (response.status === 201 || response.status === 200)) {
+              this.$emit('close');
+            }
+          })
+        }
+      }
+    },
+  },
+}
+</script>

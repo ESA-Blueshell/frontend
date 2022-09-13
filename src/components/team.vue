@@ -1,62 +1,64 @@
 <template>
 
-
+  <!--
+    The code of this component is divided into 2 parts. One for larger screen sizes, and another for smaller ones.
+  -->
   <v-parallax v-bind:src="team.bg">
 
     <!--
       Here starts the team view on size medium and above
     -->
-    <v-container fill-height fluid style="background: rgba(0,0,0,0.6)" class="py-10"
-                 v-if="$vuetify.breakpoint.mdAndUp">
-      <v-row justify="center" align-content="center" align="center">
-        <v-col md="5" lg="4" xl="4" v-if="!nameRight">
+    <v-container v-if="$vuetify.breakpoint.mdAndUp" class="py-10" fill-height fluid
+                 style="background: rgba(0,0,0,0.6)">
+      <v-row align="center" align-content="center" justify="center">
+        <v-col v-if="!nameRight" lg="4" md="5" xl="4">
           <p class="text-h2 font-italic">
             {{ team.name }}
           </p>
         </v-col>
 
-        <v-col md="7" lg="6" xl="5">
+        <v-col lg="6" md="7" xl="5">
           <v-row v-for="(player,i) in team.players" :key="player.ign">
-            <v-col cols="3" class="font-italic text-h6">
+            <v-col class="font-italic text-h6" cols="3">
               {{ i !== 0 ? '' : (team.players.length > 1 ? 'Players' : 'Player') }}
             </v-col>
-            <v-col cols="4" class="text-h6">
+            <v-col class="text-h6" cols="4">
               {{ player.name }}
             </v-col>
-            <v-col cols="5" class="text-right text-h6">
+            <v-col class="text-right text-h6" cols="5">
               {{ player.ign }}
             </v-col>
           </v-row>
           <v-row v-if="team.coaches || team.substitutes">
-            <v-divider style="border-color: rgba(255,255,255,0.9);" class="my-2"></v-divider>
+            <v-divider class="my-2" style="border-color: rgba(255,255,255,0.9);"></v-divider>
           </v-row>
           <v-row v-for="(coach,i) in team.coaches" :key="coach.ign">
-            <v-col cols="3" class="font-italic text-h6">
+            <v-col class="font-italic text-h6" cols="3">
               {{ i !== 0 ? '' : (team.coaches.length > 1 ? 'Coaches' : 'Coach') }}
             </v-col>
-            <v-col cols="4" class="text-h6">
+            <v-col class="text-h6" cols="4">
               {{ coach.name }}
             </v-col>
-            <v-col cols="5" class="text-right text-h6">
+            <v-col class="text-right text-h6" cols="5">
               {{ coach.ign }}
             </v-col>
           </v-row>
           <v-row v-for="(substitute,i) in team.substitutes" :key="substitute.ign">
-            <v-col cols="3" class="font-italic text-h6">
+            <v-col class="font-italic text-h6" cols="3">
               {{
                 i !== 0 ? '' : (team.substitutes.length > 1 ? 'Substitutes' : 'Substitute')
               }}
             </v-col>
-            <v-col cols="4" class="text-h6">
+            <v-col class="text-h6" cols="4">
               {{ substitute.name }}
             </v-col>
-            <v-col cols="5" class="text-right text-h6">
+            <v-col class="text-right text-h6" cols="5">
               {{ substitute.ign }}
             </v-col>
           </v-row>
         </v-col>
 
-        <v-col cols="4" v-if="nameRight">
+        <v-col v-if="nameRight" cols="4">
           <p class="text-h2 font-italic text-right">
             {{ team.name }}
           </p>
@@ -68,57 +70,57 @@
     <!--
       Here starts the team view for smaller sizes
     -->
-    <v-container fill-height fluid style="background: rgba(0,0,0,0.6)" class="py-5"
-                 v-else>
+    <v-container v-else class="py-5" fill-height fluid
+                 style="background: rgba(0,0,0,0.6)">
       <v-row justify="center">
         <p class="text-h2 font-italic text-center">
           {{ team.name }}
         </p>
       </v-row>
-      <v-row v-if="team.players" justify="center" class="mt-n6 mb-n8">
+      <v-row v-if="team.players" class="mt-n6 mb-n8" justify="center">
         <v-col class="font-italic text-h6 text-center">
           {{ team.players.length > 1 ? 'Players' : 'Player' }}
         </v-col>
       </v-row>
       <v-row v-for="player in team.players" :key="player.ign" justify="center">
-        <v-col sm="5" xs="6" class="text-h6">
+        <v-col class="text-h6" sm="5" xs="6">
           {{ player.name }}
         </v-col>
-        <v-col sm="5" xs="6" class="text-right text-h6">
+        <v-col class="text-right text-h6" sm="5" xs="6">
           {{ player.ign }}
         </v-col>
       </v-row>
 
 
       <v-row v-if="team.coaches || team.substitutes">
-        <v-divider style="border-color: rgba(255,255,255,0.9);" class="my-2"></v-divider>
+        <v-divider class="my-2" style="border-color: rgba(255,255,255,0.9);"></v-divider>
       </v-row>
 
-      <v-row justify="center" v-if="team.coaches" class="mb-n8">
+      <v-row v-if="team.coaches" class="mb-n8" justify="center">
         <p class="font-italic text-h6 text-center">
           {{ team.coaches.length > 1 ? 'Coaches' : 'Coach' }}
         </p>
       </v-row>
       <v-row v-for="coach in team.coaches" :key="coach.ign" justify="center">
-        <v-col sm="5" xs="6" class="text-h6">
+        <v-col class="text-h6" sm="5" xs="6">
           {{ coach.name }}
         </v-col>
-        <v-col sm="5" xs="6" class="text-right text-h6">
+        <v-col class="text-right text-h6" sm="5" xs="6">
           {{ coach.ign }}
         </v-col>
       </v-row>
 
 
-      <v-row justify="center" v-if="team.substitutes" class="mb-n8">
+      <v-row v-if="team.substitutes" class="mb-n8" justify="center">
         <p class="font-italic text-h6 text-center">
           {{ team.substitutes.length > 1 ? 'Substitutes' : 'Substitute' }}
         </p>
       </v-row>
       <v-row v-for="substitute in team.substitutes" :key="substitute.ign" justify="center">
-        <v-col sm="5" xs="6" class="text-h6">
+        <v-col class="text-h6" sm="5" xs="6">
           {{ substitute.name }}
         </v-col>
-        <v-col sm="5" xs="6" class="text-right text-h6">
+        <v-col class="text-right text-h6" sm="5" xs="6">
           {{ substitute.ign }}
         </v-col>
       </v-row>
@@ -131,6 +133,18 @@
 export default {
   name: "team",
   props: ["team", "nameRight"],
+  // The team prop should be an Object with the following structure:
+  //  {
+  //   name: 'Team name',
+  //   bg: require('../../assets/backgroundImage.jpg'),
+  //   players: [
+  //     {
+  //       name: 'Player name',
+  //       ign: 'xXx_gamertag69_xXx'
+  //     },
+  //   ],
+  //   Similarly, there are fields for coaches and substitutes. These should have the same format as the players attribute.
+  // }
 }
 </script>
 
