@@ -267,7 +267,6 @@ export default {
     //Triggers when the month changes and gets new events accordingly
     monthChange({start}) {
       let newMonth = start.year + '-' + (start.month < 10 ? '0' : '') + start.month;
-      // console.log(newMonth)
       if (this.currentMonth != null) {
         if (this.compareMonths(this.currentMonth, newMonth)) {
           this.getEvents(this.prevMonth(newMonth))

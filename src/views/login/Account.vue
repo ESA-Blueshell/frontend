@@ -163,7 +163,6 @@ export default {
     this.$http
         .get(`users/${login.userId}`, {headers: {'Authorization': `Bearer ${login.token}`}})
         .then(response => {
-          console.log(response.data)
           this.accountData = response.data
           this.oldAccountData = this.copyObject(this.accountData)
         })
