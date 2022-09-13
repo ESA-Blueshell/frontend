@@ -22,6 +22,11 @@
              class="text-decoration-none" target="_blank">
             Privacy Policy (Dutch)
           </a></p>
+        <p class="body-1">
+          <a href="https://esa-blueshell.nl/api/download/bsCookiePolicy.pdf"
+             class="text-decoration-none" target="_blank">
+            Cookie Policy
+          </a></p>
       </div>
     </div>
   </v-main>
