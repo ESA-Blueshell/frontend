@@ -239,7 +239,7 @@
 
 
     <!-- Cookie dialog -->
-    <v-dialog v-model="cookieDialog" width="560">
+    <v-dialog v-model="cookieDialog" persistent width="560">
       <v-card>
         <v-card-title class="text-h2">
           {{ $vuetify.breakpoint.xs ? 'Cookies' : 'Accept cookies' }}
