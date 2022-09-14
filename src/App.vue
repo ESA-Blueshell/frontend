@@ -248,9 +248,9 @@
         <v-card-text class="body-1">
           We know these cookie popups are getting insane but don't worry, this is the only time you'll see this. We use
           cookies for saving your login and possibly some other useful stuff that we will forget to write about here
-          when we make it. You can read more about our Cookie Policy on
-          <router-link to="/documents">the documents page</router-link>
-          .
+          when we make it. You can read more about what cookies are and how we use cookies in our <a
+            href="https://esa-blueshell.nl/api/download/bsCookiePolicy.pdf" class="text-decoration-none"
+            target="_blank"> Cookie Policy </a>.
         </v-card-text>
 
         <v-divider></v-divider>
