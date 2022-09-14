@@ -256,8 +256,7 @@
         <v-divider></v-divider>
 
         <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="primary" text
+          <v-btn color="primary" text block
                  @click="$store.commit('acceptCookies');cookieDialog = false">
             Got it
           </v-btn>

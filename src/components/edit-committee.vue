@@ -16,11 +16,9 @@
         :rules="[v => !!v || 'Description is required']"
         label="Description"
         outlined
+        hide-details
         required/>
 
-    <v-btn block outlined @click="addMember">
-      Add member
-    </v-btn>
     <v-container>
       <v-row v-for="(member,i) in committee.members" v-bind:key="i" dense>
         <v-col cols="4">
@@ -51,6 +49,10 @@
         </v-col>
       </v-row>
     </v-container>
+
+    <v-btn block outlined @click="addMember" class="mb-4">
+      Add member
+    </v-btn>
 
     <v-btn block @click="submit">
       Save committee
