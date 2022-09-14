@@ -250,7 +250,7 @@
           cookies for saving your login and possibly some other useful stuff that we will forget to write about here
           when we make it. You can read more about what cookies are and how we use cookies in our <a
             href="https://esa-blueshell.nl/api/download/bsCookiePolicy.pdf" class="text-decoration-none"
-            target="_blank"> Cookie Policy </a>.
+            target="_blank">Cookie Policy</a>.
         </v-card-text>
 
         <v-divider></v-divider>
