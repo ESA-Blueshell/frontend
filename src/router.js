@@ -31,6 +31,7 @@ import EventSignUps from "@/views/login/events/EventSignUps";
 import CommitteeManager from "@/views/login/CommitteeManager";
 import CreateAccount from "@/views/login/CreateAccount";
 import EnableAccount from "@/views/login/EnableAccount";
+import Connectworks from "@/views/partners/Connectworks";
 
 
 Vue.use(Router)
@@ -143,6 +144,11 @@ const router = new Router({
       path: '/partners/dekimo',
       name: 'dekimo',
       component: Dekimo
+    },
+    {
+      path: '/partners/connectworks',
+      name: 'connectworks',
+      component: Connectworks
     },
     {
       path: '/login',

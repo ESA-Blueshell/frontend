@@ -190,6 +190,11 @@ export default {
           logoDark: require("../assets/ettdark.png"),
           url: "https://esportsteamtwente.nl/"
         },
+        {
+          logo: require("../assets/Connectworks_logo_transparant.png"),
+          logoDark: require("../assets/Connectworks_logo_transparant.png"),
+          url: "https://connectworks.nl/"
+        },
       ]
     }
   }
