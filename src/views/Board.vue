@@ -128,13 +128,13 @@ export default {
         },
         {
           name: "Jonas Valentijn",
-          title: "Commissioner of Esports",
+          title: "Commissioner of Esports affairs",
           description: "Hello, my name is Jonas Valentijn and I am the Commissioner of Esports affairs this year. I am currently doing my masters in electrical engineering. I first came into contact with Blueshell after playing CS:GO, and joining a team in Blueshell. Other than this I also discovered the great community of Blueshell. After joining multiple events and having a great time, also wanted to help out and decided to become a board member :).  Lets make this a great year!",
           image: require("@/assets/jonas.jpg")
         },
         {
           name: "Thijs Willems",
-          title: "Commissioner of internal affairs",
+          title: "Commissioner of external affairs",
           description: "Hey there, I am Thijs Willems and currently a 2nd year Mechanical Engineering student as well as the Commissioner of External affairs of Blueshell Esports. Joining one event of the minecraft hunger games was enough to convince me of joining more events at blueshell and those became more and more over the years. Seeing all these events being organised by the members of Blueshell, I felt like it was only right to try and do something back for all of them to the best of my ability as a Board member of the association. I hope together we can make this year a success for everyone! :)",
           image: require("@/assets/thijs.jpg")
         },
