@@ -11,15 +11,15 @@
           of Blueshell Esports{{ $vuetify.breakpoint.mdAndUp ? ', who are introduced below' : '' }}.
         </p>
         <v-img :src="require('../assets/wholeboard.jpg')"></v-img>
-        <p class="text-h3  text-center mt-12 ">
-          The members
-        </p>
+
         <div v-if="$vuetify.breakpoint.mdAndUp">
           <div v-for="(member,i) in board" v-bind:key="member.name"
-               class="mb-12"
-               style="width: 100%; height: 400px;background-size: contain;"
+               class="mb-12 mt-16"
+               style="width: 100%; height: 400px;background-size: contain;position: relative;"
                :style="{ 'background-image': `linear-gradient(${i%2===0?'':'-'}90deg, transparent 25%, ${$vuetify.theme.dark?'#1e1e1e':'white'} 34%, transparent 26%), url('${member.image}')`, 'background-position': i%2===0 ? 'left' : 'right '}">
+            <!-- https://www.w3schools.com/HOWTO/howto_css_center-vertical.asp -->
             <div
+                style=" position: absolute;top: 50%; -ms-transform: translateY(-50%);transform: translateY(-50%);"
                 :style="{ 'padding-left': i%2===0 ? '35%' : '','padding-right': i%2===1 ? '35%' : ''}">
               <p class="text-h2" :class="{'text-right': i%2===1}">
                 {{ member.name }}
