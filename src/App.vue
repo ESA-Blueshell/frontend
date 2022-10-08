@@ -293,7 +293,7 @@ export default {
     networkError: {
       get() {
         return !!this.$store.state.networkErrorMessage
-      },set(value){
+      }, set(value) {
         this.$store.commit('setNetworkErrorMessage', value)
       }
     },
@@ -329,6 +329,18 @@ export default {
     if (!this.$store.getters.cookiesAccepted) {
       this.cookieDialog = true
     }
+
+    // Get account data for the chance that the user's roles have been updated
+    // (so they don't have to log in and out for it)
+    const login = this.$store.getters.getLogin
+    if (login) {
+      this.$http
+          .get(`users/${login.userId}`, {headers: {'Authorization': `Bearer ${login.token}`}})
+          .then(response => {
+            this.$store.commit('setRoles', response.data.roles)
+          })
+    }
+
 
     let keysPressed = [];
     window.addEventListener('keydown', event => {

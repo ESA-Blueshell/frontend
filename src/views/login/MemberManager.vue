@@ -11,8 +11,7 @@
         </p>
         <v-list>
           <div v-for="(user,i) in users" v-bind:key="user.username">
-            <div
-                v-if="!user.roles.some(role => ['MEMBER','TREASURER','BOARD','COMMITTEE'].includes(role)) && isSearched(user)">
+            <div v-if="!user.roles.includes('MEMBER') && isSearched(user)">
               <v-list-item>
                 <v-list-item-content @click="expanded = (expanded === i) ? null : i">
                   <v-list-item-title>

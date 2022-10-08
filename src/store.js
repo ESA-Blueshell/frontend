@@ -27,9 +27,13 @@ export default new Vuex.Store({
     networkErrorMessage: null,
   },
   mutations: {
-    setLogin(state, value) {
-      state.login = value
-      document.cookie = `login=${JSON.stringify(value)};SameSite=strict;Secure;path=/`
+    setLogin(state, newLogin) {
+      state.login = newLogin
+      document.cookie = `login=${JSON.stringify(state.login)};SameSite=strict;Secure;path=/`
+    },
+    setRoles(state, newRoles) {
+      state.login.roles = newRoles
+      document.cookie = `login=${JSON.stringify(state.login)};SameSite=strict;Secure;path=/`
     },
     acceptCookies() {
       document.cookie = `cookies=true;SameSite=strict;Secure;path=/`
