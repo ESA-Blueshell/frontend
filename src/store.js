@@ -24,7 +24,7 @@ export default new Vuex.Store({
   state: {
     login: getJsonCookie('login') || null,
     cookies: getJsonCookie('cookies') || false,
-    networkError: false,
+    networkErrorMessage: null,
   },
   mutations: {
     setLogin(state, value) {
@@ -34,8 +34,8 @@ export default new Vuex.Store({
     acceptCookies() {
       document.cookie = `cookies=true;SameSite=strict;Secure;path=/`
     },
-    setNetworkError(state, value) {
-      state.networkError = value
+    setNetworkErrorMessage(state, message) {
+      state.networkErrorMessage = message
     },
   },
   actions: {},

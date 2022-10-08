@@ -37,6 +37,7 @@ let vue = new Vue({
   },
   methods: {
     markdownToHtml: text => xss(converter.makeHtml(text.replaceAll('<html-blob>', '').replaceAll('</html-blob>', '').trim())),
+
   }
 });
 
@@ -46,15 +47,33 @@ Axios.interceptors.response.use(
   (error => {
       // If the request got rejected, go to the login page to get some permissions
       // Otherwise, set the networkError value in vuex to show the snackbar saying there is an error and rethrow
-      if (error.response.status === 401) {
+      var errorMessage = null;
+      if (error.response.status === 400) {
+        errorMessage = "Uhhhh, looks like a bad request (error 400)... Not sure how this happened. Please report this in the <a href='https://discord.com/channels/324285132133629963/1020245710987350047' target=\"_blank\" class=\"text-decoration-none\">Sitecie suggestions channel on discord</a>."
+      } else if (error.response.status === 401) {
+        errorMessage = "Woah there, looks like you're not logged in (anymore). Just log in and try again."
         router.push({
           path: '/login',
           query: {redirect: vue.$route.fullPath}
         })
+      } else if (error.response.status === 403) {
+        errorMessage = "Woah there, you don't have enough authority to access this. Go to jail and DO NOT PASS GO, DO NOT COLLECT $200."
+        router.push({path: '/account',})
+      } else if (error.response.status === 404) {
+        errorMessage = "Uhhhhhhh 404 moment. This resource doesn't exist anymore. Please report this in the <a href='https://discord.com/channels/324285132133629963/1020245710987350047' target=\"_blank\" class=\"text-decoration-none\">Sitecie suggestions channel on discord</a> if you think this is an error."
+      } else if (error.response.status === 408) {
+        errorMessage = "Zzzzzzzzzzzz... there seems to have been a request timeout (error code 408). Please report this in the <a href='https://discord.com/channels/324285132133629963/1020245710987350047' target=\"_blank\" class=\"text-decoration-none\">Sitecie suggestions channel on discord</a>."
+      } else if (error.response.status === 413) {
+        errorMessage = "Your file is too large. Please compress it and try again"
+      } else if (error.response.status === 500) {
+        errorMessage = "Hm. okay. seems like the server is very confused (error code 500). Please report this in the <a href='https://discord.com/channels/324285132133629963/1020245710987350047' target=\"_blank\" class=\"text-decoration-none\">Sitecie suggestions channel on discord</a>."
+      } else if (error.response.status === 500) {
+        errorMessage = "Uh oh, the server seems to be down (error code 502). Please report this in the <a href='https://discord.com/channels/324285132133629963/1020245710987350047' target=\"_blank\" class=\"text-decoration-none\">Sitecie suggestions channel on discord</a>."
       } else {
-        store.commit('setNetworkError', true)
-        throw error
+        errorMessage = `Oh no. An error happened that we don't know about (error code ${error.response.status}). Please report this in the <a href='https://discord.com/channels/324285132133629963/1020245710987350047' target="_blank" class="text-decoration-none">Sitecie suggestions channel on discord</a>.`
       }
+      store.commit('setNetworkErrorMessage', errorMessage)
+      throw error
     }
   )
 )

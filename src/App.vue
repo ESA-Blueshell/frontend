@@ -229,8 +229,7 @@
       </audio>
     </v-snackbar>
     <v-snackbar v-model="networkError" timeout="10000">
-      Something went wrong when trying to communicate with the server :/ <br>
-      Just ping @SiteCie on Discord and we'll look into it
+      <span v-html="networkErrorMessage"/>
       <template v-slot:action="{ attrs }">
         <v-btn
             color="blue"
@@ -283,12 +282,19 @@ export default {
     }
   },
   computed: {
+    networkErrorMessage: {
+      get() {
+        return this.$store.state.networkErrorMessage
+      },
+      set(message) {
+        this.$store.commit('setNetworkErrorMessage', message)
+      }
+    },
     networkError: {
       get() {
-        return this.$store.state.networkError
-      },
-      set(value) {
-        this.$store.commit('setNetworkError', value)
+        return !!this.$store.state.networkErrorMessage
+      },set(value){
+        this.$store.commit('setNetworkErrorMessage', value)
       }
     },
     loggedIn: {
@@ -312,6 +318,10 @@ export default {
       if (this.$route.meta.requiresAuth) {
         this.goto('/')
       }
+    },
+    showSnackbar(message) {
+      this.snackbar = true;
+      this.snackbarText = message
     }
   },
   mounted() {
