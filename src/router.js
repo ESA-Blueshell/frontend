@@ -32,6 +32,7 @@ import CommitteeManager from "@/views/login/CommitteeManager";
 import CreateAccount from "@/views/login/CreateAccount";
 import EnableAccount from "@/views/login/EnableAccount";
 import Connectworks from "@/views/partners/Connectworks";
+import MemberManager from "@/views/login/MemberManager";
 
 
 Vue.use(Router)
@@ -205,6 +206,12 @@ const router = new Router({
       path: '/events/signups/:id',
       name: 'eventSignUps',
       component: EventSignUps,
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/members/manage',
+      name: 'memberManager',
+      component: MemberManager,
       meta: {requiresAuth: true}
     },
     {

@@ -125,7 +125,7 @@
           <v-file-input
               v-model="event.image"
               accept="image/*"
-              label="Promo image"
+              label="Promo image (Max 2MB)"
               persistent-hint
               :hint="hasPromo?'This event already has a promo image, only select a file here if you want to overwrite the old one':null"
               show-size

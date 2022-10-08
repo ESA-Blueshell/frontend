@@ -81,7 +81,6 @@ export default {
     valid: false,
     users: [],
     memberSelectItems: null,
-    autocomplete: [],
   }),
   mounted() {
     this.$http.get('users/members', {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
