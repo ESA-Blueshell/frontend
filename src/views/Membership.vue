@@ -47,7 +47,7 @@
             <li>
               <a href="https://esa-blueshell.nl/api/download/Membership-form-UT-2022-2023.pdf"
                  target="_blank" class="text-decoration-none">
-                For the University of Twente students</a></li>
+                For University of Twente students</a></li>
             <li>
               <a href="https://esa-blueshell.nl/api/download/Membership-form-External-2022-2023.pdf"
                  target="_blank" class="text-decoration-none">
@@ -55,7 +55,7 @@
             <li>
               <a href="https://esa-blueshell.nl/api/download/Membership-form-Alumni-2022-2023.pdf"
                  target="_blank" class="text-decoration-none">
-                For the alumni</a></li>
+                For alumni</a></li>
           </ul>
           <p class="body-1">
             <br>
