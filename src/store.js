@@ -25,6 +25,7 @@ export default new Vuex.Store({
     login: getJsonCookie('login') || null,
     cookies: getJsonCookie('cookies') || false,
     networkErrorMessage: null,
+    loggedInSnackbar: false,
   },
   mutations: {
     setLogin(state, newLogin) {
@@ -41,6 +42,9 @@ export default new Vuex.Store({
     setNetworkErrorMessage(state, message) {
       state.networkErrorMessage = message
     },
+    setLoggedInSnackbar(state, newLoggedInSnackbar){
+      state.loggedInSnackbar = newLoggedInSnackbar
+    }
   },
   actions: {},
   getters: {
@@ -50,5 +54,5 @@ export default new Vuex.Store({
     isBoard: state => state.login.roles.includes("BOARD"),
     isActive: state => state.login.roles.includes("COMMITTEE"),
     isMember: state => state.login.roles.includes("MEMBER"),
-  },
+  }
 })

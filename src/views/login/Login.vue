@@ -91,6 +91,7 @@ export default {
             .then(response => {
               // Store response
               this.$store.commit('setLogin', response.data)
+              this.$store.commit('setLoggedInSnackbar',true)
               // Go to redirect page or home page
               router.push(this.$route.query.redirect || '/')
             })

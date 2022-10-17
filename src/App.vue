@@ -241,6 +241,24 @@
       </template>
     </v-snackbar>
 
+    <!-- Logged in message -->
+    <v-snackbar
+      v-model="loggedInSnackbar"
+      timeout="10000"
+    >
+    {{loginText}}
+
+      <template v-slot:action="{ attrs }">
+        <v-btn
+          color="blue"
+          text
+          v-bind="attrs"
+          @click="this.$store.commit('disableLoggedInSnackbar')"
+        >
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
 
     <!-- Cookie dialog -->
     <v-dialog v-model="cookieDialog" persistent width="560">
@@ -278,7 +296,7 @@ export default {
     return {
       drawer: false,
       poggers: false,
-      cookieDialog: false,
+      cookieDialog: false
     }
   },
   computed: {
@@ -302,6 +320,19 @@ export default {
         return this.$store.state.login
       },
     },
+    loggedInSnackbar:{
+      get() {
+        return this.$store.state.loggedInSnackbar
+      },
+      set(loggedInSnackbar) {
+        this.$store.commit('setLoggedInSnackbar', loggedInSnackbar)
+      }
+    },
+    loginText:{
+      get() {
+        return this.loggedIn? "Welcome back " + this.loggedIn.username + "!" : "You are now logged out."
+      },
+    }
   },
   methods: {
     goto(url) {
