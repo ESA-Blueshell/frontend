@@ -32,6 +32,10 @@ export default new Vuex.Store({
       state.login = newLogin
       document.cookie = `login=${JSON.stringify(state.login)};SameSite=strict;Secure;path=/`
     },
+    logout(state){
+      state.login = null
+      document.cookie = `login=${null};SameSite=strict;Secure;path=/`
+    },
     setRoles(state, newRoles) {
       state.login.roles = newRoles
       document.cookie = `login=${JSON.stringify(state.login)};SameSite=strict;Secure;path=/`
