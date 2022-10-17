@@ -31,6 +31,10 @@ export default new Vuex.Store({
       state.login = newLogin
       document.cookie = `login=${JSON.stringify(state.login)};SameSite=strict;Secure;path=/`
     },
+    logout(state){
+      state.login = null
+      document.cookie = `login=${null};SameSite=strict;Secure;path=/`
+    },
     setRoles(state, newRoles) {
       state.login.roles = newRoles
       document.cookie = `login=${JSON.stringify(state.login)};SameSite=strict;Secure;path=/`
@@ -50,5 +54,6 @@ export default new Vuex.Store({
     isBoard: state => state.login.roles.includes("BOARD"),
     isActive: state => state.login.roles.includes("COMMITTEE"),
     isMember: state => state.login.roles.includes("MEMBER"),
+    isLoggedIn: state => !!state.login
   },
 })

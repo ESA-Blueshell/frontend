@@ -16,7 +16,8 @@
         <v-btn class="bar-button" text dark to="/membership">Membership</v-btn>
         <v-menu open-on-hover offset-y>
           <template v-slot:activator="{ on, attrs }">
-            <v-btn class="bar-button" v-bind="attrs" v-on="on" text dark to="/aboutus">Association
+            <v-btn class="bar-button" v-bind="attrs" v-on="on" text dark to="/aboutus">
+              Association
               <v-icon>mdi-chevron-down</v-icon>
             </v-btn>
           </template>
@@ -27,7 +28,24 @@
             <v-list-item to="/documents">Documents</v-list-item>
           </v-list>
         </v-menu>
-        <v-btn class="bar-button" text dark to="/events">Events</v-btn>
+
+
+        <v-menu open-on-hover offset-y v-if="$store.getters.isLoggedIn">
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn class="bar-button" v-bind="attrs" v-on="on" text dark to="/events/calendar">
+              events
+              <v-icon>mdi-chevron-down</v-icon>
+            </v-btn>
+          </template>
+          <v-list>
+            <v-list-item to="/events/calendar">Events calendar</v-list-item>
+            <v-list-item to="/events/upcoming">Upcoming events</v-list-item>
+            <v-list-item to="/events/manage" v-if="$store.getters.isActive">Manage events</v-list-item>
+          </v-list>
+        </v-menu>
+        <v-btn class="bar-button" text dark to="/events/calendar" v-else>Event calendar</v-btn>
+
+
         <v-menu open-on-hover offset-y>
           <template v-slot:activator="{ on, attrs }">
             <v-btn class="bar-button" v-bind="attrs" v-on="on" text dark
@@ -86,8 +104,6 @@
         </template>
         <v-list>
           <v-list-item to="/account">Account</v-list-item>
-          <v-list-item to="/events/upcoming">Upcoming events</v-list-item>
-          <v-list-item to="/events/manage" v-if="$store.getters.isActive">Manage events</v-list-item>
           <v-list-item to="/members/manage" v-if="$store.getters.isBoard">Manage members</v-list-item>
           <v-list-item to="/committees/manage" v-if="$store.getters.isBoard">Manage committees</v-list-item>
           <v-list-item @click="logOut">Log Out</v-list-item>
@@ -116,9 +132,25 @@
           <v-list-item to="/documents">Documents</v-list-item>
           <v-divider dark></v-divider>
         </v-list-group>
-        <v-list-item text dark to="/events">
-          <v-list-item-title>Events</v-list-item-title>
+
+
+        <v-list-group :value="false" color="blue lighten-1" class="mb-2" v-if="$store.getters.isLoggedIn">
+          <!-- why the fuck do list-groups not get a bottom margin but list items do what the fuck it's like they don't want us to use them in a navbar aaaaa -->
+          <template v-slot:activator>
+            <v-list-item-title>
+              Events
+            </v-list-item-title>
+          </template>
+          <v-list-item to="/events/calendar">Event Calendar</v-list-item>
+          <v-list-item to="/events/upcoming">Upcoming events</v-list-item>
+          <v-list-item to="/events/manage" v-if="$store.getters.isActive">Manage events</v-list-item>
+          <v-divider dark></v-divider>
+        </v-list-group>
+        <v-list-item text dark to="/events/calendar" v-else>
+          <v-list-item-title>Event calendar</v-list-item-title>
         </v-list-item>
+
+
         <v-list-group :value="false" color="blue lighten-1" class="mb-2">
           <template v-slot:activator>
             <v-list-item-title>
@@ -293,7 +325,8 @@ export default {
     networkError: {
       get() {
         return !!this.$store.state.networkErrorMessage
-      }, set(value) {
+      },
+      set(value) {
         this.$store.commit('setNetworkErrorMessage', value)
       }
     },
@@ -314,7 +347,7 @@ export default {
     logOut() {
       // Let the cookie expire and redirect if the page is logged in only
       document.cookie = 'login=;expires=Thu, 01 Jan 1970 00:00:01 GMT'
-      this.$store.commit('setLogin', null)
+      this.$store.commit('logout')
       if (this.$route.meta.requiresAuth) {
         this.goto('/')
       }

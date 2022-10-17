@@ -67,7 +67,7 @@ const router = new Router({
       component: ArticleEditor
     },
     {
-      path: '/events',
+      path: '/events/calendar',
       name: 'events',
       component: Events
     },
