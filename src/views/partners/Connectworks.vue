@@ -5,7 +5,7 @@
       <div class="mx-auto my-10" style="max-width: 800px">
         <v-img
             :src="$vuetify.theme.dark?require('../../assets/Connectworks_logo_transparant.png'):require('../../assets/Connectworks_logo_transparant.png')"
-            class="mb-6"></v-img>
+            class="mb-6" width="600px" height="159px"></v-img>
         <h2>Who are we?</h2>
         <p class="body-1">
           We love solutions that add value, so we are constantly looking for what is possible and what value this adds
