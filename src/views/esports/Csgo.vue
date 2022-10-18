@@ -1,6 +1,6 @@
 <template>
   <v-main>
-    <top-banner title="Counter-Strike: Global Offensive"></top-banner>
+    <top-banner title="Counter-Strike: Global Offensive"/>
     <div class="mx-3">
       <div class="mx-auto my-10" style="max-width: 800px">
         <p class="body-1">
@@ -10,8 +10,7 @@
         </p>
       </div>
     </div>
-    <team :team="hypers"></team>
-    <team :team="revenge" name-right="bruh"></team>
+    <team :team="hypers"/>
   </v-main>
 </template>
 
@@ -28,8 +27,8 @@ export default {
         bg: require('../../assets/csgoesports1.jpg'),
         players: [
           {
-            name: 'Antons Naumenko',
-            ign: 'DextoxTea'
+            name: 'Chris Wong',
+            ign: 'FetaBass'
           },
           {
             name: 'Jonas Valentijn',
@@ -65,38 +64,6 @@ export default {
           }
         ]
       },
-      revenge: {
-        name: 'BS Revenge',
-        bg: require('../../assets/csgoesports2.jpg'),
-        players: [
-          {
-            name: '',
-            ign: 'Vinnyjj'
-          },
-          {
-            name: '',
-            ign: 'Mart10'
-          },
-          {
-            name: '',
-            ign: 'CaptainGork'
-          },
-          {
-            name: '',
-            ign: 'm1nml'
-          },
-          {
-            name: '',
-            ign: 'GuacamoleMen'
-          },
-        ],
-        substitutes: [
-          {
-            name: '',
-            ign: 'YSLyoungthug'
-          },
-        ]
-      }
     }
   }
 }

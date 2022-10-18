@@ -1,6 +1,6 @@
 <template>
   <v-main>
-    <top-banner title="League of Legends"></top-banner>
+    <top-banner title="League of Legends"/>
     <div class="mx-3">
       <div class="mx-auto my-10" style="max-width: 800px">
         <p class="body-1">
@@ -11,8 +11,7 @@
       </div>
     </div>
 
-    <team :team="goombaStompers" :name-right="false"></team>
-<!--    <team :team="fristiFighters" :name-right="true"></team>-->
+    <team :team="streetRats"/>
   </v-main>
 </template>
 
@@ -24,88 +23,38 @@ export default {
   components: {Team, TopBanner},
   data: () => {
     return {
-      goombaStompers: {
-        name: 'Blueshell Goombastompers',
+      streetRats: {
+        name: 'BS Street Rats',
         bg: require('../../assets/leagueesportsbg1.jpg'),
         players: [
           {
-            name: 'Jungjun Mok',
-            ign: 'Aiden'
+            name: 'Mateusz Bartnicki',
+            ign: 'BS Shigersky'
           },
           {
-            name: 'Bas Arkesteijn',
-            ign: 'xOmegafire'
+            name: 'Iason FIlippidis',
+            ign: 'BS Chit'
           },
           {
-            name: 'Hidde Veldkamp',
-            ign: 'Lateralus'
+            name: 'Hristo Dimitrov',
+            ign: 'Enorenaren'
           },
           {
-            name: 'Sterk Bruijn',
-            ign: 'Reflection'
+            name: 'Richard Leenknegt',
+            ign: 'BS RuigeRichard'
           },
           {
-            name: 'Anthonie van Bemmelen',
-            ign: 'Mahonix'
-          }
-        ],
-        coaches: [
-          {
-            name: 'Mark Ganzefles',
-            ign: 'Magaera'
+            name: 'Omar Markovinovic',
+            ign: 'SweatIRL'
           }
         ],
         substitutes: [
           {
-            name: 'Max Traas',
-            ign: 'Captain Maxwell'
+            name: 'Jannis Tenwinkel',
+            ign: 'BS Twinjanni'
           }
         ]
       },
-      fristiFighters: { // TODO: soontm
-        name: 'BS Fristi Fighters',
-        bg: require('../../assets/leagueesportsbg2.jpg'),
-        players: [
-          {
-            name: 'Jasper Ligthart',
-            ign: 'ShyGuy2328'
-          },
-          {
-            name: 'Jari van Ravenstein',
-            ign: 'j8stars'
-          },
-          {
-            name: 'Lars Bossink',
-            ign: 'Rallyman888'
-          },
-          {
-            name: 'Ward Gesthuizen',
-            ign: 'WARDSTRIDER'
-          },
-          {
-            name: 'Mikaël Bos',
-            ign: 'TheDarkSoul12'
-          }
-        ],
-        substitutes: [
-          {
-            name: 'Alexander de Ranitz',
-            ign: 'xXswaglordzXx'
-          },
-          {
-            name: 'Otto Hajenius',
-            ign: 'Th0tto'
-          },
-          {
-            name: 'Maarten Dekker',
-            ign: 'Bl4ckdragonn'
-          },
-          {
-            name: 'Raymon de Lange',
-            ign: 'Ironbone99'
-          },
-        ]
-      }
     }
   }
 }

@@ -1,17 +1,15 @@
 <template>
   <v-main>
-    <top-banner title="Valorant"></top-banner>
+    <top-banner title="Valorant"/>
     <div class="mx-3">
       <div class="mx-auto my-10" style="max-width: 800px">
         <p class="body-1">
           Despite its recent entry to competitive gaming, Valorant has garnered its spot within
-          Blueshell Esports community. Below you can find our competitive Valorant team(s).
+          Blueshell Esports community. Below you can find our competitive Valorant team.
         </p>
-
-
       </div>
     </div>
-    <team :team="huge"></team>
+    <team :team="huge"/>
   </v-main>
 </template>
 
@@ -24,33 +22,29 @@ export default {
   data: () => {
     return {
       huge: {
-        name: 'BS Huge',
+        name: 'BS Valorant',
         bg: require('../../assets/valorantesports1.jpg'),
         players: [
           {
-            name: 'Teun Kok',
-            ign: 'Hyzaq'
+            name: 'Sam de Vos',
+            ign: 'Vossie17'
           },
           {
-            name: 'Ivo Heitlager',
-            ign: 'King Cookie'
+            name: 'Ismail El Fechka',
+            ign: 'Chani'
           },
           {
-            name: 'Thomas Rijgersberg',
-            ign: 'LpC'
-          },
-          {
-            name: 'Gorkem Cardak',
+            name: 'Görkem Çardak',
             ign: 'SonGoku'
           },
           {
-            name: 'Mario Wal',
-            ign: 'TheCheeser'
+            name: 'Cas van Peer',
+            ign: 'AWESOME614'
           },
           {
-            name: 'Ziad Elleithy',
-            ign: 'ZenoXed'
-          }
+            name: 'Henry Woolley',
+            ign: 'Heny'
+          },
         ]
       }
     }

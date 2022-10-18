@@ -33,6 +33,7 @@ import CreateAccount from "@/views/login/CreateAccount";
 import EnableAccount from "@/views/login/EnableAccount";
 import Connectworks from "@/views/partners/Connectworks";
 import MemberManager from "@/views/login/MemberManager";
+import RocketLeague from "@/views/esports/RocketLeague";
 
 
 Vue.use(Router)
@@ -130,6 +131,11 @@ const router = new Router({
       path: '/esports/valorant',
       name: 'valorant',
       component: Valorant
+    },
+    {
+      path: '/esports/rocketleague',
+      name: 'rocketleague',
+      component: RocketLeague
     },
     {
       path: '/partners/become-a-partner',

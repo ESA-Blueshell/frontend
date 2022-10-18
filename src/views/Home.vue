@@ -98,16 +98,17 @@ export default {
               icon: require("../assets/valorant.png"),
               esportsLink: "/esports/valorant"
             },
+            {
+              title: "Rocket League",
+              bg: require("../assets/rocketleaguebg.jpg"),
+              icon: require("../assets/rocketleague.png"),
+              esportsLink: "/esports/rocketleague"
+            },
           ]
         },
         {
           categoryName: "Community",
           titles: [
-            {
-              title: "Rocket League",
-              bg: require("../assets/rocketleaguebg.jpg"),
-              icon: require("../assets/rocketleague.png"),
-            },
             {
               title: "Super Smash Bros",
               bg: require("../assets/smashbg.jpg"),
