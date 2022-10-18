@@ -58,5 +58,6 @@ export default new Vuex.Store({
     isBoard: state => state.login.roles.includes("BOARD"),
     isActive: state => state.login.roles.includes("COMMITTEE"),
     isMember: state => state.login.roles.includes("MEMBER"),
-  }
+    isLoggedIn: state => !!state.login
+  },
 })
