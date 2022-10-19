@@ -122,7 +122,7 @@ export default {
           description: 'This committee will organise a lan party, with arrangement of location, setup and promotion. This will be the first official Blueshell Lan party, so join this committee and be the one to organise it!',
         },
         {
-          name: 'TacCIE',
+          name: 'TacCie',
           description: 'TacCie is one of Blueshell\'s newest committees focusing on FPS games. The name \'TacCie\' is derived from the tactical shooter aspect of the committee and because it sounded like \'taxi\'. TacCie hosts events focused on all sorts of FPS based games such as Valorant, CS:GO, Overwatch, R6S, Splitgate and many others.',
         },
         {
