@@ -114,16 +114,16 @@ export default {
           description: 'This committee is responsible for organizing "Rotational" game events for the community. In other words, there are no limits to what game-specific event this committee holds, as long as it is fun and brings the people together! RotaCie is mainly a supporting committee where we work together with the member base to create popular events such as: The Kick-off games, Apex Legends tournament server shenanigans and the various instances of "the battle of the boards". Pressure of working in the committee is very chill and when we get hyped for an event we put in the extra effort and it shows!',
         },
         {
-          name: 'VACCie',
-          description: ' The VACCie is named after the Valve Anti-Cheat System, which is famous in the game CS:GO for catching no cheaters at all. This committee however is able to organize great activities in CS:GO! They organize events such as wargames, 2v2’s, wingman tournaments or 5v5’s, which are regularly planned to satisfy the need of a true skill-based shooter in Blueshell.',
-        },
-        {
           name: 'PrCie',
           description: 'The PRCie is a new committee which focuses on the communication strategy towards members and tries to reach new members with marketing and promotion campaigns.',
         },
         {
           name: 'LanCie',
           description: 'This committee will organise a lan party, with arrangement of location, setup and promotion. This will be the first official Blueshell Lan party, so join this committee and be the one to organise it!',
+        },
+        {
+          name: 'TacCIE',
+          description: 'TacCie is one of Blueshell\'s newest committees focusing on FPS games. The name \'TacCie\' is derived from the tactical shooter aspect of the committee and because it sounded like \'taxi\'. TacCie hosts events focused on all sorts of FPS based games such as Valorant, CS:GO, Overwatch, R6S, Splitgate and many others.',
         },
         {
           name: 'TravelCie',
