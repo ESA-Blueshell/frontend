@@ -71,7 +71,7 @@ export default {
         },
         {
           name: 'DisCo',
-          description: 'The DisCo is <b>the</b> committee for all your groovy needs! \n' +
+          description: 'The DisCo is *the* committee for all your groovy needs! \n' +
               'We organise events that have to do with music and dancing, like Just Dance nights, music jams and Rhythm & Dance nights.\n' +
               'Hope to see you at one of our events!',
         },
