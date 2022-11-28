@@ -22,6 +22,13 @@
           :id-to-committee="idToCommittee"
       />
 
+      <p class="mt-8 mx-3 text-h3 text-center">Past Events</p>
+
+      <event-manage-list
+          :events="pastEvents"
+          :id-to-committee="idToCommittee"
+      />
+
       <p class="mx-3 text-h5" v-if="events.length === 0">
         Doesn't look like you have any upcoming events for your committees 😔😔😔 maybe create one? or two?
       </p>
@@ -43,6 +50,7 @@ export default {
   components: {EventManageList, TopBanner},
   data: () => ({
     events: [],
+    pastEvents: [],
     idToCommittee: {},
     eventToDelete: null,
     noCommittees: false,
@@ -54,6 +62,14 @@ export default {
           this.events = response.data
           this.events.forEach(event => event.deleteDialog = false)
         })
+
+    //Get past events
+    this.$http.get('events/past?editable=true', {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
+        .then(response => {
+          this.pastEvents = response.data
+          this.pastEvents.forEach(event => event.deleteDialog = false)
+        })
+
 
     // Get the user's committees
     this.$http.get('committees', {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
