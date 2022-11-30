@@ -277,17 +277,17 @@
 
     <!-- Logged in message -->
     <v-snackbar
-      v-model="loggedInSnackbar"
-      timeout="10000"
+        v-model="loggedInSnackbar"
+        timeout="10000"
     >
-    {{loginText}}
+      {{ loginText }}
 
       <template v-slot:action="{ attrs }">
         <v-btn
-          color="blue"
-          text
-          v-bind="attrs"
-          @click="this.$store.commit('disableLoggedInSnackbar')"
+            color="blue"
+            text
+            v-bind="attrs"
+            @click="loggedInSnackbar=false"
         >
           Close
         </v-btn>
@@ -355,7 +355,7 @@ export default {
         return this.$store.state.login
       },
     },
-    loggedInSnackbar:{
+    loggedInSnackbar: {
       get() {
         return this.$store.state.loggedInSnackbar
       },
@@ -363,9 +363,9 @@ export default {
         this.$store.commit('setLoggedInSnackbar', loggedInSnackbar)
       }
     },
-    loginText:{
+    loginText: {
       get() {
-        return this.loggedIn? "Welcome back " + this.loggedIn.username + "!" : "You are now logged out."
+        return this.loggedIn ? "Welcome back " + this.loggedIn.username + "!" : "You are now logged out."
       },
     }
   },
@@ -381,6 +381,7 @@ export default {
       // Let the cookie expire and redirect if the page is logged in only
       document.cookie = 'login=;expires=Thu, 01 Jan 1970 00:00:01 GMT'
       this.$store.commit('logout')
+      this.loggedInSnackbar = true;
       if (this.$route.meta.requiresAuth) {
         this.goto('/')
       }

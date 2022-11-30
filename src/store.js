@@ -32,7 +32,7 @@ export default new Vuex.Store({
       state.login = newLogin
       document.cookie = `login=${JSON.stringify(state.login)};SameSite=strict;Secure;path=/`
     },
-    logout(state){
+    logout(state) {
       state.login = null
       document.cookie = `login=${null};SameSite=strict;Secure;path=/`
     },
@@ -46,7 +46,7 @@ export default new Vuex.Store({
     setNetworkErrorMessage(state, message) {
       state.networkErrorMessage = message
     },
-    setLoggedInSnackbar(state, newLoggedInSnackbar){
+    setLoggedInSnackbar(state, newLoggedInSnackbar) {
       state.loggedInSnackbar = newLoggedInSnackbar
     }
   },
