@@ -149,6 +149,7 @@ export default {
               this.noCommittees = true
             }
           })
+          .catch(e => this.$root.handleNetworkError(e))
     },
     deleteCommittee() {
       this.$http.delete('committees/' + this.committeeToDelete.id, {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
@@ -158,6 +159,7 @@ export default {
               this.committeeToDelete = null
             }
           })
+          .catch(e => this.$root.handleNetworkError(e))
     },
   },
 }

@@ -251,7 +251,8 @@ export default {
               )
               this.events.push(...res);
             })
-            .then(() => this.monthsLoading--);
+            .then(() => this.monthsLoading--)
+            .catch(e => this.$root.handleNetworkError(e))
       }
     },
     setToday() {

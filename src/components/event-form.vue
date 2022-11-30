@@ -272,6 +272,7 @@ export default {
     // Get user's committees
     this.$http.get('committees?isMember=true', {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
         .then(response => this.committees = response.data)
+        .catch(e => this.$root.handleNetworkError(e))
 
     // Save some data to know what changed to give the user a warning
     this.wasPublic = this.event.visible;

@@ -99,11 +99,13 @@ export default {
           this.eventName = response.data.title
           this.signUpForm = JSON.parse(response.data.signUpForm)
         })
+        .catch(e => this.$root.handleNetworkError(e))
     this.$http.get('events/signups/all/' + this.$route.params.id, {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
         .then(response => {
           this.responses = response.data
           this.responses.forEach(response => response.formAnswers = JSON.parse(response.formAnswers))
         })
+        .catch(e => this.$root.handleNetworkError(e))
   },
 }
 </script>

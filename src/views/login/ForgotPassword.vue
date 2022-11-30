@@ -60,11 +60,11 @@ export default {
             `users/password?username=${this.username}`
         ).then(() => {
           this.succeeded = true
-        }).catch(error => {
-          if (error.response.status === 404) {
+        }).catch(e => {
+          if (e.response.status === 404) {
             store.commit('setNetworkErrorMessage', "Uhhh, we don't know that username... Maybe check the spelling?")
           } else {
-            throw error
+            this.$root.handleNetworkError(e)
           }
         }).finally(() => {
           this.loading = false

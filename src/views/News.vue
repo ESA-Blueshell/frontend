@@ -54,7 +54,6 @@ export default {
   data() {
     return {
       news: [],
-      snackbar: false,
       page: 0,
       totalPages: 0,
       pageSize: 3,
@@ -69,7 +68,7 @@ export default {
           this.totalPages = response.data.totalPages;
           this.pageSize = response.data.pageable.pageSize;
         })
-        .catch(() => this.snackbar = true)
+        .catch(e => this.$root.handleNetworkError(e))
   },
   methods: {
     getWords(str) {
@@ -86,6 +85,7 @@ export default {
             this.pageSize = response.data.pageable.pageSize;
             this.page = response.data.pageable.pageNumber + 1;
           })
+          .catch(e => this.$root.handleNetworkError(e))
     }
   },
   components: {TopBanner}

@@ -154,7 +154,8 @@ export default {
             this.submittingId = null
             this.signingUpFor = null
             this.$set(this.eventIdToSignUpForm, eventId, null)
-          });
+          })
+          .catch(e => this.$root.handleNetworkError(e))
     },
     removeSignUp(eventId) {
       this.submittingId = eventId
@@ -163,7 +164,8 @@ export default {
             this.submittingId = null
             this.signingUpFor = null
             this.$delete(this.eventIdToSignUpForm, eventId)
-          });
+          })
+          .catch(e => this.$root.handleNetworkError(e))
 
     },
     refreshSignUp(eventId) {
@@ -171,6 +173,7 @@ export default {
           .then(response => {
             this.$set(this.eventIdToSignUpForm, response.data.event, response.data.formAnswers)
           })
+          .catch(e => this.$root.handleNetworkError(e))
     },
     defaultAnswers(form) {
       return Array.from(JSON.parse(form), question => question.type === 'open' ? '' : (question.type === 'checkbox' ? [] : null))
@@ -205,10 +208,12 @@ export default {
   },
   mounted() {
     this.$http.get('events/upcoming', {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
-        .then(response => this.events = response.data);
+        .then(response => this.events = response.data)
+        .catch(e => this.$root.handleNetworkError(e))
 
     this.$http.get('events/signups', {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
-        .then(response => response.data.forEach(signUp => this.eventIdToSignUpForm[signUp.event] = signUp.formAnswers));
+        .then(response => response.data.forEach(signUp => this.eventIdToSignUpForm[signUp.event] = signUp.formAnswers))
+        .catch(e => this.$root.handleNetworkError(e))
   }
 }
 </script>

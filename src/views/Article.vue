@@ -36,6 +36,7 @@ export default {
     this.$http
         .get('news/' + this.$route.params.id)
         .then(response => this.news = response.data)
+        .catch(e => this.$root.handleNetworkError(e))
   },
   methods: {
     thisURL() {

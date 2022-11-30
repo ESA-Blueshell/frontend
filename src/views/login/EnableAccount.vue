@@ -44,7 +44,7 @@ export default {
       }).then(() => {
         this.succeeded = true
         setTimeout(() => this.$router.push({path: '/login'}), 5000);
-      })
+      }).catch(e => this.$root.handleNetworkError(e))
     },
   },
   mounted() {

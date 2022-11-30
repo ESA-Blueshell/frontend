@@ -95,19 +95,12 @@ export default {
       if (this.$refs.form.validate()) {
         this.$emit('submitting')
 
-        this.$http.post('events/signups/' + this.eventId,
+        this.$http.post(`events/signups/${this.eventId}`,
             JSON.stringify(this.answersData),
-            {
-              headers: {
-                'Authorization': `Bearer ${this.$store.getters.getLogin.token}`,
-                'Content-Type': 'text/plain'
-              }
-            })
-            .then(response => {
-              if (response !== undefined && (response.status === 201 || response.status === 200)) {
-                this.$emit('close');
-              }
-            })
+            {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`, 'Content-Type': 'text/plain'}}
+        )
+            .then(() => this.$emit('close'))
+            .catch(e => this.$root.handleNetworkError(e))
       }
     }
   }

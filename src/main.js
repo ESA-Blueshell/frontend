@@ -37,14 +37,7 @@ let vue = new Vue({
   },
   methods: {
     markdownToHtml: text => xss(converter.makeHtml(text.replaceAll('<html-blob>', '').replaceAll('</html-blob>', '').trim())),
-
-  }
-});
-
-//Handle errors when requesting something from the backend.
-Axios.interceptors.response.use(
-  undefined,
-  (error => {
+    handleNetworkError: error => {
       // If the request got rejected, go to the login page to get some permissions
       // Otherwise, set the networkError value in vuex to show the snackbar saying there is an error and rethrow
       let errorMessage;
@@ -87,7 +80,7 @@ Axios.interceptors.response.use(
       store.commit('setNetworkErrorMessage', errorMessage)
       throw error
     }
-  )
-)
+  }
+});
 
 vue.$mount('#app')

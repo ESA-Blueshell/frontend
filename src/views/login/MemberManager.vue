@@ -56,6 +56,7 @@ export default {
   mounted() {
     this.$http.get('/users', {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
         .then(response => this.users = response.data)
+        .catch(e => this.$root.handleNetworkError(e))
   },
   methods: {
     isSearched(user) {
@@ -65,7 +66,9 @@ export default {
       this.$http.post(`/users/${user.id}/member?isMember=true`, {}, {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
           .then(() =>
               this.$http.get('/users', {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
-                  .then(response => this.users = response.data))
+                  .then(response => this.users = response.data)
+                  .catch(e => this.$root.handleNetworkError(e)))
+          .catch(e => this.$root.handleNetworkError(e))
     },
   }
 

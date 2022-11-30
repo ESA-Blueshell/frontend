@@ -406,6 +406,7 @@ export default {
           .then(response => {
             this.$store.commit('setRoles', response.data.roles)
           })
+          .catch(e => this.$root.handleNetworkError(e))
     }
 
 

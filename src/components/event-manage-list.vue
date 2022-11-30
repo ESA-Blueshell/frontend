@@ -106,13 +106,11 @@ export default {
   methods: {
     deleteEvent() {
       this.$http.delete('events/' + this.eventToDelete.id, {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
-          .then(response => {
-            if (response.status === 200) {
-              //TODO: TEST REACTIVITY !!!!!!!
-              this.events = this.events.filter(event => event.id !== this.eventToDelete.id)
-              this.eventToDelete = null
-            }
+          .then(() => {
+            this.events = this.events.filter(event => event.id !== this.eventToDelete.id)
+            this.eventToDelete = null
           })
+          .catch(e => this.$root.handleNetworkError(e))
     },
     formatStartEndTime(event) {
       let startTime = new Date(Date.parse(event.startTime))

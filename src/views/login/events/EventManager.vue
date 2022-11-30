@@ -62,6 +62,7 @@ export default {
           this.events = response.data
           this.events.forEach(event => event.deleteDialog = false)
         })
+        .catch(e => this.$root.handleNetworkError(e))
 
     //Get past events
     this.$http.get('events/past?editable=true', {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
@@ -69,6 +70,7 @@ export default {
           this.pastEvents = response.data
           this.pastEvents.forEach(event => event.deleteDialog = false)
         })
+        .catch(e => this.$root.handleNetworkError(e))
 
 
     // Get the user's committees
@@ -81,6 +83,7 @@ export default {
             this.noCommittees = true
           }
         })
+        .catch(e => this.$root.handleNetworkError(e))
   },
 }
 </script>

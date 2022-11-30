@@ -149,23 +149,21 @@ export default {
         this.submitting = true
         //Send new user object to backend
         const login = this.$store.getters.getLogin
-        this.$http
-            .put(`users/${login.userId}`, this.accountData, {headers: {'Authorization': `Bearer ${login.token}`}})
-            .then(() => {
-              this.submitting = false
-            });
+        this.$http.put(`users/${login.userId}`, this.accountData, {headers: {'Authorization': `Bearer ${login.token}`}})
+            .then(() => this.submitting = false)
+            .catch(e => this.$root.handleNetworkError(e))
       }
     },
   },
   mounted() {
     const login = this.$store.getters.getLogin
 
-    this.$http
-        .get(`users/${login.userId}`, {headers: {'Authorization': `Bearer ${login.token}`}})
+    this.$http.get(`users/${login.userId}`, {headers: {'Authorization': `Bearer ${login.token}`}})
         .then(response => {
           this.accountData = response.data
           this.oldAccountData = this.copyObject(this.accountData)
         })
+        .catch(e => this.$root.handleNetworkError(e))
   }
 }
 </script>

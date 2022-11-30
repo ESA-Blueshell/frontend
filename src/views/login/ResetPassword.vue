@@ -79,13 +79,13 @@ export default {
         }).then(() => {
           this.succeeded = true
           setTimeout(() => this.$router.push({path: '/login'}), 5000);
-        }).catch(error => {
-          if (error.response.status === 400) {
-            store.commit('setNetworkErrorMessage', error.response.data)
-          } else if (error.response.status === 404) {
+        }).catch(e => {
+          if (e.response.status === 400) {
+            store.commit('setNetworkErrorMessage', e.response.data)
+          } else if (e.response.status === 404) {
             store.commit('setNetworkErrorMessage', "The username you gave doesn't exist??")
           } else {
-            throw error
+            this.$root.handleNetworkError(e)
           }
         }).finally(() => {
           this.loading = false

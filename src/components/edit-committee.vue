@@ -85,6 +85,7 @@ export default {
   mounted() {
     this.$http.get('users/members', {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
         .then(response => this.memberSelectItems = response.data)
+        .catch(e => this.$root.handleNetworkError(e))
   },
   methods: {
     addMember() {
@@ -121,11 +122,9 @@ export default {
                   'Authorization': `Bearer ${this.$store.getters.getLogin.token}`,
                   'Content-Type': 'application/json'
                 }
-              }).then(response => {
-            if (response !== undefined && (response.status === 201 || response.status === 200)) {
-              this.$emit('close');
-            }
-          })
+              })
+              .then(() => this.$emit('close'))
+              .catch(e => this.$root.handleNetworkError(e))
         } else {
           this.$http.put('committees/' + this.committee.id,
               JSON.stringify(this.committee),
@@ -134,11 +133,9 @@ export default {
                   'Authorization': `Bearer ${this.$store.getters.getLogin.token}`,
                   'Content-Type': 'application/json'
                 }
-              }).then(response => {
-            if (response !== undefined && (response.status === 201 || response.status === 200)) {
-              this.$emit('close');
-            }
-          })
+              })
+              .then(() => this.$emit('close'))
+              .catch(e => this.$root.handleNetworkError(e))
         }
       }
     },

@@ -93,10 +93,12 @@ export default {
               // Go to redirect page or home page
               router.push(this.$route.query.redirect || '/')
             })
-            .catch(error => {
+            .catch(e => {
               // Show Incorrect login snackbar
-              if (error.response.status === 401) {
+              if (e.response.status === 401) {
                 store.commit('setNetworkErrorMessage', 'Incorrect login')
+              } else {
+                this.$root.handleNetworkError(e)
               }
             })
             .finally(() => {

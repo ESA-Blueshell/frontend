@@ -64,7 +64,11 @@ export default {
                 if (response !== undefined && (response.status === 201 || response.status === 200)) {
                   this.$router.push('manage')
                 }
-              }).catch(() => this.$refs.form.submitting = false)
+              })
+              .catch(e => {
+                this.$refs.form.submitting = false
+                this.$root.handleNetworkError(e)
+              })
         };
         reader.readAsDataURL(event.image);
 
@@ -90,6 +94,7 @@ export default {
                 this.$router.push('manage')
               }
             })
+            .catch(e => this.$root.handleNetworkError(e))
       }
 
 

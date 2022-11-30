@@ -147,10 +147,14 @@ export default {
           .then(() => {
             this.succeeded = true
           })
-          .catch(() => {
-            // Show login taken snackbar
-            store.commit('setNetworkErrorMessage', 'This username cannot be used.')
-          })
+          .catch(e => {
+                if (e.response.status === 400) {
+                  store.commit('setNetworkErrorMessage', e.response.data)
+                } else {
+                  this.$root.handleNetworkError(e)
+                }
+              }
+          )
           .finally(() => {
             this.clicked = false
           })
