@@ -81,30 +81,17 @@
         If you can't find the email, make sure to check your spam folder.</p>
     </div>
 
-    <v-snackbar v-model="snackbar" timeout="10000">
-      {{ this.snackbarText }}
-      <template v-slot:action="{ attrs }">
-        <v-btn
-            color="blue"
-            text
-            v-bind="attrs"
-            @click="snackbar = false">
-          Close
-        </v-btn>
-      </template>
-    </v-snackbar>
 
   </v-main>
 </template>
 
 <script>
 import TopBanner from "@/components/top-banner";
+import store from "@/store";
 
 export default {
   components: {TopBanner},
   data: () => ({
-    snackbar: false,
-    snackbarText: 'Something went wrong, we don\'t know either.',
     clicked: false,
     succeeded: false,
     showPass: false,
@@ -162,8 +149,7 @@ export default {
           })
           .catch(() => {
             // Show login taken snackbar
-            this.snackbar = true
-            this.snackbarText = 'This username cannot be used.'
+            store.commit('setNetworkErrorMessage', 'This username cannot be used.')
           })
           .finally(() => {
             this.clicked = false

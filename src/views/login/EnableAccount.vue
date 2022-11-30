@@ -14,18 +14,6 @@
       </p>
     </div>
 
-    <v-snackbar v-model="snackbar" timeout="10000">
-      {{ this.snackbarText }}
-      <template v-slot:action="{ attrs }">
-        <v-btn
-            color="blue"
-            text
-            v-bind="attrs"
-            @click="snackbar = false">
-          Close
-        </v-btn>
-      </template>
-    </v-snackbar>
 
   </v-main>
 </template>
@@ -36,16 +24,14 @@ import TopBanner from "@/components/top-banner";
 export default {
   components: {TopBanner},
   data: () => ({
-    snackbar: false,
-    snackbarText: 'Something went wrong, we don\'t know either.',
     clicked: false,
     succeeded: false,
   }),
   computed: {
-    username: function() {
+    username: function () {
       return this.$route.query.username
     },
-    token: function() {
+    token: function () {
       return this.$route.query.token
     },
   },
@@ -55,16 +41,10 @@ export default {
       this.$http.post('enableAccount', {
         username: this.username,
         token: this.token,
+      }).then(() => {
+        this.succeeded = true
+        setTimeout(() => this.$router.push({path: '/login'}), 5000);
       })
-          .then(() => {
-            this.succeeded = true
-            setTimeout( () => this.$router.push({ path: '/login'}), 5000);
-          })
-          .catch(e => {
-            // Show login taken snackbar
-            this.snackbar = true
-            this.snackbarText = e.response.data
-          })
     },
   },
   mounted() {

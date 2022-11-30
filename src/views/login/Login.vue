@@ -3,7 +3,7 @@
     <top-banner title="Login"></top-banner>
 
     <div class="mx-3">
-      <v-form v-model="valid" class="mx-auto mt-10" style="max-width: 500px" ref="form">
+      <v-form v-model="valid" class="mx-auto mt-10" style="max-width: 500px" @submit.prevent ref="form">
         <v-text-field
             v-model="username"
             :rules="usernameRules"
@@ -16,11 +16,20 @@
             :rules="passwordRules"
             label="Password"
             required
+            hide-details
             @keydown.enter="login"
             @click:append="showPass = !showPass"
             :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
             :type="showPass ? 'text' : 'password'"/>
-        <v-row class="mt-4">
+        <v-row>
+          <v-spacer/>
+          <v-col cols="auto">
+            <v-btn text small to="login/forgor">
+              forgot password?
+            </v-btn>
+          </v-col>
+        </v-row>
+        <v-row>
           <v-col cols="auto">
             <v-btn
                 outlined
@@ -42,25 +51,13 @@
       </v-form>
     </div>
 
-    <v-snackbar v-model="snackbar" timeout="10000">
-      Incorrect login
-      <template v-slot:action="{ attrs }">
-        <v-btn
-            color="blue"
-            text
-            v-bind="attrs"
-            @click="snackbar = false">
-          Close
-        </v-btn>
-      </template>
-    </v-snackbar>
-
   </v-main>
 </template>
 
 <script>
 import TopBanner from "@/components/top-banner";
 import router from "@/router";
+import store from "@/store";
 
 export default {
   components: {TopBanner},
@@ -91,13 +88,15 @@ export default {
             .then(response => {
               // Store response
               this.$store.commit('setLogin', response.data)
-              this.$store.commit('setLoggedInSnackbar',true)
+              this.$store.commit('setLoggedInSnackbar', true)
               // Go to redirect page or home page
               router.push(this.$route.query.redirect || '/')
             })
-            .catch(() => {
+            .catch(error => {
               // Show Incorrect login snackbar
-              this.snackbar = true
+              if (error.response.status === 401) {
+                store.commit('setNetworkErrorMessage', 'Incorrect login')
+              }
             })
       }
     },

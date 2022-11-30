@@ -34,6 +34,8 @@ import EnableAccount from "@/views/login/EnableAccount";
 import Connectworks from "@/views/partners/Connectworks";
 import MemberManager from "@/views/login/MemberManager";
 import RocketLeague from "@/views/esports/RocketLeague";
+import ForgotPassword from "@/views/login/ForgotPassword";
+import ResetPassword from "@/views/login/ResetPassword";
 
 
 Vue.use(Router)
@@ -161,6 +163,16 @@ const router = new Router({
       path: '/login',
       name: 'login',
       component: Login
+    },
+    {
+      path: '/login/forgor',
+      name: 'forgotPassword',
+      component: ForgotPassword
+    },
+    {
+      path: '/login/reset-password',
+      name: 'resetPassword',
+      component: ResetPassword
     },
     {
       path: '/account',
