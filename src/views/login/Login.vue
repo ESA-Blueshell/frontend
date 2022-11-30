@@ -24,7 +24,7 @@
         <v-row>
           <v-spacer/>
           <v-col cols="auto">
-            <v-btn text small to="login/forgor">
+            <v-btn text small :to="`login/forgor?username=${username}`">
               forgot password?
             </v-btn>
           </v-col>
@@ -62,8 +62,8 @@ import store from "@/store";
 export default {
   components: {TopBanner},
   data: () => ({
-    snackbar: false,
     valid: false,
+    loading: false,
     showPass: false,
     username: '',
     password: '',
@@ -83,6 +83,7 @@ export default {
     login() {
       // Check if form is valid (meaning username and password are not empty)
       if (this.$refs.form.validate()) {
+        this.loading = true
         // Send authenticate request
         this.$http.post('authenticate', {username: this.username, password: this.password})
             .then(response => {
@@ -97,6 +98,9 @@ export default {
               if (error.response.status === 401) {
                 store.commit('setNetworkErrorMessage', 'Incorrect login')
               }
+            })
+            .finally(() => {
+              this.loading = false
             })
       }
     },

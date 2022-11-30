@@ -14,12 +14,12 @@
                 v-model="username"
                 :rules="[v => !!v || 'Username is required']"
                 label="Username"
-                @keydown.enter="resetPassword"
+                @keydown.enter="sendResetMail"
                 ref="username"/>
             <v-row>
               <v-spacer/>
               <v-col cols="auto">
-                <v-btn :disabled="!valid" :loading="loading" @click="resetPassword">
+                <v-btn :disabled="!valid" :loading="loading" @click="sendResetMail">
                   Send reset mail
                 </v-btn>
               </v-col>
@@ -52,7 +52,7 @@ export default {
     loading: false,
   }),
   methods: {
-    resetPassword() {
+    sendResetMail() {
       if (this.$refs.form.validate()) {
         this.loading = true
         // Send reset request
@@ -72,5 +72,8 @@ export default {
       }
     },
   },
+  mounted() {
+    this.username = this.$route.query.username
+  }
 }
 </script>

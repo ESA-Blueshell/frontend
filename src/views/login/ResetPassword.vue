@@ -9,7 +9,8 @@
               v-model="password"
               :rules="passwordRules"
               label="Password"
-              :type="showPass ? 'text' : 'password'"/>
+              :type="showPass ? 'text' : 'password'"
+              @keydown.enter="resetPassword"/>
           <v-text-field
               v-model="passwordAgain"
               :rules="[v => !!v || 'Password is required',v => v === this.password || 'The passwords should be the same',]"
