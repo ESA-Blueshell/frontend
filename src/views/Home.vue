@@ -110,19 +110,9 @@ export default {
           categoryName: "Community",
           titles: [
             {
-              title: "Super Smash Bros",
-              bg: require("../assets/smashbg.jpg"),
-              icon: require("../assets/smash.png"),
-            },
-            {
               title: "Dota 2",
               bg: require("../assets/dota2bg.jpg"),
               icon: require("../assets/dota2.png"),
-            },
-            {
-              title: "Animal Crossing",
-              bg: require("../assets/animalcrossingbg.jpg"),
-              icon: require("../assets/animalcrossing.png"),
             },
             {
               title: "Minecraft",
@@ -135,19 +125,29 @@ export default {
               icon: require("../assets/pokemon.png"),
             },
             {
+              title: "Overwatch",
+              bg: require("../assets/overwatchbg.jpg"),
+              icon: require("../assets/overwatch.png"),
+            },
+            {
+              title: "Super Smash Bros",
+              bg: require("../assets/smashbg.jpg"),
+              icon: require("../assets/smash.png"),
+            },
+            {
               title: "Team Fight Tactics",
               bg: require("../assets/tftbg.jpg"),
               icon: require("../assets/tft.png"),
             },
             {
+              title: "Trackmania",
+              bg: require("../assets/trackmaniabg.jpg"),
+              icon: require("../assets/trackmania.png"),
+            },
+            {
               title: "World of Warcraft",
               bg: require("../assets/wowbg.jpg"),
               icon: require("../assets/wow.png"),
-            },
-            {
-              title: "Strategy games",
-              bg: require("../assets/stratbg.jpg"),
-              icon: require("../assets/strat.png"),
             },
           ]
         }
@@ -158,7 +158,7 @@ export default {
           color: "red darken-2",
           title: "About us",
           url: "/aboutus",
-          text: "Despite its memberbase, Blueshell Esports is a relatively young student association with only 4 years since its inception. Learn all about our association by clicking above!"
+          text: "Despite its memberbase, Blueshell Esports is a relatively young student association with only 5 years since its inception. Learn all about our association by clicking above!"
         },
         {
           icon: "mdi-trophy",

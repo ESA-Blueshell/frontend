@@ -191,28 +191,33 @@
       </v-list>
       <template v-slot:append>
         <div class="mx-4">
-          <v-row>
-            <v-col>
+          <v-row align="center" justify="center">
+            <v-col cols="4">
               <v-btn icon href="mailto:board@blueshell.utwente.nl">
                 <v-icon>mdi-email</v-icon>
               </v-btn>
             </v-col>
-            <v-col>
+            <v-col cols="4">
               <v-btn icon href="https://www.instagram.com/blueshellesports/" target="_blank">
                 <v-icon>mdi-instagram</v-icon>
               </v-btn>
-              <v-col>
-                <v-btn icon href="https://www.facebook.com/BlueshellEsports/" target="_blank">
-                  <v-icon>mdi-facebook</v-icon>
-                </v-btn>
-              </v-col>
             </v-col>
-            <v-col>
+            <v-col cols="4">
+              <v-btn icon href="https://www.facebook.com/BlueshellEsports/" target="_blank">
+                <v-icon>mdi-facebook</v-icon>
+              </v-btn>
+            </v-col>
+            <v-col cols="4">
+              <v-btn icon href="https://www.twitch.tv/blueshellesports" target="_blank">
+                <v-icon>mdi-twitch</v-icon>
+              </v-btn>
+            </v-col>
+            <v-col cols="4">
               <v-btn icon href="https://twitter.com/BlueshellESA" target="_blank">
                 <v-icon>mdi-twitter</v-icon>
               </v-btn>
             </v-col>
-            <v-col>
+            <v-col cols="4">
               <v-btn icon href="https://www.linkedin.com/company/blueshell-esports" target="_blank">
                 <v-icon>mdi-linkedin</v-icon>
               </v-btn>
@@ -229,11 +234,14 @@
       <v-btn icon href="mailto:board@blueshell.utwente.nl">
         <v-icon>mdi-email</v-icon>
       </v-btn>
+      <v-btn icon href="https://www.instagram.com/blueshellesports/" target="_blank">
+        <v-icon>mdi-instagram</v-icon>
+      </v-btn>
       <v-btn icon href="https://www.facebook.com/BlueshellEsports/" target="_blank">
         <v-icon>mdi-facebook</v-icon>
       </v-btn>
-      <v-btn icon href="https://www.instagram.com/blueshellesports/" target="_blank">
-        <v-icon>mdi-instagram</v-icon>
+      <v-btn icon href="https://www.twitch.tv/blueshellesports" target="_blank">
+        <v-icon>mdi-twitch</v-icon>
       </v-btn>
       <v-btn icon href="https://twitter.com/BlueshellESA" target="_blank">
         <v-icon>mdi-twitter</v-icon>
