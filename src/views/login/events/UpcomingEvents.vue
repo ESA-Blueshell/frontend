@@ -4,7 +4,7 @@
     <div class="mx-3">
       <div class="mx-auto my-10" style="max-width: 800px">
         <v-list two-line>
-          <template v-for="(event,i) in events">
+          <div v-for="(event,i) in events">
             <v-list-item v-bind:key="event.title+event.startTime"
                          v-bind:style="{ 'background-image': !event.banner ? '' :  $vuetify.theme.dark ? `linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(${event.banner})` : `linear-gradient(to bottom, rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url(${event.banner})`}"
                          style="background-size: cover;background-position: center;backdrop-filter: blur(2px);">
@@ -123,7 +123,7 @@
             </v-expand-transition>
 
             <v-divider v-if="i < events.length - 1 && signingUpFor !== event.id" v-bind:key="i"/>
-          </template>
+          </div>
         </v-list>
 
 

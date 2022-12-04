@@ -1,6 +1,6 @@
 <template>
   <div  :style="{background: $vuetify.theme.dark?$vuetify.theme.themes.dark.background:$vuetify.theme.themes.light.background}"
-  ><!--v-bind:style="$vuetify.breakpoint.smAndUp?{ height: '120px'}:{ height: '200px' }"-->
+  ><!--v-bind:style="$vuetify.display.smAndUp?{ height: '120px'}:{ height: '200px' }"-->
     <v-row class="mx-auto container flex-nowrap" align="center" justify="space-between" >
       <v-col  md="auto" cols="120">
         <p class="white--text text-h4 font-weight-thin mb-0" style="float: left">

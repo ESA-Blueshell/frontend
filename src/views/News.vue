@@ -17,7 +17,7 @@
     <v-skeleton-loader v-if="news === []" class="mx-auto" max-width="800" type="card">
     </v-skeleton-loader>
     <v-list v-else class="mx-auto" style="max-width: 800px">
-      <template v-for="(item, i) in news">
+      <div v-for="(item, i) in news">
         <v-list-item :key="i">
           <v-list-item-content>
             <div class="mx-auto my-4">
@@ -36,7 +36,7 @@
           </v-list-item-content>
         </v-list-item>
         <v-divider :key="i+'divider'" v-if="i !== (news.length - 1)"></v-divider>
-      </template>
+      </div>
     </v-list>
     <v-pagination v-model="page"
                   :length="totalPages"

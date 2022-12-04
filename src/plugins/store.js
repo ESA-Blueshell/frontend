@@ -1,7 +1,4 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-
-Vue.use(Vuex)
+import {createStore} from 'vuex'
 
 
 function getJsonCookie(cname) {
@@ -20,7 +17,7 @@ function getJsonCookie(cname) {
   return "";
 }
 
-export default new Vuex.Store({
+export default createStore({
   state: {
     login: getJsonCookie('login') || null,
     cookies: getJsonCookie('cookies') || false,

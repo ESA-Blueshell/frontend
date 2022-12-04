@@ -30,7 +30,7 @@
 
 
             <v-list two-line>
-              <template v-for="(committee,i) in committees">
+              <div v-for="(committee,i) in committees">
                 <v-list-item v-bind:key="committee.name">
                   <v-list-item-content>
                     <v-list-item-title class="text-h6">
@@ -78,7 +78,7 @@
                 <v-divider v-bind:key="i"
                            v-if="i < committees.length - 1 && editingCommitteeId !== committee.id"
                 ></v-divider>
-              </template>
+              </div>
             </v-list>
           </template>
 

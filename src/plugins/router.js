@@ -1,47 +1,44 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import Home from './views/Home.vue'
-import News from './views/News.vue'
-import Events from './views/Events.vue'
-import Contact from './views/Contact.vue'
-import Committees from './views/Committees.vue'
-import Membership from './views/Membership.vue'
-import Esports from './views/esports/Esports.vue'
-import AboutUs from "./views/AboutUs";
-import Board from "./views/Board";
-import League from "./views/esports/League";
-import Csgo from "./views/esports/Csgo";
-import Documents from "@/views/Documents";
-import ElNino from "@/views/partners/ElNino";
-import Dekimo from "@/views/partners/Dekimo";
-import Partners from "@/views/partners/Partners";
-import Article from "@/views/Article";
-import NotFound from "@/views/NotFound";
-import Login from "@/views/login/Login";
-import Account from "@/views/login/Account";
-import ArticleEditor from "@/views/ArticleEditor";
+import Home from '@/views/Home.vue'
+import News from '@/views/News.vue'
+import Events from '@/views/Events.vue'
+import Contact from '@/views/Contact.vue'
+import Committees from '@/views/Committees.vue'
+import Membership from '@/views/Membership.vue'
+import Esports from '@/views/Esports.vue'
+import AboutUs from "@/views/AboutUs.vue";
+import Board from "@/views/Board.vue";
+import League from "@/views/esports/League.vue";
+import Csgo from "@/views/esports/Csgo.vue";
+import Documents from "@/views/Documents.vue";
+import ElNino from "@/views/partners/ElNino.vue";
+import Dekimo from "@/views/partners/Dekimo.vue";
+import Partners from "@/views/partners/Partners.vue";
+import Article from "@/views/Article.vue";
+import NotFound from "@/views/NotFound.vue";
+import Valorant from "@/views/esports/Valorant.vue";
+import Login from "@/views/login/Login.vue";
+import Account from "@/views/login/Account.vue";
+import ArticleEditor from "@/views/ArticleEditor.vue";
+import CreateEvent from "@/views/login/events/CreateEvent.vue";
+import EventManager from "@/views/login/events/EventManager.vue";
+import EditEvent from "@/views/login/events/EditEvent.vue";
+import UpcomingEvents from "@/views/login/events/UpcomingEvents.vue";
+import EventSignUps from "@/views/login/events/EventSignUps.vue";
+import CommitteeManager from "@/views/login/CommitteeManager.vue";
+import CreateAccount from "@/views/login/CreateAccount.vue";
+import EnableAccount from "@/views/login/EnableAccount.vue";
+import Connectworks from "@/views/partners/Connectworks.vue";
+import MemberManager from "@/views/login/MemberManager.vue";
+import RocketLeague from "@/views/esports/RocketLeague.vue";
+import ForgotPassword from "@/views/login/ForgotPassword.vue";
+import ResetPassword from "@/views/login/ResetPassword.vue";
 
+import {createRouter, createWebHistory} from "vue-router";
 import store from './store'
-import CreateEvent from "@/views/login/events/CreateEvent";
-import EventManager from "@/views/login/events/EventManager";
-import EditEvent from "@/views/login/events/EditEvent";
-import UpcomingEvents from "@/views/login/events/UpcomingEvents";
-import EventSignUps from "@/views/login/events/EventSignUps";
-import CommitteeManager from "@/views/login/CommitteeManager";
-import CreateAccount from "@/views/login/CreateAccount";
-import EnableAccount from "@/views/login/EnableAccount";
-import Connectworks from "@/views/partners/Connectworks";
-import MemberManager from "@/views/login/MemberManager";
-import RocketLeague from "@/views/esports/RocketLeague";
-import ForgotPassword from "@/views/login/ForgotPassword";
-import ResetPassword from "@/views/login/ResetPassword";
 
 
-Vue.use(Router)
-
-const router = new Router({
-  mode: 'history',
-  base: process.env.BASE_URL,
+const router = createRouter({
+  history: createWebHistory('/'),
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {
       return savedPosition

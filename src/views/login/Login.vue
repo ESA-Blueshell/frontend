@@ -56,8 +56,8 @@
 
 <script>
 import TopBanner from "@/components/top-banner";
-import router from "@/router";
-import store from "@/store";
+import router from "@/plugins/router";
+import store from "@/plugins/store";
 
 export default {
   components: {TopBanner},

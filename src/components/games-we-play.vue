@@ -77,7 +77,7 @@
 </template>
 
 <script>
-import router from "@/router";
+import router from "@/plugins/router";
 
 export default {
   name: "games-we-play",

@@ -8,11 +8,11 @@
         </p>
         <p class="body-1">
           Every year, our association grows and takes on new shapes. We present you the sixth board
-          of Blueshell Esports{{ $vuetify.breakpoint.mdAndUp ? ', who are introduced below' : '' }}.
+          of Blueshell Esports{{ $vuetify.display.mdAndUp ? ', who are introduced below' : '' }}.
         </p>
         <v-img :src="require('../assets/wholeboard.jpg')"></v-img>
 
-        <div v-if="$vuetify.breakpoint.mdAndUp">
+        <div v-if="$vuetify.display.mdAndUp">
           <div v-for="(member,i) in board" v-bind:key="member.name"
                class="mb-12 mt-16"
                style="width: 100%; height: 400px;background-size: contain;position: relative;"

@@ -2,7 +2,7 @@
   <v-dialog v-bind:value="eventToDelete" max-width="400">
     <template v-slot:activator="{ on: dialog, attrs }">
       <v-list two-line>
-        <template v-for="(event,i) in events">
+        <div v-for="(event,i) in events">
           <v-list-item v-bind:key="event.title+event.startTime"
                        v-bind:style="{ 'background-image': !event.banner ? '' :
                                   $vuetify.theme.dark ? `linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(${event.banner})` : `linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(255,255,255,0.8)), url(${event.banner})`}"
@@ -19,7 +19,7 @@
                               'No description...'"/>
             </v-list-item-content>
 
-            <v-list-item-action-text v-if="$vuetify.breakpoint.smAndUp">
+            <v-list-item-action-text v-if="$vuetify.display.smAndUp">
               {{ idToCommittee[event.committee] }}
             </v-list-item-action-text>
             <v-list-item-action>
@@ -61,7 +61,7 @@
           <v-divider
               v-if="i < events.length - 1" v-bind:key="i"
           ></v-divider>
-        </template>
+        </div>
       </v-list>
 
 

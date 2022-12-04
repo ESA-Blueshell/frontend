@@ -43,7 +43,7 @@
 
 <script>
 import TopBanner from "@/components/top-banner";
-import store from "@/store";
+import store from "@/plugins/store";
 
 export default {
   components: {TopBanner},

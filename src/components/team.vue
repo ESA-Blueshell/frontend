@@ -8,7 +8,7 @@
     <!--
       Here starts the team view on size medium and above
     -->
-    <v-container v-if="$vuetify.breakpoint.mdAndUp" class="py-10" fill-height fluid
+    <v-container v-if="$vuetify.display.mdAndUp" class="py-10" fill-height fluid
                  :style="{background: $vuetify.theme.dark ? 'rgba(0,0,0,0.6)' : 'rgba(255,255,255,0.8)'}">
       <v-row align="center" align-content="center" justify="center">
         <v-col v-if="!nameRight" lg="4" md="5" xl="4">

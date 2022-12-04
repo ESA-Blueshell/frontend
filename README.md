@@ -1,29 +1,44 @@
-# frontend
+# default
 
 ## Project setup
+
 ```
-yarn install
+# yarn
+yarn
+
+# npm
+npm install
+
+# pnpm
+pnpm install
 ```
 
 ### Compiles and hot-reloads for development
+
 ```
-yarn run serve
+# yarn
+yarn dev
+
+# npm
+npm run dev
+
+# pnpm
+pnpm dev
 ```
 
 ### Compiles and minifies for production
-```
-yarn run build
-```
 
-### Run your tests
 ```
-yarn run test
-```
+# yarn
+yarn build
 
-### Lints and fixes files
-```
-yarn run lint
+# npm
+npm run build
+
+# pnpm
+pnpm build
 ```
 
 ### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+
+See [Configuration Reference](https://vitejs.dev/config/).

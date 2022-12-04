@@ -2,21 +2,23 @@
   <v-app>
     <v-app-bar dark elevate-on-scroll fixed>
       <v-app-bar-nav-icon @click="drawer = true"
-                          v-if="$vuetify.breakpoint.mdAndDown">
+                          v-if="$vuetify.display.mdAndDown">
       </v-app-bar-nav-icon>
-      <v-toolbar-title class="ml-sm-n5 ml-md-0 ml-lg-0 ml-xl-0 ">
+
+      <v-app-bar-title class="ml-sm-n5 ml-md-0 ml-lg-0 ml-xl-0 ">
         <router-link to="/">
-          <img :src="require('./assets/topbarlogo.png')" alt="Blueshell logo"
+          <img src="./assets/topbarlogo.png" alt="Blueshell logo"
                style="max-height: 64px;max-width: 260px; width: 100%" class="mr-3">
         </router-link>
-      </v-toolbar-title>
-      <div v-if="$vuetify.breakpoint.lgAndUp"
+      </v-app-bar-title>
+
+      <div v-if="$vuetify.display.lgAndUp"
            style="height: 100%">
-        <v-btn class="bar-button" text dark to="/">Home</v-btn>
-        <v-btn class="bar-button" text dark to="/membership">Membership</v-btn>
+        <v-btn class="bar-button" dark to="/">Home</v-btn>
+        <v-btn class="bar-button" dark to="/membership">Membership</v-btn>
         <v-menu open-on-hover offset-y>
-          <template v-slot:activator="{ on, attrs }">
-            <v-btn class="bar-button" v-bind="attrs" v-on="on" text dark to="/aboutus">
+          <template v-slot:activator="{ props }">
+            <v-btn class="bar-button" v-bind="props" dark to="/aboutus">
               Association
               <v-icon>mdi-chevron-down</v-icon>
             </v-btn>
@@ -31,8 +33,8 @@
 
 
         <v-menu open-on-hover offset-y v-if="$store.getters.isLoggedIn">
-          <template v-slot:activator="{ on, attrs }">
-            <v-btn class="bar-button" v-bind="attrs" v-on="on" text dark to="/events/calendar">
+          <template v-slot:activator="{ props }">
+            <v-btn class="bar-button" v-bind="props" dark to="/events/calendar">
               events
               <v-icon>mdi-chevron-down</v-icon>
             </v-btn>
@@ -43,12 +45,12 @@
             <v-list-item to="/events/manage" v-if="$store.getters.isActive">Manage events</v-list-item>
           </v-list>
         </v-menu>
-        <v-btn class="bar-button" text dark to="/events/calendar" v-else>Event calendar</v-btn>
+        <v-btn class="bar-button" dark to="/events/calendar" v-else>Event calendar</v-btn>
 
 
         <v-menu open-on-hover offset-y>
-          <template v-slot:activator="{ on, attrs }">
-            <v-btn class="bar-button" v-bind="attrs" v-on="on" text dark
+          <template v-slot:activator="{ props }">
+            <v-btn class="bar-button" v-bind="props" dark
                    to="/esports/competitive-scene">Esports
               <v-icon>mdi-chevron-down</v-icon>
             </v-btn>
@@ -62,10 +64,10 @@
             <v-list-item to="/esports/rocketleague">Rocket League</v-list-item>
           </v-list>
         </v-menu>
-        <v-btn class="bar-button" text dark to="/news">News</v-btn>
+        <v-btn class="bar-button" dark to="/news">News</v-btn>
         <v-menu open-on-hover offset-y>
-          <template v-slot:activator="{ on, attrs }">
-            <v-btn class="bar-button" v-bind="attrs" v-on="on" text dark
+          <template v-slot:activator="{ props }">
+            <v-btn class="bar-button" v-bind="props" dark
                    to="/partners/become-a-partner">Partners
               <v-icon>mdi-chevron-down</v-icon>
             </v-btn>
@@ -77,28 +79,26 @@
             <v-list-item to="/partners/connectworks">Connectworks</v-list-item>
           </v-list>
         </v-menu>
-        <v-btn class="bar-button" text dark to="/contact">Contact</v-btn>
+        <v-btn class="bar-button" dark to="/contact">Contact</v-btn>
       </div>
 
       <v-spacer/>
 
       <!--  Dark mode toggle    -->
-      <v-btn small icon @click="darkMode" rounded class="mr-4">
-        <transition name="roll" mode="out-in">
-          <v-icon key="1" color="white" v-if="!$vuetify.theme.dark" style="transition: unset">
-            mdi-moon-waxing-crescent
-          </v-icon>
-          <v-icon key="2" color="accent" v-else style="transition: unset">
-            mdi-white-balance-sunny
-          </v-icon>
-        </transition>
-      </v-btn>
+      <transition name="roll" mode="out-in">
+        <v-btn small @click="darkMode"
+               :icon="$vuetify.theme.global.name.value === 'dark' ? 'mdi-moon-waxing-crescent' : 'mdi-white-balance-sunny'"
+               color="black"
+               class="mr-4">
+        </v-btn>
+<!--        :color="$vuetify.theme.current.value === 'dark' ? 'accent' : 'white'"-->
+      </transition>
 
       <!-- LOGIN BUTTON/ACCOUNT DROPDOWN MENU -->
-      <v-btn class="bar-button" text dark to="/login" v-if="!loggedIn">Log In</v-btn>
+      <v-btn class="bar-button" dark to="/login" v-if="!loggedIn">Log In</v-btn>
       <v-menu offset-y v-else>
-        <template v-slot:activator="{ on, attrs }">
-          <v-btn class="bar-button" v-bind="attrs" v-on="on" text dark>
+        <template v-slot:activator="{ props }">
+          <v-btn class="bar-button" v-bind="props" dark>
             <v-icon large>mdi-account</v-icon>
           </v-btn>
         </template>
@@ -272,10 +272,10 @@
       <span v-html="networkErrorMessage"/>
       <template v-slot:action="{ attrs }">
         <v-btn
-            color="blue"
-            text
-            v-bind="attrs"
-            @click="networkError = false">
+          color="blue"
+          text
+          v-bind="attrs"
+          @click="networkError = false">
           Close
         </v-btn>
       </template>
@@ -283,17 +283,17 @@
 
     <!-- Logged in message -->
     <v-snackbar
-        v-model="loggedInSnackbar"
-        timeout="10000"
+      v-model="loggedInSnackbar"
+      timeout="10000"
     >
       {{ loginText }}
 
       <template v-slot:action="{ attrs }">
         <v-btn
-            color="blue"
-            text
-            v-bind="attrs"
-            @click="loggedInSnackbar=false"
+          color="blue"
+          text
+          v-bind="attrs"
+          @click="loggedInSnackbar=false"
         >
           Close
         </v-btn>
@@ -304,15 +304,15 @@
     <v-dialog v-model="cookieDialog" persistent width="560">
       <v-card>
         <v-card-title class="text-h2">
-          {{ $vuetify.breakpoint.xs ? 'Cookies' : 'Accept cookies' }}
+          {{ $vuetify.display.xs ? 'Cookies' : 'Accept cookies' }}
         </v-card-title>
 
         <v-card-text class="body-1">
           We know these cookie popups are getting insane but don't worry, this is the only time you'll see this. We use
           cookies for saving your login and possibly some other useful stuff that we will forget to write about here
           when we make it. You can read more about what cookies are and how we use cookies in our <a
-            href="https://esa-blueshell.nl/api/download/bsCookiePolicy.pdf" class="text-decoration-none"
-            target="_blank">Cookie Policy</a>.
+          href="https://esa-blueshell.nl/api/download/bsCookiePolicy.pdf" class="text-decoration-none"
+          target="_blank">Cookie Policy</a>.
         </v-card-text>
 
         <v-divider></v-divider>
@@ -329,7 +329,7 @@
 </template>
 
 <script>
-import router from "@/router";
+import router from "@/plugins/router";
 
 export default {
   data() {
@@ -408,11 +408,11 @@ export default {
     const login = this.$store.getters.getLogin
     if (login) {
       this.$http
-          .get(`users/${login.userId}`, {headers: {'Authorization': `Bearer ${login.token}`}})
-          .then(response => {
-            this.$store.commit('setRoles', response.data.roles)
-          })
-          .catch(e => this.$root.handleNetworkError(e))
+        .get(`users/${login.userId}`, {headers: {'Authorization': `Bearer ${login.token}`}})
+        .then(response => {
+          this.$store.commit('setRoles', response.data.roles)
+        })
+        .catch(e => this.$root.handleNetworkError(e))
     }
 
 
