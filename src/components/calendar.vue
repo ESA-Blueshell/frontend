@@ -4,7 +4,7 @@
       <!-- Start of the top bar. Includes today, previous and forward buttons and current month. -->
       <v-sheet height="64">
         <v-toolbar flat>
-          <v-btn outlined class="mr-4" @click="setToday">
+          <v-btn variant="outlined" class="mr-4" @click="setToday">
             Today
           </v-btn>
           <v-btn fab text small color="accent" @click="prev">
@@ -31,7 +31,7 @@
             </v-progress-circular>
           </v-fade-transition>
           <v-btn
-              outlined
+              variant="outlined"
               v-if="this.type==='day'"
               @click="viewMonth"
           >

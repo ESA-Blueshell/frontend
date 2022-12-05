@@ -50,7 +50,7 @@
       </v-row>
     </v-container>
 
-    <v-btn block outlined @click="addMember" class="mb-4">
+    <v-btn block variant="outlined" @click="addMember" class="mb-4">
       Add member
     </v-btn>
 

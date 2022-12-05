@@ -32,7 +32,7 @@
         <v-row>
           <v-col cols="auto">
             <v-btn
-                outlined
+                variant="outlined"
                 color="accent"
                 to="account/create">
               Create Account

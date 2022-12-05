@@ -88,10 +88,10 @@
       <transition name="roll" mode="out-in">
         <v-btn small @click="darkMode"
                :icon="$vuetify.theme.global.name.value === 'dark' ? 'mdi-moon-waxing-crescent' : 'mdi-white-balance-sunny'"
-               color="black"
+               color="accent"
                class="mr-4">
         </v-btn>
-<!--        :color="$vuetify.theme.current.value === 'dark' ? 'accent' : 'white'"-->
+        <!--        :color="$vuetify.theme.current.value === 'dark' ? 'accent' : 'white'"-->
       </transition>
 
       <!-- LOGIN BUTTON/ACCOUNT DROPDOWN MENU -->
@@ -330,13 +330,26 @@
 
 <script>
 import router from "@/plugins/router";
+import {useTheme} from "vuetify";
 
 export default {
+  //?????????? i have no idea why we have to do this. see https://next.vuetifyjs.com/en/features/theme/#changing-theme
+  setup() {
+    const theme = useTheme()
+
+    return {
+      theme,
+      // darkMode: () => {
+      //   this.$vuetify.theme.global.name = this.$vuetify.theme.global.current.value.dark ? 'light' : 'dark'
+      //   localStorage.setItem('esa-blueshell.nl:darkMode', this.$vuetify.theme.global.name.value)
+      // }
+    }
+  },
   data() {
     return {
       drawer: false,
       poggers: false,
-      cookieDialog: false
+      cookieDialog: false,
     }
   },
   computed: {
@@ -379,9 +392,9 @@ export default {
     goto(url) {
       router.push(url)
     },
-    darkMode() {
-      this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
-      localStorage.setItem('esa-blueshell.nl:darkMode', this.$vuetify.theme.dark.toString())
+    darkMode: () => {
+      this.$vuetify.theme.global.name.value = this.$vuetify.theme.current.value.dark ? 'light' : 'dark'
+      localStorage.setItem('esa-blueshell.nl:darkMode', this.$vuetify.theme.global.name.value)
     },
     logOut() {
       // Let the cookie expire and redirect if the page is logged in only

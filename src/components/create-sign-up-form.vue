@@ -5,7 +5,7 @@
     -->
     <v-menu offset-y>
       <template v-slot:activator="{ on, attrs }">
-        <v-btn block outlined
+        <v-btn block variant="outlined"
                v-bind="attrs"
                v-on="on">
           Add question to sign-up form
