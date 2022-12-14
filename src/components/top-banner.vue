@@ -1,6 +1,8 @@
 <template>
-  <v-parallax :height="$vuetify.breakpoint.lgAndUp ? 364 : 264" :src="gaming">
-    <v-container fill-height fluid style="background: rgba(0,0,0,0.5)">
+    <v-container fluid fill-height
+                 style="background-position: center;background-size: cover"
+                 :style="{ 'background-image': `linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url(${require('../assets/banner.jpg')})`,
+                            height: $vuetify.breakpoint.lgAndUp ? '364px' : '264px'}">
       <v-row>
         <v-col>
           <div class="text-h1 font-weight-bold white--text text-center mt-16"
@@ -12,7 +14,6 @@
         </v-col>
       </v-row>
     </v-container>
-  </v-parallax>
 </template>
 
 <script>
@@ -20,7 +21,7 @@ export default {
   name: 'top-banner',
   props: ["title"],
   data: () => ({
-    gaming: require("../assets/gaming.jpg"),
+    gaming: require("../assets/banner.jpg"),
   })
 }
 </script>
