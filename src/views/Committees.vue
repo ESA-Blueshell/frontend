@@ -54,16 +54,8 @@ export default {
           description: 'We organize offline events, which are not related to videogames. We\'ve organized various events like house party, dinner, karaoke , drinks, movie night, werewolves and many more to come!',
         },
         {
-          name: 'AcquiCie',
-          description: 'The Acquicie will work as an extension of the external affairs role, where you will work on contacting and setting up contracts with companies and other parties for collaborations or sponsorships for Blueshell and all her projects. This will give you a chance to improve your professional communication and negotiation skills. We will meet every week (or two weeks) to discuss progress, look for sponsors, and send some emails!',
-        },
-        {
           name: 'ChessCie',
           description: 'ChessCie is a community of styleful people who so happen to enjoy chess. We do team-building activities to get to know the other members of ChessCie better as this improves the quality and effectiveness of our highly efficient meetings. This guarantees that ChessCie events are and will always be by far the best organized events in Blueshell.',
-        },
-        {
-          name: 'DesignCie',
-          description: 'Have you seen a flyer from Blueshell? Maybe a banner or some sort of a 3D Shelly figure? Big chance that the DesignCie made this! They do everything which mere mortals cannot comprehend however that does not mean you cant! This committee is essential to Blueshell as it is the primary way of making promotion to those yet unfamiliar with this amazing association.',
         },
         {
           name: 'DegeneraCie',
@@ -74,6 +66,10 @@ export default {
           description: 'The DisCo is *the* committee for all your groovy needs! \n' +
               'We organise events that have to do with music and dancing, like Just Dance nights, music jams and Rhythm & Dance nights.\n' +
               'Hope to see you at one of our events!',
+        },
+        {
+          name: 'KickCie',
+          description: 'This once-a-year committee helps out with the kick-in (the UT\'s intro week), helping with stands on association markets, providing a tour of the Predator Esports Lounge, etc.',
         },
         {
           name: 'LegaCie',
@@ -88,20 +84,8 @@ export default {
           description: 'We organise Minecraft events and host a semi-permanent server throughout the year.',
         },
         {
-          name: 'MediaCie',
-          description: 'This committee does everything related to the Blueshell Youtube and Twitch channel. They are primarily concerned with the video content that Blueshell produces, ranging from streaming their favorite game or our very own tournaments to making highlight reels for our association!',
-        },
-        {
-          name: 'ModeraCie',
-          description: 'A committee responsible for helping the board with Discord server moderation.',
-        },
-        {
           name: 'NintenCo',
           description: 'We Nintendo fans bundle our strength together to organize fun Nintendo-related events. From Nintendo Nights to specific Nintendo games (new and old), the possibilities are endless!',
-        },
-        {
-          name: 'ServerCie',
-          description: 'The ServerCie is currently looking into possibilities for our own Blueshell server. This would host the website and possible extra services like a mail server/ftp. They contact SNT and Lisa (UT server providers) to see what is possible there and will be the main committee responsible for the maintenance of the server.',
         },
         {
           name: 'ShitpostCie',
@@ -124,16 +108,8 @@ export default {
           description: 'The PRCie is a new committee which focuses on the communication strategy towards members and tries to reach new members with marketing and promotion campaigns.',
         },
         {
-          name: 'LanCie',
-          description: 'This committee will organise a lan party, with arrangement of location, setup and promotion. This will be the first official Blueshell Lan party, so join this committee and be the one to organise it!',
-        },
-        {
           name: 'TacCie',
           description: 'TacCie is one of Blueshell\'s newest committees focusing on FPS games. The name \'TacCie\' is derived from the tactical shooter aspect of the committee and because it sounded like \'taxi\'. TacCie hosts events focused on all sorts of FPS based games such as Valorant, CS:GO, Overwatch, R6S, Splitgate and many others.',
-        },
-        {
-          name: 'TravelCie',
-          description: 'This brand new committee will organize trips for the association. Think about trips like going to Gamescon, Worlds, but also things like The videogame museum in Zoetermeer or other places.',
         },
       ]
     }
