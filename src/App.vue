@@ -59,7 +59,6 @@
             <v-list-item to="/esports/counter-strike-global-offensive">Counter Strike: Global
               Offensive
             </v-list-item>
-            <v-list-item to="/esports/valorant">Valorant</v-list-item>
             <v-list-item to="/esports/rocketleague">Rocket League</v-list-item>
           </v-list>
         </v-menu>
@@ -163,7 +162,6 @@
           <v-list-item to="/esports/counter-strike-global-offensive">Counter Strike: Global
             Offensive
           </v-list-item>
-          <v-list-item to="/esports/valorant">Valorant</v-list-item>
           <v-list-item to="/esports/rocketleague">Rocket League</v-list-item>
           <v-divider dark></v-divider>
         </v-list-group>

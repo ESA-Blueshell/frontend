@@ -37,11 +37,3 @@ export default {
   name: 'main-banner'
 }
 </script>
-
-<style>
-.v-parallax__image {
-  transform: none !important;
-  width: 100% !important;
-}
-
-</style>

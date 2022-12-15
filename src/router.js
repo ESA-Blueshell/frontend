@@ -6,7 +6,7 @@ import Events from './views/Events.vue'
 import Contact from './views/Contact.vue'
 import Committees from './views/Committees.vue'
 import Membership from './views/Membership.vue'
-import Esports from './views/Esports.vue'
+import Esports from './views/esports/Esports.vue'
 import AboutUs from "./views/AboutUs";
 import Board from "./views/Board";
 import League from "./views/esports/League";
@@ -17,7 +17,6 @@ import Dekimo from "@/views/partners/Dekimo";
 import Partners from "@/views/partners/Partners";
 import Article from "@/views/Article";
 import NotFound from "@/views/NotFound";
-import Valorant from "@/views/esports/Valorant";
 import Login from "@/views/login/Login";
 import Account from "@/views/login/Account";
 import ArticleEditor from "@/views/ArticleEditor";
@@ -128,11 +127,6 @@ const router = new Router({
       path: '/esports/counter-strike-global-offensive',
       name: 'csgo',
       component: Csgo
-    },
-    {
-      path: '/esports/valorant',
-      name: 'valorant',
-      component: Valorant
     },
     {
       path: '/esports/rocketleague',

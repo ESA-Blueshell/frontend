@@ -3,13 +3,13 @@
   <!--
     The code of this component is divided into 2 parts. One for larger screen sizes, and another for smaller ones.
   -->
-  <v-parallax v-bind:src="team.bg">
+  <div :style="{ 'background-image': `url(${team.bg})`}" style="background-size: cover;background-position: center">
 
     <!--
       Here starts the team view on size medium and above
     -->
     <v-container v-if="$vuetify.breakpoint.mdAndUp" class="py-10" fill-height fluid
-                 style="background: rgba(0,0,0,0.6)">
+                 :style="{background: $vuetify.theme.dark ? 'rgba(0,0,0,0.6)' : 'rgba(255,255,255,0.8)'}">
       <v-row align="center" align-content="center" justify="center">
         <v-col v-if="!nameRight" lg="4" md="5" xl="4">
           <p class="text-h2 font-italic">
@@ -126,7 +126,7 @@
       </v-row>
 
     </v-container>
-  </v-parallax>
+  </div>
 </template>
 
 <script>
@@ -147,10 +147,3 @@ export default {
   // }
 }
 </script>
-
-<style scoped>
-
-.v-parallax {
-  height: auto !important;
-}
-</style>

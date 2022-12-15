@@ -93,12 +93,6 @@ export default {
               esportsLink: "/esports/counter-strike-global-offensive"
             },
             {
-              title: "Valorant",
-              bg: require("../assets/valorantbg.jpg"),
-              icon: require("../assets/valorant.png"),
-              esportsLink: "/esports/valorant"
-            },
-            {
               title: "Rocket League",
               bg: require("../assets/rocketleaguebg.jpg"),
               icon: require("../assets/rocketleague.png"),
@@ -143,6 +137,11 @@ export default {
               title: "Trackmania",
               bg: require("../assets/trackmaniabg.jpg"),
               icon: require("../assets/trackmania.png"),
+            },
+            {
+              title: "Valorant",
+              bg: require("../assets/valorantbg.jpg"),
+              icon: require("../assets/valorant.png"),
             },
             {
               title: "World of Warcraft",

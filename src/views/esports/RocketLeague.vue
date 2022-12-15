@@ -10,6 +10,7 @@
       </div>
     </div>
     <team :team="turtles"/>
+    <team :team="tortoises" name-right="true"/>
   </v-main>
 </template>
 
@@ -45,6 +46,28 @@ export default {
             name: 'René Hammink',
             ign: 'Mr. Pancake^-^'
           },
+        ]
+      },
+      tortoises: {
+        name: "Blueshell Tortoises",
+        bg: require('../../assets/rocketleagueesports2.jpg'),
+        players: [
+          {
+            name: "Thomas Dekker",
+            ign: "ItIsIThomas"
+          },
+          {
+            name: "Pepijn Visser",
+            ign: "Visper"
+          },
+          {
+            name: "Patrick Wolbers",
+            ign: "KrabbyPattie"
+          },
+          {
+            name: "Allard van der Hooft",
+            ign: "vdhooft_"
+          }
         ]
       }
     }
