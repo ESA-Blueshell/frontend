@@ -5,12 +5,14 @@
   -->
   <div class="banner">
     <v-container
-      fill-height
       fluid
-      style="background-size: cover;background-position: center;height: 900px"
+      style="background-size: cover;background-position: center;height: 800px"
       :style="{ 'background-image': `linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url(${require('../assets/banner.jpg')})`}"
     >
-      <v-row>
+      <v-row
+        align="center"
+        style="height: 100%"
+      >
         <v-col>
           <div class="text-center mt-16">
             <p

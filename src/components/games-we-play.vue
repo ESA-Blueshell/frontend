@@ -82,7 +82,7 @@
         v-model="currentGameIndex"
         :show-arrows="false"
         hide-delimiters
-        light
+        theme="light"
         style="height: 100%;z-index: 1;"
       >
         <v-carousel-item
@@ -96,7 +96,6 @@
           <v-sheet
             height="100%"
             style="z-index: 1;background: rgba(0, 0, 0, 1)"
-            tile
           >
             <v-img
               :src="game.bg"

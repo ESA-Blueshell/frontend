@@ -119,13 +119,6 @@
   </v-main>
 </template>
 
-<script>
+<script setup>
 import TopBanner from "@/components/top-banner";
-
-export default {
-  components: {TopBanner},
-  data: function () {
-    return {}
-  }
-}
 </script>

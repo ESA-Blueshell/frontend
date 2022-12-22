@@ -1,25 +1,19 @@
 <template>
   <v-app>
-    <v-app-bar
-      dark
-      elevate-on-scroll
-      fixed
-    >
+    <v-app-bar theme="dark">
       <v-app-bar-nav-icon
         v-if="$vuetify.display.mdAndDown"
         @click="drawer = true"
       />
 
-      <v-app-bar-title class="ml-sm-n5 ml-md-0 ml-lg-0 ml-xl-0 ">
-        <router-link to="/">
-          <img
-            src="./assets/topbarlogo.png"
-            alt="Blueshell logo"
-            style="max-height: 64px;max-width: 260px; width: 100%"
-            class="mr-3"
-          >
-        </router-link>
-      </v-app-bar-title>
+      <router-link to="/">
+        <img
+          src="./assets/topbarlogo.png"
+          alt="Blueshell logo"
+          style="max-height: 64px;max-width: 260px;width: 100%"
+          class="mr-3"
+        >
+      </router-link>
 
       <div
         v-if="$vuetify.display.lgAndUp"
@@ -27,14 +21,12 @@
       >
         <v-btn
           class="bar-button"
-          dark
           to="/"
         >
           Home
         </v-btn>
         <v-btn
           class="bar-button"
-          dark
           to="/membership"
         >
           Membership
@@ -47,7 +39,6 @@
             <v-btn
               class="bar-button"
               v-bind="props"
-              dark
               to="/aboutus"
             >
               Association
@@ -74,13 +65,11 @@
         <v-menu
           v-if="$store.getters.isLoggedIn"
           open-on-hover
-          offset-y
         >
           <template #activator="{ props }">
             <v-btn
               class="bar-button"
               v-bind="props"
-              dark
               to="/events/calendar"
             >
               events
@@ -105,7 +94,6 @@
         <v-btn
           v-else
           class="bar-button"
-          dark
           to="/events/calendar"
         >
           Event calendar
@@ -120,7 +108,6 @@
             <v-btn
               class="bar-button"
               v-bind="props"
-              dark
               to="/esports/competitive-scene"
             >
               Esports
@@ -145,7 +132,7 @@
         </v-menu>
         <v-btn
           class="bar-button"
-          dark
+
           to="/news"
         >
           News
@@ -158,7 +145,7 @@
             <v-btn
               class="bar-button"
               v-bind="props"
-              dark
+
               to="/partners/become-a-partner"
             >
               Partners
@@ -182,7 +169,7 @@
         </v-menu>
         <v-btn
           class="bar-button"
-          dark
+
           to="/contact"
         >
           Contact
@@ -210,7 +197,7 @@
       <v-btn
         v-if="!loggedIn"
         class="bar-button"
-        dark
+
         to="/login"
       >
         Log In
@@ -223,7 +210,6 @@
           <v-btn
             class="bar-button"
             v-bind="props"
-            dark
           >
             <v-icon size="large">
               mdi-account
@@ -257,19 +243,17 @@
       v-model="drawer"
       app
       temporary
-      dark
     >
       <v-list nav>
         <v-list-item
           text
-          dark
           to="/"
         >
           <v-list-item-title>Home</v-list-item-title>
         </v-list-item>
         <v-list-item
           text
-          dark
+
           to="/membership"
         >
           <v-list-item-title>Membership</v-list-item-title>

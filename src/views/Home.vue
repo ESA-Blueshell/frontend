@@ -45,24 +45,26 @@
             </v-icon>
             <p
               class="text-h3 ma-3 font-weight-thin"
-              v-html="col.title"
-            />
+            >
+              {{ col.title }}
+            </p>
           </div>
           <p
             class="text-body-1 font-weight-light mx-auto"
             style="max-width: 400px"
-            v-html="col.text"
-          />
+          >
+            {{ col.text }}
+          </p>
         </v-col>
       </v-row>
     </v-container>
 
     <discord-banner />
 
-    <games-we-play
-      :games="games"
-      class="pt-3 pb-3"
-    />
+<!--    <games-we-play-->
+<!--      :games="games"-->
+<!--      class="pt-3 pb-3"-->
+<!--    />-->
 
     <socials-banner />
 
@@ -83,7 +85,7 @@
         >
           <v-img
             :src="$vuetify.theme.dark?partner.logoDark:partner.logo"
-            max-width="450"
+            style="max-width: 450px"
             class="mx-auto expand"
             @click="goto(partner.url)"
           />

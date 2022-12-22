@@ -76,7 +76,7 @@
             color="primary"
             href="https://www.linkedin.com/company/blueshell-esports"
             target="_blank"
-            class="ml-5 my-3  "
+            class="ml-5 my-3"
           >
             <v-icon
               dark
