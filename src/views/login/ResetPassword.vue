@@ -1,29 +1,41 @@
 <template>
   <v-main>
-    <top-banner title="Reset password"/>
+    <top-banner title="Reset password" />
 
-    <div class="mx-auto mt-10" style="max-width: 500px">
+    <div
+      class="mx-auto mt-10"
+      style="max-width: 500px"
+    >
       <div v-if="!succeeded">
-        <v-form v-model="valid" ref="form">
+        <v-form
+          ref="form"
+          v-model="valid"
+        >
           <v-text-field
-              v-model="password"
-              :rules="passwordRules"
-              label="Password"
-              :type="showPass ? 'text' : 'password'"
-              @keydown.enter="resetPassword"/>
+            v-model="password"
+            :rules="passwordRules"
+            label="Password"
+            :type="showPass ? 'text' : 'password'"
+            @keydown.enter="resetPassword"
+          />
           <v-text-field
-              v-model="passwordAgain"
-              :rules="[v => !!v || 'Password is required',v => v === this.password || 'The passwords should be the same',]"
-              label="Password (repeated)"
-              @click:append="showPass = !showPass"
-              :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
-              :type="showPass ? 'text' : 'password'"
-              @keydown.enter="resetPassword"/>
+            v-model="passwordAgain"
+            :rules="[v => !!v || 'Password is required',v => v === password || 'The passwords should be the same',]"
+            label="Password (repeated)"
+            :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
+            :type="showPass ? 'text' : 'password'"
+            @click:append="showPass = !showPass"
+            @keydown.enter="resetPassword"
+          />
 
           <v-row>
-            <v-spacer/>
+            <v-spacer />
             <v-col cols="auto">
-              <v-btn :disabled="!valid" :loading="loading" @click="resetPassword">
+              <v-btn
+                :disabled="!valid"
+                :loading="loading"
+                @click="resetPassword"
+              >
                 Reset Password
               </v-btn>
             </v-col>
@@ -31,13 +43,12 @@
         </v-form>
       </div>
       <div v-else>
-        <p class="text-center subtitle-1 font-weight-light">
+        <p class="text-center text-subtitle-1 font-weight-light">
           Your password has successfully been reset! You'll shortly be redirected to our login page where you can log in
           with your new password :)
         </p>
       </div>
     </div>
-
   </v-main>
 </template>
 

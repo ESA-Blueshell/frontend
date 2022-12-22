@@ -1,9 +1,12 @@
 <template>
   <v-main>
-    <top-banner title="League of Legends"/>
+    <top-banner title="League of Legends" />
     <div class="mx-3">
-      <div class="mx-auto my-10" style="max-width: 800px">
-        <p class="body-1">
+      <div
+        class="mx-auto my-10"
+        style="max-width: 800px"
+      >
+        <p class="text-body-1">
           As it is around the globe, League of Legends as a competitive ground holds a special
           place in Blueshell Esports. Below you can find our competitive League of Legends
           team(s).
@@ -11,7 +14,7 @@
       </div>
     </div>
 
-    <team :team="streetRats"/>
+    <team :team="streetRats" />
   </v-main>
 </template>
 

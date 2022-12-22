@@ -1,25 +1,37 @@
 <template>
   <v-main>
-    <top-banner title="Forgot Password"/>
+    <top-banner title="Forgot Password" />
 
 
     <div class="mx-3">
-      <div class="mx-auto mt-10" style="max-width: 500px">
+      <div
+        class="mx-auto mt-10"
+        style="max-width: 500px"
+      >
         <div v-if="!succeeded">
           <p>
             Enter your username, and we'll send you an email with a link to reset your password.
           </p>
-          <v-form v-model="valid" @submit.prevent ref="form">
+          <v-form
+            ref="form"
+            v-model="valid"
+            @submit.prevent
+          >
             <v-text-field
-                v-model="username"
-                :rules="[v => !!v || 'Username is required']"
-                label="Username"
-                @keydown.enter="sendResetMail"
-                ref="username"/>
+              ref="username"
+              v-model="username"
+              :rules="[v => !!v || 'Username is required']"
+              label="Username"
+              @keydown.enter="sendResetMail"
+            />
             <v-row>
-              <v-spacer/>
+              <v-spacer />
               <v-col cols="auto">
-                <v-btn :disabled="!valid" :loading="loading" @click="sendResetMail">
+                <v-btn
+                  :disabled="!valid"
+                  :loading="loading"
+                  @click="sendResetMail"
+                >
                   Send reset mail
                 </v-btn>
               </v-col>
@@ -30,8 +42,11 @@
           <p>
             All right, you should get a mail with a link you can use to reset your password at the email address
             associated to your username. If you don't receive anything, please report it in the
-            <a href='https://discord.com/channels/324285132133629963/1020245710987350047' target="_blank"
-               class="text-decoration-none">Sitecie suggestions channel on discord</a> and we'll help you out.
+            <a
+              href="https://discord.com/channels/324285132133629963/1020245710987350047"
+              target="_blank"
+              class="text-decoration-none"
+            >Sitecie suggestions channel on discord</a> and we'll help you out.
           </p>
         </div>
       </div>
@@ -51,6 +66,9 @@ export default {
     succeeded: false,
     loading: false,
   }),
+  mounted() {
+    this.username = this.$route.query.username
+  },
   methods: {
     sendResetMail() {
       if (this.$refs.form.validate()) {
@@ -71,9 +89,6 @@ export default {
         })
       }
     },
-  },
-  mounted() {
-    this.username = this.$route.query.username
   }
 }
 </script>

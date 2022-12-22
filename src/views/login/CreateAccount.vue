@@ -1,72 +1,88 @@
 <template>
   <v-main>
-    <top-banner title="Create Account"></top-banner>
+    <top-banner title="Create Account" />
 
-    <div v-if="!succeeded" class="mx-3 pb-10">
-      <v-form class="mx-auto mt-10" style="max-width: 500px" ref="form">
+    <div
+      v-if="!succeeded"
+      class="mx-3 pb-10"
+    >
+      <v-form
+        ref="form"
+        class="mx-auto mt-10"
+        style="max-width: 500px"
+      >
         <v-row>
           <v-col cols="4">
             <v-text-field
-                v-model="initials"
-                :rules="initialsRules"
-                label="Initials"
-                ref="initials"/>
+              ref="initials"
+              v-model="initials"
+              :rules="initialsRules"
+              label="Initials"
+            />
           </v-col>
           <v-col cols="8">
             <v-text-field
-                v-model="firstName"
-                :rules="firstNameRules"
-                label="First name"
-                ref="firstName"/>
+              ref="firstName"
+              v-model="firstName"
+              :rules="firstNameRules"
+              label="First name"
+            />
           </v-col>
         </v-row>
         <v-row class="mt-n7 mb-n5">
           <v-col cols="4">
             <v-text-field
-                v-model="prefix"
-                label="Prefix"
-                ref="prefix"/>
+              ref="prefix"
+              v-model="prefix"
+              label="Prefix"
+            />
           </v-col>
           <v-col cols="8">
             <v-text-field
-                v-model="lastName"
-                :rules="lastNameRules"
-                label="Last name"
-                ref="lastName"/>
+              ref="lastName"
+              v-model="lastName"
+              :rules="lastNameRules"
+              label="Last name"
+            />
           </v-col>
         </v-row>
         <v-text-field
-            v-model="username"
-            :rules="usernameRules"
-            label="Username"
-            ref="username"/>
+          ref="username"
+          v-model="username"
+          :rules="usernameRules"
+          label="Username"
+        />
         <v-text-field
-            v-model="password"
-            :rules="passwordRules"
-            label="Password"
-            @click:append="showPass = !showPass"
-            :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
-            :type="showPass ? 'text' : 'password'"/>
+          v-model="password"
+          :rules="passwordRules"
+          label="Password"
+          :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
+          :type="showPass ? 'text' : 'password'"
+          @click:append="showPass = !showPass"
+        />
         <v-text-field
-            v-model="passwordAgain"
-            :rules="[ v => !!v || 'Password is required', v => v===this.password || 'The passwords should be the same' ]"
-            label="Password (repeated)"
-            @click:append="showPass = !showPass"
-            :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
-            :type="showPass ? 'text' : 'password'"/>
+          v-model="passwordAgain"
+          :rules="[ v => !!v || 'Password is required', v => v===password || 'The passwords should be the same' ]"
+          label="Password (repeated)"
+          :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
+          :type="showPass ? 'text' : 'password'"
+          @click:append="showPass = !showPass"
+        />
         <v-text-field
-            v-model="email"
-            :rules="emailRules"
-            label="Email"
-            required
-            ref="email"/>
+          ref="email"
+          v-model="email"
+          :rules="emailRules"
+          label="Email"
+          required
+        />
         <v-row>
-          <v-spacer/>
+          <v-spacer />
           <v-col cols="auto">
             <v-btn
-                :loading="clicked"
-                color="primary"
-                @click="createAccount">
+              :loading="clicked"
+              color="primary"
+              @click="createAccount"
+            >
               Create account
             </v-btn>
           </v-col>
@@ -75,13 +91,16 @@
     </div>
 
 
-    <div v-else-if="succeeded" class="mx-auto my-10" style="max-width: 600px">
-      <p class="text-center subtitle-1 font-weight-light">
+    <div
+      v-else-if="succeeded"
+      class="mx-auto my-10"
+      style="max-width: 600px"
+    >
+      <p class="text-center text-subtitle-1 font-weight-light">
         Your account has successfully been created! Head over to your email to confirm your account.
-        If you can't find the email, make sure to check your spam folder.</p>
+        If you can't find the email, make sure to check your spam folder.
+      </p>
     </div>
-
-
   </v-main>
 </template>
 

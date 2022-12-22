@@ -11,42 +11,59 @@
     but after a lot of trial and error I couldn't get it to work smoothly so if there are no previous answers to this form,
     they should be made outside of this component (this is done now in UpcomingEvents.vue)
   -->
-  <v-form ref="form" v-model="valid">
-    <div v-for="(question,i) in form" v-bind:key="i" class="mt-2">
+  <v-form
+    ref="form"
+    v-model="valid"
+  >
+    <div
+      v-for="(question,i) in form"
+      :key="i"
+      class="mt-2"
+    >
       <p class="text-h6 mb-0">
         {{ question.prompt }}
       </p>
 
       <v-text-field
-          v-if="question.type === 'open'"
-          v-model="answers[i]"
-          :rules="[v => !!v || 'An answer is required']"
-          class="pt-0"
-          hide-details="auto"/>
+        v-if="question.type === 'open'"
+        v-model="answers[i]"
+        :rules="[v => !!v || 'An answer is required']"
+        class="pt-0"
+        hide-details="auto"
+      />
 
       <v-radio-group
-          v-else-if="question.type === 'radio'"
-          v-model="answers[i]"
-          :rules="[v => v != null || 'An answer is required']"
-          class="mt-0"
-          hide-details="auto">
+        v-else-if="question.type === 'radio'"
+        v-model="answers[i]"
+        :rules="[v => v != null || 'An answer is required']"
+        class="mt-0"
+        hide-details="auto"
+      >
         <v-radio
-            v-for="option in question.options" v-bind:key="option"
-            :label="option"/>
+          v-for="option in question.options"
+          :key="option"
+          :label="option"
+        />
       </v-radio-group>
 
       <div v-else-if="question.type === 'checkbox'">
         <v-checkbox
-            v-for="(option,j) in question.options" v-bind:key="j"
-            v-model="answersData[i]"
-            :label="option"
-            :value="j"
-            class="mt-0 mb-2"
-            hide-details/>
+          v-for="(option,j) in question.options"
+          :key="j"
+          v-model="answersData[i]"
+          :label="option"
+          :value="j"
+          class="mt-0 mb-2"
+          hide-details
+        />
       </div>
     </div>
 
-    <v-btn block @click="submit" class="mt-4">
+    <v-btn
+      block
+      class="mt-4"
+      @click="submit"
+    >
       Save sign-up form
     </v-btn>
   </v-form>
@@ -54,7 +71,7 @@
 
 <script>
 export default {
-  name: "sign-up-form",
+  name: "SignUpForm",
   props: ['eventId', 'form', 'answers'],
   /*
     eventId is the id of the event that form will be submitted for.

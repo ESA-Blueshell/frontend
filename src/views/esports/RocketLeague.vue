@@ -1,16 +1,22 @@
 <template>
   <v-main>
-    <top-banner title="Rocket League"/>
+    <top-banner title="Rocket League" />
     <div class="mx-3">
-      <div class="mx-auto my-10" style="max-width: 800px">
-        <p class="body-1">
+      <div
+        class="mx-auto my-10"
+        style="max-width: 800px"
+      >
+        <p class="text-body-1">
           This year we have another new game Blueshell will compete in. A new rocket league team has been created! They
           will be joining tournaments representing Blueshell and compete in DSL.
         </p>
       </div>
     </div>
-    <team :team="turtles"/>
-    <team :team="tortoises" name-right="true"/>
+    <team :team="turtles" />
+    <team
+      :team="tortoises"
+      name-right="true"
+    />
   </v-main>
 </template>
 

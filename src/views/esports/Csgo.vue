@@ -1,16 +1,19 @@
 <template>
   <v-main>
-    <top-banner title="Counter-Strike: Global Offensive"/>
+    <top-banner title="Counter-Strike: Global Offensive" />
     <div class="mx-3">
-      <div class="mx-auto my-10" style="max-width: 800px">
-        <p class="body-1">
+      <div
+        class="mx-auto my-10"
+        style="max-width: 800px"
+      >
+        <p class="text-body-1">
           With shooters’ prevalence in the global esports scene, Blueshell Esports’s CS:GO teams are
           trying to climb up the charts with those sweet headshots! Below you can find our
           competitive CS:GO team(s).
         </p>
       </div>
     </div>
-    <team :team="hypers"/>
+    <team :team="hypers" />
   </v-main>
 </template>
 

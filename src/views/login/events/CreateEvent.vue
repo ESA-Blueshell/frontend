@@ -1,12 +1,18 @@
 <template>
   <v-main>
-    <top-banner :title="eventTitle ? eventTitle : 'Create Event'"/>
+    <top-banner :title="eventTitle ? eventTitle : 'Create Event'" />
 
     <div class="mx-3 mb-8">
-      <div class="mx-auto mt-10" style="max-width: 800px">
-        <event-form ref="form" v-on:submit="create" v-on:title="updateTitle"/>
+      <div
+        class="mx-auto mt-10"
+        style="max-width: 800px"
+      >
+        <event-form
+          ref="form"
+          @submit="create"
+          @title="updateTitle"
+        />
       </div>
-
     </div>
   </v-main>
 </template>

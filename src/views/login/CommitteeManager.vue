@@ -1,37 +1,45 @@
 <template>
   <v-main>
-    <top-banner title="Committee Manager"/>
+    <top-banner title="Committee Manager" />
     <div class="mx-3">
-      <div class="mx-auto my-10" style="max-width: 800px">
-
+      <div
+        class="mx-auto my-10"
+        style="max-width: 800px"
+      >
         <v-btn
-            :loading="creatingLoading"
-            block
-            :tile="creatingCommittee"
-            :outlined="creatingCommittee"
-            @click="creatingCommittee = !creatingCommittee">
+          :loading="creatingLoading"
+          block
+          :tile="creatingCommittee"
+          :variant="creatingCommittee && 'outlined'"
+          @click="creatingCommittee = !creatingCommittee"
+        >
           {{ creatingCommittee ? 'Stop creating committee' : 'Create new committee' }}
         </v-btn>
 
         <v-expand-transition>
-          <div v-if="creatingCommittee"
-               class="form-border mx-auto rounded-b-xl"
-               style="border-top-width: 0">
-            <edit-committee class="form"
-                            new-committee
-                            v-on:close="getCommittees();creatingCommittee=false;creatingLoading=false;"
-                            v-on:submitting="creatingLoading=true"/>
+          <div
+            v-if="creatingCommittee"
+            class="form-border mx-auto rounded-b-xl"
+            style="border-top-width: 0"
+          >
+            <edit-committee
+              class="form"
+              new-committee
+              @close="getCommittees();creatingCommittee=false;creatingLoading=false;"
+              @submitting="creatingLoading=true"
+            />
           </div>
         </v-expand-transition>
 
 
-        <v-dialog max-width="400" v-bind:value="committeeToDelete">
-          <template v-slot:activator="{ on: dialog, attrs }">
-
-
-            <v-list two-line>
+        <v-dialog
+          max-width="400"
+          :model-value="committeeToDelete"
+        >
+          <template #activator="{ on: dialog, attrs }">
+            <v-list lines="two">
               <div v-for="(committee,i) in committees">
-                <v-list-item v-bind:key="committee.name">
+                <v-list-item :key="committee.name">
                   <v-list-item-content>
                     <v-list-item-title class="text-h6">
                       {{ committee.name }}
@@ -42,22 +50,31 @@
                   </v-list-item-content>
 
                   <v-list-item-action>
-                    <v-tooltip left>
-                      <template v-slot:activator="{ on, attrs }">
-                        <v-btn :loading="submittingId === committee.id" icon
-                               v-bind="attrs"
-                               @click="editingCommitteeId= (editingCommitteeId===committee.id ? null : committee.id)"
-                               v-on="on">
+                    <v-tooltip location="left">
+                      <template #activator="{ on, attrs }">
+                        <v-btn
+                          :loading="submittingId === committee.id"
+                          icon
+                          v-bind="attrs"
+                          @click="editingCommitteeId= (editingCommitteeId===committee.id ? null : committee.id)"
+                          v-on="on"
+                        >
                           <v-icon>mdi-pencil</v-icon>
                         </v-btn>
                       </template>
                       <span>Edit committee</span>
                     </v-tooltip>
-                    <v-tooltip v-if="$store.getters.isBoard" left>
-                      <template v-slot:activator="{ on: tooltip }">
-                        <v-btn icon v-bind="attrs"
-                               @click="committeeToDelete = committee"
-                               v-on="{ ...tooltip, ...dialog }">
+                    <v-tooltip
+                      v-if="$store.getters.isBoard"
+                      location="left"
+                    >
+                      <template #activator="{ on: tooltip }">
+                        <v-btn
+                          icon
+                          v-bind="attrs"
+                          @click="committeeToDelete = committee"
+                          v-on="{ ...tooltip, ...dialog }"
+                        >
                           <v-icon>mdi-delete</v-icon>
                         </v-btn>
                       </template>
@@ -66,18 +83,24 @@
                   </v-list-item-action>
                 </v-list-item>
 
-                <v-expand-transition v-bind:key="committee.name">
-                  <div v-if="editingCommitteeId === committee.id"
-                       class="form-border mx-auto rounded-b-xl">
-                    <edit-committee :committee="committee" class="form"
-                                    v-on:close="editingCommitteeId=null;submittingId=null"
-                                    v-on:submitting="submittingId=committee.id"/>
+                <v-expand-transition :key="committee.name">
+                  <div
+                    v-if="editingCommitteeId === committee.id"
+                    class="form-border mx-auto rounded-b-xl"
+                  >
+                    <edit-committee
+                      :committee="committee"
+                      class="form"
+                      @close="editingCommitteeId=null;submittingId=null"
+                      @submitting="submittingId=committee.id"
+                    />
                   </div>
                 </v-expand-transition>
 
-                <v-divider v-bind:key="i"
-                           v-if="i < committees.length - 1 && editingCommitteeId !== committee.id"
-                ></v-divider>
+                <v-divider
+                  v-if="i < committees.length - 1 && editingCommitteeId !== committee.id"
+                  :key="i"
+                />
               </div>
             </v-list>
           </template>
@@ -94,16 +117,18 @@
               There will be no undo
             </v-card-text>
             <v-card-actions>
-              <v-spacer/>
+              <v-spacer />
               <v-btn
-                  text
-                  @click="committeeToDelete=null">
+                variant="text"
+                @click="committeeToDelete=null"
+              >
                 No
               </v-btn>
               <v-btn
-                  color="red"
-                  text
-                  @click="deleteCommittee">
+                color="red"
+                variant="text"
+                @click="deleteCommittee"
+              >
                 Yes
               </v-btn>
             </v-card-actions>
@@ -111,9 +136,10 @@
         </v-dialog>
 
 
-        <v-img v-if="noCommittees"
-               :src="require('../../assets/noCommittees.jpg')"/>
-
+        <v-img
+          v-if="noCommittees"
+          :src="require('../../assets/noCommittees.jpg')"
+        />
       </div>
     </div>
   </v-main>

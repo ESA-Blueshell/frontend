@@ -1,40 +1,59 @@
 <template>
   <v-main>
-    <top-banner title="Board"></top-banner>
+    <top-banner title="Board" />
     <div class="mx-3">
-      <div class="mx-auto my-10" style="max-width: 800px">
+      <div
+        class="mx-auto my-10"
+        style="max-width: 800px"
+      >
         <p class="text-h3  text-center">
           Current board
         </p>
-        <p class="body-1">
+        <p class="text-body-1">
           Every year, our association grows and takes on new shapes. We present you the sixth board
           of Blueshell Esports{{ $vuetify.display.mdAndUp ? ', who are introduced below' : '' }}.
         </p>
-        <v-img :src="require('../assets/wholeboard.jpg')"></v-img>
+        <v-img :src="require('../assets/wholeboard.jpg')" />
 
         <div v-if="$vuetify.display.mdAndUp">
-          <div v-for="(member,i) in board" v-bind:key="member.name"
-               class="mb-12 mt-16"
-               style="width: 100%; height: 400px;background-size: contain;position: relative;"
-               :style="{ 'background-image': `linear-gradient(${i%2===0?'':'-'}90deg, transparent 25%, ${$vuetify.theme.dark?'#1e1e1e':'white'} 34%, transparent 26%), url('${member.image}')`, 'background-position': i%2===0 ? 'left' : 'right '}">
+          <div
+            v-for="(member,i) in board"
+            :key="member.name"
+            class="mb-12 mt-16"
+            style="width: 100%; height: 400px;background-size: contain;position: relative;"
+            :style="{ 'background-image': `linear-gradient(${i%2===0?'':'-'}90deg, transparent 25%, ${$vuetify.theme.dark?'#1e1e1e':'white'} 34%, transparent 26%), url('${member.image}')`, 'background-position': i%2===0 ? 'left' : 'right '}"
+          >
             <!-- https://www.w3schools.com/HOWTO/howto_css_center-vertical.asp -->
             <div
-                style=" position: absolute;top: 50%; -ms-transform: translateY(-50%);transform: translateY(-50%);"
-                :style="{ 'padding-left': i%2===0 ? '35%' : '','padding-right': i%2===1 ? '35%' : ''}">
-              <p class="text-h2" :class="{'text-right': i%2===1}">
+              style=" position: absolute;top: 50%; -ms-transform: translateY(-50%);transform: translateY(-50%);"
+              :style="{ 'padding-left': i%2===0 ? '35%' : '','padding-right': i%2===1 ? '35%' : ''}"
+            >
+              <p
+                class="text-h2"
+                :class="{'text-right': i%2===1}"
+              >
                 {{ member.name }}
               </p>
-              <p class="text-subtitle-1 mt-n6" :class="{'text-right': i%2===1}">
+              <p
+                class="text-subtitle-1 mt-n6"
+                :class="{'text-right': i%2===1}"
+              >
                 {{ member.title }}
               </p>
-              <p :class="{'text-right': i%2===1}">{{ member.description }}</p>
+              <p :class="{'text-right': i%2===1}">
+                {{ member.description }}
+              </p>
             </div>
           </div>
         </div>
 
-        <v-expansion-panels accordion class="mt-8">
+        <v-expansion-panels
+          accordion
+          class="mt-8"
+        >
           <v-expansion-panel>
-            <v-expansion-panel-header class="text-h5 font-weight-light">5th board
+            <v-expansion-panel-header class="text-h5 font-weight-light">
+              5th board
             </v-expansion-panel-header>
             <v-expansion-panel-content>
               Chairman: Daniël "thiefzz" Floor<br>
@@ -45,7 +64,8 @@
             </v-expansion-panel-content>
           </v-expansion-panel>
           <v-expansion-panel>
-            <v-expansion-panel-header class="text-h5 font-weight-light">4th board
+            <v-expansion-panel-header class="text-h5 font-weight-light">
+              4th board
             </v-expansion-panel-header>
             <v-expansion-panel-content>
               Chairman: Ali “Kelbinoh” Kalbiyev<br>
@@ -56,7 +76,8 @@
             </v-expansion-panel-content>
           </v-expansion-panel>
           <v-expansion-panel>
-            <v-expansion-panel-header class="text-h5 font-weight-light">3rd board
+            <v-expansion-panel-header class="text-h5 font-weight-light">
+              3rd board
             </v-expansion-panel-header>
             <v-expansion-panel-content>
               Chairman: Jander “Thoran” Gilbers<br>
@@ -67,7 +88,8 @@
             </v-expansion-panel-content>
           </v-expansion-panel>
           <v-expansion-panel>
-            <v-expansion-panel-header class="text-h5 font-weight-light">2nd board
+            <v-expansion-panel-header class="text-h5 font-weight-light">
+              2nd board
             </v-expansion-panel-header>
             <v-expansion-panel-content>
               Chairman: Jasper “JappieXD” van Harten<br>
@@ -78,7 +100,8 @@
             </v-expansion-panel-content>
           </v-expansion-panel>
           <v-expansion-panel>
-            <v-expansion-panel-header class="text-h5 font-weight-light">1st board
+            <v-expansion-panel-header class="text-h5 font-weight-light">
+              1st board
             </v-expansion-panel-header>
             <v-expansion-panel-content>
               Chairman: Thijs “Grootbuik” Lieverse<br>

@@ -1,12 +1,20 @@
 <template>
   <v-main>
-    <top-banner :title="(event && event.title) ? event.title : 'Edit Event'"/>
+    <top-banner :title="(event && event.title) ? event.title : 'Edit Event'" />
 
     <div class="mx-3 mb-8">
-      <div class="mx-auto mt-10" style="max-width: 800px">
-        <event-form v-if="event !== null" ref="form" :event="event" :has-promo="hasPromo" v-on:submit="update"/>
+      <div
+        class="mx-auto mt-10"
+        style="max-width: 800px"
+      >
+        <event-form
+          v-if="event !== null"
+          ref="form"
+          :event="event"
+          :has-promo="hasPromo"
+          @submit="update"
+        />
       </div>
-
     </div>
   </v-main>
 </template>

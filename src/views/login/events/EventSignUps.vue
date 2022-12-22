@@ -1,26 +1,41 @@
 <template>
   <v-main>
-    <top-banner :title="eventName ? eventName+' sign-ups' : 'Sign-ups'"/>
+    <top-banner :title="eventName ? eventName+' sign-ups' : 'Sign-ups'" />
     <div class="mx-3">
-      <div class="mx-auto my-10" style="max-width: 800px">
+      <div
+        class="mx-auto my-10"
+        style="max-width: 800px"
+      >
         <p class="text-h4">
           Summary
         </p>
-        <div v-for="(question,i) in signUpForm" v-bind:key="i">
+        <div
+          v-for="(question,i) in signUpForm"
+          :key="i"
+        >
           <p class="text-h5">
             {{ question.prompt }}
           </p>
           <template v-if="question.type === 'open'">
-            <p v-for="response in responses" v-bind:key="response.discord">
+            <p
+              v-for="response in responses"
+              :key="response.discord"
+            >
               <b>{{ response.fullName }}:</b> {{ response.formAnswers[i] }}
             </p>
           </template>
           <template v-else-if="question.type === 'radio'">
-            <p v-for="response in responses" v-bind:key="response.discord">
+            <p
+              v-for="response in responses"
+              :key="response.discord"
+            >
               <b>{{ response.fullName }}:</b> {{ response.formAnswers[i] }}
             </p>
             <v-container>
-              <v-row v-for="(option,j) in question.options" v-bind:key="j">
+              <v-row
+                v-for="(option,j) in question.options"
+                :key="j"
+              >
                 <v-col>
                   {{ option }}
                 </v-col>
@@ -31,12 +46,18 @@
             </v-container>
           </template>
           <template v-if="question.type === 'checkbox'">
-            <p v-for="response in responses" v-bind:key="response.discord">
+            <p
+              v-for="response in responses"
+              :key="response.discord"
+            >
               <b>{{ response.fullName }}:</b> {{ response.formAnswers[i].map(answer => question.options[answer]).join(', ') }}
             </p>
             <v-container>
               <div v-for="(option,j) in question.options">
-                <v-row v-bind:key="j" @click="toggle(i,j)">
+                <v-row
+                  :key="j"
+                  @click="toggle(i,j)"
+                >
                   <v-col>
                     {{ option }}
                   </v-col>
@@ -48,8 +69,9 @@
                     <v-expand-transition>
                       <div v-if="expandTab.includes((i,j))">
                         <v-row
-                            v-for="response in responses.filter(response => response.formAnswers[i].includes(j))"
-                            v-bind:key="response.discord">
+                          v-for="response in responses.filter(response => response.formAnswers[i].includes(j))"
+                          :key="response.discord"
+                        >
                           <v-col>
                             {{ response.fullName }}
                           </v-col>
@@ -60,9 +82,8 @@
                       </div>
                     </v-expand-transition>
                   </v-container>
-
                 </v-row>
-                <v-divider v-bind:key="'div'+j"></v-divider>
+                <v-divider :key="'div'+j" />
               </div>
             </v-container>
           </template>
@@ -84,15 +105,6 @@ export default {
     eventName: null,
     expandTab: [],
   }),
-  methods: {
-    toggle(i, j) {
-      if (this.expandTab.includes((i, j))) {
-        this.expandTab = this.expandTab.filter(it => it !== (i, j));
-      } else {
-        this.expandTab.push((i, j))
-      }
-    },
-  },
   mounted() {
     this.$http.get('events/' + this.$route.params.id, {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
         .then(response => {
@@ -106,6 +118,15 @@ export default {
           this.responses.forEach(response => response.formAnswers = JSON.parse(response.formAnswers))
         })
         .catch(e => this.$root.handleNetworkError(e))
+  },
+  methods: {
+    toggle(i, j) {
+      if (this.expandTab.includes((i, j))) {
+        this.expandTab = this.expandTab.filter(it => it !== (i, j));
+      } else {
+        this.expandTab.push((i, j))
+      }
+    },
   },
 }
 </script>

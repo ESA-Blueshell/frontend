@@ -1,42 +1,61 @@
 <template>
   <v-main>
-    <top-banner title="Event Manager"/>
-    <div class="mx-auto my-10" style="max-width: 800px">
-
-      <v-btn class="mx-3" block :disabled="noCommittees" to="create">Create new event</v-btn>
+    <top-banner title="Event Manager" />
+    <div
+      class="mx-auto my-10"
+      style="max-width: 800px"
+    >
+      <v-btn
+        class="mx-3"
+        block
+        :disabled="noCommittees"
+        to="create"
+      >
+        Create new event
+      </v-btn>
 
 
       <template v-if="$store.getters.isBoard && events.filter(e => !e.visible).length > 0">
-        <p class="mt-8 mx-3 text-h3 text-center">Non-public events (to be approved)</p>
+        <p class="mt-8 mx-3 text-h3 text-center">
+          Non-public events (to be approved)
+        </p>
         <event-manage-list
-            :events="events.filter(e => !e.visible)"
-            :id-to-committee="idToCommittee"
+          :events="events.filter(e => !e.visible)"
+          :id-to-committee="idToCommittee"
         />
       </template>
 
 
-      <p class="mt-8 mx-3 text-h3 text-center">Upcoming Events</p>
+      <p class="mt-8 mx-3 text-h3 text-center">
+        Upcoming Events
+      </p>
 
       <event-manage-list
-          :events="events"
-          :id-to-committee="idToCommittee"
+        :events="events"
+        :id-to-committee="idToCommittee"
       />
 
-      <p class="mt-8 mx-3 text-h3 text-center">Past Events</p>
+      <p class="mt-8 mx-3 text-h3 text-center">
+        Past Events
+      </p>
 
       <event-manage-list
-          :events="pastEvents"
-          :id-to-committee="idToCommittee"
+        :events="pastEvents"
+        :id-to-committee="idToCommittee"
       />
 
-      <p class="mx-3 text-h5" v-if="events.length === 0">
+      <p
+        v-if="events.length === 0"
+        class="mx-3 text-h5"
+      >
         Doesn't look like you have any upcoming events for your committees 😔😔😔 maybe create one? or two?
       </p>
 
 
-      <v-img :src="require('../../../assets/noCommittees.jpg')"
-             v-if="noCommittees"/>
-
+      <v-img
+        v-if="noCommittees"
+        :src="require('../../../assets/noCommittees.jpg')"
+      />
     </div>
   </v-main>
 </template>

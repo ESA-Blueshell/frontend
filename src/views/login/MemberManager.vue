@@ -1,16 +1,25 @@
 <template>
   <v-main>
-    <top-banner title="Member Manager"/>
+    <top-banner title="Member Manager" />
 
     <div class="mx-3">
-      <div class="mx-auto my-10" style="max-width: 800px">
-        <v-text-field v-model="search" label="Search for a user"/>
+      <div
+        class="mx-auto my-10"
+        style="max-width: 800px"
+      >
+        <v-text-field
+          v-model="search"
+          label="Search for a user"
+        />
 
         <p class="text-h3">
           Non-member users
         </p>
         <v-list>
-          <div v-for="(user,i) in users" v-bind:key="user.username">
+          <div
+            v-for="(user,i) in users"
+            :key="user.username"
+          >
             <div v-if="!user.roles.includes('MEMBER') && isSearched(user)">
               <v-list-item>
                 <v-list-item-content @click="expanded = (expanded === i) ? null : i">
@@ -21,19 +30,26 @@
                     {{ user.username }}
                   </v-list-item-subtitle>
                   <div v-if="expanded === i">
-                    <p v-for="[key,value] in Object.entries(user)" v-bind:key="key"
-                       class="mb-0">
+                    <p
+                      v-for="[key,value] in Object.entries(user)"
+                      :key="key"
+                      class="mb-0"
+                    >
                       {{ key }}: {{ value }}
-                    </p></div>
+                    </p>
+                  </div>
                 </v-list-item-content>
 
                 <v-list-item-action>
-                  <v-btn text @click="makeMember(user)">
+                  <v-btn
+                    variant="text"
+                    @click="makeMember(user)"
+                  >
                     Make member
                   </v-btn>
                 </v-list-item-action>
               </v-list-item>
-              <v-divider/>
+              <v-divider />
             </div>
           </div>
         </v-list>

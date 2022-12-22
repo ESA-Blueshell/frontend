@@ -2,46 +2,60 @@
   <!--
 
   -->
-  <v-form ref="form" v-model="valid">
+  <v-form
+    ref="form"
+    v-model="valid"
+  >
     <v-text-field
-        ref="title"
-        v-model="committee.name"
-        :rules="[v => !!v || 'name is required']"
-        label="Committee name"
-        required/>
+      ref="title"
+      v-model="committee.name"
+      :rules="[v => !!v || 'name is required']"
+      label="Committee name"
+      required
+    />
 
     <v-textarea
-        ref="description"
-        v-model="committee.description"
-        :rules="[v => !!v || 'Description is required']"
-        label="Description"
-        outlined
-        hide-details
-        required/>
+      ref="description"
+      v-model="committee.description"
+      :rules="[v => !!v || 'Description is required']"
+      label="Description"
+      variant="outlined"
+      hide-details
+      required
+    />
 
     <v-container>
-      <v-row v-for="(member,i) in committee.members" v-bind:key="i" dense>
+      <v-row
+        v-for="(member,i) in committee.members"
+        :key="i"
+        dense
+      >
         <v-col cols="4">
           <v-text-field
-              v-model="member.role"
-              hide-details="auto"
-              label="Role"/>
+            v-model="member.role"
+            hide-details="auto"
+            label="Role"
+          />
         </v-col>
         <v-col cols="8">
           <v-autocomplete
-              v-if="memberSelectItems"
-              v-model="member.user"
-              :filter="filterUsers"
-              :item-text="userToDisplay"
-              :items="memberSelectItems"
-              :rules="[v => !!v || 'Select a member',
-                       v => (!!v && committee.members.filter(member => member.user && member.user.username === v.username).length === 1) || 'A member can\'t be in the same committee twice']"
-              hide-details="auto"
-              hide-no-data
-              label="Member name"
-              return-object>
-            <template v-slot:append-outer>
-              <v-btn icon @click="committee.members.splice(i,1)">
+            v-if="memberSelectItems"
+            v-model="member.user"
+            :custom-filter="filterUsers"
+            :item-title="userToDisplay"
+            :items="memberSelectItems"
+            :rules="[v => !!v || 'Select a member',
+                     v => (!!v && committee.members.filter(member => member.user && member.user.username === v.username).length === 1) || 'A member can\'t be in the same committee twice']"
+            hide-details="auto"
+            hide-no-data
+            label="Member name"
+            return-object
+          >
+            <template #append-outer>
+              <v-btn
+                icon
+                @click="committee.members.splice(i,1)"
+              >
                 <v-icon>mdi-close</v-icon>
               </v-btn>
             </template>
@@ -50,11 +64,19 @@
       </v-row>
     </v-container>
 
-    <v-btn block variant="outlined" @click="addMember" class="mb-4">
+    <v-btn
+      block
+      variant="outlined"
+      class="mb-4"
+      @click="addMember"
+    >
       Add member
     </v-btn>
 
-    <v-btn block @click="submit">
+    <v-btn
+      block
+      @click="submit"
+    >
       Save committee
     </v-btn>
   </v-form>
@@ -62,7 +84,7 @@
 
 <script>
 export default {
-  name: "edit-committee",
+  name: "EditCommittee",
   props: {
     committee: {
       type: Object,

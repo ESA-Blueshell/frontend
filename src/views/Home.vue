@@ -1,57 +1,95 @@
 <template>
   <v-main>
-    <main-banner/>
+    <main-banner />
 
     <v-container>
-      <div class="mx-auto my-10" style="max-width: 600px">
-        <p class="text-center text-h2 font-weight-light">Who are we?</p>
+      <div
+        class="mx-auto my-10"
+        style="max-width: 600px"
+      >
+        <p class="text-center text-h2 font-weight-light">
+          Who are we?
+        </p>
 
-        <p class="text-center subtitle-1 font-weight-light">
+        <p class="text-center text-subtitle-1 font-weight-light">
           We are Blueshell Esports, the gaming and esports student association at the University of
           Twente. We house a bustling gaming community, organize regular online and offline events
-          and present opportunities for competitive play.</p>
+          and present opportunities for competitive play.
+        </p>
       </div>
     </v-container>
 
     <v-container class="mb-10">
-      <v-row class="text-center" justify="center">
-        <v-col v-for="col in columns" v-bind:key="col.title"
-               class="mx-4" style="max-width:450px;min-width: 350px;min-height: 250px"
-               align-self="center">
-          <div class="expand" style="width: 100%" @click="goto(col.url)">
-            <v-icon x-large :color="col.color" class="icon">
-              {{ col.icon}}
+      <v-row
+        class="text-center"
+        justify="center"
+      >
+        <v-col
+          v-for="col in columns"
+          :key="col.title"
+          class="mx-4"
+          style="max-width:450px;min-width: 350px;min-height: 250px"
+          align-self="center"
+        >
+          <div
+            class="expand"
+            style="width: 100%"
+            @click="goto(col.url)"
+          >
+            <v-icon
+              size="x-large"
+              :color="col.color"
+              class="icon"
+            >
+              {{ col.icon }}
             </v-icon>
-            <p class="text-h3 ma-3 font-weight-thin" v-html="col.title"></p>
+            <p
+              class="text-h3 ma-3 font-weight-thin"
+              v-html="col.title"
+            />
           </div>
-          <p class="body-1 font-weight-light mx-auto" style="max-width: 400px"
-             v-html="col.text"></p>
+          <p
+            class="text-body-1 font-weight-light mx-auto"
+            style="max-width: 400px"
+            v-html="col.text"
+          />
         </v-col>
       </v-row>
     </v-container>
 
-    <discord-banner/>
+    <discord-banner />
 
-    <games-we-play :games="games" class="pt-3 pb-3"></games-we-play>
+    <games-we-play
+      :games="games"
+      class="pt-3 pb-3"
+    />
 
-    <socials-banner/>
+    <socials-banner />
 
     <v-container class="mt-10 mb-16">
       <p class="mx-auto text-center text-h2">
         Our partners
       </p>
-      <v-row justify="space-around" align="center" class="mt-6 mx-auto" style="max-width: 1100px">
-        <v-col v-for="partner in partners" v-bind:key="partner.url" md="6">
-          <v-img :src="$vuetify.theme.dark?partner.logoDark:partner.logo"
-                 max-width="450"
-                 class="mx-auto expand"
-                 @click="goto(partner.url)">
-          </v-img>
+      <v-row
+        justify="space-around"
+        align="center"
+        class="mt-6 mx-auto"
+        style="max-width: 1100px"
+      >
+        <v-col
+          v-for="partner in partners"
+          :key="partner.url"
+          md="6"
+        >
+          <v-img
+            :src="$vuetify.theme.dark?partner.logoDark:partner.logo"
+            max-width="450"
+            class="mx-auto expand"
+            @click="goto(partner.url)"
+          />
         </v-col>
       </v-row>
-
     </v-container>
-
   </v-main>
 </template>
 
@@ -65,16 +103,6 @@ import GamesWePlay from "@/components/games-we-play";
 
 export default {
   components: {GamesWePlay, SocialsBanner, DiscordBanner, MainBanner},
-  methods: {
-    goto(url) {
-      if (url.includes('https://')) {
-        let win = window.open(url, '_blank');
-        win.focus();
-      } else {
-        router.push(url)
-      }
-    }
-  },
   data() {
     return {
       hoveredGame: null,
@@ -198,6 +226,16 @@ export default {
           url: "https://connectworks.nl/"
         },
       ]
+    }
+  },
+  methods: {
+    goto(url) {
+      if (url.includes('https://')) {
+        let win = window.open(url, '_blank');
+        win.focus();
+      } else {
+        router.push(url)
+      }
     }
   }
 }

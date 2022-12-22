@@ -1,98 +1,147 @@
 <template>
-  <v-row justify="center" align="center" class="fill-height">
+  <v-row
+    justify="center"
+    align="center"
+    class="fill-height"
+  >
     <v-col>
       <!-- Start of the top bar. Includes today, previous and forward buttons and current month. -->
       <v-sheet height="64">
         <v-toolbar flat>
-          <v-btn variant="outlined" class="mr-4" @click="setToday">
+          <v-btn
+            variant="outlined"
+            class="mr-4"
+            @click="setToday"
+          >
             Today
           </v-btn>
-          <v-btn fab text small color="accent" @click="prev">
+          <v-btn
+            fab
+            variant="text"
+            size="small"
+            color="accent"
+            @click="prev"
+          >
             <v-icon>
               mdi-chevron-left
             </v-icon>
           </v-btn>
-          <v-btn fab text small color="accent" @click="next">
+          <v-btn
+            fab
+            variant="text"
+            size="small"
+            color="accent"
+            @click="next"
+          >
             <v-icon>
               mdi-chevron-right
             </v-icon>
           </v-btn>
-          <v-toolbar-title v-if="$refs.calendar" class="ml-3">
+          <v-toolbar-title
+            v-if="$refs.calendar"
+            class="ml-3"
+          >
             {{ $refs.calendar.title }}
           </v-toolbar-title>
-          <v-spacer></v-spacer>
+          <v-spacer />
           <!-- Circle loading thingy (only appears after the user's been waiting for new events for 0.5s) -->
           <v-fade-transition>
             <v-progress-circular
-                class="mr-3"
-                v-if="monthsLoading > 0"
-                indeterminate
-                color="primary">
-            </v-progress-circular>
+              v-if="monthsLoading > 0"
+              class="mr-3"
+              indeterminate
+              color="primary"
+            />
           </v-fade-transition>
           <v-btn
-              variant="outlined"
-              v-if="this.type==='day'"
-              @click="viewMonth"
+            v-if="type==='day'"
+            variant="outlined"
+            @click="viewMonth"
           >
-            <v-icon class="ml-n2 mr-1">mdi-arrow-left</v-icon>
+            <v-icon class="ml-n2 mr-1">
+              mdi-arrow-left
+            </v-icon>
             back
           </v-btn>
         </v-toolbar>
       </v-sheet>
       <!-- End of the top bar -->
-      <v-sheet class="mx-auto" height="600">
+      <v-sheet
+        class="mx-auto"
+        height="600"
+      >
         <!-- The actual calendar -->
         <v-calendar
-            ref="calendar"
-            v-model="focus"
-            :events="events"
-            :weekdays="weekdays"
-            color="primary lighten-1"
-            event-color="primary"
-            :type="this.type"
-            :interval-format="intervalFormat"
-            @change="monthChange"
-            @click:event="showEvent"
-            @click:more="viewDay"
-            @click:date="viewDay"
-            locale="en-NL">
-        </v-calendar>
+          ref="calendar"
+          v-model="focus"
+          :events="events"
+          :weekdays="weekdays"
+          color="primary-lighten-1"
+          event-color="primary"
+          :type="type"
+          :interval-format="intervalFormat"
+          locale="en-NL"
+          @change="monthChange"
+          @click:event="showEvent"
+          @click:more="viewDay"
+          @click:date="viewDay"
+        />
 
         <!-- Start of the menu that pops up when selecting an event -->
         <v-menu
-            v-model="selectedOpen"
-            :close-on-content-click="false"
-            :activator="selectedElement"
-            offset-x
-            v-if="selectedEvent"
+          v-if="selectedEvent"
+          v-model="selectedOpen"
+          :close-on-content-click="false"
+          :activator="selectedElement"
+          offset-x
         >
           <v-card max-width="350px">
             <!-- Start of the toolbar in the selected event menu -->
             <!-- Includes the event's title and the location and add to calendar buttons -->
-            <v-toolbar :color="selectedEvent.color" dark>
+            <v-toolbar
+              :color="selectedEvent.color"
+              dark
+            >
               <!-- Name of the event -->
-              <v-toolbar-title v-if="selectedEvent.name.length < 15" v-html="selectedEvent.name"/>
-              <marquee-text v-else :repeat="3" :duration="10">
-                <v-toolbar-title class="mr-5" v-html="selectedEvent.name"/>
+              <v-toolbar-title
+                v-if="selectedEvent.name.length < 15"
+                v-html="selectedEvent.name"
+              />
+              <marquee-text
+                v-else
+                :repeat="3"
+                :duration="10"
+              >
+                <v-toolbar-title
+                  class="mr-5"
+                  v-html="selectedEvent.name"
+                />
               </marquee-text>
 
-              <v-spacer></v-spacer>
+              <v-spacer />
               <!-- Start of the "Find location" button. Check the documentation for v-tooltip to find out how this works exactly -->
-              <v-tooltip bottom>
-                <template v-slot:activator="{ on }">
+              <v-tooltip location="bottom">
+                <template #activator="{ on }">
                   <!-- The actual button -->
-                  <v-btn icon v-on="on" @click="findLocation">
+                  <v-btn
+                    icon
+                    v-on="on"
+                    @click="findLocation"
+                  >
                     <v-icon>mdi-google-maps</v-icon>
                   </v-btn>
                 </template>
                 <span>Find location</span>
               </v-tooltip>
               <!-- Start of the "Add to calendar" button. Check the documentation for v-tooltip to find out how this works exactly -->
-              <v-tooltip bottom>
-                <template v-slot:activator="{ on }">
+              <v-tooltip location="bottom">
+                <template #activator="{ on }">
                   <!-- The actual button -->
-                  <v-btn icon v-on="on" @click="addToCal">
+                  <v-btn
+                    icon
+                    v-on="on"
+                    @click="addToCal"
+                  >
                     <v-icon>mdi-calendar</v-icon>
                   </v-btn>
                 </template>
@@ -101,23 +150,27 @@
             </v-toolbar>
 
             <!-- Promo image -->
-            <img v-if="selectedEvent.banner" :src="selectedEvent.banner"
-                 style="width: 100%; object-fit: contain"/>
+            <img
+              v-if="selectedEvent.banner"
+              :src="selectedEvent.banner"
+              style="width: 100%; object-fit: contain"
+            >
 
             <v-card-text>
-
-
               <!-- Description of the event -->
               <p v-if="selectedEvent.details">
                 <!-- In the span is the actual text of the event -->
                 <!-- If the expand variable is true show the fill message, otherwise only show the first 100 words -->
                 <span
-                    v-html="expand || !selectedLong ? $root.markdownToHtml(selectedEvent.details) : $root.markdownToHtml(hundredWords(selectedEvent.details))+'...'"></span>
+                  v-html="expand || !selectedLong ? $root.markdownToHtml(selectedEvent.details) : $root.markdownToHtml(hundredWords(selectedEvent.details))+'...'"
+                />
                 <!-- Only show the "read more" if the message is long -->
                 <!-- If it's clicked expand will be set to true and the full message will be shown -->
                 <br v-if="!expand && selectedLong">
-                <a v-if="!expand && selectedLong"
-                   @click="expandWords">
+                <a
+                  v-if="!expand && selectedLong"
+                  @click="expandWords"
+                >
                   <b>read more</b>
                 </a>
               </p>
@@ -125,14 +178,17 @@
                 No description...
               </p>
               <!-- Starting time of the event -->
-              <v-divider class="my-2"/>
+              <v-divider class="my-2" />
               <p>
                 <b>When</b>
                 <br>
                 {{ formatDate(selectedEvent.start, selectedEvent.end) }}
               </p>
               <!-- Only show this part if there is a location for this event (should always be true tho) -->
-              <v-divider class="my-2" v-if="selectedEvent.location"/>
+              <v-divider
+                v-if="selectedEvent.location"
+                class="my-2"
+              />
               <p v-if="selectedEvent.location">
                 <b>Where</b>
                 <br>
@@ -141,9 +197,12 @@
               <!-- Only show this part if there is a price for this event -->
               <!-- I want to die -->
               <v-divider
-                  v-if="selectedEvent.memberPrice !== 0 && selectedEvent.publicPrice !== 0 && selectedEvent.memberPrice !== '' && selectedEvent.publicPrice !== '' && selectedEvent.memberPrice !== null && selectedEvent.publicPrice !== null"/>
-              <p v-if="selectedEvent.memberPrice !== 0 && selectedEvent.publicPrice !== 0 && selectedEvent.memberPrice !== '' && selectedEvent.publicPrice !== '' && selectedEvent.memberPrice !== null && selectedEvent.publicPrice !== null"
-                 class="mt-4">
+                v-if="selectedEvent.memberPrice !== 0 && selectedEvent.publicPrice !== 0 && selectedEvent.memberPrice !== '' && selectedEvent.publicPrice !== '' && selectedEvent.memberPrice !== null && selectedEvent.publicPrice !== null"
+              />
+              <p
+                v-if="selectedEvent.memberPrice !== 0 && selectedEvent.publicPrice !== 0 && selectedEvent.memberPrice !== '' && selectedEvent.publicPrice !== '' && selectedEvent.memberPrice !== null && selectedEvent.publicPrice !== null"
+                class="mt-4"
+              >
                 <b>Price</b><br>
                 Members: €{{ selectedEvent.memberPrice }} <br>
                 Non-members: €{{ selectedEvent.publicPrice }}

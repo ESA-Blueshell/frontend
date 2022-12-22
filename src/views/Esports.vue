@@ -1,13 +1,16 @@
 <template>
   <v-main>
-    <top-banner title="Esports"></top-banner>
+    <top-banner title="Esports" />
     <div class="mx-3">
-      <div class="mx-auto my-10" style="max-width: 800px">
+      <div
+        class="mx-auto my-10"
+        style="max-width: 800px"
+      >
         <p class="text-h4 font-weight-light">
           Blueshell's Competitive Scene
         </p>
 
-        <p class="body-1">
+        <p class="text-body-1">
           Esports is an essential part of Blueshell, being able facilitate esports and giving people the chance to find
           people which whom you can create a team are pillars Blueshell Esports wishes to achieve. Blueshell is not
           alone in this there are many student esports associations around the Netherlands. Together with them the
@@ -17,23 +20,35 @@
           are shorter bracket style competitions. This means for almost every game and person who is interested in
           playing competitively there is something!
         </p>
-        <p class="body-1">
+        <p class="text-body-1">
           For more info contact the esports affairs (on discord) or send a mail to <b><a
-          href="mailto:esports@blueshell.utwente.nl" target="_blank" class="text-decoration-none">esports@blueshell.utwente.nl</a></b>
+            href="mailto:esports@blueshell.utwente.nl"
+            target="_blank"
+            class="text-decoration-none"
+          >esports@blueshell.utwente.nl</a></b>
         </p>
-        <p class="body-1">
+        <p class="text-body-1">
           Currently in Blueshell, there are teams for CS:GO, LoL and Rocket League. To find out the current teams in
           Blueshell, click one of the pictures below
         </p>
 
-        <v-row class="my-10" justify="center">
-          <v-col cols="3" v-for="game in games" v-bind:key="game.url">
+        <v-row
+          class="my-10"
+          justify="center"
+        >
+          <v-col
+            v-for="game in games"
+            :key="game.url"
+            cols="3"
+          >
             <router-link :to="game.url">
-              <v-img :src="game.icon" class="expand"></v-img>
+              <v-img
+                :src="game.icon"
+                class="expand"
+              />
             </router-link>
           </v-col>
         </v-row>
-
       </div>
     </div>
   </v-main>
@@ -46,11 +61,6 @@ import router from '@/plugins/router';
 
 export default {
   components: {TopBanner},
-  methods: {
-    goto(url) {
-      router.push(url)
-    }
-  },
   data() {
     return {
       games: [
@@ -67,6 +77,11 @@ export default {
           url: '/esports/rocketleague'
         },
       ]
+    }
+  },
+  methods: {
+    goto(url) {
+      router.push(url)
     }
   }
 }

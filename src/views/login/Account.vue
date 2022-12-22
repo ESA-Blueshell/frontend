@@ -1,9 +1,14 @@
 <template>
   <v-main>
-    <top-banner title="My account"/>
+    <top-banner title="My account" />
     <div class="mx-3">
-      <div class="mx-auto my-10" style="max-width: 800px">
-        <p class="text-h3">Hello {{ this.accountData != null ? this.accountData.firstName : '' }}!</p>
+      <div
+        class="mx-auto my-10"
+        style="max-width: 800px"
+      >
+        <p class="text-h3">
+          Hello {{ accountData != null ? accountData.firstName : '' }}!
+        </p>
 
         <p>
           On this page you can view your account data and edit it below. Fields like your name and e-mail address
@@ -25,16 +30,24 @@
           give it a description and add any members to it.
         </p>
 
-        <div v-if="this.accountData">
-          <v-form ref="form" v-model="valid">
+        <div v-if="accountData">
+          <v-form
+            ref="form"
+            v-model="valid"
+          >
             <v-row>
-              <v-spacer/>
+              <v-spacer />
               <v-col cols="auto">
-                <v-tooltip top>
-                  <template v-slot:activator="{ on, attrs }">
-                    <v-btn icon @click="save" :disabled="!valid"
-                           :loading="submitting"
-                           v-bind="attrs" v-on="on">
+                <v-tooltip location="top">
+                  <template #activator="{ on, attrs }">
+                    <v-btn
+                      icon
+                      :disabled="!valid"
+                      :loading="submitting"
+                      v-bind="attrs"
+                      @click="save"
+                      v-on="on"
+                    >
                       <v-icon>mdi-content-save</v-icon>
                     </v-btn>
                   </template>
@@ -43,72 +56,142 @@
               </v-col>
             </v-row>
 
-            <v-text-field disabled label="Username" v-model="accountData.username"/>
+            <v-text-field
+              v-model="accountData.username"
+              disabled
+              label="Username"
+            />
             <v-row>
               <v-col cols="2">
-                <v-text-field disabled label="initials" v-model="accountData.initials"/>
+                <v-text-field
+                  v-model="accountData.initials"
+                  disabled
+                  label="initials"
+                />
               </v-col>
               <v-col cols="4">
-                <v-text-field disabled label="First name" v-model="accountData.firstName"/>
+                <v-text-field
+                  v-model="accountData.firstName"
+                  disabled
+                  label="First name"
+                />
               </v-col>
               <v-col cols="2">
-                <v-text-field disabled label="Prefix" v-model="accountData.prefix"/>
+                <v-text-field
+                  v-model="accountData.prefix"
+                  disabled
+                  label="Prefix"
+                />
               </v-col>
               <v-col cols="4">
-                <v-text-field disabled label="Last name" v-model="accountData.lastName"/>
+                <v-text-field
+                  v-model="accountData.lastName"
+                  disabled
+                  label="Last name"
+                />
               </v-col>
             </v-row>
 
-            <v-text-field disabled label="E-mail" v-model="accountData.email"/>
-            <v-text-field label="Address" v-model="accountData.address"/>
+            <v-text-field
+              v-model="accountData.email"
+              disabled
+              label="E-mail"
+            />
+            <v-text-field
+              v-model="accountData.address"
+              label="Address"
+            />
             <v-row>
               <v-col cols="10">
-                <v-text-field label="City" v-model="accountData.city"/>
+                <v-text-field
+                  v-model="accountData.city"
+                  label="City"
+                />
               </v-col>
               <v-col cols="2">
-                <v-text-field label="Postal code" v-model="accountData.postalCode"/>
+                <v-text-field
+                  v-model="accountData.postalCode"
+                  label="Postal code"
+                />
               </v-col>
             </v-row>
-            <v-text-field label="Phone number" v-model="accountData.phoneNumber"
-                          :rules="[v => !v || !!v.match(/^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/) || 'Fill in a correct phone number']"/>
-            <v-text-field label="Student number" v-model="accountData.studentNumber"/>
-            <v-text-field label="Date of birth" v-model="accountData.dateOfBirth" type="date"/>
-            <v-text-field label="Discord tag" v-model="accountData.discord"
-                          :rules="[v => !v || !!v.match(/^.{3,32}#[0-9]{4}$/) || 'Fill in a correct discord tag (maybe you forgot the numbers?)']"/>
-            <v-text-field label="Steam ID" v-model="accountData.steamid"/>
+            <v-text-field
+              v-model="accountData.phoneNumber"
+              label="Phone number"
+              :rules="[v => !v || !!v.match(/^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/) || 'Fill in a correct phone number']"
+            />
+            <v-text-field
+              v-model="accountData.studentNumber"
+              label="Student number"
+            />
+            <v-text-field
+              v-model="accountData.dateOfBirth"
+              label="Date of birth"
+              type="date"
+            />
+            <v-text-field
+              v-model="accountData.discord"
+              label="Discord tag"
+              :rules="[v => !v || !!v.match(/^.{3,32}#[0-9]{4}$/) || 'Fill in a correct discord tag (maybe you forgot the numbers?)']"
+            />
+            <v-text-field
+              v-model="accountData.steamid"
+              label="Steam ID"
+            />
             <v-row>
               <v-col>
-                <v-checkbox label="Subscribe to newsletter"
-                            v-model="accountData.newsletter"/>
+                <v-checkbox
+                  v-model="accountData.newsletter"
+                  label="Subscribe to newsletter"
+                />
               </v-col>
               <v-col>
-                <v-checkbox label="Give consent for your photo to be taken at events"
-                            v-model="accountData.photoConsent"/>
+                <v-checkbox
+                  v-model="accountData.photoConsent"
+                  label="Give consent for your photo to be taken at events"
+                />
               </v-col>
             </v-row>
 
-            <v-text-field label="Gender" v-model="accountData.gender"/>
+            <v-text-field
+              v-model="accountData.gender"
+              label="Gender"
+            />
             <v-row>
               <v-col>
-                <v-text-field label="Country" v-model="accountData.country"/>
+                <v-text-field
+                  v-model="accountData.country"
+                  label="Country"
+                />
               </v-col>
               <v-col>
-                <v-text-field label="Nationality" v-model="accountData.nationality"/>
+                <v-text-field
+                  v-model="accountData.nationality"
+                  label="Nationality"
+                />
               </v-col>
             </v-row>
-            <v-text-field label="Study" v-model="accountData.study"/>
+            <v-text-field
+              v-model="accountData.study"
+              label="Study"
+            />
             <!-- TODO: do something with this-->
             <!--          <v-checkbox disabled label="Paid contribution?" v-model="accountData.contributionPaid"/>-->
 
 
             <v-row>
-              <v-spacer/>
+              <v-spacer />
               <v-col cols="auto">
-                <v-tooltip top>
-                  <template v-slot:activator="{ on, attrs }">
-                    <v-btn icon @click="save" :disabled="!valid"
-                           :loading="submitting"
-                           v-bind="attrs" v-on="on">
+                <v-tooltip location="top">
+                  <template #activator="{ on, attrs }">
+                    <v-btn
+                      icon
+                      :disabled="!valid"
+                      :loading="submitting"
+                      v-bind="attrs"
+                      @click="save"
+                      v-on="on"
+                    >
                       <v-icon>mdi-content-save</v-icon>
                     </v-btn>
                   </template>
@@ -121,7 +204,7 @@
 
 
         <!--    TODO: make this beautiful. Maybe use skeleton loading elements?-->
-        <v-progress-circular v-else></v-progress-circular>
+        <v-progress-circular v-else />
       </div>
     </div>
   </v-main>
@@ -140,6 +223,16 @@ export default {
     valid: true,
     submitting: false
   }),
+  mounted() {
+    const login = this.$store.getters.getLogin
+
+    this.$http.get(`users/${login.userId}`, {headers: {'Authorization': `Bearer ${login.token}`}})
+        .then(response => {
+          this.accountData = response.data
+          this.oldAccountData = this.copyObject(this.accountData)
+        })
+        .catch(e => this.$root.handleNetworkError(e))
+  },
   methods: {
     copyObject(obj) {
       return Object.assign({}, obj);
@@ -154,16 +247,6 @@ export default {
             .catch(e => this.$root.handleNetworkError(e))
       }
     },
-  },
-  mounted() {
-    const login = this.$store.getters.getLogin
-
-    this.$http.get(`users/${login.userId}`, {headers: {'Authorization': `Bearer ${login.token}`}})
-        .then(response => {
-          this.accountData = response.data
-          this.oldAccountData = this.copyObject(this.accountData)
-        })
-        .catch(e => this.$root.handleNetworkError(e))
   }
 }
 </script>

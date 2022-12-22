@@ -1,18 +1,37 @@
 <template>
-  <div :style="{background: $vuetify.theme.dark?$vuetify.theme.themes.dark.background:$vuetify.theme.themes.light.background}"
-  ><!--v-bind:style="$vuetify.display.smAndUp?{ height: '120px'}:{ height: '200px' }"-->
-    <v-row class="mx-auto container flex-nowrap" align="center" justify="space-between" >
-      <v-col md="auto" cols="120">
-        <p class="white--text text-h4 font-weight-thin mb-0" style="float: left">
+  <div :style="{background: $vuetify.theme.dark?$vuetify.theme.themes.dark.background:$vuetify.theme.themes.light.background}">
+    <!--v-bind:style="$vuetify.display.smAndUp?{ height: '120px'}:{ height: '200px' }"-->
+    <v-row
+      class="mx-auto container flex-nowrap"
+      align="center"
+      justify="space-between"
+    >
+      <v-col
+        md="auto"
+        cols="120"
+      >
+        <p
+          class="text-white text-h4 font-weight-thin mb-0"
+          style="float: left"
+        >
           Join us on our Discord server
         </p>
       </v-col>
-      <v-spacer></v-spacer>
+      <v-spacer />
       <v-col md="auto">
         <div>
-          <v-btn color="primary" href="https://discord.gg/23YMFQy" target="_blank"
-                 class="ml-5">
-            <v-icon dark x-large>mdi-discord</v-icon>
+          <v-btn
+            color="primary"
+            href="https://discord.gg/23YMFQy"
+            target="_blank"
+            class="ml-5"
+          >
+            <v-icon
+              dark
+              size="x-large"
+            >
+              mdi-discord
+            </v-icon>
           </v-btn>
         </div>
       </v-col>
@@ -22,7 +41,7 @@
 
 <script>
 export default {
-  name: "discord-banner"
+  name: "DiscordBanner"
 }
 </script>
 

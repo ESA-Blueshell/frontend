@@ -1,35 +1,57 @@
 <template>
   <v-main>
-
-    <p class="mx-auto text-center text-h2 mt-16 white--text"
-       style="z-index: 3;position: relative;">
+    <p
+      class="mx-auto text-center text-h2 mt-16 text-white"
+      style="z-index: 3;position: relative;"
+    >
       Games we play
     </p>
 
-    <div v-for="(category,i) in games" v-bind:key="category.categoryName" class="mb-16">
-      <p class="mx-auto text-center text-h4 font-weight-light mb-3 white--text"
-         style="z-index: 3;position: relative;">
+    <div
+      v-for="(category,i) in games"
+      :key="category.categoryName"
+      class="mb-16"
+    >
+      <p
+        class="mx-auto text-center text-h4 font-weight-light mb-3 text-white"
+        style="z-index: 3;position: relative;"
+      >
         {{ category.categoryName }}
       </p>
 
-      <v-row align="center" align-content="center" class="mx-auto mb-6" justify="center"
-             style="max-width: 1400px"
-             wrap>
-        <v-col v-for="(game,j) in category.titles"
-               v-bind:key="game.title"
-               align-self="center" class="mx-3 my-2 transition-swing"
-               cols="2" lg="1" md="1" sm="1" style="border-radius: 15px;padding: 4px;z-index: 3"
-               v-bind:class="{ 'elevation-8': (showPopup || hoverCarousel) && currentGame!==null && i===currentGame.y && j===currentGame.x }"
-               v-bind:style="{cursor: game.esportsLink ? 'pointer' : 'auto', 'background-color':  !($vuetify.theme.dark && (!showPopup && !hoverCarousel)) && ((!showPopup && !hoverCarousel) || (currentGame!==null && i===currentGame.y && j===currentGame.x )) ? '#F5F5F5aa' : '#F5F5F544'}"
-               xl="1"
+      <v-row
+        align="center"
+        align-content="center"
+        class="mx-auto mb-6"
+        justify="center"
+        style="max-width: 1400px"
+        wrap
+      >
+        <v-col
+          v-for="(game,j) in category.titles"
+          :key="game.title"
+          align-self="center"
+          class="mx-3 my-2 transition-swing"
+          cols="2"
+          lg="1"
+          md="1"
+          sm="1"
+          style="border-radius: 15px;padding: 4px;z-index: 3"
+          :class="{ 'elevation-8': (showPopup || hoverCarousel) && currentGame!==null && i===currentGame.y && j===currentGame.x }"
+          :style="{cursor: game.esportsLink ? 'pointer' : 'auto', 'background-color': !($vuetify.theme.dark && (!showPopup && !hoverCarousel)) && ((!showPopup && !hoverCarousel) || (currentGame!==null && i===currentGame.y && j===currentGame.x )) ? '#F5F5F5aa' : '#F5F5F544'}"
+          xl="1"
 
 
-               @click="goto(game.esportsLink)"
-               @mouseenter="hover(i,j)"
-               @mouseleave="unhover"
+          @click="goto(game.esportsLink)"
+          @mouseenter="hover(i,j)"
+          @mouseleave="unhover"
         >
           <!-- I NEVER WANT TO LOOK AT THIS FUCKED LOGIC AGAIN AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA-->
-          <v-img :src="game.icon" class="ma-2" eager/>
+          <v-img
+            :src="game.icon"
+            class="ma-2"
+            eager
+          />
         </v-col>
       </v-row>
     </div>
@@ -39,36 +61,48 @@
       If this wasn't here, the background would be white before the images load in so that would look shit.
     -->
     <div
-        style="top:0;left:0;width:100%;height:100%;position: absolute;z-index: 0;background: rgba(0, 0, 0, 1)"/>
+      style="top:0;left:0;width:100%;height:100%;position: absolute;z-index: 0;background: rgba(0, 0, 0, 1)"
+    />
 
 
     <!--
       Transparent black div covering the whole component, used to darken the image.
     -->
     <div
-        style="top:0;left:0;width:100%;height:100%;position: absolute;z-index: 2;background: rgba(0, 0, 0, 0.6)"/>
+      style="top:0;left:0;width:100%;height:100%;position: absolute;z-index: 2;background: rgba(0, 0, 0, 0.6)"
+    />
 
     <!--
       v-carousel covering the whole component to have a fancy image as the background. https://vuetifyjs.com/en/components/carousels/
       The carousel is v-modeled with currentGameIndex, which is set by the "buttons" written above.
     -->
     <div style="top:0;left:0;width:100%;height:100%;position: absolute;z-index: 1;">
-      <v-carousel id="carousel"
-                  v-model="currentGameIndex"
-                  :show-arrows="false"
-                  hide-delimiters
-                  light
-                  style="height: 100%;z-index: 1;"
+      <v-carousel
+        id="carousel"
+        v-model="currentGameIndex"
+        :show-arrows="false"
+        hide-delimiters
+        light
+        style="height: 100%;z-index: 1;"
       >
-        <v-carousel-item v-for="game in games.map(it => it.titles).flat()"
-                         v-bind:key="game.title"
-                         eager
-                         style="z-index: 1;" @mouseenter="hover(null,null)"
-                         @mouseleave="unhover"
+        <v-carousel-item
+          v-for="game in games.map(it => it.titles).flat()"
+          :key="game.title"
+          eager
+          style="z-index: 1;"
+          @mouseenter="hover(null,null)"
+          @mouseleave="unhover"
         >
-          <v-sheet height="100%" style="z-index: 1;background: rgba(0, 0, 0, 1)" tile>
-            <v-img :src="game.bg" eager
-                   style="position: absolute;top: 0;height: 100%;width: 100%;z-index: 1;filter: blur(3px);-webkit-filter: blur(3px);"/>
+          <v-sheet
+            height="100%"
+            style="z-index: 1;background: rgba(0, 0, 0, 1)"
+            tile
+          >
+            <v-img
+              :src="game.bg"
+              eager
+              style="position: absolute;top: 0;height: 100%;width: 100%;z-index: 1;filter: blur(3px);-webkit-filter: blur(3px);"
+            />
           </v-sheet>
         </v-carousel-item>
       </v-carousel>
@@ -80,7 +114,7 @@
 import router from "@/plugins/router";
 
 export default {
-  name: "games-we-play",
+  name: "GamesWePlay",
   props: ["games", "color"],
   data: () => ({
     showPopup: 0,
