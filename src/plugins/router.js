@@ -15,7 +15,6 @@ import Dekimo from "@/views/partners/Dekimo.vue";
 import Partners from "@/views/partners/Partners.vue";
 import Article from "@/views/Article.vue";
 import NotFound from "@/views/NotFound.vue";
-import Valorant from "@/views/esports/Valorant.vue";
 import Login from "@/views/login/Login.vue";
 import Account from "@/views/login/Account.vue";
 import ArticleEditor from "@/views/ArticleEditor.vue";
