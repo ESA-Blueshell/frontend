@@ -24,13 +24,11 @@
             color="primary"
             href="https://discord.gg/23YMFQy"
             target="_blank"
-            class="ml-5"
+            class="ml-5 my-3"
           >
-            <v-icon
-              dark
-              size="x-large"
-            >
-              mdi-discord
+            <v-icon style="--v-icon-size-multiplier: 1.7 "
+            icon="mdi-edit">
+
             </v-icon>
           </v-btn>
         </div>
@@ -63,9 +61,5 @@ export default {
   height: 65px !important;
   border-radius: 10px;
   min-width: 0 !important;
-}
-
-.v-icon {
-  margin: 10px !important;
 }
 </style>

@@ -101,7 +101,7 @@ CSS MOMENT
 }
 
 .v-application .subtitle-1, .v-application .subtitle-2, .v-application .text-body-1, .v-application .text-body-2, .v-application .caption, .v-application .overline,
-.text-subtitle-1, .text-subtitle-2{
+.text-subtitle-1, .text-subtitle-2, .v-list-item__content{
     font-family: "Barlow Semi Condensed", sans-serif !important;
 }
 
@@ -109,6 +109,14 @@ CSS MOMENT
 .v-theme--dark p, .v-theme--dark li. {
     color: white;
 }
+
+a.text-decoration-none {
+    color: #3387FA;
+}
+a:visited.text-decoration-none{
+color: #549aff;
+}
+
 
 /* Some default spacing */
 .v-application p {

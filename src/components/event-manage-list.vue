@@ -3,76 +3,84 @@
     :model-value="eventToDelete"
     max-width="400"
   >
-    <template #activator="{ on: dialog, attrs }">
-      <v-list lines="two">
-        <div v-for="(event,i) in events">
+    <template #activator="{ on: dialog }">
+      <v-list>
+        <div
+          v-for="(event,i) in events"
+          :key="event.title+event.startTime"
+        >
           <v-list-item
-            :key="event.title+event.startTime"
+            lines="two"
             :style="{ 'background-image': !event.banner ? '' :
               $vuetify.theme.dark ? `linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(${event.banner})` : `linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(255,255,255,0.8)), url(${event.banner})`}"
             style="background-size: cover;background-position: center;backdrop-filter: blur(2px);"
           >
-            <v-list-item-content>
-              <v-list-item-title class="text-h6">
-                {{ event.title }}
-              </v-list-item-title>
-              <v-list-item-subtitle>
-                {{ formatStartEndTime(event) }}
-              </v-list-item-subtitle>
-              <span
-                v-html="event.description ?
-                  $root.markdownToHtml(event.description.slice(0, 150) + (event.description.length > 150 ? '...' : '')) :
-                  'No description...'"
-              />
-            </v-list-item-content>
+            <v-list-item-title class="text-h6">
+              {{ event.title }}
+            </v-list-item-title>
+            <v-list-item-subtitle>
+              {{ formatStartEndTime(event) }}
+            </v-list-item-subtitle>
+            <span
+              v-html="event.description ?
+                $root.markdownToHtml(event.description.slice(0, 150) + (event.description.length > 150 ? '...' : '')) :
+                'No description...'"
+            />
 
-            <v-list-item-action-text v-if="$vuetify.display.smAndUp">
-              {{ idToCommittee[event.committee] }}
-            </v-list-item-action-text>
-            <v-list-item-action>
-              <v-tooltip location="left">
-                <template #activator="{ on, attrs }">
-                  <v-btn
-                    v-bind="attrs"
-                    icon
-                    :disabled="!event.signUp"
-                    v-on="on"
-                    @click="$router.push('signups/'+event.id)"
-                  >
-                    <v-icon>mdi-list-status</v-icon>
-                  </v-btn>
-                </template>
-                <span>Check signups</span>
-              </v-tooltip>
-
-              <v-tooltip location="left">
-                <template #activator="{ on, attrs }">
-                  <v-btn
-                    v-bind="attrs"
-                    icon
-                    v-on="on"
-                    @click="$router.push('edit/'+event.id)"
-                  >
-                    <v-icon>mdi-pencil</v-icon>
-                  </v-btn>
-                </template>
-                <span>Edit event</span>
-              </v-tooltip>
-
-              <v-tooltip location="left">
-                <template #activator="{ on: tooltip }">
-                  <v-btn
-                    v-bind="attrs"
-                    icon
-                    v-on="{ ...tooltip, ...dialog }"
-                    @click="eventToDelete = event"
-                  >
-                    <v-icon>mdi-delete</v-icon>
-                  </v-btn>
-                </template>
-                <span>Delete event</span>
-              </v-tooltip>
-            </v-list-item-action>
+            <template #append>
+              <v-container class="fill-height">
+                <v-row class="fill-height">
+                  <v-col>
+                    <p v-if="$vuetify.display.smAndUp">
+                      {{ idToCommittee[event.committee] }}
+                    </p>
+                  </v-col>
+                  <v-col>
+                    <v-tooltip location="left">
+                      <template #activator="{ on }">
+                        <v-btn
+                          icon
+                          :disabled="!event.signUp"
+                          v-on="on"
+                          @click="$router.push('signups/'+event.id)"
+                        >
+                          <v-icon>mdi-list-status</v-icon>
+                        </v-btn>
+                      </template>
+                      <span>Check signups</span>
+                    </v-tooltip>
+                  </v-col>
+                  <v-col>
+                    <v-tooltip location="left">
+                      <template #activator="{ on }">
+                        <v-btn
+                          icon
+                          v-on="on"
+                          @click="$router.push('edit/'+event.id)"
+                        >
+                          <v-icon>mdi-pencil</v-icon>
+                        </v-btn>
+                      </template>
+                      <span>Edit event</span>
+                    </v-tooltip>
+                  </v-col>
+                  <v-col>
+                    <v-tooltip location="left">
+                      <template #activator="{ on: tooltip }">
+                        <v-btn
+                          icon
+                          v-on="{ ...tooltip, ...dialog }"
+                          @click="eventToDelete = event"
+                        >
+                          <v-icon>mdi-delete</v-icon>
+                        </v-btn>
+                      </template>
+                      <span>Delete event</span>
+                    </v-tooltip>
+                  </v-col>
+                </v-row>
+              </v-container>
+            </template>
           </v-list-item>
           <v-divider
             v-if="i < events.length - 1"
@@ -85,10 +93,10 @@
 
     <v-card>
       <v-card-title>
-        <span class="text-h5">
+        <p class="text-h5">
           Are you sure you want to delete this event:
           {{ eventToDelete ? eventToDelete.title : 'NO EVENT????' }}
-        </span>
+        </p>
       </v-card-title>
       <v-card-text>
         There will be no undo
@@ -123,11 +131,11 @@ export default {
   methods: {
     deleteEvent() {
       this.$http.delete('events/' + this.eventToDelete.id, {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
-          .then(() => {
-            this.events = this.events.filter(event => event.id !== this.eventToDelete.id)
-            this.eventToDelete = null
-          })
-          .catch(e => this.$root.handleNetworkError(e))
+        .then(() => {
+          this.events = this.events.filter(event => event.id !== this.eventToDelete.id)
+          this.eventToDelete = null
+        })
+        .catch(e => this.$root.handleNetworkError(e))
     },
     formatStartEndTime(event) {
       let startTime = new Date(Date.parse(event.startTime))

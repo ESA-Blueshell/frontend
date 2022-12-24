@@ -248,6 +248,10 @@ export default {
   cursor: pointer;
 }
 
+.icon{
+  transition: transform .2s;
+}
+
 .expand:hover .icon {
   transform: scale(1.1) translateY(-10px);
 }

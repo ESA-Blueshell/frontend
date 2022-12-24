@@ -1,5 +1,7 @@
 <template>
-  <div :style="{background: $vuetify.theme.dark?$vuetify.theme.themes.dark.background:$vuetify.theme.themes.light.background}">
+  <div
+    :style="{background: $vuetify.theme.dark?$vuetify.theme.themes.dark.background:$vuetify.theme.themes.light.background}"
+  >
     <!--v-bind:style="$vuetify.display.smAndUp?{ height: '120px'}:{ height: '200px' }"-->
     <v-row
       class="mx-auto container flex-nowrap"
@@ -19,73 +21,18 @@
       </v-col>
       <v-spacer />
       <v-col md="auto">
-        <div>
-          <v-btn
-            color="primary"
-            href="https://www.instagram.com/blueshellesports/"
-            target="_blank"
-            class="ml-5 my-3 "
-          >
-            <v-icon
-              dark
-              size="x-large"
-            >
-              mdi-instagram
-            </v-icon>
-          </v-btn>
-          <v-btn
-            color="primary"
-            href="https://www.facebook.com/BlueshellEsports/"
-            target="_blank"
-            class="ml-5 my-3  "
-          >
-            <v-icon
-              dark
-              size="x-large"
-            >
-              mdi-facebook
-            </v-icon>
-          </v-btn>
-          <v-btn
-            color="primary"
-            href="https://www.twitch.tv/blueshellesports"
-            target="_blank"
-            class="ml-5 my-3  "
-          >
-            <v-icon
-              dark
-              size="x-large"
-            >
-              mdi-twitch
-            </v-icon>
-          </v-btn>
-          <v-btn
-            color="primary"
-            href="https://twitter.com/BlueshellESA"
-            target="_blank"
-            class="ml-5 my-3  "
-          >
-            <v-icon
-              dark
-              size="x-large"
-            >
-              mdi-twitter
-            </v-icon>
-          </v-btn>
-          <v-btn
-            color="primary"
-            href="https://www.linkedin.com/company/blueshell-esports"
-            target="_blank"
-            class="ml-5 my-3"
-          >
-            <v-icon
-              dark
-              size="x-large"
-            >
-              mdi-linkedin
-            </v-icon>
-          </v-btn>
-        </div>
+        <v-btn
+          v-for="social in socials"
+          :key="social.url"
+          color="primary"
+          target="_blank"
+          class="ml-5 my-3"
+          :href="social.url"
+        >
+          <v-icon style="--v-icon-size-multiplier: 1.7 ">
+            {{ social.icon }}
+          </v-icon>
+        </v-btn>
       </v-col>
     </v-row>
   </div>
@@ -93,7 +40,33 @@
 
 <script>
 export default {
-  name: "SocialsBanner"
+  name: "SocialsBanner",
+  data() {
+    return {
+      socials: [
+        {
+          icon: 'mdi-instagram',
+          url: 'https://www.instagram.com/blueshellesports',
+        },
+        {
+          icon: 'mdi-facebook',
+          url: 'https://www.facebook.com/BlueshellEsports',
+        },
+        {
+          icon: 'mdi-twitch',
+          url: 'https://www.twitch.tv/blueshellesports',
+        },
+        {
+          icon: 'mdi-twitter',
+          url: 'https://twitter.com/BlueshellESA',
+        },
+        {
+          icon: 'mdi-linkedin',
+          url: 'https://www.instagram.com/blueshellesports',
+        },
+      ]
+    }
+  }
 }
 </script>
 
@@ -112,7 +85,4 @@ export default {
   min-width: 0 !important;
 }
 
-.v-icon {
-  margin: 10px !important;
-}
 </style>
