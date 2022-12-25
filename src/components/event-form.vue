@@ -194,7 +194,7 @@
               (oldEnableSignUpForm && oldSignUpForm.length > 0 && oldSignUpForm !== JSON.stringify(event.signUpForm)))"
             type="warning"
             prominent
-            :variant="$vuetify.theme.dark && 'outlined'"
+            :variant="$vuetify.theme.global.current.dark ? 'outlined' : ''"
           >
             Woah there! Looks like you made some changes to the sign-up form. Keep in mind that when you submit any
             changes to the form, all existing sign-ups <b>will be removed</b>!

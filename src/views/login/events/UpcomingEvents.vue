@@ -10,7 +10,7 @@
           <div v-for="(event,i) in events">
             <v-list-item
               :key="event.title+event.startTime"
-              :style="{ 'background-image': !event.banner ? '' : $vuetify.theme.dark ? `linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(${event.banner})` : `linear-gradient(to bottom, rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url(${event.banner})`}"
+              :style="{ 'background-image': !event.banner ? '' : $vuetify.theme.global.current.dark ? `linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(${event.banner})` : `linear-gradient(to bottom, rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url(${event.banner})`}"
               style="background-size: cover;background-position: center;backdrop-filter: blur(2px);"
             >
               <v-list-item-content

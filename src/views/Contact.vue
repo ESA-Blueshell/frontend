@@ -55,7 +55,7 @@
               allowfullscreen=""
               loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"
-              :style="{filter: $vuetify.theme.dark ? 'invert(90%)' : ''}"
+              :style="{filter: $vuetify.theme.global.current.dark ? 'invert(90%)' : ''}"
             />
           </v-col>
         </v-row>

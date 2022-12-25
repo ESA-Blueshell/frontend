@@ -7,7 +7,7 @@
         style="max-width: 800px"
       >
         <v-img
-          :src="$vuetify.theme.dark?require('../../assets/dekimodark.png'):require('../../assets/dekimo.png')"
+          :src="$vuetify.theme.global.current.dark?require('../../assets/dekimodark.png'):require('../../assets/dekimo.png')"
           class="mb-6"
         />
         <p class="text-body-1">

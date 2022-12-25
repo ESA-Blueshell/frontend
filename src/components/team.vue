@@ -14,7 +14,7 @@
       class="py-10"
       fill-height
       fluid
-      :style="{background: $vuetify.theme.dark ? 'rgba(0,0,0,0.6)' : 'rgba(255,255,255,0.8)'}"
+      :style="{background: $vuetify.theme.global.current.dark ? 'rgba(0,0,0,0.6)' : 'rgba(255,255,255,0.8)'}"
     >
       <v-row
         align="center"

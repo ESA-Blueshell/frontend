@@ -84,7 +84,7 @@
           md="6"
         >
           <v-img
-            :src="$vuetify.theme.dark?partner.logoDark:partner.logo"
+            :src="$vuetify.theme.global.current.dark?partner.logoDark:partner.logo"
             style="max-width: 450px"
             class="mx-auto expand"
             @click="goto(partner.url)"

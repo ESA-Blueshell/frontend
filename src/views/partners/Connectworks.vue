@@ -7,7 +7,7 @@
         style="max-width: 800px"
       >
         <v-img
-          :src="$vuetify.theme.dark?require('../../assets/Connectworks_logo_transparant.png'):require('../../assets/Connectworks_logo_transparant.png')"
+          :src="$vuetify.theme.global.current.dark?require('../../assets/Connectworks_logo_transparant.png'):require('../../assets/Connectworks_logo_transparant.png')"
           class="mb-6"
           width="600px"
           height="159px"
