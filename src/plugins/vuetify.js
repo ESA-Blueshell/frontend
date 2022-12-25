@@ -2,8 +2,6 @@ import {createVuetify} from 'vuetify'
 
 export default createVuetify({
   theme: {
-    defaultTheme: 'dark',
-    // dark: localStorage.getItem('esa-blueshell.nl:darkMode') === 'true',
     options: {customProperties: true},
 
     variations: {
@@ -19,7 +17,7 @@ export default createVuetify({
           accent: '#000000',
           error: '#ff0022',
           anchor: '#3387FA',
-          background: '#1E1E1E',
+          wallpaper: '#1E1E1E',
         },
       },
       dark: {
@@ -29,7 +27,7 @@ export default createVuetify({
           accent: '#A8FF00',
           error: '#ff0022',
           anchor: '#3387FA',
-          background: '#343434',
+          wallpaper: '#343434',
         },
       }
     },

@@ -188,7 +188,7 @@
           :icon="$vuetify.theme.global.name.value === 'dark' ? 'mdi-moon-waxing-crescent' : 'mdi-white-balance-sunny'"
           color="accent"
           class="mr-4"
-          @click="darkMode"
+          @click="toggleDarkMode"
         />
         <!--        :color="$vuetify.theme.current.value === 'dark' ? 'accent' : 'white'"-->
       </transition>
@@ -451,7 +451,7 @@
     <!--    <v-main>-->
     <router-view />
     <!--    </v-main>-->
-    <v-footer dark>
+    <v-footer theme="dark">
       <v-btn
         icon
         href="mailto:board@blueshell.utwente.nl"
@@ -523,6 +523,8 @@
         SITECIE GANG &copy; {{ new Date().getFullYear() }}
       </div>
     </v-footer>
+
+
     <v-snackbar
       v-model="poggers"
       rounded
@@ -539,6 +541,7 @@
         >
       </audio>
     </v-snackbar>
+
     <v-snackbar
       v-model="networkError"
       timeout="10000"
@@ -622,10 +625,7 @@ import xss from "xss";
 import showdown from "showdown";
 
 export default {
-  //?????????? i have no idea why we have to do this. see https://next.vuetifyjs.com/en/features/theme/#changing-theme
   setup() {
-    const theme = useTheme()
-
     const converter = new showdown.Converter()
     converter.setOption('openLinksInNewWindow', true)
     converter.setOption('headerLevelStart', 2)
@@ -634,14 +634,7 @@ export default {
     converter.setOption('tables', true)
     converter.setOption('emoji', true)
     converter.setOption('underline', true)
-    return {
-      theme,
-      // darkMode: () => {
-      //   this.$vuetify.theme.global.name = this.$vuetify.theme.global.current.value.dark ? 'light' : 'dark'
-      //   localStorage.setItem('esa-blueshell.nl:darkMode', this.$vuetify.theme.global.name.value)
-      // },
-      converter
-    }
+    return {converter}
   },
   data() {
     return {
@@ -716,14 +709,16 @@ export default {
       }
 
     });
+
+    this.$vuetify.theme.global.name = localStorage.getItem('esa-blueshell.nl:darkMode') === 'true' ? 'dark' : 'light'
   },
   methods: {
     goto(url) {
       router.push(url)
     },
-    darkMode: () => {
-      this.$vuetify.theme.global.name.value = this.$vuetify.theme.current.value.dark ? 'light' : 'dark'
-      localStorage.setItem('esa-blueshell.nl:darkMode', this.$vuetify.theme.global.name.value)
+    toggleDarkMode() {
+      this.$vuetify.theme.global.name = this.$vuetify.theme.global.current.dark ? 'light' : 'dark'
+      localStorage.setItem('esa-blueshell.nl:darkMode', this.$vuetify.theme.global.current.dark.toString())
     },
     logOut() {
       // Let the cookie expire and redirect if the page is logged in only

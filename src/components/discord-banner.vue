@@ -1,6 +1,5 @@
 <template>
-  <div :style="{background: $vuetify.theme.dark?$vuetify.theme.themes.dark.background:$vuetify.theme.themes.light.background}">
-    <!--v-bind:style="$vuetify.display.smAndUp?{ height: '120px'}:{ height: '200px' }"-->
+  <div :style="{background: $vuetify.theme.computedThemes[$vuetify.theme.global.name].colors.wallpaper}">
     <v-row
       class="mx-auto container flex-nowrap"
       align="center"
