@@ -547,7 +547,7 @@
       timeout="10000"
     >
       <span v-html="networkErrorMessage" />
-      <template #action="{ attrs }">
+      <template #actions="{ attrs }">
         <v-btn
           color="blue"
           variant="text"
@@ -566,7 +566,7 @@
     >
       {{ loginText }}
 
-      <template #action="{ attrs }">
+      <template #actions="{ attrs }">
         <v-btn
           color="blue"
           variant="text"

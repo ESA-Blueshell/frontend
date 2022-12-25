@@ -2,7 +2,6 @@
   <v-main>
     <top-banner title="News" />
 
-
     <div class="mx-3">
       <div
         class="mx-auto my-5"
@@ -13,26 +12,25 @@
             href="https://e0b439d3.sibforms.com/serve/MUIEAIqizJ5g_Rr8BTIJ87Y5ig2C01AXGSiJCeW1VbDKfPRmZ62U6xG90StYCYm7jBUENcyoymK3NG26fqqC_Zj1M8qdIbMeJYr1Kuom0Ph9gOjfvoosc7Ty4rjHv7lQEg04HFGjVKQiUYHN_QFpY_PlzXjZoqwFV-5qiY5VNjLforWZ_luKK4TgS7yONAix1AHKTBLKIF0M6LWN"
             target="_blank"
             class="text-decoration-none"
-          >
-            Blueshell newsletter</a> to stay up to date with events and the association!
+          > Blueshell newsletter</a> to stay up to date with events and the association!
         </p>
       </div>
     </div>
 
-    <v-skeleton-loader
-      v-if="news === []"
-      class="mx-auto"
-      max-width="800"
-      type="card"
-    />
-    <v-list
-      v-else
+    <div
       class="mx-auto"
       style="max-width: 800px"
     >
-      <div v-for="(item, i) in news">
-        <v-list-item :key="i">
-          <v-list-item-content>
+      <v-skeleton-loader
+        v-if="news === []"
+        type="card"
+      />
+      <v-list v-else>
+        <div
+          v-for="(item, i) in news"
+          :key="i"
+        >
+          <v-list-item>
             <div class="mx-auto my-4">
               <h6>{{ item.newsType }}</h6>
               <router-link
@@ -53,14 +51,12 @@
                 {{ item.postedAt.slice(0, 10) }}
               </h5>
             </div>
-          </v-list-item-content>
-        </v-list-item>
-        <v-divider
-          v-if="i !== (news.length - 1)"
-          :key="i+'divider'"
-        />
-      </div>
-    </v-list>
+          </v-list-item>
+
+          <v-divider v-if="i !== (news.length - 1)" />
+        </div>
+      </v-list>
+    </div>
     <v-pagination
       v-model="page"
       :length="totalPages"
@@ -79,21 +75,21 @@ export default {
   data() {
     return {
       news: [],
-      page: 0,
+      page: 1,
       totalPages: 0,
       pageSize: 3,
     }
   },
   mounted() {
     this.$http
-        .get('newsPageable?size=3&page=' + this.page)
-        .then((response) => {
-          this.news = response.data.content;
-          this.page = response.data.pageable.pageNumber;
-          this.totalPages = response.data.totalPages;
-          this.pageSize = response.data.pageable.pageSize;
-        })
-        .catch(e => this.$root.handleNetworkError(e))
+      .get('newsPageable?size=3&page=' + this.page)
+      .then((response) => {
+        this.news = response.data.content;
+        this.page = response.data.pageable.pageNumber;
+        this.totalPages = response.data.totalPages;
+        this.pageSize = response.data.pageable.pageSize;
+      })
+      .catch(e => this.$root.handleNetworkError(e))
   },
   methods: {
     getWords(str) {
@@ -103,14 +99,14 @@ export default {
 
     handlePageChange(value) {
       this.$http
-          .get('newsPageable?size=3&page=' + (value - 1))
-          .then((response) => {
-            this.news = response.data.content;
-            this.totalPages = response.data.totalPages;
-            this.pageSize = response.data.pageable.pageSize;
-            this.page = response.data.pageable.pageNumber + 1;
-          })
-          .catch(e => this.$root.handleNetworkError(e))
+        .get('newsPageable?size=3&page=' + (value - 1))
+        .then((response) => {
+          this.news = response.data.content;
+          this.totalPages = response.data.totalPages;
+          this.pageSize = response.data.pageable.pageSize;
+          this.page = response.data.pageable.pageNumber + 1;
+        })
+        .catch(e => this.$root.handleNetworkError(e))
     }
   }
 }

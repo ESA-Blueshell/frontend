@@ -98,7 +98,6 @@
             <v-img
               :src="game.bg"
               cover
-              eager
               style="position: absolute;top: 0;height: 100%;width: 100%;z-index: 1;filter: blur(3px);-webkit-filter: blur(3px);"
             />
           </v-sheet>

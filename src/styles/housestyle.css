@@ -131,10 +131,10 @@ color: #549aff;
     font-family: "Barlow Semi Condensed", sans-serif;
 }
 
-.v-application.v-theme--dark ul li {
+.v-application.v-theme--dark ul:not(.v-pagination__list) li {
     list-style-image: url('@/assets/svgs/listitemdark.svg')
 }
 
-.v-application ul li {
+.v-application ul:not(.v-pagination__list) li {
     list-style-image: url('@/assets/svgs/listitemlight.svg')
 }
