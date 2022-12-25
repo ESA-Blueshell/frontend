@@ -32,10 +32,10 @@
           v-for="committee in committees"
           :key="committee.name"
         >
-          <v-expansion-panel-header class="text-h5 font-weight-light">
+          <v-expansion-panel-title class="text-h5 font-weight-light">
             {{ committee.name }}
-          </v-expansion-panel-header>
-          <v-expansion-panel-content>
+          </v-expansion-panel-title>
+          <v-expansion-panel-text>
             <p>
               {{ committee.description }}
             </p>
@@ -47,7 +47,7 @@
             <p v-if="committee.why">
               {{ committee.why }}
             </p>
-          </v-expansion-panel-content>
+          </v-expansion-panel-text>
         </v-expansion-panel>
       </v-expansion-panels>
     </div>

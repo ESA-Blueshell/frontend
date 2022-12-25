@@ -52,64 +52,64 @@
           class="mt-8"
         >
           <v-expansion-panel>
-            <v-expansion-panel-header class="text-h5 font-weight-light">
+            <v-expansion-panel-title class="text-h5 font-weight-light">
               5th board
-            </v-expansion-panel-header>
-            <v-expansion-panel-content>
+            </v-expansion-panel-title>
+            <v-expansion-panel-text>
               Chairman: Daniël "thiefzz" Floor<br>
               Commissioner of Esports/Treasurer: Bob "Bobbuz" Even<br>
               Secretary: Louis "Poking" Hu<br>
               Commissioner of internal affairs: Jelle "Zenga" Idzenga<br>
               Commissioner of external affairs: İlayda "Vriendelijke kebab" Hotamış
-            </v-expansion-panel-content>
+            </v-expansion-panel-text>
           </v-expansion-panel>
           <v-expansion-panel>
-            <v-expansion-panel-header class="text-h5 font-weight-light">
+            <v-expansion-panel-title class="text-h5 font-weight-light">
               4th board
-            </v-expansion-panel-header>
-            <v-expansion-panel-content>
+            </v-expansion-panel-title>
+            <v-expansion-panel-text>
               Chairman: Ali “Kelbinoh” Kalbiyev<br>
               Treasurer: Tjebbe “Issie54” Iskander Sterck<br>
               Commissioner of Esports/Secretary: Ivo “King Cookie” Heitlager<br>
               Commissioner of internal affairs: Lucia "Luna" Kim<br>
               Commissioner of external affairs: Jose “Bear” Pratdesaba Lopez
-            </v-expansion-panel-content>
+            </v-expansion-panel-text>
           </v-expansion-panel>
           <v-expansion-panel>
-            <v-expansion-panel-header class="text-h5 font-weight-light">
+            <v-expansion-panel-title class="text-h5 font-weight-light">
               3rd board
-            </v-expansion-panel-header>
-            <v-expansion-panel-content>
+            </v-expansion-panel-title>
+            <v-expansion-panel-text>
               Chairman: Jander “Thoran” Gilbers<br>
               Secretary/Treasurer: Joran “MacVanish” Hagen<br>
               Commissioner of Esports: Andrei “ElDonte” Raureanu<br>
               Commissioner of internal affairs: William “Lampekap88” Schaarman<br>
               Commissioner of external affairs: Allysha “Meavis” Sewradj
-            </v-expansion-panel-content>
+            </v-expansion-panel-text>
           </v-expansion-panel>
           <v-expansion-panel>
-            <v-expansion-panel-header class="text-h5 font-weight-light">
+            <v-expansion-panel-title class="text-h5 font-weight-light">
               2nd board
-            </v-expansion-panel-header>
-            <v-expansion-panel-content>
+            </v-expansion-panel-title>
+            <v-expansion-panel-text>
               Chairman: Jasper “JappieXD” van Harten<br>
               Secretary: Kimberly “Agile Manifesto” Evertz<br>
               Treasurer: Mauk “Dawarfmaster” Muller<br>
               Commissioner of Internal affairs: Antal “TheMadJokerHD” van Dongen<br>
               Commissioner of external affairs: Maiander “Maiantie” Eigenraam
-            </v-expansion-panel-content>
+            </v-expansion-panel-text>
           </v-expansion-panel>
           <v-expansion-panel>
-            <v-expansion-panel-header class="text-h5 font-weight-light">
+            <v-expansion-panel-title class="text-h5 font-weight-light">
               1st board
-            </v-expansion-panel-header>
-            <v-expansion-panel-content>
+            </v-expansion-panel-title>
+            <v-expansion-panel-text>
               Chairman: Thijs “Grootbuik” Lieverse<br>
               Secretary: Jan-Berend “JB” Mooijaart<br>
               Treasurer: Anne “Iadri” Schrader<br>
               Commissioner of internal affairs: Stijn “Salish” Overduin<br>
               Commissioner of external affairs: Idwer “Fangedsheep” de Vries
-            </v-expansion-panel-content>
+            </v-expansion-panel-text>
           </v-expansion-panel>
         </v-expansion-panels>
       </div>
