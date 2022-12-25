@@ -61,10 +61,10 @@
 
     <discord-banner />
 
-<!--    <games-we-play-->
-<!--      :games="games"-->
-<!--      class="pt-3 pb-3"-->
-<!--    />-->
+    <games-we-play
+      :games="games"
+      class="pt-3 pb-3"
+    />
 
     <socials-banner />
 

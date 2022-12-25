@@ -1,5 +1,5 @@
 <template>
-  <v-main>
+  <div style="position:relative;overflow: hidden;">
     <p
       class="mx-auto text-center text-h2 mt-16 text-white"
       style="z-index: 3;position: relative;"
@@ -31,16 +31,15 @@
           v-for="(game,j) in category.titles"
           :key="game.title"
           align-self="center"
-          class="mx-3 my-2 transition-swing"
+          class="mx-3 my-2"
           cols="2"
+          xl="1"
           lg="1"
           md="1"
           sm="1"
-          style="border-radius: 15px;padding: 4px;z-index: 3"
+          style="border-radius: 15px;padding: 4px;z-index: 3;transition: .3s cubic-bezier(.25,.8,.5,1) !important;"
           :class="{ 'elevation-8': (showPopup || hoverCarousel) && currentGame!==null && i===currentGame.y && j===currentGame.x }"
-          :style="{cursor: game.esportsLink ? 'pointer' : 'auto', 'background-color': !($vuetify.theme.dark && (!showPopup && !hoverCarousel)) && ((!showPopup && !hoverCarousel) || (currentGame!==null && i===currentGame.y && j===currentGame.x )) ? '#F5F5F5aa' : '#F5F5F544'}"
-          xl="1"
-
+          :style="{cursor: game.esportsLink ? 'pointer' : 'auto', 'background-color': !($vuetify.theme.global.current.dark && (!showPopup && !hoverCarousel)) && ((!showPopup && !hoverCarousel) || (currentGame!==null && i===currentGame.y && j===currentGame.x )) ? '#F5F5F5aa' : '#F5F5F544'}"
 
           @click="goto(game.esportsLink)"
           @mouseenter="hover(i,j)"
@@ -88,7 +87,6 @@
         <v-carousel-item
           v-for="game in games.map(it => it.titles).flat()"
           :key="game.title"
-          eager
           style="z-index: 1;"
           @mouseenter="hover(null,null)"
           @mouseleave="unhover"
@@ -99,6 +97,7 @@
           >
             <v-img
               :src="game.bg"
+              cover
               eager
               style="position: absolute;top: 0;height: 100%;width: 100%;z-index: 1;filter: blur(3px);-webkit-filter: blur(3px);"
             />
@@ -106,7 +105,7 @@
         </v-carousel-item>
       </v-carousel>
     </div>
-  </v-main>
+  </div>
 </template>
 
 <script>
@@ -114,7 +113,7 @@ import router from "@/plugins/router";
 
 export default {
   name: "GamesWePlay",
-  props: ["games", "color"],
+  props: ["games"],
   data: () => ({
     showPopup: 0,
     currentGame: null,
