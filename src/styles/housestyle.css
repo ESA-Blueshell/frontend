@@ -14,11 +14,11 @@
     transition: inherit;
 }
 
-.v-btn.v-theme--dark:not(.v-btn--outlined) {
+.v-btn.v-theme--dark:not(.v-btn--variant-outlined) {
     border: 1px transparent solid;
 }
 
-.v-btn--outlined.v-theme--dark {
+.v-btn--variant-outlined.v-theme--dark {
     border: 1px #A8FF00 solid;
 }
 
@@ -27,15 +27,15 @@ CSS MOMENT
 
 CSS MOMENT
 */
-:is(:hover,[aria-expanded="true"],[aria-current="page"]).v-btn.v-theme--dark:not(.primary):not(.v-btn--round) {
+:is(:hover,[aria-expanded="true"],[aria-current="page"]).v-btn.v-theme--dark:not(.primary):not(.v-btn--icon):not(.v-btn--round) {
     border: 1px #A8FF00 solid;
 }
 
-:is(.v-list--nav,.v-menu__content) .v-list-item.v-theme--dark:not(.v-btn--outlined) {
+:is(.v-list-item--nav,.v-menu__content) .v-list-item.v-theme--dark:not(.v-btn--variant-outlined) {
     border: 1px transparent solid;
 }
 
-:is(.v-list--nav,.v-menu__content) :is(:hover,[aria-expanded="true"],[aria-current="page"]).v-list-item.v-theme--dark {
+:is(.v-list-item--nav,.v-menu__content) :is(:hover,[aria-expanded="true"],[aria-current="page"]).v-list-item.v-theme--dark {
     border: 1px #A8FF00 solid;
 }
 
@@ -101,7 +101,7 @@ CSS MOMENT
 }
 
 .v-application .subtitle-1, .v-application .subtitle-2, .v-application .text-body-1, .v-application .text-body-2, .v-application .caption, .v-application .overline,
-.text-subtitle-1, .text-subtitle-2, .v-list-item__content{
+.text-subtitle-1, .text-subtitle-2, .v-list-item__content {
     font-family: "Barlow Semi Condensed", sans-serif !important;
 }
 
@@ -113,8 +113,9 @@ CSS MOMENT
 a.text-decoration-none {
     color: #3387FA;
 }
-a:visited.text-decoration-none{
-color: #549aff;
+
+a:visited.text-decoration-none {
+    color: #549aff;
 }
 
 

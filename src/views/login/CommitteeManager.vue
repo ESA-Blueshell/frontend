@@ -9,8 +9,7 @@
         <v-btn
           :loading="creatingLoading"
           block
-          :tile="creatingCommittee"
-          :variant="creatingCommittee && 'outlined'"
+          :variant="creatingCommittee ? 'outlined' : ''"
           @click="creatingCommittee = !creatingCommittee"
         >
           {{ creatingCommittee ? 'Stop creating committee' : 'Create new committee' }}
@@ -37,25 +36,25 @@
           :model-value="committeeToDelete"
         >
           <template #activator="{ on: dialog, attrs }">
-            <v-list lines="two">
-              <div v-for="(committee,i) in committees">
+            <v-list :lines="'two'">
+              <div
+                v-for="(committee,i) in committees"
+                :key="committee.name"
+              >
                 <v-list-item :key="committee.name">
-                  <v-list-item-content>
-                    <v-list-item-title class="text-h6">
-                      {{ committee.name }}
-                    </v-list-item-title>
-                    <v-list-item-subtitle>
-                      {{ committee.members.length }} member{{ committee.members.length === 1 ? '' : 's' }}
-                    </v-list-item-subtitle>
-                  </v-list-item-content>
+                  <v-list-item-title class="text-h6">
+                    {{ committee.name }}
+                  </v-list-item-title>
+                  <v-list-item-subtitle>
+                    {{ committee.members.length }} member{{ committee.members.length === 1 ? '' : 's' }}
+                  </v-list-item-subtitle>
 
                   <v-list-item-action>
                     <v-tooltip location="left">
-                      <template #activator="{ on, attrs }">
+                      <template #activator="{ on }">
                         <v-btn
                           :loading="submittingId === committee.id"
                           icon
-                          v-bind="attrs"
                           @click="editingCommitteeId= (editingCommitteeId===committee.id ? null : committee.id)"
                           v-on="on"
                         >
@@ -168,24 +167,24 @@ export default {
   methods: {
     getCommittees() {
       this.$http.get('committees?fullCommittees=true', {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
-          .then(response => {
-            if (response.data.length > 0) {
-              this.committees = response.data
-            } else {
-              this.noCommittees = true
-            }
-          })
-          .catch(e => this.$root.handleNetworkError(e))
+        .then(response => {
+          if (response.data.length > 0) {
+            this.committees = response.data
+          } else {
+            this.noCommittees = true
+          }
+        })
+        .catch(e => this.$root.handleNetworkError(e))
     },
     deleteCommittee() {
       this.$http.delete('committees/' + this.committeeToDelete.id, {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
-          .then(response => {
-            if (response.status === 200) {
-              this.committees = this.committees.filter(committee => committee.id !== this.committeeToDelete.id)
-              this.committeeToDelete = null
-            }
-          })
-          .catch(e => this.$root.handleNetworkError(e))
+        .then(response => {
+          if (response.status === 200) {
+            this.committees = this.committees.filter(committee => committee.id !== this.committeeToDelete.id)
+            this.committeeToDelete = null
+          }
+        })
+        .catch(e => this.$root.handleNetworkError(e))
     },
   },
 }

@@ -10,7 +10,6 @@
           :src="$vuetify.theme.global.current.dark?require('../../assets/Connectworks_logo_transparant.png'):require('../../assets/Connectworks_logo_transparant.png')"
           class="mb-6"
           width="600px"
-          height="159px"
         />
         <h2>Who are we?</h2>
         <p class="text-body-1">

@@ -25,10 +25,10 @@
             target="_blank"
             class="ml-5 my-3"
           >
-            <v-icon style="--v-icon-size-multiplier: 1.7 "
-            icon="mdi-edit">
-
-            </v-icon>
+            <v-icon
+              style="--v-icon-size-multiplier: 1.7 "
+              icon="mdi-edit"
+            />
           </v-btn>
         </div>
       </v-col>

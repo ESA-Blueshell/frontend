@@ -7,7 +7,7 @@
       <v-img
         class="mx-auto"
         :src="require('../assets/shellyooooooooooooohhhhhhhhhhh.png')"
-        max-width="800"
+        style="max-width: 800px"
       />
       <p class="mt-10 text-h6 text-sm-h5">
         Uh oh, we made a fucky wucky! Pwease don't report this incident to board otherwise they will

@@ -18,7 +18,7 @@
       </h5>
       <v-btn
         icon
-        :href="'http://twitter.com/share?text='+news.title+'&url='+thisURL()+'&hashtags='+news.newsType"
+        :href="'https://twitter.com/share?text='+news.title+'&url='+thisURL()+'&hashtags='+news.newsType"
       >
         <v-icon>mdi-twitter</v-icon>
       </v-btn>

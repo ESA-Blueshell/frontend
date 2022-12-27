@@ -1,19 +1,22 @@
 <template>
   <v-main>
-    <top-banner title="Upcoming Events" />
+    <top-banner title="Upcoming Events"/>
     <div class="mx-3">
       <div
         class="mx-auto my-10"
         style="max-width: 800px"
       >
         <v-list lines="two">
-          <div v-for="(event,i) in events">
+          <div
+            v-for="(event,i) in events"
+            :key="event.title+event.startTime+'key'"
+          >
             <v-list-item
               :key="event.title+event.startTime"
               :style="{ 'background-image': !event.banner ? '' : $vuetify.theme.global.current.dark ? `linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(${event.banner})` : `linear-gradient(to bottom, rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url(${event.banner})`}"
               style="background-size: cover;background-position: center;backdrop-filter: blur(2px);"
             >
-              <v-list-item-content
+              <div
                 :style="{ 'cursor': event.description && event.description.length > 150 ? 'pointer' : 'auto'}"
                 @click="expandEvent(event, i)"
               >
@@ -38,28 +41,28 @@
                     v-html="$root.markdownToHtml(event.description)"
                   />
                 </v-expand-transition>
-              </v-list-item-content>
+              </div>
 
-              <v-list-item-action-text
-                class="ml-2 text-right"
-                style="width: 100px"
-              >
-                <template v-if="submittingId === event.id">
-                  Submitting sign-up
-                </template>
-                <template v-else-if="eventIdToSignUpForm[event.id] !== undefined">
-                  Signed up!
-                </template>
-                <template v-else-if="event.signUp && event.membersOnly && !$store.getters.isMember">
-                  Members-only event
-                </template>
-                <template v-else-if="event.signUp">
-                  Not signed up
-                </template>
-              </v-list-item-action-text>
+              <template #append>
+                <p
+                  class="ml-2 text-right"
+                  style="width: 100px"
+                >
+                  <template v-if="submittingId === event.id">
+                    Submitting sign-up
+                  </template>
+                  <template v-else-if="eventIdToSignUpForm[event.id] !== undefined">
+                    Signed up!
+                  </template>
+                  <template v-else-if="event.signUp && event.membersOnly && !$store.getters.isMember">
+                    Members-only event
+                  </template>
+                  <template v-else-if="event.signUp">
+                    Not signed up
+                  </template>
+                </p>
 
 
-              <v-list-item-action>
                 <v-btn
                   v-if="!event.signUp"
                   disabled
@@ -144,7 +147,7 @@
                     <span v-else>Cancel filling in sign-up form</span>
                   </v-tooltip>
                 </template>
-              </v-list-item-action>
+              </template>
             </v-list-item>
 
             <v-expand-transition :key="event.id">
@@ -190,41 +193,41 @@ export default {
   }),
   mounted() {
     this.$http.get('events/upcoming', {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
-        .then(response => this.events = response.data)
-        .catch(e => this.$root.handleNetworkError(e))
+      .then(response => this.events = response.data)
+      .catch(e => this.$root.handleNetworkError(e))
 
     this.$http.get('events/signups', {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
-        .then(response => response.data.forEach(signUp => this.eventIdToSignUpForm[signUp.event] = signUp.formAnswers))
-        .catch(e => this.$root.handleNetworkError(e))
+      .then(response => response.data.forEach(signUp => this.eventIdToSignUpForm[signUp.event] = signUp.formAnswers))
+      .catch(e => this.$root.handleNetworkError(e))
   },
   methods: {
     signUp(eventId) {
       this.submittingId = eventId
       this.$http.post('events/signups/' + eventId, '', {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
-          .then(() => {
-            this.submittingId = null
-            this.signingUpFor = null
-            this.$set(this.eventIdToSignUpForm, eventId, null)
-          })
-          .catch(e => this.$root.handleNetworkError(e))
+        .then(() => {
+          this.submittingId = null
+          this.signingUpFor = null
+          this.$set(this.eventIdToSignUpForm, eventId, null)
+        })
+        .catch(e => this.$root.handleNetworkError(e))
     },
     removeSignUp(eventId) {
       this.submittingId = eventId
       this.$http.delete('events/signups/' + eventId, {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
-          .then(() => {
-            this.submittingId = null
-            this.signingUpFor = null
-            this.$delete(this.eventIdToSignUpForm, eventId)
-          })
-          .catch(e => this.$root.handleNetworkError(e))
+        .then(() => {
+          this.submittingId = null
+          this.signingUpFor = null
+          this.$delete(this.eventIdToSignUpForm, eventId)
+        })
+        .catch(e => this.$root.handleNetworkError(e))
 
     },
     refreshSignUp(eventId) {
       this.$http.get('events/signups/' + eventId, {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
-          .then(response => {
-            this.$set(this.eventIdToSignUpForm, response.data.event, response.data.formAnswers)
-          })
-          .catch(e => this.$root.handleNetworkError(e))
+        .then(response => {
+          this.$set(this.eventIdToSignUpForm, response.data.event, response.data.formAnswers)
+        })
+        .catch(e => this.$root.handleNetworkError(e))
     },
     defaultAnswers(form) {
       return Array.from(JSON.parse(form), question => question.type === 'open' ? '' : (question.type === 'checkbox' ? [] : null))

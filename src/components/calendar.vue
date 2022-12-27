@@ -16,34 +16,22 @@
             Today
           </v-btn>
           <v-btn
-            fab
-            variant="text"
-            size="small"
             color="accent"
+            icon="mdi-chevron-left"
             @click="prev"
-          >
-            <v-icon>
-              mdi-chevron-left
-            </v-icon>
-          </v-btn>
+          />
           <v-btn
-            fab
-            variant="text"
-            size="small"
             color="accent"
+            icon="mdi-chevron-right"
             @click="next"
-          >
-            <v-icon>
-              mdi-chevron-right
-            </v-icon>
-          </v-btn>
+          />
           <v-toolbar-title
             v-if="$refs.calendar"
             class="ml-3"
           >
             {{ $refs.calendar.title }}
           </v-toolbar-title>
-          <v-spacer />
+          <v-spacer/>
           <!-- Circle loading thingy (only appears after the user's been waiting for new events for 0.5s) -->
           <v-fade-transition>
             <v-progress-circular
@@ -105,7 +93,7 @@
               <!-- Name of the event -->
               <v-toolbar-title
                 v-if="selectedEvent.name.length < 15"
-                v-html="selectedEvent.name"
+                :text="selectedEvent.name"
               />
               <marquee-text
                 v-else
@@ -114,11 +102,11 @@
               >
                 <v-toolbar-title
                   class="mr-5"
-                  v-html="selectedEvent.name"
+                  :text="selectedEvent.name"
                 />
               </marquee-text>
 
-              <v-spacer />
+              <v-spacer/>
               <!-- Start of the "Find location" button. Check the documentation for v-tooltip to find out how this works exactly -->
               <v-tooltip location="bottom">
                 <template #activator="{ on }">
@@ -154,7 +142,7 @@
               v-if="selectedEvent.banner"
               :src="selectedEvent.banner"
               style="width: 100%; object-fit: contain"
-            >
+              alt="promo image for the event">
 
             <v-card-text>
               <!-- Description of the event -->
@@ -178,7 +166,7 @@
                 No description...
               </p>
               <!-- Starting time of the event -->
-              <v-divider class="my-2" />
+              <v-divider class="my-2"/>
               <p>
                 <b>When</b>
                 <br>
@@ -290,28 +278,28 @@ export default {
         setTimeout(() => this.monthsLoading++, 500);
 
         this.$http.get('events?from=' + month)
-            .then(response => {
-              let res = []
-              response.data.forEach(elem => {
-                    res.push({
-                      name: elem.title,
-                      details: elem.description,
-                      date: elem.startTime.substring(0, 10),
-                      start: new Date(elem.startTime),
-                      end: elem.endTime ? new Date(elem.endTime) : undefined,
-                      location: elem.location,
-                      memberPrice: elem.memberPrice,
-                      publicPrice: elem.publicPrice,
-                      googleId: elem.googleId,
-                      timed: !!elem.endTime,
-                      banner: elem.banner,
-                    })
-                  }
-              )
-              this.events.push(...res);
-            })
-            .then(() => this.monthsLoading--)
-            .catch(e => this.$root.handleNetworkError(e))
+          .then(response => {
+            let res = []
+            response.data.forEach(elem => {
+                res.push({
+                  name: elem.title,
+                  details: elem.description,
+                  date: elem.startTime.substring(0, 10),
+                  start: new Date(elem.startTime),
+                  end: elem.endTime ? new Date(elem.endTime) : undefined,
+                  location: elem.location,
+                  memberPrice: elem.memberPrice,
+                  publicPrice: elem.publicPrice,
+                  googleId: elem.googleId,
+                  timed: !!elem.endTime,
+                  banner: elem.banner,
+                })
+              }
+            )
+            this.events.push(...res);
+          })
+          .then(() => this.monthsLoading--)
+          .catch(e => this.$root.handleNetworkError(e))
       }
     },
     setToday() {

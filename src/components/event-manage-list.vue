@@ -29,54 +29,57 @@
 
             <template #append>
               <v-container class="fill-height">
-                <v-row class="fill-height">
+                <v-row>
                   <v-col>
                     <p v-if="$vuetify.display.smAndUp">
                       {{ idToCommittee[event.committee] }}
                     </p>
                   </v-col>
+
                   <v-col>
-                    <v-tooltip location="left">
-                      <template #activator="{ on }">
-                        <v-btn
-                          icon
-                          :disabled="!event.signUp"
-                          v-on="on"
-                          @click="$router.push('signups/'+event.id)"
-                        >
-                          <v-icon>mdi-list-status</v-icon>
-                        </v-btn>
-                      </template>
-                      <span>Check signups</span>
-                    </v-tooltip>
-                  </v-col>
-                  <v-col>
-                    <v-tooltip location="left">
-                      <template #activator="{ on }">
-                        <v-btn
-                          icon
-                          v-on="on"
-                          @click="$router.push('edit/'+event.id)"
-                        >
-                          <v-icon>mdi-pencil</v-icon>
-                        </v-btn>
-                      </template>
-                      <span>Edit event</span>
-                    </v-tooltip>
-                  </v-col>
-                  <v-col>
-                    <v-tooltip location="left">
-                      <template #activator="{ on: tooltip }">
-                        <v-btn
-                          icon
-                          v-on="{ ...tooltip, ...dialog }"
-                          @click="eventToDelete = event"
-                        >
-                          <v-icon>mdi-delete</v-icon>
-                        </v-btn>
-                      </template>
-                      <span>Delete event</span>
-                    </v-tooltip>
+                    <v-row>
+                      <v-tooltip location="left">
+                        <template #activator="{ on }">
+                          <v-btn
+                            icon
+                            :disabled="!event.signUp"
+                            v-on="on"
+                            @click="$router.push('signups/'+event.id)"
+                          >
+                            <v-icon>mdi-list-status</v-icon>
+                          </v-btn>
+                        </template>
+                        <span>Check signups</span>
+                      </v-tooltip>
+                    </v-row>
+                    <v-row>
+                      <v-tooltip location="left">
+                        <template #activator="{ on }">
+                          <v-btn
+                            icon
+                            v-on="on"
+                            @click="$router.push('edit/'+event.id)"
+                          >
+                            <v-icon>mdi-pencil</v-icon>
+                          </v-btn>
+                        </template>
+                        <span>Edit event</span>
+                      </v-tooltip>
+                    </v-row>
+                    <v-row>
+                      <v-tooltip location="left">
+                        <template #activator="{ on: tooltip }">
+                          <v-btn
+                            icon
+                            v-on="{ ...tooltip, ...dialog }"
+                            @click="eventToDelete = event"
+                          >
+                            <v-icon>mdi-delete</v-icon>
+                          </v-btn>
+                        </template>
+                        <span>Delete event</span>
+                      </v-tooltip>
+                    </v-row>
                   </v-col>
                 </v-row>
               </v-container>
@@ -102,7 +105,7 @@
         There will be no undo
       </v-card-text>
       <v-card-actions>
-        <v-spacer />
+        <v-spacer/>
         <v-btn
           variant="text"
           @click="eventToDelete=null"

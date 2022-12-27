@@ -53,7 +53,8 @@
               <b>{{ response.fullName }}:</b> {{ response.formAnswers[i].map(answer => question.options[answer]).join(', ') }}
             </p>
             <v-container>
-              <div v-for="(option,j) in question.options">
+              <div v-for="(option,j) in question.options"
+                   :key="j+'key'">
                 <v-row
                   :key="j"
                   @click="toggle(i,j)"

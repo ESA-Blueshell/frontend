@@ -8,7 +8,7 @@
       >
         <v-img
           :src="require('../../assets/elnino.png')"
-          max-width="450px"
+          style="max-width: 450px"
           class="mb-6"
         />
 

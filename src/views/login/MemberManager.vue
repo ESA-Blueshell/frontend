@@ -22,32 +22,33 @@
           >
             <div v-if="!user.roles.includes('MEMBER') && isSearched(user)">
               <v-list-item>
-                <v-list-item-content @click="expanded = (expanded === i) ? null : i">
+                <div @click="expanded = (expanded === i) ? null : i">
                   <v-list-item-title>
                     {{ user.fullName }}
                   </v-list-item-title>
                   <v-list-item-subtitle>
                     {{ user.username }}
                   </v-list-item-subtitle>
-                  <div v-if="expanded === i">
-                    <p
-                      v-for="[key,value] in Object.entries(user)"
-                      :key="key"
-                      class="mb-0"
-                    >
-                      {{ key }}: {{ value }}
-                    </p>
-                  </div>
-                </v-list-item-content>
-
-                <v-list-item-action>
+                  <v-expand-transition>
+                    <div v-if="expanded === i">
+                      <p
+                        v-for="[key,value] in Object.entries(user)"
+                        :key="key"
+                        class="mb-0"
+                      >
+                        {{ key }}: {{ value }}
+                      </p>
+                    </div>
+                  </v-expand-transition>
+                </div>
+                <template #append>
                   <v-btn
                     variant="text"
                     @click="makeMember(user)"
                   >
                     Make member
                   </v-btn>
-                </v-list-item-action>
+                </template>
               </v-list-item>
               <v-divider />
             </div>
@@ -71,8 +72,8 @@ export default {
   }),
   mounted() {
     this.$http.get('/users', {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
-        .then(response => this.users = response.data)
-        .catch(e => this.$root.handleNetworkError(e))
+      .then(response => this.users = response.data)
+      .catch(e => this.$root.handleNetworkError(e))
   },
   methods: {
     isSearched(user) {
@@ -80,11 +81,11 @@ export default {
     },
     makeMember(user) {
       this.$http.post(`/users/${user.id}/member?isMember=true`, {}, {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
-          .then(() =>
-              this.$http.get('/users', {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
-                  .then(response => this.users = response.data)
-                  .catch(e => this.$root.handleNetworkError(e)))
-          .catch(e => this.$root.handleNetworkError(e))
+        .then(() =>
+          this.$http.get('/users', {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
+            .then(response => this.users = response.data)
+            .catch(e => this.$root.handleNetworkError(e)))
+        .catch(e => this.$root.handleNetworkError(e))
     },
   }
 

@@ -31,10 +31,7 @@
         >
           Membership
         </v-btn>
-        <v-menu
-          open-on-hover
-          offset-y
-        >
+        <v-menu open-on-hover>
           <template #activator="{ props }">
             <v-btn
               class="bar-button"
@@ -100,10 +97,7 @@
         </v-btn>
 
 
-        <v-menu
-          open-on-hover
-          offset-y
-        >
+        <v-menu open-on-hover>
           <template #activator="{ props }">
             <v-btn
               class="bar-button"
@@ -137,10 +131,7 @@
         >
           News
         </v-btn>
-        <v-menu
-          open-on-hover
-          offset-y
-        >
+        <v-menu open-on-hover>
           <template #activator="{ props }">
             <v-btn
               class="bar-button"
@@ -176,42 +167,33 @@
         </v-btn>
       </div>
 
-      <v-spacer />
+      <v-spacer/>
 
       <!--  Dark mode toggle    -->
-      <transition
-        name="roll"
-        mode="out-in"
-      >
-        <v-btn
-          size="small"
-          :icon="$vuetify.theme.global.name.value === 'dark' ? 'mdi-moon-waxing-crescent' : 'mdi-white-balance-sunny'"
-          color="accent"
-          class="mr-4"
-          @click="toggleDarkMode"
-        />
-        <!--        :color="$vuetify.theme.current.value === 'dark' ? 'accent' : 'white'"-->
-      </transition>
+      <v-btn
+        class="mr-4"
+        :icon="$vuetify.theme.global.current.dark ? 'mdi-moon-waxing-crescent' : 'mdi-white-balance-sunny'"
+        :color="$vuetify.theme.global.current.dark ? 'accent' : 'white'"
+        :class="{'roll-on': $vuetify.theme.global.current.dark,'roll-off': !$vuetify.theme.global.current.dark }"
+        @click="toggleDarkMode"
+      />
 
       <!-- LOGIN BUTTON/ACCOUNT DROPDOWN MENU -->
       <v-btn
         v-if="!loggedIn"
         class="bar-button"
-
         to="/login"
       >
         Log In
       </v-btn>
-      <v-menu
-        v-else
-        offset-y
-      >
+      <v-menu v-else>
         <template #activator="{ props }">
           <v-btn
             class="bar-button"
+            variant="text"
             v-bind="props"
           >
-            <v-icon size="large">
+            <v-icon size="x-large">
               mdi-account
             </v-icon>
           </v-btn>
@@ -241,208 +223,176 @@
 
     <v-navigation-drawer
       v-model="drawer"
-      app
       temporary
     >
       <v-list nav>
-        <v-list-item
-          text
-          to="/"
-        >
+        <v-list-item to="/">
           <v-list-item-title>Home</v-list-item-title>
         </v-list-item>
-        <v-list-item
-          text
-
-          to="/membership"
-        >
+        <v-list-item to="/membership">
           <v-list-item-title>Membership</v-list-item-title>
         </v-list-item>
-        <v-list-group
-          :value="false"
-          color="blue-lighten-1"
-          class="mb-2"
-        >
+        <v-list-group>
           <!-- why the fuck do list-groups not get a bottom margin but list items do what the fuck it's like they don't want us to use them in a navbar aaaaa -->
-          <template #activator>
-            <v-list-item-title>
-              Association
-            </v-list-item-title>
+          <template #activator="{ props }">
+            <v-list-item
+              v-bind="props"
+              title="Association"
+            />
           </template>
+
           <v-list-item to="/aboutus">
-            About us
+            <v-list-item-title>About us</v-list-item-title>
           </v-list-item>
           <v-list-item to="/board">
-            Board
+            <v-list-item-title>Board</v-list-item-title>
           </v-list-item>
           <v-list-item to="/committees">
-            Committees
+            <v-list-item-title>Committees</v-list-item-title>
           </v-list-item>
           <v-list-item to="/documents">
-            Documents
+            <v-list-item-title>Documents</v-list-item-title>
           </v-list-item>
-          <v-divider dark />
+          <v-divider class="mb-1"/>
         </v-list-group>
 
 
-        <v-list-group
-          v-if="$store.getters.isLoggedIn"
-          :value="false"
-          color="blue-lighten-1"
-          class="mb-2"
-        >
-          <!-- why the fuck do list-groups not get a bottom margin but list items do what the fuck it's like they don't want us to use them in a navbar aaaaa -->
-          <template #activator>
-            <v-list-item-title>
-              Events
-            </v-list-item-title>
+        <v-list-group v-if="$store.getters.isLoggedIn">
+          <template #activator="{ props }">
+            <v-list-item
+              v-bind="props"
+              title="Events"
+            />
           </template>
-          <v-list-item to="/events/calendar">
-            Event Calendar
-          </v-list-item>
-          <v-list-item to="/events/upcoming">
-            Upcoming events
-          </v-list-item>
+          <v-list-item
+            to="/events/calendar"
+            title="Event Calendar"
+          />
+          <v-list-item
+            to="/events/upcoming"
+            title="Upcoming events"
+          />
           <v-list-item
             v-if="$store.getters.isActive"
             to="/events/manage"
-          >
-            Manage events
-          </v-list-item>
-          <v-divider dark />
+            title="Manage events"
+          />
+          <v-divider class="mb-1"/>
         </v-list-group>
         <v-list-item
           v-else
-          text
-          dark
           to="/events/calendar"
-        >
-          <v-list-item-title>Event calendar</v-list-item-title>
-        </v-list-item>
+          title="Event calendar"
+        />
 
-
-        <v-list-group
-          :value="false"
-          color="blue-lighten-1"
-          class="mb-2"
-        >
-          <template #activator>
-            <v-list-item-title>
-              Esports
-            </v-list-item-title>
+        <v-list-group>
+          <template #activator="{ props }">
+            <v-list-item
+              v-bind="props"
+              title="Esports"
+            />
           </template>
-          <v-list-item to="/esports/competitive-scene">
-            Competitive scene
-          </v-list-item>
-          <v-list-item to="/esports/league-of-legends">
-            League of Legends
-          </v-list-item>
-          <v-list-item to="/esports/counter-strike-global-offensive">
-            Counter Strike: Global
-            Offensive
-          </v-list-item>
-          <v-list-item to="/esports/rocketleague">
-            Rocket League
-          </v-list-item>
-          <v-divider dark />
+          <v-list-item
+            to="/esports/competitive-scene"
+            title="Competitive scene"
+          />
+          <v-list-item
+            to="/esports/league-of-legends"
+            title="League of Legends"
+          />
+          <v-list-item
+            to="/esports/counter-strike-global-offensive"
+            title="Counter Strike: Global Offensive"
+          />
+          <v-list-item
+            to="/esports/rocketleague"
+            title="Rocket League"
+          />
+          <v-divider class="mb-1"/>
         </v-list-group>
+
         <v-list-item
-          text
-          dark
           to="/news"
-        >
-          <v-list-item-title>News</v-list-item-title>
-        </v-list-item>
-        <v-list-group
-          :value="false"
-          color="blue-lighten-1"
-          class="mb-2"
-        >
-          <template #activator>
-            <v-list-item-title>
-              Partners
-            </v-list-item-title>
+          title="News"
+        />
+
+        <v-list-group>
+          <template #activator="{ props }">
+            <v-list-item
+              v-bind="props"
+              title="Partners"
+            />
           </template>
-          <v-list-item to="/partners/become-a-partner">
-            Become a partner!
-          </v-list-item>
-          <v-list-item to="/partners/el-nino">
-            El Niño – Digital Development
-          </v-list-item>
-          <v-list-item to="/partners/dekimo">
-            Dekimo
-          </v-list-item>
-          <v-divider dark />
+          <v-list-item
+            to="/partners/become-a-partner"
+            title="Become a partner!"
+          />
+          <v-list-item
+            to="/partners/el-nino"
+            title="El Niño – Digital Development"
+          />
+          <v-list-item
+            to="/partners/dekimo"
+            title="Dekimo"
+          />
+          <v-divider class="mb-1"/>
         </v-list-group>
+
         <v-list-item
-          text
-          dark
           to="/contact"
-        >
-          <v-list-item-title>Contact</v-list-item-title>
-        </v-list-item>
-        <!--        <v-list-item text dark to="/login">-->
-        <!--          <v-list-item-title>Login</v-list-item-title>-->
-        <!--        </v-list-item>-->
+          title="Contact"
+        />
       </v-list>
+
       <template #append>
         <div class="mx-4">
           <v-row
             align="center"
             justify="center"
+            align-content="center"
           >
-            <v-col cols="4">
+            <!--            TODO: figure out how to center these-->
+            <v-col>
               <v-btn
-                icon
+                class="mx-auto"
+                icon="mdi-email"
                 href="mailto:board@blueshell.utwente.nl"
-              >
-                <v-icon>mdi-email</v-icon>
-              </v-btn>
+              />
             </v-col>
-            <v-col cols="4">
+            <v-col>
               <v-btn
-                icon
+                icon="mdi-instagram"
                 href="https://www.instagram.com/blueshellesports/"
                 target="_blank"
-              >
-                <v-icon>mdi-instagram</v-icon>
-              </v-btn>
+              />
             </v-col>
-            <v-col cols="4">
+            <v-col>
               <v-btn
-                icon
+                icon="mdi-facebook"
                 href="https://www.facebook.com/BlueshellEsports/"
                 target="_blank"
-              >
-                <v-icon>mdi-facebook</v-icon>
-              </v-btn>
+              />
             </v-col>
-            <v-col cols="4">
+            <v-col>
               <v-btn
-                icon
+                icon="mdi-twitch"
                 href="https://www.twitch.tv/blueshellesports"
                 target="_blank"
-              >
-                <v-icon>mdi-twitch</v-icon>
-              </v-btn>
+              />
             </v-col>
-            <v-col cols="4">
+            <v-col>
               <v-btn
-                icon
+                icon="mdi-twitter"
                 href="https://twitter.com/BlueshellESA"
                 target="_blank"
-              >
-                <v-icon>mdi-twitter</v-icon>
-              </v-btn>
+              />
             </v-col>
-            <v-col cols="4">
+            <v-col>
               <v-btn
-                icon
+                icon="mdi-linkedin"
                 href="https://www.linkedin.com/company/blueshell-esports"
                 target="_blank"
-              >
-                <v-icon>mdi-linkedin</v-icon>
-              </v-btn>
+              />
             </v-col>
           </v-row>
         </div>
@@ -619,8 +569,6 @@
 
 <script>
 import router from "@/plugins/router";
-import {useTheme} from "vuetify";
-import store from "@/plugins/store";
 import xss from "xss";
 import showdown from "showdown";
 
@@ -790,11 +738,28 @@ export default {
   height: 90% !important;
 }
 
-.roll-enter-active {
-  animation: rotate-in 0.5s;
+.roll-off {
+  animation: rotate-out 0.5s both;
+}
+
+.roll-on {
+  animation: rotate-in 0.5s both;
 }
 
 @keyframes rotate-in {
+  0% {
+    transform: rotate(-45deg);
+  }
+  50% {
+    transform: rotate(22.5deg);
+  }
+  100% {
+    transform: rotate(0);
+  }
+}
+
+
+@keyframes rotate-out {
   0% {
     transform: rotate(-45deg);
   }
