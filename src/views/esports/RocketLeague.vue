@@ -27,24 +27,20 @@ export default {
         bg: require('../../assets/rocketleagueesports.jpg'),
         players: [
           {
-            name: 'Thomas Dekker',
-            ign: 'ItIsIThomas'
-          },
-          {
             name: 'Job de Ruijter',
             ign: 'Job 404'
           },
           {
-            name: 'Patrick Wolbers',
-            ign: 'KrabbyPattie'
-          },
-          {
-            name: 'Allard van der Hooft',
-            ign: 'vdhooft_'
-          },
-          {
             name: 'René Hammink',
             ign: 'Mr. Pancake^-^'
+          },
+          {
+            name: 'Bas Willemsen',
+            ign: 'Dipsy'
+          },
+          {
+            name: 'Finn Prinsenberg',
+            ign: 'Diagonize'
           },
         ]
       },
