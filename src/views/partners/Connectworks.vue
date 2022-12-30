@@ -6,7 +6,7 @@
         <v-img
             :src="$vuetify.theme.dark?require('../../assets/Connectworks_logo_transparant.png'):require('../../assets/Connectworks_logo_transparant.png')"
             class="mb-6" width="600px" height="159px"></v-img>
-        <h2>Who are we?</h2>
+        <p class="text-h4 font-weight-light">Who are we?</p>
         <p class="body-1">
           We love solutions that add value, so we are constantly looking for what is possible and what value this adds
           for our customers and our own organization. We are an enthusiastic group of people with a passion for IT.
@@ -15,7 +15,7 @@
           understands all aspects of our company and is enthusiastic about their work.
         </p>
 
-        <h2>Our services</h2>
+        <p class="text-h4 font-weight-light">Our services</p>
         <p class="body-1 mb-0">
           What we exactly do is very broad. But luckily we can explain it well. We have divided our IT services into 6
           different solution areas.
@@ -44,13 +44,13 @@
             customer satisfaction.
           </li>
         </ul>
-        <h2>Our customers</h2>
+        <p class="text-h4 font-weight-light">Our customers</p>
         <p class="body-1">
           Connectworks' customer base consists of between 400 and 450 companies in and outside the Twente region.
           More than 8,000 people use one of our services every day and we always personally speak to our customers from
           all kinds of sectors to help them with their IT.
         </p>
-        <h2>Working at Connectworks?</h2>
+        <p class="text-h4 font-weight-light">Working at Connectworks?</p>
         <p class="body-1">
           We are always looking for new talent. We offer you the opportunity to work and develop yourself in an informal
           working environment where taking the initiative is valued. During lunch or the Friday afternoon snack (in good
@@ -59,7 +59,7 @@
           Interested? Send an e-mail with an extensive CV to <a href="mailto:application@connectworks.nl">application@connectworks.nl</a>
           or contact us via our general telephone number <a href="tel:085-7441430">085-7441430</a>.
         </p>
-        <h2>Location</h2>
+        <p class="text-h4 font-weight-light">Location</p>
         <p class="body-1">
           Bedrijvenpark Twente 428<br/>
           7062KM Almelo, The Netherlands

@@ -3,56 +3,69 @@
     <top-banner title="El Niño – Digital Development"></top-banner>
     <div class="mx-3">
       <div class="mx-auto my-10" style="max-width: 800px">
-        <v-img :src="require('../../assets/elnino.png')" max-width="450px" class="mb-6"></v-img>
+        <v-container class="pa-0 mb-3">
+          <v-row>
+            <v-col>
+              <v-img :src="require('../../assets/elnino.png')" max-width="450px" class="mb-6"></v-img>
+            </v-col>
+            <v-spacer/>
+            <v-col>
+              <p class="text-h4 font-weight-light">
+                Locations
+              </p>
+              <ul>
+                <li>Kuipersdijk 6C, Enschede</li>
+                <li>Waldorpstraat 17Q, The Hague</li>
+              </ul>
+            </v-col>
+          </v-row>
+        </v-container>
 
         <p class="text-h4 font-weight-light">
-          Locations
+          Something about us
         </p>
         <p class="body-1">
-          Kuipersdijk 6C, Enschede<br>
-          President Kennedylaan 19-21, The Hague
+          We’re a group of technology enthusiasts working on challenging projects for customers all around the world and
+          active in different sectors. We’re dedicated to building custom web applications, e-commerce platforms, mobile
+          apps and connected hardware devices. We have an international team of professionals (partly still students)
+          eager to learn new things and love the challenge on working on projects that haven’t been done before.
         </p>
+
         <p class="text-h4 font-weight-light">
-          Who are we?
+          What we offer
         </p>
         <p class="body-1">
-          We are a group of technology geeks who are always interested in using the latest
-          technologies and software to develop kick-ass online solutions. No problem is unsolvable,
-          and we are always eager to create solutions for people and businesses active in a great
-          variety of markets.
+          We offer everybody flexible working hours, a gym you can use for free at the office in Enschede, your own
+          MacBook Pro and desk, yearly learning budget, takeout meals, movie nights at the office and many more
+          activities we organise for you and sometimes for your partner. If you’re a student, you can easily combine
+          work with your studies due to our flexible working hours and allowing you to work remotely when necessary.
         </p>
+
         <p class="text-h4 font-weight-light">
-          Our core business
+          What we’re looking for
         </p>
         <p class="body-1">
-          We develop custom web applications, Magento webshops, mobile applications (Android and
-          iOS) and IOT solutions.
+          We’re looking for talented people in many areas: web development, hardware development, design (UX + UI),
+          testing, devops and data science. If you’ve experience in any of these areas and are interested to join our
+          team, let us know!
         </p>
+
         <p class="text-h4 font-weight-light">
-          Our customers
+          Join us!
         </p>
         <p class="body-1">
-          Most of our customers are located close by (in and around Twente), but we also have
-          customers located in the rest of The Netherlands, Belgium, England, Spain and Germany.
-          These customers range from relatively small to large multi-nationals operating in various
-          countries in the world.
-        </p>
-        <p class="text-h4 font-weight-light">
-          Want to join our growing team?
-        </p>
-        <p class="body-1">
-          We are always in the look out of new talent to help us build cool stuff! Whether you’re a
-          student who just started, a master student or a starter, we have always a special place
-          for you.
+          We are always in the look out of new talent to help us build cool stuff! Whether you’re a student who just
+          started, a master student or a starter, we have always a special place for you.
         </p>
         <p class="body-1">
           See for more information:
           <a href="https://www.elnino.tech/vacatures" class="text-decoration-none" target="_blank">www.elnino.tech/vacatures</a>
           (Dutch) or
-          <a href="https://www.elnino.tech/getajob" class="text-decoration-none" target="_blank">www.elnino.tech/getajob</a>
-          or <a href="https://www.elnino.tech/liftoff" class="text-decoration-none" target="_blank">www.elnino.tech/liftoff</a>
+          <a href="https://www.elnino.tech/getajob" class="text-decoration-none"
+             target="_blank">www.elnino.tech/getajob</a>
           (English). You can always contact Michael on WhatsApp:
-          +31626978392. Don’t worry he won’t bite!
+          <a href="https://wa.me/31626978392" class="text-decoration-none" target="_blank">+31626978392</a>. Don’t worry
+          he won’t bite!
         </p>
       </div>
     </div>

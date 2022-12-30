@@ -13,7 +13,6 @@ import League from "./views/esports/League";
 import Csgo from "./views/esports/Csgo";
 import Documents from "@/views/Documents";
 import ElNino from "@/views/partners/ElNino";
-import Dekimo from "@/views/partners/Dekimo";
 import Partners from "@/views/partners/Partners";
 import Article from "@/views/Article";
 import NotFound from "@/views/NotFound";
@@ -35,6 +34,7 @@ import MemberManager from "@/views/login/MemberManager";
 import RocketLeague from "@/views/esports/RocketLeague";
 import ForgotPassword from "@/views/login/ForgotPassword";
 import ResetPassword from "@/views/login/ResetPassword";
+import TalentIT from "@/views/partners/TalentIT.vue";
 
 
 Vue.use(Router)
@@ -144,14 +144,14 @@ const router = new Router({
       component: ElNino
     },
     {
-      path: '/partners/dekimo',
-      name: 'dekimo',
-      component: Dekimo
-    },
-    {
       path: '/partners/connectworks',
       name: 'connectworks',
       component: Connectworks
+    },
+    {
+      path: '/partners/talentIT',
+      name: 'talentit',
+      component: TalentIT
     },
     {
       path: '/login',

@@ -181,19 +181,19 @@ export default {
           url: "/partners/el-nino"
         },
         {
-          logo: require("../assets/dekimo.png"),
-          logoDark: require("../assets/dekimodark.png"),
-          url: "/partners/dekimo"
+          logo: require("../assets/Connectworks_logo_transparant.png"),
+          logoDark: require("../assets/Connectworks_logo_transparant.png"),
+          url: "https://connectworks.nl/"
+        },
+        {
+          logo: require("../assets/talentit.png"),
+          logoDark: require("../assets/talentitdark.png"),
+          url: "https://talentittwente.nl/"
         },
         {
           logo: require("../assets/ett.png"),
           logoDark: require("../assets/ettdark.png"),
           url: "https://esportsteamtwente.nl/"
-        },
-        {
-          logo: require("../assets/Connectworks_logo_transparant.png"),
-          logoDark: require("../assets/Connectworks_logo_transparant.png"),
-          url: "https://connectworks.nl/"
         },
       ]
     }

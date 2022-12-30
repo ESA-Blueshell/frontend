@@ -73,8 +73,8 @@
           <v-list>
             <v-list-item to="/partners/become-a-partner">Become a partner!</v-list-item>
             <v-list-item to="/partners/el-nino">El Niño – Digital Development</v-list-item>
-            <v-list-item to="/partners/dekimo">Dekimo</v-list-item>
             <v-list-item to="/partners/connectworks">Connectworks</v-list-item>
+            <v-list-item to="/partners/talentIT">TalentIT</v-list-item>
           </v-list>
         </v-menu>
         <v-btn class="bar-button" text dark to="/contact">Contact</v-btn>
@@ -176,7 +176,8 @@
           </template>
           <v-list-item to="/partners/become-a-partner">Become a partner!</v-list-item>
           <v-list-item to="/partners/el-nino">El Niño – Digital Development</v-list-item>
-          <v-list-item to="/partners/dekimo">Dekimo</v-list-item>
+          <v-list-item to="/partners/connectworks">Connectworks</v-list-item>
+          <v-list-item to="/partners/talentIT">TalentIT</v-list-item>
           <v-divider dark></v-divider>
         </v-list-group>
         <v-list-item text dark to="/contact">
@@ -250,14 +251,14 @@
       <v-btn href="https://www.elnino.tech/" target="_blank">
         El Niño
       </v-btn>
-      <v-btn href="https://www.dekimo.com/" target="_blank">
-        Dekimo
+      <v-btn href="https://connectworks.nl/" target="_blank">
+        Connectworks
+      </v-btn>
+      <v-btn href="https://talentittwente.nl/" target="_blank">
+        TalentIT
       </v-btn>
       <v-btn href="https://esportsteamtwente.nl/" target="_blank">
         ETT
-      </v-btn>
-      <v-btn href="https://connectworks.nl/" target="_blank">
-        Connectworks
       </v-btn>
       <v-spacer></v-spacer>
 
