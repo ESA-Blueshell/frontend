@@ -19,7 +19,7 @@
           </div>
         </v-col>
       </v-row>
-      <v-row>
+      <v-row v-if="discordData">
         <v-col md="5" sm="12">
           <p class="text-h5 white--text mb-2">{{ discordData.presence_count }} people online on discord</p>
 
