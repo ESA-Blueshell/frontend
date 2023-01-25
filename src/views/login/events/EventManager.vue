@@ -18,7 +18,7 @@
       <p class="mt-8 mx-3 text-h3 text-center">Upcoming Events</p>
 
       <event-manage-list
-          :events="events"
+          :events="events.filter(e => e.visible)"
           :id-to-committee="idToCommittee"
       />
 
