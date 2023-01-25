@@ -56,8 +56,9 @@
           working environment where taking the initiative is valued. During lunch or the Friday afternoon snack (in good
           weather on our roof terrace) we mainly talk about football and formula 1. Various Netflix viewing tips are
           passed by and sandwiches are regularly bought.
-          Interested? Send an e-mail with an extensive CV to <a href="mailto:application@connectworks.nl">application@connectworks.nl</a>
-          or contact us via our general telephone number <a href="tel:085-7441430">085-7441430</a>.
+          Interested? Send an e-mail with an extensive CV to <a href="mailto:sollicitatie@connectworks.nl">sollicitatie@connectworks.nl</a>
+          , contact us via our general telephone number <a href="tel:085-7441430">085-7441430</a>, or check out our
+          <a href="https://www.connectworks.nl">website</a>.
         </p>
         <p class="text-h4 font-weight-light">Location</p>
         <p class="body-1">
