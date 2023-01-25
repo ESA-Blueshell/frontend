@@ -4,8 +4,8 @@
     <div class="mx-3">
       <div class="mx-auto my-10" style="max-width: 800px">
         <v-img
-            :src="$vuetify.theme.dark?require('../../assets/connectworks.png'):require('../../assets/connectworks.png')"
-            class="mb-6" width="600px" height="159px"></v-img>
+            :src="$vuetify.theme.dark?require('../../assets/connectworksdark.png'):require('../../assets/connectworks.png')"
+            class="mb-6"/>
         <p class="text-h4 font-weight-light">Who are we?</p>
         <p class="body-1">
           We love solutions that add value, so we are constantly looking for what is possible and what value this adds
