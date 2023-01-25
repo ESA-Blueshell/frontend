@@ -4,7 +4,7 @@
     <div class="mx-3">
       <div class="mx-auto my-10" style="max-width: 800px">
         <v-img
-            :src="$vuetify.theme.dark?require('../../assets/Connectworks_logo_transparant.png'):require('../../assets/Connectworks_logo_transparant.png')"
+            :src="$vuetify.theme.dark?require('../../assets/connectworks.png'):require('../../assets/connectworks.png')"
             class="mb-6" width="600px" height="159px"></v-img>
         <p class="text-h4 font-weight-light">Who are we?</p>
         <p class="body-1">

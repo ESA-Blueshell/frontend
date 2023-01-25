@@ -5,7 +5,7 @@
       <div class="mx-auto my-10" style="max-width: 800px">
         <v-img
             :src="$vuetify.theme.dark?require('../../assets/talentitdark.png'):require('../../assets/talentit.png')"
-            class="mb-6"></v-img>
+            class="mb-6"/>
         <p class="body-1">
           TalentIT Twente is a non-profit organization that provides help for IT students in their search for an
           internship, graduation assignment or part time job. We match students based on their personality as first

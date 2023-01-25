@@ -181,8 +181,8 @@ export default {
           url: "/partners/el-nino"
         },
         {
-          logo: require("../assets/Connectworks_logo_transparant.png"),
-          logoDark: require("../assets/Connectworks_logo_transparant.png"),
+          logo: require("../assets/connectworks.png"),
+          logoDark: require("../assets/connectworks.png"),
           url: "https://connectworks.nl/"
         },
         {
