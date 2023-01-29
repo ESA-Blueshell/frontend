@@ -6,13 +6,15 @@ import 'vuetify/dist/vuetify.min.css'
 import vuetify from './plugins/vuetify';
 import '@mdi/font/css/materialdesignicons.css'
 import './styles/housestyle.css';
-import axios from 'axios';
+import Axios from 'axios';
 
 Vue.config.productionTip = false
 
+Axios.defaults.baseURL = "http://localhost:8080/api/"
+// Axios.defaults.baseURL = "https://esa-blueshell.nl/api/"
 
-Vue.prototype.$http = axios.create({baseURL: "http://localhost:8800/api"})
-Vue.$http = axios.create({baseURL: "http://localhost:8800/api"})
+Vue.prototype.$http = Axios
+Vue.$http = Axios
 
 const showdown = require("showdown")
 showdown.setOption('openLinksInNewWindow', true)
