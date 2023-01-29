@@ -9,7 +9,7 @@
             Join us on our Discord server
           </p>
         </v-col>
-        <v-spacer></v-spacer>
+        <v-spacer/>
         <v-col md="auto">
           <div>
             <v-btn color="primary" href="https://discord.gg/23YMFQy" target="_blank"
@@ -19,10 +19,10 @@
           </div>
         </v-col>
       </v-row>
-      <v-row v-if="discordData">
+      <v-row v-if="discordData" class="mx-auto pa-3 ma-0">
         <v-col cols="12" :md="Object.entries(channels).length > 0 ? 5 : 12">
           <p class="text-h5 white--text mb-2">{{ discordData.presence_count }} people now online on discord</p>
-          <div class="overflow-hidden" style="border: 1px solid #A8FF00;border-radius: 16px">
+          <div class="overflow-hidden" style="border: 1px solid #A8FF00;border-radius: 10px">
             <div class="overflow-y-auto" style="max-height: 180px">
               <v-container>
                 <v-row no-gutters style="justify-content: center">
@@ -59,7 +59,7 @@
           </p>
           <v-container class="overflow-y-auto" style="max-height: 180px">
             <v-row v-for="[channelId,channelName] in Object.entries(channels)" :key="channelId"
-                   class="mb-2" style="border: 1px solid #A8FF00;border-radius: 16px">
+                   class="mb-2" style="border: 1px solid #A8FF00;border-radius: 10px">
               <div class="ml-4">
                 <p class="text-h6 white--text font-italic font-weight-thin mb-0">
                   <v-icon dark size="20" class="ma-0">mdi-volume-high</v-icon>
