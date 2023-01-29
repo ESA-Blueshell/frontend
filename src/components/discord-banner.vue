@@ -20,7 +20,7 @@
         </v-col>
       </v-row>
       <v-row v-if="discordData">
-        <v-col cols="12" md="5">
+        <v-col cols="12" :md="Object.entries(channels).length > 0 ? 5 : 12">
           <p class="text-h5 white--text mb-2">{{ discordData.presence_count }} people now online on discord</p>
           <div class="overflow-hidden" style="border: 1px solid #A8FF00;border-radius: 16px">
             <div class="overflow-y-auto" style="max-height: 180px">
@@ -28,7 +28,7 @@
                 <v-row no-gutters style="justify-content: center">
                   <v-col v-for="member in discordData.members" :key="member.username"
                          class="discord-member-entry ml-4"
-                         cols="12" sm="3" :md="Object.entries(channels).length > 0 ? 2 : 5">
+                         cols="12" sm="3" :md="Object.entries(channels).length > 0 ? 5 : 2">
                     <div class="discord-member-image">
                       <img :alt="`${member.username}'s avatar`" :src="member.avatar_url"
                            class="discord-member-img">
@@ -39,7 +39,7 @@
                   </v-col>
                   <v-col v-if="discordData.members.length > 99"
                          class="discord-member-entry"
-                         cols="12" sm="3" :md="Object.entries(channels).length > 0 ? 2 : 5">
+                         cols="12" sm="3" :md="Object.entries(channels).length > 0 ? 5 : 2">
                     <div class="white--text ml-11">
                       + {{ discordData.presence_count - discordData.members.length }} more
                     </div>
@@ -53,7 +53,7 @@
 
         <v-spacer/>
 
-        <v-col cols="12" md="5">
+        <v-col v-if="Object.entries(channels).length > 0" cols="12" md="5">
           <p class="text-h5 white--text mb-2">
             Active public VCs
           </p>
