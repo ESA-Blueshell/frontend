@@ -150,11 +150,9 @@
             <v-list-item to="/partners/el-nino">
               El Niño – Digital Development
             </v-list-item>
-            <v-list-item to="/partners/dekimo">
-              Dekimo
+            <v-list-item to="/partners/connectworks">Connectworks
             </v-list-item>
-            <v-list-item to="/partners/connectworks">
-              Connectworks
+            <v-list-item to="/partners/talentIT">TalentIT
             </v-list-item>
           </v-list>
         </v-menu>
@@ -332,8 +330,12 @@
             title="El Niño – Digital Development"
           />
           <v-list-item
-            to="/partners/dekimo"
-            title="Dekimo"
+            to="/partners/connectworks"
+            title="Connectworks"
+          />
+          <v-list-item
+            to="/partners/talentIT"
+            title="TalentIT"
           />
           <v-divider class="mb-1"/>
         </v-list-group>
@@ -399,7 +401,7 @@
       </template>
     </v-navigation-drawer>
     <!--    <v-main>-->
-    <router-view />
+    <router-view/>
     <!--    </v-main>-->
     <v-footer theme="dark">
       <v-btn
@@ -450,22 +452,22 @@
         El Niño
       </v-btn>
       <v-btn
-        href="https://www.dekimo.com/"
+        href="https://connectworks.nl/"
         target="_blank"
       >
-        Dekimo
+        Connectworks
+      </v-btn>
+      <v-btn
+        href="https://talentittwente.nl/"
+        target="_blank"
+      >
+        TalentIT
       </v-btn>
       <v-btn
         href="https://esportsteamtwente.nl/"
         target="_blank"
       >
         ETT
-      </v-btn>
-      <v-btn
-        href="https://connectworks.nl/"
-        target="_blank"
-      >
-        Connectworks
       </v-btn>
       <v-spacer />
 
@@ -496,7 +498,7 @@
       v-model="networkError"
       timeout="10000"
     >
-      <span v-html="networkErrorMessage" />
+      <span v-html="networkErrorMessage"/>
       <template #actions="{ attrs }">
         <v-btn
           color="blue"
@@ -550,7 +552,7 @@
           >Cookie Policy</a>.
         </v-card-text>
 
-        <v-divider />
+        <v-divider/>
 
         <v-card-actions>
           <v-btn

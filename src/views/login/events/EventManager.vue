@@ -1,6 +1,6 @@
 <template>
   <v-main>
-    <top-banner title="Event Manager" />
+    <top-banner title="Event Manager"/>
     <div
       class="mx-auto my-10"
       style="max-width: 800px"
@@ -31,7 +31,7 @@
       </p>
 
       <event-manage-list
-        :events="events"
+        :events="events.filter(e => e.visible)"
         :id-to-committee="idToCommittee"
       />
 
@@ -77,32 +77,32 @@ export default {
   mounted() {
     // Get upcoming events
     this.$http.get('events/upcoming?editable=true', {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
-        .then(response => {
-          this.events = response.data
-          this.events.forEach(event => event.deleteDialog = false)
-        })
-        .catch(e => this.$root.handleNetworkError(e))
+      .then(response => {
+        this.events = response.data
+        this.events.forEach(event => event.deleteDialog = false)
+      })
+      .catch(e => this.$root.handleNetworkError(e))
 
     //Get past events
     this.$http.get('events/past?editable=true', {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
-        .then(response => {
-          this.pastEvents = response.data
-          this.pastEvents.forEach(event => event.deleteDialog = false)
-        })
-        .catch(e => this.$root.handleNetworkError(e))
+      .then(response => {
+        this.pastEvents = response.data
+        this.pastEvents.forEach(event => event.deleteDialog = false)
+      })
+      .catch(e => this.$root.handleNetworkError(e))
 
 
     // Get the user's committees
     this.$http.get('committees', {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
-        .then(response => {
-          response.data.forEach(committee => {
-            this.idToCommittee[committee.id] = committee.name
-          })
-          if (response.data.length === 0) {
-            this.noCommittees = true
-          }
+      .then(response => {
+        response.data.forEach(committee => {
+          this.idToCommittee[committee.id] = committee.name
         })
-        .catch(e => this.$root.handleNetworkError(e))
+        if (response.data.length === 0) {
+          this.noCommittees = true
+        }
+      })
+      .catch(e => this.$root.handleNetworkError(e))
   },
 }
 </script>
