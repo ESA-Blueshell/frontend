@@ -20,54 +20,98 @@
         </v-col>
       </v-row>
       <v-row v-if="discordData">
-        <v-col md="5" sm="12">
-          <p class="text-h5 white--text mb-2">{{ discordData.presence_count }} people online on discord</p>
+        <!-- If there is anyone in the public voice chats, show the Active VCs tab, v-else show a wider version of the member list -->
+        <!-- Yes i know duplicated code blablablablbalbla idc -->
+        <div v-if="Object.entries(channels).length > 0">
+          <v-col xl="5" lg="5" md="5" sm="12">
+            <p class="text-h5 white--text mb-2">{{ discordData.presence_count }} people online on discord</p>
 
-          <div class="overflow-y-auto" style="max-height: 180px;border: 1px solid #A8FF00;border-radius: 16px ">
-            <div v-for="member in discordData.members" :key="member.username" class="discord-member-entry ml-4">
-              <div class="discord-member-image">
-                <img :alt="`${member.username}'s avatar`" :src="member.avatar_url"
-                     class="discord-member-img">
-                <span class="discord-member-status"
-                      :class="{ 'discord-member-online': member.status==='online',  'discord-member-idle': member.status==='idle',  'discord-member-dnd': member.status==='dnd', }"/>
-              </div>
-              <span class="discord-member-name text-caption" v-text="member.username"></span>
-            </div>
-            <div class="discord-member-entry white--text">
-              + {{ discordData.presence_count - discordData.members.length }} more
-            </div>
-          </div>
-
-
-        </v-col>
-        <v-spacer/>
-        <v-col v-if="channels" md="5" sm="12" class="mr-8">
-          <p class="text-h5 white--text mb-2">
-            Active public VCs
-          </p>
-          <v-container class="overflow-y-auto" style="max-height: 180px">
-            <v-row v-for="[channelId,channelName] in Object.entries(channels)" :key="channelId"
-                   class="mb-2" style="border: 1px solid #A8FF00;border-radius: 16px">
-              <div class="ml-4">
-                <p class="text-h6 white--text font-italic font-weight-thin mb-0">
-                  <v-icon dark size="20" class="ma-0">mdi-volume-high</v-icon>
-                  {{ channelName }}
-                </p>
-                <div>
-                  <div v-for="member in membersInVC[channelId]" :key="member.username" class="discord-member-entry">
-                    <div class="discord-member-image">
-                      <img :alt="`${member.username}'s avatar`" :src="member.avatar_url"
-                           class="discord-member-img">
-                      <span class="discord-member-status"
-                            :class="{ 'discord-member-online': member.status==='online',  'discord-member-idle': member.status==='idle',  'discord-member-dnd': member.status==='dnd', }"/>
-                    </div>
-                    <span class="discord-member-name text-caption" v-text="member.username"></span>
+            <div class="overflow-hidden" style="border: 1px solid #A8FF00;border-radius: 16px">
+              <div class="overflow-y-auto" style="max-height: 180px">
+                <div v-for="member in discordData.members" :key="member.username" class="discord-member-entry ml-4">
+                  <div class="discord-member-image">
+                    <img :alt="`${member.username}'s avatar`" :src="member.avatar_url"
+                         class="discord-member-img">
+                    <span class="discord-member-status"
+                          :class="{ 'discord-member-online': member.status==='online',  'discord-member-idle': member.status==='idle',  'discord-member-dnd': member.status==='dnd', }"/>
                   </div>
+                  <span class="discord-member-name text-caption" v-text="member.username"></span>
+                </div>
+                <div class="discord-member-entry white--text" v-if="discordData.members.length > 99">
+                  + {{ discordData.presence_count - discordData.members.length }} more
                 </div>
               </div>
-            </v-row>
-          </v-container>
-        </v-col>
+            </div>
+
+          </v-col>
+          <v-spacer/>
+          <v-col xl="5" lg="5" md="5" sm="12" class="mr-8">
+            <p class="text-h5 white--text mb-2">
+              Active public VCs
+            </p>
+            <v-container class="overflow-y-auto" style="max-height: 180px">
+              <v-row v-for="[channelId,channelName] in Object.entries(channels)" :key="channelId"
+                     class="mb-2" style="border: 1px solid #A8FF00;border-radius: 16px">
+                <div class="ml-4">
+                  <p class="text-h6 white--text font-italic font-weight-thin mb-0">
+                    <v-icon dark size="20" class="ma-0">mdi-volume-high</v-icon>
+                    {{ channelName }}
+                  </p>
+                  <div>
+                    <div v-for="member in membersInVC[channelId]" :key="member.username" class="discord-member-entry">
+                      <div class="discord-member-image">
+                        <img :alt="`${member.username}'s avatar`" :src="member.avatar_url"
+                             class="discord-member-img">
+                        <span class="discord-member-status"
+                              :class="{ 'discord-member-online': member.status==='online',  'discord-member-idle': member.status==='idle',  'discord-member-dnd': member.status==='dnd', }"/>
+                      </div>
+                      <span class="discord-member-name text-caption" v-text="member.username"></span>
+                    </div>
+                  </div>
+                </div>
+              </v-row>
+            </v-container>
+          </v-col>
+
+        </div>
+        <div v-else>
+          <v-col cols="12">
+            <p class="text-h5 white--text mb-2">{{ discordData.presence_count }} people now online on discord</p>
+
+            <div class="overflow-hidden" style="border: 1px solid #A8FF00;border-radius: 16px">
+              <div class="overflow-y-auto" style="max-height: 180px">
+                <v-container>
+                  <v-row no-gutters style="justify-content: center;align-content: center" align-content="center">
+                    <v-col v-for="member in discordData.members" :key="member.username"
+                           class="discord-member-entry ml-4"
+                           style="align-self: center;align-items: center"
+                           cols="12" sm="3" md="2">
+                      <div class="discord-member-image">
+                        <img :alt="`${member.username}'s avatar`" :src="member.avatar_url"
+                             class="discord-member-img">
+                        <span class="discord-member-status"
+                              :class="{ 'discord-member-online': member.status==='online',  'discord-member-idle': member.status==='idle',  'discord-member-dnd': member.status==='dnd', }"/>
+                      </div>
+                      <span class="discord-member-name text-caption" v-text="member.username"></span>
+                    </v-col>
+                    <v-col v-if="discordData.members.length > 99"
+                           class="discord-member-entry"
+                           cols="12" sm="3" md="2">
+                      <div class="white--text ml-11">
+                        + {{ discordData.presence_count - discordData.members.length }} more
+                      </div>
+
+                    </v-col>
+                  </v-row>
+                </v-container>
+              </div>
+            </div>
+
+          </v-col>
+
+        </div>
+
+
       </v-row>
     </v-container>
   </div>
@@ -115,11 +159,6 @@ export default {
 </script>
 
 <style scoped>
-/*.banner {*/
-/*  background-size: cover;*/
-/*  !*background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../assets/goom.jpg") fixed center;*!*/
-/*  background: #1E1E1E*/
-/*}*/
 
 .container {
   max-width: 1100px;
@@ -166,9 +205,7 @@ export default {
   width: 12px;
   height: 12px;
   border-radius: 6px;
-  border: #1E1E1E;
-  border-width: 1px;
-  border-style: solid;
+  border: 1px solid #1E1E1E;
   position: absolute;
   bottom: 0;
   right: 0;
