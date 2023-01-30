@@ -9,7 +9,7 @@
         <v-btn
           :loading="creatingLoading"
           block
-          :variant="creatingCommittee ? 'outlined' : ''"
+          :variant="creatingCommittee ? 'outlined' : 'text'"
           @click="creatingCommittee = !creatingCommittee"
         >
           {{ creatingCommittee ? 'Stop creating committee' : 'Create new committee' }}
@@ -32,10 +32,10 @@
 
 
         <v-dialog
-          max-width="400"
-          :model-value="committeeToDelete"
+          width="auto"
+          :model-value="!!committeeToDelete"
         >
-          <template #activator="{ on: dialog, attrs }">
+          <template #activator="{ props: dialog }">
             <v-list :lines="'two'">
               <div
                 v-for="(committee,i) in committees"
@@ -51,12 +51,12 @@
 
                   <v-list-item-action>
                     <v-tooltip location="left">
-                      <template #activator="{ on }">
+                      <template #activator="{ props }">
                         <v-btn
                           :loading="submittingId === committee.id"
                           icon
+                          v-bind="props"
                           @click="editingCommitteeId= (editingCommitteeId===committee.id ? null : committee.id)"
-                          v-on="on"
                         >
                           <v-icon>mdi-pencil</v-icon>
                         </v-btn>
@@ -67,12 +67,11 @@
                       v-if="$store.getters.isBoard"
                       location="left"
                     >
-                      <template #activator="{ on: tooltip }">
+                      <template #activator="{ props: tooltip }">
                         <v-btn
                           icon
-                          v-bind="attrs"
+                          v-bind="{ ...tooltip, ...dialog }"
                           @click="committeeToDelete = committee"
-                          v-on="{ ...tooltip, ...dialog }"
                         >
                           <v-icon>mdi-delete</v-icon>
                         </v-btn>
@@ -107,7 +106,7 @@
 
           <v-card>
             <v-card-title>
-              <span class="text-h5">
+              <span class="text-h6">
                 Are you sure you want to delete this committee:
                 {{ committeeToDelete ? committeeToDelete.name : '' }}
               </span>

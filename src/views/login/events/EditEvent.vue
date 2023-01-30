@@ -10,7 +10,7 @@
         <event-form
           v-if="event !== null"
           ref="form"
-          :event="event"
+          :initial-event="event"
           :has-promo="hasPromo"
           @submit="update"
         />

@@ -176,31 +176,27 @@
           />
         </v-col>
       </v-row>
-      <v-row v-if="event.enableSignUpForm">
+      <v-row v-if="event.enableSignUpForm && initialSignupForm !== null">
         <v-col>
           <create-sign-up-form
             ref="signUpForm"
-            :form="event.signUpForm"
+            :form="initialSignupForm"
           />
         </v-col>
       </v-row>
-
-      <v-row>
-        <v-expand-transition>
-          <v-alert
-            v-if="mounted && (
-              (hadSignUp && !event.signUp) ||
-              (oldEnableSignUpForm && !event.enableSignUpForm) ||
-              (oldEnableSignUpForm && oldSignUpForm.length > 0 && oldSignUpForm !== JSON.stringify(event.signUpForm)))"
-            type="warning"
-            prominent
-            :variant="$vuetify.theme.global.current.dark ? 'outlined' : ''"
-          >
-            Woah there! Looks like you made some changes to the sign-up form. Keep in mind that when you submit any
-            changes to the form, all existing sign-ups <b>will be removed</b>!
-          </v-alert>
-        </v-expand-transition>
-      </v-row>
+      <v-expand-transition>
+        <v-alert
+          v-if="mounted && (
+            (hadSignUp && !event.signUp) ||
+            (oldEnableSignUpForm && !event.enableSignUpForm))"
+          type="warning"
+          prominent
+          :variant="$vuetify.theme.global.current.dark ? 'outlined' : ''"
+        >
+          Woah there! Looks like you made some changes to signups for the event. Keep in mind that when you submit any
+          changes, all existing sign-ups <b>will be removed</b>!
+        </v-alert>
+      </v-expand-transition>
     </v-container>
 
 
@@ -224,40 +220,41 @@ export default {
   name: "EventForm",
   components: {CreateSignUpForm},
   props: {
-    event: {
+    initialEvent: {
       type: Object,
-      default: () => ({
-        title: '',
-        location: '',
-        description: '',
-
-        memberPrice: '0',
-        publicPrice: '0',
-
-        membersOnly: false,
-        visible: false,
-        signUp: false,
-
-        startDate: '',
-        endDate: '',
-        startTime: '',
-        endTime: '',
-
-        committeeId: '',
-        image: null,
-
-        signUpForm: [],
-
-        enableSignUpForm: false,
-        endDateSame: true,
-      })
     },
     hasPromo: {
       type: Boolean,
       default: () => false
     }
   },
+  emits: ['submit'],
   data: () => ({
+    event: {
+      title: '',
+      location: '',
+      description: '',
+
+      memberPrice: '0',
+      publicPrice: '0',
+
+      membersOnly: false,
+      visible: false,
+      signUp: false,
+
+      startDate: '',
+      endDate: '',
+      startTime: '',
+      endTime: '',
+
+      committeeId: '',
+      image: null,
+
+      signUpForm: [],
+
+      enableSignUpForm: false,
+      endDateSame: true,
+    },
     valid: false,
     submitting: false,
 
@@ -269,7 +266,7 @@ export default {
     wasPublic: true,
     hadSignUp: false,
     oldEnableSignUpForm: false,
-    oldSignUpForm: [],
+    initialSignupForm: null,
     mounted: false,
 
     committees: [],
@@ -289,16 +286,21 @@ export default {
     }
   },
   mounted() {
+    // Clone the prop se we can mutate it here
+    if (this.initialEvent !== undefined) {
+      this.event = JSON.parse(JSON.stringify(this.initialEvent))
+    }
+
     // Get user's committees
     this.$http.get('committees?isMember=true', {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
-        .then(response => this.committees = response.data)
-        .catch(e => this.$root.handleNetworkError(e))
+      .then(response => this.committees = response.data)
+      .catch(e => this.$root.handleNetworkError(e));
 
     // Save some data to know what changed to give the user a warning
     this.wasPublic = this.event.visible;
     this.hadSignUp = this.event.signUp;
     this.oldEnableSignUpForm = this.event.enableSignUpForm;
-    this.oldSignUpForm = JSON.stringify(this.event.signUpForm);
+    this.initialSignupForm = JSON.stringify(this.event.signUpForm);
     this.mounted = true;
   },
   methods: {
@@ -307,9 +309,10 @@ export default {
       if (this.event.endDateSame) {
         this.event.endDate = this.event.startDate
       }
-
       if (this.$refs.form.validate()) {
         this.submitting = true;
+
+        this.event.signUpForm = this.$refs.signUpForm.form
         this.$emit('submit', this.event);
       }
     }

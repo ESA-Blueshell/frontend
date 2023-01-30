@@ -109,11 +109,11 @@
               <v-spacer/>
               <!-- Start of the "Find location" button. Check the documentation for v-tooltip to find out how this works exactly -->
               <v-tooltip location="bottom">
-                <template #activator="{ on }">
+                <template #activator="{ props }">
                   <!-- The actual button -->
                   <v-btn
                     icon
-                    v-on="on"
+                    v-bind="props"
                     @click="findLocation"
                   >
                     <v-icon>mdi-google-maps</v-icon>
@@ -123,11 +123,11 @@
               </v-tooltip>
               <!-- Start of the "Add to calendar" button. Check the documentation for v-tooltip to find out how this works exactly -->
               <v-tooltip location="bottom">
-                <template #activator="{ on }">
+                <template #activator="{ props }">
                   <!-- The actual button -->
                   <v-btn
                     icon
-                    v-on="on"
+                    v-bind="props"
                     @click="addToCal"
                   >
                     <v-icon>mdi-calendar</v-icon>

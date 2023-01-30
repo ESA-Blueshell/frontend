@@ -39,14 +39,13 @@
               <v-spacer />
               <v-col cols="auto">
                 <v-tooltip location="top">
-                  <template #activator="{ on, attrs }">
+                  <template #activator="{ props }">
                     <v-btn
                       icon
                       :disabled="!valid"
                       :loading="submitting"
-                      v-bind="attrs"
+                      v-bind="props"
                       @click="save"
-                      v-on="on"
                     >
                       <v-icon>mdi-content-save</v-icon>
                     </v-btn>
@@ -183,14 +182,13 @@
               <v-spacer />
               <v-col cols="auto">
                 <v-tooltip location="top">
-                  <template #activator="{ on, attrs }">
+                  <template #activator="{ props }">
                     <v-btn
                       icon
                       :disabled="!valid"
                       :loading="submitting"
-                      v-bind="attrs"
+                      v-bind="props"
                       @click="save"
-                      v-on="on"
                     >
                       <v-icon>mdi-content-save</v-icon>
                     </v-btn>

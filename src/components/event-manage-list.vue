@@ -3,17 +3,17 @@
     :model-value="eventToDelete"
     max-width="400"
   >
-    <template #activator="{ on: dialog }">
+    <template #activator="{ props: dialog }">
       <v-list>
         <div
-          v-for="(event,i) in events"
-          :key="event.title+event.startTime"
+            v-for="(event,i) in events"
+            :key="event.title+event.startTime"
         >
           <v-list-item
-            lines="two"
-            :style="{ 'background-image': !event.banner ? '' :
+              lines="two"
+              :style="{ 'background-image': !event.banner ? '' :
               $vuetify.theme.global.current.dark ? `linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(${event.banner})` : `linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(255,255,255,0.8)), url(${event.banner})`}"
-            style="background-size: cover;background-position: center;backdrop-filter: blur(2px);"
+              style="background-size: cover;background-position: center;backdrop-filter: blur(2px);"
           >
             <v-list-item-title class="text-h6">
               {{ event.title }}
@@ -30,21 +30,22 @@
             <template #append>
               <v-container class="fill-height">
                 <v-row>
-                  <v-col>
-                    <p v-if="$vuetify.display.smAndUp">
+                  <v-col align-self="center">
+                    <v-row v-if="$vuetify.display.smAndUp">
                       {{ idToCommittee[event.committee] }}
-                    </p>
+                    </v-row>
                   </v-col>
 
                   <v-col>
                     <v-row>
                       <v-tooltip location="left">
-                        <template #activator="{ on }">
+                        <template #activator="{ props }">
                           <v-btn
-                            icon
-                            :disabled="!event.signUp"
-                            v-on="on"
-                            @click="$router.push('signups/'+event.id)"
+                              icon
+                              variant="plain"
+                              :disabled="!event.signUp"
+                              v-bind="props"
+                              @click="$router.push('signups/'+event.id)"
                           >
                             <v-icon>mdi-list-status</v-icon>
                           </v-btn>
@@ -54,11 +55,12 @@
                     </v-row>
                     <v-row>
                       <v-tooltip location="left">
-                        <template #activator="{ on }">
+                        <template #activator="{ props }">
                           <v-btn
-                            icon
-                            v-on="on"
-                            @click="$router.push('edit/'+event.id)"
+                              icon
+                              variant="plain"
+                              v-bind="props"
+                              @click="$router.push('edit/'+event.id)"
                           >
                             <v-icon>mdi-pencil</v-icon>
                           </v-btn>
@@ -68,11 +70,12 @@
                     </v-row>
                     <v-row>
                       <v-tooltip location="left">
-                        <template #activator="{ on: tooltip }">
+                        <template #activator="{ props: tooltip }">
                           <v-btn
-                            icon
-                            v-on="{ ...tooltip, ...dialog }"
-                            @click="eventToDelete = event"
+                              icon
+                              variant="plain"
+                              v-bind="{ ...tooltip, ...dialog }"
+                              @click="eventToDelete = event"
                           >
                             <v-icon>mdi-delete</v-icon>
                           </v-btn>

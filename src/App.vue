@@ -150,9 +150,11 @@
             <v-list-item to="/partners/el-nino">
               El Niño – Digital Development
             </v-list-item>
-            <v-list-item to="/partners/connectworks">Connectworks
+            <v-list-item to="/partners/connectworks">
+              Connectworks
             </v-list-item>
-            <v-list-item to="/partners/talentIT">TalentIT
+            <v-list-item to="/partners/talentIT">
+              TalentIT
             </v-list-item>
           </v-list>
         </v-menu>
@@ -499,11 +501,10 @@
       timeout="10000"
     >
       <span v-html="networkErrorMessage"/>
-      <template #actions="{ attrs }">
+      <template #actions>
         <v-btn
           color="blue"
           variant="text"
-          v-bind="attrs"
           @click="networkError = false"
         >
           Close
@@ -518,11 +519,10 @@
     >
       {{ loginText }}
 
-      <template #actions="{ attrs }">
+      <template #actions>
         <v-btn
           color="blue"
           variant="text"
-          v-bind="attrs"
           @click="loggedInSnackbar=false"
         >
           Close

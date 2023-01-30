@@ -75,14 +75,13 @@
                   v-else-if="eventIdToSignUpForm[event.id] !== undefined && !event.signUpForm"
                   location="left"
                 >
-                  <template #activator="{ on, attrs }">
+                  <template #activator="{ props }">
                     <v-btn
                       :loading="submittingId === event.id"
                       icon
                       :disabled="event.membersOnly && !$store.getters.isMember"
-                      v-bind="attrs"
+                      v-bind="props"
                       @click="removeSignUp(event.id)"
-                      v-on="on"
                     >
                       <v-icon>mdi-checkbox-marked</v-icon>
                     </v-btn>
@@ -94,14 +93,13 @@
                   v-else-if="!event.signUpForm && eventIdToSignUpForm[event.id] === undefined"
                   location="left"
                 >
-                  <template #activator="{ on, attrs }">
+                  <template #activator="{ props }">
                     <v-btn
                       :loading="submittingId === event.id"
                       icon
                       :disabled="event.membersOnly && !$store.getters.isMember"
-                      v-bind="attrs"
+                      v-bind="props"
                       @click="signUp(event.id)"
-                      v-on="on"
                     >
                       <v-icon>mdi-checkbox-blank</v-icon>
                     </v-btn>
@@ -114,14 +112,13 @@
                     v-if="eventIdToSignUpForm[event.id] !== undefined"
                     location="left"
                   >
-                    <template #activator="{ on, attrs }">
+                    <template #activator="{ props }">
                       <v-btn
                         :loading="submittingId === event.id"
                         icon
                         :disabled="event.membersOnly && !$store.getters.isMember"
-                        v-bind="attrs"
+                        v-bind="props"
                         @click="removeSignUp(event.id)"
-                        v-on="on"
                       >
                         <v-icon>mdi-close</v-icon>
                       </v-btn>
@@ -129,13 +126,12 @@
                     <span>Remove sign-up</span>
                   </v-tooltip>
                   <v-tooltip location="left">
-                    <template #activator="{ on, attrs }">
+                    <template #activator="{ props }">
                       <v-btn
                         icon
                         :disabled="event.membersOnly && !$store.getters.isMember"
-                        v-bind="attrs"
+                        v-bind="props"
                         @click="signingUpFor= (signingUpFor ? null : event.id)"
-                        v-on="on"
                       >
                         <v-icon>mdi-list-status</v-icon>
                       </v-btn>
