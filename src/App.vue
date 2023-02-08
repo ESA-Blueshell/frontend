@@ -331,6 +331,7 @@
 
 <script>
 import router from "@/router";
+import store from "@/store";
 
 export default {
   data() {
@@ -386,7 +387,6 @@ export default {
     },
     logOut() {
       // Let the cookie expire and redirect if the page is logged in only
-      document.cookie = 'login=;expires=Thu, 01 Jan 1970 00:00:01 GMT'
       this.$store.commit('logout')
       this.loggedInSnackbar = true;
       if (this.$route.meta.requiresAuth) {
@@ -413,7 +413,17 @@ export default {
           .then(response => {
             this.$store.commit('setRoles', response.data.roles)
           })
-          .catch(e => this.$root.handleNetworkError(e))
+          .catch(e => {
+            if (e.response.status === 401) {
+              store.commit('setNetworkErrorMessage', 'Login expired. You have been logged out.')
+              this.$store.commit('logout')
+              if (this.$route.meta.requiresAuth) {
+                this.goto('/')
+              }
+            } else {
+              this.$root.handleNetworkError(e)
+            }
+          })
     }
 
 
