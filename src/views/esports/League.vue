@@ -11,7 +11,7 @@
       </div>
     </div>
 
-    <team :team="streetRats"/>
+    <team :team="scaling"/>
   </v-main>
 </template>
 
@@ -23,35 +23,35 @@ export default {
   components: {Team, TopBanner},
   data: () => {
     return {
-      streetRats: {
-        name: 'BS Street Rats',
+      scaling: {
+        name: 'BS Scaling',
         bg: require('../../assets/leagueesportsbg1.jpg'),
         players: [
           {
-            name: 'Mateusz Bartnicki',
-            ign: 'BS Shigersky'
+            name: 'Wilco Strijker',
+            ign: 'Fill Main'
           },
           {
-            name: 'Iason FIlippidis',
-            ign: 'BS Chit'
+            name: 'Thomas van den Brink',
+            ign: 'ThompieB'
           },
           {
-            name: 'Hristo Dimitrov',
-            ign: 'Enorenaren'
+            name: 'Bob Even',
+            ign: 'Bobbus'
           },
           {
-            name: 'Richard Leenknegt',
-            ign: 'BS RuigeRichard'
+            name: 'Mark Ganzevles',
+            ign: 'BS Magaera'
           },
           {
-            name: 'Omar Markovinovic',
-            ign: 'SweatIRL'
+            name: 'Ivo Heitlager',
+            ign: 'BS King Cookie'
           }
         ],
-        substitutes: [
+        coaches: [
           {
-            name: 'Jannis Tenwinkel',
-            ign: 'BS Twinjanni'
+            name: 'Hielke Kleijsen',
+            ign: 'OG Klutch'
           }
         ]
       },
