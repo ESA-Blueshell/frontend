@@ -41,7 +41,7 @@ export default {
           },
           {
             name: 'Mark Ganzevles',
-            ign: 'BS Magaera'
+            ign: 'Magaera'
           },
           {
             name: 'Ivo Heitlager',
