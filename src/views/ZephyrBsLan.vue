@@ -18,6 +18,13 @@
           Hall 2</p>
 
         <p class="text-h4 font-weight-light">
+          Signup</p>
+        <p class="body-1">
+          With the following form, you can sign up to participate during the LAN:
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSfiN3pJC8_FKGa3hqzMEF1rGIXBwVS78y2DiKFKaY4WoHZz6w/viewform?usp=sf_link">click here</a>.
+        </p>
+
+        <p class="text-h4 font-weight-light">
           Timetable</p>
         <p class="body-1">
           The Zephyr LAN-party will be held from Friday <b>28-04-2023 at 15:00</b> until Sunday <b>30-04-2023 at
@@ -39,6 +46,15 @@
           <a href="https://esa-blueshell.nl/api/download/Rules_LAN_party_2023.pdf" target="_blank"
              class="text-decoration-none">
             the rules document</a>.</p>
+
+        <p class="text-h4 font-weight-light">
+          Schedule</p>
+        <p class="body-1">
+          The schedule of the LAN can be found here:
+          <a href="https://esa-blueshell.nl/api/download/Schedule_LAN_party_2023.pdf" target="_blank"
+             class="text-decoration-none">
+            the schedule</a>.</p>
+
         <p class="text-h4 font-weight-light">
           Prices</p>
         <ul>
@@ -58,7 +74,7 @@
           and you will be free to serve yourself. This will be available from 07:00 until 09:00 on Saturday and Sunday
           mornings.</p>
         <p class="body-1">
-          The price for both days is: €TBD</p>
+          The price for both days is: Free!</p>
         <p class="body-1">
           Alternative options for breakfast are:
         <ul>
@@ -103,7 +119,7 @@
         <p class="body-1">
           On <b>Saturday</b> we will buy pizzas! We’ll buy a ton of pizza taking into account dietary restrictions,
           everybody should be able to get one.<br>
-          This costs €TBD
+          This costs €5.00
         </p>
 
 
