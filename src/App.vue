@@ -78,6 +78,7 @@
           </v-list>
         </v-menu>
         <v-btn class="bar-button" text dark to="/contact">Contact</v-btn>
+        <v-btn class="bar-button" text dark to="/zephyrbslan">LAN Info</v-btn>
       </div>
 
       <v-spacer/>
@@ -182,6 +183,9 @@
         </v-list-group>
         <v-list-item text dark to="/contact">
           <v-list-item-title>Contact</v-list-item-title>
+        </v-list-item>
+        <v-list-item text dark to="/zephyrbslan">
+          <v-list-item-title>LAN Info</v-list-item-title>
         </v-list-item>
         <!--        <v-list-item text dark to="/login">-->
         <!--          <v-list-item-title>Login</v-list-item-title>-->
