@@ -264,6 +264,9 @@
       <v-btn href="https://esportsteamtwente.nl/" target="_blank">
         ETT
       </v-btn>
+      <v-btn href="https://www.studentenwegwijzer.nl/enschede/studentenverenigingen/blueshell/" target="_blank">
+        Wegwijzer
+      </v-btn>
       <v-spacer></v-spacer>
 
       <div class="white--text mr-4">SITECIE GANG &copy; {{ new Date().getFullYear() }}</div>
