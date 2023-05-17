@@ -35,7 +35,6 @@ import RocketLeague from "@/views/esports/RocketLeague";
 import ForgotPassword from "@/views/login/ForgotPassword";
 import ResetPassword from "@/views/login/ResetPassword";
 import TalentIT from "@/views/partners/TalentIT.vue";
-import ZephyrBsLan from "@/views/ZephyrBsLan.vue";
 
 
 Vue.use(Router)
@@ -226,11 +225,6 @@ const router = new Router({
       name: 'memberManager',
       component: MemberManager,
       meta: {requiresAuth: true}
-    },
-    {
-      path: '/zephyrbslan',
-      name: 'zephyrBsLan',
-      component: ZephyrBsLan,
     },
     {
       path: '/:pathMatch(.*)*',
