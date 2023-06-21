@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
-import News from './views/News.vue'
 import Events from './views/Events.vue'
 import Contact from './views/Contact.vue'
 import Committees from './views/Committees.vue'
@@ -14,7 +13,6 @@ import Csgo from "./views/esports/Csgo";
 import Documents from "@/views/Documents";
 import ElNino from "@/views/partners/ElNino";
 import Partners from "@/views/partners/Partners";
-import Article from "@/views/Article";
 import NotFound from "@/views/NotFound";
 import Login from "@/views/login/Login";
 import Account from "@/views/login/Account";
@@ -55,19 +53,19 @@ const router = new Router({
       name: 'home',
       component: Home
     },
-    {
-      path: '/news',
-      name: 'news',
-      component: News
-    },
-    {
-      path: '/news/article/:id',
-      component: Article
-    },
-    {
-      path: '/news/create',
-      component: ArticleEditor
-    },
+    // {
+    //   path: '/news',
+    //   name: 'news',
+    //   component: News
+    // },
+    // {
+    //   path: '/news/article/:id',
+    //   component: Article
+    // },
+    // {
+    //   path: '/news/create',
+    //   component: ArticleEditor
+    // },
     {
       path: '/events/calendar',
       name: 'events',

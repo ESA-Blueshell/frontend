@@ -62,7 +62,7 @@
             <v-list-item to="/esports/rocketleague">Rocket League</v-list-item>
           </v-list>
         </v-menu>
-        <v-btn class="bar-button" text dark to="/news">News</v-btn>
+<!--        <v-btn class="bar-button" text dark to="/news">News</v-btn>-->
         <v-menu open-on-hover offset-y>
           <template v-slot:activator="{ on, attrs }">
             <v-btn class="bar-button" v-bind="attrs" v-on="on" text dark
