@@ -61,7 +61,8 @@
                 </v-list-item-content>
 
                 <v-list-item-action>
-                  <v-btn text @click="changeMembership(user, false)">
+                  <v-btn :disabled='user.roles.indexOf("BOARD") !== -1 || user.roles.indexOf("ADMIN") !== -1'
+                         text @click="changeMembership(user, false)">
                     Remove membership
                   </v-btn>
                 </v-list-item-action>
