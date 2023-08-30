@@ -98,6 +98,12 @@ export default {
               icon: require("../assets/rocketleague.png"),
               esportsLink: "/esports/rocketleague"
             },
+            {
+              title: "Trackmania",
+              bg: require("../assets/trackmaniabg.jpg"),
+              icon: require("../assets/trackmania.png"),
+              esportsLink: "/esports/trackmania"
+            },
           ]
         },
         {

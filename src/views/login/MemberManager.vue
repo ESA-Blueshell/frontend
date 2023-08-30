@@ -7,7 +7,7 @@
         <v-text-field v-model="search" label="Search for a user"/>
 
         <p class="text-h3">
-          Non-member users
+          Non-member users ({{ users.filter(u => !u.roles.includes('MEMBER')).length }})
         </p>
         <v-list>
           <div v-for="(user) in users" v-bind:key="user.username">
@@ -40,7 +40,7 @@
 
 <!--        Sick copy paste to show members -->
         <p class="text-h3">
-          Members
+          Members ({{ users.filter(u => u.roles.includes('MEMBER')).length }})
         </p>
         <v-list>
           <div v-for="(user) in users" v-bind:key="user.username">

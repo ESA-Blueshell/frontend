@@ -88,10 +88,6 @@ export default {
           description: 'We Nintendo fans bundle our strength together to organize fun Nintendo-related events. From Nintendo Nights to specific Nintendo games (new and old), the possibilities are endless!',
         },
         {
-          name: 'ShitpostCie',
-          description: 'This committee hosts all kinds of online discord events',
-        },
-        {
           name: 'SiteCie',
           description: 'The SiteCie is the team responsible for maintaining the website of blueshell: esa-blueshell.nl. We use our own frontend (Vue) and backend (Java spring), so if you\'re interested in learning/helping out with web development, make sure to check us out!',
         },
