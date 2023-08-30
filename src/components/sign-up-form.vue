@@ -13,7 +13,7 @@
   -->
   <v-form ref="form" v-model="valid">
     <div v-for="(question,i) in form" v-bind:key="i" class="mt-2">
-      <p class="text-h6 mb-0">
+      <p v-bind:class="question.type === 'description' ? 'text-body-1 pt-4' : 'text-h6 mb0'">
         {{ question.prompt }}
       </p>
 

@@ -8,10 +8,11 @@
         <v-btn block outlined
                v-bind="attrs"
                v-on="on">
-          Add question to sign-up form
+          Add question or text to sign-up form
         </v-btn>
       </template>
       <v-list>
+        <v-list-item link @click="createQuestion('description')">Description without a question</v-list-item>
         <v-list-item link @click="createQuestion('open')">Open question</v-list-item>
         <v-list-item link @click="createQuestion('radio')">Multiple choice question</v-list-item>
         <v-list-item link @click="createQuestion('checkbox')">Question with checkboxes</v-list-item>
@@ -22,7 +23,7 @@
       The actual form
     -->
     <div v-for="(question,i) in form" v-bind:key="i" class="mt-4">
-      <v-text-field v-model="question.prompt" :label="`Question ${i+1}`">
+      <v-text-field v-model="question.prompt" :label="`${question.type === 'description' ? `Description ${i+1}` : `Question ${i+1}`}`">
         <template v-slot:append-outer>
           <!-- Button to add option (v-if question has options) -->
           <v-tooltip v-if="question.type === 'radio' || question.type === 'checkbox'" top>
@@ -84,7 +85,7 @@
 export default {
   name: "create-sign-up-form",
   // Form can be filled with objects. Each object will be a question/part of the question form
-  // Three types are possible: 'open', 'checkbox' and 'radio'
+  // Four types are possible: 'description', 'open', 'checkbox' and 'radio'
   // Each object should have a 'prompt' attribute
   // For 'checkbox' and 'radio' a 'options' array of options should be included
   props: ['form'],
@@ -92,7 +93,7 @@ export default {
   methods: {
     // Adds a new question to the form
     createQuestion(type) {
-      if (type === 'open') {
+      if (type === 'open' || type === 'description') {
         this.form.push({type: type, prompt: ''})
       } else {
         this.form.push({type: type, prompt: '', options: ['', '']})

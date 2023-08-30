@@ -7,7 +7,7 @@
           Summary
         </p>
         <div v-for="(question,i) in signUpForm" v-bind:key="i">
-          <p class="text-h5">
+          <p v-bind:class="question.type === 'description' ? 'text-body-1' : 'text-h6 mb0'">
             {{ question.prompt }}
           </p>
           <template v-if="question.type === 'open'">
@@ -111,5 +111,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>

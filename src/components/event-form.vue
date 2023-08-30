@@ -265,6 +265,8 @@ export default {
       if (this.$refs.form.validate()) {
         this.submitting = true;
         this.$emit('submit', this.event);
+      } else {
+        alert('The form is invalid.');
       }
     }
   },

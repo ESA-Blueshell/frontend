@@ -436,12 +436,14 @@ export default {
 
     let keysPressed = [];
     window.addEventListener('keydown', event => {
-      const key = event.key.toLowerCase();
-      keysPressed.push(key);
-      if (keysPressed.toString().endsWith("arrowup,arrowup,arrowdown,arrowdown,arrowleft,arrowright,arrowleft,arrowright,b,a,enter")) {
-        this.poggers = true
-        alert("BIG SITECIE ENERGY")
-        //todo: make epic easter eggerino
+      if (event.key) {
+        const key = event.key.toLowerCase();
+        keysPressed.push(key);
+        if (keysPressed.toString().endsWith("arrowup,arrowup,arrowdown,arrowdown,arrowleft,arrowright,arrowleft,arrowright,b,a,enter")) {
+          this.poggers = true
+          alert("BIG SITECIE ENERGY")
+          //todo: make epic easter eggerino
+        }
       }
 
     });
