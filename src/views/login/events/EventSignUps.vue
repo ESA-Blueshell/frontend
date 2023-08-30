@@ -3,6 +3,9 @@
     <top-banner :title="eventName ? eventName+' sign-ups' : 'Sign-ups'"/>
     <div class="mx-3">
       <div class="mx-auto my-10" style="max-width: 800px">
+        <p class="text-h5">
+          Total signups: {{ responses.length }}
+        </p>
         <p class="text-h4">
           Summary
         </p>

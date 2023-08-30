@@ -1,0 +1,47 @@
+<template>
+  <v-main>
+    <top-banner title="Trackmania"/>
+    <div class="mx-3">
+      <div class="mx-auto my-10" style="max-width: 800px">
+        <p class="body-1">
+          We have two players playing under the Blueshell banner for multiple Trackmania tournaments, most notably
+          in the regionals of the Trackmania World Tour circuit. Aside from that we have multiple players sporting our
+          club tag, competing in whatever tournament happens to be active. Be sure to say hi if you see a [ESABS] player
+          driving somewhere!
+        </p>
+      </div>
+    </div>
+    <team :team="blueshell"/>
+  </v-main>
+</template>
+
+<script>
+import TopBanner from "../../components/top-banner";
+import Team from "@/components/team";
+
+export default {
+  components: {Team, TopBanner},
+  data: () => {
+    return {
+      blueshell: {
+        name: '[ESABS]',
+        bg: require('../../assets/trackmaniabg.jpg'),
+        players: [
+          {
+            name: 'Jarno',
+            ign: 'Poepboer'
+          },
+          {
+            name: 'Tim',
+            ign: 'Swordie'
+          },
+        ]
+      },
+    }
+  }
+}
+</script>
+
+<style scoped>
+
+</style>

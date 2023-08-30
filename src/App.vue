@@ -60,6 +60,7 @@
               Offensive
             </v-list-item>
             <v-list-item to="/esports/rocketleague">Rocket League</v-list-item>
+            <v-list-item to="/esports/trackmania">Trackmania</v-list-item>
           </v-list>
         </v-menu>
 <!--        <v-btn class="bar-button" text dark to="/news">News</v-btn>-->
@@ -164,6 +165,7 @@
             Offensive
           </v-list-item>
           <v-list-item to="/esports/rocketleague">Rocket League</v-list-item>
+          <v-list-item to="/esports/trackmania">Trackmania</v-list-item>
           <v-divider dark></v-divider>
         </v-list-group>
         <v-list-item text dark to="/news">

@@ -33,6 +33,7 @@ import RocketLeague from "@/views/esports/RocketLeague";
 import ForgotPassword from "@/views/login/ForgotPassword";
 import ResetPassword from "@/views/login/ResetPassword";
 import TalentIT from "@/views/partners/TalentIT.vue";
+import Trackmania from "@/views/esports/Trackmania.vue";
 
 
 Vue.use(Router)
@@ -130,6 +131,11 @@ const router = new Router({
       path: '/esports/rocketleague',
       name: 'rocketleague',
       component: RocketLeague
+    },
+    {
+      path: '/esports/trackmania',
+      name: 'trackmania',
+      component: Trackmania
     },
     {
       path: '/partners/become-a-partner',

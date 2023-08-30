@@ -23,7 +23,7 @@
         </p>
         <p class="body-1">
           Currently in Blueshell, there are teams for CS:GO, LoL and Rocket League. To find out the current teams in
-          Blueshell, click one of the pictures below
+          Blueshell, click one of the pictures below.
         </p>
 
         <v-row class="my-10" justify="center">
@@ -65,6 +65,10 @@ export default {
         {
           icon: require('../../assets/rocketleague.png'),
           url: '/esports/rocketleague'
+        },
+        {
+          icon: require('../../assets/trackmania.png'),
+          url: '/esports/trackmania'
         },
       ]
     }
