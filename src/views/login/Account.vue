@@ -73,8 +73,7 @@
                           :rules="[v => !v || !!v.match(/^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/) || 'Fill in a correct phone number']"/>
             <v-text-field label="Student number" v-model="accountData.studentNumber"/>
             <v-text-field label="Date of birth" v-model="accountData.dateOfBirth" type="date"/>
-            <v-text-field label="Discord tag" v-model="accountData.discord"
-                          :rules="[v => !v || !!v.match(/^.{3,32}#[0-9]{4}$/) || 'Fill in a correct discord tag (maybe you forgot the numbers?)']"/>
+            <v-text-field label="Discord username" v-model="accountData.discord"/>
             <v-text-field label="Steam ID" v-model="accountData.steamid"/>
             <v-row>
               <v-col>
