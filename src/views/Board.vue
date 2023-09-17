@@ -39,7 +39,7 @@
             <v-expansion-panel-content>
               Chairman: Amber "Ambanana" Scholtz<br>
               Treasurer: Thomas "ItIsIThomas" Dekker<br>
-              Secretary/Commissioner of the Esports Lounge: Jelle "TheJellyMan" van Wezep
+              Secretary/Commissioner of the Esports Lounge: Jelle "TheJellyMan" van Wezep<br>
               Commissioner of esports: Jonas "Clunky" Valentijn<br>
               Commissioner of internal affairs: Roos "SkyeWolf" Kruk<br>
               Commissioner of external affairs: Thijs "Darkneoteric" Willems<br>
