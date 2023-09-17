@@ -107,6 +107,10 @@ export default {
           name: 'TacCie',
           description: 'TacCie is one of Blueshell\'s newest committees focusing on FPS games. The name \'TacCie\' is derived from the tactical shooter aspect of the committee and because it sounded like \'taxi\'. TacCie hosts events focused on all sorts of FPS based games such as Valorant, CS:GO, Overwatch, R6S, Splitgate and many others.',
         },
+        {
+          name: 'FYCie',
+          description: 'The \'FYCie\' (first years committee) is the committee consisting of mostly first years to get to know the life of being in a committee.',
+        },
       ]
     }
   }
