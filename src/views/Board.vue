@@ -7,10 +7,10 @@
           Current board
         </p>
         <p class="body-1">
-          Every year, our association grows and takes on new shapes. We present you the sixth board
+          Every year, our association grows and takes on new shapes. We present you the seventh board
           of Blueshell Esports{{ $vuetify.breakpoint.mdAndUp ? ', who are introduced below' : '' }}.
         </p>
-        <v-img :src="require('../assets/wholeboard.jpg')"></v-img>
+        <v-img :src="require('../assets/casual7thBoardPic.jpg')"></v-img>
 
         <div v-if="$vuetify.breakpoint.mdAndUp">
           <div v-for="(member,i) in board" v-bind:key="member.name"
@@ -33,6 +33,18 @@
         </div>
 
         <v-expansion-panels accordion class="mt-8">
+          <v-expansion-panel>
+            <v-expansion-panel-header class="text-h5 font-weight-light">6th board
+            </v-expansion-panel-header>
+            <v-expansion-panel-content>
+              Chairman: Amber "Ambanana" Scholtz<br>
+              Treasurer: Thomas "ItIsIThomas" Dekker<br>
+              Secretary/Commissioner of the Esports Lounge: Jelle "TheJellyMan" van Wezep
+              Commissioner of esports: Jonas "Clunky" Valentijn<br>
+              Commissioner of internal affairs: Roos "SkyeWolf" Kruk<br>
+              Commissioner of external affairs: Thijs "Darkneoteric" Willems<br>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
           <v-expansion-panel>
             <v-expansion-panel-header class="text-h5 font-weight-light">5th board
             </v-expansion-panel-header>
@@ -103,40 +115,29 @@ export default {
     return {
       board: [
         {
-          name: "Amber Scholtz",
+          name: "Reinout Strating",
           title: "Chair",
-          description: "Hello! My name is Amber Scholtz and I am the Chair for this year. I am in my third year of Biomedical Engineering. I joined Blueshell 3 years ago right after the successful NintenCo pub quiz. After joining multiple fun events and committees I felt that I wanted to do more. That is why I became a Board member. I hope we can organize fun events and have a great time together! Let's make this a (lustrum) year to remember!",
-          image: require("@/assets/amber.jpg")
+          description: "Hello, I'm Reinout Strating but you can call me whatever you want, there is no limit. I'm still searching for a suitible study, that's why this is my breakyear! I enjoy playing any type of games if i get invited to. Always trying to have fun with others, whatever suits their boat. I joined blueshell after a friend introduced me to it last year and got me instantly hooked with the friendliness and good times. It got me excited enough to join the board and here i am! CHAIR ready for service!",
         },
         {
-          name: "Thomas Dekker",
-          title: "Treasurer",
-          description: "Hi, my name is Thomas Dekker and I am the Treasurer this year. I am currently in my second year of Biomedical Engineering. I joined Blueshell last year because I really enjoyed the events during the kick off period and Blueshell felt like a great community to hang out with. Even though I was fairly new to the association, I felt an urge to do more. That is why I became a board member :D. Let's make this a wonderful year together!",
-          image: require("@/assets/thomas.jpg")
-        },
-        {
-          name: "Roos Kruk",
-          title: "Commissioner of Internal Affairs",
-          description: "Hello there! My name is Roos Kruk and I am the Commissioner of Internal Affairs this year. I am in my second year of Psychology. I only joined Blueshell around the half year point of last year's academic year, but it already feels close to a second family. Although I did not anticipate becoming a Board member at all during my bachelor at the UT, I am happy to be given the opportunity to help Blueshell grow and to grow together with its members. Let's make this year a year to remember!",
-          image: require("@/assets/roos.jpg")
-        },
-        {
-          name: "Jelle van Wezep",
+          name: "Max Jansdam",
           title: "Secretary and Commissioner of the Esports Lounge",
-          description: "Hey, my name is Jelle van Wezep and I am the Secretary and Commissioner of the Esports Lounge for this year. I am in my third year for Industrial Engineering and Management and busy with my minor. I joined Blueshell 2 years ago during the League of Legends tournament of the kick in which I enjoyed a lot. In the months after, I discovered all the great events that are being hosted and the amazing community. Eventually I wanted to help out as well with hosting those events which I enjoyed so much that I wanted to become a board member to help the association further. We are gonna make this an amazing year!",
-          image: require("@/assets/jelle.jpg")
+          description: "Hey, I am Max Jansdam and I am the Secretary and Commissioner of the Esports Lounge affairs for this year. This year I will be a third year the Psychology bachelor here. I joined Blueshell 2 years ago during corona with the idea of finding people to play smash ultimate and just dance with. While I didnt join a lot of events during the first year, I started joining and organising a lot more within blueshell during my second year. I had practically joined all committees with events that I liked to join and after being asked by a couple friends to join them in the next board, I decided that it might be fun and that I wanted to help out. Lets make this an amazing year!",
         },
         {
-          name: "Jonas Valentijn",
-          title: "Commissioner of Esports affairs",
-          description: "Hello, my name is Jonas Valentijn and I am the Commissioner of Esports affairs this year. I am currently doing my masters in electrical engineering. I first came into contact with Blueshell after playing CS:GO, and joining a team in Blueshell. Other than this I also discovered the great community of Blueshell. After joining multiple events and having a great time, also wanted to help out and decided to become a board member :).  Lets make this a great year!",
-          image: require("@/assets/jonas.jpg")
+          name: "Jesse van Gameren",
+          title: "Treasurer and Commissioner of Esports affairs",
+          description: "Hello fellow people! My name is Jesse van Gameren and I am the Treasurer and Commissioner of Esports affairs of Blueshell this year. Currently I am in my third year of Industrial Engineering and Management. I became member of Blueshell 2 years ago at the beginning of my university level academics after being invited to a few events, where I found a great community! I like to play games and do whatever, as long as it is with friends! After joining more events and becoming part of multiple committees, I wanted to try something new were I could learn more myself, and were I could give more to the community that gives me so much enjoyment at the university! Together let’s make this a wonderful year to never forget!",
         },
         {
-          name: "Thijs Willems",
-          title: "Commissioner of external affairs",
-          description: "Hey there, I am Thijs Willems and currently a 2nd year Mechanical Engineering student as well as the Commissioner of External affairs of Blueshell Esports. Joining one event of the minecraft hunger games was enough to convince me of joining more events at blueshell and those became more and more over the years. Seeing all these events being organised by the members of Blueshell, I felt like it was only right to try and do something back for all of them to the best of my ability as a Board member of the association. I hope together we can make this year a success for everyone! :)",
-          image: require("@/assets/thijs.jpg")
+          name: "Mitchell van Poecke",
+          title: "Officer of Internal Affairs",
+          description: "Hey, What's up! I am Mitchell van Poecke and this year I will be the Officer of Internal Affairs of Blueshell. I am currently in my third year of Creative Technology and this will also be my third year in Blueshell. I enjoy going for a walk, working on some game prototypes an of course playing games with friends. In my first year of Blueshell I attended most Minecraft events an a couple of gamenights. This made me want to join a committee so I joined the MCie in the second year. First the idea of doing a board year didn't speak to me, but after a few months of working in a committee the idea grew on me and so I became board. I hope we can have another fun and exiting year together you all!",
+        },
+        {
+          name: "Sanne van Kooten",
+          title: "Officer of External Affairs",
+          description: "Hello! I am Sanne van Kooten, and I am this year's Officer of External Affairs! At the moment I am a fourth year biomedical engineering bachelor student. Next to this I also enjoy being creative, visiting concerts and of course I like to game. I joined Blueshell in the second year of my studies after doing the Nintendo pubquiz during the kick off, after which I was immediately enthusiastic and signed up to be a member. After doing a few committees, I decided it was time to do something bigger, like being a board member which is where we are now. I look forward to creating an even bigger gaming community with loads of fun events!",
         },
       ]
     }
