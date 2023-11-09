@@ -58,10 +58,6 @@ export default {
           description: 'ChessCie is a community of styleful people who so happen to enjoy chess. We do team-building activities to get to know the other members of ChessCie better as this improves the quality and effectiveness of our highly efficient meetings. This guarantees that ChessCie events are and will always be by far the best organized events in Blueshell.',
         },
         {
-          name: 'DegeneraCie',
-          description: 'We host online events roughly once a month where we hold video game or anime music quizzes.',
-        },
-        {
           name: 'DisCo',
           description: 'The DisCo is *the* committee for all your groovy needs! \n' +
               'We organise events that have to do with music and dancing, like Just Dance nights, music jams and Rhythm & Dance nights.\n' +
