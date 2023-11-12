@@ -56,9 +56,8 @@
           <v-list>
             <v-list-item to="/esports/competitive-scene">Competitive scene</v-list-item>
             <v-list-item to="/esports/league-of-legends">League of Legends</v-list-item>
-            <v-list-item to="/esports/counter-strike-global-offensive">Counter Strike: Global
-              Offensive
-            </v-list-item>
+            <v-list-item to="/esports/counter-strike-2">Counter Strike 2</v-list-item>
+            <v-list-item to="/esports/valorant">Valorant</v-list-item>
             <v-list-item to="/esports/rocketleague">Rocket League</v-list-item>
             <v-list-item to="/esports/trackmania">Trackmania</v-list-item>
           </v-list>
@@ -161,9 +160,8 @@
           </template>
           <v-list-item to="/esports/competitive-scene">Competitive scene</v-list-item>
           <v-list-item to="/esports/league-of-legends">League of Legends</v-list-item>
-          <v-list-item to="/esports/counter-strike-global-offensive">Counter Strike: Global
-            Offensive
-          </v-list-item>
+          <v-list-item to="/esports/counter-strike-2">Counter Strike 2</v-list-item>
+          <v-list-item to="/esports/valorant">Valorant</v-list-item>
           <v-list-item to="/esports/rocketleague">Rocket League</v-list-item>
           <v-list-item to="/esports/trackmania">Trackmania</v-list-item>
           <v-divider dark></v-divider>

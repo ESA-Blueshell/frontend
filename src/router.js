@@ -9,7 +9,7 @@ import Esports from './views/esports/Esports.vue'
 import AboutUs from "./views/AboutUs";
 import Board from "./views/Board";
 import League from "./views/esports/League";
-import Csgo from "./views/esports/Csgo";
+import Cs2 from "./views/esports/Cs2";
 import Documents from "@/views/Documents";
 import ElNino from "@/views/partners/ElNino";
 import Partners from "@/views/partners/Partners";
@@ -34,6 +34,7 @@ import ForgotPassword from "@/views/login/ForgotPassword";
 import ResetPassword from "@/views/login/ResetPassword";
 import TalentIT from "@/views/partners/TalentIT.vue";
 import Trackmania from "@/views/esports/Trackmania.vue";
+import Valorant from "./views/esports/Valorant.vue";
 
 
 Vue.use(Router)
@@ -123,9 +124,14 @@ const router = new Router({
       component: League
     },
     {
-      path: '/esports/counter-strike-global-offensive',
-      name: 'csgo',
-      component: Csgo
+      path: '/esports/counter-strike-2',
+      name: 'cs2',
+      component: Cs2
+    },
+    {
+      path: '/esports/valorant',
+      name: 'valorant',
+      component: Valorant
     },
     {
       path: '/esports/rocketleague',

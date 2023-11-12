@@ -87,10 +87,16 @@ export default {
               esportsLink: "/esports/league-of-legends"
             },
             {
-              title: "Counter-Strike: Global Offensive",
+              title: "Counter-Strike 2",
               bg: require("../assets/csgobg.jpg"),
               icon: require("../assets/csgo.png"),
-              esportsLink: "/esports/counter-strike-global-offensive"
+              esportsLink: "/esports/counter-strike-2"
+            },
+            {
+              title: "Valorant",
+              bg: require("../assets/valorantbg.jpg"),
+              icon: require("../assets/valorant.png"),
+              esportsLink: "/esports/valorant"
             },
             {
               title: "Rocket League",

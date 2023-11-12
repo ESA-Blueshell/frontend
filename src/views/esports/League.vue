@@ -12,6 +12,7 @@
     </div>
 
     <team :team="scaling"/>
+    <team :team="housecats" name-right="true"/>
   </v-main>
 </template>
 
@@ -53,6 +54,48 @@ export default {
             name: 'Hielke Kleijsen',
             ign: 'OG Klutch'
           }
+        ]
+      },
+      housecats: {
+        name: 'BS Housecats',
+        bg: require('../../assets/leagueesportsbg2.jpg'),
+        players: [
+          {
+            name: 'Mark Otter',
+            ign: 'markdeotter'
+          },
+          {
+            name: 'Mithell van Poecke',
+            ign: 'tennissky1'
+          },
+          {
+            name: 'Victor Barkey',
+            ign: 'The RUde Unicorn'
+          },
+          {
+            name: 'Jesse van Gameren',
+            ign: 'Machom36'
+          },
+          {
+            name: 'Jelle van Wezep',
+            ign: 'TheJellyMan'
+          }
+        ],
+        coaches: [
+          {
+            name: 'Max Jansdam',
+            ign: 'DwalendeDrol'
+          }
+        ],
+        substitutes: [
+          {
+            name: "Sylwia Siekman",
+            ign: "SylWorld"
+          },
+          {
+            name: 'Roos Kruk',
+            ign: 'ShadowSkyeWolf'
+          },
         ]
       },
     }

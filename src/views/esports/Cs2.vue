@@ -1,12 +1,12 @@
 <template>
   <v-main>
-    <top-banner title="Counter-Strike: Global Offensive"/>
+    <top-banner title="Counter-Strike 2"/>
     <div class="mx-3">
       <div class="mx-auto my-10" style="max-width: 800px">
         <p class="body-1">
-          With shooters’ prevalence in the global esports scene, Blueshell Esports’s CS:GO teams are
+          With shooters’ prevalence in the global esports scene, Blueshell Esports’s CS2 teams are
           trying to climb up the charts with those sweet headshots! Below you can find our
-          competitive CS:GO team(s).
+          competitive CS2 team(s).
         </p>
       </div>
     </div>
@@ -27,40 +27,36 @@ export default {
         bg: require('../../assets/csgoesports1.jpg'),
         players: [
           {
-            name: 'Chris Wong',
-            ign: 'FetaBass'
-          },
-          {
-            name: 'Jonas Valentijn',
-            ign: 'Clunky'
-          },
-          {
-            name: 'Mario Walvis',
-            ign: 'TheCheeser'
+            name: 'Ivo Heitlager',
+            ign: 'BSKingCookie'
           },
           {
             name: 'Reinier Algra',
             ign: 'Reign'
           },
           {
-            name: 'Wilco Strijker',
-            ign: 'FreeFall'
+            name: 'Joran Hagen',
+            ign: 'MacVanish_'
+          },
+          {
+            name: 'Mario van der Wal Agraz',
+            ign: 'TheCheeser'
+          },
+          {
+            name: 'Marijn de Boer',
+            ign: 'Marijn02'
           },
         ],
         coaches: [
           {
-            name: 'Horan Jagen',
-            ign: 'DerpHagen'
+            name: 'Bob Even',
+            ign: 'Bobbuz'
           }
         ],
         substitutes: [
           {
-            name: 'Tim Blok',
-            ign: 'Sjonnie'
-          },
-          {
-            name: 'Ivo Heitlager',
-            ign: 'King Cookie'
+            name: 'Chris Wong',
+            ign: 'FetaBass'
           }
         ]
       },

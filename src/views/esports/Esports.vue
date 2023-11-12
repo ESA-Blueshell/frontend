@@ -60,7 +60,11 @@ export default {
         },
         {
           icon: require('../../assets/csgo.png'),
-          url: '/esports/counter-strike-global-offensive'
+          url: '/esports/counter-strike-2'
+        },
+        {
+          icon: require('../../assets/valorant.png'),
+          url: '/esports/valorant'
         },
         {
           icon: require('../../assets/rocketleague.png'),
