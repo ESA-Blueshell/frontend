@@ -18,10 +18,10 @@
         <v-col v-for="col in columns" v-bind:key="col.title"
                class="mx-4" style="max-width:450px;min-width: 350px;min-height: 250px"
                align-self="center">
-          <div class="expand" style="width: 100%" @click="goto(col.url)">
+          <a class="expand" style="width: 100%" @click="goto(col.url)">
             <v-icon x-large :color="col.color" class="icon" v-html="col.icon"></v-icon>
-            <p class="text-h3 ma-3 font-weight-thin" v-html="col.title"></p>
-          </div>
+            <p class="text-h3 ma-3 font-weight-thin black--text" v-html="col.title"></p>
+          </a>
           <p class="body-1 font-weight-light mx-auto" style="max-width: 400px"
              v-html="col.text"></p>
         </v-col>
@@ -175,7 +175,7 @@ export default {
           icon: "mdi-trophy",
           color: "yellow darken-2",
           title: "Esports",
-          url: "/esports/competitive-scene",
+          url: "/esports",
           text: "As the name of our association suggests, esports is an integral part of Blueshell. Click the icon above to find more information on what we offer!"
         },
         {

@@ -55,24 +55,6 @@ const router = new Router({
       name: 'home',
       component: Home
     },
-    // {
-    //   path: '/news',
-    //   name: 'news',
-    //   component: News
-    // },
-    // {
-    //   path: '/news/article/:id',
-    //   component: Article
-    // },
-    // {
-    //   path: '/news/create',
-    //   component: ArticleEditor
-    // },
-    {
-      path: '/events/calendar',
-      name: 'events',
-      component: Events
-    },
     {
       path: '/contact',
       name: 'contact',
@@ -199,6 +181,15 @@ const router = new Router({
       name: 'articleEditor',
       component: ArticleEditor,
       meta: {requiresAuth: true}
+    },
+    {
+      path: '/events',
+      redirect: '/events/calendar',
+    },
+    {
+      path: '/events/calendar',
+      name: 'events',
+      component: Events
     },
     {
       path: '/events/create',
