@@ -31,19 +31,19 @@
           class="mt-0"
           hide-details="auto">
         <v-radio
-            v-for="option in question.options" v-bind:key="option"
-            :label="option"/>
+            v-for="(option,j) in question.options" v-bind:key="j"
+            :label="option"
+            :value="j"/>
       </v-radio-group>
 
-      <div v-else-if="question.type === 'checkbox'">
-        <v-checkbox
-            v-for="(option,j) in question.options" v-bind:key="j"
-            v-model="answersData[i]"
-            :label="option"
-            :value="j"
-            class="mt-0 mb-2"
-            hide-details/>
-      </div>
+      <v-checkbox
+          v-else-if="question.type === 'checkbox'"
+          v-for="(option,j) in question.options" v-bind:key="j"
+          v-model="answersData[i]"
+          :label="option"
+          :value="j"
+          class="mt-0 mb-2"
+          hide-details/>
     </div>
 
     <v-btn block @click="submit" class="mt-4">
