@@ -19,11 +19,13 @@
                class="mx-4" style="max-width:450px;min-width: 350px;min-height: 250px"
                align-self="center">
           <a class="expand" style="width: 100%" @click="goto(col.url)">
-            <v-icon x-large :color="col.color" class="icon" v-html="col.icon"></v-icon>
-            <p class="text-h3 ma-3 font-weight-thin black--text" v-html="col.title"></p>
+            <v-icon x-large :color="col.color" class="icon"
+                    v-html="col.icon"/>
+            <p class="text-h3 ma-3 font-weight-thin" v-bind:class="$vuetify.theme.dark ? 'white--text' : 'black--text'"
+               v-html="col.title"/>
           </a>
           <p class="body-1 font-weight-light mx-auto" style="max-width: 400px"
-             v-html="col.text"></p>
+             v-html="col.text"/>
         </v-col>
       </v-row>
     </v-container>
