@@ -14,7 +14,11 @@
       </div>
     </div>
 
-    <team :team="streetRats" />
+    <team :team="scaling" />
+    <team
+      :team="housecats"
+      name-right="true"
+    />
   </v-main>
 </template>
 
@@ -26,36 +30,78 @@ export default {
   components: {Team, TopBanner},
   data: () => {
     return {
-      streetRats: {
-        name: 'BS Street Rats',
+      scaling: {
+        name: 'BS Scaling',
         bg: require('../../assets/leagueesportsbg1.jpg'),
         players: [
           {
-            name: 'Mateusz Bartnicki',
-            ign: 'BS Shigersky'
+            name: 'Wilco Strijker',
+            ign: 'Fill Main'
           },
           {
-            name: 'Iason FIlippidis',
-            ign: 'BS Chit'
+            name: 'Thomas van den Brink',
+            ign: 'ThompieB'
           },
           {
-            name: 'Hristo Dimitrov',
-            ign: 'Enorenaren'
+            name: 'Bob Even',
+            ign: 'Bobbus'
           },
           {
-            name: 'Richard Leenknegt',
-            ign: 'BS RuigeRichard'
+            name: 'Mark Ganzevles',
+            ign: 'Magaera'
           },
           {
-            name: 'Omar Markovinovic',
-            ign: 'SweatIRL'
+            name: 'Ivo Heitlager',
+            ign: 'BS King Cookie'
+          }
+        ],
+        coaches: [
+          {
+            name: 'Hielke Kleijsen',
+            ign: 'OG Klutch'
+          }
+        ]
+      },
+      housecats: {
+        name: 'BS Housecats',
+        bg: require('../../assets/leagueesportsbg2.jpg'),
+        players: [
+          {
+            name: 'Mark Otter',
+            ign: 'markdeotter'
+          },
+          {
+            name: 'Mithell van Poecke',
+            ign: 'tennissky1'
+          },
+          {
+            name: 'Victor Barkey',
+            ign: 'The RUde Unicorn'
+          },
+          {
+            name: 'Jesse van Gameren',
+            ign: 'Machom36'
+          },
+          {
+            name: 'Jelle van Wezep',
+            ign: 'TheJellyMan'
+          }
+        ],
+        coaches: [
+          {
+            name: 'Max Jansdam',
+            ign: 'DwalendeDrol'
           }
         ],
         substitutes: [
           {
-            name: 'Jannis Tenwinkel',
-            ign: 'BS Twinjanni'
-          }
+            name: "Sylwia Siekman",
+            ign: "SylWorld"
+          },
+          {
+            name: 'Roos Kruk',
+            ign: 'ShadowSkyeWolf'
+          },
         ]
       },
     }

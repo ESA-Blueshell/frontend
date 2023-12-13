@@ -20,7 +20,7 @@
       :key="i"
       class="mt-2"
     >
-      <p class="text-h6 mb-0">
+      <p :class="question.type === 'description' ? 'text-body-1 pt-4' : 'text-h6 mb-0'">
         {{ question.prompt }}
       </p>
 
@@ -40,23 +40,23 @@
         hide-details="auto"
       >
         <v-radio
-          v-for="option in question.options"
-          :key="option"
+          v-for="(option,j) in question.options"
+          :key="j"
           :label="option"
+          :value="j"
         />
       </v-radio-group>
 
-      <div v-else-if="question.type === 'checkbox'">
-        <v-checkbox
-          v-for="(option,j) in question.options"
-          :key="j"
-          v-model="answersData[i]"
-          :label="option"
-          :value="j"
-          class="mt-0 mb-2"
-          hide-details
-        />
-      </div>
+      <v-checkbox
+        v-for="(option,j) in question.options"
+        v-else-if="question.type === 'checkbox'"
+        :key="j"
+        v-model="answersData[i]"
+        :label="option"
+        :value="j"
+        class="mt-0 mb-2"
+        hide-details
+      />
     </div>
 
     <v-btn

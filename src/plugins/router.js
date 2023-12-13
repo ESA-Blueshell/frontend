@@ -1,5 +1,4 @@
 import Home from '@/views/Home.vue'
-import News from '@/views/News.vue'
 import Events from '@/views/Events.vue'
 import Contact from '@/views/Contact.vue'
 import Committees from '@/views/Committees.vue'
@@ -8,11 +7,12 @@ import Esports from '@/views/Esports.vue'
 import AboutUs from "@/views/AboutUs.vue";
 import Board from "@/views/Board.vue";
 import League from "@/views/esports/League.vue";
-import Csgo from "@/views/esports/Csgo.vue";
+import Cs2 from "@/views/esports/Cs2.vue";
+import Trackmania from "@/views/esports/Trackmania.vue";
+import Valorant from "@/views/esports/Valorant.vue";
 import Documents from "@/views/Documents.vue";
 import ElNino from "@/views/partners/ElNino.vue";
 import Partners from "@/views/partners/Partners.vue";
-import Article from "@/views/Article.vue";
 import NotFound from "@/views/NotFound.vue";
 import Login from "@/views/login/Login.vue";
 import Account from "@/views/login/Account.vue";
@@ -50,24 +50,6 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: Home
-    },
-    {
-      path: '/news',
-      name: 'news',
-      component: News
-    },
-    {
-      path: '/news/article/:id',
-      component: Article
-    },
-    {
-      path: '/news/create',
-      component: ArticleEditor
-    },
-    {
-      path: '/events/calendar',
-      name: 'events',
-      component: Events
     },
     {
       path: '/contact',
@@ -120,14 +102,24 @@ const router = createRouter({
       component: League
     },
     {
-      path: '/esports/counter-strike-global-offensive',
-      name: 'csgo',
-      component: Csgo
+      path: '/esports/counter-strike-2',
+      name: 'cs2',
+      component: Cs2
+    },
+    {
+      path: '/esports/valorant',
+      name: 'valorant',
+      component: Valorant
     },
     {
       path: '/esports/rocketleague',
       name: 'rocketleague',
       component: RocketLeague
+    },
+    {
+      path: '/esports/trackmania',
+      name: 'trackmania',
+      component: Trackmania
     },
     {
       path: '/partners/become-a-partner',
@@ -185,6 +177,15 @@ const router = createRouter({
       name: 'articleEditor',
       component: ArticleEditor,
       meta: {requiresAuth: true}
+    },
+    {
+      path: '/events',
+      redirect: '/events/calendar',
+    },
+    {
+      path: '/events/calendar',
+      name: 'events',
+      component: Events
     },
     {
       path: '/events/create',

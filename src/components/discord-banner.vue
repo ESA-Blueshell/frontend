@@ -1,47 +1,96 @@
 <template>
   <div :style="{background: $vuetify.theme.computedThemes[$vuetify.theme.global.name].colors.wallpaper }">
     <v-container>
-      <v-row class="mx-auto container flex-nowrap" align="center" justify="space-between">
-        <v-col md="auto" cols="12">
-          <p class="text-white text-h4 font-weight-thin mb-0" style="float: left">
+      <v-row
+        class="mx-auto container flex-nowrap"
+        align="center"
+        justify="space-between"
+      >
+        <v-col
+          md="auto"
+          cols="12"
+        >
+          <p
+            class="text-white text-h4 font-weight-thin mb-0"
+            style="float: left"
+          >
             Join us on our Discord server
           </p>
         </v-col>
         <v-spacer />
         <v-col md="auto">
           <div>
-            <v-btn color="primary" href="https://discord.gg/23YMFQy" target="_blank"
-                   class="ml-5">
-              <v-icon dark>mdi-discord</v-icon>
+            <v-btn
+              color="primary"
+              href="https://discord.gg/23YMFQy"
+              target="_blank"
+              class="ml-5"
+            >
+              <v-icon dark>
+                mdi-discord
+              </v-icon>
             </v-btn>
           </div>
         </v-col>
       </v-row>
-      <v-row v-if="discordData">
-        <v-col cols="12" :md="Object.entries(channels).length > 0 ? 5 : 12">
-          <p class="text-h5 text-white mb-2">{{ discordData.presence_count }} people now online on discord</p>
-          <div class="overflow-hidden" style="border: 1px solid #A8FF00;border-radius: 16px">
-            <div class="overflow-y-auto" style="max-height: 180px">
+      <v-row
+        v-if="discordData"
+        class="mx-auto pa-3 ma-0"
+      >
+        <v-col
+          cols="12"
+          :md="Object.entries(channels).length > 0 ? 5 : 12"
+        >
+          <p class="text-h5 text--white mb-2">
+            {{ discordData.presence_count }} people now online on discord
+          </p>
+          <div
+            class="overflow-hidden"
+            style="border: 1px solid #A8FF00;border-radius: 10px"
+          >
+            <div
+              class="overflow-y-auto"
+              style="max-height: 180px"
+            >
               <v-container>
-                <v-row no-gutters style="justify-content: center">
-                  <v-col v-for="member in discordData.members" :key="member.username"
-                         class="discord-member-entry ml-4"
-                         cols="12" sm="3" :md="Object.entries(channels).length > 0 ? 5 : 2">
+                <v-row
+                  no-gutters
+                  style="justify-content: center"
+                >
+                  <v-col
+                    v-for="member in discordData.members"
+                    :key="member.username"
+                    class="discord-member-entry ml-4"
+                    cols="12"
+                    sm="3"
+                    :md="Object.entries(channels).length > 0 ? 5 : 2"
+                  >
                     <div class="discord-member-image">
-                      <img :alt="`${member.username}'s avatar`" :src="member.avatar_url"
-                           class="discord-member-img">
-                      <span class="discord-member-status"
-                            :class="{ 'discord-member-online': member.status==='online',  'discord-member-idle': member.status==='idle',  'discord-member-dnd': member.status==='dnd', }"/>
+                      <img
+                        :alt="`${member.username}'s avatar`"
+                        :src="member.avatar_url"
+                        class="discord-member-img"
+                      >
+                      <span
+                        class="discord-member-status"
+                        :class="{ 'discord-member-online': member.status==='online', 'discord-member-idle': member.status==='idle', 'discord-member-dnd': member.status==='dnd', }"
+                      />
                     </div>
-                    <span class="discord-member-name text-caption" v-text="member.username"></span>
+                    <span
+                      class="discord-member-name text-caption"
+                      v-text="member.username"
+                    />
                   </v-col>
-                  <v-col v-if="discordData.members.length > 99"
-                         class="discord-member-entry"
-                         cols="12" sm="3" :md="Object.entries(channels).length > 0 ? 5 : 2">
+                  <v-col
+                    v-if="discordData.members.length > 99"
+                    class="discord-member-entry"
+                    cols="12"
+                    sm="3"
+                    :md="Object.entries(channels).length > 0 ? 5 : 2"
+                  >
                     <div class="text-white ml-11">
                       + {{ discordData.presence_count - discordData.members.length }} more
                     </div>
-
                   </v-col>
                 </v-row>
               </v-container>
@@ -49,37 +98,64 @@
           </div>
         </v-col>
 
-        <v-spacer/>
+        <v-spacer />
 
-        <v-col v-if="Object.entries(channels).length > 0" cols="12" md="5">
+        <v-col
+          v-if="Object.entries(channels).length > 0"
+          cols="12"
+          md="5"
+        >
           <p class="text-h5 text-white mb-2">
             Active public VCs
           </p>
-          <v-container class="overflow-y-auto" style="max-height: 180px">
-            <v-row v-for="[channelId,channelName] in Object.entries(channels)" :key="channelId"
-                   class="mb-2" style="border: 1px solid #A8FF00;border-radius: 16px">
+          <v-container
+            class="overflow-y-auto"
+            style="max-height: 180px"
+          >
+            <v-row
+              v-for="[channelId,channelName] in Object.entries(channels)"
+              :key="channelId"
+              class="mb-2"
+              style="border: 1px solid #A8FF00;border-radius: 10px"
+            >
               <div class="ml-4">
                 <p class="text-h6 text-white font-italic font-weight-thin mb-0">
-                  <v-icon dark size="20" class="ma-0">mdi-volume-high</v-icon>
+                  <v-icon
+                    dark
+                    size="20"
+                    class="ma-0"
+                  >
+                    mdi-volume-high
+                  </v-icon>
                   {{ channelName }}
                 </p>
                 <div>
-                  <div v-for="member in membersInVC[channelId]" :key="member.username" class="discord-member-entry">
+                  <div
+                    v-for="member in membersInVC[channelId]"
+                    :key="member.username"
+                    class="discord-member-entry"
+                  >
                     <div class="discord-member-image">
-                      <img :alt="`${member.username}'s avatar`" :src="member.avatar_url"
-                           class="discord-member-img">
-                      <span class="discord-member-status"
-                            :class="{ 'discord-member-online': member.status==='online',  'discord-member-idle': member.status==='idle',  'discord-member-dnd': member.status==='dnd', }"/>
+                      <img
+                        :alt="`${member.username}'s avatar`"
+                        :src="member.avatar_url"
+                        class="discord-member-img"
+                      >
+                      <span
+                        class="discord-member-status"
+                        :class="{ 'discord-member-online': member.status==='online', 'discord-member-idle': member.status==='idle', 'discord-member-dnd': member.status==='dnd', }"
+                      />
                     </div>
-                    <span class="discord-member-name text-caption" v-text="member.username"></span>
+                    <span
+                      class="discord-member-name text-caption"
+                      v-text="member.username"
+                    />
                   </div>
                 </div>
               </div>
             </v-row>
           </v-container>
         </v-col>
-
-
       </v-row>
     </v-container>
   </div>

@@ -55,7 +55,7 @@
           <ul>
             <li>
               <a
-                href="https://esa-blueshell.nl/api/download/Membership-form-UT-2022-2023.pdf"
+                href="https://esa-blueshell.nl/api/download/Membership-form-UT-2023-2024.pdf"
                 target="_blank"
                 class="text-decoration-none"
               >
@@ -63,7 +63,7 @@
             </li>
             <li>
               <a
-                href="https://esa-blueshell.nl/api/download/Membership-form-External-2022-2023.pdf"
+                href="https://esa-blueshell.nl/api/download/Membership-form-External-2023-2024.pdf"
                 target="_blank"
                 class="text-decoration-none"
               >
@@ -71,7 +71,7 @@
             </li>
             <li>
               <a
-                href="https://esa-blueshell.nl/api/download/Membership-form-Alumni-2022-2023.pdf"
+                href="https://esa-blueshell.nl/api/download/Membership-form-Alumni-2023-2024.pdf"
                 target="_blank"
                 class="text-decoration-none"
               >

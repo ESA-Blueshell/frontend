@@ -60,7 +60,7 @@
     <v-pagination
       v-model="page"
       :length="totalPages"
-      total-visible="3"
+      total-visible="5"
       next-icon="mdi-menu-right"
       prev-icon="mdi-menu-left"
       @update:model-value="handlePageChange"
@@ -85,7 +85,7 @@ export default {
       .get('newsPageable?size=3&page=' + this.page)
       .then((response) => {
         this.news = response.data.content;
-        this.page = response.data.pageable.pageNumber;
+        this.page = response.data.pageable.pageNumber + 1;
         this.totalPages = response.data.totalPages;
         this.pageSize = response.data.pageable.pageSize;
       })

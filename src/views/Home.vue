@@ -31,7 +31,7 @@
           style="max-width:450px;min-width: 350px;min-height: 250px"
           align-self="center"
         >
-          <div
+          <a
             class="expand"
             style="width: 100%"
             @click="goto(col.url)"
@@ -45,10 +45,11 @@
             </v-icon>
             <p
               class="text-h3 ma-3 font-weight-thin"
+              :class="$vuetify.theme.dark ? 'text--white' : 'text--black'"
             >
               {{ col.title }}
             </p>
-          </div>
+          </a>
           <p
             class="text-body-1 font-weight-light mx-auto"
             style="max-width: 400px"
@@ -119,16 +120,28 @@ export default {
               esportsLink: "/esports/league-of-legends"
             },
             {
-              title: "Counter-Strike: Global Offensive",
+              title: "Counter-Strike 2",
               bg: require("@/assets/csgobg.jpg"),
               icon: require("@/assets/csgo.png"),
-              esportsLink: "/esports/counter-strike-global-offensive"
+              esportsLink: "/esports/counter-strike-2"
+            },
+            {
+              title: "Valorant",
+              bg: require("@/assets/valorantbg.jpg"),
+              icon: require("@/assets/valorant.png"),
+              esportsLink: "/esports/valorant"
             },
             {
               title: "Rocket League",
               bg: require("@/assets/rocketleaguebg.jpg"),
               icon: require("@/assets/rocketleague.png"),
               esportsLink: "/esports/rocketleague"
+            },
+            {
+              title: "Trackmania",
+              bg: require("@/assets/trackmaniabg.jpg"),
+              icon: require("@/assets/trackmania.png"),
+              esportsLink: "/esports/trackmania"
             },
           ]
         },
@@ -195,7 +208,7 @@ export default {
           icon: "mdi-trophy",
           color: "yellow darken-2",
           title: "Esports",
-          url: "/esports/competitive-scene",
+          url: "/esports",
           text: "As the name of our association suggests, esports is an integral part of Blueshell. Click the icon above to find more information on what we offer!"
         },
         {

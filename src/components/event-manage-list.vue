@@ -6,14 +6,14 @@
     <template #activator="{ props: dialog }">
       <v-list>
         <div
-            v-for="(event,i) in events"
-            :key="event.title+event.startTime"
+          v-for="(event,i) in events"
+          :key="event.title+event.startTime"
         >
           <v-list-item
-              lines="two"
-              :style="{ 'background-image': !event.banner ? '' :
+            lines="two"
+            :style="{ 'background-image': !event.banner ? '' :
               $vuetify.theme.global.current.dark ? `linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(${event.banner})` : `linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(255,255,255,0.8)), url(${event.banner})`}"
-              style="background-size: cover;background-position: center;backdrop-filter: blur(2px);"
+            style="background-size: cover;background-position: center;backdrop-filter: blur(2px);"
           >
             <v-list-item-title class="text-h6">
               {{ event.title }}
@@ -41,11 +41,11 @@
                       <v-tooltip location="left">
                         <template #activator="{ props }">
                           <v-btn
-                              icon
-                              variant="plain"
-                              :disabled="!event.signUp"
-                              v-bind="props"
-                              @click="$router.push('signups/'+event.id)"
+                            icon
+                            variant="plain"
+                            :disabled="!event.signUp"
+                            v-bind="props"
+                            @click="$router.push('signups/'+event.id)"
                           >
                             <v-icon>mdi-list-status</v-icon>
                           </v-btn>
@@ -57,10 +57,10 @@
                       <v-tooltip location="left">
                         <template #activator="{ props }">
                           <v-btn
-                              icon
-                              variant="plain"
-                              v-bind="props"
-                              @click="$router.push('edit/'+event.id)"
+                            icon
+                            variant="plain"
+                            v-bind="props"
+                            @click="$router.push('edit/'+event.id)"
                           >
                             <v-icon>mdi-pencil</v-icon>
                           </v-btn>
@@ -72,10 +72,10 @@
                       <v-tooltip location="left">
                         <template #activator="{ props: tooltip }">
                           <v-btn
-                              icon
-                              variant="plain"
-                              v-bind="{ ...tooltip, ...dialog }"
-                              @click="eventToDelete = event"
+                            icon
+                            variant="plain"
+                            v-bind="{ ...tooltip, ...dialog }"
+                            @click="eventToDelete = event"
                           >
                             <v-icon>mdi-delete</v-icon>
                           </v-btn>
@@ -108,7 +108,7 @@
         There will be no undo
       </v-card-text>
       <v-card-actions>
-        <v-spacer/>
+        <v-spacer />
         <v-btn
           variant="text"
           @click="eventToDelete=null"

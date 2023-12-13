@@ -6,6 +6,9 @@
         class="mx-auto my-10"
         style="max-width: 800px"
       >
+        <p class="text-h5">
+          Total signups: {{ responses.length }}
+        </p>
         <p class="text-h4">
           Summary
         </p>
@@ -13,7 +16,7 @@
           v-for="(question,i) in signUpForm"
           :key="i"
         >
-          <p class="text-h5">
+          <p :class="question.type === 'description' ? 'text-body-1' : 'text-h6 mb0'">
             {{ question.prompt }}
           </p>
           <template v-if="question.type === 'open'">
@@ -53,8 +56,10 @@
               <b>{{ response.fullName }}:</b> {{ response.formAnswers[i].map(answer => question.options[answer]).join(', ') }}
             </p>
             <v-container>
-              <div v-for="(option,j) in question.options"
-                   :key="j+'key'">
+              <div
+                v-for="(option,j) in question.options"
+                :key="j+'key'"
+              >
                 <v-row
                   :key="j"
                   @click="toggle(i,j)"
@@ -133,5 +138,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>

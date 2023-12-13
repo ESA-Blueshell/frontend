@@ -314,6 +314,8 @@ export default {
 
         this.event.signUpForm = this.$refs.signUpForm.form
         this.$emit('submit', this.event);
+      } else {
+        alert('The form is invalid.');
       }
     }
   }

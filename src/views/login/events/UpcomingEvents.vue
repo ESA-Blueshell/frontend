@@ -1,6 +1,6 @@
 <template>
   <v-main>
-    <top-banner title="Upcoming Events"/>
+    <top-banner title="Upcoming Events" />
     <div class="mx-3">
       <div
         class="mx-auto my-10"

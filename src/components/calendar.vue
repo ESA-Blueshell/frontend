@@ -31,7 +31,7 @@
           >
             {{ $refs.calendar.title }}
           </v-toolbar-title>
-          <v-spacer/>
+          <v-spacer />
           <!-- Circle loading thingy (only appears after the user's been waiting for new events for 0.5s) -->
           <v-fade-transition>
             <v-progress-circular
@@ -106,7 +106,7 @@
                 />
               </marquee-text>
 
-              <v-spacer/>
+              <v-spacer />
               <!-- Start of the "Find location" button. Check the documentation for v-tooltip to find out how this works exactly -->
               <v-tooltip location="bottom">
                 <template #activator="{ props }">
@@ -142,7 +142,8 @@
               v-if="selectedEvent.banner"
               :src="selectedEvent.banner"
               style="width: 100%; object-fit: contain"
-              alt="promo image for the event">
+              alt="promo image for the event"
+            >
 
             <v-card-text>
               <!-- Description of the event -->
@@ -166,7 +167,7 @@
                 No description...
               </p>
               <!-- Starting time of the event -->
-              <v-divider class="my-2"/>
+              <v-divider class="my-2" />
               <p>
                 <b>When</b>
                 <br>

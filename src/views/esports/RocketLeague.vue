@@ -12,9 +12,14 @@
         </p>
       </div>
     </div>
+    <team :team="oogway" />
+    <team
+      :team="squirtles"
+      name-right="true"
+    />
     <team :team="turtles" />
     <team
-      :team="tortoises"
+      :team="tadpole"
       name-right="true"
     />
   </v-main>
@@ -28,30 +33,30 @@ export default {
   components: {Team, TopBanner},
   data: () => {
     return {
-      turtles: {
-        name: 'BS Turtles',
+      oogway: {
+        name: 'BS Oogway',
         bg: require('../../assets/rocketleagueesports.jpg'),
         players: [
+          {
+            name: 'Allard van der Hooft',
+            ign: 'Vdhooft_'
+          },
+          {
+            name: 'Max Liebe',
+            ign: 'Amalox'
+          },
           {
             name: 'Job de Ruijter',
             ign: 'Job 404'
           },
           {
-            name: 'René Hammink',
-            ign: 'Mr. Pancake^-^'
-          },
-          {
-            name: 'Bas Willemsen',
-            ign: 'Dipsy'
-          },
-          {
-            name: 'Finn Prinsenberg',
-            ign: 'Diagonize'
+            name: 'Julian van den Nieuwenhuizen',
+            ign: 'Bak en Braad'
           },
         ]
       },
-      tortoises: {
-        name: "Blueshell Tortoises",
+      squirtles: {
+        name: "BS Squirtles",
         bg: require('../../assets/rocketleagueesports2.jpg'),
         players: [
           {
@@ -59,17 +64,53 @@ export default {
             ign: "ItIsIThomas"
           },
           {
-            name: "Pepijn Visser",
-            ign: "Visper"
+            name: "Joy Verheijen",
+            ign: "Bluegy"
           },
           {
-            name: "Patrick Wolbers",
-            ign: "KrabbyPattie"
+            name: "Huub Hammink",
+            ign: "bosvruchtenthee"
+          },
+        ]
+      },
+      turtles: {
+        name: "BS Turtles",
+        bg: require('../../assets/rocketleagueesports.jpg'),
+        players: [
+          {
+            name: "René Hammink",
+            ign: "Mr. Pancake^-^"
           },
           {
-            name: "Allard van der Hooft",
-            ign: "vdhooft_"
-          }
+            name: "Finn Prinsenberg",
+            ign: "Diagonize"
+          },
+          {
+            name: "Bas Willemsen",
+            ign: "Dipsy"
+          },
+        ]
+      },
+      tadpole: {
+        name: "BS Tadpole",
+        bg: require('../../assets/rocketleagueesports2.jpg'),
+        players: [
+          {
+            name: "Stijn Dollenkamp",
+            ign: "SJAWID"
+          },
+          {
+            name: "Thijs Krosman",
+            ign: "JustDqnt"
+          },
+          {
+            name: "Henry Slegers",
+            ign: "poopiejoe"
+          },
+          {
+            name: "Thijs Willems",
+            ign: "Darkneoteric"
+          },
         ]
       }
     }

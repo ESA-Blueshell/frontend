@@ -29,7 +29,7 @@
         </p>
         <p class="text-body-1">
           Currently in Blueshell, there are teams for CS:GO, LoL and Rocket League. To find out the current teams in
-          Blueshell, click one of the pictures below
+          Blueshell, click one of the pictures below.
         </p>
 
         <v-row
@@ -70,11 +70,19 @@ export default {
         },
         {
           icon: require('@/assets/csgo.png'),
-          url: '/esports/counter-strike-global-offensive'
+          url: '/esports/counter-strike-2'
+        },
+        {
+          icon: require('@/assets/valorant.png'),
+          url: '/esports/valorant'
         },
         {
           icon: require('@/assets/rocketleague.png'),
           url: '/esports/rocketleague'
+        },
+        {
+          icon: require('@/assets/trackmania.png'),
+          url: '/esports/trackmania'
         },
       ]
     }

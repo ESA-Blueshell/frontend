@@ -7,8 +7,8 @@
         style="max-width: 800px"
       >
         <v-img
-            :src="$vuetify.theme.global.current.dark?require('../../assets/connectworksdark.png'):require('../../assets/connectworks.png')"
-            class="mb-6"
+          :src="$vuetify.theme.global.current.dark?require('../../assets/connectworksdark.png'):require('../../assets/connectworks.png')"
+          class="mb-6"
         />
         <p class="text-h4 font-weight-light">
           Who are we?

@@ -115,28 +115,28 @@
             <v-list-item to="/esports/league-of-legends">
               League of Legends
             </v-list-item>
-            <v-list-item to="/esports/counter-strike-global-offensive">
-              Counter Strike: Global
-              Offensive
+            <v-list-item to="/esports/counter-strike-2">
+              Counter Strike 2
+            </v-list-item>
+            <v-list-item to="/esports/valorant">
+              Valorant
             </v-list-item>
             <v-list-item to="/esports/rocketleague">
               Rocket League
             </v-list-item>
+            <v-list-item to="/esports/trackmania">
+              Trackmania
+            </v-list-item>
           </v-list>
         </v-menu>
-        <v-btn
-          class="bar-button"
-
-          to="/news"
+        <v-menu
+          open-on-hover
+          offset-y
         >
-          News
-        </v-btn>
-        <v-menu open-on-hover>
           <template #activator="{ props }">
             <v-btn
               class="bar-button"
               v-bind="props"
-
               to="/partners/become-a-partner"
             >
               Partners
@@ -167,7 +167,7 @@
         </v-btn>
       </div>
 
-      <v-spacer/>
+      <v-spacer />
 
       <!--  Dark mode toggle    -->
       <v-btn
@@ -214,6 +214,12 @@
           >
             Manage committees
           </v-list-item>
+          <v-list-item
+            v-if="$store.getters.isBoard || $store.getters.isActive"
+            to="/events/manage"
+          >
+            Manage events
+          </v-list-item>
           <v-list-item @click="logOut">
             Log Out
           </v-list-item>
@@ -253,7 +259,7 @@
           <v-list-item to="/documents">
             <v-list-item-title>Documents</v-list-item-title>
           </v-list-item>
-          <v-divider class="mb-1"/>
+          <v-divider class="mb-1" />
         </v-list-group>
 
 
@@ -277,7 +283,7 @@
             to="/events/manage"
             title="Manage events"
           />
-          <v-divider class="mb-1"/>
+          <v-divider class="mb-1" />
         </v-list-group>
         <v-list-item
           v-else
@@ -301,14 +307,22 @@
             title="League of Legends"
           />
           <v-list-item
-            to="/esports/counter-strike-global-offensive"
-            title="Counter Strike: Global Offensive"
+            to="/esports/counter-strike-2"
+            title="Counter Strike 2"
+          />
+          <v-list-item
+            to="/esports/valorant"
+            title="Valorant"
           />
           <v-list-item
             to="/esports/rocketleague"
             title="Rocket League"
           />
-          <v-divider class="mb-1"/>
+          <v-list-item
+            to="/esports/trackmania"
+            title="Trackmania"
+          />
+          <v-divider class="mb-1" />
         </v-list-group>
 
         <v-list-item
@@ -339,7 +353,7 @@
             to="/partners/talentIT"
             title="TalentIT"
           />
-          <v-divider class="mb-1"/>
+          <v-divider class="mb-1" />
         </v-list-group>
 
         <v-list-item
@@ -403,7 +417,7 @@
       </template>
     </v-navigation-drawer>
     <!--    <v-main>-->
-    <router-view/>
+    <router-view />
     <!--    </v-main>-->
     <v-footer theme="dark">
       <v-btn
@@ -471,6 +485,18 @@
       >
         ETT
       </v-btn>
+      <v-btn
+        href="https://www.studentenwegwijzer.nl/enschede/studentenverenigingen/blueshell/"
+        target="_blank"
+      >
+        Wegwijzer
+      </v-btn>
+      <v-btn
+        href="https://www.esportsloungetwente.nl/"
+        target="_blank"
+      >
+        Predator Esports Lounge
+      </v-btn>
       <v-spacer />
 
       <div class="text-white mr-4">
@@ -500,7 +526,7 @@
       v-model="networkError"
       timeout="10000"
     >
-      <span v-html="networkErrorMessage"/>
+      <span v-html="networkErrorMessage" />
       <template #actions>
         <v-btn
           color="blue"
@@ -552,7 +578,7 @@
           >Cookie Policy</a>.
         </v-card-text>
 
-        <v-divider/>
+        <v-divider />
 
         <v-card-actions>
           <v-btn
@@ -573,6 +599,7 @@
 import router from "@/plugins/router";
 import xss from "xss";
 import showdown from "showdown";
+import store from "@/plugins/store";
 
 export default {
   setup() {
@@ -644,23 +671,56 @@ export default {
         .then(response => {
           this.$store.commit('setRoles', response.data.roles)
         })
-        .catch(e => this.$root.handleNetworkError(e))
+        .catch(e => {
+          if (e.response.status === 401) {
+            store.commit('setNetworkErrorMessage', 'Login expired. You have been logged out.')
+            this.$store.commit('logout')
+            if (this.$route.meta.requiresAuth) {
+              this.goto('/')
+            }
+          } else {
+            this.$root.handleNetworkError(e)
+          }
+        })
     }
 
 
     let keysPressed = [];
     window.addEventListener('keydown', event => {
-      const key = event.key.toLowerCase();
-      keysPressed.push(key);
-      if (keysPressed.toString().endsWith("arrowup,arrowup,arrowdown,arrowdown,arrowleft,arrowright,arrowleft,arrowright,b,a,enter")) {
-        this.poggers = true
-        alert("BIG SITECIE ENERGY")
-        //todo: make epic easter eggerino
+      if (event.key) {
+        const key = event.key.toLowerCase();
+        keysPressed.push(key);
+        if (keysPressed.toString().endsWith("arrowup,arrowup,arrowdown,arrowdown,arrowleft,arrowright,arrowleft,arrowright,b,a,enter")) {
+          this.poggers = true
+          alert("BIG SITECIE ENERGY")
+          //todo: make epic easter eggerino
+        }
       }
 
     });
 
     this.$vuetify.theme.global.name = localStorage.getItem('esa-blueshell.nl:darkMode') === 'true' ? 'dark' : 'light'
+  },
+  methods: {
+    goto(url) {
+      router.push(url)
+    },
+    darkMode() {
+      this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
+      localStorage.setItem('esa-blueshell.nl:darkMode', this.$vuetify.theme.dark.toString())
+    },
+    logOut() {
+      // Let the cookie expire and redirect if the page is logged in only
+      this.$store.commit('logout')
+      this.loggedInSnackbar = true;
+      if (this.$route.meta.requiresAuth) {
+        this.goto('/')
+      }
+    },
+    showSnackbar(message) {
+      this.snackbar = true;
+      this.snackbarText = message
+    }
   },
   methods: {
     goto(url) {

@@ -27,7 +27,7 @@
           Do you have a great idea for an event or a new committee, then be sure to contact us!
         </p>
       </div>
-      <v-expansion-panels accordion>
+      <v-expansion-panels variant="accordion">
         <v-expansion-panel
           v-for="committee in committees"
           :key="committee.name"
@@ -70,10 +70,6 @@ export default {
           description: 'ChessCie is a community of styleful people who so happen to enjoy chess. We do team-building activities to get to know the other members of ChessCie better as this improves the quality and effectiveness of our highly efficient meetings. This guarantees that ChessCie events are and will always be by far the best organized events in Blueshell.',
         },
         {
-          name: 'DegeneraCie',
-          description: 'We host online events roughly once a month where we hold video game or anime music quizzes.',
-        },
-        {
           name: 'DisCo',
           description: 'The DisCo is *the* committee for all your groovy needs! \n' +
               'We organise events that have to do with music and dancing, like Just Dance nights, music jams and Rhythm & Dance nights.\n' +
@@ -100,10 +96,6 @@ export default {
           description: 'We Nintendo fans bundle our strength together to organize fun Nintendo-related events. From Nintendo Nights to specific Nintendo games (new and old), the possibilities are endless!',
         },
         {
-          name: 'ShitpostCie',
-          description: 'This committee hosts all kinds of online discord events',
-        },
-        {
           name: 'SiteCie',
           description: 'The SiteCie is the team responsible for maintaining the website of blueshell: esa-blueshell.nl. We use our own frontend (Vue) and backend (Java spring), so if you\'re interested in learning/helping out with web development, make sure to check us out!',
         },
@@ -122,6 +114,10 @@ export default {
         {
           name: 'TacCie',
           description: 'TacCie is one of Blueshell\'s newest committees focusing on FPS games. The name \'TacCie\' is derived from the tactical shooter aspect of the committee and because it sounded like \'taxi\'. TacCie hosts events focused on all sorts of FPS based games such as Valorant, CS:GO, Overwatch, R6S, Splitgate and many others.',
+        },
+        {
+          name: 'FYCie',
+          description: 'The \'FYCie\' (first years committee) is the committee consisting of mostly first years to get to know the life of being in a committee.',
         },
       ]
     }
