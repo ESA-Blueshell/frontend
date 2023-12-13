@@ -4,20 +4,20 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "eslint . --fix --ignore-path .gitignore"
   },
   "dependencies": {
     "@mdi/font": "7.3.67",
     "axios": "^1.6.2",
     "roboto-fontface": "*",
-    "showdown": "^2.1.0",
     "vue": "^3.3.11",
     "vue-axios": "^3.5.2",
     "vue-marquee-text-component": "^2.0.1",
     "vue-router": "^4.2.5",
-    "vuetify": "^3.0.6",
     "vuex": "^4.1.0",
     "webfontloader": "^1.0.0",
+    "showdown": "^2.1.0",
     "xss": "^1.0.14"
   },
   "devDependencies": {
@@ -28,6 +28,7 @@
     "eslint-plugin-vuetify": "^2.0.0-beta.2",
     "sass": "^1.69.5",
     "vite": "^5.0.8",
-    "vite-plugin-vuetify": "^2.0.1"
+    "vite-plugin-vuetify": "^2.0.1",
+    "vuetify": "^3.4.7"
   }
 }

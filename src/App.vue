@@ -17,7 +17,7 @@
 
       <div
         v-if="$vuetify.display.lgAndUp"
-        style="height: 100%"
+        style="height: 90%"
       >
         <v-btn
           class="bar-button"
@@ -31,7 +31,10 @@
         >
           Membership
         </v-btn>
-        <v-menu open-on-hover>
+        <v-menu
+          open-on-hover="true"
+          open-delay="0"
+        >
           <template #activator="{ props }">
             <v-btn
               class="bar-button"
@@ -61,7 +64,8 @@
 
         <v-menu
           v-if="$store.getters.isLoggedIn"
-          open-on-hover
+          :open-on-hover="true"
+          open-delay="0"
         >
           <template #activator="{ props }">
             <v-btn
@@ -97,7 +101,10 @@
         </v-btn>
 
 
-        <v-menu open-on-hover>
+        <v-menu
+          :open-on-hover="true"
+          open-delay="0"
+        >
           <template #activator="{ props }">
             <v-btn
               class="bar-button"
@@ -130,9 +137,10 @@
           </v-list>
         </v-menu>
         <v-menu
-          open-on-hover
+          :open-on-hover="true"
+          open-delay="0"
           offset-y
-        >
+          >
           <template #activator="{ props }">
             <v-btn
               class="bar-button"
@@ -795,9 +803,11 @@ export default {
 
 <style>
 
-.bar-button {
-  margin: 2px;
-  height: 90% !important;
+.v-btn.bar-button {
+  margin-left: 2px;
+  margin-right: 2px;
+  height: 100% !important;
+  border-radius: 10px;
 }
 
 .roll-off {
