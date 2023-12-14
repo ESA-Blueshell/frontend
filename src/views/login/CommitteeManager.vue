@@ -18,7 +18,7 @@
         <v-expand-transition>
           <div
             v-if="creatingCommittee"
-            class="form-border mx-auto rounded-b-xl"
+            class="form-border mx-auto rounded-b"
             style="border-top-width: 0"
           >
             <edit-committee
@@ -84,7 +84,7 @@
                 <v-expand-transition :key="committee.name">
                   <div
                     v-if="editingCommitteeId === committee.id"
-                    class="form-border mx-auto rounded-b-xl"
+                    class="form-border mx-auto rounded-b"
                   >
                     <edit-committee
                       :committee="committee"

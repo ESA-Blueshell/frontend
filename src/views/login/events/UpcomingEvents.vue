@@ -149,7 +149,7 @@
             <v-expand-transition :key="event.id">
               <div
                 v-if="signingUpFor === event.id"
-                class="form-border mx-auto rounded-b-xl"
+                class="form-border mx-auto rounded-b"
               >
                 <sign-up-form
                   :answers="eventIdToSignUpForm[event.id] ? JSON.parse(eventIdToSignUpForm[event.id]) : defaultAnswers(event.signUpForm)"

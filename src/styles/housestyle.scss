@@ -1,4 +1,4 @@
-$accent: #A8FF00;
+$accent: rgb(var(--v-theme-accent));
 
 .v-btn {
   letter-spacing: 0
@@ -20,7 +20,7 @@ $accent: #A8FF00;
   border: 1px transparent solid;
 }
 
-.v-btn--variant-outlined.v-theme--dark {
+.v-btn--variant-outlined {
   border: 1px $accent solid;
 }
 
@@ -38,6 +38,10 @@ CSS MOMENT
 }
 
 :is(.v-list-item--nav,.v-menu__content) :is(:hover,[aria-expanded="true"],[aria-current="page"]).v-list-item.v-theme--dark {
+  border: 1px $accent solid;
+}
+
+.v-list-item--active {
   border: 1px $accent solid;
 }
 
@@ -131,4 +135,7 @@ CSS MOMENT
 }
 
 
-
+.v-field--variant-filled .v-field__outline::before, .v-field--variant-underlined .v-field__outline::before {
+  border-color: $accent;
+  opacity: 1;
+}

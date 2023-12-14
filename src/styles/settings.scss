@@ -2,3 +2,22 @@
   $border-radius-root: 10px,
   $list-padding: 0,
 );
+
+.rounded-b {
+  border-bottom-left-radius: settings.$border-radius-root !important;
+  border-bottom-right-radius: settings.$border-radius-root !important;
+}
+
+.v-list > :first-child {
+  border-top-left-radius: settings.$border-radius-root !important;
+  border-top-right-radius: settings.$border-radius-root !important;
+}
+
+.v-list > :last-child {
+  border-bottom-left-radius: settings.$border-radius-root !important;
+  border-bottom-right-radius: settings.$border-radius-root !important;
+}
+
+.v-divider {
+  opacity: 1;
+}

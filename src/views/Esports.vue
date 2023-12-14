@@ -39,7 +39,7 @@
           <v-col
             v-for="game in games"
             :key="game.url"
-            cols="3"
+            cols="4"
           >
             <router-link :to="game.url">
               <v-img

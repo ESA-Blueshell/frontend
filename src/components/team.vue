@@ -62,10 +62,7 @@
             </v-col>
           </v-row>
           <v-row v-if="team.coaches || team.substitutes">
-            <v-divider
-              class="my-2"
-              style="border-color: rgba(255,255,255,0.9);"
-            />
+            <v-divider class="my-2" />
           </v-row>
           <v-row
             v-for="(coach,i) in team.coaches"
@@ -176,10 +173,7 @@
 
 
       <v-row v-if="team.coaches || team.substitutes">
-        <v-divider
-          class="my-2"
-          style="border-color: rgba(255,255,255,0.9);"
-        />
+        <v-divider class="my-2" />
       </v-row>
 
       <v-row

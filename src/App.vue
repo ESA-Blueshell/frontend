@@ -32,8 +32,9 @@
           Membership
         </v-btn>
         <v-menu
-          open-on-hover="true"
+          :open-on-hover="true"
           open-delay="0"
+          :offset="3"
         >
           <template #activator="{ props }">
             <v-btn
@@ -66,6 +67,7 @@
           v-if="$store.getters.isLoggedIn"
           :open-on-hover="true"
           open-delay="0"
+          :offset="3"
         >
           <template #activator="{ props }">
             <v-btn
@@ -104,6 +106,7 @@
         <v-menu
           :open-on-hover="true"
           open-delay="0"
+          :offset="3"
         >
           <template #activator="{ props }">
             <v-btn
@@ -139,8 +142,8 @@
         <v-menu
           :open-on-hover="true"
           open-delay="0"
-          offset-y
-          >
+          :offset="3"
+        >
           <template #activator="{ props }">
             <v-btn
               class="bar-button"
@@ -177,62 +180,67 @@
 
       <v-spacer />
 
-      <!--  Dark mode toggle    -->
-      <v-btn
-        class="mr-4"
-        :icon="$vuetify.theme.global.current.dark ? 'mdi-moon-waxing-crescent' : 'mdi-white-balance-sunny'"
-        :color="$vuetify.theme.global.current.dark ? 'accent' : 'white'"
-        :class="{'roll-on': $vuetify.theme.global.current.dark,'roll-off': !$vuetify.theme.global.current.dark }"
-        @click="toggleDarkMode"
-      />
+      <div style="height: 90%">
+        <!--  Dark mode toggle    -->
+        <v-btn
+          class="mr-4"
+          :icon="$vuetify.theme.global.current.dark ? 'mdi-moon-waxing-crescent' : 'mdi-white-balance-sunny'"
+          :color="$vuetify.theme.global.current.dark ? 'accent' : 'white'"
+          :class="{'roll-on': $vuetify.theme.global.current.dark,'roll-off': !$vuetify.theme.global.current.dark }"
+          @click="toggleDarkMode"
+        />
 
-      <!-- LOGIN BUTTON/ACCOUNT DROPDOWN MENU -->
-      <v-btn
-        v-if="!loggedIn"
-        class="bar-button"
-        to="/login"
-      >
-        Log In
-      </v-btn>
-      <v-menu v-else>
-        <template #activator="{ props }">
-          <v-btn
-            class="bar-button"
-            variant="text"
-            v-bind="props"
-          >
-            <v-icon size="x-large">
-              mdi-account
-            </v-icon>
-          </v-btn>
-        </template>
-        <v-list>
-          <v-list-item to="/account">
-            Account
-          </v-list-item>
-          <v-list-item
-            v-if="$store.getters.isBoard"
-            to="/members/manage"
-          >
-            Manage members
-          </v-list-item>
-          <v-list-item
-            v-if="$store.getters.isBoard"
-            to="/committees/manage"
-          >
-            Manage committees
-          </v-list-item>
-          <v-list-item
-            v-if="$store.getters.isBoard || $store.getters.isActive"
-            to="/events/manage"
-          >
-            Manage events
-          </v-list-item>
-          <v-list-item @click="logOut">
-            Log Out
-          </v-list-item>
-        </v-list>
-      </v-menu>
+        <!-- LOGIN BUTTON/ACCOUNT DROPDOWN MENU -->
+        <v-btn
+          v-if="!loggedIn"
+          class="bar-button"
+          to="/login"
+        >
+          Log In
+        </v-btn>
+        <v-menu
+          v-else
+          :offset="3"
+        >
+          <template #activator="{ props }">
+            <v-btn
+              class="bar-button"
+              variant="text"
+              v-bind="props"
+            >
+              <v-icon size="x-large">
+                mdi-account
+              </v-icon>
+            </v-btn>
+          </template>
+          <v-list>
+            <v-list-item to="/account">
+              Account
+            </v-list-item>
+            <v-list-item
+              v-if="$store.getters.isBoard"
+              to="/members/manage"
+            >
+              Manage members
+            </v-list-item>
+            <v-list-item
+              v-if="$store.getters.isBoard"
+              to="/committees/manage"
+            >
+              Manage committees
+            </v-list-item>
+            <v-list-item
+              v-if="$store.getters.isBoard || $store.getters.isActive"
+              to="/events/manage"
+            >
+              Manage events
+            </v-list-item>
+            <v-list-item @click="logOut">
+              Log Out
+            </v-list-item>
+          </v-list>
+        </v-menu>
+      </div>
     </v-app-bar>
 
     <v-navigation-drawer
@@ -332,11 +340,6 @@
           />
           <v-divider class="mb-1" />
         </v-list-group>
-
-        <v-list-item
-          to="/news"
-          title="News"
-        />
 
         <v-list-group>
           <template #activator="{ props }">
