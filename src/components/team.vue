@@ -5,13 +5,14 @@
   <div
     :style="{ 'background-image': `url(${team.bg})`}"
     style="background-size: cover;background-position: center"
+    class="team-wrapper"
   >
     <!--
       Here starts the team view on size medium and above
     -->
     <v-container
       v-if="$vuetify.display.mdAndUp"
-      class="py-10"
+      class="py-16"
       fill-height
       fluid
       :style="{background: $vuetify.theme.global.current.dark ? 'rgba(0,0,0,0.6)' : 'rgba(255,255,255,0.8)'}"
@@ -133,10 +134,10 @@
     -->
     <v-container
       v-else
-      class="py-5"
+      class="py-16"
       fill-height
       fluid
-      style="background: rgba(0,0,0,0.6)"
+      :style="{background: $vuetify.theme.global.current.dark ? 'rgba(0,0,0,0.6)' : 'rgba(255,255,255,0.8)'}"
     >
       <v-row justify="center">
         <p class="text-h2 font-italic text-center">
@@ -263,3 +264,8 @@ export default {
   // }
 }
 </script>
+<style scoped>
+.team-wrapper + .team-wrapper {
+  border-top: rgb(var(--v-theme-accent)) 1px solid;
+}
+</style>

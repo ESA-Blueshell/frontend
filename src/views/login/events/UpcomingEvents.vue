@@ -259,10 +259,10 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .form-border {
   border-width: 1px;
-  border-color: var(--v-accent-base);
+  border-color: rgb(var(--v-theme-accent));
   border-style: solid;
 }
 

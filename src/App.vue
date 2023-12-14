@@ -713,27 +713,6 @@ export default {
     goto(url) {
       router.push(url)
     },
-    darkMode() {
-      this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
-      localStorage.setItem('esa-blueshell.nl:darkMode', this.$vuetify.theme.dark.toString())
-    },
-    logOut() {
-      // Let the cookie expire and redirect if the page is logged in only
-      this.$store.commit('logout')
-      this.loggedInSnackbar = true;
-      if (this.$route.meta.requiresAuth) {
-        this.goto('/')
-      }
-    },
-    showSnackbar(message) {
-      this.snackbar = true;
-      this.snackbarText = message
-    }
-  },
-  methods: {
-    goto(url) {
-      router.push(url)
-    },
     toggleDarkMode() {
       this.$vuetify.theme.global.name = this.$vuetify.theme.global.current.dark ? 'light' : 'dark'
       localStorage.setItem('esa-blueshell.nl:darkMode', this.$vuetify.theme.global.current.dark.toString())
@@ -807,7 +786,6 @@ export default {
   margin-left: 2px;
   margin-right: 2px;
   height: 100% !important;
-  border-radius: 10px;
 }
 
 .roll-off {

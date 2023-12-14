@@ -7,7 +7,7 @@
         style="max-width: 800px"
       >
         <v-img
-          :src="$vuetify.theme.dark?require('../../assets/talentitdark.png'):require('../../assets/talentit.png')"
+          :src="$vuetify.theme.global.current.dark?require('../../assets/talentitdark.png'):require('../../assets/talentit.png')"
           class="mb-6"
         />
         <p class="text-body-1">

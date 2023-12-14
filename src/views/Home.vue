@@ -45,7 +45,6 @@
             </v-icon>
             <p
               class="text-h3 ma-3 font-weight-thin"
-              :class="$vuetify.theme.dark ? 'text--white' : 'text--black'"
             >
               {{ col.title }}
             </p>
