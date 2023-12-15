@@ -8,12 +8,12 @@
   border-bottom-right-radius: settings.$border-radius-root !important;
 }
 
-.v-list > :first-child {
+.v-list > :first-child, .v-list > .list-item-buffer > :first-child {
   border-top-left-radius: settings.$border-radius-root !important;
   border-top-right-radius: settings.$border-radius-root !important;
 }
 
-.v-list > :last-child {
+.v-list > :last-child, .v-list > .list-item-buffer > :last-child {
   border-bottom-left-radius: settings.$border-radius-root !important;
   border-bottom-right-radius: settings.$border-radius-root !important;
 }

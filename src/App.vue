@@ -73,7 +73,7 @@
             <v-btn
               class="bar-button"
               v-bind="props"
-              to="/events/calendar"
+              to="/events"
             >
               events
               <v-icon>mdi-chevron-down</v-icon>
