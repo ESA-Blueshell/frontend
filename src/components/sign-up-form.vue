@@ -12,6 +12,7 @@
     they should be made outside of this component (this is done now in UpcomingEvents.vue)
   -->
   <v-form
+    v-if="answers"
     ref="form"
     v-model="valid"
   >
@@ -51,7 +52,7 @@
         v-for="(option,j) in question.options"
         v-else-if="question.type === 'checkbox'"
         :key="j"
-        v-model="answersData[i]"
+        v-model="answers[i]"
         :label="option"
         :value="j"
         class="mt-0 mb-2"
@@ -60,7 +61,7 @@
     </div>
 
     <v-btn
-      block
+      :block="true"
       class="mt-4"
       @click="submit"
     >
@@ -72,7 +73,8 @@
 <script>
 export default {
   name: "SignUpForm",
-  props: ['eventId', 'form', 'answers'],
+  props: ['event', 'form', 'answersString'],
+  // props: ['eventId', 'form', 'answers'],
   /*
     eventId is the id of the event that form will be submitted for.
 
@@ -99,27 +101,31 @@ export default {
    */
   data: () => ({
     valid: false,
-    answersData: [],
+    answers: null,
   }),
   mounted() {
-    // this is the illest thing i've ever done. Vue be kinda cringe with their checkboxes
-    // So if the answers are not stored in data, the checkboxes break. I have no idea why, I'm guessing it's vuetify being cringe.
-    // It's probably possible to not have this line by writing our own checkboxes, but i cba so I'm leaving it like this for now.
-    this.answersData = this.answers;
+    if (this.answersString) {
+      this.answers = JSON.parse(this.answersString);
+    } else {
+      this.answers = this.defaultAnswers(this.event.signUpForm);
+    }
   },
   methods: {
     submit() {
       if (this.$refs.form.validate()) {
         this.$emit('submitting')
 
-        this.$http.post(`events/signups/${this.eventId}`,
-            JSON.stringify(this.answersData),
+        this.$http.post(`events/signups/${this.event.id}`,
+            JSON.stringify(this.answers),
             {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`, 'Content-Type': 'text/plain'}}
         )
             .then(() => this.$emit('close'))
             .catch(e => this.$root.handleNetworkError(e))
       }
-    }
+    },
+    defaultAnswers(form) {
+      return Array.from(JSON.parse(form), question => question.type === 'open' ? '' : (question.type === 'checkbox' ? [] : null))
+    },
   }
 }
 </script>

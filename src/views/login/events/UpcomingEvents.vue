@@ -1,6 +1,6 @@
 <template>
   <v-main>
-    <top-banner title="Upcoming Events"/>
+    <top-banner title="Upcoming Events" />
     <div
       class="mx-auto my-10"
       style="max-width: 800px"
@@ -31,8 +31,8 @@
                 <div
                   v-if="expandedEvent !== i || !event.description"
                   v-html="event.description ?
-                      $root.markdownToHtml(event.description.slice(0, 150) + (event.description.length > 150 ? '...' : '')) :
-                      'No description...'"
+                    $root.markdownToHtml(event.description.slice(0, 150) + (event.description.length > 150 ? '...' : '')) :
+                    'No description...'"
                 />
               </v-expand-transition>
               <v-expand-transition>
@@ -52,18 +52,18 @@
                         class="ml-2 mb-0 text-right"
                         style="width: 100px"
                       >
-                          <span v-if="submittingId === event.id">
-                            Submitting sign-up
-                          </span>
+                        <span v-if="submittingId === event.id">
+                          Submitting sign-up
+                        </span>
                         <span v-else-if="eventIdToSignUpForm[event.id] !== undefined">
-                            Signed up!
-                          </span>
+                          Signed up!
+                        </span>
                         <span v-else-if="event.signUp && event.membersOnly && !$store.getters.isMember">
-                            Members-only event
-                          </span>
+                          Members-only event
+                        </span>
                         <span v-else-if="event.signUp">
-                            Not signed up
-                          </span>
+                          Not signed up
+                        </span>
                       </p>
                     </v-row>
                   </v-col>
@@ -164,8 +164,8 @@
               class="form-border mx-auto rounded-b"
             >
               <sign-up-form
-                :answers="eventIdToSignUpForm[event.id] ? JSON.parse(eventIdToSignUpForm[event.id]) : defaultAnswers(event.signUpForm)"
-                :event-id="event.id"
+                :answers-string="eventIdToSignUpForm[event.id]"
+                :event="event"
                 :form="JSON.parse(event.signUpForm)"
                 class="form mx-auto"
                 @close="signingUpFor=null;submittingId=null;refreshSignUp(event.id)"
@@ -214,7 +214,7 @@ export default {
         .then(() => {
           this.submittingId = null
           this.signingUpFor = null
-          this.$set(this.eventIdToSignUpForm, eventId, null)
+          this.eventIdToSignUpForm[eventId] = null
         })
         .catch(e => this.$root.handleNetworkError(e))
     },
@@ -224,7 +224,7 @@ export default {
         .then(() => {
           this.submittingId = null
           this.signingUpFor = null
-          this.$delete(this.eventIdToSignUpForm, eventId)
+          delete this.eventIdToSignUpForm[eventId]
         })
         .catch(e => this.$root.handleNetworkError(e))
 
@@ -232,12 +232,9 @@ export default {
     refreshSignUp(eventId) {
       this.$http.get('events/signups/' + eventId, {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
         .then(response => {
-          this.$set(this.eventIdToSignUpForm, response.data.event, response.data.formAnswers)
+          this.eventIdToSignUpForm[response.data.event] = response.data.formAnswers
         })
         .catch(e => this.$root.handleNetworkError(e))
-    },
-    defaultAnswers(form) {
-      return Array.from(JSON.parse(form), question => question.type === 'open' ? '' : (question.type === 'checkbox' ? [] : null))
     },
     formatStartEndTime(event) {
       let startTime = new Date(Date.parse(event.startTime))
