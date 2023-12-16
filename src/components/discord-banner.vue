@@ -1,47 +1,38 @@
 <template>
   <div :style="{background: $vuetify.theme.computedThemes[$vuetify.theme.global.name].colors.wallpaper }">
-    <v-container>
+    <v-container class="pa-0">
       <v-row
         class="mx-auto container flex-nowrap"
         align="center"
-        justify="space-between"
       >
-        <v-col
-          md="auto"
-          cols="12"
-        >
+        <v-col cols="auto" class="flex-shrink-1">
           <p
-            class="text-white text-h4 font-weight-thin mb-0"
+            class="text-white text-h5 text-sm-h4 font-weight-thin mb-0"
             style="float: left"
           >
             Join us on our Discord server
           </p>
         </v-col>
-        <v-spacer />
-        <v-col md="auto">
-          <div>
-            <v-btn
-              color="primary"
-              href="https://discord.gg/23YMFQy"
-              target="_blank"
-              class="ml-5"
-            >
-              <v-icon dark>
-                mdi-discord
-              </v-icon>
-            </v-btn>
-          </div>
+        <v-spacer/>
+        <v-col cols="auto">
+          <v-btn
+            color="primary"
+            href="https://discord.gg/23YMFQy"
+            target="_blank"
+          >
+            <img :src="require('@/assets/discord.svg')" style="width: 35px" alt="discord icon"/>
+          </v-btn>
         </v-col>
       </v-row>
       <v-row
         v-if="discordData"
-        class="mx-auto pa-3 ma-0"
+        class="mx-auto pt-4 ma-0 container"
       >
         <v-col
           cols="12"
           :md="Object.entries(channels).length > 0 ? 5 : 12"
         >
-          <p class="text-h5 text--white mb-2">
+          <p class="text-h6 text-sm-h5 text--white mb-2">
             {{ discordData.presence_count }} people now online on discord
           </p>
           <div
@@ -50,18 +41,15 @@
           >
             <div
               class="overflow-y-auto"
-              style="max-height: 180px"
+              style="max-height: 205px"
             >
               <v-container>
-                <v-row
-                  no-gutters
-                  style="justify-content: center"
-                >
+                <v-row style="justify-content: center">
                   <v-col
                     v-for="member in discordData.members"
                     :key="member.username"
-                    class="discord-member-entry ml-4"
-                    cols="12"
+                    class="discord-member-entry py-0"
+                    cols="6"
                     sm="3"
                     :md="Object.entries(channels).length > 0 ? 5 : 2"
                   >
@@ -84,11 +72,11 @@
                   <v-col
                     v-if="discordData.members.length > 99"
                     class="discord-member-entry"
-                    cols="12"
+                    cols="6"
                     sm="3"
                     :md="Object.entries(channels).length > 0 ? 5 : 2"
                   >
-                    <div class="text-white ml-11">
+                    <div class="text-white ml-7">
                       + {{ discordData.presence_count - discordData.members.length }} more
                     </div>
                   </v-col>
@@ -98,7 +86,7 @@
           </div>
         </v-col>
 
-        <v-spacer />
+        <v-spacer/>
 
         <v-col
           v-if="Object.entries(channels).length > 0"
@@ -175,13 +163,13 @@ export default {
         this.discordData = response.data
         this.shuffleArray(this.discordData.members)
 
-        const filteredMembers = this.discordData.members.filter(member => member.channel_id)
+        const membersInAChannel = this.discordData.members.filter(member => member.channel_id)
 
         this.discordData.channels.forEach(channel => {
-          const membersInChannel = filteredMembers.filter(member => member.channel_id === channel.id);
-          if (membersInChannel.length > 0) {
+          const membersInThisChannel = membersInAChannel.filter(member => member.channel_id === channel.id);
+          if (membersInThisChannel.length > 0) {
             this.channels[channel.id] = channel.name
-            this.membersInVC[channel.id] = membersInChannel
+            this.membersInVC[channel.id] = membersInThisChannel
           }
         })
 
