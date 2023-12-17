@@ -21,3 +21,11 @@
 .v-divider {
   opacity: 1;
 }
+
+
+@media #{map-get(settings.$display-breakpoints, 'xs')} {
+  .v-container {
+    padding: 8px;
+  }
+}
+

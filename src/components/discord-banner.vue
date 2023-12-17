@@ -32,7 +32,7 @@
           cols="12"
           :md="Object.entries(channels).length > 0 ? 5 : 12"
         >
-          <p class="text-h6 text-sm-h5 text--white mb-2">
+          <p class="text-h6 text-sm-h5 text-white mb-2">
             {{ discordData.presence_count }} people now online on discord
           </p>
           <div
@@ -43,15 +43,14 @@
               class="overflow-y-auto"
               style="max-height: 205px"
             >
-              <v-container>
+              <v-container class="px-2 px-md-4">
                 <v-row style="justify-content: center">
                   <v-col
                     v-for="member in discordData.members"
                     :key="member.username"
                     class="discord-member-entry py-0"
                     cols="6"
-                    sm="3"
-                    :md="Object.entries(channels).length > 0 ? 5 : 2"
+                    :sm="Object.entries(channels).length > 0 ? 5 : 3"
                   >
                     <div class="discord-member-image">
                       <img

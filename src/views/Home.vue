@@ -28,7 +28,9 @@
           v-for="col in columns"
           :key="col.title"
           class="mx-4"
-          style="max-width:450px;min-width: 350px;min-height: 250px"
+          style="max-width:450px;min-height: 250px"
+          cols="12"
+          sm="5"
           align-self="center"
         >
           <a
