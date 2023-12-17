@@ -5,7 +5,10 @@
         class="mx-auto container flex-nowrap"
         align="center"
       >
-        <v-col cols="auto" class="flex-shrink-1">
+        <v-col
+          cols="auto"
+          class="flex-shrink-1"
+        >
           <p
             class="text-white text-h5 text-sm-h4 font-weight-thin mb-0"
             style="float: left"
@@ -13,20 +16,24 @@
             Join us on our Discord server
           </p>
         </v-col>
-        <v-spacer/>
+        <v-spacer />
         <v-col cols="auto">
           <v-btn
             color="primary"
             href="https://discord.gg/23YMFQy"
             target="_blank"
           >
-            <img :src="require('@/assets/discord.svg')" style="width: 35px" alt="discord icon"/>
+            <img
+              :src="require('@/assets/discord.svg')"
+              style="width: 35px"
+              alt="discord icon"
+            >
           </v-btn>
         </v-col>
       </v-row>
       <v-row
         v-if="discordData"
-        class="mx-auto pt-4 ma-0 container"
+        class="mx-auto pt-4 container"
       >
         <v-col
           cols="12"
@@ -43,49 +50,27 @@
               class="overflow-y-auto"
               style="max-height: 205px"
             >
-              <v-container class="px-2 px-md-4">
+              <v-container class="px-0 pt-2">
                 <v-row style="justify-content: center">
-                  <v-col
+                  <discord-user
                     v-for="member in discordData.members"
                     :key="member.username"
-                    class="discord-member-entry py-0"
-                    cols="6"
-                    :sm="Object.entries(channels).length > 0 ? 5 : 3"
-                  >
-                    <div class="discord-member-image">
-                      <img
-                        :alt="`${member.username}'s avatar`"
-                        :src="member.avatar_url"
-                        class="discord-member-img"
-                      >
-                      <span
-                        class="discord-member-status"
-                        :class="{ 'discord-member-online': member.status==='online', 'discord-member-idle': member.status==='idle', 'discord-member-dnd': member.status==='dnd', }"
-                      />
-                    </div>
-                    <span
-                      class="discord-member-name text-caption"
-                      v-text="member.username"
-                    />
-                  </v-col>
-                  <v-col
+                    :username="member.username"
+                    :status="member.status"
+                    :avatar-url="member.avatar_url"
+                    :half-width="Object.entries(channels).length > 0"
+                  />
+                  <discord-user
                     v-if="discordData.members.length > 99"
-                    class="discord-member-entry"
-                    cols="6"
-                    sm="3"
-                    :md="Object.entries(channels).length > 0 ? 5 : 2"
-                  >
-                    <div class="text-white ml-7">
-                      + {{ discordData.presence_count - discordData.members.length }} more
-                    </div>
-                  </v-col>
+                    :custom-text="'+ '+(discordData.presence_count - discordData.members.length)+' more'"
+                  />
                 </v-row>
               </v-container>
             </div>
           </div>
         </v-col>
 
-        <v-spacer/>
+        <v-spacer />
 
         <v-col
           v-if="Object.entries(channels).length > 0"
@@ -96,8 +81,8 @@
             Active public VCs
           </p>
           <v-container
-            class="overflow-y-auto"
-            style="max-height: 180px"
+            class="overflow-y-auto pa-0"
+            style="max-height: 205px"
           >
             <v-row
               v-for="[channelId,channelName] in Object.entries(channels)"
@@ -105,41 +90,30 @@
               class="mb-2"
               style="border: 1px solid #A8FF00;border-radius: 10px"
             >
-              <div class="ml-4">
-                <p class="text-h6 text-white font-italic font-weight-thin mb-0">
-                  <v-icon
-                    dark
-                    size="20"
-                    class="ma-0"
-                  >
-                    mdi-volume-high
-                  </v-icon>
-                  {{ channelName }}
-                </p>
-                <div>
-                  <div
-                    v-for="member in membersInVC[channelId]"
-                    :key="member.username"
-                    class="discord-member-entry"
-                  >
-                    <div class="discord-member-image">
-                      <img
-                        :alt="`${member.username}'s avatar`"
-                        :src="member.avatar_url"
-                        class="discord-member-img"
-                      >
-                      <span
-                        class="discord-member-status"
-                        :class="{ 'discord-member-online': member.status==='online', 'discord-member-idle': member.status==='idle', 'discord-member-dnd': member.status==='dnd', }"
-                      />
-                    </div>
-                    <span
-                      class="discord-member-name text-caption"
-                      v-text="member.username"
-                    />
-                  </div>
-                </div>
-              </div>
+              <v-col
+                class="discord-member-entry"
+                cols="12"
+              >
+                <v-icon
+                  color="white"
+                  size="20"
+                  style="margin: 6px !important; margin-right: 10px !important;"
+                  icon="mdi-volume-high"
+                />
+                <span
+                  class="text-h6 text-white font-italic font-weight-thin"
+                  v-text="channelName"
+                />
+              </v-col>
+
+              <discord-user
+                v-for="member in membersInVC[channelId]"
+                :key="member.username"
+                :username="member.username"
+                :status="member.status"
+                :avatar-url="member.avatar_url"
+                :half-width="true"
+              />
             </v-row>
           </v-container>
         </v-col>
@@ -149,8 +123,11 @@
 </template>
 
 <script>
+import DiscordUser from "@/components/discord-user.vue";
+
 export default {
   name: "DiscordBanner",
+  components: {DiscordUser},
   data: () => ({
     discordData: null,
     channels: {},
@@ -202,65 +179,8 @@ export default {
   height: 65px !important;
   min-width: 0 !important;
 }
-
-.v-icon {
-  margin: 10px !important;
+.v-row{
+  margin: 0;
 }
 
-.discord-member-entry {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  padding-left: 10px;
-  margin: 6px 0;
-}
-
-.discord-member-image {
-  width: 32px;
-  height: 32px;
-  position: relative;
-  margin-right: 4px;
-}
-
-.discord-member-img {
-  width: 32px;
-  height: 32px;
-  border-radius: 16px;
-}
-
-.discord-member-status {
-  width: 12px;
-  height: 12px;
-  border-radius: 6px;
-  border: 1px solid #1E1E1E;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-}
-
-.discord-member-name {
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  -webkit-box-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  color: white;
-}
-
-
-.discord-member-online {
-  background-color: hsl(139, 47.4%, 38%);
-}
-
-.discord-member-idle {
-  background-color: hsl(38, 77%, 43%);
-}
-
-.discord-member-dnd {
-  background-color: hsl(359, 66.7%, 54.1%);
-}
 </style>
