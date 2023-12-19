@@ -1,9 +1,11 @@
 <template>
   <v-app>
     <v-app-bar theme="dark">
-      <v-app-bar-nav-icon
+      <v-btn
         v-if="$vuetify.display.mdAndDown"
-        @click="drawer = true"
+        class="ml-2"
+        icon="mdi-menu"
+        @click="drawer = !drawer"
       />
 
       <router-link to="/">
@@ -11,7 +13,7 @@
           src="./assets/topbarlogo.png"
           alt="Blueshell logo"
           style="max-height: 64px;max-width: 260px;width: 100%"
-          class="mr-3"
+          class="mr-2"
         >
       </router-link>
 
@@ -180,10 +182,10 @@
 
       <v-spacer />
 
-      <div style="height: 90%">
+      <div style="height: 90%;display: flex;align-items: center;flex-wrap: nowrap;">
         <!--  Dark mode toggle    -->
         <v-btn
-          class="mr-4"
+          class="mr-2"
           :icon="$vuetify.theme.global.current.dark ? 'mdi-moon-waxing-crescent' : 'mdi-white-balance-sunny'"
           :color="$vuetify.theme.global.current.dark ? 'accent' : 'white'"
           :class="{'roll-on': $vuetify.theme.global.current.dark,'roll-off': !$vuetify.theme.global.current.dark }"
@@ -193,7 +195,7 @@
         <!-- LOGIN BUTTON/ACCOUNT DROPDOWN MENU -->
         <v-btn
           v-if="!loggedIn"
-          class="bar-button"
+          class="bar-button ma-0"
           to="/login"
         >
           Log In
@@ -204,7 +206,7 @@
         >
           <template #activator="{ props }">
             <v-btn
-              class="bar-button"
+              class="bar-button ma-0"
               variant="text"
               v-bind="props"
             >
@@ -427,10 +429,22 @@
         </div>
       </template>
     </v-navigation-drawer>
-    <!--    <v-main>-->
+
+
+
+
+
     <router-view />
-    <!--    </v-main>-->
-    <v-footer theme="dark">
+
+
+
+
+
+    <!--    TODO: make footer nice on mobile-->
+    <v-footer
+      theme="dark"
+      style="flex-wrap: wrap"
+    >
       <v-btn
         icon
         href="mailto:board@blueshell.utwente.nl"
@@ -574,12 +588,12 @@
       width="560"
     >
       <v-card>
-        <v-card-title class="text-h2">
+        <v-card-title class="text-h4">
           {{ $vuetify.display.xs ? 'Cookies' : 'Accept cookies' }}
         </v-card-title>
 
         <v-card-text class="text-body-1">
-          We know these cookie popups are getting insane but don't worry, this is the only time you'll see this. We use
+          We know these cookie popups are annoying but don't worry, this is the only time you'll see this. We use
           cookies for saving your login and possibly some other useful stuff that we will forget to write about here
           when we make it. You can read more about what cookies are and how we use cookies in our
           <a
