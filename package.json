@@ -1,6 +1,7 @@
 {
   "name": "blueshell-frontend",
   "version": "0.0.0",
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -11,13 +12,13 @@
     "@mdi/font": "7.3.67",
     "axios": "^1.6.2",
     "roboto-fontface": "*",
+    "showdown": "^2.1.0",
     "vue": "^3.3.11",
     "vue-axios": "^3.5.2",
     "vue-marquee-text-component": "^2.0.1",
     "vue-router": "^4.2.5",
     "vuex": "^4.1.0",
     "webfontloader": "^1.0.0",
-    "showdown": "^2.1.0",
     "xss": "^1.0.14"
   },
   "devDependencies": {
