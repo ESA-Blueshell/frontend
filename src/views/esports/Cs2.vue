@@ -20,6 +20,7 @@
 <script>
 import TopBanner from "../../components/top-banner";
 import Team from "@/components/team";
+import {$require} from "@/plugins/require";
 
 export default {
   components: {Team, TopBanner},
@@ -27,7 +28,7 @@ export default {
     return {
       hypers: {
         name: 'BS HyperS',
-        bg: require('../../assets/csgoesports1.jpg'),
+        bg: $require('@/assets/csgoesports1.jpg'),
         players: [
           {
             name: 'Ivo Heitlager',

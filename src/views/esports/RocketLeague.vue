@@ -28,6 +28,7 @@
 <script>
 import TopBanner from "../../components/top-banner";
 import Team from "@/components/team";
+import {$require} from "@/plugins/require";
 
 export default {
   components: {Team, TopBanner},
@@ -35,7 +36,7 @@ export default {
     return {
       oogway: {
         name: 'BS Oogway',
-        bg: require('../../assets/rocketleagueesports.jpg'),
+        bg: $require('@/assets/rocketleagueesports.jpg'),
         players: [
           {
             name: 'Allard van der Hooft',
@@ -57,7 +58,7 @@ export default {
       },
       squirtles: {
         name: "BS Squirtles",
-        bg: require('../../assets/rocketleagueesports2.jpg'),
+        bg: $require('@/assets/rocketleagueesports2.jpg'),
         players: [
           {
             name: "Thomas Dekker",
@@ -75,7 +76,7 @@ export default {
       },
       turtles: {
         name: "BS Turtles",
-        bg: require('../../assets/rocketleagueesports.jpg'),
+        bg: $require('@/assets/rocketleagueesports.jpg'),
         players: [
           {
             name: "René Hammink",
@@ -93,7 +94,7 @@ export default {
       },
       tadpole: {
         name: "BS Tadpole",
-        bg: require('../../assets/rocketleagueesports2.jpg'),
+        bg: $require('@/assets/rocketleagueesports2.jpg'),
         players: [
           {
             name: "Stijn Dollenkamp",

@@ -6,7 +6,7 @@
     >
       <v-img
         class="mx-auto"
-        :src="require('../assets/shellyooooooooooooohhhhhhhhhhh.png')"
+        :src="$require('@/assets/shellyooooooooooooohhhhhhhhhhh.png')"
         style="max-width: 800px"
       />
       <p class="mt-10 text-h6 text-sm-h5">
@@ -24,8 +24,11 @@
 </template>
 
 <script>
+import {$require} from "@/plugins/require";
+
 export default {
-  name: "NotFound"
+  name: "NotFound",
+  methods: {$require}
 }
 </script>
 

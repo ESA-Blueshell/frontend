@@ -247,7 +247,7 @@ export default {
   // The team prop should be an Object with the following structure:
   //  {
   //   name: 'Team name',
-  //   bg: require('../../assets/backgroundImage.jpg'),
+  //   bg: $require('@/assets/backgroundImage.jpg'),
   //   players: [
   //     {
   //       name: 'Player name',

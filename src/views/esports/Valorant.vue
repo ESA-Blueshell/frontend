@@ -25,6 +25,7 @@
 <script>
 import TopBanner from "../../components/top-banner";
 import Team from "@/components/team";
+import {$require} from "@/plugins/require";
 
 export default {
   components: {Team, TopBanner},
@@ -32,7 +33,7 @@ export default {
     return {
       tempra: {
         name: 'BS Tempra',
-        bg: require('../../assets/valorantesports1.jpg'),
+        bg: $require('@/assets/valorantesports1.jpg'),
         players: [
           {
             name: 'Chris Wong',
@@ -64,7 +65,7 @@ export default {
       },
       spicywater: {
         name: 'BS SpicyWater',
-        bg: require('../../assets/valorantesports2.jpg'),
+        bg: $require('@/assets/valorantesports2.jpg'),
         players: [
           {
             name: 'Michal Rokita',
@@ -96,7 +97,7 @@ export default {
       },
       icywater: {
         name: 'BS IcyWater',
-        bg: require('../../assets/valorantesports1.jpg'),
+        bg: $require('@/assets/valorantesports1.jpg'),
         players: [
           {
             name: 'Jesse van Gameren',

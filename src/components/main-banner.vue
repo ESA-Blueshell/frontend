@@ -7,7 +7,7 @@
     <v-container
       fluid
       style="background-size: cover;background-position: center;height: 800px"
-      :style="{ 'background-image': `linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url(${require('../assets/banner.jpg')})`}"
+      :style="{ 'background-image': `linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url(${bannerUrl})`}"
     >
       <v-row
         align="center"
@@ -48,7 +48,15 @@
 </template>
 
 <script>
+import {$require} from "@/plugins/require";
+
 export default {
-  name: 'MainBanner'
+  name: 'MainBanner',
+  data() {
+    return {
+      bannerUrl: $require('@/assets/banner.jpg')
+    }
+  },
+  methods: {$require}
 }
 </script>

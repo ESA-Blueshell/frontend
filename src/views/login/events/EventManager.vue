@@ -54,7 +54,7 @@
 
       <v-img
         v-if="noCommittees"
-        :src="require('../../../assets/noCommittees.jpg')"
+        :src="$require('../@/assets/noCommittees.jpg')"
       />
     </div>
   </v-main>
@@ -63,6 +63,7 @@
 <script>
 import TopBanner from "@/components/top-banner";
 import EventManageList from "@/components/event-manage-list";
+import {$require} from "@/plugins/require";
 
 export default {
   name: "EventManager",
@@ -104,6 +105,7 @@ export default {
       })
       .catch(e => this.$root.handleNetworkError(e))
   },
+  methods: {$require},
 }
 </script>
 

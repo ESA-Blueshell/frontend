@@ -10,7 +10,7 @@
           <v-row>
             <v-col>
               <v-img
-                :src="require('../../assets/elnino.png')"
+                :src="$require('@/assets/elnino.png')"
                 style="max-width: 450px"
                 class="mb-6"
               />
@@ -92,10 +92,12 @@
 
 <script>
 import TopBanner from "@/components/top-banner";
+import {$require} from "@/plugins/require";
 
 export default {
   name: "ElNino",
-  components: {TopBanner}
+  components: {TopBanner},
+  methods: {$require}
 }
 </script>
 

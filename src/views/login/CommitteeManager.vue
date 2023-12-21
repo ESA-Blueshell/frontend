@@ -136,7 +136,7 @@
 
         <v-img
           v-if="noCommittees"
-          :src="require('../../assets/noCommittees.jpg')"
+          :src="$require('@/assets/noCommittees.jpg')"
         />
       </div>
     </div>
@@ -146,6 +146,7 @@
 <script>
 import TopBanner from "@/components/top-banner";
 import EditCommittee from "@/components/edit-committee";
+import {$require} from "@/plugins/require";
 
 export default {
   name: "CommitteeManager",
@@ -164,6 +165,7 @@ export default {
     this.getCommittees()
   },
   methods: {
+    $require,
     getCommittees() {
       this.$http.get('committees?fullCommittees=true', {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
         .then(response => {

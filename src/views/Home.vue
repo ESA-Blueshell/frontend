@@ -104,6 +104,7 @@ import router from "@/plugins/router";
 import DiscordBanner from "@/components/discord-banner";
 import SocialsBanner from "@/components/socials-banner";
 import GamesWePlay from "@/components/games-we-play";
+import {$require} from "@/plugins/require";
 
 export default {
   components: {GamesWePlay, SocialsBanner, DiscordBanner, MainBanner},
@@ -116,32 +117,32 @@ export default {
           titles: [
             {
               title: "League of Legends",
-              bg: require("@/assets/leaguebg.jpg"),
-              icon: require("@/assets/league.png"),
+              bg: $require("@/assets/leaguebg.jpg"),
+              icon: $require("@/assets/league.png"),
               esportsLink: "/esports/league-of-legends"
             },
             {
               title: "Counter-Strike 2",
-              bg: require("@/assets/csgobg.jpg"),
-              icon: require("@/assets/csgo.png"),
+              bg: $require("@/assets/csgobg.jpg"),
+              icon: $require("@/assets/csgo.png"),
               esportsLink: "/esports/counter-strike-2"
             },
             {
               title: "Valorant",
-              bg: require("@/assets/valorantbg.jpg"),
-              icon: require("@/assets/valorant.png"),
+              bg: $require("@/assets/valorantbg.jpg"),
+              icon: $require("@/assets/valorant.png"),
               esportsLink: "/esports/valorant"
             },
             {
               title: "Rocket League",
-              bg: require("@/assets/rocketleaguebg.jpg"),
-              icon: require("@/assets/rocketleague.png"),
+              bg: $require("@/assets/rocketleaguebg.jpg"),
+              icon: $require("@/assets/rocketleague.png"),
               esportsLink: "/esports/rocketleague"
             },
             {
               title: "Trackmania",
-              bg: require("@/assets/trackmaniabg.jpg"),
-              icon: require("@/assets/trackmania.png"),
+              bg: $require("@/assets/trackmaniabg.jpg"),
+              icon: $require("@/assets/trackmania.png"),
               esportsLink: "/esports/trackmania"
             },
           ]
@@ -151,48 +152,48 @@ export default {
           titles: [
             {
               title: "Dota 2",
-              bg: require("@/assets/dota2bg.jpg"),
-              icon: require("@/assets/dota2.png"),
+              bg: $require("@/assets/dota2bg.jpg"),
+              icon: $require("@/assets/dota2.png"),
             },
             {
               title: "Minecraft",
-              bg: require("@/assets/minecraftbg.jpg"),
-              icon: require("@/assets/minecraft.png"),
+              bg: $require("@/assets/minecraftbg.jpg"),
+              icon: $require("@/assets/minecraft.png"),
             },
             {
               title: "Pokémon",
-              bg: require("@/assets/pokemonbg.jpg"),
-              icon: require("@/assets/pokemon.png"),
+              bg: $require("@/assets/pokemonbg.jpg"),
+              icon: $require("@/assets/pokemon.png"),
             },
             {
               title: "Overwatch",
-              bg: require("@/assets/overwatchbg.jpg"),
-              icon: require("@/assets/overwatch.png"),
+              bg: $require("@/assets/overwatchbg.jpg"),
+              icon: $require("@/assets/overwatch.png"),
             },
             {
               title: "Super Smash Bros",
-              bg: require("@/assets/smashbg.jpg"),
-              icon: require("@/assets/smash.png"),
+              bg: $require("@/assets/smashbg.jpg"),
+              icon: $require("@/assets/smash.png"),
             },
             {
               title: "Team Fight Tactics",
-              bg: require("@/assets/tftbg.jpg"),
-              icon: require("@/assets/tft.png"),
+              bg: $require("@/assets/tftbg.jpg"),
+              icon: $require("@/assets/tft.png"),
             },
             {
               title: "Trackmania",
-              bg: require("@/assets/trackmaniabg.jpg"),
-              icon: require("@/assets/trackmania.png"),
+              bg: $require("@/assets/trackmaniabg.jpg"),
+              icon: $require("@/assets/trackmania.png"),
             },
             {
               title: "Valorant",
-              bg: require("../assets/valorantbg.jpg"),
-              icon: require("../assets/valorant.png"),
+              bg: $require("@/assets/valorantbg.jpg"),
+              icon: $require("@/assets/valorant.png"),
             },
             {
               title: "World of Warcraft",
-              bg: require("@/assets/wowbg.jpg"),
-              icon: require("@/assets/wow.png"),
+              bg: $require("@/assets/wowbg.jpg"),
+              icon: $require("@/assets/wow.png"),
             },
           ]
         }
@@ -222,23 +223,23 @@ export default {
       ],
       partners: [
         {
-          logo: require("@/assets/elnino.png"),
-          logoDark: require("@/assets/elnino.png"),
+          logo: $require("@/assets/elnino.png"),
+          logoDark: $require("@/assets/elnino.png"),
           url: "/partners/el-nino"
         },
         {
-          logo: require("@/assets/connectworks.png"),
-          logoDark: require("@/assets/connectworksdark.png"),
+          logo: $require("@/assets/connectworks.png"),
+          logoDark: $require("@/assets/connectworksdark.png"),
           url: "https://connectworks.nl/"
         },
         {
-          logo: require("@/assets/talentit.png"),
-          logoDark: require("@/assets/talentitdark.png"),
+          logo: $require("@/assets/talentit.png"),
+          logoDark: $require("@/assets/talentitdark.png"),
           url: "https://talentittwente.nl/"
         },
         {
-          logo: require("@/assets/ett.png"),
-          logoDark: require("@/assets/ettdark.png"),
+          logo: $require("@/assets/ett.png"),
+          logoDark: $require("@/assets/ettdark.png"),
           url: "https://esportsteamtwente.nl/"
         },
       ]

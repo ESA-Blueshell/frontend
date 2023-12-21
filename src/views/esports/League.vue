@@ -25,6 +25,7 @@
 <script>
 import TopBanner from "../../components/top-banner";
 import Team from "@/components/team";
+import {$require} from "@/plugins/require";
 
 export default {
   components: {Team, TopBanner},
@@ -32,7 +33,7 @@ export default {
     return {
       scaling: {
         name: 'BS Scaling',
-        bg: require('../../assets/leagueesportsbg1.jpg'),
+        bg: $require('@/assets/leagueesportsbg1.jpg'),
         players: [
           {
             name: 'Wilco Strijker',
@@ -64,7 +65,7 @@ export default {
       },
       housecats: {
         name: 'BS Housecats',
-        bg: require('../../assets/leagueesportsbg2.jpg'),
+        bg: $require('@/assets/leagueesportsbg2.jpg'),
         players: [
           {
             name: 'Mark Otter',

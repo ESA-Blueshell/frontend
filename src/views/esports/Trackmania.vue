@@ -21,6 +21,7 @@
 <script>
 import TopBanner from "../../components/top-banner";
 import Team from "@/components/team";
+import {$require} from "@/plugins/require";
 
 export default {
   components: {Team, TopBanner},
@@ -28,7 +29,7 @@ export default {
     return {
       blueshell: {
         name: '[ESABS]',
-        bg: require('../../assets/trackmaniabg.jpg'),
+        bg: $require('@/assets/trackmaniabg.jpg'),
         players: [
           {
             name: 'Jarno',

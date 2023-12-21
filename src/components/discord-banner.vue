@@ -24,7 +24,7 @@
             target="_blank"
           >
             <img
-              :src="require('@/assets/discord.svg')"
+              :src="$require('@/assets/discord.svg')"
               style="width: 35px"
               alt="discord icon"
             >
@@ -124,6 +124,7 @@
 
 <script>
 import DiscordUser from "@/components/discord-user.vue";
+import {$require} from "@/plugins/require.js";
 
 export default {
   name: "DiscordBanner",
@@ -153,6 +154,7 @@ export default {
       })
   },
   methods: {
+    $require,
     shuffleArray(array) {
       for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));

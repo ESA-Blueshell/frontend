@@ -58,6 +58,7 @@
 import TopBanner from "@/components/top-banner.vue";
 
 import router from '@/plugins/router';
+import {$require} from "@/plugins/require";
 
 export default {
   components: {TopBanner},
@@ -65,23 +66,23 @@ export default {
     return {
       games: [
         {
-          icon: require('@/assets/league.png'),
+          icon: $require('@/assets/league.png'),
           url: '/esports/league-of-legends'
         },
         {
-          icon: require('@/assets/csgo.png'),
+          icon: $require('@/assets/csgo.png'),
           url: '/esports/counter-strike-2'
         },
         {
-          icon: require('@/assets/valorant.png'),
+          icon: $require('@/assets/valorant.png'),
           url: '/esports/valorant'
         },
         {
-          icon: require('@/assets/rocketleague.png'),
+          icon: $require('@/assets/rocketleague.png'),
           url: '/esports/rocketleague'
         },
         {
-          icon: require('@/assets/trackmania.png'),
+          icon: $require('@/assets/trackmania.png'),
           url: '/esports/trackmania'
         },
       ]

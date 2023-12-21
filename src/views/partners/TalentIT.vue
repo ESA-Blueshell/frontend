@@ -7,7 +7,7 @@
         style="max-width: 800px"
       >
         <v-img
-          :src="$vuetify.theme.global.current.dark?require('../../assets/talentitdark.png'):require('../../assets/talentit.png')"
+          :src="$vuetify.theme.global.current.dark?$require('@/assets/talentitdark.png'):$require('@/assets/talentit.png')"
           class="mb-6"
         />
         <p class="text-body-1">
@@ -31,10 +31,12 @@
 
 <script>
 import TopBanner from "@/components/top-banner";
+import {$require} from "@/plugins/require";
 
 export default {
   name: "TalentIT",
-  components: {TopBanner}
+  components: {TopBanner},
+  methods: {$require}
 }
 </script>
 

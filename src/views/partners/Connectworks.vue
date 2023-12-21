@@ -7,7 +7,7 @@
         style="max-width: 800px"
       >
         <v-img
-          :src="$vuetify.theme.global.current.dark?require('../../assets/connectworksdark.png'):require('../../assets/connectworks.png')"
+          :src="$vuetify.theme.global.current.dark?$require('@/assets/connectworksdark.png'):$require('@/assets/connectworks.png')"
           class="mb-6"
         />
         <p class="text-h4 font-weight-light">
@@ -92,10 +92,12 @@
 
 <script>
 import TopBanner from "@/components/top-banner";
+import {$require} from "@/plugins/require";
 
 export default {
   name: "Connectworks",
-  components: {TopBanner}
+  components: {TopBanner},
+  methods: {$require}
 }
 </script>
 
