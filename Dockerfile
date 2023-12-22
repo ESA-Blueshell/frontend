@@ -1,3 +1,7 @@
+#
+# The yarn build stage breaks every time. tried it with different node versions, but those don't work either
+#
+
 FROM node:latest
 
 # install simple http server for serving static content
@@ -10,12 +14,12 @@ COPY package.json ./
 COPY yarn.lock ./
 
 # install project dependencies
-RUN npm install
+RUN yarn install
 
 # copy project files and folders to the current working directory
 COPY . .
 
-RUN npm run build
+RUN yarn build
 
 EXPOSE 8080
 
