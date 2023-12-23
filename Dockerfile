@@ -1,24 +1,16 @@
-FROM node:latest
-
-# install simple http server for serving static content
-RUN npm install -g http-server
-
-# make the 'app' folder the current working directory
+# build stage
+FROM node:latest as build-stage
 WORKDIR /app
-
 COPY package.json ./
 COPY yarn.lock ./
-
-# install project dependencies
 RUN yarn install
-
-# copy project files and folders to the current working directory
 COPY . .
-
 RUN yarn build
 
+# production stage
+FROM nginx:stable as production-stage
+RUN mkdir /app
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=build-stage /app/dist /app
+
 EXPOSE 8080
-
-# serve the built dist folder
-CMD [ "http-server", "dist" ]
-
