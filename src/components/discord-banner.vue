@@ -181,7 +181,8 @@ export default {
   height: 65px !important;
   min-width: 0 !important;
 }
-.v-row{
+
+.v-row {
   margin: 0;
 }
 

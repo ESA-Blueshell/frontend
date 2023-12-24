@@ -17,11 +17,17 @@ const props = defineProps([
     :md="halfWidth ? 6 : 3"
   >
     <div class="discord-member-image-wrapper">
-      <img
-        :alt="`${username}'s avatar`"
-        :src="avatarUrl"
-        class="discord-member-image"
+      <v-lazy
+        width="32px"
+        height="32px"
+        :options="{'threshold':0.1}"
       >
+        <img
+          :alt="`${username}'s avatar`"
+          :src="avatarUrl"
+          class="discord-member-image"
+        >
+      </v-lazy>
       <span
         class="discord-member-status"
         :class="{ 'discord-member-online': status==='online', 'discord-member-idle': status==='idle', 'discord-member-dnd': status==='dnd' }"

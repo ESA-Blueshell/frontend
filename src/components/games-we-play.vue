@@ -19,40 +19,35 @@
         {{ category.categoryName }}
       </p>
 
-      <v-row
-        align="center"
-        align-content="center"
+      <div
         class="mx-auto mb-6"
-        justify="center"
-        style="max-width: 1400px"
-        wrap
+        style="max-width: 1400px; display: flex; flex-wrap: wrap; align-content: center; justify-content: center"
       >
-        <v-col
+        <div
           v-for="(game,j) in category.titles"
           :key="game.title"
-          align-self="center"
-          class="mx-3 my-2"
-          cols="2"
-          xl="1"
-          lg="1"
-          md="1"
-          sm="1"
-          style="border-radius: 15px;padding: 4px;z-index: 3;transition: .3s cubic-bezier(.25,.8,.5,1) !important;"
+          class="mx-3 my-2 pa-2"
+          style="border-radius: 10px;z-index: 3;transition: .3s cubic-bezier(.25,.8,.5,1) !important;"
           :class="{ 'elevation-8': (showPopup || hoverCarousel) && currentGame!==null && i===currentGame.y && j===currentGame.x }"
-          :style="{cursor: game.esportsLink ? 'pointer' : 'auto', 'background-color': !($vuetify.theme.global.current.dark && (!showPopup && !hoverCarousel)) && ((!showPopup && !hoverCarousel) || (currentGame!==null && i===currentGame.y && j===currentGame.x )) ? '#F5F5F5aa' : '#F5F5F544'}"
+          :style="{
+            cursor: game.esportsLink ? 'pointer' : 'auto', 'background-color': !($vuetify.theme.global.current.dark && (!showPopup && !hoverCarousel)) && ((!showPopup && !hoverCarousel) || (currentGame!==null && i===currentGame.y && j===currentGame.x )) ? '#F5F5F5aa' : '#F5F5F544',
+            width: $vuetify.display.smAndUp ? '85px' : '70px',
+            height: $vuetify.display.smAndUp ? '85px' : '70px',
+          }"
 
           @click="goto(game.esportsLink)"
           @mouseenter="hover(i,j)"
           @mouseleave="unhover"
         >
-          <!-- I NEVER WANT TO LOOK AT THIS FUCKED LOGIC AGAIN AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA-->
-          <v-img
-            :src="game.icon"
-            class="ma-2"
-            eager
-          />
-        </v-col>
-      </v-row>
+          <v-lazy
+            :width="$vuetify.display.smAndUp ? '69px' : '54px'"
+            :height="$vuetify.display.smAndUp ? '69px' : '54px'"
+            :options="{'threshold':0.1}"
+          >
+            <v-img :src="game.icon" />
+          </v-lazy>
+        </div>
+      </div>
     </div>
 
     <!--
