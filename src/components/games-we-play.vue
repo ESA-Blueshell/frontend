@@ -44,7 +44,7 @@
             :height="$vuetify.display.smAndUp ? '69px' : '54px'"
             :options="{'threshold':0.1}"
           >
-            <v-img :src="game.icon" />
+            <v-img :src="game.icon"/>
           </v-lazy>
         </div>
       </div>
@@ -90,11 +90,13 @@
             height="100%"
             style="z-index: 1;background: rgba(0, 0, 0, 1)"
           >
-            <v-img
-              :src="game.bg"
-              cover
-              style="position: absolute;top: 0;height: 100%;width: 100%;z-index: 1;filter: blur(3px);-webkit-filter: blur(3px);"
-            />
+            <v-lazy :options="{'threshold':0.1}">
+              <v-img
+                :src="game.bg"
+                cover
+                style="position: absolute;top: 0;height: 100%;width: 100%;z-index: 1;filter: blur(3px);-webkit-filter: blur(3px);"
+              />
+            </v-lazy>
           </v-sheet>
         </v-carousel-item>
       </v-carousel>

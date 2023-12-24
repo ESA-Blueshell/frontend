@@ -27,10 +27,10 @@
         <v-col
           v-for="col in columns"
           :key="col.title"
-          class="mx-4"
           style="max-width:450px;min-height: 250px"
           cols="12"
           sm="5"
+          md="4"
           align-self="center"
         >
           <a
@@ -83,7 +83,9 @@
         <v-col
           v-for="partner in partners"
           :key="partner.url"
-          md="6"
+          cols="12"
+          sm="6"
+          class="pa-6"
         >
           <v-img
             :src="$vuetify.theme.global.current.dark?partner.logoDark:partner.logo"

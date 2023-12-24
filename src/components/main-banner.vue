@@ -7,7 +7,7 @@
     <v-container
       fluid
       style="background-size: cover;background-position: center;height: 800px"
-      :style="{ 'background-image': `linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url(${bannerUrl})`}"
+      :style="{ 'background-image': `linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url(${$require('@/assets/banner.jpg')})`}"
     >
       <v-row
         align="center"
@@ -19,7 +19,7 @@
               id="blueshell"
               class="text-white text-h2 text-sm-h1 text-md-h1 text-lg-h1 text-xl-h1"
               style="height: 150px"
-              :style="$vuetify.display.mdAndUp?{ 'font-size': '175px !important'} : ($vuetify.display.smAndUp?{ 'font-size': '110px !important'}:{})"
+              :style="$vuetify.display.mdAndUp?{ 'font-size': '175px !important'} : ($vuetify.display.smAndUp?{ 'font-size': '110px !important'}:{ 'font-size': '16vw !important' })"
             >
               BLUESHELL
             </p>
@@ -52,11 +52,6 @@ import {$require} from "@/plugins/require";
 
 export default {
   name: 'MainBanner',
-  data() {
-    return {
-      bannerUrl: $require('@/assets/banner.jpg')
-    }
-  },
   methods: {$require}
 }
 </script>
