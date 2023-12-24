@@ -22,6 +22,10 @@
   opacity: 1;
 }
 
+.v-row {
+  margin-left: 0;
+  margin-right: 0;
+}
 
 @media #{map-get(settings.$display-breakpoints, 'xs')} {
   .v-container {

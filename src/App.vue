@@ -12,7 +12,7 @@
         <img
           src="./assets/topbarlogo.png"
           alt="Blueshell logo"
-          style="max-height: 64px;max-width: 260px;width: 100%"
+          style="max-height: 64px;width: 100%"
           class="mr-2"
         >
       </router-link>
@@ -249,33 +249,35 @@
       v-model="drawer"
       temporary
     >
-      <v-list nav>
+      <v-list
+        nav
+        class="pa-2"
+      >
         <v-list-item to="/">
-          <v-list-item-title>Home</v-list-item-title>
+          Home
         </v-list-item>
         <v-list-item to="/membership">
-          <v-list-item-title>Membership</v-list-item-title>
+          Membership
         </v-list-item>
         <v-list-group>
           <!-- why the fuck do list-groups not get a bottom margin but list items do what the fuck it's like they don't want us to use them in a navbar aaaaa -->
           <template #activator="{ props }">
-            <v-list-item
-              v-bind="props"
-              title="Association"
-            />
+            <v-list-item v-bind="props">
+              Association
+            </v-list-item>
           </template>
 
           <v-list-item to="/aboutus">
-            <v-list-item-title>About us</v-list-item-title>
+            About
           </v-list-item>
           <v-list-item to="/board">
-            <v-list-item-title>Board</v-list-item-title>
+            Board
           </v-list-item>
           <v-list-item to="/committees">
-            <v-list-item-title>Committees</v-list-item-title>
+            Committees
           </v-list-item>
           <v-list-item to="/documents">
-            <v-list-item-title>Documents</v-list-item-title>
+            Documents
           </v-list-item>
           <v-divider class="mb-1" />
         </v-list-group>
@@ -283,161 +285,131 @@
 
         <v-list-group v-if="$store.getters.isLoggedIn">
           <template #activator="{ props }">
-            <v-list-item
-              v-bind="props"
-              title="Events"
-            />
+            <v-list-item v-bind="props">
+              Events
+            </v-list-item>
           </template>
-          <v-list-item
-            to="/events/calendar"
-            title="Event Calendar"
-          />
-          <v-list-item
-            to="/events/upcoming"
-            title="Upcoming events"
-          />
+          <v-list-item to="/events/calendar">
+            Event Calendar
+          </v-list-item>
+          <v-list-item to="/events/upcoming">
+            Upcoming events
+          </v-list-item>
           <v-list-item
             v-if="$store.getters.isActive"
             to="/events/manage"
-            title="Manage events"
-          />
+          >
+            Manage events
+          </v-list-item>
           <v-divider class="mb-1" />
         </v-list-group>
         <v-list-item
           v-else
           to="/events/calendar"
-          title="Event calendar"
-        />
+        >
+          Event calendar
+        </v-list-item>
 
         <v-list-group>
           <template #activator="{ props }">
-            <v-list-item
-              v-bind="props"
-              title="Esports"
-            />
+            <v-list-item v-bind="props">
+              Esports
+            </v-list-item>
           </template>
-          <v-list-item
-            to="/esports/competitive-scene"
-            title="Competitive scene"
-          />
-          <v-list-item
-            to="/esports/league-of-legends"
-            title="League of Legends"
-          />
-          <v-list-item
-            to="/esports/counter-strike-2"
-            title="Counter Strike 2"
-          />
-          <v-list-item
-            to="/esports/valorant"
-            title="Valorant"
-          />
-          <v-list-item
-            to="/esports/rocketleague"
-            title="Rocket League"
-          />
-          <v-list-item
-            to="/esports/trackmania"
-            title="Trackmania"
-          />
+          <v-list-item to="/esports/competitive-scene">
+            Competitive scene
+          </v-list-item>
+          <v-list-item to="/esports/league-of-legends">
+            League of Legends
+          </v-list-item>
+          <v-list-item to="/esports/counter-strike-2">
+            Counter Strike 2
+          </v-list-item>
+          <v-list-item to="/esports/valorant">
+            Valorant
+          </v-list-item>
+          <v-list-item to="/esports/rocketleague">
+            Rocket League
+          </v-list-item>
+          <v-list-item to="/esports/trackmania">
+            Trackmania
+          </v-list-item>
           <v-divider class="mb-1" />
         </v-list-group>
 
         <v-list-group>
           <template #activator="{ props }">
-            <v-list-item
-              v-bind="props"
-              title="Partners"
-            />
+            <v-list-item v-bind="props">
+              Partners
+            </v-list-item>
           </template>
-          <v-list-item
-            to="/partners/become-a-partner"
-            title="Become a partner!"
-          />
-          <v-list-item
-            to="/partners/el-nino"
-            title="El Niño – Digital Development"
-          />
-          <v-list-item
-            to="/partners/connectworks"
-            title="Connectworks"
-          />
-          <v-list-item
-            to="/partners/talentIT"
-            title="TalentIT"
-          />
+          <v-list-item to="/partners/become-a-partner">
+            Become a partner!
+          </v-list-item>
+          <v-list-item to="/partners/el-nino">
+            El Niño – Digital Development
+          </v-list-item>
+          <v-list-item to="/partners/connectworks">
+            Connectworks
+          </v-list-item>
+          <v-list-item to="/partners/talentIT">
+            TalentIT
+          </v-list-item>
           <v-divider class="mb-1" />
         </v-list-group>
 
-        <v-list-item
-          to="/contact"
-          title="Contact"
-        />
+        <v-list-item to="/contact">
+          Contact
+        </v-list-item>
       </v-list>
 
       <template #append>
-        <div class="mx-4">
-          <v-row
-            align="center"
-            justify="center"
-            align-content="center"
-          >
-            <!--            TODO: figure out how to center these-->
-            <v-col>
-              <v-btn
-                class="mx-auto"
-                icon="mdi-email"
-                href="mailto:board@blueshell.utwente.nl"
-              />
-            </v-col>
-            <v-col>
-              <v-btn
-                icon="mdi-instagram"
-                href="https://www.instagram.com/blueshellesports/"
-                target="_blank"
-              />
-            </v-col>
-            <v-col>
-              <v-btn
-                icon="mdi-facebook"
-                href="https://www.facebook.com/BlueshellEsports/"
-                target="_blank"
-              />
-            </v-col>
-            <v-col>
-              <v-btn
-                icon="mdi-twitch"
-                href="https://www.twitch.tv/blueshellesports"
-                target="_blank"
-              />
-            </v-col>
-            <v-col>
-              <v-btn
-                icon="mdi-twitter"
-                href="https://twitter.com/BlueshellESA"
-                target="_blank"
-              />
-            </v-col>
-            <v-col>
-              <v-btn
-                icon="mdi-linkedin"
-                href="https://www.linkedin.com/company/blueshell-esports"
-                target="_blank"
-              />
-            </v-col>
-          </v-row>
-        </div>
+        <v-btn
+          icon="mdi-email"
+          href="mailto:board@blueshell.utwente.nl"
+          variant="plain"
+          style="width: calc(100%/3)"
+        />
+        <v-btn
+          icon="mdi-instagram"
+          href="https://www.instagram.com/blueshellesports/"
+          target="_blank"
+          variant="plain"
+          style="width: calc(100%/3)"
+        />
+        <v-btn
+          icon="mdi-facebook"
+          href="https://www.facebook.com/BlueshellEsports/"
+          target="_blank"
+          variant="plain"
+          style="width: calc(100%/3)"
+        />
+        <v-btn
+          icon="mdi-twitch"
+          href="https://www.twitch.tv/blueshellesports"
+          target="_blank"
+          variant="plain"
+          style="width: calc(100%/3)"
+        />
+        <v-btn
+          icon="mdi-twitter"
+          href="https://twitter.com/BlueshellESA"
+          target="_blank"
+          variant="plain"
+          style="width: calc(100%/3)"
+        />
+        <v-btn
+          icon="mdi-linkedin"
+          href="https://www.linkedin.com/company/blueshell-esports"
+          target="_blank"
+          variant="plain"
+          style="width: calc(100%/3)"
+        />
       </template>
     </v-navigation-drawer>
 
 
-
-
-
     <router-view />
-
-
-
 
 
     <!--    TODO: make footer nice on mobile-->
