@@ -41,14 +41,12 @@
                 <v-tooltip location="top">
                   <template #activator="{ props }">
                     <v-btn
-                      icon
+                      icon="mdi-content-save"
                       :disabled="!valid"
                       :loading="submitting"
                       v-bind="props"
                       @click="save"
-                    >
-                      <v-icon>mdi-content-save</v-icon>
-                    </v-btn>
+                    />
                   </template>
                   <span>Save changes</span>
                 </v-tooltip>
@@ -184,14 +182,12 @@
                 <v-tooltip location="top">
                   <template #activator="{ props }">
                     <v-btn
-                      icon
+                      icon="mdi-content-save"
                       :disabled="!valid"
                       :loading="submitting"
                       v-bind="props"
                       @click="save"
-                    >
-                      <v-icon>mdi-content-save</v-icon>
-                    </v-btn>
+                    />
                   </template>
                   <span>Save changes</span>
                 </v-tooltip>

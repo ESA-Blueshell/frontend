@@ -55,9 +55,9 @@
                         <v-btn
                           v-bind="tooltip"
                           :loading="submittingId === committee.id"
-                          @click="editingCommitteeId= (editingCommitteeId===committee.id ? null : committee.id)"
                           icon="mdi-pencil"
                           variant="plain"
+                          @click="editingCommitteeId= (editingCommitteeId===committee.id ? null : committee.id)"
                         />
                       </template>
                       Edit committee
@@ -69,9 +69,9 @@
                       <template #activator="{ props: tooltip }">
                         <v-btn
                           v-bind="{ ...tooltip, ...dialog }"
-                          @click="committeeToDelete = committee"
                           icon="mdi-delete"
                           variant="plain"
+                          @click="committeeToDelete = committee"
                         />
                       </template>
                       Delete committee

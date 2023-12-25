@@ -418,82 +418,65 @@
       style="flex-wrap: wrap"
     >
       <v-btn
-        icon
+        icon="mdi-email"
         href="mailto:blueshellesports@gmail.com"
-      >
-        <v-icon>mdi-email</v-icon>
-      </v-btn>
+      />
       <v-btn
-        icon
+        icon="mdi-instagram"
         href="https://www.instagram.com/blueshellesports/"
         target="_blank"
-      >
-        <v-icon>mdi-instagram</v-icon>
-      </v-btn>
+      />
       <v-btn
-        icon
+        icon="mdi-facebook"
         href="https://www.facebook.com/BlueshellEsports/"
         target="_blank"
-      >
-        <v-icon>mdi-facebook</v-icon>
-      </v-btn>
+      />
       <v-btn
-        icon
+        icon="mdi-twitch"
         href="https://www.twitch.tv/blueshellesports"
         target="_blank"
-      >
-        <v-icon>mdi-twitch</v-icon>
-      </v-btn>
+      />
       <v-btn
-        icon
+        icon="mdi-twitter"
         href="https://twitter.com/BlueshellESA"
         target="_blank"
-      >
-        <v-icon>mdi-twitter</v-icon>
-      </v-btn>
+      />
       <v-btn
-        icon
+        icon="mdi-linkedin"
         href="https://www.linkedin.com/company/blueshell-esports"
         target="_blank"
-      >
-        <v-icon>mdi-linkedin</v-icon>
-      </v-btn>
+      />
       <v-btn
+        variant="text"
         href="https://www.elnino.tech/"
         target="_blank"
-      >
-        El Niño
-      </v-btn>
+      />
       <v-btn
+        variant="text"
         href="https://connectworks.nl/"
         target="_blank"
-      >
-        Connectworks
-      </v-btn>
+      />
       <v-btn
+        variant="text"
         href="https://talentittwente.nl/"
         target="_blank"
-      >
-        TalentIT
-      </v-btn>
+      />
       <v-btn
+        variant="text"
         href="https://esportsteamtwente.nl/"
         target="_blank"
-      >
-        ETT
-      </v-btn>
+      />
       <v-btn
+        variant="text"
         href="https://www.studentenwegwijzer.nl/enschede/studentenverenigingen/blueshell/"
         target="_blank"
-      >
-        Wegwijzer
-      </v-btn>
+      />
       <v-btn
+        variant="text"
         href="https://www.esportsloungetwente.nl/"
         target="_blank"
-      >
-        Predator Esports Lounge
-      </v-btn>
+      />
+
       <v-spacer />
 
       <div class="text-white mr-4">

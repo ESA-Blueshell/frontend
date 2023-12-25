@@ -61,41 +61,33 @@
           >
             <template #activator="{ props }">
               <v-btn
-                icon
+                icon="mdi-plus"
                 variant="plain"
                 v-bind="props"
                 @click="question.options.push('')"
-              >
-                <v-icon>mdi-plus</v-icon>
-              </v-btn>
+              />
             </template>
-            <span>Add option</span>
+            Add option
           </v-tooltip>
 
           <!-- Buttons for moving the question up or down and remove button -->
           <v-btn
+            icon="mdi-chevron-down"
+            variant="plain"
             :disabled="i === form.length-1"
-            icon
-            variant="plain"
             @click="moveDown(form, i)"
-          >
-            <v-icon>mdi-chevron-down</v-icon>
-          </v-btn>
+          />
           <v-btn
-            :disabled="i === 0"
-            icon
+            icon="mdi-chevron-up"
             variant="plain"
+            :disabled="i === 0"
             @click="moveUp(form, i)"
-          >
-            <v-icon>mdi-chevron-up</v-icon>
-          </v-btn>
+          />
           <v-btn
-            icon
+            icon="mdi-close"
             variant="plain"
             @click="form.splice(i,1)"
-          >
-            <v-icon>mdi-close</v-icon>
-          </v-btn>
+          />
         </template>
       </v-text-field>
 
@@ -114,28 +106,22 @@
           <template #append>
             <!-- Buttons for moving the option up or down and remove button -->
             <v-btn
+              icon="mdi-chevron-down"
+              variant="plain"
               :disabled="j === question.options.length-1"
-              icon
-              variant="plain"
               @click="moveDown(question.options, j)"
-            >
-              <v-icon>mdi-chevron-down</v-icon>
-            </v-btn>
+            />
             <v-btn
-              :disabled="j === 0"
-              icon
+              icon="mdi-chevron-up"
               variant="plain"
+              :disabled="j === 0"
               @click="moveUp(question.options, j)"
-            >
-              <v-icon>mdi-chevron-up</v-icon>
-            </v-btn>
+            />
             <v-btn
-              icon
+              icon="mdi-close"
               variant="plain"
               @click="question.options.splice(j,1)"
-            >
-              <v-icon>mdi-close</v-icon>
-            </v-btn>
+            />
           </template>
         </v-text-field>
       </div>

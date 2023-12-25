@@ -112,28 +112,24 @@
                 <template #activator="{ props }">
                   <!-- The actual button -->
                   <v-btn
-                    icon
+                    icon="mdi-google-maps"
                     v-bind="props"
                     @click="findLocation"
-                  >
-                    <v-icon>mdi-google-maps</v-icon>
-                  </v-btn>
+                  />
                 </template>
-                <span>Find location</span>
+                Find location
               </v-tooltip>
               <!-- Start of the "Add to calendar" button. Check the documentation for v-tooltip to find out how this works exactly -->
               <v-tooltip location="bottom">
                 <template #activator="{ props }">
                   <!-- The actual button -->
                   <v-btn
-                    icon
+                    icon="mdi-calendar"
                     v-bind="props"
                     @click="addToCal"
-                  >
-                    <v-icon>mdi-calendar</v-icon>
-                  </v-btn>
+                  />
                 </template>
-                <span>Add to calendar</span>
+                Add to calendar
               </v-tooltip>
             </v-toolbar>
 

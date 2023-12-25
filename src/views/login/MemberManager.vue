@@ -1,6 +1,6 @@
 <template>
   <v-main>
-    <top-banner title="Member Manager"/>
+    <top-banner title="Member Manager" />
 
     <div class="mx-3">
       <div
@@ -50,7 +50,7 @@
                   </v-btn>
                 </template>
               </v-list-item>
-              <v-divider/>
+              <v-divider />
             </div>
           </div>
         </v-list>
@@ -96,7 +96,7 @@
                   </v-btn>
                 </template>
               </v-list-item>
-              <v-divider/>
+              <v-divider />
             </div>
           </div>
         </v-list>

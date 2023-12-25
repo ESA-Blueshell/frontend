@@ -17,17 +17,13 @@
         {{ news.postedAt ? news.postedAt.slice(0, 10) : '' }}
       </h5>
       <v-btn
-        icon
+        icon="mdi-twitter"
         :href="'https://twitter.com/share?text='+news.title+'&url='+thisURL()+'&hashtags='+news.newsType"
-      >
-        <v-icon>mdi-twitter</v-icon>
-      </v-btn>
+      />
       <v-btn
-        icon
+        icon="mdi-facebook"
         :href="'https://www.facebook.com/sharer/sharer.php?u='+thisURL()+'&t='+news.title"
-      >
-        <v-icon>mdi-facebook</v-icon>
-      </v-btn>
+      />
     </div>
   </v-main>
 </template>
