@@ -1,6 +1,6 @@
 <template>
   <v-main>
-    <top-banner title="Member Manager" />
+    <top-banner title="Member Manager"/>
 
     <div class="mx-3">
       <div
@@ -46,16 +46,15 @@
                     variant="text"
                     @click="changeMembership(user, true)"
                   >
-                    >
                     Make member
                   </v-btn>
                 </template>
               </v-list-item>
-              <v-divider />
+              <v-divider/>
             </div>
           </div>
         </v-list>
-        <!--TODO: dit hieronder naar vue3 rammen -->
+
         <!--        Sick copy paste to show members -->
         <p class="text-h3">
           Members ({{ users.filter(u => u.roles.includes('MEMBER')).length }})
@@ -67,35 +66,37 @@
           >
             <div v-if="user.roles.includes('MEMBER') && isSearched(user)">
               <v-list-item>
-                <v-list-item-content @click="expanded = (expanded === user.id) ? null : user.id">
+                <div @click="expanded = (expanded === user.id) ? null : user.id">
                   <v-list-item-title>
                     {{ user.fullName }}
                   </v-list-item-title>
                   <v-list-item-subtitle>
                     {{ user.username }}
                   </v-list-item-subtitle>
-                  <div v-if="expanded === user.id">
-                    <p
-                      v-for="[key,value] in Object.entries(user)"
-                      :key="key"
-                      class="mb-0 memberinfo"
-                    >
-                      <span>{{ key }}</span>: {{ toReadableString(value) }}
-                    </p>
-                  </div>
-                </v-list-item-content>
+                  <v-expand-transition>
+                    <div v-if="expanded === user.id">
+                      <p
+                        v-for="[key,value] in Object.entries(user)"
+                        :key="key"
+                        class="mb-0 memberinfo"
+                      >
+                        <span>{{ key }}</span>: {{ toReadableString(value) }}
+                      </p>
+                    </div>
+                  </v-expand-transition>
+                </div>
 
-                <v-list-item-action>
+                <template #append>
                   <v-btn
-                    :disabled="user.roles.indexOf(&quot;BOARD&quot;) !== -1 || user.roles.indexOf(&quot;ADMIN&quot;) !== -1"
+                    :disabled="user.roles.indexOf('BOARD') !== -1 || user.roles.indexOf('ADMIN') !== -1"
                     variant="text"
                     @click="changeMembership(user, false)"
                   >
                     Remove membership
                   </v-btn>
-                </v-list-item-action>
+                </template>
               </v-list-item>
-              <v-divider />
+              <v-divider/>
             </div>
           </div>
         </v-list>
@@ -126,11 +127,11 @@ export default {
     },
     changeMembership(user, isMember) {
       this.$http.post(`/users/${user.id}/member?isMember=${isMember}`, {}, {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
-          .then(() =>
-              this.$http.get('/users', {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
-                  .then(response => this.users = response.data)
-                  .catch(e => this.$root.handleNetworkError(e)))
-          .catch(e => this.$root.handleNetworkError(e))
+        .then(() =>
+          this.$http.get('/users', {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
+            .then(response => this.users = response.data)
+            .catch(e => this.$root.handleNetworkError(e)))
+        .catch(e => this.$root.handleNetworkError(e))
     },
     toReadableString(value) {
       if (value === [] || value === '[]') {
@@ -149,7 +150,7 @@ export default {
         return '';
       }
 
-      if (typeof(value) === 'string' && value.includes('+') && value.includes('T')) {
+      if (typeof (value) === 'string' && value.includes('+') && value.includes('T')) {
         // Probably a time value
         return new Date(value);
       }
@@ -162,12 +163,12 @@ export default {
 </script>
 
 <style scoped>
-  .memberinfo {
-    margin: 4px;
-  }
+.memberinfo {
+  margin: 4px;
+}
 
-  span {
-    font-weight: bold;
-  }
+span {
+  font-weight: bold;
+}
 
 </style>
