@@ -15,7 +15,6 @@ Axios.defaults.baseURL = "https://esa-blueshell.nl/api/"
 const app = createApp(App)
 app.use(store)
 app.use(router)
-app.use(vuetify)
 app.use(VueAxios, axios)
 registerPlugins(app)
 app.mount('#app')

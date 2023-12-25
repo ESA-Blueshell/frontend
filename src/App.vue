@@ -693,8 +693,13 @@ export default {
           //todo: make epic easter eggerino
         }
       }
-
     });
+
+    // Check user's dark mode preference
+    if (!localStorage.getItem('esa-blueshell.nl:darkMode')) {
+      this.checkPrefersColorScheme();
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => this.checkPrefersColorScheme())
 
     this.$vuetify.theme.global.name = localStorage.getItem('esa-blueshell.nl:darkMode') === 'true' ? 'dark' : 'light'
   },
@@ -702,9 +707,19 @@ export default {
     goto(url) {
       router.push(url)
     },
+    checkPrefersColorScheme() {
+      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        this.setDarkMode(true)
+      } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+        this.setDarkMode(false)
+      }
+    },
+    setDarkMode(dark) {
+      localStorage.setItem('esa-blueshell.nl:darkMode', dark)
+      this.$vuetify.theme.global.name = dark ? 'dark' : 'light'
+    },
     toggleDarkMode() {
-      this.$vuetify.theme.global.name = this.$vuetify.theme.global.current.dark ? 'light' : 'dark'
-      localStorage.setItem('esa-blueshell.nl:darkMode', this.$vuetify.theme.global.current.dark.toString())
+      this.setDarkMode(!this.$vuetify.theme.global.current.dark)
     },
     logOut() {
       // Let the cookie expire and redirect if the page is logged in only
