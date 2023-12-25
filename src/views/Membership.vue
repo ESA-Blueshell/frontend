@@ -47,10 +47,10 @@
             and
             send the filled out application form to the board via the mail
             <a
-              href="mailto:board@blueshell.utwente.nl"
+              href="mailto:blueshellesports@gmail.com"
               class="text-decoration-none"
             >
-              board@blueshell.utwente.nl</a>:
+              blueshellesports@gmail.com</a>:
           </p>
           <ul>
             <li>

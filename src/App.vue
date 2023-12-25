@@ -366,7 +366,7 @@
       <template #append>
         <v-btn
           icon="mdi-email"
-          href="mailto:board@blueshell.utwente.nl"
+          href="mailto:blueshellesports@gmail.com"
           variant="plain"
           style="width: calc(100%/3)"
         />
@@ -419,7 +419,7 @@
     >
       <v-btn
         icon
-        href="mailto:board@blueshell.utwente.nl"
+        href="mailto:blueshellesports@gmail.com"
       >
         <v-icon>mdi-email</v-icon>
       </v-btn>

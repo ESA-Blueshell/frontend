@@ -19,10 +19,10 @@
           page. If you are just looking for
           more information, you can contact the board at
           <a
-            href="mailto:board@blueshell.utwente.nl"
+            href="mailto:blueshellesports@gmail.com"
             target="_blank"
             class="text-decoration-none"
-          >board@blueshell.utwente.nl</a>
+          >blueshellesports@gmail.com</a>
           or join the
           <a
             href="https://discord.gg/WyDhbAP"

@@ -250,5 +250,10 @@ export default {
 </script>
 
 <style scoped>
-
+.v-col:first-child {
+  padding-left: 0;
+}
+.v-col:last-child {
+  padding-right: 0;
+}
 </style>
