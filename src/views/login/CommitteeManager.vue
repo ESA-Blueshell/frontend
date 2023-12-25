@@ -49,19 +49,18 @@
                     {{ committee.members.length }} member{{ committee.members.length === 1 ? '' : 's' }}
                   </v-list-item-subtitle>
 
-                  <v-list-item-action>
+                  <template #append>
                     <v-tooltip location="left">
-                      <template #activator="{ props }">
+                      <template #activator="{ tooltip }">
                         <v-btn
+                          v-bind="tooltip"
                           :loading="submittingId === committee.id"
-                          icon
-                          v-bind="props"
                           @click="editingCommitteeId= (editingCommitteeId===committee.id ? null : committee.id)"
-                        >
-                          <v-icon>mdi-pencil</v-icon>
-                        </v-btn>
+                          icon="mdi-pencil"
+                          variant="plain"
+                        />
                       </template>
-                      <span>Edit committee</span>
+                      Edit committee
                     </v-tooltip>
                     <v-tooltip
                       v-if="$store.getters.isBoard"
@@ -69,16 +68,15 @@
                     >
                       <template #activator="{ props: tooltip }">
                         <v-btn
-                          icon
                           v-bind="{ ...tooltip, ...dialog }"
                           @click="committeeToDelete = committee"
-                        >
-                          <v-icon>mdi-delete</v-icon>
-                        </v-btn>
+                          icon="mdi-delete"
+                          variant="plain"
+                        />
                       </template>
-                      <span>Delete committee</span>
+                      Delete committee
                     </v-tooltip>
-                  </v-list-item-action>
+                  </template>
                 </v-list-item>
 
                 <v-expand-transition :key="committee.name">

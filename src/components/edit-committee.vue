@@ -51,13 +51,12 @@
             label="Member name"
             return-object
           >
-            <template #append-outer>
+            <template #append>
               <v-btn
-                icon
+                icon="mdi-close"
+                variant="plain"
                 @click="committee.members.splice(i,1)"
-              >
-                <v-icon>mdi-close</v-icon>
-              </v-btn>
+              />
             </template>
           </v-autocomplete>
         </v-col>

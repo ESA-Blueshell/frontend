@@ -40,46 +40,40 @@
                       <v-tooltip location="left">
                         <template #activator="{ props }">
                           <v-btn
-                            :icon="true"
+                            icon="mdi-list-status"
                             variant="plain"
                             :disabled="!event.signUp"
                             v-bind="props"
                             @click="$router.push('signups/'+event.id)"
-                          >
-                            <v-icon>mdi-list-status</v-icon>
-                          </v-btn>
+                          />
                         </template>
-                        <span>Check signups</span>
+                        Check signups
                       </v-tooltip>
                     </v-row>
                     <v-row>
                       <v-tooltip location="left">
                         <template #activator="{ props }">
                           <v-btn
-                            :icon="true"
+                            icon="mdi-pencil"
                             variant="plain"
                             v-bind="props"
                             @click="$router.push('edit/'+event.id)"
-                          >
-                            <v-icon>mdi-pencil</v-icon>
-                          </v-btn>
+                          />
                         </template>
-                        <span>Edit event</span>
+                        Edit event
                       </v-tooltip>
                     </v-row>
                     <v-row>
                       <v-tooltip location="left">
                         <template #activator="{ props: tooltip }">
                           <v-btn
-                            :icon="true"
+                            icon="mdi-delete"
                             variant="plain"
                             v-bind="{ ...tooltip, ...dialog }"
                             @click="eventToDelete = event"
-                          >
-                            <v-icon>mdi-delete</v-icon>
-                          </v-btn>
+                          />
                         </template>
-                        <span>Delete event</span>
+                        Delete event
                       </v-tooltip>
                     </v-row>
                   </v-col>
@@ -107,7 +101,7 @@
         There will be no undo
       </v-card-text>
       <v-card-actions>
-        <v-spacer />
+        <v-spacer/>
         <v-btn
           variant="text"
           @click="eventToDelete=null"
