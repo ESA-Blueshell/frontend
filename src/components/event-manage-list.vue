@@ -37,7 +37,10 @@
 
                   <v-col>
                     <v-row>
-                      <v-tooltip location="left">
+                      <v-tooltip
+                        location="left"
+                        text="Check signups"
+                      >
                         <template #activator="{ props }">
                           <v-btn
                             icon="mdi-list-status"
@@ -47,11 +50,13 @@
                             @click="$router.push('signups/'+event.id)"
                           />
                         </template>
-                        Check signups
                       </v-tooltip>
                     </v-row>
                     <v-row>
-                      <v-tooltip location="left">
+                      <v-tooltip
+                        location="left"
+                        text="Edit event"
+                      >
                         <template #activator="{ props }">
                           <v-btn
                             icon="mdi-pencil"
@@ -60,11 +65,13 @@
                             @click="$router.push('edit/'+event.id)"
                           />
                         </template>
-                        Edit event
                       </v-tooltip>
                     </v-row>
                     <v-row>
-                      <v-tooltip location="left">
+                      <v-tooltip
+                        location="left"
+                        text="Delete event"
+                      >
                         <template #activator="{ props: tooltip }">
                           <v-btn
                             icon="mdi-delete"
@@ -73,7 +80,6 @@
                             @click="eventToDelete = event"
                           />
                         </template>
-                        Delete event
                       </v-tooltip>
                     </v-row>
                   </v-col>

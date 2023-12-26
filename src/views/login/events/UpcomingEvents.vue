@@ -79,37 +79,37 @@
                       </v-btn>
                     </v-row>
                     <v-row v-else-if="eventIdToSignUpForm[event.id] !== undefined && !event.signUpForm">
-                      <v-tooltip location="left">
+                      <v-tooltip
+                        text="Remove sign-up"
+                        location="left"
+                      >
                         <template #activator="{ props }">
                           <v-btn
                             :loading="submittingId === event.id"
-                            :icon="true"
+                            icon="mdi-checkbox-marked"
                             variant="plain"
                             :disabled="event.membersOnly && !$store.getters.isMember"
                             v-bind="props"
                             @click="removeSignUp(event.id)"
-                          >
-                            <v-icon>mdi-checkbox-marked</v-icon>
-                          </v-btn>
+                          />
                         </template>
-                        <span>Remove sign-up</span>
                       </v-tooltip>
                     </v-row>
                     <v-row v-else-if="!event.signUpForm && eventIdToSignUpForm[event.id] === undefined">
-                      <v-tooltip location="left">
+                      <v-tooltip
+                        text="Sign Up"
+                        location="left"
+                      >
                         <template #activator="{ props }">
                           <v-btn
                             :loading="submittingId === event.id"
-                            :icon="true"
+                            icon="mdi-checkbox-blank"
                             variant="plain"
                             :disabled="event.membersOnly && !$store.getters.isMember"
                             v-bind="props"
                             @click="signUp(event.id)"
-                          >
-                            <v-icon>mdi-checkbox-blank</v-icon>
-                          </v-btn>
+                          />
                         </template>
-                        <span>Sign Up</span>
                       </v-tooltip>
                     </v-row>
                     <template v-else-if="event.signUpForm">
@@ -117,38 +117,38 @@
                         <v-tooltip
                           v-if="eventIdToSignUpForm[event.id] !== undefined"
                           location="left"
+                          text="Remove sign-up"
                         >
                           <template #activator="{ props }">
                             <v-btn
                               :loading="submittingId === event.id"
-                              :icon="true"
+                              icon="mdi-close"
                               variant="plain"
                               :disabled="event.membersOnly && !$store.getters.isMember"
                               v-bind="props"
                               @click="removeSignUp(event.id)"
-                            >
-                              <v-icon>mdi-close</v-icon>
-                            </v-btn>
+                            />
                           </template>
-                          <span>Remove sign-up</span>
                         </v-tooltip>
                       </v-row>
                       <v-row>
-                        <v-tooltip location="left">
+                        <v-tooltip
+                          location="left"
+                          :text="eventIdToSignUpForm[event.id] !== undefined ?
+                                   'Edit sign-up form' :
+                                 signingUpFor !== event.id ?
+                                   'Fill in sign-up form' :
+                                   'Cancel filling in sign-up form'"
+                        >
                           <template #activator="{ props }">
                             <v-btn
-                              :icon="true"
+                              icon="mdi-list-status"
                               variant="plain"
                               :disabled="event.membersOnly && !$store.getters.isMember"
                               v-bind="props"
                               @click="signingUpFor= (signingUpFor ? null : event.id)"
-                            >
-                              <v-icon>mdi-list-status</v-icon>
-                            </v-btn>
+                            />
                           </template>
-                          <span v-if="eventIdToSignUpForm[event.id] !== undefined">Edit sign-up form</span>
-                          <span v-else-if="signingUpFor !== event.id">Fill in sign-up form</span>
-                          <span v-else>Cancel filling in sign-up form</span>
                         </v-tooltip>
                       </v-row>
                     </template>

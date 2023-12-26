@@ -57,6 +57,7 @@
           <!-- Button to add option (v-if question has options) -->
           <v-tooltip
             v-if="question.type === 'radio' || question.type === 'checkbox'"
+            text="Add option"
             location="top"
           >
             <template #activator="{ props }">
@@ -67,7 +68,6 @@
                 @click="question.options.push('')"
               />
             </template>
-            Add option
           </v-tooltip>
 
           <!-- Buttons for moving the question up or down and remove button -->

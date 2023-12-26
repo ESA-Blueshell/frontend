@@ -7,7 +7,7 @@
     <v-col>
       <!-- Start of the top bar. Includes today, previous and forward buttons and current month. -->
       <v-sheet height="64">
-        <v-toolbar flat>
+        <v-toolbar :flat="true">
           <v-btn
             variant="outlined"
             class="mr-4"
@@ -16,14 +16,14 @@
             Today
           </v-btn>
           <v-btn
-            color="accent"
             icon="mdi-chevron-left"
-            @click="prev"
+            color="accent"
+            @click="$refs.calendar.prev()"
           />
           <v-btn
-            color="accent"
             icon="mdi-chevron-right"
-            @click="next"
+            color="accent"
+            @click="$refs.calendar.next()"
           />
           <v-toolbar-title
             v-if="$refs.calendar"
@@ -81,7 +81,7 @@
           v-model="selectedOpen"
           :close-on-content-click="false"
           :activator="selectedElement"
-          offset-x
+          location="start"
         >
           <v-card max-width="350px">
             <!-- Start of the toolbar in the selected event menu -->
@@ -107,29 +107,29 @@
               </marquee-text>
 
               <v-spacer />
-              <!-- Start of the "Find location" button. Check the documentation for v-tooltip to find out how this works exactly -->
-              <v-tooltip location="bottom">
+              <v-tooltip
+                text="Find location"
+                location="bottom"
+              >
                 <template #activator="{ props }">
-                  <!-- The actual button -->
                   <v-btn
                     icon="mdi-google-maps"
                     v-bind="props"
                     @click="findLocation"
                   />
                 </template>
-                Find location
               </v-tooltip>
-              <!-- Start of the "Add to calendar" button. Check the documentation for v-tooltip to find out how this works exactly -->
-              <v-tooltip location="bottom">
+              <v-tooltip
+                text="Add to calendar"
+                location="bottom"
+              >
                 <template #activator="{ props }">
-                  <!-- The actual button -->
                   <v-btn
                     icon="mdi-calendar"
                     v-bind="props"
                     @click="addToCal"
                   />
                 </template>
-                Add to calendar
               </v-tooltip>
             </v-toolbar>
 
@@ -302,12 +302,6 @@ export default {
     setToday() {
       this.focus = ''
       this.currentMonth = new Date().toISOString().substring(0, 7)
-    },
-    prev() {
-      this.$refs.calendar.prev()
-    },
-    next() {
-      this.$refs.calendar.next()
     },
     //Triggers when the month changes and gets new events accordingly
     monthChange({start}) {

@@ -38,7 +38,10 @@
             <v-row>
               <v-spacer />
               <v-col cols="auto">
-                <v-tooltip location="top">
+                <v-tooltip
+                  location="top"
+                  text="Save changes"
+                >
                   <template #activator="{ props }">
                     <v-btn
                       icon="mdi-content-save"
@@ -48,7 +51,6 @@
                       @click="save"
                     />
                   </template>
-                  <span>Save changes</span>
                 </v-tooltip>
               </v-col>
             </v-row>
@@ -179,7 +181,10 @@
             <v-row>
               <v-spacer />
               <v-col cols="auto">
-                <v-tooltip location="top">
+                <v-tooltip
+                  location="top"
+                  text="Save changes"
+                >
                   <template #activator="{ props }">
                     <v-btn
                       icon="mdi-content-save"
@@ -189,7 +194,6 @@
                       @click="save"
                     />
                   </template>
-                  <span>Save changes</span>
                 </v-tooltip>
               </v-col>
             </v-row>

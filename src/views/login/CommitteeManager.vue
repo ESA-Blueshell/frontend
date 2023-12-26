@@ -50,7 +50,10 @@
                   </v-list-item-subtitle>
 
                   <template #append>
-                    <v-tooltip location="left">
+                    <v-tooltip
+                      location="left"
+                      text="Edit committee"
+                    >
                       <template #activator="{ tooltip }">
                         <v-btn
                           v-bind="tooltip"
@@ -60,11 +63,11 @@
                           @click="editingCommitteeId= (editingCommitteeId===committee.id ? null : committee.id)"
                         />
                       </template>
-                      Edit committee
                     </v-tooltip>
                     <v-tooltip
                       v-if="$store.getters.isBoard"
                       location="left"
+                      text="Delete committee"
                     >
                       <template #activator="{ props: tooltip }">
                         <v-btn
@@ -74,7 +77,6 @@
                           @click="committeeToDelete = committee"
                         />
                       </template>
-                      Delete committee
                     </v-tooltip>
                   </template>
                 </v-list-item>
