@@ -1,35 +1,5 @@
-@use 'vuetify/settings' with (
+@forward 'vuetify/settings' with (
   $border-radius-root: 10px,
+  $chip-border-radius: 5px,
   $list-padding: 0,
 );
-
-.rounded-b {
-  border-bottom-left-radius: settings.$border-radius-root !important;
-  border-bottom-right-radius: settings.$border-radius-root !important;
-}
-
-.v-list > :first-child, .v-list > .list-item-buffer > :first-child {
-  border-top-left-radius: settings.$border-radius-root !important;
-  border-top-right-radius: settings.$border-radius-root !important;
-}
-
-.v-list > :last-child, .v-list > .list-item-buffer > :last-child {
-  border-bottom-left-radius: settings.$border-radius-root !important;
-  border-bottom-right-radius: settings.$border-radius-root !important;
-}
-
-.v-divider {
-  opacity: 1;
-}
-
-.v-row {
-  margin-left: 0;
-  margin-right: 0;
-}
-
-@media #{map-get(settings.$display-breakpoints, 'xs')} {
-  .v-container {
-    padding: 8px;
-  }
-}
-

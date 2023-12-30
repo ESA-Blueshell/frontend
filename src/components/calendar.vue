@@ -4,75 +4,18 @@
     align="center"
     class="fill-height"
   >
-    <v-col>
-      <!-- Start of the top bar. Includes today, previous and forward buttons and current month. -->
-      <v-sheet height="64">
-        <v-toolbar :flat="true">
-          <v-btn
-            variant="outlined"
-            class="mr-4"
-            @click="setToday"
-          >
-            Today
-          </v-btn>
-          <v-btn
-            icon="mdi-chevron-left"
-            color="accent"
-            @click="$refs.calendar.prev()"
-          />
-          <v-btn
-            icon="mdi-chevron-right"
-            color="accent"
-            @click="$refs.calendar.next()"
-          />
-          <v-toolbar-title
-            v-if="$refs.calendar"
-            class="ml-3"
-          >
-            {{ $refs.calendar.title }}
-          </v-toolbar-title>
-          <v-spacer />
-          <!-- Circle loading thingy (only appears after the user's been waiting for new events for 0.5s) -->
-          <v-fade-transition>
-            <v-progress-circular
-              v-if="monthsLoading > 0"
-              class="mr-3"
-              indeterminate
-              color="primary"
-            />
-          </v-fade-transition>
-          <v-btn
-            v-if="type==='day'"
-            variant="outlined"
-            @click="viewMonth"
-          >
-            <v-icon class="ml-n2 mr-1">
-              mdi-arrow-left
-            </v-icon>
-            back
-          </v-btn>
-        </v-toolbar>
-      </v-sheet>
+    <v-col class="px-0">
       <!-- End of the top bar -->
       <v-sheet
         class="mx-auto"
         height="600"
       >
-        <!-- The actual calendar -->
         <v-calendar
-          ref="calendar"
           v-model="focus"
           :events="events"
-          :weekdays="weekdays"
-          color="primary-lighten-1"
-          event-color="primary"
-          :type="type"
-          :interval-format="intervalFormat"
-          locale="en-NL"
-          @change="monthChange"
-          @click:event="showEvent"
-          @click:more="viewDay"
-          @click:date="viewDay"
+          :show-adjacent-months="true"
+          :hide-week-number="$vuetify.display.xs"
+          :weekdays="$vuetify.display.xs ? [1,2,3,4,5] : [1,2,3,4,5,6,0]"
         />
 
         <!-- Start of the menu that pops up when selecting an event -->
@@ -106,7 +49,7 @@
                 />
               </marquee-text>
 
-              <v-spacer />
+              <v-spacer/>
               <v-tooltip
                 text="Find location"
                 location="bottom"
@@ -163,7 +106,7 @@
                 No description...
               </p>
               <!-- Starting time of the event -->
-              <v-divider class="my-2" />
+              <v-divider class="my-2"/>
               <p>
                 <b>When</b>
                 <br>
@@ -202,15 +145,23 @@
 
 <script>
 import MarqueeText from 'vue-marquee-text-component'
+import {VCalendar} from 'vuetify/labs/VCalendar'
+import login from "@/views/login/Login.vue";
 
 export default {
   name: "Calendar",
+  computed: {
+    login() {
+      return login
+    }
+  },
   components: {
-    MarqueeText
+    MarqueeText,
+    VCalendar,
   },
   data: () => ({
     today: new Date().toISOString().substring(0, 10),
-    focus: new Date().toISOString().substring(0, 10),
+    focus: [new Date()],
     selectedEvent: null,
     selectedLong: null,
     selectedElement: null,
@@ -227,7 +178,9 @@ export default {
     htmlRegex: /<\/?[a-z][\s\S]*>/i
   }),
   mounted() {
-    this.setToday();
+    this.focus[0].setDate(1); // TODO: remove this line when vuetify fixes their bug https://discord.com/channels/340160225338195969/1189752309173981224/1190330903088611389
+
+    this.currentMonth = new Date().toISOString().substring(0, 7)
     const month = this.currentMonth;
     [month, this.prevMonth(month), this.nextMonth(month)].forEach(it => this.getEvents(it));
   },
@@ -279,7 +232,7 @@ export default {
             let res = []
             response.data.forEach(elem => {
                 res.push({
-                  name: elem.title,
+                  title: elem.title,
                   details: elem.description,
                   date: elem.startTime.substring(0, 10),
                   start: new Date(elem.startTime),
@@ -299,13 +252,9 @@ export default {
           .catch(e => this.$root.handleNetworkError(e))
       }
     },
-    setToday() {
-      this.focus = ''
-      this.currentMonth = new Date().toISOString().substring(0, 7)
-    },
     //Triggers when the month changes and gets new events accordingly
-    monthChange({start}) {
-      let newMonth = start.year + '-' + (start.month < 10 ? '0' : '') + start.month;
+    monthChange(month) {
+      let newMonth = month.getFullYear() + '-' + (month.getMonth() + 1 < 10 ? '0' : '') + (month.getMonth() + 1);
       if (this.currentMonth != null) {
         if (this.compareMonths(this.currentMonth, newMonth)) {
           this.getEvents(this.prevMonth(newMonth))
@@ -351,16 +300,6 @@ export default {
       }
 
       nativeEvent.stopPropagation()
-    },
-    viewDay({date}) {
-      this.focus = date
-      this.type = 'day'
-    },
-    viewMonth() {
-      this.type = 'month'
-    },
-    intervalFormat(interval) {
-      return interval.time
     },
     // Get the next month. Formatting: yyyy-MM
     nextMonth(month) {
@@ -452,25 +391,80 @@ export default {
 }
 </script>
 
-<style>
-.v-calendar .v-event {
-  height: auto !important;
-  max-height: calc((100% - 50px)) !important;
-}
+<style lang="scss">
+@use '../styles/settings';
 
-.v-calendar .v-event .pl-1 {
-  white-space: normal !important;
-}
+.v-calendar {
+  @media #{map-get(settings.$display-breakpoints, 'xs')} {
+    .v-calendar-header__title {
+      font-size: 6vw;
+    }
 
-.v-calendar .v-event strong {
-  display: none;
-}
+    .v-calendar-header__today {
+      margin-inline-end: 6px;
+    }
 
-.v-calendar .v-event-timed .pl-1 {
-  white-space: normal !important;
-}
+    .v-calendar-header__title {
+      margin-inline-start: 6px;
+    }
+  }
 
-.v-menu__content {
-  min-width: 0 !important;
+  .v-calendar-weekly__day-alldayevents-container {
+    min-height: 0;
+  }
+
+  .v-calendar-month__day {
+    min-height: 84.5px;
+
+    .v-calendar-weekly__day-events-container {
+      padding: 0 4px;
+    }
+
+    .v-chip {
+      background-color: rgb(var(--v-theme-primary));
+      color: rgb(var(--v-theme-on-primary));
+      padding: 0 5px;
+
+      .v-badge {
+        display: none;
+      }
+    }
+  }
+
+  // Add some extra lines for readability
+  .v-calendar-weekly__head-weekday, .v-calendar-weekly__head-weekday-with-weeknumber {
+    border-bottom: thin solid #e0e0e0;
+  }
+  .v-calendar-month__weeknumber {
+    border-right: thin solid #e0e0e0;
+  }
+  .v-calendar-weekly__head-weeknumber {
+    border-right: thin solid #e0e0e0;
+    border-bottom: thin solid #e0e0e0;
+  }
+
+  // Rounded corners :)
+  .v-calendar__container {
+    border-radius: settings.$border-radius-root;
+
+    .v-calendar-weekly__head-weeknumber {
+      border-top-left-radius: settings.$border-radius-root;
+    }
+
+    :nth-last-child(1 of .v-calendar-month__weeknumber) {
+      border-bottom-left-radius: settings.$border-radius-root;
+    }
+
+    @media #{map-get(settings.$display-breakpoints, 'xs')} {
+      :nth-last-child(7 of .v-calendar-month__day) {
+        border-bottom-left-radius: settings.$border-radius-root;
+      }
+    }
+
+    :nth-last-child(1 of .v-calendar-month__day) {
+      border-bottom-right-radius: settings.$border-radius-root;
+    }
+  }
+
 }
 </style>
