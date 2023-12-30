@@ -412,7 +412,7 @@
     <router-view />
 
 
-    <!--    TODO: make footer nice on mobile-->
+    <!--    TODO: improve footer for breakpoint xs-->
     <v-footer
       theme="dark"
       style="flex-wrap: wrap"
@@ -571,7 +571,7 @@
             color="primary"
             variant="text"
             block
-            @click="$store.commit('acceptCookies');cookieDialog = false"
+            @click="acceptCookies"
           >
             Got it
           </v-btn>
@@ -643,8 +643,8 @@ export default {
     }
   },
   mounted() {
-    //Cookie garbage
-    if (!this.$store.getters.cookiesAccepted) {
+    // Cookie garbage
+    if (localStorage.getItem('esa-blueshell.nl:cookiesAccepted') !== 'true') {
       this.cookieDialog = true
     }
 
@@ -718,6 +718,10 @@ export default {
       if (this.$route.meta.requiresAuth) {
         this.goto('/')
       }
+    },
+    acceptCookies() {
+      localStorage.setItem('esa-blueshell.nl:cookiesAccepted', 'true')
+      this.cookieDialog = false
     },
     showSnackbar(message) {
       this.snackbar = true;

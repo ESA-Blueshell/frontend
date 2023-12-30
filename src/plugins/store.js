@@ -20,7 +20,6 @@ function getJsonCookie(cname) {
 export default createStore({
   state: {
     login: getJsonCookie('login') || null,
-    cookies: getJsonCookie('cookies') || false,
     networkErrorMessage: null,
     loggedInSnackbar: false,
   },
@@ -37,9 +36,6 @@ export default createStore({
       state.login.roles = newRoles
       document.cookie = `login=${JSON.stringify(state.login)};SameSite=strict;Secure;path=/`
     },
-    acceptCookies() {
-      document.cookie = `cookies=true;SameSite=strict;Secure;path=/`
-    },
     setNetworkErrorMessage(state, message) {
       state.networkErrorMessage = message
     },
@@ -50,7 +46,6 @@ export default createStore({
   actions: {},
   getters: {
     getLogin: state => state.login,
-    cookiesAccepted: state => state.cookies,
     tokenExpired: state => state.login == null || new Date().getTime() > state.login.expiration,
     isBoard: state => state.login.roles.includes("BOARD"),
     isActive: state => state.login.roles.includes("COMMITTEE"),
