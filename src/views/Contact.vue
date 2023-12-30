@@ -55,6 +55,12 @@
             md="8"
             class="pa-0"
           >
+            <v-skeleton-loader
+              v-if="mapLoading"
+              type="image,image,image"
+              width="600"
+              height="450"
+            />
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2443.009787256024!2d6.849677851362431!3d52.24320587966339!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b8133b297e5b15%3A0x918c3341c5447636!2sPredator%20Esports%20Lounge!5e0!3m2!1sen!2snl!4v1669661043450!5m2!1sen!2snl"
               width="600"
@@ -64,6 +70,7 @@
               loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"
               :style="{filter: $vuetify.theme.global.current.dark ? 'invert(90%)' : ''}"
+              @load="mapLoading=false"
             />
           </v-col>
         </v-row>
@@ -76,6 +83,17 @@
 import TopBanner from "@/components/top-banner";
 
 export default {
-  components: {TopBanner}
+  components: {TopBanner},
+  data: () => ({
+    mapLoading: true,
+  }),
 }
 </script>
+
+<style scoped lang="scss">
+@use '../styles/settings';
+
+iframe {
+  border-radius: settings.$border-radius-root;
+}
+</style>
