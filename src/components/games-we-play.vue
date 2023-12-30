@@ -35,7 +35,7 @@
             height: $vuetify.display.smAndUp ? '85px' : '70px',
           }"
 
-          @click="goto(game.esportsLink)"
+          @click="$goto(game.esportsLink)"
           @mouseenter="hover(i,j)"
           @mouseleave="unhover"
         >
@@ -105,7 +105,7 @@
 </template>
 
 <script>
-import router from "@/plugins/router";
+import {$goto} from "@/plugins/goto";
 
 export default {
   name: "GamesWePlay",
@@ -117,6 +117,7 @@ export default {
     hoverCarousel: false
   }),
   methods: {
+    $goto,
     hover(i, j) {
       setTimeout(() => {
         this.showPopup++;
@@ -137,11 +138,6 @@ export default {
         this.showPopup--;
       }, 1000)
     },
-    goto(link) {
-      if (link) {
-        router.push(link);
-      }
-    }
   }
 }
 </script>

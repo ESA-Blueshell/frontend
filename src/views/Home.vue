@@ -36,7 +36,7 @@
           <a
             class="expand"
             style="width: 100%"
-            @click="goto(col.url)"
+            @click="$goto(col.url)"
           >
             <v-icon
               size="x-large"
@@ -91,7 +91,7 @@
             :src="$vuetify.theme.global.current.dark?partner.logoDark:partner.logo"
             style="max-width: 450px"
             class="mx-auto expand"
-            @click="goto(partner.url)"
+            @click="$goto(partner.url)"
           />
         </v-col>
       </v-row>
@@ -102,11 +102,11 @@
 <script>
 
 import MainBanner from "@/components/main-banner";
-import router from "@/plugins/router";
 import DiscordBanner from "@/components/discord-banner";
 import SocialsBanner from "@/components/socials-banner";
 import GamesWePlay from "@/components/games-we-play";
 import {$require} from "@/plugins/require";
+import {$goto} from "@/plugins/goto";
 
 export default {
   components: {GamesWePlay, SocialsBanner, DiscordBanner, MainBanner},
@@ -248,14 +248,7 @@ export default {
     }
   },
   methods: {
-    goto(url) {
-      if (url.includes('https://')) {
-        let win = window.open(url, '_blank');
-        win.focus();
-      } else {
-        router.push(url)
-      }
-    }
+    $goto,
   }
 }
 </script>

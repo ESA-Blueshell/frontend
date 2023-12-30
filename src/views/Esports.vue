@@ -56,8 +56,6 @@
 
 <script>
 import TopBanner from "@/components/top-banner.vue";
-
-import router from '@/plugins/router';
 import {$require} from "@/plugins/require";
 
 export default {
@@ -88,11 +86,6 @@ export default {
       ]
     }
   },
-  methods: {
-    goto(url) {
-      router.push(url)
-    }
-  }
 }
 </script>
 <style>

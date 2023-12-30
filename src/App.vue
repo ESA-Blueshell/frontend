@@ -586,6 +586,7 @@ import router from "@/plugins/router";
 import xss from "xss";
 import showdown from "showdown";
 import store from "@/plugins/store";
+import {$goto} from "@/plugins/goto";
 
 export default {
   setup() {
@@ -662,7 +663,7 @@ export default {
             store.commit('setNetworkErrorMessage', 'Login expired. You have been logged out.')
             this.$store.commit('logout')
             if (this.$route.meta.requiresAuth) {
-              this.goto('/')
+              $goto('/')
             }
           } else {
             this.$root.handleNetworkError(e)
@@ -693,9 +694,6 @@ export default {
     this.$vuetify.theme.global.name = localStorage.getItem('esa-blueshell.nl:darkMode') === 'true' ? 'dark' : 'light'
   },
   methods: {
-    goto(url) {
-      router.push(url)
-    },
     checkPrefersColorScheme() {
       if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
         this.setDarkMode(true)
@@ -716,7 +714,7 @@ export default {
       this.$store.commit('logout')
       this.loggedInSnackbar = true;
       if (this.$route.meta.requiresAuth) {
-        this.goto('/')
+        $goto('/')
       }
     },
     acceptCookies() {
