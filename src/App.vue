@@ -419,59 +419,71 @@
     >
       <v-btn
         icon="mdi-email"
+        variant="plain"
         href="mailto:blueshellesports@gmail.com"
       />
       <v-btn
         icon="mdi-instagram"
+        variant="plain"
         href="https://www.instagram.com/blueshellesports/"
         target="_blank"
       />
       <v-btn
         icon="mdi-facebook"
+        variant="plain"
         href="https://www.facebook.com/BlueshellEsports/"
         target="_blank"
       />
       <v-btn
         icon="mdi-twitch"
+        variant="plain"
         href="https://www.twitch.tv/blueshellesports"
         target="_blank"
       />
       <v-btn
         icon="mdi-twitter"
+        variant="plain"
         href="https://twitter.com/BlueshellESA"
         target="_blank"
       />
       <v-btn
         icon="mdi-linkedin"
+        variant="plain"
         href="https://www.linkedin.com/company/blueshell-esports"
         target="_blank"
       />
       <v-btn
+        text="El Niño"
         variant="text"
         href="https://www.elnino.tech/"
         target="_blank"
       />
       <v-btn
+        text="Connectworks"
         variant="text"
         href="https://connectworks.nl/"
         target="_blank"
       />
       <v-btn
+        text="TalentIT"
         variant="text"
         href="https://talentittwente.nl/"
         target="_blank"
       />
       <v-btn
+        text="ETT"
         variant="text"
         href="https://esportsteamtwente.nl/"
         target="_blank"
       />
       <v-btn
+        text="Wegwijzer"
         variant="text"
         href="https://www.studentenwegwijzer.nl/enschede/studentenverenigingen/blueshell/"
         target="_blank"
       />
       <v-btn
+        text="Predator Esports Lounge"
         variant="text"
         href="https://www.esportsloungetwente.nl/"
         target="_blank"
