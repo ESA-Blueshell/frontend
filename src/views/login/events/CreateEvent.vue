@@ -21,6 +21,7 @@
 <script>
 import TopBanner from '@/components/top-banner';
 import EventForm from "@/components/event-form";
+import {$goto} from "@/plugins/goto";
 
 export default {
   name: 'CreateEvent',
@@ -37,7 +38,7 @@ export default {
       let startTime = `${event.startDate} ${event.startTime}:00`
       let endTime = `${event.endDate} ${event.endTime}:00`
 
-      let signUpForm = event.signUpForm.length > 0 ? JSON.stringify(event.signUpForm) : null
+      let signUpForm = event.signUpForm ? JSON.stringify(event.signUpForm) : null
 
       if (event.image) {
         // Encode the file using the FileReader API
@@ -68,7 +69,7 @@ export default {
               }, {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
               .then(response => {
                 if (response !== undefined && (response.status === 201 || response.status === 200)) {
-                  this.$router.push('manage')
+                  $goto('manage')
                 }
               })
               .catch(e => {

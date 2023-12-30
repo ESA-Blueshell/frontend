@@ -74,7 +74,7 @@ export default {
       let startTime = `${event.startDate} ${event.startTime}:00`
       let endTime = `${event.endDate} ${event.endTime}:00`
 
-      let signUpForm = event.signUpForm.length > 0 && event.enableSignUpForm ? JSON.stringify(event.signUpForm) : null
+      let signUpForm = event.signUpForm && event.enableSignUpForm ? JSON.stringify(event.signUpForm) : null
 
 
       if (event.image) {

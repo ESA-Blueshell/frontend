@@ -144,17 +144,19 @@
             :rules="[v => !!v || 'A representative committee is required']"
             item-title="name"
             item-value="id"
+            prepend-icon="mdi-account-group"
             label="Representative committee"
           />
         </v-col>
         <v-col>
           <v-file-input
             v-model="event.image"
-            accept="image/*"
+            accept="image/jpeg"
             label="Promo image (Max 2MB)"
             persistent-hint
             :hint="hasPromo?'This event already has a promo image, only select a file here if you want to overwrite the old one':null"
             show-size
+            clearable
           />
         </v-col>
       </v-row>
@@ -309,10 +311,16 @@ export default {
       if (this.event.endDateSame) {
         this.event.endDate = this.event.startDate
       }
+      if (this.event.image?.length > 0) {
+        this.event.image = this.event.image[0]
+      } else {
+        this.event.image = null
+      }
+
       if (this.$refs.form.validate()) {
         this.submitting = true;
 
-        this.event.signUpForm = this.$refs.signUpForm.form
+        this.event.signUpForm = this.$refs.signUpForm?.form;
         this.$emit('submit', this.event);
       } else {
         alert('The form is invalid.');
