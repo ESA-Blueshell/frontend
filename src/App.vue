@@ -776,9 +776,11 @@ export default {
 <style>
 
 .v-btn.bar-button {
-  margin-left: 2px;
-  margin-right: 2px;
+  margin: 0 2px;
   height: 100% !important;
+}
+.v-footer > .v-btn {
+  margin: 0 2px;
 }
 
 .roll-off {
