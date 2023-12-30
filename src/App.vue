@@ -477,12 +477,6 @@
         target="_blank"
       />
       <v-btn
-        text="Wegwijzer"
-        variant="text"
-        href="https://www.studentenwegwijzer.nl/enschede/studentenverenigingen/blueshell/"
-        target="_blank"
-      />
-      <v-btn
         text="Predator Esports Lounge"
         variant="text"
         href="https://www.esportsloungetwente.nl/"
