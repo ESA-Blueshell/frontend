@@ -453,34 +453,29 @@
         target="_blank"
       />
       <v-btn
-        text="El Niño"
-        variant="text"
         href="https://www.elnino.tech/"
         target="_blank"
+        v-text="'El Niño'"
       />
       <v-btn
-        text="Connectworks"
-        variant="text"
         href="https://connectworks.nl/"
         target="_blank"
+        v-text="'Connectworks'"
       />
       <v-btn
-        text="TalentIT"
-        variant="text"
         href="https://talentittwente.nl/"
         target="_blank"
+        v-text="'TalentIT'"
       />
       <v-btn
-        text="ETT"
-        variant="text"
         href="https://esportsteamtwente.nl/"
         target="_blank"
+        v-text="'ETT'"
       />
       <v-btn
-        text="Predator Esports Lounge"
-        variant="text"
         href="https://www.esportsloungetwente.nl/"
         target="_blank"
+        v-text="'Predator Esports Lounge'"
       />
 
       <v-spacer />

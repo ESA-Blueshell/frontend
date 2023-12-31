@@ -135,10 +135,10 @@
                         <v-tooltip
                           location="left"
                           :text="eventIdToSignUpForm[event.id] !== undefined ?
-                                   'Edit sign-up form' :
-                                 signingUpFor !== event.id ?
-                                   'Fill in sign-up form' :
-                                   'Cancel filling in sign-up form'"
+                            'Edit sign-up form' :
+                            signingUpFor !== event.id ?
+                              'Fill in sign-up form' :
+                              'Cancel filling in sign-up form'"
                         >
                           <template #activator="{ props }">
                             <v-btn

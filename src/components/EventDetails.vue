@@ -22,7 +22,7 @@
         />
       </marquee-text>
 
-      <v-spacer/>
+      <v-spacer />
       <v-tooltip
         text="Find location"
         location="bottom"
@@ -79,7 +79,7 @@
         No description...
       </p>
       <!-- Starting time of the event -->
-      <v-divider class="my-2"/>
+      <v-divider class="my-2" />
       <p>
         <b>When</b>
         <br>
@@ -116,19 +116,58 @@ import MarqueeText from 'vue-marquee-text-component'
 import {$goto} from "@/plugins/goto";
 
 export default {
-  name: 'eventDetails',
+  name: 'EventDetails',
   components: {MarqueeText},
   props: {
     selectedEvent: null,
   },
   data: () => ({
     expand: false,
+    linkRegex: /^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)/i,
+    htmlRegex: /<\/?[a-z][\s\S]*>/i
   }),
+  computed: {
+    formattedDate() {
+      const start = this.selectedEvent.start;
+      const end = this.selectedEvent.end;
+
+      let str;
+      if (end) {
+        str = new Intl.DateTimeFormat('en-US', {
+          weekday: 'long',
+          month: 'long',
+          day: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit',
+          hour12: false
+        }).format(start).replace(',', '');
+        str += " - ";
+        str += new Intl.DateTimeFormat('en-US', {
+          hour: '2-digit',
+          minute: '2-digit',
+          hour12: false
+        }).format(end);
+      } else {
+        str = new Intl.DateTimeFormat('en-US', {
+          weekday: 'long',
+          month: 'long',
+          day: 'numeric'
+        }).format(start)
+      }
+      return str;
+    },
+    longDescription() {
+      return this.selectedEvent.details?.split(/\s+/).length > 100
+    },
+    firstHundredWords() {
+      return this.selectedEvent.details.split(" ").slice(0, 100).join(" ");
+    }
+  },
   methods: {
     // Triggers when the add to calendar button is clicked on an event.
     // Opens google calendar with the id of the event so all data is instantly filled in
     addToCal() {
-      $goto(encodeURI('https://calendar.google.com/event?action=TEMPLATE&tmeid=' + this.selectedEvent.googleId + '&tmsrc=' + this.calendarId))
+      $goto(encodeURI('https://calendar.google.com/event?action=TEMPLATE&tmeid=' + this.selectedEvent.googleId + '&tmsrc=blueshellesports@gmail.com'))
     },
     expandWords() {
       this.expand = true
@@ -182,43 +221,6 @@ export default {
       });
       return res.replace('<br>', '');
     },
-  },
-  computed: {
-    formattedDate() {
-      const start = this.selectedEvent.start;
-      const end = this.selectedEvent.end;
-
-      let str;
-      if (end) {
-        str = new Intl.DateTimeFormat('en-US', {
-          weekday: 'long',
-          month: 'long',
-          day: 'numeric',
-          hour: '2-digit',
-          minute: '2-digit',
-          hour12: false
-        }).format(start).replace(',', '');
-        str += " - ";
-        str += new Intl.DateTimeFormat('en-US', {
-          hour: '2-digit',
-          minute: '2-digit',
-          hour12: false
-        }).format(end);
-      } else {
-        str = new Intl.DateTimeFormat('en-US', {
-          weekday: 'long',
-          month: 'long',
-          day: 'numeric'
-        }).format(start)
-      }
-      return str;
-    },
-    longDescription() {
-      return this.selectedEvent.details?.split(/\s+/).length > 100
-    },
-    firstHundredWords() {
-      return this.selectedEvent.details.split(" ").slice(0, 100).join(" ");
-    }
   },
 }
 </script>

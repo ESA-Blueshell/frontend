@@ -1,35 +1,21 @@
 <template>
-  <v-row
-    justify="center"
-    align="center"
-    class="fill-height"
-  >
-    <v-col class="px-0">
-      <!-- End of the top bar -->
-      <v-sheet
-        class="mx-auto"
-        height="600"
-      >
-        <v-calendar
-          v-model="focus"
-          :events="events"
-          :show-adjacent-months="true"
-          :hide-week-number="$vuetify.display.xs"
-          :weekdays="$vuetify.display.xs ? [1,2,3,4,5] : [1,2,3,4,5,6,0]"
-        />
+  <v-calendar
+    v-model="focus"
+    :events="events"
+    :show-adjacent-months="true"
+    :hide-week-number="$vuetify.display.xs"
+    :weekdays="$vuetify.display.xs ? [1,2,3,4,5] : [1,2,3,4,5,6,0]"
+  />
 
-        <v-menu
-          v-if="selectedEvent"
-          v-model="selectedOpen"
-          :close-on-content-click="false"
-          :activator="selectedElement"
-          location="start"
-        >
-          <eventDetails :selected-event="selectedEvent"/>
-        </v-menu>
-      </v-sheet>
-    </v-col>
-  </v-row>
+  <v-menu
+    v-if="selectedEvent"
+    v-model="selectedOpen"
+    :close-on-content-click="false"
+    :activator="selectedElement"
+    location="start"
+  >
+    <eventDetails :selected-event="selectedEvent" />
+  </v-menu>
 </template>
 
 <script>
@@ -43,35 +29,65 @@ export default {
     VCalendar,
   },
   data: () => ({
-    today: new Date().toISOString().substring(0, 10),
+    // Not sure why, but focus needs to be in an array
     focus: [new Date()],
     selectedEvent: null,
     selectedElement: null,
     selectedOpen: false,
-    calendarId: "blueshellesports@gmail.com",
-    type: 'month',
     events: [],
-    monthsCollected: [],
-    weekdays: [1, 2, 3, 4, 5, 6, 0],
-    currentMonth: null,
+    collectedMonths: [],
     monthsLoading: 0,
-    linkRegex: /^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)/i,
-    htmlRegex: /<\/?[a-z][\s\S]*>/i
   }),
-  mounted() {
-    this.focus[0].setDate(1); // TODO: remove this line when vuetify fixes their bug https://discord.com/channels/340160225338195969/1189752309173981224/1190330903088611389
+  watch: {
+    focus: function (newMonthArr, oldMonthArr) {
+      const newMonth = newMonthArr[0];
+      const oldMonth = oldMonthArr[0];
 
-    this.currentMonth = new Date().toISOString().substring(0, 7)
-    const month = this.currentMonth;
-    [month, this.prevMonth(month), this.nextMonth(month)].forEach(it => this.getEvents(it));
+      if (newMonth > oldMonth) {
+        this.getEvents(this.addMonths(1, newMonth));
+      } else {
+        this.getEvents(this.addMonths(-1, newMonth));
+      }
+    },
+  },
+  mounted() {
+    const focusMonth = this.focus[0];
+    focusMonth.setDate(1); // Set the date to the first of the month to prevent any weirdness regard month length
+
+    this.getEvents(focusMonth);
+    this.getEvents(this.addMonths(1, focusMonth));
+    this.getEvents(this.addMonths(-1, focusMonth));
   },
   methods: {
+    // idfk man i just copied this from the vuetify documentation (https://vuetifyjs.com/en/components/calendars/#events)
+    // apparently it triggers when you click on an event which is pretty neat i guess
+    showEvent({nativeEvent, event}) {
+      const open = () => {
+        this.selectedEvent = event
+        this.selectedElement = nativeEvent.target
+        setTimeout(() => {
+          this.selectedOpen = true
+        }, 10)
+      }
+
+      if (this.selectedOpen) {
+        this.selectedOpen = false
+        setTimeout(open, 10)
+      } else {
+        open()
+      }
+
+      nativeEvent.stopPropagation()
+    },
     getEvents(month) {
-      if (!this.monthsCollected.includes(month)) {
-        this.monthsCollected.push(month)
+      // Format to yyyy-mm
+      const formattedMonth = `${month.getFullYear()}-${String(month.getMonth() + 1).padStart(2, '0')}`;
+
+      if (!this.collectedMonths.includes(formattedMonth)) {
+        this.collectedMonths.push(formattedMonth)
         setTimeout(() => this.monthsLoading++, 500);
 
-        this.$http.get('events?from=' + month)
+        this.$http.get('events?from=' + formattedMonth)
           .then(response => {
             let res = []
             response.data.forEach(elem => {
@@ -96,89 +112,11 @@ export default {
           .catch(e => this.$root.handleNetworkError(e))
       }
     },
-    //Triggers when the month changes and gets new events accordingly
-    monthChange(month) {
-      let newMonth = month.getFullYear() + '-' + (month.getMonth() + 1 < 10 ? '0' : '') + (month.getMonth() + 1);
-      if (this.currentMonth != null) {
-        if (this.compareMonths(this.currentMonth, newMonth)) {
-          this.getEvents(this.prevMonth(newMonth))
-        } else {
-          this.getEvents(this.nextMonth(newMonth))
-        }
-      }
-      this.currentMonth = newMonth;
+    addMonths(amount, date) {
+      let res = new Date(date); // create a copy of the original date
+      res.setMonth(date.getMonth() + amount);
+      return res;
     },
-    //Return true if m1 is later than m2 (formatting: "yyyy-mm")
-    compareMonths(m1, m2) {
-      let splitM1 = m1.split('-');
-      let splitM2 = m2.split('-');
-
-      if (splitM1[0] > splitM2[0]) {
-        return true;
-      }
-      if (splitM1[0] < splitM2[0]) {
-        return false;
-      }
-      return splitM1[1] > splitM2[1];
-    },
-
-    // idfk man i just copied this from the vuetify documentation (https://vuetifyjs.com/en/components/calendars/#events)
-    // apparently it triggers when you click on an event which is pretty neat i guess
-    showEvent({nativeEvent, event}) {
-      const open = () => {
-        this.selectedEvent = event
-        this.selectedElement = nativeEvent.target
-        setTimeout(() => {
-          this.selectedOpen = true
-        }, 10)
-      }
-
-      if (this.selectedOpen) {
-        this.selectedOpen = false
-        setTimeout(open, 10)
-      } else {
-        open()
-      }
-
-      nativeEvent.stopPropagation()
-    },
-    // Get the next month. Formatting: yyyy-MM
-    nextMonth(month) {
-      const splitTime = month.split("-");
-      const currYear = splitTime[0];
-      const currMonth = splitTime[1];
-
-      let monthInt = parseInt(currMonth);
-      if (monthInt === 12) {
-        return (parseInt(currYear) + 1) + "-01";
-      } else {
-        if (monthInt >= 1 && monthInt <= 8) {
-          return currYear + "-0" + (monthInt + 1);
-        } else {
-          return currYear + "-" + (monthInt + 1);
-        }
-      }
-    },
-    // Get the previous month. Formatting: yyyy-MM
-    prevMonth(month) {
-      const splitTime = month.split("-");
-      const currYear = splitTime[0];
-      const currMonth = splitTime[1];
-
-      let monthInt = parseInt(currMonth);
-      if (monthInt === 1) {
-        return (parseInt(currYear) - 1) + "-12";
-      } else {
-        if (monthInt >= 2 && monthInt <= 10) {
-          return currYear + "-0" + (monthInt - 1);
-        } else {
-          return currYear + "-" + (monthInt - 1);
-        }
-      }
-    },
-    eventsByDate(date) {
-      return this.events.filter((event) => date.toLocaleString() === event.date);
-    }
   }
 }
 </script>
