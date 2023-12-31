@@ -3,7 +3,10 @@
 $accent: rgb(var(--v-theme-accent));
 
 .v-btn {
-  letter-spacing: 0
+  letter-spacing: 0;
+  transition-property: all;
+  transition-duration: 0.15s;
+  transition-delay: 0ms;
 }
 
 .v-theme--dark.v-application {
