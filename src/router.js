@@ -32,7 +32,6 @@ import MemberManager from "@/views/login/MemberManager";
 import RocketLeague from "@/views/esports/RocketLeague";
 import ForgotPassword from "@/views/login/ForgotPassword";
 import ResetPassword from "@/views/login/ResetPassword";
-import TalentIT from "@/views/partners/TalentIT.vue";
 import Trackmania from "@/views/esports/Trackmania.vue";
 import Valorant from "./views/esports/Valorant.vue";
 
@@ -139,11 +138,6 @@ const router = new Router({
       path: '/partners/connectworks',
       name: 'connectworks',
       component: Connectworks
-    },
-    {
-      path: '/partners/talentIT',
-      name: 'talentit',
-      component: TalentIT
     },
     {
       path: '/login',
