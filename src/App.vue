@@ -166,9 +166,6 @@
             <v-list-item to="/partners/connectworks">
               Connectworks
             </v-list-item>
-            <v-list-item to="/partners/talentIT">
-              TalentIT
-            </v-list-item>
           </v-list>
         </v-menu>
         <v-btn
@@ -352,9 +349,6 @@
           <v-list-item to="/partners/connectworks">
             Connectworks
           </v-list-item>
-          <v-list-item to="/partners/talentIT">
-            TalentIT
-          </v-list-item>
           <v-divider class="mb-1" />
         </v-list-group>
 
@@ -461,11 +455,6 @@
         href="https://connectworks.nl/"
         target="_blank"
         v-text="'Connectworks'"
-      />
-      <v-btn
-        href="https://talentittwente.nl/"
-        target="_blank"
-        v-text="'TalentIT'"
       />
       <v-btn
         href="https://esportsteamtwente.nl/"

@@ -26,7 +26,6 @@ import CommitteeManager from "@/views/login/CommitteeManager.vue";
 import CreateAccount from "@/views/login/CreateAccount.vue";
 import EnableAccount from "@/views/login/EnableAccount.vue";
 import Connectworks from "@/views/partners/Connectworks.vue";
-import TalentIT from "@/views/partners/TalentIT.vue";
 import MemberManager from "@/views/login/MemberManager.vue";
 import RocketLeague from "@/views/esports/RocketLeague.vue";
 import ForgotPassword from "@/views/login/ForgotPassword.vue";
@@ -135,11 +134,6 @@ const router = createRouter({
       path: '/partners/connectworks',
       name: 'connectworks',
       component: Connectworks
-    },
-    {
-      path: '/partners/talentIT',
-      name: 'talentit',
-      component: TalentIT
     },
     {
       path: '/login',
