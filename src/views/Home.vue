@@ -200,6 +200,11 @@ export default {
           url: "https://connectworks.nl/"
         },
         {
+          logo: require("../assets/talentit.png"),
+          logoDark: require("../assets/talentitdark.png"),
+          url: "https://talentittwente.nl/"
+        },
+        {
           logo: require("../assets/ett.png"),
           logoDark: require("../assets/ettdark.png"),
           url: "https://esportsteamtwente.nl/"
