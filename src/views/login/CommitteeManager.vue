@@ -23,7 +23,6 @@
           >
             <edit-committee
               class="form"
-              new-committee
               @close="getCommittees();creatingCommittee=false;creatingLoading=false;"
               @submitting="creatingLoading=true"
             />

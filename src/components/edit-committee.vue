@@ -5,10 +5,11 @@
   <v-form
     ref="form"
     v-model="valid"
+    v-if="editingCommittee"
   >
     <v-text-field
       ref="title"
-      v-model="committee.name"
+      v-model="editingCommittee.name"
       :rules="[v => !!v || 'name is required']"
       label="Committee name"
       required
@@ -16,7 +17,7 @@
 
     <v-textarea
       ref="description"
-      v-model="committee.description"
+      v-model="editingCommittee.description"
       :rules="[v => !!v || 'Description is required']"
       label="Description"
       variant="outlined"
@@ -26,7 +27,7 @@
 
     <v-container>
       <v-row
-        v-for="(member,i) in committee.members"
+        v-for="(member,i) in editingCommittee.members"
         :key="i"
         dense
       >
@@ -45,7 +46,7 @@
             :item-title="userToDisplay"
             :items="memberSelectItems"
             :rules="[v => !!v || 'Select a member',
-                     v => (!!v && committee.members.filter(member => member.user && member.user.username === v.username).length === 1) || 'A member can\'t be in the same committee twice']"
+                     v => (!!v && editingCommittee.members.filter(member => member.user && member.user.username === v.username).length === 1) || 'A member can\'t be in the same committee twice']"
             hide-details="auto"
             hide-no-data
             label="Member name"
@@ -55,7 +56,7 @@
               <v-btn
                 icon="mdi-close"
                 variant="plain"
-                @click="committee.members.splice(i,1)"
+                @click="editingCommittee.members.splice(i,1)"
               />
             </template>
           </v-autocomplete>
@@ -87,30 +88,33 @@ export default {
   props: {
     committee: {
       type: Object,
-      default: () => ({
-        name: '',
-        description: '',
-        members: []
-      })
-    },
-    newCommittee: {
-      type: Boolean,
-      default: false
+      default: () => null,
     },
   },
   data: () => ({
     valid: false,
     users: [],
     memberSelectItems: null,
+    editingCommittee: null,
   }),
   mounted() {
     this.$http.get('users/members', {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
         .then(response => this.memberSelectItems = response.data)
         .catch(e => this.$root.handleNetworkError(e))
+
+    if (this.committee) {
+      this.editingCommittee = JSON.parse(JSON.stringify(this.committee));
+    } else {
+      this.editingCommittee = {
+        name: '',
+        description: '',
+        members: [],
+      }
+    }
   },
   methods: {
     addMember() {
-      this.committee.members.push({role: '', user: null})
+      this.editingCommittee.members.push({role: '', user: null})
     },
     // Method used by the autocomplete
     filterUsers(user, queryText) {
@@ -135,9 +139,9 @@ export default {
       if (this.$refs.form.validate()) {
         this.$emit('submitting')
 
-        if (this.newCommittee) {
+        if (!this.committee) {
           this.$http.post('committees',
-              JSON.stringify(this.committee),
+              JSON.stringify(this.editingCommittee),
               {
                 headers: {
                   'Authorization': `Bearer ${this.$store.getters.getLogin.token}`,
@@ -147,8 +151,8 @@ export default {
               .then(() => this.$emit('close'))
               .catch(e => this.$root.handleNetworkError(e))
         } else {
-          this.$http.put('committees/' + this.committee.id,
-              JSON.stringify(this.committee),
+          this.$http.put('committees/' + this.editingCommittee.id,
+              JSON.stringify(this.editingCommittee),
               {
                 headers: {
                   'Authorization': `Bearer ${this.$store.getters.getLogin.token}`,

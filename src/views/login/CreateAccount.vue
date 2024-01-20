@@ -12,7 +12,7 @@
         style="max-width: 500px"
       >
         <v-row>
-          <v-col cols="4">
+          <v-col cols="4" class="pl-0">
             <v-text-field
               ref="initials"
               v-model="initials"
@@ -20,7 +20,7 @@
               label="Initials"
             />
           </v-col>
-          <v-col cols="8">
+          <v-col cols="8" class="pr-0">
             <v-text-field
               ref="firstName"
               v-model="firstName"
@@ -29,15 +29,15 @@
             />
           </v-col>
         </v-row>
-        <v-row class="mt-n7 mb-n5">
-          <v-col cols="4">
+        <v-row class="mt-n7">
+          <v-col cols="4" class="pl-0">
             <v-text-field
               ref="prefix"
               v-model="prefix"
               label="Prefix"
             />
           </v-col>
-          <v-col cols="8">
+          <v-col cols="8" class="pr-0">
             <v-text-field
               ref="lastName"
               v-model="lastName"
