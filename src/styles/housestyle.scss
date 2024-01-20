@@ -153,12 +153,12 @@ CSS MOMENT
   border-bottom-right-radius: settings.$border-radius-root !important;
 }
 
-.v-list > :first-child, .v-list > .list-item-buffer > :first-child {
+.v-list > :nth-child(1 of .v-list-item) {
   border-top-left-radius: settings.$border-radius-root !important;
   border-top-right-radius: settings.$border-radius-root !important;
 }
 
-.v-list > :last-child, .v-list > .list-item-buffer > :last-child {
+.v-list > :nth-last-child(1 of .v-list-item) {
   border-bottom-left-radius: settings.$border-radius-root !important;
   border-bottom-right-radius: settings.$border-radius-root !important;
 }
