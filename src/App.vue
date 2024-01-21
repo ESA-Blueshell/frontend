@@ -192,7 +192,7 @@
         <!-- LOGIN BUTTON/ACCOUNT DROPDOWN MENU -->
         <v-btn
           v-if="!loggedIn"
-          class="bar-button ma-0"
+          class="bar-button ma-0 mr-2"
           to="/login"
         >
           Log In
@@ -203,7 +203,7 @@
         >
           <template #activator="{ props }">
             <v-btn
-              class="bar-button ma-0"
+              class="bar-button ma-0 mr-2"
               variant="text"
               v-bind="props"
             >

@@ -3,9 +3,9 @@
 
   -->
   <v-form
+    v-if="editingCommittee"
     ref="form"
     v-model="valid"
-    v-if="editingCommittee"
   >
     <v-text-field
       ref="title"
@@ -42,12 +42,13 @@
           <v-autocomplete
             v-if="memberSelectItems"
             v-model="member.user"
-            :custom-filter="filterUsers"
-            :item-title="userToDisplay"
+            :item-title="user => user.discord ? `${user.fullName} (${user.discord})` : user.fullName"
             :items="memberSelectItems"
             :rules="[v => !!v || 'Select a member',
                      v => (!!v && editingCommittee.members.filter(member => member.user && member.user.username === v.username).length === 1) || 'A member can\'t be in the same committee twice']"
             hide-details="auto"
+            auto-select-first
+            clearable
             hide-no-data
             label="Member name"
             return-object
@@ -115,25 +116,6 @@ export default {
   methods: {
     addMember() {
       this.editingCommittee.members.push({role: '', user: null})
-    },
-    // Method used by the autocomplete
-    filterUsers(user, queryText) {
-      return user.username.toLocaleLowerCase().indexOf(queryText.toLocaleLowerCase()) > -1 ||
-          (user.discord && user.discord.toLocaleLowerCase().indexOf(queryText.toLocaleLowerCase()) > -1) ||
-          user.fullName.toLocaleLowerCase().indexOf(queryText.toLocaleLowerCase()) > -1
-    },
-    // Method used by the autocomplete, converts user to string which is shown in the list
-    userToDisplay(user) {
-      // Check if the full name is unique
-      if (this.memberSelectItems.filter(otherUser => otherUser.fullName === user.fullName).length === 1) {
-        return user.fullName;
-      }
-      // Check if the discord tag is unique
-      if (this.memberSelectItems.filter(otherUser => otherUser.discord === user.discord).length === 1) {
-        return `${user.fullName} (${user.discord})`;
-      }
-      // Give up and just display the username as well
-      return `${user.fullName} (${user.discord}/${user.username})`;
     },
     submit() {
       if (this.$refs.form.validate()) {
