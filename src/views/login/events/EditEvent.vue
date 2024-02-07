@@ -52,7 +52,7 @@ export default {
               image: event.image,
 
               signUpForm: event.signUpForm ? JSON.parse(event.signUpForm) : [],
-              enableSignUpForm: !!this.event.signUpForm,
+              enableSignUpForm: !!event.signUpForm,
             }
 
             this.event.endDateSame = this.event.startDate === this.event.endDate
