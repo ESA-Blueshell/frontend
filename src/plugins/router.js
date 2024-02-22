@@ -20,7 +20,6 @@ import ArticleEditor from "@/views/ArticleEditor.vue";
 import CreateEvent from "@/views/login/events/CreateEvent.vue";
 import EventManager from "@/views/login/events/EventManager.vue";
 import EditEvent from "@/views/login/events/EditEvent.vue";
-import UpcomingEvents from "@/views/login/events/UpcomingEvents.vue";
 import EventSignUps from "@/views/login/events/EventSignUps.vue";
 import CommitteeManager from "@/views/login/CommitteeManager.vue";
 import CreateAccount from "@/views/login/CreateAccount.vue";
@@ -174,10 +173,6 @@ const router = createRouter({
     },
     {
       path: '/events',
-      redirect: '/events/calendar',
-    },
-    {
-      path: '/events/calendar',
       name: 'events',
       component: Events
     },
@@ -197,12 +192,6 @@ const router = createRouter({
       path: '/events/manage',
       name: 'eventManager',
       component: EventManager,
-      meta: {requiresAuth: true}
-    },
-    {
-      path: '/events/upcoming',
-      name: 'upcomingEvents',
-      component: UpcomingEvents,
       meta: {requiresAuth: true}
     },
     {

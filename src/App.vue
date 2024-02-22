@@ -82,11 +82,8 @@
             </v-btn>
           </template>
           <v-list>
-            <v-list-item to="/events/calendar">
-              Events calendar
-            </v-list-item>
-            <v-list-item to="/events/upcoming">
-              Upcoming events
+            <v-list-item to="/events">
+              Events
             </v-list-item>
             <v-list-item
               v-if="$store.getters.isActive"
@@ -99,9 +96,9 @@
         <v-btn
           v-else
           class="bar-button"
-          to="/events/calendar"
+          to="/events"
         >
-          Event calendar
+          Events
         </v-btn>
 
 
@@ -286,11 +283,8 @@
               Events
             </v-list-item>
           </template>
-          <v-list-item to="/events/calendar">
-            Event Calendar
-          </v-list-item>
-          <v-list-item to="/events/upcoming">
-            Upcoming events
+          <v-list-item to="/events">
+            Event
           </v-list-item>
           <v-list-item
             v-if="$store.getters.isActive"
@@ -302,9 +296,9 @@
         </v-list-group>
         <v-list-item
           v-else
-          to="/events/calendar"
+          to="/events"
         >
-          Event calendar
+          Events
         </v-list-item>
 
         <v-list-group>

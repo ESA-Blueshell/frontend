@@ -153,6 +153,10 @@ CSS MOMENT
   border-bottom-right-radius: settings.$border-radius-root !important;
 }
 
+.v-list {
+  border-radius: settings.$border-radius-root !important;
+}
+
 .v-list > :nth-child(1 of .v-list-item) {
   border-top-left-radius: settings.$border-radius-root !important;
   border-top-right-radius: settings.$border-radius-root !important;

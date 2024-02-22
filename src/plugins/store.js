@@ -47,9 +47,9 @@ export default createStore({
   getters: {
     getLogin: state => state.login,
     tokenExpired: state => state.login == null || new Date().getTime() > state.login.expiration,
-    isBoard: state => state.login.roles.includes("BOARD"),
-    isActive: state => state.login.roles.includes("COMMITTEE"),
-    isMember: state => state.login.roles.includes("MEMBER"),
+    isBoard: state => state.login?.roles.includes("BOARD"),
+    isActive: state => state.login?.roles.includes("COMMITTEE"),
+    isMember: state => state.login?.roles.includes("MEMBER"),
     isLoggedIn: state => !!state.login
   },
 })

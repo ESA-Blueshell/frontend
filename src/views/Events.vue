@@ -9,11 +9,20 @@
         <calendar />
       </div>
       <div
+        class="mx-auto mt-5"
+        style="max-width: 800px"
+      >
+        <p class="text-h4 font-weight-light">
+          Upcoming events
+        </p>
+        <upcoming-events-list />
+      </div>
+      <div
         class="mx-auto my-5"
         style="max-width: 800px"
       >
         <p class="text-h4 font-weight-light">
-          Add it to your own calendar!
+          Add the events to your own calendar!
         </p>
         <p class="text-body-1">
           You can add all our events to your personal Google Calendar agenda by clicking <a
@@ -32,8 +41,9 @@
 <script>
 import TopBanner from "@/components/top-banner";
 import Calendar from "@/components/calendar"
+import UpcomingEventsList from "@/components/UpcomingEventsList.vue";
 
 export default {
-  components: {TopBanner, Calendar}
+  components: {UpcomingEventsList, TopBanner, Calendar}
 }
 </script>
