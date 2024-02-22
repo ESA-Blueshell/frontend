@@ -284,7 +284,7 @@
             </v-list-item>
           </template>
           <v-list-item to="/events">
-            Event
+            Events
           </v-list-item>
           <v-list-item
             v-if="$store.getters.isActive"
