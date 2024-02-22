@@ -19,7 +19,7 @@
     "vue-axios": "^3.5.2",
     "vue-marquee-text-component": "^2.0.1",
     "vue-router": "^4.2.5",
-    "vuetify": "^3.5.1",
+    "vuetify": "^3.5.5",
     "vuex": "^4.1.0",
     "webfontloader": "^1.0.0",
     "xss": "^1.0.14"
