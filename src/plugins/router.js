@@ -177,6 +177,10 @@ const router = createRouter({
       component: Events
     },
     {
+      path: '/events/calendar',
+      redirect: '/events'
+    },
+    {
       path: '/events/create',
       name: 'createEvent',
       component: CreateEvent,
