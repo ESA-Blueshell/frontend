@@ -43,7 +43,7 @@
           </div>
 
           <template
-            v-if="$store.getters.isLoggedIn"
+            v-if="$store.getters.isLoggedIn && event.signUp"
             #append
           >
             <v-container class="fill-height">
@@ -68,16 +68,7 @@
                 </v-col>
 
                 <v-col>
-                  <v-row v-if="!event.signUp">
-                    <v-btn
-                      :disabled="true"
-                      :icon="true"
-                      variant="plain"
-                    >
-                      <v-icon>mdi-checkbox-blank</v-icon>
-                    </v-btn>
-                  </v-row>
-                  <v-row v-else-if="eventIdToSignUpForm[event.id] !== undefined && !event.signUpForm">
+                  <v-row v-if="eventIdToSignUpForm[event.id] !== undefined && !event.signUpForm">
                     <v-tooltip
                       text="Remove sign-up"
                       location="left"
