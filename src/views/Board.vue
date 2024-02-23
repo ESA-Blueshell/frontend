@@ -13,14 +13,25 @@
           Every year, our association grows and takes on new shapes. We present you the seventh board
           of Blueshell Esports{{ $vuetify.display.mdAndUp ? ', who are introduced below' : '' }}.
         </p>
-        <v-img :src="$require('@/assets/board7pics/board7.jpg')" />
+        <!-- TODO: don't use 10px here but use the vuetify variable somehow-->
+        <v-img
+          :src="$require('@/assets/board7pics/board7.jpg')"
+          style="border-radius: 10px"
+        />
 
         <div
           v-for="(member,i) in board"
           :key="member.name"
           class="mb-12 mt-16"
           style="width: 100%; height: 400px;background-size: contain;position: relative;"
-          :style="{ 'background-image': `linear-gradient(${i%2===0?'':'-'}90deg, transparent 25%, ${$vuetify.theme.global.current.dark?'#1e1e1e':'white'} 34%, transparent 26%), url('${member.image}')`, 'background-position': i%2===0 ? 'left' : 'right '}"
+          :style="{
+            'background-image': `linear-gradient(${i%2===0?'':'-'}90deg, transparent 25%, ${$vuetify.theme.global.current.dark?'#1e1e1e':'white'} 34%, transparent 26%), url('${member.image}')`,
+            'background-position': i%2===0 ? 'left' : 'right',
+            'border-top-left-radius': i%2===0 ? '10px' : '',
+            'border-bottom-left-radius': i%2===0 ? '10px' : '',
+            'border-top-right-radius': i%2===0 ? '' : '10px',
+            'border-bottom-right-radius': i%2===0 ? '' : '10px',
+          }"
         >
           <!-- https://www.w3schools.com/HOWTO/howto_css_center-vertical.asp -->
           <div
