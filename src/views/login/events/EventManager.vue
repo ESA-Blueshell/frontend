@@ -26,7 +26,7 @@
       </template>
 
 
-      <p class="mt-8 mx-3 text-h3 text-center">
+      <p class="mt-8 mx-3 mb-4 text-h3 text-center">
         Upcoming Events
       </p>
 
@@ -35,7 +35,7 @@
         :id-to-committee="idToCommittee"
       />
 
-      <p class="mt-8 mx-3 text-h3 text-center">
+      <p class="mt-8 mx-3 mb-4 text-h3 text-center">
         Past Events
       </p>
 

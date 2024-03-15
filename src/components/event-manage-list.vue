@@ -27,64 +27,58 @@
             />
 
             <template #append>
-              <v-container class="fill-height">
-                <v-row>
-                  <v-col align-self="center">
-                    <v-row v-if="$vuetify.display.smAndUp">
-                      {{ idToCommittee[event.committee] }}
-                    </v-row>
-                  </v-col>
+              <p
+                v-if="$vuetify.display.smAndUp"
+                class="ml-4"
+              >
+                {{ idToCommittee[event.committee] }}
+              </p>
 
-                  <v-col>
-                    <v-row>
-                      <v-tooltip
-                        location="left"
-                        text="Check signups"
-                      >
-                        <template #activator="{ props }">
-                          <v-btn
-                            icon="mdi-list-status"
-                            variant="plain"
-                            :disabled="!event.signUp"
-                            v-bind="props"
-                            @click="$router.push('signups/'+event.id)"
-                          />
-                        </template>
-                      </v-tooltip>
-                    </v-row>
-                    <v-row>
-                      <v-tooltip
-                        location="left"
-                        text="Edit event"
-                      >
-                        <template #activator="{ props }">
-                          <v-btn
-                            icon="mdi-pencil"
-                            variant="plain"
-                            v-bind="props"
-                            @click="$router.push('edit/'+event.id)"
-                          />
-                        </template>
-                      </v-tooltip>
-                    </v-row>
-                    <v-row>
-                      <v-tooltip
-                        location="left"
-                        text="Delete event"
-                      >
-                        <template #activator="{ props: tooltip }">
-                          <v-btn
-                            icon="mdi-delete"
-                            variant="plain"
-                            v-bind="{ ...tooltip, ...dialog }"
-                            @click="eventToDelete = event"
-                          />
-                        </template>
-                      </v-tooltip>
-                    </v-row>
-                  </v-col>
-                </v-row>
-              </v-container>
+              <div
+                style="display: grid"
+                class="mx-4"
+              >
+                <v-tooltip
+                  location="left"
+                  text="Check signups"
+                >
+                  <template #activator="{ props }">
+                    <v-btn
+                      icon="mdi-list-status"
+                      variant="plain"
+                      :disabled="!event.signUp"
+                      v-bind="props"
+                      @click="$router.push('signups/'+event.id)"
+                    />
+                  </template>
+                </v-tooltip>
+                <v-tooltip
+                  location="left"
+                  text="Edit event"
+                >
+                  <template #activator="{ props }">
+                    <v-btn
+                      icon="mdi-pencil"
+                      variant="plain"
+                      v-bind="props"
+                      @click="$router.push('edit/'+event.id)"
+                    />
+                  </template>
+                </v-tooltip>
+                <v-tooltip
+                  location="left"
+                  text="Delete event"
+                >
+                  <template #activator="{ props: tooltip }">
+                    <v-btn
+                      icon="mdi-delete"
+                      variant="plain"
+                      v-bind="{ ...tooltip, ...dialog }"
+                      @click="eventToDelete = event"
+                    />
+                  </template>
+                </v-tooltip>
+              </div>
             </template>
           </v-list-item>
           <v-divider
