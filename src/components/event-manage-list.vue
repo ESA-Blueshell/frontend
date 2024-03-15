@@ -12,7 +12,7 @@
           <v-list-item
             :style="{ 'background-image': !event.banner ? '' :
               $vuetify.theme.global.current.dark ? `linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(${event.banner})` : `linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(255,255,255,0.8)), url(${event.banner})`}"
-            style="background-size: cover;background-position: center;backdrop-filter: blur(2px);"
+            style="background-size: cover;background-position: center;"
           >
             <v-list-item-title class="text-h6">
               {{ event.title }}
