@@ -22,7 +22,7 @@
             </v-list-item-subtitle>
             <span
               v-html="event.description ?
-                $root.markdownToHtml(event.description.slice(0, 150) + (event.description.length > 150 ? '...' : '')) :
+                $markdownToHtml(event.description.slice(0, 150) + (event.description.length > 150 ? '...' : '')) :
                 'No description...'"
             />
 
@@ -121,6 +121,8 @@
 </template>
 
 <script>
+import {$markdownToHtml} from "@/plugins/markdownToHtml";
+
 export default {
   name: "EventManageList",
   props: ["events", "idToCommittee"],
@@ -128,6 +130,7 @@ export default {
     eventToDelete: null,
   }),
   methods: {
+    $markdownToHtml,
     deleteEvent() {
       this.$http.delete('events/' + this.eventToDelete.id, {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
         .then(() => {

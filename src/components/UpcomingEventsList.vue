@@ -31,13 +31,13 @@
               <div
                 v-if="expandedEvent !== i || !event.description"
                 style="height: 87px"
-                v-html="event.description ? $root.markdownToHtml(event.description) : 'No description...'"
+                v-html="event.description ? $markdownToHtml(event.description) : 'No description...'"
               />
             </v-expand-transition>
             <v-expand-transition>
               <div
                 v-if="expandedEvent === i && event.description"
-                v-html="$root.markdownToHtml(event.description)"
+                v-html="$markdownToHtml(event.description)"
               />
             </v-expand-transition>
           </div>
@@ -175,6 +175,7 @@
 
 <script>
 import SignUpForm from "@/components/sign-up-form";
+import {$markdownToHtml} from "@/plugins/markdownToHtml";
 
 export default {
   name: "UpcomingEventsList",
@@ -198,6 +199,7 @@ export default {
     }
   },
   methods: {
+    $markdownToHtml,
     signUp(eventId) {
       this.submittingId = eventId
       this.$http.post('events/signups/' + eventId, '', {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})

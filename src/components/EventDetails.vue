@@ -63,7 +63,7 @@
         <!-- In the span is the actual text of the event -->
         <!-- If the expand variable is true show the fill message, otherwise only show the first 100 words -->
         <span
-          v-html="expand || !longDescription ? $root.markdownToHtml(selectedEvent.details) : $root.markdownToHtml(firstHundredWords)+'...'"
+          v-html="expand || !longDescription ? $markdownToHtml(selectedEvent.details) : $markdownToHtml(firstHundredWords)+'...'"
         />
         <!-- Only show the "read more" if the message is long -->
         <!-- If it's clicked expand will be set to true and the full message will be shown -->
@@ -114,6 +114,7 @@
 <script>
 import MarqueeText from 'vue-marquee-text-component'
 import {$goto} from "@/plugins/goto";
+import {$markdownToHtml} from "@/plugins/markdownToHtml";
 
 export default {
   name: 'EventDetails',
@@ -164,6 +165,7 @@ export default {
     }
   },
   methods: {
+    $markdownToHtml,
     // Triggers when the add to calendar button is clicked on an event.
     // Opens google calendar with the id of the event so all data is instantly filled in
     addToCal() {

@@ -547,7 +547,6 @@
 
 <script>
 import router from "@/plugins/router";
-import xss from "xss";
 import showdown from "showdown";
 import store from "@/plugins/store";
 import {$goto} from "@/plugins/goto";
@@ -688,9 +687,6 @@ export default {
     showSnackbar(message) {
       this.snackbar = true;
       this.snackbarText = message
-    },
-    markdownToHtml(text) {
-      return xss(this.converter.makeHtml(text.replaceAll('<html-blob>', '').replaceAll('</html-blob>', '').trim()))
     },
     handleNetworkError(error) {
       // If the request got rejected, go to the login page to get some permissions
