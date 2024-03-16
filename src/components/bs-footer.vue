@@ -53,37 +53,42 @@ const textLinks = [
     v-if="$vuetify.display.mdAndUp"
     theme="dark"
     height="160"
-    class="pa-8"
+    class="pa-8 justify-center"
   >
-    <div style="display: flex; flex-flow: column wrap; max-height: 120px; width: calc(3 * 48px);">
-      <v-btn
-        v-for="link in iconLinks"
-        :key="link.href"
-        :href="link.href"
-        target="_blank"
-        variant="plain"
-        :icon="link.icon"
-      />
-    </div>
-
-    <div
-      class="ml-8"
-      style="display: flex; flex-flow: column wrap; max-height: calc(2*36px + 4px);gap: 4px"
+    <v-row
+      align="center"
+      style="max-width: 1000px"
     >
-      <v-btn
-        v-for="link in textLinks"
-        :key="link.href"
-        :href="link.href"
-        target="_blank"
-        v-text="link.text"
-      />
-    </div>
+      <div style="display: flex; flex-flow: column wrap; max-height: 120px; width: calc(3 * 48px);">
+        <v-btn
+          v-for="link in iconLinks"
+          :key="link.href"
+          :href="link.href"
+          target="_blank"
+          variant="plain"
+          :icon="link.icon"
+        />
+      </div>
 
-    <v-spacer/>
+      <div
+        class="ml-8"
+        style="display: flex; flex-flow: column wrap; max-height: calc(2*36px + 4px);gap: 4px"
+      >
+        <v-btn
+          v-for="link in textLinks"
+          :key="link.href"
+          :href="link.href"
+          target="_blank"
+          v-text="link.text"
+        />
+      </div>
 
-    <div>
-      SITECIE GANG &copy; {{ new Date().getFullYear() }}
-    </div>
+      <v-spacer />
+
+      <div>
+        SITECIE GANG &copy; {{ new Date().getFullYear() }}
+      </div>
+    </v-row>
   </v-footer>
 
 
@@ -91,7 +96,7 @@ const textLinks = [
     v-else-if="$vuetify.display.smAndDown"
     theme="dark"
     class="d-flex flex-column pa-4"
-
+    :height="$vuetify.display.sm ? 216 : 304"
   >
     <div>
       <v-btn

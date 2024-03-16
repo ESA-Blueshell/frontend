@@ -174,7 +174,7 @@
         </v-btn>
       </div>
 
-      <v-spacer/>
+      <v-spacer />
 
       <div style="height: 90%;display: flex;align-items: center;flex-wrap: nowrap;">
         <!--  Dark mode toggle    -->
@@ -273,7 +273,7 @@
           <v-list-item to="/documents">
             Documents
           </v-list-item>
-          <v-divider class="mb-1"/>
+          <v-divider class="mb-1" />
         </v-list-group>
 
 
@@ -292,7 +292,7 @@
           >
             Manage events
           </v-list-item>
-          <v-divider class="mb-1"/>
+          <v-divider class="mb-1" />
         </v-list-group>
         <v-list-item
           v-else
@@ -325,7 +325,7 @@
           <v-list-item to="/esports/trackmania">
             Trackmania
           </v-list-item>
-          <v-divider class="mb-1"/>
+          <v-divider class="mb-1" />
         </v-list-group>
 
         <v-list-group>
@@ -343,7 +343,7 @@
           <v-list-item to="/partners/connectworks">
             Connectworks
           </v-list-item>
-          <v-divider class="mb-1"/>
+          <v-divider class="mb-1" />
         </v-list-group>
 
         <v-list-item to="/contact">
@@ -397,8 +397,9 @@
     </v-navigation-drawer>
 
 
-    <router-view/>
-    <bs-footer/>
+    <router-view />
+
+    <bs-footer />
 
 
     <v-snackbar
@@ -422,7 +423,7 @@
       v-model="networkError"
       timeout="10000"
     >
-      <span v-html="networkErrorMessage"/>
+      <span v-html="networkErrorMessage" />
       <template #actions>
         <v-btn
           color="blue"
