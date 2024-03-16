@@ -9,29 +9,29 @@
     "lint": "eslint . --fix --ignore-path .gitignore"
   },
   "dependencies": {
-    "@mdi/font": "7.3.67",
-    "axios": "^1.6.2",
-    "core-js": "^3.29.0",
+    "@mdi/font": "7.4.47",
+    "axios": "^1.6.8",
+    "core-js": "^3.36.0",
     "roboto-fontface": "*",
     "showdown": "^2.1.0",
     "vite-plugin-commonjs": "^0.10.1",
-    "vue": "^3.3.11",
+    "vue": "^3.4.21",
     "vue-axios": "^3.5.2",
     "vue-marquee-text-component": "^2.0.1",
-    "vue-router": "^4.2.5",
+    "vue-router": "^4.3.0",
     "vuetify": "^3.5.9",
     "vuex": "^4.1.0",
-    "webfontloader": "^1.0.0",
-    "xss": "^1.0.14"
+    "webfontloader": "^1.6.28",
+    "xss": "^1.0.15"
   },
   "devDependencies": {
     "@originjs/vite-plugin-commonjs": "^1.0.3",
-    "@vitejs/plugin-vue": "^4.5.2",
-    "eslint": "^8.37.0",
-    "eslint-plugin-vue": "^9.8.0",
-    "eslint-plugin-vuetify": "^2.1.1",
+    "@vitejs/plugin-vue": "^5.0.4",
+    "eslint": "^8.57.0",
+    "eslint-plugin-vue": "^9.23.0",
+    "eslint-plugin-vuetify": "^2.2.0",
     "sass": "^1.69.5",
-    "vite": "^5.0.8",
-    "vite-plugin-vuetify": "^2.0.1"
+    "vite": "^5.1.6",
+    "vite-plugin-vuetify": "^2.0.3"
   }
 }
