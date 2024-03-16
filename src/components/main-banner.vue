@@ -7,7 +7,7 @@
     <v-container
       fluid
       style="background-size: cover;background-position: center;height: 800px"
-      :style="{ 'background-image': 'linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url(banner.jpg)'}"
+      :style="{ 'background-image': 'linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url(banner.webp)'}"
     >
       <v-row
         align="center"
