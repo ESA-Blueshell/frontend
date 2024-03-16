@@ -398,75 +398,7 @@
 
 
     <router-view/>
-
-
-    <!--    TODO: improve footer for breakpoint xs-->
-    <v-footer
-      theme="dark"
-      style="flex-wrap: wrap"
-    >
-      <v-btn
-        icon="mdi-email"
-        variant="plain"
-        href="mailto:blueshellesports@gmail.com"
-      />
-      <v-btn
-        icon="mdi-instagram"
-        variant="plain"
-        href="https://www.instagram.com/blueshellesports/"
-        target="_blank"
-      />
-      <v-btn
-        icon="mdi-facebook"
-        variant="plain"
-        href="https://www.facebook.com/BlueshellEsports/"
-        target="_blank"
-      />
-      <v-btn
-        icon="mdi-twitch"
-        variant="plain"
-        href="https://www.twitch.tv/blueshellesports"
-        target="_blank"
-      />
-      <v-btn
-        icon="mdi-twitter"
-        variant="plain"
-        href="https://twitter.com/BlueshellESA"
-        target="_blank"
-      />
-      <v-btn
-        icon="mdi-linkedin"
-        variant="plain"
-        href="https://www.linkedin.com/company/blueshell-esports"
-        target="_blank"
-      />
-      <v-btn
-        href="https://www.elnino.tech/"
-        target="_blank"
-        v-text="'El Niño'"
-      />
-      <v-btn
-        href="https://connectworks.nl/"
-        target="_blank"
-        v-text="'Connectworks'"
-      />
-      <v-btn
-        href="https://esportsteamtwente.nl/"
-        target="_blank"
-        v-text="'ETT'"
-      />
-      <v-btn
-        href="https://www.esportsloungetwente.nl/"
-        target="_blank"
-        v-text="'Predator Esports Lounge'"
-      />
-
-      <v-spacer/>
-
-      <div class="text-white mr-4">
-        SITECIE GANG &copy; {{ new Date().getFullYear() }}
-      </div>
-    </v-footer>
+    <bs-footer/>
 
 
     <v-snackbar
@@ -550,8 +482,10 @@ import router from "@/plugins/router";
 import showdown from "showdown";
 import store from "@/plugins/store";
 import {$goto} from "@/plugins/goto";
+import BsFooter from "@/components/bs-footer.vue";
 
 export default {
+  components: {BsFooter},
   setup() {
     const converter = new showdown.Converter()
     converter.setOption('openLinksInNewWindow', true)
