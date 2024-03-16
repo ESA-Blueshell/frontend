@@ -487,24 +487,11 @@ import BsFooter from "@/components/bs-footer.vue";
 
 export default {
   components: {BsFooter},
-  setup() {
-    const converter = new showdown.Converter()
-    converter.setOption('openLinksInNewWindow', true)
-    converter.setOption('headerLevelStart', 2)
-    converter.setOption('simplifiedAutoLink', true)
-    converter.setOption('strikethrough', true)
-    converter.setOption('tables', true)
-    converter.setOption('emoji', true)
-    converter.setOption('underline', true)
-    return {converter}
-  },
-  data() {
-    return {
+  data: ()=> ({
       drawer: false,
       poggers: false,
       showCookieSnackbar: false,
-    }
-  },
+  }),
   computed: {
     networkErrorMessage: {
       get() {
