@@ -1,8 +1,7 @@
 <template>
   <div
-    style="background-position: center;background-size: cover; display: flex;align-items: center;justify-content: center;"
-    :style="{ 'background-image': 'linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url(banner.webp)',
-              height: $vuetify.display.lgAndUp ? '300px' : '200px'}"
+    style="background-position: center;background-size: cover; display: flex;align-items: center;justify-content: center;background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url('/banner.webp')"
+    :style="{ height: $vuetify.display.lgAndUp ? '300px' : '200px'}"
   >
     <div
       class="text-h1 font-weight-bold text-white text-center"
