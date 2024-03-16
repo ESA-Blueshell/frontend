@@ -174,7 +174,7 @@
         </v-btn>
       </div>
 
-      <v-spacer />
+      <v-spacer/>
 
       <div style="height: 90%;display: flex;align-items: center;flex-wrap: nowrap;">
         <!--  Dark mode toggle    -->
@@ -273,7 +273,7 @@
           <v-list-item to="/documents">
             Documents
           </v-list-item>
-          <v-divider class="mb-1" />
+          <v-divider class="mb-1"/>
         </v-list-group>
 
 
@@ -292,7 +292,7 @@
           >
             Manage events
           </v-list-item>
-          <v-divider class="mb-1" />
+          <v-divider class="mb-1"/>
         </v-list-group>
         <v-list-item
           v-else
@@ -325,7 +325,7 @@
           <v-list-item to="/esports/trackmania">
             Trackmania
           </v-list-item>
-          <v-divider class="mb-1" />
+          <v-divider class="mb-1"/>
         </v-list-group>
 
         <v-list-group>
@@ -343,7 +343,7 @@
           <v-list-item to="/partners/connectworks">
             Connectworks
           </v-list-item>
-          <v-divider class="mb-1" />
+          <v-divider class="mb-1"/>
         </v-list-group>
 
         <v-list-item to="/contact">
@@ -397,7 +397,7 @@
     </v-navigation-drawer>
 
 
-    <router-view />
+    <router-view/>
 
 
     <!--    TODO: improve footer for breakpoint xs-->
@@ -461,7 +461,7 @@
         v-text="'Predator Esports Lounge'"
       />
 
-      <v-spacer />
+      <v-spacer/>
 
       <div class="text-white mr-4">
         SITECIE GANG &copy; {{ new Date().getFullYear() }}
@@ -490,7 +490,7 @@
       v-model="networkError"
       timeout="10000"
     >
-      <span v-html="networkErrorMessage" />
+      <span v-html="networkErrorMessage"/>
       <template #actions>
         <v-btn
           color="blue"
@@ -521,41 +521,27 @@
     </v-snackbar>
 
     <!-- Cookie dialog -->
-    <v-dialog
-      v-model="cookieDialog"
-      persistent
-      width="560"
+    <v-snackbar
+      v-model="showCookieSnackbar"
+      timeout="-1"
     >
-      <v-card>
-        <v-card-title class="text-h4">
-          {{ $vuetify.display.xs ? 'Cookies' : 'Accept cookies' }}
-        </v-card-title>
+      We're using cookies for keeping you logged in. You can read more about how we use cookies in our
+      <a
+        href="https://esa-blueshell.nl/api/download/bsCookiePolicy.pdf"
+        class="text-decoration-none"
+        target="_blank"
+      >Cookie Policy</a>.
 
-        <v-card-text class="text-body-1">
-          We know these cookie popups are annoying but don't worry, this is the only time you'll see this. We use
-          cookies for saving your login and possibly some other useful stuff that we will forget to write about here
-          when we make it. You can read more about what cookies are and how we use cookies in our
-          <a
-            href="https://esa-blueshell.nl/api/download/bsCookiePolicy.pdf"
-            class="text-decoration-none"
-            target="_blank"
-          >Cookie Policy</a>.
-        </v-card-text>
-
-        <v-divider />
-
-        <v-card-actions>
-          <v-btn
-            color="primary"
-            variant="text"
-            block
-            @click="acceptCookies"
-          >
-            Got it
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
+      <template #actions>
+        <v-btn
+          color="primary"
+          variant="text"
+          @click="acceptCookies"
+        >
+          Got it
+        </v-btn>
+      </template>
+    </v-snackbar>
   </v-app>
 </template>
 
@@ -582,7 +568,7 @@ export default {
     return {
       drawer: false,
       poggers: false,
-      cookieDialog: false,
+      showCookieSnackbar: false,
     }
   },
   computed: {
@@ -624,7 +610,7 @@ export default {
   mounted() {
     // Cookie garbage
     if (localStorage.getItem('esa-blueshell.nl:cookiesAccepted') !== 'true') {
-      this.cookieDialog = true
+      this.showCookieSnackbar = true
     }
 
     // Get account data for the chance that the user's roles have been updated
@@ -697,7 +683,7 @@ export default {
     },
     acceptCookies() {
       localStorage.setItem('esa-blueshell.nl:cookiesAccepted', 'true')
-      this.cookieDialog = false
+      this.showCookieSnackbar = false
     },
     showSnackbar(message) {
       this.snackbar = true;
@@ -759,6 +745,7 @@ export default {
   margin: 0 2px;
   height: 100% !important;
 }
+
 .v-footer > .v-btn {
   margin: 0 2px;
 }
