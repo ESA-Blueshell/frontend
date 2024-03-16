@@ -7,7 +7,7 @@
     <v-container
       fluid
       style="background-size: cover;background-position: center;height: 800px"
-      :style="{ 'background-image': `linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url(${$require('@/assets/banner.jpg')})`}"
+      :style="{ 'background-image': 'linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url(banner.jpg)'}"
     >
       <v-row
         align="center"
@@ -36,7 +36,7 @@
               rounded
               style="font-size: 30px;height: 50px;"
               size="x-large"
-              @click="$router.push('/membership')"
+              @click="$goto('membership')"
             >
               join now
             </v-btn>
@@ -49,9 +49,10 @@
 
 <script>
 import {$require} from "@/plugins/require";
+import {$goto} from "@/plugins/goto";
 
 export default {
   name: 'MainBanner',
-  methods: {$require}
+  methods: {$goto, $require}
 }
 </script>

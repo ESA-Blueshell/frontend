@@ -1,7 +1,7 @@
 <template>
   <div
     style="background-position: center;background-size: cover; display: flex;align-items: center;justify-content: center;"
-    :style="{ 'background-image': `linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url(${$require('@/assets/banner.jpg')})`,
+    :style="{ 'background-image': 'linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url(banner.jpg)})',
               height: $vuetify.display.lgAndUp ? '300px' : '200px'}"
   >
     <div
