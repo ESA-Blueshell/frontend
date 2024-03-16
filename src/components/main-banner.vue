@@ -47,11 +47,10 @@
 </template>
 
 <script>
-import {$require} from "@/plugins/require";
 import {$goto} from "@/plugins/goto";
 
 export default {
   name: 'MainBanner',
-  methods: {$goto, $require}
+  methods: {$goto}
 }
 </script>

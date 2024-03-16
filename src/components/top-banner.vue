@@ -14,13 +14,10 @@
 </template>
 
 <script>
-import {$require} from "@/plugins/require";
-
 export default {
   name: 'TopBanner',
   props: {
     title: String
   },
-  methods: {$require},
 }
 </script>
