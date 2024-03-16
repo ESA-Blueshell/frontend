@@ -21,6 +21,7 @@
 <script>
 import {VCalendar} from 'vuetify/labs/VCalendar'
 import EventDetails from "@/components/EventDetails.vue";
+import { useLocale } from 'vuetify'
 
 export default {
   name: "Calendar",
@@ -51,6 +52,10 @@ export default {
     },
   },
   mounted() {
+    // Set the locale so weeks start on monday
+    const { current } = useLocale()
+    current.value = 'en-NL'
+
     const focusMonth = this.focus[0];
     focusMonth.setDate(1); // Set the date to the first of the month to prevent any weirdness regard month length
 
