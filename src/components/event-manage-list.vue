@@ -18,7 +18,7 @@
               {{ event.title }}
             </v-list-item-title>
             <v-list-item-subtitle>
-              {{ formatStartEndTime(event) }}
+              {{ $formatEventTime(event) }}
             </v-list-item-subtitle>
             <span
               v-html="event.description ?
@@ -122,6 +122,7 @@
 
 <script>
 import {$markdownToHtml} from "@/plugins/markdownToHtml";
+import {$formatEventTime} from "../plugins/formatEventTime";
 
 export default {
   name: "EventManageList",
@@ -130,6 +131,7 @@ export default {
     eventToDelete: null,
   }),
   methods: {
+    $formatEventTime,
     $markdownToHtml,
     deleteEvent() {
       this.$http.delete('events/' + this.eventToDelete.id, {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
@@ -138,28 +140,6 @@ export default {
           this.eventToDelete = null
         })
         .catch(e => this.$root.handleNetworkError(e))
-    },
-    formatStartEndTime(event) {
-      let startTime = new Date(Date.parse(event.startTime))
-      let endTime = new Date(Date.parse(event.endTime))
-
-      let result = startTime.toLocaleString('en-NL', {
-        weekday: 'long',
-        day: 'numeric',
-        month: 'long',
-        hour: '2-digit',
-        minute: '2-digit'
-      })
-      result += '-'
-
-      if (startTime.getDate() !== endTime.getDate()) {
-        result += endTime.toLocaleString('en-NL', {day: 'numeric', month: 'long'})
-      }
-      result += endTime.toLocaleString('en-NL', {
-        hour: '2-digit',
-        minute: '2-digit'
-      });
-      return result
     },
   }
 }

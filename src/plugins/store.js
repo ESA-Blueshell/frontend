@@ -20,6 +20,7 @@ function getJsonCookie(cname) {
 export default createStore({
   state: {
     login: getJsonCookie('login') || null,
+    guestData: getJsonCookie('guestData') || null,
     networkErrorMessage: null,
     loggedInSnackbar: false,
   },
@@ -41,15 +42,21 @@ export default createStore({
     },
     setLoggedInSnackbar(state, newLoggedInSnackbar) {
       state.loggedInSnackbar = newLoggedInSnackbar
+    },
+    saveGuestData(state, data) {
+      document.cookie = `guestData=${JSON.stringify(data)};SameSite=strict;Secure;path=/`
     }
   },
   actions: {},
   getters: {
+    getGuestData: state => state.guestData,
+
     getLogin: state => state.login,
+    isLoggedIn: state => !!state.login,
     tokenExpired: state => state.login == null || new Date().getTime() > state.login.expiration,
+
     isBoard: state => state.login?.roles.includes("BOARD"),
     isActive: state => state.login?.roles.includes("COMMITTEE"),
     isMember: state => state.login?.roles.includes("MEMBER"),
-    isLoggedIn: state => !!state.login
   },
 })

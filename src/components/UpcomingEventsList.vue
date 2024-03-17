@@ -24,7 +24,7 @@
               {{ event.title }}
             </v-list-item-title>
             <v-list-item-subtitle class="mb-2">
-              {{ event.membersOnly ? 'Members only event. ' : '' }} {{ formatStartEndTime(event) }}
+              {{ $formatEventTime(event) }}
             </v-list-item-subtitle>
 
             <v-expand-transition>
@@ -43,7 +43,7 @@
           </div>
 
           <template
-            v-if="$store.getters.isLoggedIn && event.signUp"
+            v-if="event.signUp"
             #append
           >
             <v-container class="fill-height">
@@ -60,7 +60,7 @@
                       <span v-else-if="eventIdToSignUpForm[event.id] !== undefined">
                         Signed up!
                       </span>
-                      <span v-else-if="event.signUp">
+                      <span v-else-if="$store.getters.isLoggedIn && event.signUp">
                         Not signed up
                       </span>
                     </p>
@@ -68,7 +68,7 @@
                 </v-col>
 
                 <v-col>
-                  <v-row v-if="eventIdToSignUpForm[event.id] !== undefined && !event.signUpForm">
+                  <v-row v-if="$store.getters.isLoggedIn && !event.signUpForm && eventIdToSignUpForm[event.id] !== undefined">
                     <v-tooltip
                       text="Remove sign-up"
                       location="left"
@@ -85,7 +85,8 @@
                       </template>
                     </v-tooltip>
                   </v-row>
-                  <v-row v-else-if="!event.signUpForm && eventIdToSignUpForm[event.id] === undefined">
+                  <v-row
+                    v-else-if="$store.getters.isLoggedIn && !event.signUpForm && eventIdToSignUpForm[event.id] === undefined">
                     <v-tooltip
                       text="Sign Up"
                       location="left"
@@ -102,10 +103,10 @@
                       </template>
                     </v-tooltip>
                   </v-row>
-                  <template v-else-if="event.signUpForm">
+                  <template v-else-if="event.signUpForm || (!event.membersOnly && !$store.getters.isLoggedIn)">
                     <v-row>
                       <v-tooltip
-                        v-if="eventIdToSignUpForm[event.id] !== undefined"
+                        v-if="$store.getters.isLoggedIn && eventIdToSignUpForm[event.id] !== undefined"
                         location="left"
                         text="Remove sign-up"
                       >
@@ -136,7 +137,7 @@
                             variant="plain"
                             :disabled="event.membersOnly && !$store.getters.isMember"
                             v-bind="props"
-                            @click="signingUpFor= (signingUpFor ? null : event.id)"
+                            @click="signingUpFor = (signingUpFor ? null : event.id)"
                           />
                         </template>
                       </v-tooltip>
@@ -158,7 +159,7 @@
               :event="event"
               :form="JSON.parse(event.signUpForm)"
               class="form mx-auto"
-              @close="signingUpFor=null;submittingId=null;refreshSignUp(event.id)"
+              @submitted="(response) => {eventIdToSignUpForm[response.data.event] = response.data.formAnswers; closeSignUpForm()}"
               @submitting="submittingId=event.id"
             />
           </div>
@@ -176,6 +177,7 @@
 <script>
 import SignUpForm from "@/components/sign-up-form";
 import {$markdownToHtml} from "@/plugins/markdownToHtml";
+import {$formatEventTime} from "@/plugins/formatEventTime";
 
 export default {
   name: "UpcomingEventsList",
@@ -199,13 +201,13 @@ export default {
     }
   },
   methods: {
+    $formatEventTime,
     $markdownToHtml,
     signUp(eventId) {
       this.submittingId = eventId
       this.$http.post('events/signups/' + eventId, '', {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
         .then(() => {
-          this.submittingId = null
-          this.signingUpFor = null
+          this.closeSignUpForm()
           this.eventIdToSignUpForm[eventId] = null
         })
         .catch(e => this.$root.handleNetworkError(e))
@@ -214,41 +216,14 @@ export default {
       this.submittingId = eventId
       this.$http.delete('events/signups/' + eventId, {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
         .then(() => {
-          this.submittingId = null
-          this.signingUpFor = null
           delete this.eventIdToSignUpForm[eventId]
-        })
-        .catch(e => this.$root.handleNetworkError(e))
-
-    },
-    refreshSignUp(eventId) {
-      this.$http.get('events/signups/' + eventId, {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
-        .then(response => {
-          this.eventIdToSignUpForm[response.data.event] = response.data.formAnswers
+          this.closeSignUpForm()
         })
         .catch(e => this.$root.handleNetworkError(e))
     },
-    formatStartEndTime(event) {
-      let startTime = new Date(Date.parse(event.startTime))
-      let endTime = new Date(Date.parse(event.endTime))
-
-      let result = startTime.toLocaleString('en-NL', {
-        weekday: 'long',
-        day: 'numeric',
-        month: 'long',
-        hour: '2-digit',
-        minute: '2-digit'
-      })
-      result += '-'
-
-      if (startTime.getDate() !== endTime.getDate()) {
-        result += endTime.toLocaleString('en-NL', {day: 'numeric', month: 'long'})
-      }
-      result += endTime.toLocaleString('en-NL', {
-        hour: '2-digit',
-        minute: '2-digit'
-      });
-      return result
+    closeSignUpForm() {
+      this.submittingId = null
+      this.signingUpFor = null
     },
     expandEvent(event, i) {
       if (event.description && event.description.length > 150 && !getSelection().toString()) {
