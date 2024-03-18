@@ -108,12 +108,14 @@ async function validate() {
     <v-form
       v-if="answers !== null"
       ref="answersForm"
+      class="pt-4"
     >
       <div
         v-for="(question,i) in form"
         :key="i"
+        class="mb-4"
       >
-        <p :class="question.type === 'description' ? 'text-body-1 pt-4' : 'text-h6 mb-0'">
+        <p :class="question.type === 'description' ? 'text-body-1' : 'text-h6 mb-0'">
           {{ question.prompt }}
         </p>
 
@@ -129,9 +131,7 @@ async function validate() {
           v-else-if="question.type === 'radio'"
           v-model="answers[i]"
           :rules="[v => v != null || 'An answer is required']"
-          class="mt-0"
           hide-details="auto"
-          density="compact"
         >
           <v-radio
             v-for="(option,j) in question.options"
@@ -148,9 +148,7 @@ async function validate() {
           v-model="answers[i]"
           :label="option"
           :value="j"
-          class="mt-0 mb-2"
           hide-details
-          density="compact"
         />
       </div>
     </v-form>
@@ -164,3 +162,9 @@ async function validate() {
     </v-btn>
   </div>
 </template>
+
+<style>
+.v-checkbox .v-selection-control {
+  min-height: 40px !important;
+}
+</style>
