@@ -29,6 +29,7 @@ import MemberManager from "@/views/login/MemberManager.vue";
 import RocketLeague from "@/views/esports/RocketLeague.vue";
 import ForgotPassword from "@/views/login/ForgotPassword.vue";
 import ResetPassword from "@/views/login/ResetPassword.vue";
+import EditSignUp from "@/views/EditSignUp.vue";
 
 import {createRouter, createWebHistory} from "vue-router";
 import store from './store'
@@ -203,6 +204,11 @@ const router = createRouter({
       name: 'eventSignUps',
       component: EventSignUps,
       meta: {requiresAuth: true}
+    },
+    {
+      path: '/events/signups/edit/:hashedId',
+      name: 'editSignUp',
+      component: EditSignUp,
     },
     {
       path: '/members/manage',

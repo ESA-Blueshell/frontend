@@ -6,8 +6,19 @@ import axios from "axios";
 const store = useStore()
 const answersForm = ref(null)
 const guestForm = ref(null)
-const emit = defineEmits(['submitted', 'submitting'])
-const props = defineProps(['event', 'form', 'answersString'])
+const emit = defineEmits(['submit'])
+const props = defineProps({
+  event: Object,
+  answersString: String,
+  showGuestForm: {
+    type: Boolean,
+    required: true,
+  },
+  buttonLoading: {
+    type: Boolean,
+    default: false,
+  },
+})
 /*
   eventId is the id of the event that form will be submitted for.
 
@@ -51,43 +62,23 @@ const guestData = ref(store.getters.getGuestData ?? {
   email: '',
 })
 
+const form = ref(props.event.signUpForm ? JSON.parse(props.event.signUpForm) : null)
 
-async function submit() {
+
+async function validate() {
   const formValid = answersForm.value ? (await answersForm.value.validate()).valid : true;
   const guestFormValid = guestForm.value ? (await guestForm.value.validate()).valid : true;
 
   if (formValid && guestFormValid) {
-    emit('submitting')
-
-    let request;
-    if (store.getters.isLoggedIn) {
-      request = axios.post(`events/signups/${props.event.id}`,
-        JSON.stringify(answers.value),
-        {headers: {'Authorization': `Bearer ${store.getters.getLogin.token}`, 'Content-Type': 'text/plain'}}
-      )
-    } else {
-      store.commit('saveGuestData', guestData.value)
-
-      guestData.value['answers'] = JSON.stringify(answers.value)
-
-      request = axios.post(`events/signups/${props.event.id}/guest`,
-        JSON.stringify(guestData.value),
-        {headers: {'Content-Type': 'application/json'}}
-      )
-    }
-
-    request
-      .then(response => emit('submitted', response))
-      .catch(e => this.$root.handleNetworkError(e))
+    emit('submit', {answers: answers, guestData: guestData})
   }
 }
-
 </script>
 
 <template>
   <div>
     <v-form
-      v-if="!store.getters.isLoggedIn"
+      v-if="props.showGuestForm"
       ref="guestForm"
     >
       <v-alert
@@ -110,6 +101,7 @@ async function submit() {
         v-model="guestData.email"
         label="Email"
         :rules="[v => !!v || 'Email is required', v => /.+@.+\..+/.test(v) || 'E-mail must be valid']"
+        hint="We'll use this to send you a link you can use to edit your sign-up form later"
       />
     </v-form>
 
@@ -165,9 +157,10 @@ async function submit() {
 
     <v-btn
       :block="true"
-      @click="submit"
+      :loading="buttonLoading"
+      @click="validate"
     >
-      Save sign-up form
+      {{ answersString ? 'Update' : 'Save' }} sign-up form
     </v-btn>
   </div>
 </template>

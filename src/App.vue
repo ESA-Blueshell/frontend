@@ -479,11 +479,10 @@
 </template>
 
 <script>
-import router from "@/plugins/router";
-import showdown from "showdown";
 import store from "@/plugins/store";
 import {$goto} from "@/plugins/goto";
 import BsFooter from "@/components/bs-footer.vue";
+import {$handleNetworkError} from "@/plugins/handleNetworkError";
 
 export default {
   components: {BsFooter},
@@ -551,7 +550,7 @@ export default {
               $goto('/')
             }
           } else {
-            this.$root.handleNetworkError(e)
+            $handleNetworkError(e)
           }
         })
     }

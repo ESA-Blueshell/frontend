@@ -9,23 +9,7 @@
           v-for="(event,i) in events"
           :key="event.title+event.startTime"
         >
-          <v-list-item
-            :style="{ 'background-image': !event.banner ? '' :
-              $vuetify.theme.global.current.dark ? `linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(${event.banner})` : `linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(255,255,255,0.8)), url(${event.banner})`}"
-            style="background-size: cover;background-position: center;"
-          >
-            <v-list-item-title class="text-h6">
-              {{ event.title }}
-            </v-list-item-title>
-            <v-list-item-subtitle>
-              {{ $formatEventTime(event) }}
-            </v-list-item-subtitle>
-            <span
-              v-html="event.description ?
-                $markdownToHtml(event.description.slice(0, 150) + (event.description.length > 150 ? '...' : '')) :
-                'No description...'"
-            />
-
+          <event-list-item :event="event">
             <template #append>
               <p
                 v-if="$vuetify.display.smAndUp"
@@ -80,7 +64,8 @@
                 </v-tooltip>
               </div>
             </template>
-          </v-list-item>
+          </event-list-item>
+
           <v-divider
             v-if="i < events.length - 1"
             :key="i"
@@ -109,7 +94,7 @@
           No
         </v-btn>
         <v-btn
-          color="red"
+          color="error"
           variant="text"
           @click="deleteEvent"
         >
@@ -121,30 +106,25 @@
 </template>
 
 <script>
-import {$markdownToHtml} from "@/plugins/markdownToHtml";
-import {$formatEventTime} from "../plugins/formatEventTime";
+import EventListItem from "@/components/EventListItem.vue";
+import {$handleNetworkError} from "@/plugins/handleNetworkError";
 
 export default {
   name: "EventManageList",
+  components: {EventListItem},
   props: ["events", "idToCommittee"],
   data: () => ({
     eventToDelete: null,
   }),
   methods: {
-    $formatEventTime,
-    $markdownToHtml,
     deleteEvent() {
       this.$http.delete('events/' + this.eventToDelete.id, {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
         .then(() => {
           this.events = this.events.filter(event => event.id !== this.eventToDelete.id)
           this.eventToDelete = null
         })
-        .catch(e => this.$root.handleNetworkError(e))
+        .catch(e => $handleNetworkError(e))
     },
   }
 }
 </script>
-
-<style scoped>
-
-</style>
