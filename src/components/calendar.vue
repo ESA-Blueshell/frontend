@@ -194,7 +194,7 @@ export default {
     }
 
     @media #{map-get(settings.$display-breakpoints, 'xs')} {
-      :nth-last-child(7 of .v-calendar-month__day) {
+      :nth-last-child(5 of .v-calendar-month__day) {
         border-bottom-left-radius: settings.$border-radius-root;
       }
     }
