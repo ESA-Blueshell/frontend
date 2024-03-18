@@ -80,6 +80,7 @@ async function validate() {
     <v-form
       v-if="props.showGuestForm"
       ref="guestForm"
+      class="mb-4"
     >
       <v-alert
         text="It seems you are not logged in. You can still sign up for this event, but we'll need some extra info from you."
@@ -108,7 +109,6 @@ async function validate() {
     <v-form
       v-if="answers !== null"
       ref="answersForm"
-      class="pt-4"
     >
       <div
         v-for="(question,i) in form"
