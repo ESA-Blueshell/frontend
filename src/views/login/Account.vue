@@ -211,6 +211,7 @@
 <script>
 
 import TopBanner from "@/components/top-banner";
+import {$handleNetworkError} from "@/plugins/handleNetworkError";
 
 export default {
   name: "Account",
@@ -229,7 +230,7 @@ export default {
           this.accountData = response.data
           this.oldAccountData = this.copyObject(this.accountData)
         })
-        .catch(e => this.$root.handleNetworkError(e))
+        .catch(e => $handleNetworkError(e))
   },
   methods: {
     copyObject(obj) {
@@ -242,7 +243,7 @@ export default {
         const login = this.$store.getters.getLogin
         this.$http.put(`users/${login.userId}`, this.accountData, {headers: {'Authorization': `Bearer ${login.token}`}})
             .then(() => this.submitting = false)
-            .catch(e => this.$root.handleNetworkError(e))
+            .catch(e => $handleNetworkError(e))
       }
     },
   }

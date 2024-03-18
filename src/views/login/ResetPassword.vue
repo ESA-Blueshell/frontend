@@ -55,6 +55,7 @@
 <script>
 import TopBanner from "@/components/top-banner";
 import store from "@/plugins/store";
+import {$handleNetworkError} from "@/plugins/handleNetworkError";
 
 export default {
   components: {TopBanner},
@@ -96,7 +97,7 @@ export default {
           } else if (e.response.status === 404) {
             store.commit('setNetworkErrorMessage', "The username you gave doesn't exist??")
           } else {
-            this.$root.handleNetworkError(e)
+            $handleNetworkError(e)
           }
         }).finally(() => {
           this.loading = false

@@ -26,6 +26,7 @@
 
 <script>
 import TopBanner from "@/components/top-banner";
+import {$handleNetworkError} from "@/plugins/handleNetworkError";
 
 export default {
   components: {TopBanner},
@@ -53,7 +54,7 @@ export default {
       }).then(() => {
         this.succeeded = true
         setTimeout(() => this.$router.push({path: '/login'}), 5000);
-      }).catch(e => this.$root.handleNetworkError(e))
+      }).catch(e => $handleNetworkError(e))
     },
   }
 }

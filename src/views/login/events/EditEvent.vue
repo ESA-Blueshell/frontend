@@ -23,6 +23,7 @@
 <script>
 import TopBanner from '@/components/top-banner';
 import EventForm from "@/components/event-form";
+import {$handleNetworkError} from "@/plugins/handleNetworkError";
 
 export default {
   name: 'EditEvent',
@@ -66,7 +67,7 @@ export default {
             this.event.endDateSame = this.event.startDate === this.event.endDate
           }
         })
-        .catch(e => this.$root.handleNetworkError(e))
+        .catch(e => $handleNetworkError(e))
   },
   methods: {
     update(event) {
@@ -111,7 +112,7 @@ export default {
               })
               .catch(e => {
                 this.$refs.form.submitting = false
-                this.$root.handleNetworkError(e)
+                $handleNetworkError(e)
               })
         };
         reader.readAsDataURL(event.image);
@@ -139,7 +140,7 @@ export default {
             })
             .catch(e => {
               this.$refs.form.submitting = false
-              this.$root.handleNetworkError(e)
+              $handleNetworkError(e)
             })
       }
     },

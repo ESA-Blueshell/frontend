@@ -71,6 +71,7 @@
 import TopBanner from "@/components/top-banner";
 import router from "@/plugins/router";
 import store from "@/plugins/store";
+import {$handleNetworkError} from "@/plugins/handleNetworkError";
 
 export default {
   components: {TopBanner},
@@ -111,7 +112,7 @@ export default {
               if (e.response.status === 401) {
                 store.commit('setNetworkErrorMessage', 'Incorrect login')
               } else {
-                this.$root.handleNetworkError(e)
+                $handleNetworkError(e)
               }
             })
             .finally(() => {

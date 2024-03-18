@@ -84,6 +84,8 @@
 </template>
 
 <script>
+import {$handleNetworkError} from "@/plugins/handleNetworkError";
+
 export default {
   name: "EditCommittee",
   props: {
@@ -101,7 +103,7 @@ export default {
   mounted() {
     this.$http.get('users/members', {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
         .then(response => this.memberSelectItems = response.data)
-        .catch(e => this.$root.handleNetworkError(e))
+        .catch(e => $handleNetworkError(e))
 
     if (this.committee) {
       this.editingCommittee = JSON.parse(JSON.stringify(this.committee));
@@ -131,7 +133,7 @@ export default {
                 }
               })
               .then(() => this.$emit('close'))
-              .catch(e => this.$root.handleNetworkError(e))
+              .catch(e => $handleNetworkError(e))
         } else {
           this.$http.put('committees/' + this.editingCommittee.id,
               JSON.stringify(this.editingCommittee),
@@ -142,7 +144,7 @@ export default {
                 }
               })
               .then(() => this.$emit('close'))
-              .catch(e => this.$root.handleNetworkError(e))
+              .catch(e => $handleNetworkError(e))
         }
       }
     },

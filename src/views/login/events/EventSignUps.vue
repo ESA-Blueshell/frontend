@@ -101,6 +101,7 @@
 
 <script>
 import TopBanner from "@/components/top-banner";
+import {$handleNetworkError} from "@/plugins/handleNetworkError";
 
 export default {
   name: "EventSignUps",
@@ -117,13 +118,13 @@ export default {
           this.eventName = response.data.title
           this.signUpForm = JSON.parse(response.data.signUpForm)
         })
-        .catch(e => this.$root.handleNetworkError(e))
+        .catch(e => $handleNetworkError(e))
     this.$http.get('events/signups/all/' + this.$route.params.id, {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
         .then(response => {
           this.responses = response.data
           this.responses.forEach(response => response.formAnswers = JSON.parse(response.formAnswers))
         })
-        .catch(e => this.$root.handleNetworkError(e))
+        .catch(e => $handleNetworkError(e))
   },
   methods: {
     toggle(i, j) {

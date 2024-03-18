@@ -22,6 +22,7 @@
 import {VCalendar} from 'vuetify/labs/VCalendar'
 import EventDetails from "@/components/EventDetails.vue";
 import { useLocale } from 'vuetify'
+import {$handleNetworkError} from "@/plugins/handleNetworkError";
 
 export default {
   name: "Calendar",
@@ -114,7 +115,7 @@ export default {
             this.events.push(...res);
           })
           .then(() => this.monthsLoading--)
-          .catch(e => this.$root.handleNetworkError(e))
+          .catch(e => $handleNetworkError(e))
       }
     },
     addMonths(amount, date) {

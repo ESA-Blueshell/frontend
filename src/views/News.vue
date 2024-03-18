@@ -69,6 +69,7 @@
 </template>
 <script>
 import TopBanner from "@/components/top-banner";
+import {$handleNetworkError} from "@/plugins/handleNetworkError";
 
 export default {
   components: {TopBanner},
@@ -89,7 +90,7 @@ export default {
         this.totalPages = response.data.totalPages;
         this.pageSize = response.data.pageable.pageSize;
       })
-      .catch(e => this.$root.handleNetworkError(e))
+      .catch(e => $handleNetworkError(e))
   },
   methods: {
     getWords(str) {
@@ -106,7 +107,7 @@ export default {
           this.pageSize = response.data.pageable.pageSize;
           this.page = response.data.pageable.pageNumber + 1;
         })
-        .catch(e => this.$root.handleNetworkError(e))
+        .catch(e => $handleNetworkError(e))
     }
   }
 }

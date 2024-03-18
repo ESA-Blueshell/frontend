@@ -57,6 +57,7 @@
 <script>
 import TopBanner from "@/components/top-banner";
 import store from "@/plugins/store";
+import {$handleNetworkError} from "@/plugins/handleNetworkError";
 
 export default {
   components: {TopBanner},
@@ -82,7 +83,7 @@ export default {
           if (e.response.status === 404) {
             store.commit('setNetworkErrorMessage', "Uhhh, we don't know that username... Maybe check the spelling?")
           } else {
-            this.$root.handleNetworkError(e)
+            $handleNetworkError(e)
           }
         }).finally(() => {
           this.loading = false

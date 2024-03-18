@@ -30,6 +30,7 @@
 
 <script>
 import TopBanner from "@/components/top-banner";
+import {$handleNetworkError} from "@/plugins/handleNetworkError";
 
 export default {
   components: {TopBanner},
@@ -43,7 +44,7 @@ export default {
     this.$http
         .get('news/' + this.$route.params.id)
         .then(response => this.news = response.data)
-        .catch(e => this.$root.handleNetworkError(e))
+        .catch(e => $handleNetworkError(e))
   },
   methods: {
     thisURL() {

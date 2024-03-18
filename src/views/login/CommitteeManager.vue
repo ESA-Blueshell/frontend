@@ -122,7 +122,7 @@
                 No
               </v-btn>
               <v-btn
-                color="red"
+                color="error"
                 variant="text"
                 @click="deleteCommittee"
               >
@@ -146,6 +146,7 @@
 import TopBanner from "@/components/top-banner";
 import EditCommittee from "@/components/edit-committee";
 import {$require} from "@/plugins/require";
+import {$handleNetworkError} from "@/plugins/handleNetworkError";
 
 export default {
   name: "CommitteeManager",
@@ -174,7 +175,7 @@ export default {
             this.noCommittees = true
           }
         })
-        .catch(e => this.$root.handleNetworkError(e))
+        .catch(e => $handleNetworkError(e))
     },
     deleteCommittee() {
       this.$http.delete('committees/' + this.committeeToDelete.id, {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
@@ -184,7 +185,7 @@ export default {
             this.committeeToDelete = null
           }
         })
-        .catch(e => this.$root.handleNetworkError(e))
+        .catch(e => $handleNetworkError(e))
     },
   },
 }

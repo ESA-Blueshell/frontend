@@ -22,6 +22,7 @@
 import TopBanner from '@/components/top-banner';
 import EventForm from "@/components/event-form";
 import {$goto} from "@/plugins/goto";
+import {$handleNetworkError} from "@/plugins/handleNetworkError";
 
 export default {
   name: 'CreateEvent',
@@ -74,7 +75,7 @@ export default {
               })
               .catch(e => {
                 this.$refs.form.submitting = false
-                this.$root.handleNetworkError(e)
+                $handleNetworkError(e)
               })
         };
         reader.readAsDataURL(event.image);
@@ -101,7 +102,7 @@ export default {
                 this.$router.push('manage')
               }
             })
-            .catch(e => this.$root.handleNetworkError(e))
+            .catch(e => $handleNetworkError(e))
       }
 
 

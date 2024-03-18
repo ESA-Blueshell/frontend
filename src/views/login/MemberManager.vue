@@ -107,6 +107,7 @@
 
 <script>
 import TopBanner from "@/components/top-banner";
+import {$handleNetworkError} from "@/plugins/handleNetworkError";
 
 export default {
   name: "MemberManager",
@@ -119,7 +120,7 @@ export default {
   mounted() {
     this.$http.get('/users', {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
       .then(response => this.users = response.data)
-      .catch(e => this.$root.handleNetworkError(e))
+      .catch(e => $handleNetworkError(e))
   },
   methods: {
     isSearched(user) {
@@ -130,8 +131,8 @@ export default {
         .then(() =>
           this.$http.get('/users', {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
             .then(response => this.users = response.data)
-            .catch(e => this.$root.handleNetworkError(e)))
-        .catch(e => this.$root.handleNetworkError(e))
+            .catch(e => $handleNetworkError(e)))
+        .catch(e => $handleNetworkError(e))
     },
     toReadableString(value) {
       if (value === [] || value === '[]') {
