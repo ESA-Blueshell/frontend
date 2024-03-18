@@ -7,6 +7,7 @@ import EventListItem from "@/components/EventListItem.vue";
 import SignUpForm from "@/components/sign-up-form.vue";
 import {useStore} from "vuex";
 import {$handleNetworkError} from "@/plugins/handleNetworkError";
+import {$goto} from "@/plugins/goto";
 
 const route = useRoute()
 const router = useRouter()
@@ -44,14 +45,13 @@ async function submitForm({answers}) {
 async function deleteSignUp() {
   deleting.value = true
 
-
   try {
     await axios.delete(`events/${signUp.value.event}/signups/${signUp.value.id}`)
 
     deleting.value = false
     store.commit('setNetworkErrorMessage', 'Sign-up cancelled. You can always sign-up again if you change your mind :)')
 
-    await router.push({name: 'events'})
+    $goto({name: 'events'})
   } catch (e) {
     $handleNetworkError(e)
   }
@@ -67,69 +67,72 @@ async function deleteSignUp() {
       class="mx-auto my-10"
       style="max-width: 800px"
     >
-      <v-expand-transition>
-        <div v-if="event">
-          <v-list>
-            <event-list-item :event="event"/>
-          </v-list>
+      <div class="mx-3">
+        <v-expand-transition>
+          <div v-if="event">
+            <v-list>
+              <event-list-item :event="event"/>
+            </v-list>
 
-          <p class="mt-8">
-            Here you can edit your sign-up for this event. If you have any questions, feel free to ask in the event's
-            channel on Discord. If you can't come anymore or you want to cancel your sign-up for any reason, just click
-            the "Cancel sign-up" button at the bottom of the page.
-          </p>
+            <p class="mt-8">
+              Here you can edit your sign-up for this event. If you have any questions, feel free to ask in the event's
+              channel on Discord. If you can't come anymore or you want to cancel your sign-up for any reason, just
+              click
+              the "Cancel sign-up" button at the bottom of the page.
+            </p>
 
-          <sign-up-form
-            v-if="signUp?.formAnswers"
-            :event="event"
-            :answers-string="signUp.formAnswers"
-            :button-loading="submitting"
-            :show-guest-form="false"
-            class="accent-bordered mt-8"
-            @submit="submitForm"
-          />
+            <sign-up-form
+              v-if="signUp?.formAnswers"
+              :event="event"
+              :answers-string="signUp.formAnswers"
+              :button-loading="submitting"
+              :show-guest-form="false"
+              class="accent-bordered mt-8"
+              @submit="submitForm"
+            />
 
-          <v-btn
-            class="mt-8"
-            block
-            color="error"
-            variant="outlined"
-          >
-            Cancel sign-up
-
-            <v-dialog
-              activator="parent"
-              width="auto"
+            <v-btn
+              class="mt-8"
+              block
+              color="error"
+              variant="outlined"
             >
-              <template #default="{ isActive }">
-                <v-card
-                  title="Cancel Sign-up"
-                  text="Are you sure you want to cancel your sign-up for this event?"
-                >
-                  <template #actions>
-                    <v-spacer/>
-                    <v-btn
-                      class="ml-auto"
-                      variant="text"
-                      @click="isActive.value = false"
-                    >
-                      No
-                    </v-btn>
-                    <v-btn
-                      class="ml-auto"
-                      color="error"
-                      variant="text"
-                      @click="deleteSignUp();isActive.value = false"
-                    >
-                      Yes
-                    </v-btn>
-                  </template>
-                </v-card>
-              </template>
-            </v-dialog>
-          </v-btn>
-        </div>
-      </v-expand-transition>
+              Cancel sign-up
+
+              <v-dialog
+                activator="parent"
+                width="auto"
+              >
+                <template #default="{ isActive }">
+                  <v-card
+                    title="Cancel Sign-up"
+                    text="Are you sure you want to cancel your sign-up for this event?"
+                  >
+                    <template #actions>
+                      <v-spacer/>
+                      <v-btn
+                        class="ml-auto"
+                        variant="text"
+                        @click="isActive.value = false"
+                      >
+                        No
+                      </v-btn>
+                      <v-btn
+                        class="ml-auto"
+                        color="error"
+                        variant="text"
+                        @click="deleteSignUp();isActive.value = false"
+                      >
+                        Yes
+                      </v-btn>
+                    </template>
+                  </v-card>
+                </template>
+              </v-dialog>
+            </v-btn>
+          </div>
+        </v-expand-transition>
+      </div>
     </div>
   </v-main>
 </template>
