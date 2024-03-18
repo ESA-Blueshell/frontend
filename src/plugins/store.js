@@ -21,27 +21,28 @@ export default createStore({
   state: {
     login: getJsonCookie('login') || null,
     guestData: getJsonCookie('guestData') || null,
-    networkErrorMessage: null,
+    statusSnackbarMessage: null,
     loggedInSnackbar: false,
   },
   mutations: {
     setLogin(state, newLogin) {
       state.login = newLogin
       document.cookie = `login=${JSON.stringify(state.login)};SameSite=strict;Secure;path=/`
+
+      state.statusSnackbarMessage = "Welcome back " + state.login.username + "!"
     },
     logout(state) {
       state.login = null
       document.cookie = `login=${null};SameSite=strict;Secure;path=/`
+
+      state.statusSnackbarMessage = 'You are now logged out.'
     },
     setRoles(state, newRoles) {
       state.login.roles = newRoles
       document.cookie = `login=${JSON.stringify(state.login)};SameSite=strict;Secure;path=/`
     },
-    setNetworkErrorMessage(state, message) {
-      state.networkErrorMessage = message
-    },
-    setLoggedInSnackbar(state, newLoggedInSnackbar) {
-      state.loggedInSnackbar = newLoggedInSnackbar
+    setStatusSnackbarMessage(state, message) {
+      state.statusSnackbarMessage = message
     },
     saveGuestData(state, data) {
       document.cookie = `guestData=${JSON.stringify(data)};SameSite=strict;Secure;path=/`

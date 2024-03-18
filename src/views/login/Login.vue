@@ -69,8 +69,6 @@
 
 <script>
 import TopBanner from "@/components/top-banner";
-import router from "@/plugins/router";
-import store from "@/plugins/store";
 import {$handleNetworkError} from "@/plugins/handleNetworkError";
 
 export default {
@@ -103,14 +101,13 @@ export default {
             .then(response => {
               // Store response
               this.$store.commit('setLogin', response.data)
-              this.$store.commit('setLoggedInSnackbar', true)
               // Go to redirect page or home page
-              router.push(this.$route.query.redirect || '/')
+              this.$router.push(this.$route.query.redirect || '/')
             })
             .catch(e => {
               // Show Incorrect login snackbar
               if (e.response.status === 401) {
-                store.commit('setNetworkErrorMessage', 'Incorrect login')
+                this.$store.commit('setStatusSnackbarMessage', 'Incorrect login credentials. Please double check your username and password.')
               } else {
                 $handleNetworkError(e)
               }

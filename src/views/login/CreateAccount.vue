@@ -181,7 +181,7 @@ export default {
           })
           .catch(e => {
                 if (e.response.status === 400) {
-                  store.commit('setNetworkErrorMessage', e.response.data)
+                  store.commit('setStatusSnackbarMessage', e.response.data)
                 } else {
                   $handleNetworkError(e)
                 }

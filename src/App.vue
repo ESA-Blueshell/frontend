@@ -188,7 +188,7 @@
 
         <!-- LOGIN BUTTON/ACCOUNT DROPDOWN MENU -->
         <v-btn
-          v-if="!loggedIn"
+          v-if="!$store.getters.isLoggedIn"
           class="bar-button ma-0 mr-2"
           to="/login"
         >
@@ -420,40 +420,22 @@
     </v-snackbar>
 
     <v-snackbar
-      v-model="networkError"
+      v-model="statusSnackbarMessage"
       timeout="10000"
     >
-      <span v-html="networkErrorMessage" />
+      <span v-html="statusSnackbarMessage" />
       <template #actions>
         <v-btn
           color="blue"
           variant="text"
-          @click="networkError = false"
+          @click="statusSnackbarMessage = false"
         >
           Close
         </v-btn>
       </template>
     </v-snackbar>
 
-    <!-- Logged in message -->
-    <v-snackbar
-      v-model="loggedInSnackbar"
-      timeout="10000"
-    >
-      {{ loginText }}
-
-      <template #actions>
-        <v-btn
-          color="blue"
-          variant="text"
-          @click="loggedInSnackbar=false"
-        >
-          Close
-        </v-btn>
-      </template>
-    </v-snackbar>
-
-    <!-- Cookie dialog -->
+    <!-- Cookie snackbar -->
     <v-snackbar
       v-model="showCookieSnackbar"
       timeout="-1"
@@ -479,7 +461,6 @@
 </template>
 
 <script>
-import store from "@/plugins/store";
 import {$goto} from "@/plugins/goto";
 import BsFooter from "@/components/bs-footer.vue";
 import {$handleNetworkError} from "@/plugins/handleNetworkError";
@@ -492,40 +473,14 @@ export default {
       showCookieSnackbar: false,
   }),
   computed: {
-    networkErrorMessage: {
+    statusSnackbarMessage: {
       get() {
-        return this.$store.state.networkErrorMessage
+        return this.$store.state.statusSnackbarMessage
       },
       set(message) {
-        this.$store.commit('setNetworkErrorMessage', message)
+        this.$store.commit('setStatusSnackbarMessage', message)
       }
     },
-    networkError: {
-      get() {
-        return !!this.$store.state.networkErrorMessage
-      },
-      set(value) {
-        this.$store.commit('setNetworkErrorMessage', value)
-      }
-    },
-    loggedIn: {
-      get() {
-        return this.$store.state.login
-      },
-    },
-    loggedInSnackbar: {
-      get() {
-        return this.$store.state.loggedInSnackbar
-      },
-      set(loggedInSnackbar) {
-        this.$store.commit('setLoggedInSnackbar', loggedInSnackbar)
-      }
-    },
-    loginText: {
-      get() {
-        return this.loggedIn ? "Welcome back " + this.loggedIn.username + "!" : "You are now logged out."
-      },
-    }
   },
   mounted() {
     // Cookie garbage
@@ -544,7 +499,7 @@ export default {
         })
         .catch(e => {
           if (e.response.status === 401) {
-            store.commit('setNetworkErrorMessage', 'Login expired. You have been logged out.')
+            this.$store.commit('statusSnackbarMessage', 'Login expired. You have been logged out.')
             this.$store.commit('logout')
             if (this.$route.meta.requiresAuth) {
               $goto('/')
@@ -596,7 +551,6 @@ export default {
       // Let the cookie expire and redirect if the page is logged in only
       document.cookie = 'login=;expires=Thu, 01 Jan 1970 00:00:01 GMT'
       this.$store.commit('logout')
-      this.loggedInSnackbar = true;
       if (this.$route.meta.requiresAuth) {
         $goto('/')
       }

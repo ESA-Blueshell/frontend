@@ -81,7 +81,7 @@ export default {
           this.succeeded = true
         }).catch(e => {
           if (e.response.status === 404) {
-            store.commit('setNetworkErrorMessage', "Uhhh, we don't know that username... Maybe check the spelling?")
+            store.commit('setStatusSnackbarMessage', "Uhhh, we don't know that username... Maybe check the spelling?")
           } else {
             $handleNetworkError(e)
           }

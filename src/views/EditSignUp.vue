@@ -39,7 +39,7 @@ async function submitForm({answers}) {
 
   submitting.value = false
 
-  store.commit('setNetworkErrorMessage', 'Sign-up updated. See you at the event! :)')
+  store.commit('setStatusSnackbarMessage', 'Sign-up updated. See you at the event! :)')
 }
 
 async function deleteSignUp() {
@@ -49,7 +49,7 @@ async function deleteSignUp() {
     await axios.delete(`events/${signUp.value.event}/signups/${signUp.value.id}`)
 
     deleting.value = false
-    store.commit('setNetworkErrorMessage', 'Sign-up cancelled. You can always sign-up again if you change your mind :)')
+    store.commit('setStatusSnackbarMessage', 'Sign-up cancelled. You can always sign-up again if you change your mind :)')
 
     $goto({name: 'events'})
   } catch (e) {
