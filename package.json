@@ -12,6 +12,7 @@
     "@mdi/font": "7.4.47",
     "axios": "^1.6.8",
     "core-js": "^3.36.0",
+    "ics": "^3.7.2",
     "roboto-fontface": "*",
     "showdown": "^2.1.0",
     "vite-plugin-commonjs": "^0.10.1",

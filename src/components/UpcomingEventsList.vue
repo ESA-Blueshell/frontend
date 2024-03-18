@@ -11,13 +11,13 @@
         class="list-item-buffer"
       >
         <event-list-item :event="event">
-          <template
-            v-if="event.signUp"
-            #append
-          >
-            <v-container class="fill-height">
+          <template #append>
+            <v-container class="fill-height pa-0">
               <v-row>
-                <v-col align-self="center">
+                <v-col
+                  v-if="event.signUp"
+                  align-self="center"
+                >
                   <v-row v-if="$vuetify.display.smAndUp">
                     <p
                       class="ml-2 mb-0 text-right"
@@ -36,56 +36,19 @@
                   </v-row>
                 </v-col>
 
-                <v-col>
-                  <v-row
-                    v-if="$store.getters.isLoggedIn && !event.signUpForm && eventIdToSignUpForm[event.id] !== undefined"
-                  >
-                    <v-tooltip
-                      text="Cancel sign-up"
-                      location="left"
+                <v-col class="pa-0">
+                  <template v-if="event.signUp">
+                    <v-row
+                      v-if="$store.getters.isLoggedIn && !event.signUpForm && eventIdToSignUpForm[event.id] !== undefined"
                     >
-                      <template #activator="{ props }">
-                        <v-btn
-                          :loading="submittingId === event.id"
-                          icon="mdi-checkbox-marked"
-                          variant="plain"
-                          :disabled="event.membersOnly && !$store.getters.isMember"
-                          v-bind="props"
-                          @click="removeSignUp(event.id)"
-                        />
-                      </template>
-                    </v-tooltip>
-                  </v-row>
-                  <v-row
-                    v-else-if="$store.getters.isLoggedIn && !event.signUpForm && eventIdToSignUpForm[event.id] === undefined"
-                  >
-                    <v-tooltip
-                      text="Sign Up"
-                      location="left"
-                    >
-                      <template #activator="{ props }">
-                        <v-btn
-                          :loading="submittingId === event.id"
-                          icon="mdi-checkbox-blank"
-                          variant="plain"
-                          :disabled="event.membersOnly && !$store.getters.isMember"
-                          v-bind="props"
-                          @click="signUp(event.id)"
-                        />
-                      </template>
-                    </v-tooltip>
-                  </v-row>
-                  <template v-else-if="event.signUpForm || (!event.membersOnly && !$store.getters.isLoggedIn)">
-                    <v-row>
                       <v-tooltip
-                        v-if="$store.getters.isLoggedIn && eventIdToSignUpForm[event.id] !== undefined"
-                        location="left"
                         text="Cancel sign-up"
+                        location="left"
                       >
                         <template #activator="{ props }">
                           <v-btn
                             :loading="submittingId === event.id"
-                            icon="mdi-close"
+                            icon="mdi-checkbox-marked"
                             variant="plain"
                             :disabled="event.membersOnly && !$store.getters.isMember"
                             v-bind="props"
@@ -94,28 +57,97 @@
                         </template>
                       </v-tooltip>
                     </v-row>
-                    <v-row>
+                    <v-row
+                      v-else-if="$store.getters.isLoggedIn && !event.signUpForm && eventIdToSignUpForm[event.id] === undefined"
+                    >
                       <v-tooltip
+                        text="Sign Up"
                         location="left"
-                        :text="eventIdToSignUpForm[event.id] !== undefined ?
-                          'Edit sign-up form' :
-                          signingUpFor !== event.id ?
-                            'Fill in sign-up form' :
-                            'Cancel filling in sign-up form'"
                       >
                         <template #activator="{ props }">
                           <v-btn
                             :loading="submittingId === event.id"
-                            icon="mdi-list-status"
+                            icon="mdi-checkbox-blank"
                             variant="plain"
                             :disabled="event.membersOnly && !$store.getters.isMember"
                             v-bind="props"
-                            @click="signingUpFor = (signingUpFor === event.id ? null : event.id)"
+                            @click="signUp(event.id)"
                           />
                         </template>
                       </v-tooltip>
                     </v-row>
+                    <template v-else-if="event.signUpForm || (!event.membersOnly && !$store.getters.isLoggedIn)">
+                      <v-row>
+                        <v-tooltip
+                          v-if="$store.getters.isLoggedIn && eventIdToSignUpForm[event.id] !== undefined"
+                          location="left"
+                          text="Cancel sign-up"
+                        >
+                          <template #activator="{ props }">
+                            <v-btn
+                              :loading="submittingId === event.id"
+                              icon="mdi-close"
+                              variant="plain"
+                              :disabled="event.membersOnly && !$store.getters.isMember"
+                              v-bind="props"
+                              @click="removeSignUp(event.id)"
+                            />
+                          </template>
+                        </v-tooltip>
+                      </v-row>
+                      <v-row>
+                        <v-tooltip
+                          location="left"
+                          :text="eventIdToSignUpForm[event.id] !== undefined ?
+                            'Edit sign-up form' :
+                            signingUpFor !== event.id ?
+                              'Fill in sign-up form' :
+                              'Cancel filling in sign-up form'"
+                        >
+                          <template #activator="{ props }">
+                            <v-btn
+                              :loading="submittingId === event.id"
+                              icon="mdi-list-status"
+                              variant="plain"
+                              :disabled="event.membersOnly && !$store.getters.isMember"
+                              v-bind="props"
+                              @click="signingUpFor = (signingUpFor === event.id ? null : event.id)"
+                            />
+                          </template>
+                        </v-tooltip>
+                      </v-row>
+                    </template>
                   </template>
+                  <v-row>
+                    <v-tooltip
+                      text="Find location"
+                      location="left"
+                    >
+                      <template #activator="{ props }">
+                        <v-btn
+                          icon="mdi-google-maps"
+                          v-bind="props"
+                          variant="plain"
+                          @click="findLocation(event)"
+                        />
+                      </template>
+                    </v-tooltip>
+                  </v-row>
+                  <v-row>
+                    <v-tooltip
+                      text="Add to calendar"
+                      location="left"
+                    >
+                      <template #activator="{ props }">
+                        <v-btn
+                          icon="mdi-calendar"
+                          v-bind="props"
+                          variant="plain"
+                          @click="downloadIcs(event)"
+                        />
+                      </template>
+                    </v-tooltip>
+                  </v-row>
                 </v-col>
               </v-row>
             </v-container>
@@ -151,6 +183,8 @@ import SignUpForm from "@/components/sign-up-form";
 import EventListItem from "@/components/EventListItem.vue";
 import axios from "axios";
 import {$handleNetworkError} from "@/plugins/handleNetworkError";
+import {$goto} from "@/plugins/goto";
+import {createEvent} from 'ics'
 
 export default {
   name: "UpcomingEventsList",
@@ -219,6 +253,34 @@ export default {
 
           this.eventIdToSignUpForm[eventId] = null;
         }
+      })
+    },
+
+    findLocation(event) {
+      if (event.location.includes("iscord")) {
+        $goto(encodeURI('https://discord.gg/23YMFQy'));
+      } else {
+        $goto(encodeURI('https://www.google.com/maps/search/?api=1&query=' + event.location));
+      }
+    },
+    downloadIcs(event) {
+      createEvent({
+        title: event.title,
+        description: event.details,
+        start: Date.parse(event.startTime) - new Date().getTimezoneOffset() * 60 * 1000,
+        end: Date.parse(event.endTime) - new Date().getTimezoneOffset() * 60 * 1000,
+        location: event.location,
+      }, (error, value) => {
+        const element = document.createElement('a');
+        element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(value));
+        element.setAttribute('download', event.title + '.ics');
+
+        element.style.display = 'none';
+        document.body.appendChild(element);
+
+        element.click();
+
+        document.body.removeChild(element);
       })
     }
   }
