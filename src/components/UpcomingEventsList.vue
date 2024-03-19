@@ -14,8 +14,8 @@
       >
         <event-list-item :event="event">
           <template #append>
-            <v-container class="fill-height pa-0" style="margin-right: -6px">
-              <v-row>
+            <v-container class="fill-height pa-0">
+              <v-row style="margin-right: -6px">
                 <v-col
                   v-if="event.signUp && $vuetify.display.smAndUp"
                   align-self="center"
