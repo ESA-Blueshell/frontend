@@ -3,22 +3,24 @@
     v-if="events.length === 0"
     indeterminate
   />
-  <v-expand-transition>
+  <v-expand-transition :disabled="$route.hash">
     <v-list v-if="events.length > 0">
       <div
         v-for="(event,i) in events"
-        :key="event.title+event.startTime+'key'"
+        :id="'event#'+event.id"
+        :key="event.id+'key'"
         class="list-item-buffer"
+        style="scroll-margin-top: 64px;"
       >
         <event-list-item :event="event">
           <template #append>
-            <v-container class="fill-height pa-0">
+            <v-container class="fill-height pa-0" style="margin-right: -6px">
               <v-row>
                 <v-col
-                  v-if="event.signUp"
+                  v-if="event.signUp && $vuetify.display.smAndUp"
                   align-self="center"
                 >
-                  <v-row v-if="$vuetify.display.smAndUp">
+                  <v-row>
                     <p
                       class="ml-2 mb-0 text-right"
                       style="width: 100px"
@@ -50,6 +52,7 @@
                             :loading="submittingId === event.id"
                             icon="mdi-checkbox-marked"
                             variant="plain"
+                            :size="$vuetify.display.xs ? 'default' : 'default'"
                             :disabled="event.membersOnly && !$store.getters.isMember"
                             v-bind="props"
                             @click="removeSignUp(event.id)"
@@ -69,6 +72,7 @@
                             :loading="submittingId === event.id"
                             icon="mdi-checkbox-blank"
                             variant="plain"
+                            :size="$vuetify.display.xs ? 'default' : 'default'"
                             :disabled="event.membersOnly && !$store.getters.isMember"
                             v-bind="props"
                             @click="signUp(event.id)"
@@ -88,6 +92,7 @@
                               :loading="submittingId === event.id"
                               icon="mdi-close"
                               variant="plain"
+                              :size="$vuetify.display.xs ? 'default' : 'default'"
                               :disabled="event.membersOnly && !$store.getters.isMember"
                               v-bind="props"
                               @click="removeSignUp(event.id)"
@@ -109,9 +114,10 @@
                               :loading="submittingId === event.id"
                               icon="mdi-list-status"
                               variant="plain"
+                              :size="$vuetify.display.xs ? 'default' : 'default'"
                               :disabled="event.membersOnly && !$store.getters.isMember"
                               v-bind="props"
-                              @click="signingUpFor = (signingUpFor === event.id ? null : event.id)"
+                              @click="toggleSignUpForm(event.id)"
                             />
                           </template>
                         </v-tooltip>
@@ -135,7 +141,7 @@
                   </v-row>
                   <v-row>
                     <v-tooltip
-                      text="Add to calendar"
+                      text="Add to your calendar"
                       location="left"
                     >
                       <template #activator="{ props }">
@@ -144,6 +150,21 @@
                           v-bind="props"
                           variant="plain"
                           @click="downloadIcs(event)"
+                        />
+                      </template>
+                    </v-tooltip>
+                  </v-row>
+                  <v-row>
+                    <v-tooltip
+                      text="Copy share link"
+                      location="left"
+                    >
+                      <template #activator="{ props }">
+                        <v-btn
+                          icon="mdi-share-variant"
+                          v-bind="props"
+                          variant="plain"
+                          @click="copyShareLink(event)"
                         />
                       </template>
                     </v-tooltip>
@@ -198,7 +219,19 @@ export default {
   }),
   mounted() {
     this.$http.get('events/upcoming')
-      .then(response => this.events = response.data)
+      .then(response => {
+        this.events = response.data
+
+        // Scroll to event with the given ID if a hash is present in the URL
+        if (this.$route.hash) {
+          // Use a timeout to ensure the element is already rendered
+          // Also, the expand animation is disabled when a hash is present
+          setTimeout(() => {
+            const selectedElement = document.getElementById('event' + this.$route.hash);
+            selectedElement.scrollIntoView({behavior: 'smooth', block: 'start'})
+          }, 50)
+        }
+      })
       .catch(e => $handleNetworkError(e))
 
     if (this.$store.getters.isLoggedIn) {
@@ -256,6 +289,15 @@ export default {
       })
     },
 
+    toggleSignUpForm(eventId) {
+      if (this.signingUpFor === eventId) {
+        this.signingUpFor = null
+      } else {
+        document.getElementById('event#' + eventId).scrollIntoView({behavior: 'smooth', block: 'start'})
+        this.signingUpFor = eventId
+      }
+    },
+
     findLocation(event) {
       if (event.location.includes("iscord")) {
         $goto(encodeURI('https://discord.gg/23YMFQy'));
@@ -282,6 +324,12 @@ export default {
 
         document.body.removeChild(element);
       })
+    },
+    copyShareLink(event) {
+      const url = window.location.origin + window.location.pathname + '#' + event.id
+      navigator.clipboard.writeText(url)
+
+      this.$store.commit('setStatusSnackbarMessage', `Link for ${event.title} copied to clipboard`)
     }
   }
 }
