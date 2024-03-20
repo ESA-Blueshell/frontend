@@ -36,7 +36,7 @@ function formatEventTime(event) {
     :key="event.title+event.startTime"
     :style="{ 'background-image': !event.banner ? '' : $vuetify.theme.global.current.dark ? `linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(${event.banner})` : `linear-gradient(to bottom, rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url(${event.banner})`}"
     class="py-4"
-    style="background-size: cover;background-position: center;min-height: 175px;"
+    style="background-size: cover;background-position: center;min-height: 240px;"
   >
     <v-list-item-title class="text-h4">
       {{ event.title }}
