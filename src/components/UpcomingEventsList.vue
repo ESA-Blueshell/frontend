@@ -80,7 +80,7 @@
                         </template>
                       </v-tooltip>
                     </v-row>
-                    <template v-else-if="event.signUpForm || (!event.membersOnly && !$store.getters.isLoggedIn)">
+                    <template v-else-if="event.signUpForm && ($store.getters.isLoggedIn || !event.membersOnly)">
                       <v-row>
                         <v-tooltip
                           v-if="$store.getters.isLoggedIn && eventIdToSignUpForm[event.id] !== undefined"
