@@ -13,14 +13,14 @@ const route = useRoute()
 const router = useRouter()
 const store = useStore()
 
-const hashedId = route.params.hashedId
+const accessToken = route.params.accessToken
 
 const signUp = ref(null)
 const event = ref(null)
 const submitting = ref(false)
 const deleting = ref(false)
 
-axios.get(`events/signups/byAccessToken/${hashedId}`)
+axios.get(`events/signups/byAccessToken/${accessToken}`)
   .then(response => {
     signUp.value = response.data
 
@@ -51,7 +51,7 @@ async function deleteSignUp() {
     deleting.value = false
     store.commit('setStatusSnackbarMessage', 'Sign-up cancelled. You can always sign-up again if you change your mind :)')
 
-    $goto({name: 'events'})
+    $goto('/events')
   } catch (e) {
     $handleNetworkError(e)
   }

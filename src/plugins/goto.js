@@ -3,7 +3,7 @@ import router from "@/plugins/router";
 /**
  * Navigates to a given url. If it starts with https:// or http://, it will open in a new tab.
  *
- * @param url url to navigate to
+ * @param {string} url url to navigate to
  */
 export function $goto(url) {
   if (url.includes('https://') || url.includes('http://')) {

@@ -206,7 +206,7 @@ const router = createRouter({
       meta: {requiresAuth: true}
     },
     {
-      path: '/events/signups/edit/:hashedId',
+      path: '/events/signups/edit/:accessToken',
       name: 'editSignUp',
       component: EditSignUp,
     },
