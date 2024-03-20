@@ -1,8 +1,8 @@
 <template>
   <v-main>
-    <top-banner :title="(event && event.title) ? event.title : 'Edit Event'" />
+    <top-banner :title="headerTitle" />
 
-    <div class="mx-3 mb-8">
+    <div class="mb-8">
       <div
         class="mx-auto mt-10"
         style="max-width: 800px"
@@ -13,6 +13,7 @@
           :initial-event="event"
           :has-promo="hasPromo"
           @submit="update"
+          @title="(newTitle) => headerTitle = `Edit ${newTitle}`"
         />
       </div>
     </div>
@@ -31,6 +32,7 @@ export default {
   data: () => ({
     event: null,
     hasPromo: false,
+    headerTitle: 'Edit Event'
   }),
   mounted() {
     this.$http.get('events/' + this.$route.params.id, {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
@@ -60,10 +62,11 @@ export default {
               committeeId: event.committee,
               image: event.image,
 
-              signUpForm: event.signUpForm ? JSON.parse(event.signUpForm) : [],
+              signUpForm: event.signUpForm ? JSON.parse(event.signUpForm) : null,
               enableSignUpForm: !!event.signUpForm,
             }
 
+            this.headerTitle = `Edit ${event.title}`
             this.event.endDateSame = this.event.startDate === this.event.endDate
           }
         })

@@ -118,7 +118,6 @@
 
 <script>
 import TopBanner from "@/components/top-banner";
-import store from "@/plugins/store";
 import {$handleNetworkError} from "@/plugins/handleNetworkError";
 
 export default {
@@ -181,7 +180,7 @@ export default {
           })
           .catch(e => {
                 if (e.response.status === 400) {
-                  store.commit('setStatusSnackbarMessage', e.response.data)
+                  this.$store.commit('setStatusSnackbarMessage', e.response.data)
                 } else {
                   $handleNetworkError(e)
                 }

@@ -54,7 +54,6 @@
 
 <script>
 import TopBanner from "@/components/top-banner";
-import store from "@/plugins/store";
 import {$handleNetworkError} from "@/plugins/handleNetworkError";
 
 export default {
@@ -93,9 +92,9 @@ export default {
           setTimeout(() => this.$router.push({path: '/login'}), 5000);
         }).catch(e => {
           if (e.response.status === 400) {
-            store.commit('setStatusSnackbarMessage', e.response.data)
+            this.$store.commit('setStatusSnackbarMessage', e.response.data)
           } else if (e.response.status === 404) {
-            store.commit('setStatusSnackbarMessage', "The username you gave doesn't exist. Maybe check the spelling?")
+            this.$store.commit('setStatusSnackbarMessage', "The username you gave doesn't exist. Maybe check the spelling?")
           } else {
             $handleNetworkError(e)
           }

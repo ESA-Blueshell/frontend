@@ -1,9 +1,126 @@
+<script setup>
+import {$handleNetworkError} from "@/plugins/handleNetworkError";
+import {computed, ref} from "vue";
+import axios from "axios";
+import {useStore} from "vuex";
+import SignUpFormEditor from "@/components/sign-up-form-editor.vue";
+
+const props = defineProps({
+  initialEvent: {
+    type: Object,
+  },
+  hasPromo: {
+    type: Boolean,
+    default: () => false
+  }
+})
+const emits = defineEmits(['submit', 'title'])
+const store = useStore()
+
+const eventForm = ref(null)
+const signUpForm = ref(null)
+
+function submit() {
+  //TODO: do this differently
+  if (event.value.endDateSame) {
+    event.value.endDate = event.value.startDate
+  }
+  if (event.value.image?.length > 0) {
+    event.value.image = event.value.image[0]
+  } else {
+    event.value.image = null
+  }
+
+  if (eventForm.value.validate()) {
+    submitting.value = true;
+
+    event.value.signUpForm = signUpForm.value?.form;
+    emits('submit', event.value);
+  } else {
+    alert('The form is invalid.');
+  }
+}
+
+
+const event = ref(props.initialEvent !== undefined
+  ? JSON.parse(JSON.stringify(props.initialEvent))
+  : {
+    title: '',
+    location: '',
+    description: '',
+
+    memberPrice: '0',
+    publicPrice: '0',
+
+    membersOnly: false,
+    visible: false,
+    signUp: false,
+
+    startDate: '',
+    endDate: '',
+    startTime: '',
+    endTime: '',
+
+    committeeId: '',
+    image: null,
+
+    signUpForm: null,
+
+    enableSignUpForm: false,
+    endDateSame: true,
+  })
+
+// Save some data to know what changed to give the user a warning
+const wasPublic = ref(event.value.visible)
+const hadSignUp = ref(event.value.signUp)
+const oldEnableSignUpForm = ref(event.value.enableSignUpForm)
+
+const valid = ref(false)
+const submitting = ref(false)
+
+// Get user's committees
+const committees = ref([])
+axios.get('committees?isMember=true', {headers: {'Authorization': `Bearer ${store.getters.getLogin.token}`}})
+  .then(response => committees.value = response.data)
+  .catch(e => $handleNetworkError(e))
+
+
+const priceRules = [
+  v => !isNaN(Number(v)) || 'Price must a number',
+  v => !v.includes('e') || 'Come on dude, no exponents',
+  v => Number(v) >= 0 || 'Negative prices? Criiinge',
+]
+
+const imageUrl = computed(() => event.value.image ? URL.createObjectURL(event.value.image) : '')
+
+
+//TODO: do this differently
+const endDateDisplay = computed({
+  get() {
+    return event.value.endDateSame ? event.value.startDate : event.value.endDate
+  },
+  set(value) {
+    event.value.endDate = value
+  }
+})
+
+function toggleSignUp() {
+  event.value.signUp = !event.value.signUp
+  event.value.enableSignUpForm = event.value.enableSignUpForm && event.value.signUp
+}
+
+function toggleSignUpForm() {
+  event.value.enableSignUpForm = !event.value.enableSignUpForm
+  event.value.signUp = event.value.signUp || event.value.enableSignUpForm
+}
+</script>
+
 <template>
   <v-form
-    ref="form"
+    ref="eventForm"
     v-model="valid"
   >
-    <v-container>
+    <v-container style="padding: 0;">
       <v-row>
         <v-col
           cols="12"
@@ -18,7 +135,7 @@
             :rules="[v => !!v || 'Title is required']"
             label="Event name"
             required
-            @update:model-value="$emit('title', event.title)"
+            @update:model-value="emits('title', event.title)"
           />
         </v-col>
         <v-col
@@ -165,35 +282,37 @@
       <v-row>
         <v-col>
           <v-checkbox
-            v-model="event.signUp"
+            :model-value="event.signUp"
             label="Enable sign-up"
-            @click="event.enableSignUpForm = event.signUp&&event.enableSignUpForm"
+            hide-details
+            @click="toggleSignUp"
           />
         </v-col>
         <v-col>
           <v-checkbox
-            v-model="event.enableSignUpForm"
+            :model-value="event.enableSignUpForm"
             label="Enable sign-up form"
-            @click="event.signUp = event.signUp||event.enableSignUpForm"
+            hide-details
+            @click="toggleSignUpForm"
           />
         </v-col>
       </v-row>
-      <v-row v-if="event.enableSignUpForm && initialSignupForm !== null">
+      <v-row v-if="event.enableSignUpForm">
         <v-col>
-          <create-sign-up-form
+          <sign-up-form-editor
             ref="signUpForm"
-            :form="initialSignupForm"
+            :initial-form="event.signUpForm"
           />
         </v-col>
       </v-row>
       <v-expand-transition>
         <v-alert
-          v-if="mounted && (
-            (hadSignUp && !event.signUp) ||
-            (oldEnableSignUpForm && !event.enableSignUpForm))"
+          v-if="(hadSignUp && !event.signUp)
+            || (oldEnableSignUpForm && !event.enableSignUpForm)"
           type="warning"
           prominent
-          :variant="$vuetify.theme.global.current.dark ? 'outlined' : ''"
+          variant="outlined"
+          class="mt-4 mx-3"
         >
           Woah there! Looks like you made some changes to signups for the event. Keep in mind that when you submit any
           changes, all existing sign-ups <b>will be removed</b>!
@@ -206,7 +325,7 @@
       :disabled="!valid"
       :loading="submitting"
       block
-      class="mt-4"
+      class="mt-4 mx-3"
       color="primary"
       @click="submit()"
     >
@@ -214,119 +333,3 @@
     </v-btn>
   </v-form>
 </template>
-
-<script>
-import CreateSignUpForm from "@/components/create-sign-up-form";
-import {$handleNetworkError} from "@/plugins/handleNetworkError";
-
-export default {
-  name: "EventForm",
-  components: {CreateSignUpForm},
-  props: {
-    initialEvent: {
-      type: Object,
-    },
-    hasPromo: {
-      type: Boolean,
-      default: () => false
-    }
-  },
-  emits: ['submit'],
-  data: () => ({
-    event: {
-      title: '',
-      location: '',
-      description: '',
-
-      memberPrice: '0',
-      publicPrice: '0',
-
-      membersOnly: false,
-      visible: false,
-      signUp: false,
-
-      startDate: '',
-      endDate: '',
-      startTime: '',
-      endTime: '',
-
-      committeeId: '',
-      image: null,
-
-      signUpForm: [],
-
-      enableSignUpForm: false,
-      endDateSame: true,
-    },
-    valid: false,
-    submitting: false,
-
-    priceRules: [
-      v => !isNaN(Number(v)) || 'Price must a number',
-      v => !v.includes('e') || 'Come on dude, no exponents',
-      v => Number(v) >= 0 || 'Negative prices? Criiinge',
-    ],
-    wasPublic: true,
-    hadSignUp: false,
-    oldEnableSignUpForm: false,
-    initialSignupForm: null,
-    mounted: false,
-
-    committees: [],
-  }),
-  computed: {
-    //TODO: do this differently
-    endDateDisplay: {
-      get() {
-        return this.event.endDateSame ? this.event.startDate : this.event.endDate
-      },
-      set(value) {
-        this.event.endDate = value
-      }
-    },
-    imageUrl() {
-      return this.event.image ? URL.createObjectURL(this.event.image) : ''
-    }
-  },
-  mounted() {
-    // Clone the prop se we can mutate it here
-    if (this.initialEvent !== undefined) {
-      this.event = JSON.parse(JSON.stringify(this.initialEvent))
-    }
-
-    // Get user's committees
-    this.$http.get('committees?isMember=true', {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
-      .then(response => this.committees = response.data)
-      .catch(e => $handleNetworkError(e));
-
-    // Save some data to know what changed to give the user a warning
-    this.wasPublic = this.event.visible;
-    this.hadSignUp = this.event.signUp;
-    this.oldEnableSignUpForm = this.event.enableSignUpForm;
-    this.initialSignupForm = JSON.stringify(this.event.signUpForm);
-    this.mounted = true;
-  },
-  methods: {
-    submit() {
-      //TODO: do this differently
-      if (this.event.endDateSame) {
-        this.event.endDate = this.event.startDate
-      }
-      if (this.event.image?.length > 0) {
-        this.event.image = this.event.image[0]
-      } else {
-        this.event.image = null
-      }
-
-      if (this.$refs.form.validate()) {
-        this.submitting = true;
-
-        this.event.signUpForm = this.$refs.signUpForm?.form;
-        this.$emit('submit', this.event);
-      } else {
-        alert('The form is invalid.');
-      }
-    }
-  }
-}
-</script>

@@ -56,7 +56,6 @@
 
 <script>
 import TopBanner from "@/components/top-banner";
-import store from "@/plugins/store";
 import {$handleNetworkError} from "@/plugins/handleNetworkError";
 
 export default {
@@ -81,7 +80,7 @@ export default {
           this.succeeded = true
         }).catch(e => {
           if (e.response.status === 404) {
-            store.commit('setStatusSnackbarMessage', "Uhhh, we don't know that username... Maybe check the spelling?")
+            this.$store.commit('setStatusSnackbarMessage', "Uhhh, we don't know that username... Maybe check the spelling?")
           } else {
             $handleNetworkError(e)
           }

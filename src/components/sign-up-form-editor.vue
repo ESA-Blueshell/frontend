@@ -1,5 +1,48 @@
+<script setup>
+import {ref} from "vue";
+
+const props = defineProps({
+  initialForm: {
+    type: Object,
+  },
+})
+
+// Form can be filled with objects. Each object will be a question/part of the question form
+// Four types are possible: 'description', 'open', 'checkbox' and 'radio'
+// Each object should have a 'prompt' attribute
+// For 'checkbox' and 'radio' a 'options' array of options should be included
+const form = ref(props.initialForm
+  ? JSON.parse(JSON.stringify(props.initialForm))
+  : [])
+
+
+// Adds a new question to the form
+function createQuestion(type) {
+  if (type === 'open' || type === 'description') {
+    form.value.push({type: type, prompt: ''})
+  } else {
+    form.value.push({type: type, prompt: '', options: ['', '']})
+  }
+}
+
+// Moves the ith element one index up in the given array. This probably throws an exception if i == 0
+function moveUp(array, i) {
+  const temp = array[i];
+  array[i] = array[i - 1]
+  array[i - 1] = temp
+}
+
+// Moves the ith element one index down in the given array. This probably throws an exception if i == array.length-1
+function moveDown(array, i) {
+  const temp = array[i];
+  array[i] = array[i + 1]
+  array[i + 1] = temp
+}
+
+</script>
+
 <template>
-  <div>
+  <div class="pa-4 form">
     <!--
       Button adding a new question to the form
     -->
@@ -9,33 +52,22 @@
           block
           variant="outlined"
           v-bind="props"
+          class="mb-4"
         >
           Add question or text to sign-up form
         </v-btn>
       </template>
       <v-list>
-        <v-list-item
-          link
-          @click="createQuestion('description')"
-        >
+        <v-list-item @click="createQuestion('description')">
           Description without a question
         </v-list-item>
-        <v-list-item
-          link
-          @click="createQuestion('open')"
-        >
+        <v-list-item @click="createQuestion('open')">
           Open question
         </v-list-item>
-        <v-list-item
-          link
-          @click="createQuestion('radio')"
-        >
+        <v-list-item @click="createQuestion('radio')">
           Multiple choice question
         </v-list-item>
-        <v-list-item
-          link
-          @click="createQuestion('checkbox')"
-        >
+        <v-list-item @click="createQuestion('checkbox')">
           Question with checkboxes
         </v-list-item>
       </v-list>
@@ -47,7 +79,6 @@
     <div
       v-for="(question,i) in form"
       :key="i"
-      class="mt-4"
     >
       <v-text-field
         v-model="question.prompt"
@@ -128,16 +159,16 @@
 
       <v-divider
         v-if="i !== form.length-1"
-        class="mt-4"
+        class="mb-4"
       />
     </div>
 
     <v-expand-transition>
       <v-alert
-        v-if="initialForm !== undefined && initialForm !== form"
+        v-if="initialForm !== undefined && initialForm !== null && JSON.stringify(initialForm) !== JSON.stringify(form)"
         type="warning"
         prominent
-        :variant="$vuetify.theme.global.current.dark ? 'outlined' : ''"
+        variant="outlined"
       >
         Woah there! Looks like you made some changes to the sign-up form. Keep in mind that when you submit any
         changes to the form, all existing sign-ups <b>will be removed</b>!
@@ -146,47 +177,11 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: "CreateSignUpForm",
-  // Form can be filled with objects. Each object will be a question/part of the question form
-  // Four types are possible: 'description', 'open', 'checkbox' and 'radio'
-  // Each object should have a 'prompt' attribute
-  // For 'checkbox' and 'radio' a 'options' array of options should be included
-  props: {
-    initialForm: {
-      type: Object,
-    },
-  },
-  data: () => ({
-    form: []
-  }),
-  mounted() {
-    if (this.initialForm !== undefined) {
-      this.form = JSON.parse(JSON.stringify(this.initialForm))
-    }
-  },
-  methods: {
-    // Adds a new question to the form
-    createQuestion(type) {
-      if (type === 'open' || type === 'description') {
-        this.form.push({type: type, prompt: ''})
-      } else {
-        this.form.push({type: type, prompt: '', options: ['', '']})
-      }
-    },
-    // Moves the ith element one index up in the given array. This probably throws an exception if i == 0
-    moveUp(array, i) {
-      const temp = array[i];
-      array[i] = array[i - 1]
-      array[i - 1] = temp
-    },
-    // Moves the ith element one index down in the given array. This probably throws an exception if i == array.length-1
-    moveDown(array, i) {
-      const temp = array[i];
-      array[i] = array[i + 1]
-      array[i + 1] = temp
-    },
-  }
+<style scoped lang="scss">
+@use '../styles/settings';
+
+.form{
+  border-radius: settings.$border-radius-root;
+  border-width: 1px;border-color: rgb(var(--v-theme-accent)); border-style: solid;
 }
-</script>
+</style>

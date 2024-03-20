@@ -1,8 +1,8 @@
 <template>
   <v-main>
-    <top-banner :title="eventTitle ? eventTitle : 'Create Event'" />
+    <top-banner :title="headerTitle" />
 
-    <div class="mx-3 mb-8">
+    <div class="mb-8">
       <div
         class="mx-auto mt-10"
         style="max-width: 800px"
@@ -10,7 +10,7 @@
         <event-form
           ref="form"
           @submit="create"
-          @title="updateTitle"
+          @title="(newTitle) => headerTitle = `Create ${newTitle}`"
         />
       </div>
     </div>
@@ -28,12 +28,9 @@ export default {
   name: 'CreateEvent',
   components: {EventForm, TopBanner},
   data: () => ({
-    eventTitle: null
+    headerTitle: 'Create Event'
   }),
   methods: {
-    updateTitle(newTitle) {
-      this.eventTitle = newTitle
-    },
     create(event) {
       //Timestamp passed to backend must be yyyy-mm-dd hh:mm:ss as a string
       let startTime = `${event.startDate} ${event.startTime}:00`
