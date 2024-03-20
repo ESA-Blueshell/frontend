@@ -20,7 +20,7 @@ const event = ref(null)
 const submitting = ref(false)
 const deleting = ref(false)
 
-axios.get(`events/signups/byHash/${hashedId}`)
+axios.get(`events/signups/byAccessToken/${hashedId}`)
   .then(response => {
     signUp.value = response.data
 
