@@ -1,27 +1,34 @@
 <script setup>
-import {ref} from "vue";
+import {reactive, ref, watch} from "vue";
 
 const props = defineProps({
   initialForm: {
     type: Object,
   },
 })
+const emits = defineEmits(['change'])
 
 // Form can be filled with objects. Each object will be a question/part of the question form
 // Four types are possible: 'description', 'open', 'checkbox' and 'radio'
 // Each object should have a 'prompt' attribute
 // For 'checkbox' and 'radio' a 'options' array of options should be included
-const form = ref(props.initialForm
+const form = reactive(props.initialForm
   ? JSON.parse(JSON.stringify(props.initialForm))
   : [])
+
+watch(form, async (newForm) => {
+  console.log('Form changed')
+  console.log(newForm)
+  emits('change', newForm)
+})
 
 
 // Adds a new question to the form
 function createQuestion(type) {
   if (type === 'open' || type === 'description') {
-    form.value.push({type: type, prompt: ''})
+    form.push({type: type, prompt: ''})
   } else {
-    form.value.push({type: type, prompt: '', options: ['', '']})
+    form.push({type: type, prompt: '', options: ['', '']})
   }
 }
 

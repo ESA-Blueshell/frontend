@@ -34,7 +34,6 @@ function submit() {
   if (eventForm.value.validate()) {
     submitting.value = true;
 
-    event.value.signUpForm = signUpForm.value?.form;
     emits('submit', event.value);
   } else {
     alert('The form is invalid.');
@@ -302,6 +301,7 @@ function toggleSignUpForm() {
           <sign-up-form-editor
             ref="signUpForm"
             :initial-form="event.signUpForm"
+            @change="(newForm) => event.signUpForm = newForm"
           />
         </v-col>
       </v-row>
