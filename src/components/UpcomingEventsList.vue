@@ -269,7 +269,9 @@ export default {
     },
     async submitSignUpForm(eventId, {answers, guestData}) {
       await this.handleSubmit(eventId, async () => {
-        let request;
+        const selectedElement = document.getElementById('event#' + eventId);
+        selectedElement.scrollIntoView({behavior: 'smooth', block: 'start'})
+
         if (this.$store.getters.isLoggedIn) {
           const response = await axios.post(`events/signups/${eventId}`, JSON.stringify(answers.value),
             {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`, 'Content-Type': 'text/plain'}})
