@@ -10,10 +10,6 @@ function formatEventTime(event) {
 
   let result = ''
 
-  if (event.membersOnly) {
-    result += 'Members-only event. '
-  }
-
   result += startTime.toLocaleString('en-NL', {
     weekday: 'long',
     day: 'numeric',
@@ -21,10 +17,11 @@ function formatEventTime(event) {
     hour: '2-digit',
     minute: '2-digit'
   })
-  result += '-'
+  result += ' - '
 
   if (startTime.getDate() !== endTime.getDate()) {
-    result += endTime.toLocaleString('en-NL', {day: 'numeric', month: 'long'})
+    result += endTime.toLocaleString('en-NL', {weekday: 'long', day: 'numeric', month: 'long'})
+    result += ' at '
   }
   result += endTime.toLocaleString('en-NL', {
     hour: '2-digit',
@@ -44,9 +41,11 @@ function formatEventTime(event) {
     <v-list-item-title class="text-h4">
       {{ event.title }}
     </v-list-item-title>
-    <v-list-item-subtitle class="mb-2">
-      {{ formatEventTime(event) }}
-    </v-list-item-subtitle>
+    <div class="text-subtitle-2 mb-2" style="opacity: var(--v-medium-emphasis-opacity);">
+      {{ event.location }} <br>
+      {{ formatEventTime(event) }} <br>
+      {{ event.membersOnly ? 'Members only' : '' }}
+    </div>
 
     <div v-html="event.description ? $markdownToHtml(event.description) : 'No description...'" />
 
