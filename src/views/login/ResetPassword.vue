@@ -91,9 +91,9 @@ export default {
           this.succeeded = true
           setTimeout(() => this.$router.push({path: '/login'}), 5000);
         }).catch(e => {
-          if (e.response.status === 400) {
+          if (e.response?.status === 400) {
             this.$store.commit('setStatusSnackbarMessage', e.response.data)
-          } else if (e.response.status === 404) {
+          } else if (e.response?.status === 404) {
             this.$store.commit('setStatusSnackbarMessage', "The username you gave doesn't exist. Maybe check the spelling?")
           } else {
             $handleNetworkError(e)

@@ -179,7 +179,7 @@ export default {
             this.succeeded = true
           })
           .catch(e => {
-                if (e.response.status === 400) {
+                if (e.response?.status === 400) {
                   this.$store.commit('setStatusSnackbarMessage', e.response.data)
                 } else {
                   $handleNetworkError(e)

@@ -79,7 +79,7 @@ export default {
         ).then(() => {
           this.succeeded = true
         }).catch(e => {
-          if (e.response.status === 404) {
+          if (e.response?.status === 404) {
             this.$store.commit('setStatusSnackbarMessage', "Uhhh, we don't know that username... Maybe check the spelling?")
           } else {
             $handleNetworkError(e)

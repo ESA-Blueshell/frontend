@@ -106,7 +106,7 @@ export default {
             })
             .catch(e => {
               // Show Incorrect login snackbar
-              if (e.response.status === 401) {
+              if (e.response?.status === 401) {
                 this.$store.commit('setStatusSnackbarMessage', 'Incorrect login credentials. Please double check your username and password.')
               } else {
                 $handleNetworkError(e)

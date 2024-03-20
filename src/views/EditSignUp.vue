@@ -27,7 +27,7 @@ axios.get(`events/signups/byAccessToken/${hashedId}`)
     axios.get(`events/${signUp.value.event}`)
       .then(response => event.value = response.data)
   })
-  .catch(e => e.response.status === 404
+  .catch(e => e.response?.status === 404
     ? router.push({name: 'NotFound'})
     : $handleNetworkError(e))
 

@@ -498,7 +498,7 @@ export default {
           this.$store.commit('setRoles', response.data.roles)
         })
         .catch(e => {
-          if (e.response.status === 401) {
+          if (e.response?.status === 401) {
             this.$store.commit('statusSnackbarMessage', 'Login expired. You have been logged out.')
             this.$store.commit('logout')
             if (this.$route.meta.requiresAuth) {
