@@ -23,7 +23,8 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       devOptions: {
-        enabled: true
+        enabled: true,
+        type: 'module',
       },
       manifest: {
         name: "Blusehell Esports",
@@ -31,8 +32,8 @@ export default defineConfig({
         description: "Beschrijving van de website. Dit is een beschrijving van de website.",
         icons: [
           {
-            src: '/favicon.png',
-            sizes: '128x128',
+            src: '/shiticon.png',
+            sizes: '576x576',
             type: 'image/png',
             purpose: 'any maskable',
           },
@@ -40,7 +41,19 @@ export default defineConfig({
         theme_color: '#3387FA',
         background_color: '#1E1E1E',
         display: 'standalone',
-      }
+      },
+      workbox: {
+        runtimeCaching: [{
+          urlPattern: ({url}) => url.pathname.startsWith('/api'),
+          handler: 'NetworkFirst',
+          options: {
+            cacheName: 'api-cache',
+            cacheableResponse: {
+              statuses: [0, 200],
+            },
+          },
+        }],
+      },
     }),
   ],
   define: {'process.env': {}},
