@@ -33,6 +33,7 @@
     "eslint-plugin-vuetify": "^2.2.0",
     "sass": "^1.69.5",
     "vite": "^5.1.6",
+    "vite-plugin-pwa": "^0.19.6",
     "vite-plugin-vuetify": "^2.0.3"
   }
 }
