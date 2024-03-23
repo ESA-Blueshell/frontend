@@ -30,13 +30,28 @@ export default defineConfig({
         name: "Blusehell Esports",
         short_name: "Blueshell",
         description: "Beschrijving van de website. Dit is een beschrijving van de website.",
-        icons: [
+        "icons": [
           {
-            src: '/shiticon.png',
-            sizes: '576x576',
-            type: 'image/png',
-            purpose: 'any maskable',
+            "src": "pwa-64x64.png",
+            "sizes": "64x64",
+            "type": "image/png"
           },
+          {
+            "src": "pwa-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+          },
+          {
+            "src": "pwa-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+          },
+          {
+            "src": "maskable-icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+          }
         ],
         theme_color: '#3387FA',
         background_color: '#1E1E1E',
