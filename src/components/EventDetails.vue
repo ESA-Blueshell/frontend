@@ -177,8 +177,10 @@ export default {
     // Triggers when the location button is clicked on an event.
     // Opens a search on google maps with the location if the location isn't discord
     findLocation() {
-      if (this.selectedEvent.location.includes("iscord")) {
+      if (this.selectedEvent.location.toLowerCase().includes("discord")) {
         $goto(encodeURI('https://discord.gg/23YMFQy'));
+      } else if (this.selectedEvent.location.toLowerCase().includes("pel")) {
+        $goto(encodeURI('https://www.google.com/maps/search/?api=1&query=Predator Esports Lounge'));
       } else {
         $goto(encodeURI('https://www.google.com/maps/search/?api=1&query=' + this.selectedEvent.location));
       }
