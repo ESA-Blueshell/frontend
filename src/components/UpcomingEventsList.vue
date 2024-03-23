@@ -327,9 +327,9 @@ export default {
         document.body.removeChild(element);
       })
     },
-    copyShareLink(event) {
+    async copyShareLink(event) {
       const url = window.location.origin + window.location.pathname + '#' + event.id
-      navigator.clipboard.writeText(url)
+      await navigator.clipboard.writeText(url)
 
       this.$store.commit('setStatusSnackbarMessage', `Link for ${event.title} copied to clipboard`)
     }

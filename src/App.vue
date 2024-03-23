@@ -440,7 +440,7 @@
       v-model="showCookieSnackbar"
       timeout="-1"
     >
-      We're using cookies for keeping you logged in. You can read more about how we use cookies in our
+      We're using cookies to keep you logged in. You can read more about how we use cookies in our
       <a
         href="https://esa-blueshell.nl/api/download/bsCookiePolicy.pdf"
         class="text-decoration-none"

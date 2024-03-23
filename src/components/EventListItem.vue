@@ -41,7 +41,10 @@ function formatEventTime(event) {
     <v-list-item-title class="text-h4">
       {{ event.title }}
     </v-list-item-title>
-    <div class="text-subtitle-2 mb-2" style="opacity: var(--v-medium-emphasis-opacity);">
+    <div
+      class="text-subtitle-2 mb-2"
+      style="opacity: var(--v-medium-emphasis-opacity);"
+    >
       {{ event.location }} <br>
       {{ formatEventTime(event) }} <br>
       {{ event.membersOnly ? 'Members only' : '' }}
