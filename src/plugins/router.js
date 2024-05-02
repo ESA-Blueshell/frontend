@@ -33,6 +33,7 @@ import EditSignUp from "@/views/EditSignUp.vue";
 
 import {createRouter, createWebHistory} from "vue-router";
 import store from './store'
+import CircuitShowdown from "@/views/events/CircuitShowdown.vue";
 
 
 const router = createRouter({
@@ -209,6 +210,11 @@ const router = createRouter({
       path: '/events/signups/edit/:accessToken',
       name: 'editSignUp',
       component: EditSignUp,
+    },
+    {
+      path: '/events/circuitShowdown',
+      name: 'circuitShowdown',
+      component: CircuitShowdown,
     },
     {
       path: '/members/manage',
