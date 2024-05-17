@@ -45,17 +45,17 @@ export default {
               {
                 team1: 'Turtles',
                 team2: 'NyperS',
-                score: ''
+                score: '0 - 2'
               },
               {
-                team1: 'SpicySquirtles',
+                team1: 'NyperS',
                 team2: 'Scaling',
-                score: ''
+                score: '2 - 0'
               },
               {
                 team1: 'Happy Hour',
-                team2: 'Waterboarders',
-                score: ''
+                team2: 'Hatsune Miku Fanclub 1',
+                score: '1 - 1'
               },
             ]
           },
