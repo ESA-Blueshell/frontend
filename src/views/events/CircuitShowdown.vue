@@ -7,12 +7,8 @@ export default {
     return {
       groupAScores: [
         {
-          name: 'Turtles',
-          score: '0-0-0',
-        },
-        {
           name: 'NyperS',
-          score: '0-0-0',
+          score: '2-0-0',
         },
         {
           name: 'SpicySquirtles',
@@ -20,20 +16,24 @@ export default {
         },
         {
           name: 'Scaling',
-          score: '0-0-0',
+          score: '0-0-1',
+        },
+        {
+          name: 'Turtles',
+          score: '0-0-1',
         },
       ],
       groupBScores: [
         {
           name: 'Happy Hour',
-          score: '0-0-0',
-        },
-        {
-          name: 'Waterboarders',
-          score: '0-0-0',
+          score: '0-1-0',
         },
         {
           name: 'Hatsune Miku Fanclub',
+          score: '0-1-0',
+        },
+        {
+          name: 'Waterboarders',
           score: '0-0-0',
         },
       ],
