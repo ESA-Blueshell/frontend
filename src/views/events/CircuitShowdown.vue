@@ -11,96 +11,44 @@ export default {
           score: '2-0-0',
         },
         {
-          name: 'SpicySquirtles',
-          score: '0-0-0',
-        },
-        {
           name: 'Scaling',
-          score: '0-0-1',
+          score: '1-0-1',
         },
         {
           name: 'Turtles',
-          score: '0-0-1',
+          score: '0-0-2',
         },
       ],
       groupBScores: [
         {
-          name: 'Happy Hour',
-          score: '0-1-0',
+          name: 'Waterboarders',
+          score: '1-1-0',
         },
         {
           name: 'Hatsune Miku Fanclub',
-          score: '0-1-0',
+          score: '0-2-0',
         },
         {
-          name: 'Waterboarders',
-          score: '0-0-0',
+          name: 'Happy Hour',
+          score: '0-1-1',
         },
       ],
-      rounds: [
-          {
-            name: 'Round 1',
-            date: 'May 6-12',
-            matches: [
-              {
-                team1: 'Turtles',
-                team2: 'NyperS',
-                score: '0 - 2'
-              },
-              {
-                team1: 'NyperS',
-                team2: 'Scaling',
-                score: '2 - 0'
-              },
-              {
-                team1: 'Happy Hour',
-                team2: 'Hatsune Miku Fanclub 1',
-                score: '1 - 1'
-              },
-            ]
-          },
-          {
-            name: 'Round 2',
-            date: 'May 13-19',
-            matches: [
-              {
-                team1: 'Turtles',
-                team2: 'SpicySquirtles',
-                score: ''
-              },
-              {
-                team1: 'NyperS',
-                team2: 'Scaling',
-                score: ''
-              },
-              {
-                team1: 'Happy Hour',
-                team2: 'Hatsune Miku Fanclub',
-                score: ''
-              },
-            ]
-          },
-          {
-            name: 'Round 3',
-            date: 'May 20-26',
-            matches: [
-              {
-                team1: 'Turtles',
-                team2: 'Scaling',
-                score: ''
-              },
-              {
-                team1: 'NyperS',
-                team2: 'SpicySquirtles',
-                score: ''
-              },
-              {
-                team1: 'Waterboarders',
-                team2: 'Hatsune Miku Fanclub',
-                score: ''
-              },
-            ]
-          },
+      playoffs: [
+        {
+          team1: 'NyperS',
+          score: '-',
+          team2: 'Hatsune Miku Fanclub'
+        },
+        {
+          team1: 'Waterboarders',
+          score: '-',
+          team2: 'Scaling'
+        },
+        {
+          team1: 'Happy Hour',
+          score: '-',
+          team2: 'Turtles'
+        },
       ]
     }
   }
@@ -168,37 +116,31 @@ export default {
         </v-table>
       </div>
 
-      <h2>Matches</h2>
-      <div
-        v-for="round in rounds"
-        :key="round.name"
-        class="round"
-      >
-        <h4>{{ round.name }} - ({{ round.date }})</h4>
-        <v-table>
-          <thead>
-            <tr>
-              <th>Team 1</th>
-              <th>Score</th>
-              <th>Team 2</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr
-              v-for="match in round.matches"
-              :key="match.team1 + match.team2"
-            >
-              <td class="table-cell--match-team-name">
-                {{ match.team1 }}
-              </td>
-              <td>{{ match.score }}</td>
-              <td class="table-cell--match-team-name">
-                {{ match.team2 }}
-              </td>
-            </tr>
-          </tbody>
-        </v-table>
-      </div>
+      <h2>Playoffs</h2>
+      <h4>Week 1</h4>
+      <v-table>
+        <thead>
+          <tr>
+            <th>Team 1</th>
+            <th>Score</th>
+            <th>Team 2</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            v-for="match in playoffs"
+            :key="match.team1 + match.team2"
+          >
+            <td class="table-cell--match-team-name">
+              {{ match.team1 }}
+            </td>
+            <td>{{ match.score }}</td>
+            <td class="table-cell--match-team-name">
+              {{ match.team2 }}
+            </td>
+          </tr>
+        </tbody>
+      </v-table>
     </div>
   </v-main>
 </template>
@@ -228,6 +170,10 @@ export default {
 
 h2 {
   margin-top: 32px;
+}
+
+h4 {
+  margin-bottom: 16px;
 }
 
 </style>
