@@ -52,10 +52,14 @@
                 ref="email"/>
           </v-col>
         </v-row>
-        <v-text-field
-            v-model="form.discord"
-            label="Discord Username"
-            ref="discord"/>
+        <v-row>
+          <v-col cols="12">
+            <v-text-field
+                v-model="form.discord"
+                label="Discord Username"
+                ref="discord"/>
+          </v-col>
+        </v-row>
         <v-row>
           <v-col cols="6">
             <v-text-field
@@ -122,10 +126,13 @@
                 label="I have a BHV Diploma"/>
           </v-col>
         </v-row>
-        <v-checkbox
-            v-model="form.newsletter"
-            label="I want subscribe to the newsletter of Blueshell E-sports"/>
-
+        <v-row>
+          <v-col cols="12">
+            <v-checkbox
+                v-model="form.newsletter"
+                label="I want subscribe to the newsletter of Blueshell E-sports"/>
+          </v-col>
+        </v-row>
         <v-row>
           <v-col cols="6">
             <a href="https://esa-blueshell.nl/api/download/20171212-Statuten.pdf"
@@ -227,7 +234,7 @@
     </div>
 
     <div v-else-if="succeeded" class="mx-auto my-10" style="max-width: 600px">
-      <p class="text-center subtitle-1 font-weight-light">
+      <p class="text-center text-subtitle-1 font-weight-light">
         Your membership form has successfully been submitted!
       </p>
     </div>
@@ -236,7 +243,6 @@
 
 <script>
 import TopBanner from "@/components/top-banner";
-import store from "@/store";
 
 export default {
   components: {TopBanner},
@@ -336,7 +342,7 @@ export default {
           })
           .catch(e => {
             if (e.response.status === 400) {
-              store.commit('setNetworkErrorMessage', e.response.data);
+              this.$store.commit('setNetworkErrorMessage', e.response.data);
             } else {
               this.$root.handleNetworkError(e);
             }
