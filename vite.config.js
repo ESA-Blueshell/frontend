@@ -18,7 +18,7 @@ export default defineConfig({
       styles: {
         configFile: 'src/styles/settings.scss',
       },
-    }),
+    })
   ],
   define: { 'process.env': {} },
   resolve: {
