@@ -7,124 +7,124 @@
         <v-row>
           <v-col cols="4">
             <v-text-field
-                v-model="form.initials"
-                :rules="initialsRules"
-                label="Initials"
-                ref="initials"/>
+              v-model="form.initials"
+              :rules="initialsRules"
+              label="Initials"
+              ref="initials"/>
           </v-col>
           <v-col cols="8">
             <v-text-field
-                v-model="form.firstName"
-                :rules="firstNameRules"
-                label="First name"
-                ref="firstName"/>
+              v-model="form.firstName"
+              :rules="firstNameRules"
+              label="First name"
+              ref="firstName"/>
           </v-col>
         </v-row>
         <v-row class="mt-n7 mb-n5">
           <v-col cols="4">
             <v-text-field
-                v-model="form.prefix"
-                label="Prefix"
-                ref="prefix"/>
+              v-model="form.prefix"
+              label="Prefix"
+              ref="prefix"/>
           </v-col>
           <v-col cols="8">
             <v-text-field
-                v-model="form.lastName"
-                :rules="lastNameRules"
-                label="Last name"
-                ref="lastName"/>
+              v-model="form.lastName"
+              :rules="lastNameRules"
+              label="Last name"
+              ref="lastName"/>
           </v-col>
         </v-row>
         <v-row>
           <v-col cols="6">
             <v-text-field
-                v-model="form.username"
-                :rules="usernameRules"
-                label="Username"
-                ref="username"/>
+              v-model="form.username"
+              :rules="usernameRules"
+              label="Username"
+              ref="username"/>
           </v-col>
           <v-col cols="6">
             <v-text-field
-                v-model="form.email"
-                :rules="emailRules"
-                label="Email"
-                required
-                ref="email"/>
+              v-model="form.email"
+              :rules="emailRules"
+              label="Email"
+              required
+              ref="email"/>
           </v-col>
         </v-row>
         <v-text-field
-            v-model="form.discord"
-            label="Discord Username"
-            ref="discord"/>
+          v-model="form.discord"
+          label="Discord Username"
+          ref="discord"/>
         <v-row>
           <v-col cols="6">
             <v-text-field
-                v-model="form.password"
-                :rules="passwordRules"
-                label="Password"
-                @click:append="showPass = !showPass"
-                :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
-                :type="showPass ? 'text' : 'password'"/>
+              v-model="form.password"
+              :rules="passwordRules"
+              label="Password"
+              @click:append="showPass = !showPass"
+              :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
+              :type="showPass ? 'text' : 'password'"/>
           </v-col>
           <v-col cols="6">
             <v-text-field
-                v-model="form.passwordAgain"
-                :rules="[ v => !!v || 'Password is required', v => v===this.form.password || 'The passwords should be the same' ]"
-                label="Password (repeated)"
-                @click:append="showPass = !showPass"
-                :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
-                :type="showPass ? 'text' : 'password'"/>
+              v-model="form.passwordAgain"
+              :rules="[ v => !!v || 'Password is required', v => v===this.form.password || 'The passwords should be the same' ]"
+              label="Password (repeated)"
+              @click:append="showPass = !showPass"
+              :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
+              :type="showPass ? 'text' : 'password'"/>
           </v-col>
         </v-row>
         <v-row>
           <v-col cols="4">
             <v-text-field
-                v-model="form.postalCode"
-                label="Postal Code"
-                :rules="postalCodeRules"
-                ref="postalCode"/>
+              v-model="form.postalCode"
+              label="Postal Code"
+              :rules="postalCodeRules"
+              ref="postalCode"/>
           </v-col>
           <v-col cols="8">
             <v-text-field
-                v-model="form.city"
-                label="Place of Residence"
-                :rules="cityRules"
-                ref="city"/>
+              v-model="form.city"
+              label="Place of Residence"
+              :rules="cityRules"
+              ref="city"/>
           </v-col>
         </v-row>
         <v-row>
           <v-col cols="4">
             <v-text-field
-                v-model="form.dateOfBirth"
-                label="Date of Birth"
-                ref="dateOfBirth"
-                :rules="dateOfBirthRules"
-                type="date"/>
+              v-model="form.dateOfBirth"
+              label="Date of Birth"
+              ref="dateOfBirth"
+              :rules="dateOfBirthRules"
+              type="date"/>
           </v-col>
           <v-col cols="8">
-            <vue-tel-input-vuetify
-                v-model="form.phoneNumber"
-                label="Phone Number"
-                ref="phoneNumber"
-                :rules="phoneNumberRules"
-                :default-country="'nl'"/>
+            <v-text-field
+              v-model="form.phoneNumber"
+              label="Phone Number"
+              ref="phoneNumber"
+              :rules="phoneNumberRules"
+              :default-country="'nl'"/>
           </v-col>
         </v-row>
         <v-row>
           <v-col cols="6">
             <v-checkbox
-                v-model="form.ehbo"
-                label="I have a EHBO Diploma"/>
+              v-model="form.ehbo"
+              label="I have a EHBO Diploma"/>
           </v-col>
           <v-col cols="6">
             <v-checkbox
-                v-model="form.bhv"
-                label="I have a BHV Diploma"/>
+              v-model="form.bhv"
+              label="I have a BHV Diploma"/>
           </v-col>
         </v-row>
         <v-checkbox
-            v-model="form.newsletter"
-            label="I want subscribe to the newsletter of Blueshell E-sports"/>
+          v-model="form.newsletter"
+          label="I want subscribe to the newsletter of Blueshell E-sports"/>
 
         <v-row>
           <v-col cols="6">
@@ -170,17 +170,17 @@
           <br/>
           <v-row class="mt-4" style="width: 100%;">
             <v-input
-                ref="signature"
-                :rules="signatureRules"
-                v-model="form.signature"
-                hide-details="auto">
+              ref="signature"
+              :rules="signatureRules"
+              v-model="form.signature"
+              hide-details="auto">
               <template v-slot:default>
                 <v-row class="d-flex justify-center">
-                  <VueSignaturePad
-                      style="border-radius: 8px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); background-color: white"
-                      width="500px"
-                      ref="signaturePad"
-                      height="300px"
+                  <Vue3Signature
+                    style="border-radius: 8px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); background-color: white"
+                    :w="'500px'"
+                    ref="signaturePad"
+                    :h="'300px'"
                   />
                 </v-row>
               </template>
@@ -188,27 +188,27 @@
           </v-row>
           <v-row class="d-flex justify-end mt-4">
             <v-btn
-                type="button"
-                class="btn btn-danger"
-                @click="clearSignature">
+              type="button"
+              class="btn btn-danger"
+              @click="clearSignature">
               Clear
             </v-btn>
           </v-row>
           <v-row>
             <v-col cols="6">
               <v-text-field
-                  v-model="form.signatureCity"
-                  label="Place"
-                  :rules="signatureCityRules"
-                  ref="signatureCity"/>
+                v-model="form.signatureCity"
+                label="Place"
+                :rules="signatureCityRules"
+                ref="signatureCity"/>
             </v-col>
             <v-col cols="6">
               <v-text-field
-                  v-model="form.signatureDate"
-                  label="Date"
-                  ref="signatureDate"
-                  :rules="signatureDateRules"
-                  type="date"/>
+                v-model="form.signatureDate"
+                label="Date"
+                ref="signatureDate"
+                :rules="signatureDateRules"
+                type="date"/>
             </v-col>
           </v-row>
         </v-sheet>
@@ -216,9 +216,9 @@
           <v-spacer/>
           <v-col cols="auto">
             <v-btn
-                :loading="clicked"
-                color="primary"
-                @click="submitForm">
+              :loading="clicked"
+              color="primary"
+              @click="submitForm">
               Submit
             </v-btn>
           </v-col>
@@ -236,10 +236,17 @@
 
 <script>
 import TopBanner from "@/components/top-banner";
-import store from "@/store";
+import {useStore} from "vuex";
+import {ref} from "vue";
+
+const store = useStore()
 
 export default {
   components: {TopBanner},
+  setup() {
+    const signaturePad = ref(null);
+    return { signaturePad };
+  },
   data: () => ({
     clicked: false,
     succeeded: false,
@@ -314,16 +321,19 @@ export default {
   }),
   methods: {
     clearSignature() {
-      this.$refs.signaturePad.undoSignature()
+      this.signaturePad.value.clear()
     },
     submitForm() {
-      const {data, isEmpty} = this.$refs.signaturePad.saveSignature();
-      if (isEmpty) {
+      if (this.signaturePad.value.isEmpty) {
         this.form.signature = null;
       } else {
+        const data = this.signaturePad.value.save('image/png')
+        console.log('data: ', data)
         this.form.signature = data.split(",")[1]; // Extract base64 part of signature png
       }
-      console.log('signature: ', this.form.signature)
+
+      console.log('data', this.form.signature);
+
       if (!this.$refs.form.validate()) {
         return;
       }
@@ -331,19 +341,19 @@ export default {
       this.clicked = true;
 
       this.$http.put('createMember', this.form)
-          .then(() => {
-            this.succeeded = true;
-          })
-          .catch(e => {
-            if (e.response.status === 400) {
-              store.commit('setNetworkErrorMessage', e.response.data);
-            } else {
-              this.$root.handleNetworkError(e);
-            }
-          })
-          .finally(() => {
-            this.clicked = false;
-          });
+        .then(() => {
+          this.succeeded = true;
+        })
+        .catch(e => {
+          if (e.response.status === 400) {
+            store.commit('setNetworkErrorMessage', e.response.data);
+          } else {
+            this.$root.handleNetworkError(e);
+          }
+        })
+        .finally(() => {
+          this.clicked = false;
+        });
     },
   }
 };

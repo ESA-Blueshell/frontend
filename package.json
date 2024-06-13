@@ -22,12 +22,12 @@
     "vue-marquee-text-component": "^2.0.1",
     "vue-router": "^4.3.0",
     "vue-signature-pad": "^2.0.5",
-    "vue-tel-input": "^9.1.2",
-    "vue-tel-input-vuetify": "^1.5.3",
+    "vue3-signature": "^0.2.4",
     "vuetify": "^3.5.9",
     "vuex": "^4.1.0",
     "webfontloader": "^1.6.28",
-    "xss": "^1.0.15"
+    "xss": "^1.0.15",
+    "yarn": "^1.22.22"
   },
   "devDependencies": {
     "@originjs/vite-plugin-commonjs": "^1.0.3",
