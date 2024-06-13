@@ -327,7 +327,7 @@ export default {
     clearSignature() {
       this.signaturePad.clear()
     },
-    submitForm() {
+    async submitForm() {
       if (this.signaturePad.isEmpty()) {
         this.form.signature = null;
       } else {
@@ -336,28 +336,28 @@ export default {
         this.form.signature = data.split(",")[1]; // Extract base64 part of signature png
       }
 
-      console.log('data', this.form.signature);
+      const {valid} = await this.$refs.form.validate()
 
-      if (!this.$refs.form.validate()) {
+      if (!valid) {
         return;
       }
 
       this.clicked = true;
 
       this.$http.put('createMember', this.form)
-          .then(() => {
-            this.succeeded = true;
-          })
-          .catch(e => {
-            if (e.response.status === 400) {
-              this.$store.commit('setNetworkErrorMessage', e.response.data);
-            } else {
-              this.$root.handleNetworkError(e);
-            }
-          })
-          .finally(() => {
-            this.clicked = false;
-          });
+        .then(() => {
+          this.succeeded = true;
+        })
+        .catch(e => {
+          if (e.response.status === 400) {
+            this.$store.commit('setNetworkErrorMessage', e.response.data);
+          } else {
+            this.$root.handleNetworkError(e);
+          }
+        })
+        .finally(() => {
+          this.clicked = false;
+        });
     },
   }
 };
