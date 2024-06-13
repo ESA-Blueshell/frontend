@@ -9,8 +9,8 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import Vue3Signature from "vue3-signature"
 
-Axios.defaults.baseURL = "http://localhost:8080/api/"
-// Axios.defaults.baseURL = "https://esa-blueshell.nl/api/"
+// Axios.defaults.baseURL = "http://localhost:8080/api/"
+Axios.defaults.baseURL = "https://esa-blueshell.nl/api/"
 
 
 
