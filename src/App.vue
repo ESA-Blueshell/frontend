@@ -66,7 +66,6 @@
 
 
         <v-menu
-          v-if="$store.getters.isLoggedIn"
           :open-on-hover="true"
           open-delay="0"
           :offset="3"
@@ -86,20 +85,18 @@
               Events
             </v-list-item>
             <v-list-item
-              v-if="$store.getters.isActive"
+              v-if="$store.getters.isLoggedIn && $store.getters.isActive"
               to="/events/manage"
             >
               Manage events
             </v-list-item>
+            <v-list-item
+              to="/events/circuitShowdown"
+            >
+              Circuit Showdown
+            </v-list-item>
           </v-list>
         </v-menu>
-        <v-btn
-          v-else
-          class="bar-button"
-          to="/events"
-        >
-          Events
-        </v-btn>
 
 
         <v-menu
@@ -277,7 +274,7 @@
         </v-list-group>
 
 
-        <v-list-group v-if="$store.getters.isLoggedIn">
+        <v-list-group>
           <template #activator="{ props }">
             <v-list-item v-bind="props">
               Events
@@ -287,19 +284,18 @@
             Events
           </v-list-item>
           <v-list-item
-            v-if="$store.getters.isActive"
+            v-if="$store.getters.isLoggedIn && $store.getters.isActive"
             to="/events/manage"
           >
             Manage events
           </v-list-item>
+          <v-list-item
+            to="/events/circuitShowdown"
+          >
+            Circuit Showdown
+          </v-list-item>
           <v-divider class="mb-1" />
         </v-list-group>
-        <v-list-item
-          v-else
-          to="/events"
-        >
-          Events
-        </v-list-item>
 
         <v-list-group>
           <template #activator="{ props }">
