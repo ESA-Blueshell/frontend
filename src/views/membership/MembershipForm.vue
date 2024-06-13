@@ -321,13 +321,13 @@ export default {
   }),
   methods: {
     clearSignature() {
-      this.signaturePad.value.clear()
+      this.signaturePad.clear()
     },
     submitForm() {
-      if (this.signaturePad.value.isEmpty) {
+      if (this.signaturePad.isEmpty()) {
         this.form.signature = null;
       } else {
-        const data = this.signaturePad.value.save('image/png')
+        const data = this.signaturePad.save('image/png')
         console.log('data: ', data)
         this.form.signature = data.split(",")[1]; // Extract base64 part of signature png
       }
