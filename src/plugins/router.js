@@ -2,7 +2,8 @@ import Home from '@/views/Home.vue'
 import Events from '@/views/Events.vue'
 import Contact from '@/views/Contact.vue'
 import Committees from '@/views/Committees.vue'
-import Membership from '@/views/Membership.vue'
+import Membership from '@/views/membership/Membership.vue'
+import MembershipForm from "@/views/membership/MembershipForm.vue";
 import Esports from '@/views/Esports.vue'
 import AboutUs from "@/views/AboutUs.vue";
 import Board from "@/views/Board.vue";
@@ -79,6 +80,11 @@ const router = createRouter({
       path: '/membership',
       name: 'membership',
       component: Membership
+    },
+    {
+      path: '/membership/signup',
+      name: 'membership/signup',
+      component: MembershipForm
     },
     {
       path: '/documents',

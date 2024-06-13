@@ -343,7 +343,7 @@
           <v-list-item to="/partners/connectworks">
             Connectworks
           </v-list-item>
-          <v-divider class="mb-1" />
+          <v-divider dark></v-divider>
         </v-list-group>
 
         <v-list-item to="/contact">
