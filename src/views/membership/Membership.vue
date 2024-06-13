@@ -45,6 +45,11 @@
           </p>
           <ul>
             <li>
+              <v-btn to="/membership/signup">
+                Signup Through our Online Form
+              </v-btn>
+            </li>
+            <li>
               <a href="https://esa-blueshell.nl/api/download/Membership-form-UT-2023-2024.pdf"
                  target="_blank" class="text-decoration-none">
                 For University of Twente students</a></li>

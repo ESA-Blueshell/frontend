@@ -7,6 +7,9 @@ import vuetify from './plugins/vuetify';
 import '@mdi/font/css/materialdesignicons.css'
 import './styles/housestyle.css';
 import Axios from 'axios';
+import VueSignaturePad from 'vue-signature-pad';
+import VueTelInputVuetify from 'vue-tel-input-vuetify/lib';
+
 
 Vue.config.productionTip = false
 
@@ -26,6 +29,12 @@ showdown.setOption('emoji', true)
 showdown.setOption('underline', true)
 const converter = new showdown.Converter()
 const xss = require("xss")
+
+Vue.use(VueTelInputVuetify, {
+    vuetify,
+});
+Vue.use(VueSignaturePad)
+
 
 let vue = new Vue({
     router,
