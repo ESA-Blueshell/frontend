@@ -172,7 +172,7 @@
           <br/>
           <br/>
           <strong>Contribution</strong><br/>
-          The undersigned understands that they will need to pay the 2023-2024 contribution fee of €15, for which they
+          The undersigned understands that they will need to pay the 2023-2024 contribution fee of €20, for which they
           will receive payment details per email.
           <br/>
           <v-row class="mt-4" style="width: 100%;">
