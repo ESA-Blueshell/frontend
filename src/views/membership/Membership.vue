@@ -97,8 +97,8 @@
             The membership fees for the academic year 2022/2023 are:
           </p>
           <ul>
-            <li><b>€15</b> for a full year membership;</li>
-            <li><b>€10</b> for a half-year membership*;</li>
+            <li><b>€20</b> for a full year membership;</li>
+            <li><b>€12.50</b> for a half-year membership*;</li>
             <li><b>€10</b> for an Alumni membership.</li>
           </ul>
           <p class="text-body-1">
