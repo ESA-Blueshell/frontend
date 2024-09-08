@@ -33,10 +33,6 @@ const textLinks = [
     href: 'https://www.elnino.tech/',
   },
   {
-    text: 'Connectworks',
-    href: 'https://connectworks.nl/',
-  },
-  {
     text: 'ETT',
     href: 'https://esportsteamtwente.nl/',
   },
