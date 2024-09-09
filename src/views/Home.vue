@@ -230,11 +230,6 @@ export default {
           url: "/partners/el-nino"
         },
         {
-          logo: $require("@/assets/connectworks.png"),
-          logoDark: $require("@/assets/connectworksdark.png"),
-          url: "https://connectworks.nl/"
-        },
-        {
           logo: $require("@/assets/ett.png"),
           logoDark: $require("@/assets/ettdark.png"),
           url: "https://esportsteamtwente.nl/"

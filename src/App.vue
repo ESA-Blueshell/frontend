@@ -157,9 +157,6 @@
             <v-list-item to="/partners/el-nino">
               El Niño – Digital Development
             </v-list-item>
-            <v-list-item to="/partners/connectworks">
-              Connectworks
-            </v-list-item>
           </v-list>
         </v-menu>
         <v-btn
@@ -335,9 +332,6 @@
           </v-list-item>
           <v-list-item to="/partners/el-nino">
             El Niño – Digital Development
-          </v-list-item>
-          <v-list-item to="/partners/connectworks">
-            Connectworks
           </v-list-item>
           <v-divider dark></v-divider>
         </v-list-group>
