@@ -131,7 +131,6 @@
             <v-text-field
               v-model="accountData.discord"
               label="Discord username"
-              :rules="[v => !v || !!v.match(/^.{3,32}#[0-9]{4}$/) || 'Fill in a correct discord tag (maybe you forgot the numbers?)']"
             />
             <v-text-field
               v-model="accountData.steamid"
