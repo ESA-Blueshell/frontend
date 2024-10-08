@@ -114,10 +114,12 @@
                 />
               </v-col>
             </v-row>
-            <v-text-field
+            <v-phone-input
               v-model="accountData.phoneNumber"
               label="Phone number"
-              :rules="[v => !v || !!v.match(/^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/) || 'Fill in a correct phone number']"
+              :mode="'international'"
+              :default-country="'nl'"
+              placeholder="Phone Number"
             />
             <v-text-field
               v-model="accountData.studentNumber"
@@ -150,7 +152,20 @@
                 />
               </v-col>
             </v-row>
-
+            <v-row>
+              <v-col cols="6">
+                <v-checkbox
+                  v-model="accountData.ehbo"
+                  label="You have a EHBO Diploma"
+                />
+              </v-col>
+              <v-col cols="6">
+                <v-checkbox
+                  v-model="accountData.bhv"
+                  label="You have a BHV Diploma"
+                />
+              </v-col>
+            </v-row>
             <v-text-field
               v-model="accountData.gender"
               label="Gender"
@@ -173,10 +188,6 @@
               v-model="accountData.study"
               label="Study"
             />
-            <!-- TODO: do something with this-->
-            <!--          <v-checkbox disabled label="Paid contribution?" v-model="accountData.contributionPaid"/>-->
-
-
             <v-row>
               <v-spacer />
               <v-col cols="auto">
@@ -211,10 +222,17 @@
 
 import TopBanner from "@/components/top-banner";
 import {$handleNetworkError} from "@/plugins/handleNetworkError";
+import {VPhoneInput} from "v-phone-input";
+import {ref} from "vue";
+import moment from "moment";
 
 export default {
   name: "Account",
-  components: {TopBanner},
+  components: {VPhoneInput, TopBanner},
+  setup() {
+    const phone = ref('');
+    return {phone};
+  },
   data: () => ({
     accountData: null,
     oldAccountData: null,
@@ -225,25 +243,38 @@ export default {
     const login = this.$store.getters.getLogin
 
     this.$http.get(`users/${login.userId}`, {headers: {'Authorization': `Bearer ${login.token}`}})
-        .then(response => {
-          this.accountData = response.data
-          this.oldAccountData = this.copyObject(this.accountData)
-        })
-        .catch(e => $handleNetworkError(e))
+      .then(response => {
+        this.accountData = response.data
+        if (this.accountData.dateOfBirth) {
+          this.accountData.dateOfBirth = moment(this.accountData.dateOfBirth).format('YYYY-MM-DD')
+        }
+        this.oldAccountData = this.copyObject(this.accountData)
+      })
+      .catch(e => $handleNetworkError(e))
   },
   methods: {
     copyObject(obj) {
       return Object.assign({}, obj);
     },
-    save() {
-      if (this.$refs.form.validate()) {
-        this.submitting = true
-        //Send new user object to backend
-        const login = this.$store.getters.getLogin
-        this.$http.put(`users/${login.userId}`, this.accountData, {headers: {'Authorization': `Bearer ${login.token}`}})
-            .then(() => this.submitting = false)
-            .catch(e => $handleNetworkError(e))
+    async save() {
+      const {valid} = await this.$refs.form.validate()
+
+      if (!valid) {
+        return;
       }
+
+      this.submitting = true
+      //Send new user object to backend
+      const login = this.$store.getters.getLogin
+      this.$http.put(`users/${login.userId}`, this.accountData, {headers: {'Authorization': `Bearer ${login.token}`}})
+        .then(() => this.submitting = false)
+        .catch(e => {
+          if (e.response?.status === 400) {
+            this.$store.commit('setStatusSnackbarMessage', e.response.data)
+          } else {
+            $handleNetworkError(e)
+          }
+        })
     },
   }
 }
