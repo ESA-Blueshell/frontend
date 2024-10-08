@@ -21,11 +21,29 @@
         </p>
         <p class="text-body-1">
           <a
+            href="https://esa-blueshell.nl/api/download/Statutes-Blueshell-Esports-English.pdf"
+            class="text-decoration-none"
+            target="_blank"
+          >
+            Statutes (English)
+          </a>
+        </p>
+        <p class="text-body-1">
+          <a
             href="https://esa-blueshell.nl/api/download/20180109-Huishoudelijk-Reglement-Blueshell-E-Sports.pdf"
             class="text-decoration-none"
             target="_blank"
           >
             Internal Regulations (Dutch)
+          </a>
+        </p>
+        <p class="text-body-1">
+          <a
+            href="https://esa-blueshell.nl/api/download/20180508-Domestic-Regulations.pdf"
+            class="text-decoration-none"
+            target="_blank"
+          >
+            Internal Regulations (English)
           </a>
         </p>
         <p class="text-body-1">

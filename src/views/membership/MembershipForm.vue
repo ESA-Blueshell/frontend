@@ -1,221 +1,291 @@
 <template>
   <v-main>
-    <top-banner title="Membership Form"></top-banner>
+    <top-banner title="Membership Form"/>
 
-    <div v-if="!succeeded" class="mx-3 pb-10">
-      <v-form class="mx-auto mt-10" style="max-width: 600px" ref="form">
+    <div
+      v-if="!succeeded"
+      class="mx-3 pb-10"
+    >
+      <v-form
+        ref="form"
+        class="mx-auto mt-10"
+        style="max-width: 600px"
+      >
         <v-row>
           <v-col cols="4">
             <v-text-field
+              ref="initials"
               v-model="form.initials"
+              :disabled="loggedIn"
               :rules="initialsRules"
               label="Initials"
-              ref="initials"/>
+            />
           </v-col>
           <v-col cols="8">
             <v-text-field
+              ref="firstName"
               v-model="form.firstName"
+              :disabled="loggedIn"
               :rules="firstNameRules"
               label="First name"
-              ref="firstName"/>
+            />
           </v-col>
         </v-row>
         <v-row class="mt-n7 mb-n5">
           <v-col cols="4">
             <v-text-field
+              ref="prefix"
               v-model="form.prefix"
+              :disabled="loggedIn"
               label="Prefix"
-              ref="prefix"/>
+            />
           </v-col>
           <v-col cols="8">
             <v-text-field
+              ref="lastName"
               v-model="form.lastName"
+              :disabled="loggedIn"
               :rules="lastNameRules"
               label="Last name"
-              ref="lastName"/>
+            />
           </v-col>
         </v-row>
         <v-row>
           <v-col cols="6">
             <v-text-field
+              ref="username"
               v-model="form.username"
+              :disabled="loggedIn"
               :rules="usernameRules"
               label="Username"
-              ref="username"/>
+            />
           </v-col>
           <v-col cols="6">
             <v-text-field
+              ref="email"
               v-model="form.email"
+              :disabled="loggedIn"
               :rules="emailRules"
               label="Email"
               required
-              ref="email"/>
+            />
           </v-col>
         </v-row>
         <v-row>
           <v-col cols="12">
             <v-text-field
+              ref="discord"
               v-model="form.discord"
               label="Discord Username"
-              ref="discord"/>
+              :rules="discordRules"
+            />
           </v-col>
         </v-row>
-        <v-row>
+        <v-row v-if="!loggedIn">
           <v-col cols="6">
             <v-text-field
               v-model="form.password"
               :rules="passwordRules"
               label="Password"
-              @click:append="showPass = !showPass"
               :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
-              :type="showPass ? 'text' : 'password'"/>
+              :type="showPass ? 'text' : 'password'"
+              @click:append="showPass = !showPass"
+            />
           </v-col>
           <v-col cols="6">
             <v-text-field
               v-model="form.passwordAgain"
-              :rules="[ v => !!v || 'Password is required', v => v===this.form.password || 'The passwords should be the same' ]"
+              :rules="[ v => !!v || 'Password is required', v => v===form.password || 'The passwords should be the same' ]"
               label="Password (repeated)"
-              @click:append="showPass = !showPass"
               :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
-              :type="showPass ? 'text' : 'password'"/>
+              :type="showPass ? 'text' : 'password'"
+              @click:append="showPass = !showPass"
+            />
           </v-col>
         </v-row>
         <v-row>
           <v-col cols="4">
             <v-text-field
+              ref="postalCode"
               v-model="form.postalCode"
               label="Postal Code"
               :rules="postalCodeRules"
-              ref="postalCode"/>
+            />
           </v-col>
           <v-col cols="8">
             <v-text-field
+              ref="city"
               v-model="form.city"
               label="Place of Residence"
               :rules="cityRules"
-              ref="city"/>
+            />
           </v-col>
         </v-row>
         <v-row>
           <v-col cols="4">
             <v-text-field
+              ref="dateOfBirth"
               v-model="form.dateOfBirth"
               label="Date of Birth"
-              ref="dateOfBirth"
               :rules="dateOfBirthRules"
-              type="date"/>
+              type="date"
+            />
           </v-col>
           <v-col cols="8">
-            <v-text-field
+            <v-phone-input
               v-model="form.phoneNumber"
-              label="Phone Number"
-              ref="phoneNumber"
+              :mode="'international'"
+              :default-country="'nl'"
               :rules="phoneNumberRules"
-              :default-country="'nl'"/>
+              class="v-text-field__input"
+              placeholder="Phone Number"
+            />
           </v-col>
         </v-row>
         <v-row>
           <v-col cols="6">
             <v-checkbox
               v-model="form.ehbo"
-              label="I have a EHBO Diploma"/>
+              label="I have a EHBO Diploma"
+            />
           </v-col>
           <v-col cols="6">
             <v-checkbox
               v-model="form.bhv"
-              label="I have a BHV Diploma"/>
+              label="I have a BHV Diploma"
+            />
           </v-col>
         </v-row>
         <v-row>
           <v-col cols="12">
             <v-checkbox
               v-model="form.newsletter"
-              label="I want subscribe to the newsletter of Blueshell E-sports"/>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col cols="6">
-            <a href="https://esa-blueshell.nl/api/download/20171212-Statuten.pdf"
-               class="text-decoration-none"
-               target="_blank">
-              Statutes (Dutch)
-            </a>
-          </v-col>
-          <v-col cols="6">
-            <a href="https://esa-blueshell.nl/api/download/20180109-Huishoudelijk-Reglement-Blueshell-E-Sports.pdf"
-               class="text-decoration-none" target="_blank">
-              Internal Regulations (Dutch)
-            </a>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col cols="6">
-            <a href="https://esa-blueshell.nl/api/download/Privacybeleid-Blueshell.pdf"
-               class="text-decoration-none" target="_blank">
-              Privacy Policy (Dutch)
-            </a>
-          </v-col>
-          <v-col cols="6">
-            <a href="https://esa-blueshell.nl/api/download/Privacybeleid-Blueshell.pdf"
-               class="text-decoration-none" target="_blank">
-              Privacy Policy (Dutch)
-            </a>
+              label="I want subscribe to the newsletter of Blueshell E-sports"
+            />
           </v-col>
         </v-row>
         <v-spacer/>
-        <v-sheet class="pa-4">
-          <strong>Membership conditions</strong><br/>
+        <v-sheet
+          class="pa-4"
+          style="border-radius: 10px"
+        >
+          <strong>Membership conditions</strong><br>
           The undersigned hereby declares to be a member of Blueshell E-Sports Association Enschede until further
           notice. He/she hereby agrees to the Statutes, privacy policy and the Domestic Regulations (Huishoudelijk
           reglement) of this association. Cancellation must take place no later than four weeks before the beginning of
           the new academic year.
-          <br/>
-          <br/>
-          <strong>Contribution</strong><br/>
-          The undersigned understands that they will need to pay the 2024/2025 contribution fee of €20, for which they
-          will receive payment details per email.
-          <br/>
-          <v-row class="mt-4" style="width: 100%;">
+          <br>
+          <br>
+          <v-row>
+            <v-col cols="6">
+              <a
+                href="https://esa-blueshell.nl/api/download/20171212-Statuten.pdf"
+                class="text-decoration-none"
+                target="_blank"
+              >
+                Statutes (Dutch)
+              </a>
+            </v-col>
+            <v-col cols="6">
+              <a
+                href="https://esa-blueshell.nl/api/download/20180109-Huishoudelijk-Reglement-Blueshell-E-Sports.pdf"
+                class="text-decoration-none"
+                target="_blank"
+              >
+                Internal Regulations (Dutch)
+              </a>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="6">
+              <a
+                href="https://esa-blueshell.nl/api/download/Statutes-Blueshell-Esports-English.pdf"
+                class="text-decoration-none"
+                target="_blank"
+              >
+                Statutes (English)
+              </a>
+            </v-col>
+            <v-col cols="6">
+              <a
+                href="https://esa-blueshell.nl/api/download/20180508-Domestic-Regulations.pdf"
+                class="text-decoration-none"
+                target="_blank"
+              >
+                Internal Regulations (English)
+              </a>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="6">
+              <a
+                href="https://esa-blueshell.nl/api/download/Privacybeleid-Blueshell.pdf"
+                class="text-decoration-none"
+                target="_blank"
+              >
+                Privacy Policy (Dutch)
+              </a>
+            </v-col>
+            <v-col cols="6">
+              <a
+                href="https://esa-blueshell.nl/api/download/Code_of_Conduct_Blueshell_Esports.pdf"
+                class="text-decoration-none"
+                target="_blank"
+              >
+                Code of Conduct (English)
+              </a>
+            </v-col>
+          </v-row>
+          <br>
+          <contribution is-form />
+          <v-row
+            class="mt-4"
+            style="width: 100%;"
+          >
             <v-input
               ref="signature"
-              :rules="signatureRules"
               v-model="form.signature"
-              hide-details="auto">
-              <template v-slot:default>
-                <v-row class="d-flex justify-center">
-                  <Vue3Signature
-                    style="border-radius: 8px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); background-color: white"
-                    :w="'500px'"
-                    ref="signaturePad"
-                    :h="'300px'"
-                  />
-                </v-row>
-              </template>
+              :rules="signatureRules"
+              hide-details="auto"
+            >
+              <v-row class="d-flex justify-center mb-1">
+                <VueSignaturePad
+                  ref="signaturePad"
+                  style="aspect-ratio: 5/3"
+                  :width="'100%'"
+                  :options="{backgroundColor: 'rgba(255,255,255)'}"
+                  :scale-to-device-pixel-ratio="true"
+                />
+              </v-row>
             </v-input>
           </v-row>
           <v-row class="d-flex justify-end mt-4">
             <v-btn
               type="button"
               class="btn btn-danger"
-              @click="clearSignature">
+              @click="clearSignature"
+            >
               Clear
             </v-btn>
           </v-row>
           <v-row>
             <v-col cols="6">
               <v-text-field
+                ref="signatureCity"
                 v-model="form.signatureCity"
                 label="Place"
                 :rules="signatureCityRules"
-                ref="signatureCity"/>
+              />
             </v-col>
             <v-col cols="6">
               <v-text-field
-                v-model="form.signatureDate"
-                label="Date"
                 ref="signatureDate"
+                v-model="form.signatureDate"
+                type="date"
+                label="Date"
                 :rules="signatureDateRules"
-                type="date"/>
+                :disabled="true"
+              />
             </v-col>
           </v-row>
         </v-sheet>
@@ -225,7 +295,8 @@
             <v-btn
               :loading="clicked"
               color="primary"
-              @click="submitForm">
+              @click="submitForm"
+            >
               Submit
             </v-btn>
           </v-col>
@@ -233,8 +304,12 @@
       </v-form>
     </div>
 
-    <div v-else-if="succeeded" class="mx-auto my-10" style="max-width: 600px">
-      <p class="text-center text-subtitle-1 font-weight-light">
+    <div
+      v-else-if="succeeded"
+      class="mx-auto my-10"
+      style="max-width: 600px"
+    >
+      <p class="text-center text-subtitle-1 font-weight-lifght">
         Your membership form has successfully been submitted!
       </p>
     </div>
@@ -244,17 +319,28 @@
 <script>
 import TopBanner from "@/components/top-banner";
 import {ref} from "vue";
+import moment from "moment";
+import {VPhoneInput} from "v-phone-input";
+import {$handleNetworkError} from "@/plugins/handleNetworkError";
+import Contribution from "@/components/contribution.vue";
+import {$goto} from "@/plugins/goto";
 
 export default {
-  components: {TopBanner},
+  components: {
+    Contribution,
+    VPhoneInput,
+    TopBanner,
+  },
   setup() {
     const signaturePad = ref(null);
-    return { signaturePad };
+    const phone = ref('');
+    return {phone, signaturePad};
   },
   data: () => ({
     clicked: false,
     succeeded: false,
     showPass: false,
+    loggedIn: false,
     form: {
       username: null,
       password: null,
@@ -264,9 +350,6 @@ export default {
       initials: null,
 
       postalCode: null,
-      // street: '',
-      // houseNumber: '',
-      // country: '',
       phoneNumber: null,
       city: null,
       dateOfBirth: null,
@@ -277,7 +360,7 @@ export default {
       newsletter: false,
 
       signatureCity: null,
-      signatureDate: null,
+      signatureDate: moment().format('YYYY-MM-DD'),
       signature: null,
     },
     usernameRules: [
@@ -307,6 +390,9 @@ export default {
       v => !!v || 'Email is required',
       v => (!!v && /^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$/.test(v)) || 'Enter a valid e-mail address',
     ],
+    discordRules: [
+      v => !!v || 'Discord Username is required',
+    ],
     postalCodeRules: [
       v => !!v || 'Postal code is required',
     ],
@@ -323,17 +409,51 @@ export default {
       v => !!v || 'Signature is required',
     ]
   }),
+  mounted() {
+    const login = this.$store.getters.getLogin;
+    this.loggedIn = !!login;
+    if (login) {
+
+      this.$http
+        .get(`users/${login.userId}`, {headers: {'Authorization': `Bearer ${login.token}`}})
+        .then(response => {
+          Object.assign(this.form, response.data)
+        })
+    }
+  },
   methods: {
     clearSignature() {
-      this.signaturePad.clear()
+      this.signaturePad.clearSignature()
     },
     async submitForm() {
-      if (this.signaturePad.isEmpty()) {
+      const {isEmpty, data} = this.signaturePad.saveSignature('image/png')
+      if (isEmpty) {
         this.form.signature = null;
       } else {
-        const data = this.signaturePad.save('image/png')
-        console.log('data: ', data)
-        this.form.signature = data.split(",")[1]; // Extract base64 part of signature png
+        const image = new Image();
+        image.src = data;
+
+        // Create a promise to await the image loading and scaling process
+        const scaledData = await new Promise((resolve) => {
+          image.onload = () => {
+            const canvas = document.createElement("canvas");
+            canvas.width = 500;  // Set the canvas width to your desired scaling
+            canvas.height = 300; // Set the canvas height to your desired scaling
+
+            // Get the 2D drawing context
+            const ctx = canvas.getContext("2d");
+
+            // Scale and draw the image on the canvas
+            ctx.drawImage(image, 0, 0, 500, 300);
+
+            // Get the scaled image data
+            const scaledImageData = canvas.toDataURL();
+            resolve(scaledImageData);
+          };
+        });
+
+        // Set the scaled signature to the form (Base64 part only)
+        this.form.signature = scaledData.split(",")[1];
       }
 
       const {valid} = await this.$refs.form.validate()
@@ -344,15 +464,33 @@ export default {
 
       this.clicked = true;
 
-      this.$http.put('createMember', this.form)
+      const login = this.$store.getters.getLogin;
+
+      var request =  null;
+      if (!!login) {
+        request = this.$http.put(`users/${login.userId}`, this.form, {headers: {'Authorization': `Bearer ${login.token}`}})
+      } else {
+        request = this.$http.post('createAccount', this.form)
+      }
+      request
         .then(() => {
           this.succeeded = true;
+          const login = this.$store.getters.getLogin;
+          // If succesfull update the roles so that the user is now a member
+          if (login) {
+            this.$http
+              .get(`users/${login.userId}`, {headers: {'Authorization': `Bearer ${login.token}`}})
+              .then(response => {
+                this.$store.commit('setRoles', response.data.roles)
+                $goto('/')
+              })
+          }
         })
         .catch(e => {
-          if (e.response.status === 400) {
-            this.$store.commit('setNetworkErrorMessage', e.response.data);
+          if (e.response?.status === 400) {
+            this.$store.commit('setStatusSnackbarMessage', e.response.data)
           } else {
-            this.$root.handleNetworkError(e);
+            $handleNetworkError(e)
           }
         })
         .finally(() => {

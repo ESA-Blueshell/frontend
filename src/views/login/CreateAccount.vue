@@ -9,96 +9,104 @@
       <v-form
         ref="form"
         class="mx-auto mt-10"
-        style="max-width: 500px"
+        style="max-width: 600px"
       >
         <v-row>
-          <v-col
-            cols="4"
-            class="pl-0"
-          >
+          <v-col cols="4">
             <v-text-field
               ref="initials"
-              v-model="initials"
+              v-model="form.initials"
               :rules="initialsRules"
               label="Initials"
             />
           </v-col>
-          <v-col
-            cols="8"
-            class="pr-0"
-          >
+          <v-col cols="8">
             <v-text-field
               ref="firstName"
-              v-model="firstName"
+              v-model="form.firstName"
               :rules="firstNameRules"
               label="First name"
             />
           </v-col>
         </v-row>
-        <v-row class="mt-n7">
-          <v-col
-            cols="4"
-            class="pl-0"
-          >
+        <v-row class="mt-n7 mb-n5">
+          <v-col cols="4">
             <v-text-field
               ref="prefix"
-              v-model="prefix"
+              v-model="form.prefix"
               label="Prefix"
             />
           </v-col>
-          <v-col
-            cols="8"
-            class="pr-0"
-          >
+          <v-col cols="8">
             <v-text-field
               ref="lastName"
-              v-model="lastName"
+              v-model="form.lastName"
               :rules="lastNameRules"
               label="Last name"
             />
           </v-col>
         </v-row>
-        <v-text-field
-          ref="username"
-          v-model="username"
-          :rules="usernameRules"
-          label="Username"
-        />
-        <v-text-field
-          v-model="password"
-          :rules="passwordRules"
-          label="Password"
-          :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
-          :type="showPass ? 'text' : 'password'"
-          @click:append="showPass = !showPass"
-        />
-        <v-text-field
-          v-model="passwordAgain"
-          :rules="[ v => !!v || 'Password is required', v => v===password || 'The passwords should be the same' ]"
-          label="Password (repeated)"
-          :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
-          :type="showPass ? 'text' : 'password'"
-          @click:append="showPass = !showPass"
-        />
-        <v-text-field
-          ref="email"
-          v-model="email"
-          :rules="emailRules"
-          label="Email"
-          required
-        />
         <v-row>
-          <v-spacer />
-          <v-col cols="auto">
-            <v-btn
-              :loading="clicked"
-              color="primary"
-              @click="createAccount"
-            >
-              Create account
-            </v-btn>
+          <v-col cols="12">
+            <v-text-field
+              ref="discord"
+              v-model="form.discord"
+              label="Discord Username"
+              :rules="discordRules"
+            />
           </v-col>
         </v-row>
+        <v-row>
+          <v-col cols="4">
+            <v-text-field
+              ref="username"
+              v-model="form.username"
+              :rules="usernameRules"
+              label="Username"
+            />
+          </v-col>
+          <v-col cols="8">
+            <v-text-field
+              ref="email"
+              v-model="form.email"
+              :rules="emailRules"
+              label="Email"
+              required
+            />
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="6">
+            <v-text-field
+              v-model="form.password"
+              :rules="passwordRules"
+              label="Password"
+              :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
+              :type="showPass ? 'text' : 'password'"
+              @click:append="showPass = !showPass"
+            />
+          </v-col>
+          <v-col cols="6">
+            <v-text-field
+              v-model="form.passwordAgain"
+              :rules="[ v => !!v || 'Password is required', v => v===form.password || 'The passwords should be the same' ]"
+              label="Password (repeated)"
+              :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
+              :type="showPass ? 'text' : 'password'"
+              @click:append="showPass = !showPass"
+            />
+          </v-col>
+        </v-row>
+        <v-spacer />
+        <v-col cols="auto">
+          <v-btn
+            :loading="clicked"
+            color="primary"
+            @click="createAccount"
+          >
+            Create account
+          </v-btn>
+        </v-col>
       </v-form>
     </div>
 
@@ -119,21 +127,28 @@
 <script>
 import TopBanner from "@/components/top-banner";
 import {$handleNetworkError} from "@/plugins/handleNetworkError";
+import {ref} from "vue";
 
 export default {
   components: {TopBanner},
+  setup() {
+    const phone = ref('');
+    return {phone};
+  },
   data: () => ({
     clicked: false,
     succeeded: false,
     showPass: false,
-    username: '',
-    initials: '',
-    firstName: '',
-    prefix: '',
-    lastName: '',
-    password: '',
-    passwordAgain: '',
-    email: '',
+    form: {
+      username: null,
+      initials: null,
+      firstName: null,
+      lastName: null,
+      password: null,
+      passwordAgain: null,
+      email: null,
+      discord: null,
+    },
     usernameRules: [
       v => !!v || 'Username is required',
       v => /^[a-zA-Z0-9]+$/.test(v) || 'Username must only contain alphanumeric characters',
@@ -151,44 +166,39 @@ export default {
       v => !!v || 'Password is required',
     ],
     emailRules: [
-      // Tier 3 email validation https://howtodoinjava.com/java/regex/java-regex-validate-email-address/
       v => !!v || 'Email is required',
       v => (!!v && /^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$/.test(v)) || 'Enter a valid e-mail address',
     ],
+    discordRules: [
+      v => !!v || 'Discord Username is required',
+    ],
   }),
   methods: {
-    createAccount() {
-      // Check if form is valid (meaning all fields are not empty)
-      if (!this.$refs.form.validate()) {
-        return
+    async createAccount() {
+      const {valid} = await this.$refs.form.validate()
+
+      if (!valid) {
+        return;
       }
 
       this.clicked = true
 
       // Send authenticate request
-      this.$http.put('createAccount', {
-        username: this.username,
-        password: this.password,
-        email: this.email,
-        firstName: this.firstName,
-        prefix: this.prefix,
-        lastName: this.lastName,
-        initials: this.initials,
-      })
-          .then(() => {
-            this.succeeded = true
-          })
-          .catch(e => {
-                if (e.response?.status === 400) {
-                  this.$store.commit('setStatusSnackbarMessage', e.response.data)
-                } else {
-                  $handleNetworkError(e)
-                }
-              }
-          )
-          .finally(() => {
-            this.clicked = false
-          })
+      this.$http.post('createAccount', this.form)
+        .then(() => {
+          this.succeeded = true
+        })
+        .catch(e => {
+            if (e.response?.status === 400) {
+              this.$store.commit('setStatusSnackbarMessage', e.response.data)
+            } else {
+              $handleNetworkError(e)
+            }
+          }
+        )
+        .finally(() => {
+          this.clicked = false
+        })
     },
   }
 }

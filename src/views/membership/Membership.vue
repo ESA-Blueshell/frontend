@@ -34,90 +34,20 @@
             following year. Furthermore, it is <b>not</b> required to have a Union Card in order to
             become a member of Blueshell.
           </p>
-          <p class="text-body-1">
-            Down below, you can find all the relevant information about becoming a member!
-          </p>
-        </div>
-        <div class="my-10">
-          <p class="text-h4 font-weight-light">
-            How to become a member?
-          </p>
-          <p class="text-body-1">
-            To become a member you first need to fill out the suitable membership form given below
-            and
-            send the filled out application form to the board via the mail
-            <a
-              href="mailto:blueshellesports@gmail.com"
-              class="text-decoration-none"
-            >
-              blueshellesports@gmail.com</a>:
-          </p>
-          <ul>
-            <li>
-              <v-btn to="/membership/signup">
-                Signup Through our Online Form
-              </v-btn>
-            </li>
-            <li>
-              <a
-                href="https://esa-blueshell.nl/api/download/Membership-form-UT-2024-2025.pdf"
-                target="_blank"
-                class="text-decoration-none"
-              >
-                For University of Twente students</a>
-            </li>
-            <li>
-              <a
-                href="https://esa-blueshell.nl/api/download/Membership-form-External-2024-2025.pdf"
-                target="_blank"
-                class="text-decoration-none"
-              >
-                For externals</a>
-            </li>
-            <li>
-              <a
-                href="https://esa-blueshell.nl/api/download/Membership-form-Alumni-2024-2025.pdf"
-                target="_blank"
-                class="text-decoration-none"
-              >
-                For alumni</a>
-            </li>
-          </ul>
-          <p class="text-body-1">
-            <br>
-            Afterward, you will be asked to pay the membership contribution which is elaborated on
-            under the respective section.
-          </p>
-        </div>
-        <div class="my-10">
-          <p class="text-h4 font-weight-light">
-            Contribution
-          </p>
-          <p>
-            The membership fees for the academic year 2024/2025 are:
-          </p>
-          <ul>
-            <li><b>€20</b> for a full year membership;</li>
-            <li><b>€12.50</b> for a half-year membership*;</li>
-            <li><b>€10</b> for an Alumni membership.</li>
-          </ul>
-          <p class="text-body-1">
-            <br>
-            *A half-year membership can only be obtained between the months of February and July.
-          </p>
-          <p class="text-body-1">
-            The membership fee can be paid in cash or transferred to the bank account of Blueshell
-            Esports (NL19 INGB 00080964 62 attn of Treasurer of Blueshell). Further details can be
-            found on the membership form.
 
-            Another option is via a
-            <a
-              href="https://esa-blueshell.nl/api/download/Direct_Debit_Mandate.pdf"
-              target="_blank"
-              class="text-decoration-none"
-            >
-              Direct Debit Mandate</a>, allowing a one time or recurring payment by direct debit.
-          </p>
+          <v-btn
+            class="mt-5"
+            color="primary"
+            rounded
+            style="font-size: 30px;height: 50px;"
+            size="x-large"
+            @click="$goto('membership/signup')"
+          >
+            Become a member!
+          </v-btn>
+        </div>
+        <div class="my-10">
+          <contribution />
         </div>
       </div>
     </div>
@@ -126,4 +56,6 @@
 
 <script setup>
 import TopBanner from "@/components/top-banner";
+import {$goto} from "@/plugins/goto";
+import Contribution from "@/components/contribution.vue";
 </script>

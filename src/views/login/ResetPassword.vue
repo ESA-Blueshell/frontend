@@ -78,30 +78,35 @@ export default {
     },
   },
   methods: {
-    resetPassword() {
-      if (this.$refs.form.validate()) {
-        this.loading = true
+    async resetPassword() {
+      const {valid} = await this.$refs.form.validate()
 
-        // Send reset request
-        this.$http.post(`users/password`, {
-          username: this.username,
-          newPassword: this.password,
-          token: this.token,
-        }).then(() => {
-          this.succeeded = true
-          setTimeout(() => this.$router.push({path: '/login'}), 5000);
-        }).catch(e => {
-          if (e.response?.status === 400) {
-            this.$store.commit('setStatusSnackbarMessage', e.response.data)
-          } else if (e.response?.status === 404) {
-            this.$store.commit('setStatusSnackbarMessage', "The username you gave doesn't exist. Maybe check the spelling?")
-          } else {
-            $handleNetworkError(e)
-          }
-        }).finally(() => {
-          this.loading = false
-        })
+      if (!valid) {
+        return;
       }
+
+      this.loading = true
+
+      // Send reset request
+      this.$http.post(`users/password`, {
+        username: this.username,
+        newPassword: this.password,
+        token: this.token,
+      }).then(() => {
+        this.succeeded = true
+        setTimeout(() => this.$router.push({path: '/login'}), 5000);
+      }).catch(e => {
+        if (e.response?.status === 400) {
+          this.$store.commit('setStatusSnackbarMessage', e.response.data)
+        } else if (e.response?.status === 404) {
+          this.$store.commit('setStatusSnackbarMessage', "The username you gave doesn't exist. Maybe check the spelling?")
+        } else {
+          $handleNetworkError(e)
+        }
+      }).finally(() => {
+        this.loading = false
+      })
+
     },
   },
 }

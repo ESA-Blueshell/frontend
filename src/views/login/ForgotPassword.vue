@@ -70,24 +70,28 @@ export default {
     this.username = this.$route.query.username
   },
   methods: {
-    sendResetMail() {
-      if (this.$refs.form.validate()) {
-        this.loading = true
-        // Send reset request
-        this.$http.delete(
-            `users/password?username=${this.username}`
-        ).then(() => {
-          this.succeeded = true
-        }).catch(e => {
-          if (e.response?.status === 404) {
-            this.$store.commit('setStatusSnackbarMessage', "Uhhh, we don't know that username... Maybe check the spelling?")
-          } else {
-            $handleNetworkError(e)
-          }
-        }).finally(() => {
-          this.loading = false
-        })
+    async sendResetMail() {
+      const {valid} = await this.$refs.form.validate()
+
+      if (!valid) {
+        return;
       }
+
+      this.loading = true
+      // Send reset request
+      this.$http.delete(
+        `users/password?username=${this.username}`
+      ).then(() => {
+        this.succeeded = true
+      }).catch(e => {
+        if (e.response?.status === 404) {
+          this.$store.commit('setStatusSnackbarMessage', "Uhhh, we don't know that username... Maybe check the spelling?")
+        } else {
+          $handleNetworkError(e)
+        }
+      }).finally(() => {
+        this.loading = false
+      })
     },
   }
 }

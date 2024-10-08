@@ -232,11 +232,14 @@ const router = createRouter({
 
 
 router.beforeEach((to, from, next) => {
-  if (to.meta.requiresAuth && (store.getters.getLogin == null || store.getters.tokenExpired)) {
+  const login = store.getters.getLogin
+  if (to.meta.requiresAuth && (login == null || store.getters.tokenExpired)) {
     next({
       path: '/login',
       query: {redirect: to.fullPath},
     })
+  } else if (login && to.fullPath === '/membership/signup' && login.roles.includes('MEMBER')) {
+    store.commit('setStatusSnackbarMessage', "You are already a member!")
   } else {
     next()
   }

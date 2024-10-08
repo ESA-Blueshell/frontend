@@ -102,8 +102,8 @@ export default {
   }),
   mounted() {
     this.$http.get('users/members', {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
-        .then(response => this.memberSelectItems = response.data)
-        .catch(e => $handleNetworkError(e))
+      .then(response => this.memberSelectItems = response.data)
+      .catch(e => $handleNetworkError(e))
 
     if (this.committee) {
       this.editingCommittee = JSON.parse(JSON.stringify(this.committee));
@@ -119,33 +119,37 @@ export default {
     addMember() {
       this.editingCommittee.members.push({role: '', user: null})
     },
-    submit() {
-      if (this.$refs.form.validate()) {
-        this.$emit('submitting')
+    async submit() {
+      const {valid} = await this.$refs.form.validate()
 
-        if (!this.committee) {
-          this.$http.post('committees',
-              JSON.stringify(this.editingCommittee),
-              {
-                headers: {
-                  'Authorization': `Bearer ${this.$store.getters.getLogin.token}`,
-                  'Content-Type': 'application/json'
-                }
-              })
-              .then(() => this.$emit('close'))
-              .catch(e => $handleNetworkError(e))
-        } else {
-          this.$http.put('committees/' + this.editingCommittee.id,
-              JSON.stringify(this.editingCommittee),
-              {
-                headers: {
-                  'Authorization': `Bearer ${this.$store.getters.getLogin.token}`,
-                  'Content-Type': 'application/json'
-                }
-              })
-              .then(() => this.$emit('close'))
-              .catch(e => $handleNetworkError(e))
-        }
+      if (!valid) {
+        return;
+      }
+
+      this.$emit('submitting')
+
+      if (!this.committee) {
+        this.$http.post('committees',
+          JSON.stringify(this.editingCommittee),
+          {
+            headers: {
+              'Authorization': `Bearer ${this.$store.getters.getLogin.token}`,
+              'Content-Type': 'application/json'
+            }
+          })
+          .then(() => this.$emit('close'))
+          .catch(e => $handleNetworkError(e))
+      } else {
+        this.$http.put('committees/' + this.editingCommittee.id,
+          JSON.stringify(this.editingCommittee),
+          {
+            headers: {
+              'Authorization': `Bearer ${this.$store.getters.getLogin.token}`,
+              'Content-Type': 'application/json'
+            }
+          })
+          .then(() => this.$emit('close'))
+          .catch(e => $handleNetworkError(e))
       }
     },
   },
