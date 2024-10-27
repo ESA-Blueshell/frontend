@@ -168,7 +168,7 @@ export default {
     emailRules: [
       v => !!v || 'Email is required',
       v => (!!v && /^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$/.test(v)) || 'Enter a valid e-mail address',
-      v => (!/student/i.test(v)) || 'You may not use your student email to sign up',    ],
+    ],
     discordRules: [
       v => !!v || 'Discord Username is required',
     ],
