@@ -16,8 +16,8 @@ const vPhoneInput = createVPhoneInput({
   countryIconMode: 'svg',
 });
 
-// Axios.defaults.baseURL = "http://localhost:8080/api/"
-Axios.defaults.baseURL = "https://esa-blueshell.nl/api/"
+Axios.defaults.baseURL = "http://localhost:8080/api/"
+// Axios.defaults.baseURL = "https://esa-blueshell.nl/api/"
 
 
 
