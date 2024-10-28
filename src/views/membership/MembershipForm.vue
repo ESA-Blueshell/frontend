@@ -231,7 +231,7 @@
           </v-row>
         </v-sheet>
         <v-row>
-          <v-spacer />
+          <v-spacer/>
           <v-col cols="auto">
             <v-btn
               :loading="clicked"
@@ -265,11 +265,9 @@ import {VPhoneInput} from "v-phone-input";
 import {$handleNetworkError} from "@/plugins/handleNetworkError";
 import Contribution from "@/components/contribution.vue";
 import {$goto} from "@/plugins/goto";
-import DocumentTable from "@/components/DocumentTable.vue";
 
 export default {
   components: {
-    DocumentTable,
     Contribution,
     VPhoneInput,
     TopBanner,
@@ -444,3 +442,12 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.v-col:first-child {
+  padding-left: 0;
+}
+.v-col:last-child {
+  padding-right: 0;
+}
+</style>
