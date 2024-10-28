@@ -237,7 +237,15 @@ export default {
     accountData: null,
     oldAccountData: null,
     valid: true,
-    submitting: false
+    submitting: false,
+    discordRules: [
+      v => !!v || 'Discord Username is required',
+    ],
+    phoneNumberRules: [
+      v => !!v || 'Phone number is required',
+      v => !!v || !!v.match(/^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/) || 'Fill in a correct phone number'
+    ],
+
   }),
   mounted() {
     const login = this.$store.getters.getLogin

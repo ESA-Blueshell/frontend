@@ -1,6 +1,6 @@
 <template>
   <v-main>
-    <top-banner title="Membership Form"/>
+    <top-banner title="Membership Form" />
 
     <div
       v-if="!succeeded"
@@ -164,7 +164,7 @@
             />
           </v-col>
         </v-row>
-        <v-spacer/>
+        <v-spacer />
         <v-sheet
           class="pa-4"
           style="border-radius: 10px"
@@ -290,7 +290,7 @@
           </v-row>
         </v-sheet>
         <v-row>
-          <v-spacer/>
+          <v-spacer />
           <v-col cols="auto">
             <v-btn
               :loading="clicked"
@@ -467,8 +467,8 @@ export default {
 
       const login = this.$store.getters.getLogin;
 
-      var request =  null;
-      if (!!login) {
+      var request = null;
+      if (login) {
         request = this.$http.put(`users/${login.userId}`, this.form, {headers: {'Authorization': `Bearer ${login.token}`}})
       } else {
         request = this.$http.post('createAccount', this.form)
@@ -501,3 +501,12 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.v-col:first-child {
+  padding-left: 0;
+}
+.v-col:last-child {
+  padding-right: 0;
+}
+</style>

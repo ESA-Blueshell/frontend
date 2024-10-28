@@ -22,7 +22,7 @@
       style="max-width: 800px"
     >
       <v-skeleton-loader
-        v-if="news === []"
+        v-if="news?.length === 0"
         type="card"
       />
       <v-list v-else>
