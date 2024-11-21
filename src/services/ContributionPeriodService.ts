@@ -1,6 +1,7 @@
 import BaseService from './BaseService';
 import type ContributionPeriodModel from "../models/ContributionPeriodModel";
 import type ContributionModel from "@/models/ContributionModel";
+import type UserModel from "@/models/UserModel";
 
 export default class ContributionPeriodService extends BaseService {
   constructor() {
@@ -26,9 +27,14 @@ export default class ContributionPeriodService extends BaseService {
       .then((response) => response.data as ContributionPeriodModel);
   }
 
-  // Get contributions by period ID
   public async getContributions(id: number): Promise<ContributionModel[]> {
     return this.get({id, action: 'contributions'})
       .then((response) => response.data as ContributionModel[]);
+  }
+
+  // Get contributions by period ID
+  public async getContributionForUser(id: number, user: UserModel): Promise<ContributionModel> {
+    return this.get({id, action: `users/${user.id}/contribution`})
+      .then((response) => response.data as ContributionModel);
   }
 }

@@ -7,7 +7,7 @@
       <v-col cols="11">
         <v-slide-group
           v-model="selectedPeriodId"
-          show-arrows="true"
+          :show-arrows="true"
           center-active
           mandatory
           selected-class="bg-primary"
@@ -86,7 +86,7 @@ export default defineComponent({
     ContributionPeriodDialog,
     DeleteConfirmationDialog,
   },
-  emits: ['contributions-changed'],
+  emits: ['selected-period-id-changed'],
   setup(props, { emit }) {
     const contributionPeriods = ref([] as ContributionPeriodModel[]);
     const selectedPeriodId = ref(0);
@@ -140,15 +140,7 @@ export default defineComponent({
     };
 
     const selectedPeriodIdChanged = (selectedPeriodId: number) => {
-      fetchContributionsForPeriod(selectedPeriodId);
-    };
-
-    const fetchContributionsForPeriod = async (periodId: number) => {
-      if (!periodId) {
-        return;
-      }
-      const contributions = await contributionPeriodService.getContributions(periodId);
-      emit('contributions-changed', contributions);
+      emit('selected-period-id-changed', selectedPeriodId);
     };
 
     onMounted(() => {

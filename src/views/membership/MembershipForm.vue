@@ -37,7 +37,7 @@
               ref="prefix"
               v-model="form.prefix"
               :disabled="loggedIn"
-              label="Prefix"
+              label="Surname Prefix"
             />
           </v-col>
           <v-col cols="8">
@@ -46,7 +46,7 @@
               v-model="form.lastName"
               :disabled="loggedIn"
               :rules="lastNameRules"
-              label="Last name"
+              label="Surname"
             />
           </v-col>
         </v-row>
@@ -344,6 +344,7 @@ export default {
     form: {
       username: null,
       password: null,
+      passwordAgain: null,
       email: null,
       firstName: null,
       lastName: null,
@@ -374,10 +375,11 @@ export default {
       v => !!v || 'First name is required',
     ],
     lastNameRules: [
-      v => !!v || 'Last name is required',
+      v => !!v || 'Surname is required',
     ],
     passwordRules: [
       v => !!v || 'Password is required',
+      (v) => v.length >= 8 || 'Password must be at least 8 characters',
     ],
     dateOfBirthRules: [
       v => !!v || 'Date of birth is required',
