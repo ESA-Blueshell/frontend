@@ -5,37 +5,31 @@
     <div class="mx-3">
       <div
         class="mx-auto my-10"
-        style="max-width: 1000px"
+        style="max-width: 800px"
       >
-        <contribution-period-list @contributions-changed="contributionsChanged" />
+        <contribution-period-list
+          @selected-period-id-changed="selectedPeriodIdChanged"
+        />
 
         <v-text-field
           v-model="search"
           label="Search for a user"
         />
 
-        <user-list
-          title="Non-member users"
-          :users="nonMembers"
-          :expanded="expanded"
-          :contributions="contributions"
+        <UserList
+          title="Unpaid"
+          :users="unpaidMembers"
+          is-member-list
+          is-contribution-manager
           @contribution-changed="contributionChanged"
-          @toggle-expanded="toggleExpanded"
-          @user-changed="userChanged"
-          @delete-user="deleteUser"
         />
 
-        <user-list
+        <UserList
           class="mt-5"
-          title="Members"
-          :users="members"
-          :expanded="expanded"
+          title="Paid"
+          :users="paidMembers"
           is-member-list
-          :contributions="contributions"
           @contribution-changed="contributionChanged"
-          @toggle-expanded="toggleExpanded"
-          @user-changed="userChanged"
-          @delete-user="deleteUser"
         />
       </div>
     </div>
@@ -49,6 +43,7 @@ import UserList from '@/components/UserList.vue';
 import UserService from "@/services/UserService";
 import type ContributionModel from "@/models/ContributionModel";
 import type UserModel from "@/models/UserModel";
+import ContributionPeriodService from "@/services/ContributionPeriodService";
 
 export default defineComponent({
   name: 'MemberManager',
@@ -58,13 +53,19 @@ export default defineComponent({
     UserList,
   },
   setup() {
-    const members = ref([] as UserModel[]);
-    const nonMembers = ref([] as UserModel[]);
+    const paidMembers = ref([] as UserModel[]);
+    const unpaidMembers = ref([] as UserModel[]);
     const users = ref([] as UserModel[]);
     const contributions = ref([] as ContributionModel[]);
-    const expanded = ref(0);
     const search = ref('');
     const userService = new UserService();
+    const contributionPeriodService = new ContributionPeriodService();
+    const selectedPeriodId = ref(0)
+
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+
 
     const getUsers = async () => {
       users.value = await userService.getUsers();
@@ -72,34 +73,32 @@ export default defineComponent({
     };
 
     const isSearched = (user: UserModel) => {
-      return (user.fullName + user.username).toLowerCase().includes(search.value.toLowerCase());
+      if (!search.value) {
+        return true
+      }
+      // Split the search string into individual terms and convert them to lowercase
+      const searchTerms = search.value.toLowerCase().split(' ').filter(Boolean);
+
+      // Get all values from the user object, filter out falsy values, and convert them to lowercase strings
+      const userValues = Object.values(user)
+        .filter(Boolean)
+        .map(value => String(value).toLowerCase());
+
+      // Check if any search term is included in any of the user values
+      return searchTerms.every((term) =>
+        userValues.some((value) => value.includes(term))
+      );
     };
 
     const updateMembers = () => {
-      members.value = users.value.filter((user) => user.roles.includes('MEMBER') && isSearched(user));
-      nonMembers.value = users.value.filter((user) => !user.roles.includes('MEMBER') && isSearched(user));
+      const paidUserIds = contributions.value.map((c) => c.userId);
+      paidMembers.value = users.value.filter((user) => user.id && paidUserIds.includes(user.id) && isSearched(user));
+      unpaidMembers.value = users.value.filter((user) => user.id && !paidUserIds.includes(user.id) && isSearched(user));
     };
 
     watch(search, () => {
       updateMembers();
     });
-
-    const deleteUser = (user: UserModel) => {
-      users.value = users.value.filter((u) => u.id !== user.id);
-      updateMembers();
-    };
-
-    const toggleExpanded = (user: UserModel) => {
-      expanded.value = user.id === expanded.value ? 0 : user.id as number;
-    };
-
-    const userChanged = (user: UserModel) => {
-      const index = users.value.findIndex((u) => u.id === user.id);
-      if (index !== -1) {
-        users.value.splice(index, 1, user);
-        updateMembers();
-      }
-    };
 
     const contributionsChanged = (newContributions: ContributionModel[]) => {
       contributions.value = newContributions;
@@ -107,27 +106,31 @@ export default defineComponent({
 
     const contributionChanged = (updatedContribution: ContributionModel) => {
       const index = contributions.value.findIndex((c) => c.id === updatedContribution.id);
-      console.error('contribution changed',updatedContribution);
       if (index !== -1) {
         contributions.value.splice(index, 1, updatedContribution);
+      } else {
+        contributions.value.push(updatedContribution);
       }
+      updateMembers();
     };
+
+    const selectedPeriodIdChanged = async (periodId: number) => {
+      contributions.value = await contributionPeriodService.getContributions(periodId);
+      selectedPeriodId.value = periodId;
+    }
 
     onMounted(() => {
       getUsers();
     });
 
     return {
-      members,
-      nonMembers,
+      paidMembers,
+      unpaidMembers,
       contributions,
-      expanded,
       search,
-      deleteUser,
-      toggleExpanded,
-      userChanged,
       contributionsChanged,
       contributionChanged,
+      selectedPeriodIdChanged,
     };
   },
 });

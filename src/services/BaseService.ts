@@ -1,4 +1,4 @@
-import {type AxiosInstance, type AxiosResponse} from 'axios';
+import {AxiosError, type AxiosInstance, type AxiosResponse} from 'axios';
 import {Store} from 'vuex';
 import store, {type State} from "../plugins/store";
 import api from "../plugins/api";
@@ -41,9 +41,13 @@ export default class BaseService {
         ...params,
         ...this.authHeader(),
       });
-    } catch (error) {
-      $handleNetworkError(error);
-      throw error;
+    } catch (e) {
+      if (e instanceof AxiosError && e.response?.data?.message) {
+        store.commit('setStatusSnackbarMessage', e.response.data.message);
+      } else {
+        $handleNetworkError(e);
+      }
+      throw e;
     }
   }
 
@@ -66,9 +70,13 @@ export default class BaseService {
         params,
         ...this.authHeader()
       });
-    } catch (error) {
-      $handleNetworkError(error);
-      throw error;
+    } catch (e) {
+      if (e instanceof AxiosError && e.response?.data?.message) {
+        store.commit('setStatusSnackbarMessage', e.response.data.message);
+      } else {
+        $handleNetworkError(e);
+      }
+      throw e;
     }
   }
 
@@ -85,9 +93,17 @@ export default class BaseService {
         params,
         ...this.authHeader()
       });
-    } catch (error) {
-      $handleNetworkError(error);
-      throw error;
+    } catch (e) {
+      if (e instanceof AxiosError && e.response?.data) {
+        if (e.response?.data?.message) {
+          store.commit('setStatusSnackbarMessage', e.response.data.message);
+        }  else {
+          store.commit('setStatusSnackbarMessage', e.response.data);
+        }
+      } else {
+        $handleNetworkError(e);
+      }
+      throw e;
     }
   }
 
@@ -95,9 +111,13 @@ export default class BaseService {
   public async delete(model: Model): Promise<AxiosResponse> {
     try {
       return await this.axios.delete(`${this.baseUrl}/${model.id}`, this.authHeader());
-    } catch (error) {
-      $handleNetworkError(error);
-      throw error;
+    } catch (e) {
+      if (e instanceof AxiosError && e.response?.data?.message) {
+        store.commit('setStatusSnackbarMessage', e.response.data.message);
+      } else {
+        $handleNetworkError(e);
+      }
+      throw e;
     }
   }
 }

@@ -2,6 +2,12 @@ import type Model from "./Model";
 import type ContributionModel from "./ContributionModel";
 import type AuthorityModel from "./AuthorityModel";
 
+export enum MemberType {
+  ALUMNI='ALUMNI',
+  HONORARY='HONORARY',
+  REGULAR='REGULAR'
+}
+
 export default interface UserModel extends Model {
   username: string;
   firstName: string;
@@ -35,7 +41,7 @@ export default interface UserModel extends Model {
   deletedAt?: string;
   onlineSignup?: boolean;
   ehbo?: boolean;
-  inBrevo?: boolean;
+  contactId?: number;
   bhv?: boolean;
   contribution: ContributionModel;
   fullName: string;
@@ -46,5 +52,9 @@ export default interface UserModel extends Model {
   committees: number[];
   profilePicture: number;
   roles: string[];
+  password?: string;
+  token?: string;
+  memberType?: MemberType;
+  incasso?: boolean;
 }
 

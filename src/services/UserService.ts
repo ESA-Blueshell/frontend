@@ -1,5 +1,9 @@
 import BaseService from './BaseService';
 import type UserModel from "../models/UserModel";
+import type ActivateUserRequest from "@/requests/ActivateUserRequest";
+import type ActivateMemberRequest from "@/requests/ActivateMemberRequest";
+import {AxiosError} from "axios";
+import store from "@/plugins/store";
 
 export default class UserService extends BaseService {
   constructor() {
@@ -15,7 +19,7 @@ export default class UserService extends BaseService {
   }
 
   async setMembership(user: UserModel, isMember: boolean): Promise<UserModel> {
-    return this.put({model: user, action: 'member', params: {isMember}})
+    return this.put({model: user, action: 'membership', params: {isMember}})
       .then((response) => response.data as UserModel)
   }
 
@@ -27,5 +31,25 @@ export default class UserService extends BaseService {
   async update(user: UserModel): Promise<UserModel> {
     return this.put({model: user})
       .then((response) => response.data as UserModel);
+  }
+
+  async createUser(user: UserModel): Promise<UserModel> {
+    return this.post({model: user})
+      .then((response) => response.data as UserModel);
+  }
+
+  async createMember(user: UserModel): Promise<UserModel> {
+    return this.post({model: user, action: 'members'})
+      .then((response) => response.data as UserModel);
+  }
+
+  async activateMember(user: ActivateMemberRequest): Promise<void> {
+    return this.post({model: user, action: 'activateMember'})
+      .then(response => response.data);
+  }
+
+  async activateUser(user: ActivateUserRequest): Promise<void> {
+    return this.post({model: user, action: 'activate'})
+      .then(response => response.data);
   }
 }
