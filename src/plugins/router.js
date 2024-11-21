@@ -24,8 +24,8 @@ import EditEvent from "@/views/login/events/EditEvent.vue";
 import EventSignUps from "@/views/login/events/EventSignUps.vue";
 import CommitteeManager from "@/views/login/CommitteeManager.vue";
 import CreateAccount from "@/views/login/CreateAccount.vue";
-import EnableAccount from "@/views/login/EnableAccount.vue";
-import MemberManager from "@/views/login/MemberManager.vue";
+import ActivateAccount from "@/views/login/ActivateAccount.vue";
+import MemberManager from "@/views/managing/MemberManager.vue";
 import RocketLeague from "@/views/esports/RocketLeague.vue";
 import ForgotPassword from "@/views/login/ForgotPassword.vue";
 import ResetPassword from "@/views/login/ResetPassword.vue";
@@ -163,9 +163,9 @@ const router = createRouter({
       component: CreateAccount,
     },
     {
-      path: '/account/enable',
-      name: 'enableAccount',
-      component: EnableAccount
+      path: '/account/activate',
+      name: 'activateAccount',
+      component: ActivateAccount
     },
     {
       path: '/account/articleEditor',

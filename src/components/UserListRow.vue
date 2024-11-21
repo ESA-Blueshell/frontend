@@ -29,7 +29,7 @@
             <div class="d-flex align-center mr-4">
               <span class="mr-2">Brevo</span>
               <v-icon
-                v-if="user.inBrevo"
+                v-if="user.contactId"
                 color="green"
                 class="mr-2"
               >
@@ -49,7 +49,7 @@
               v-if="contribution"
               class="d-flex align-center mr-4"
             >
-              <span class="mr-2">Contribution Paid</span>
+              <span class="mr-2">Paid</span>
               <v-icon
                 v-if="contribution.paid"
                 color="green"
@@ -71,9 +71,9 @@
             </div>
 
             <div class="d-flex align-center mr-4">
-              <span class="mr-2">Online Sign-Up</span>
+              <span class="mr-2">Enabled</span>
               <v-icon
-                v-if="user.onlineSignup"
+                v-if="user.enabled"
                 color="green"
                 class="mr-2"
               >
@@ -178,7 +178,7 @@ export default {
     const { user, contributions } = toRefs(props);
 
     const toggleExpanded = () => {
-      emit('toggle-expanded', props.user);
+      emit('toggle-expanded', props.user.id);
     };
 
     const changeMembership = async (isMember: boolean) => {

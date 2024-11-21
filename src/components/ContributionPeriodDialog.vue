@@ -76,20 +76,30 @@ import {
   reactive,
   computed,
   defineComponent,
-  getCurrentInstance,
   toRefs,
+  watch,
 } from 'vue';
-import { useStore } from 'vuex';
 import { $handleNetworkError } from '@/plugins/handleNetworkError';
 import moment from 'moment';
 import type ContributionPeriodModel from '@/models/ContributionPeriodModel';
+import ContributionPeriodService from '@/services/ContributionPeriodService';
+import type { VForm } from 'vuetify/components';
 
 export default defineComponent({
   name: 'ContributionPeriodDialog',
   props: {
-    modelValue: Boolean,
-    isEditing: Boolean,
-    selectedPeriod: Object,
+    modelValue: {
+      type: Boolean,
+      required: true,
+    },
+    isEditing: {
+      type: Boolean,
+      required: true,
+    },
+    selectedPeriod: {
+      type: Object as () => ContributionPeriodModel | null,
+      default: null,
+    },
     contributionPeriods: {
       type: Array as () => ContributionPeriodModel[],
       default: () => [],
@@ -102,38 +112,38 @@ export default defineComponent({
       set: (value) => emit('update:modelValue', value),
     });
 
-    const form = reactive({
+    const form = reactive<ContributionPeriodModel>({
+      id: props.selectedPeriod?.id || 0,
       startDate: '',
       endDate: '',
-      halfYearFee: null,
-      fullYearFee: null,
-      alumniFee: null,
+      halfYearFee: 0,
+      fullYearFee: 0,
+      alumniFee: 0,
     });
 
     const feeRules = [
-      (value) => (value !== null && value !== '') || 'Fee is required',
+      (value: number | null) => (value !== null && value !== 0) || 'Fee is required',
     ];
-    const formRef = ref(null);
+    const formRef = ref<VForm>();
 
     const { contributionPeriods, selectedPeriod } = toRefs(props);
 
-    const { proxy } = getCurrentInstance();
-    const store = useStore();
+    const contributionPeriodService = new ContributionPeriodService();
 
     const startDateRules = computed(() => [
-      (value) => !!value || 'Start Date is required',
-      (value) => isValidStartDate(value) || 'Start date must be before end date',
-      (value) =>
+      (value: string) => !!value || 'Start Date is required',
+      (value: string) => isValidStartDate(value) || 'Start date must be before end date',
+      (value: string) =>
         startsAfterLatest(value) ||
         'The period must start after the latest contribution period',
     ]);
 
     const endDateRules = computed(() => [
-      (value) => !!value || 'End Date is required',
-      (value) => isValidEndDate(value) || 'End date must be after start date',
+      (value: string) => !!value || 'End Date is required',
+      (value: string) => isValidEndDate(value) || 'End date must be after start date',
     ]);
 
-    const startsAfterLatest = (startDate) => {
+    const startsAfterLatest = (startDate: string): boolean => {
       if (!contributionPeriods.value || contributionPeriods.value.length === 0) {
         return true; // No periods to compare with
       }
@@ -156,14 +166,14 @@ export default defineComponent({
       return moment(startDate).isSameOrAfter(latestEndDate);
     };
 
-    const isValidStartDate = (startDate) => {
+    const isValidStartDate = (startDate: string): boolean => {
       if (!form.endDate) {
         return true;
       }
       return moment(startDate).isBefore(form.endDate);
     };
 
-    const isValidEndDate = (endDate) => {
+    const isValidEndDate = (endDate: string): boolean => {
       if (!form.startDate) {
         return true;
       }
@@ -171,7 +181,7 @@ export default defineComponent({
     };
 
     const saveContributionPeriod = async () => {
-      const { valid } = await formRef.value.validate();
+      const valid = await formRef.value?.validate();
 
       if (!valid) {
         return;
@@ -179,21 +189,9 @@ export default defineComponent({
 
       try {
         if (props.isEditing) {
-          await proxy.$http.put(
-            `/contributionPeriods/${props.selectedPeriod.id}`,
-            form,
-            {
-              headers: {
-                Authorization: `Bearer ${store.getters.getLogin.token}`,
-              },
-            }
-          );
+          await contributionPeriodService.updateContributionPeriod(form);
         } else {
-          await proxy.$http.post('/contributionPeriods', form, {
-            headers: {
-              Authorization: `Bearer ${store.getters.getLogin.token}`,
-            },
-          });
+          await contributionPeriodService.createContributionPeriod(form);
         }
         emit('refresh-periods');
         closeDialog();
@@ -208,17 +206,34 @@ export default defineComponent({
     };
 
     const resetForm = () => {
+      form.id = 0;
       form.startDate = '';
       form.endDate = '';
-      form.halfYearFee = null;
-      form.fullYearFee = null;
-      form.alumniFee = null;
+      form.halfYearFee = 0;
+      form.fullYearFee = 0;
+      form.alumniFee = 0;
     };
 
     const confirmDeletePeriod = () => {
       emit('update:modelValue', false);
       emit('delete');
     };
+
+    // Watch for changes in 'showDialog' to reset form when not editing
+    watch(
+      () => showDialog.value,
+      (newVal) => {
+        if (newVal) {
+          if (props.isEditing && props.selectedPeriod) {
+            // Populate form with selectedPeriod data when editing
+            Object.assign(form, props.selectedPeriod);
+          } else {
+            // Reset form data when adding a new period
+            resetForm();
+          }
+        }
+      }
+    );
 
     return {
       showDialog,
@@ -234,6 +249,7 @@ export default defineComponent({
   },
 });
 </script>
+
 <style scoped>
 .v-col:first-child {
   padding-left: 0;

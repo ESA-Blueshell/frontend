@@ -79,14 +79,14 @@
                 <v-text-field
                   v-model="accountData.prefix"
                   disabled
-                  label="Prefix"
+                  label="Surname Prefix"
                 />
               </v-col>
               <v-col cols="4">
                 <v-text-field
                   v-model="accountData.lastName"
                   disabled
-                  label="Last name"
+                  label="Surname"
                 />
               </v-col>
             </v-row>

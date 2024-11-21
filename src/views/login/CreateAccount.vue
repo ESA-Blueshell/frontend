@@ -34,7 +34,7 @@
             <v-text-field
               ref="prefix"
               v-model="form.prefix"
-              label="Prefix"
+              label="Surname Prefix"
             />
           </v-col>
           <v-col cols="8">
@@ -42,7 +42,7 @@
               ref="lastName"
               v-model="form.lastName"
               :rules="lastNameRules"
-              label="Last name"
+              label="Surname"
             />
           </v-col>
         </v-row>
@@ -160,10 +160,12 @@ export default {
       v => !!v || 'First name is required',
     ],
     lastNameRules: [
-      v => !!v || 'Last name is required',
+      v => !!v || 'Surname is required',
     ],
     passwordRules: [
       v => !!v || 'Password is required',
+      (v) => v.length >= 8 || 'Password must be at least 8 characters',
+
     ],
     emailRules: [
       v => !!v || 'Email is required',
