@@ -76,7 +76,6 @@ export default {
               })
         };
         reader.readAsDataURL(event.image);
-
       } else {
         this.$http.post('events',
             {
