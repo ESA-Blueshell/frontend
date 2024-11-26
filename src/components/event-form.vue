@@ -25,8 +25,8 @@ function submit() {
   if (event.value.endDateSame) {
     event.value.endDate = event.value.startDate
   }
-  if (event.value.image?.length > 0) {
-    event.value.image = event.value.image[0]
+  if (event.value.image > 0) {
+    event.value.image = URL.createObjectURL(this.event.image)
   } else {
     event.value.image = null
   }
