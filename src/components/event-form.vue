@@ -1,6 +1,6 @@
 <script setup>
 import {$handleNetworkError} from "@/plugins/handleNetworkError";
-import {computed, ref} from "vue";
+import {computed, ref, watch} from "vue";
 import axios from "axios";
 import {useStore} from "vuex";
 import SignUpFormEditor from "@/components/sign-up-form-editor.vue";
@@ -8,6 +8,33 @@ import SignUpFormEditor from "@/components/sign-up-form-editor.vue";
 const props = defineProps({
   initialEvent: {
     type: Object,
+    default: () =>  {
+      return {
+        title: '',
+          location: '',
+        description: '',
+
+        memberPrice: '0',
+        publicPrice: '0',
+
+        membersOnly: false,
+        visible: false,
+        signUp: false,
+
+        startDate: '',
+        endDate: '',
+        startTime: '',
+        endTime: '',
+
+        committeeId: '',
+        image: null,
+
+        signUpForm: null,
+
+        enableSignUpForm: false,
+        endDateSame: true,
+      }
+    }
   },
   hasPromo: {
     type: Boolean,
@@ -26,7 +53,7 @@ function submit() {
     event.value.endDate = event.value.startDate
   }
   if (event.value.image) {
-    event.value.image = URL.createObjectURL(this.event.image)
+    event.value.image = URL.createObjectURL(event.value.image)
   } else {
     event.value.image = null
   }
@@ -112,6 +139,18 @@ function toggleSignUpForm() {
   event.value.enableSignUpForm = !event.value.enableSignUpForm
   event.value.signUp = event.value.signUp || event.value.enableSignUpForm
 }
+
+watch(() => event.value.image, (newImage) => {
+  if (newImage instanceof File) {
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      let base64Image = reader.result.replace('data:', '').replace(/^.+,/, '');
+      event.value.base64Image = base64Image;
+      event.value.fileExtension = '.' + newImage.name.split('.').pop();
+    };
+    reader.readAsDataURL(newImage);
+  }
+});
 </script>
 
 <template>
