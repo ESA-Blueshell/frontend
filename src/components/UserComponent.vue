@@ -251,7 +251,7 @@ export default {
     modelValue: {
       type: Object as () => UserModel,
       default: null,
-    }
+    },
     user: {
       type: Object as () => UserModel,
       required: false,
