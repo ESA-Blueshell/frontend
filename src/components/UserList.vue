@@ -5,7 +5,7 @@
     </p>
     <v-list class="mt-3">
       <!-- Add New User Row -->
-      <div v-if="showMemberFields">
+      <div v-if="isMemberList">
         <v-list-item @click="toggleExpanded(-1)">
           <div
             class="d-flex justify-space-between align-center"
@@ -15,7 +15,7 @@
             <v-icon>mdi-plus</v-icon>
           </div>
         </v-list-item>
-        <v-expand-transition v-if="showAdminFields">
+        <v-expand-transition>
           <div v-if="expanded === -1">
             <UserComponent
               class="mt-4"
@@ -33,7 +33,7 @@
         <UserListRow
           :user="user"
           :expanded="expanded"
-          :is-member-list="showMemberFields"
+          :is-member-list="isMemberList"
           :contributions="contributions"
           @toggle-expanded="toggleExpanded"
           @contribution-changed="contributionChanged"
@@ -72,18 +72,10 @@ export default {
       type: Number,
       default: null,
     },
-    showMemberFields: {
+    isMemberList: {
       type: Boolean,
       default: false,
     },
-    showContributionFields: {
-      type: Boolean,
-      default: false,
-    },
-    showAdminFields: {
-      type: Boolean,
-      default: false,
-    }
   },
   emits: [
     'toggle-expanded',
