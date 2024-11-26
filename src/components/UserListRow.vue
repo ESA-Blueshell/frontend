@@ -25,52 +25,11 @@
             v-if="isMemberList"
             class="d-flex align-center"
           >
-            <!-- Member Actions -->
-            <div class="d-flex align-center mr-4">
-              <span class="mr-2">Brevo</span>
-              <v-icon
-                v-if="user.contactId"
-                color="green"
-                class="mr-2"
-              >
-                mdi-check
-              </v-icon>
-              <v-icon
-                v-else
-                color="red"
-                class="mr-2"
-                @click.stop="addToBrevo()"
-              >
-                mdi-close
-              </v-icon>
-            </div>
-
+            <!--            SHOW WHETHER THE ACCOUNT IS ACTIVE      -->
             <div
-              v-if="contribution"
+              v-if="managerType === 'member' || managerType === 'admin'"
               class="d-flex align-center mr-4"
             >
-              <span class="mr-2">Paid</span>
-              <v-icon
-                v-if="contribution.paid"
-                color="green"
-                class="mr-2 hover-shadow"
-                title="Mark as unpaid"
-                @click.stop="changeContributionPaid(false)"
-              >
-                mdi-check
-              </v-icon>
-              <v-icon
-                v-else
-                color="red"
-                class="mr-2 hover-shadow"
-                title="Mark as paid"
-                @click.stop="changeContributionPaid(true)"
-              >
-                mdi-close
-              </v-icon>
-            </div>
-
-            <div class="d-flex align-center mr-4">
               <span class="mr-2">Enabled</span>
               <v-icon
                 v-if="user.enabled"
@@ -88,52 +47,61 @@
               </v-icon>
             </div>
 
-            <v-btn
-              :disabled="user.roles.includes('BOARD') || user.roles.includes('ADMIN')"
-              variant="text"
-              @click.stop="changeMembership(false)"
-            >
-              Remove membership
-            </v-btn>
-          </div>
-          <div v-else>
-            <!-- Non-member Actions -->
-            <v-btn
-              v-if="!disableDelete"
-              color="red"
-              variant="text"
-              @click.stop="deleteUser()"
-            >
-              Delete User
-            </v-btn>
-
-            <v-btn
-              :disabled="user.roles.includes('BOARD') || user.roles.includes('ADMIN')"
-              variant="text"
-              @click.stop="changeMembership(true)"
-            >
-              Make member
-            </v-btn>
+            <template v-if="isMemberList">
+              <!--            REMOVE MEMBERSHIP FROM A USER       -->
+              <v-btn
+                v-if="managerType === 'member'"
+                variant="text"
+                @click.stop="changeMembership(true)"
+              >
+                Make member
+              </v-btn>
+            </template>
+            <template v-else>
+              <!--              MAKE CONTRIBUTION NOT PAID      as-->
+              <v-btn
+                v-if="managerType === 'contribution'"
+                @click.stop="changeContributionPaid(false)"
+              />
+              <!--            DELETE A USER       -->
+              <v-btn
+                v-if="managerType === 'member' || managerType === 'admin'"
+                :disabled="user.roles.indexOf('ADMIN') !== -1"
+                color="red"
+                variant="text"
+                @click.stop="deleteUser()"
+              >
+                Delete
+              </v-btn>
+              <!--            MAKE A USER A MEMBER       -->
+              <v-btn
+                v-if="managerType === 'member'"
+                variant="text"
+                @click.stop="changeMembership(false)"
+              >
+                Remove membership
+              </v-btn>
+            </template>
           </div>
         </div>
+
+        <v-expand-transition v-if="managerType === 'admin'">
+          <div v-if="expanded === user.id">
+            <UserComponent
+              class="mt-4"
+              :user="user"
+              @user-changed="userChanged"
+            />
+          </div>
+        </v-expand-transition>
+
+        <delete-confirmation-dialog
+          v-model="deleteDialog"
+          title="Confirm User Deletion"
+          :message="`Are you sure you want to delete ${user.fullName} (${user.username})?`"
+          @confirm="confirmDeleteUser"
+        />
       </div>
-
-      <v-expand-transition>
-        <div v-if="expanded === user.id">
-          <UserComponent
-            class="mt-4"
-            :user="user"
-            @user-changed="userChanged"
-          />
-        </div>
-      </v-expand-transition>
-
-      <delete-confirmation-dialog
-        v-model="deleteDialog"
-        title="Confirm User Deletion"
-        :message="`Are you sure you want to delete ${user.fullName} (${user.username})?`"
-        @confirm="confirmDeleteUser"
-      />
     </v-list-item>
   </div>
 </template>
@@ -143,7 +111,7 @@ import UserService from "@/services/UserService";
 import ContributionService from "@/services/ContributionService";
 import type UserModel from "@/models/UserModel";
 import type ContributionModel from "@/models/ContributionModel";
-import { computed, ref, toRefs } from 'vue';
+import {computed, ref, toRefs} from 'vue';
 import DeleteConfirmationDialog from "@/components/DeletionConfirmationDialog.vue";
 import store from "@/plugins/store";
 
@@ -167,15 +135,19 @@ export default {
       type: Boolean,
       default: false,
     },
+    managerType: {
+      type: String,
+      required: true,
+    },
   },
   emits: ['toggle-expanded', 'user-changed', 'contribution-changed', 'delete-user'],
-  setup(props, { emit }) {
+  setup(props, {emit}) {
     const roles = store.getters.getLogin?.roles;
     const disableDelete = !roles || !roles.includes('ADMIN');
     const deleteDialog = ref(false);
     const userService: UserService = new UserService();
     const contributionService: ContributionService = new ContributionService();
-    const { user, contributions } = toRefs(props);
+    const {user, contributions} = toRefs(props);
 
     const toggleExpanded = () => {
       emit('toggle-expanded', props.user.id);
