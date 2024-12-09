@@ -71,6 +71,19 @@ export default {
           }
         })
         .catch(e => $handleNetworkError(e))
+
+    if (this.event.image) {
+      fetch(this.event.image)
+        .then(response => response.blob())
+        .then(blob => {
+          const reader = new FileReader();
+          reader.onloadend = () => {
+            this.event.base64Image = reader.result.replace('data:', '').replace(/^.+,/, '');
+            this.event.fileExtension = '.' + this.event.image.split('.').pop();
+          };
+          reader.readAsDataURL(blob);
+        });
+    }
   },
   methods: {
     update(event) {
