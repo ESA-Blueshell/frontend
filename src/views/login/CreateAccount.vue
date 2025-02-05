@@ -187,7 +187,7 @@ export default {
       this.clicked = true
 
       // Send authenticate request
-      this.$http.post('createAccount', this.form)
+      this.$http.post('users/create', this.form)
         .then(() => {
           this.succeeded = true
         })

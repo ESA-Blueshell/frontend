@@ -34,7 +34,7 @@ const store = createStore<State>({
     loggedInSnackbar: false,
   },
   mutations: {
-    setLogin(state, newLogin: { username: string; roles: string[]; expiration: number }) {
+    setLogin(state, newLogin: { username: string; roles: string[]; expiration: number; userId: number }) {
       state.login = newLogin;
       document.cookie = `login=${JSON.stringify(state.login)};SameSite=strict;Secure;path=/`;
 

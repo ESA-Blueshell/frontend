@@ -335,7 +335,7 @@ export default {
         if (userData.value?.id) {
           userData.value = await userService.update(userData.value);
         } else {
-          userData.value = await userService.createMember(userData.value);
+          userData.value = await userService.adminCreate(userData.value);
         }
         submitting.value = false;
         emit('user-changed', userData.value);

@@ -28,6 +28,9 @@ export default tseslint.config(
                 sourceType: 'module',
             },
         },
+        rules: {
+            "vue/no-deprecated-slot-attribute": "off",
+        },
         ignores: ["src/**/*.js", "eslint.config.mjs"]
     },
 );
