@@ -69,8 +69,6 @@ import {useRoute, useRouter} from 'vue-router';
 import TopBanner from '@/components/top-banner';
 import UserService from '@/services/UserService';
 import type {VForm} from 'vuetify/components';
-import {AxiosError} from 'axios';
-import store from "@/plugins/store";
 
 export default {
   components: {TopBanner},
@@ -88,7 +86,6 @@ export default {
     const loading = ref(false);
     const showPass = ref(false);
     const token = ref('');
-    const username = ref('');
     const isMember = ref(false);
     const formRef = ref<VForm>();
 
@@ -116,26 +113,30 @@ export default {
     const router = useRouter();
 
 
-    // Lifecycle hook to get the token from query params
     onMounted(() => {
       token.value = route.query.token as string;
+      form.value.username = route.query.username as string || '';
       if (!token.value) {
         router.push('/');
       }
-      isMember.value = !username.value;
+      isMember.value = !route.query.username;
+      if (route.query.token && route.query.username) {
+        activateAccount();
+      }
     });
 
     // Method to activate account
     const activateAccount = async () => {
-      const isValid = await formRef.value?.validate();
-
-      if (!isValid) {
-        return;
-      }
-
       loading.value = true;
       let request;
       if (isMember.value) {
+        const isValid = await formRef.value?.validate();
+
+        if (!isValid) {
+          return;
+        }
+
+
         request = userService.activateMember(
           {
             username: form.value.username,

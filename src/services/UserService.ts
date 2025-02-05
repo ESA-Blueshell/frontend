@@ -33,13 +33,13 @@ export default class UserService extends BaseService {
       .then((response) => response.data as UserModel);
   }
 
-  async createUser(user: UserModel): Promise<UserModel> {
+  async create(user: UserModel): Promise<UserModel> {
     return this.post({model: user})
       .then((response) => response.data as UserModel);
   }
 
-  async createMember(user: UserModel): Promise<UserModel> {
-    return this.post({model: user, action: 'members'})
+  async adminCreate(user: UserModel): Promise<UserModel> {
+    return this.post({model: user, action: 'admin'})
       .then((response) => response.data as UserModel);
   }
 

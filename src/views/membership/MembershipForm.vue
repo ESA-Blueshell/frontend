@@ -51,6 +51,13 @@
           </v-col>
         </v-row>
         <v-row>
+          <nationality-select
+            v-model="form.nationality"
+            cols="4"
+          />
+          <country-select />
+        </v-row>
+        <v-row>
           <v-col cols="6">
             <v-text-field
               ref="username"
@@ -231,7 +238,7 @@
           </v-row>
         </v-sheet>
         <v-row>
-          <v-spacer/>
+          <v-spacer />
           <v-col cols="auto">
             <v-btn
               :loading="clicked"
@@ -265,9 +272,13 @@ import {VPhoneInput} from "v-phone-input";
 import {$handleNetworkError} from "@/plugins/handleNetworkError";
 import Contribution from "@/components/contribution.vue";
 import {$goto} from "@/plugins/goto";
+import NationalitySelect from "@/components/NationalitySelect.vue";
+import CountrySelect from "@/components/CountrySelect.vue";
 
 export default {
   components: {
+    CountrySelect,
+    NationalitySelect,
     Contribution,
     VPhoneInput,
     TopBanner,
@@ -411,10 +422,10 @@ export default {
       const login = this.$store.getters.getLogin;
 
       var request = null;
-      if (!!login) {
-        request = this.$http.put(`users/${login.userId}`, this.form, {headers: {'Authorization': `Bearer ${login.token}`}})
+      if (login) {
+        request = this.$http.put(`members/${login.userId}`, this.form, {headers: {'Authorization': `Bearer ${login.token}`}})
       } else {
-        request = this.$http.post('createAccount', this.form)
+        request = this.$http.post('members/create', this.form)
       }
       request
         .then(() => {
