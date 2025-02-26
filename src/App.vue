@@ -350,7 +350,7 @@
         />
         <v-btn
           icon="mdi-instagram"
-          href="https://www.instagram.com/blueshellesports/"
+          href="https://www.instagram.com/esablueshell/"
           target="_blank"
           variant="plain"
           style="width: calc(100%/3)"

@@ -1,8 +1,6 @@
 <template>
   <v-main>
-    <top-banner title="Contact" />
-    <!-- TODO: FIX THIS LATER LMAO -->
-
+    <top-banner title="Contact"/>
     <div class="mx-3">
       <div
         class="mx-auto my-10"
@@ -10,12 +8,11 @@
       >
         <p class="text-body-1">
           If you want to become a member see the
-          <router-link
-            to="/membership/"
-            class="text-decoration-none"
-          >
-            Join us!
-          </router-link>
+          <span
+            @click="$goto('membership')"
+            class="text-decoration-underline text-primary"
+            style="cursor: pointer;"
+          >Join us!</span>
           page. If you are just looking for
           more information, you can contact the board at
           <a
@@ -81,8 +78,10 @@
 
 <script>
 import TopBanner from "@/components/top-banner";
+import {$goto} from "@/plugins/goto";
 
 export default {
+  methods: {$goto},
   components: {TopBanner},
   data: () => ({
     mapLoading: true,
@@ -90,7 +89,9 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style scoped
+       lang="scss"
+>
 @use '../styles/settings';
 
 iframe {

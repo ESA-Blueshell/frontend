@@ -43,7 +43,7 @@ export default {
       socials: [
         {
           icon: 'mdi-instagram',
-          url: 'https://www.instagram.com/blueshellesports',
+          url: 'https://www.instagram.com/esablueshell/',
         },
         {
           icon: 'mdi-facebook',
@@ -59,7 +59,7 @@ export default {
         },
         {
           icon: 'mdi-linkedin',
-          url: 'https://www.instagram.com/blueshellesports',
+          url: 'https://www.instagram.com/esablueshell/',
         },
       ]
     }
