@@ -7,7 +7,7 @@ const iconLinks = [
   },
   {
     icon: 'mdi-instagram',
-    href: 'https://www.instagram.com/blueshellesports/',
+    href: 'https://www.instagram.com/esablueshell/',
   },
   {
     icon: 'mdi-facebook',
