@@ -1,14 +1,14 @@
 <template>
   <v-main>
-    <top-banner title="Board"/>
+    <top-banner title="Board" />
     <div class="mx-3">
       <div
         class="mx-auto my-10"
         style="max-width: 800px"
       >
-
-        <template v-for="(board, boardIndex) in boards"
-                  :key="board.name"
+        <template
+          v-for="(board, boardIndex) in boards"
+          :key="board.name"
         >
           <!-- First board without transition -->
           <template v-if="boardIndex === 0">
@@ -23,8 +23,9 @@
                 class="mb-6"
               />
 
-              <template v-for="(member, i) in board.members"
-                        :key="member.name"
+              <template
+                v-for="(member, i) in board.members"
+                :key="member.name"
               >
                 <div
                   v-if="member.image"
@@ -35,13 +36,15 @@
                     class="member-info"
                     :style="getMemberInfoStyle(i)"
                   >
-                    <p class="text-h2"
-                       :class="{ 'text-right': i % 2 === 1 }"
+                    <p
+                      class="text-h2"
+                      :class="{ 'text-right': i % 2 === 1 }"
                     >
                       {{ member.name }}
                     </p>
-                    <p class="text-subtitle-1 mt-n6"
-                       :class="{ 'text-right': i % 2 === 1 }"
+                    <p
+                      class="text-subtitle-1 mt-n6"
+                      :class="{ 'text-right': i % 2 === 1 }"
                     >
                       {{ member.title }}
                     </p>
@@ -50,16 +53,19 @@
                     </p>
                   </div>
                 </div>
-                <div v-else
-                     class="mb-12 mt-16 member-info"
+                <div
+                  v-else
+                  class="mb-12 mt-16 member-info"
                 >
-                  <p class="text-h2"
-                     :class="{ 'text-right': i % 2 === 1 }"
+                  <p
+                    class="text-h2"
+                    :class="{ 'text-right': i % 2 === 1 }"
                   >
                     {{ member.name }}
                   </p>
-                  <p class="text-subtitle-1 mt-6"
-                     :class="{ 'text-right': i % 2 === 1 }"
+                  <p
+                    class="text-subtitle-1 mt-6"
+                    :class="{ 'text-right': i % 2 === 1 }"
                   >
                     {{ member.title }}
                   </p>
@@ -72,7 +78,10 @@
           </template>
 
           <template v-else>
-            <div class="board-section" style="cursor: pointer">
+            <div
+              class="board-section"
+              style="cursor: pointer"
+            >
               <h2
                 class="text-h4 text-center my-4 clickable"
                 @click="toggleBoard(boardIndex)"
@@ -92,25 +101,49 @@
                     class="mb-6"
                   />
 
-                  <template v-for="(member, i) in board.members"
-                            :key="member.name"
-                  >
-                  <div
-                    v-if="member.image"
-                    class="mb-12 mt-16"
-                    :style="getMemberCardStyle(i, member.image)"
+                  <template
+                    v-for="(member, i) in board.members"
+                    :key="member.name"
                   >
                     <div
-                      class="member-info"
-                      :style="getMemberInfoStyle(i)"
+                      v-if="member.image"
+                      class="mb-12 mt-16"
+                      :style="getMemberCardStyle(i, member.image)"
                     >
-                      <p class="text-h2"
-                         :class="{ 'text-right': i % 2 === 1 }"
+                      <div
+                        class="member-info"
+                        :style="getMemberInfoStyle(i)"
+                      >
+                        <p
+                          class="text-h2"
+                          :class="{ 'text-right': i % 2 === 1 }"
+                        >
+                          {{ member.name }}
+                        </p>
+                        <p
+                          class="text-subtitle-1 mt-n6"
+                          :class="{ 'text-right': i % 2 === 1 }"
+                        >
+                          {{ member.title }}
+                        </p>
+                        <p :class="{ 'text-right': i % 2 === 1 }">
+                          {{ member.description }}
+                        </p>
+                      </div>
+                    </div>
+                    <div
+                      v-else
+                      class="mb-12 mt-16 member-info"
+                    >
+                      <p
+                        class="text-h2"
+                        :class="{ 'text-right': i % 2 === 1 }"
                       >
                         {{ member.name }}
                       </p>
-                      <p class="text-subtitle-1 mt-n6"
-                         :class="{ 'text-right': i % 2 === 1 }"
+                      <p
+                        class="text-subtitle-1 mt-6"
+                        :class="{ 'text-right': i % 2 === 1 }"
                       >
                         {{ member.title }}
                       </p>
@@ -118,24 +151,6 @@
                         {{ member.description }}
                       </p>
                     </div>
-                  </div>
-                  <div v-else
-                       class="mb-12 mt-16 member-info"
-                  >
-                    <p class="text-h2"
-                       :class="{ 'text-right': i % 2 === 1 }"
-                    >
-                      {{ member.name }}
-                    </p>
-                    <p class="text-subtitle-1 mt-6"
-                       :class="{ 'text-right': i % 2 === 1 }"
-                    >
-                      {{ member.title }}
-                    </p>
-                    <p :class="{ 'text-right': i % 2 === 1 }">
-                      {{ member.description }}
-                    </p>
-                  </div>
                   </template>
                 </div>
               </v-expand-transition>
@@ -234,6 +249,7 @@ export default {
         },
         {
           name: "6th Board",
+          boardImage: $require('@/assets/board6pics/board6.jpg'),
           members: [
             {
               name: 'Amber "Ambanana" Scholtz',
