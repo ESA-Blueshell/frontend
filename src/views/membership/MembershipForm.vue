@@ -1,6 +1,6 @@
 <template>
   <v-main>
-    <top-banner title="Membership Form"/>
+    <top-banner title="Membership Form" />
 
     <div
       v-if="!succeeded"
@@ -164,7 +164,7 @@
             />
           </v-col>
         </v-row>
-        <v-spacer/>
+        <v-spacer />
         <v-sheet
           class="pa-4"
           style="border-radius: 10px"
@@ -176,66 +176,7 @@
           the new academic year.
           <br>
           <br>
-          <v-row>
-            <v-col cols="6">
-              <a
-                href="https://esa-blueshell.nl/api/download/20171212-Statuten.pdf"
-                class="text-decoration-none"
-                target="_blank"
-              >
-                Statutes (Dutch)
-              </a>
-            </v-col>
-            <v-col cols="6">
-              <a
-                href="https://esa-blueshell.nl/api/download/20180109-Huishoudelijk-Reglement-Blueshell-E-Sports.pdf"
-                class="text-decoration-none"
-                target="_blank"
-              >
-                Internal Regulations (Dutch)
-              </a>
-            </v-col>
-          </v-row>
-          <v-row>
-            <v-col cols="6">
-              <a
-                href="https://esa-blueshell.nl/api/download/Statutes-Blueshell-Esports-English.pdf"
-                class="text-decoration-none"
-                target="_blank"
-              >
-                Statutes (English)
-              </a>
-            </v-col>
-            <v-col cols="6">
-              <a
-                href="https://esa-blueshell.nl/api/download/20180508-Domestic-Regulations.pdf"
-                class="text-decoration-none"
-                target="_blank"
-              >
-                Internal Regulations (English)
-              </a>
-            </v-col>
-          </v-row>
-          <v-row>
-            <v-col cols="6">
-              <a
-                href="https://esa-blueshell.nl/api/download/Privacybeleid-Blueshell.pdf"
-                class="text-decoration-none"
-                target="_blank"
-              >
-                Privacy Policy (Dutch)
-              </a>
-            </v-col>
-            <v-col cols="6">
-              <a
-                href="https://esa-blueshell.nl/api/download/Code_of_Conduct_Blueshell_Esports.pdf"
-                class="text-decoration-none"
-                target="_blank"
-              >
-                Code of Conduct (English)
-              </a>
-            </v-col>
-          </v-row>
+          <document-table />
           <br>
           <contribution is-form />
           <v-row
@@ -290,7 +231,7 @@
           </v-row>
         </v-sheet>
         <v-row>
-          <v-spacer/>
+          <v-spacer />
           <v-col cols="auto">
             <v-btn
               :loading="clicked"
@@ -324,9 +265,11 @@ import {VPhoneInput} from "v-phone-input";
 import {$handleNetworkError} from "@/plugins/handleNetworkError";
 import Contribution from "@/components/contribution.vue";
 import {$goto} from "@/plugins/goto";
+import DocumentTable from "@/components/DocumentTable.vue";
 
 export default {
   components: {
+    DocumentTable,
     Contribution,
     VPhoneInput,
     TopBanner,
@@ -467,7 +410,7 @@ export default {
 
       const login = this.$store.getters.getLogin;
 
-      var request =  null;
+      var request = null;
       if (!!login) {
         request = this.$http.put(`users/${login.userId}`, this.form, {headers: {'Authorization': `Bearer ${login.token}`}})
       } else {

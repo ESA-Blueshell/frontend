@@ -44,9 +44,10 @@
           come and hang out.
         </p>
         <p class="text-body-1">
-          Now in the fourth year of Blueshell's existence, our member base and
+          Now in the {{ boardYearOrdinal }} year of Blueshell's existence, our member base and
           opportunities continue to grow. With the help from our enthusiastic members and board, we
-          hope to become an integral part of the University of Twente's community!
+          have become an integral part of the gaming community not only at the University of Twente
+          and the Saxion but throughout The Netherlands!
         </p>
       </div>
     </div>
@@ -55,14 +56,41 @@
 
 <script>
 import TopBanner from "@/components/top-banner";
+import { DateTime } from "luxon";
+
+// Helper function to convert a number to its ordinal word
+function getOrdinalWord(n) {
+  const ordinals = [
+    "first", "second", "third", "fourth", "fifth",
+    "sixth", "seventh", "eighth", "ninth", "tenth",
+    "eleventh", "twelfth"
+  ];
+  if (n <= ordinals.length) {
+    return ordinals[n - 1];
+  }
+  // Fallback: append standard suffix if n is out of the predefined range
+  let suffix = "th";
+  if (n % 10 === 1 && n % 100 !== 11) suffix = "st";
+  else if (n % 10 === 2 && n % 100 !== 12) suffix = "nd";
+  else if (n % 10 === 3 && n % 100 !== 13) suffix = "rd";
+  return n + suffix;
+}
 
 export default {
   name: "AboutUs",
-
-  components: {TopBanner}
-}
+  components: { TopBanner },
+  computed: {
+    boardYear() {
+      return Math.floor(
+        DateTime.now().diff(DateTime.fromISO("2017-12-12"), "years").years
+      );
+    },
+    boardYearOrdinal() {
+      return getOrdinalWord(this.boardYear);
+    }
+  }
+};
 </script>
 
 <style scoped>
-
 </style>
