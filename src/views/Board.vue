@@ -285,6 +285,7 @@ export default {
         },
         {
           name: "5th Board",
+          boardImage: $require('@/assets/board5pics/board5.jpg'),
           members: [
             {
               name: 'Daniël "thiefzz" Floor',
