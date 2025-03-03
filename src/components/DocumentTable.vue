@@ -12,7 +12,7 @@
         <v-btn
           color="primary"
           class="w-100"
-          @click="downloadFile('@/assets/documents/20171212 - ESA Blueshell Statutes.pdf', 'ESA Blueshell - Statuten.pdf')"
+          @click="downloadFile('@/assets/documents/20171212 - ESA Blueshell Statuten.pdf', 'ESA Blueshell - Statuten.pdf')"
         >
           Dutch
         </v-btn>
