@@ -1,4 +1,5 @@
 @use './settings';
+@use './colors';
 
 $accent: rgb(var(--v-theme-accent));
 
@@ -117,13 +118,14 @@ CSS MOMENT
   ol, ul {
     padding-left: 24px;
   }
+}
 
-  a.text-decoration-none {
-    color: #3387FA;
-  }
-  a:visited.text-decoration-none {
-    color: #549aff;
-  }
+a.text-decoration-none {
+  color: colors.$primary-1;
+}
+
+a:visited.text-decoration-none {
+  color: colors.$primary-2;
 }
 
 .v-application.v-theme--dark {
