@@ -520,6 +520,7 @@ export default {
       }
 
       const loginData = login.value;
+      console.log("loginData:", loginData);
       if (loginData) {
         axios
           .get(`users/${loginData.userId}`, { headers: { 'Authorization': `Bearer ${loginData.token}` } })

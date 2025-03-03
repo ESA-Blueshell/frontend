@@ -274,11 +274,13 @@ import Contribution from "@/components/contribution.vue";
 import {$goto} from "@/plugins/goto";
 import NationalitySelect from "@/components/NationalitySelect.vue";
 import CountrySelect from "@/components/CountrySelect.vue";
+import DocumentTable from "@/components/DocumentTable.vue";
 
 export default {
   components: {
     CountrySelect,
     NationalitySelect,
+    DocumentTable,
     Contribution,
     VPhoneInput,
     TopBanner,
