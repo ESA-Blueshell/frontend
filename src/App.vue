@@ -29,7 +29,7 @@
         </v-btn>
         <v-btn
           class="bar-button"
-          to="/membership"
+          to="/member"
         >
           Membership
         </v-btn>
@@ -244,7 +244,7 @@
         <v-list-item to="/">
           Home
         </v-list-item>
-        <v-list-item to="/membership">
+        <v-list-item to="/member">
           Membership
         </v-list-item>
         <v-list-group>

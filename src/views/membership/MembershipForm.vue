@@ -258,7 +258,7 @@
       style="max-width: 600px"
     >
       <p class="text-center text-subtitle-1 font-weight-lifght">
-        Your membership form has successfully been submitted!
+        Your member form has successfully been submitted!
       </p>
     </div>
   </v-main>

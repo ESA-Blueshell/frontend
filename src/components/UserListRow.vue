@@ -79,7 +79,7 @@
                 variant="text"
                 @click.stop="changeMembership(false)"
               >
-                Remove membership
+                Remove member
               </v-btn>
             </template>
           </div>

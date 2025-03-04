@@ -101,7 +101,10 @@ export default {
     editingCommittee: null,
   }),
   mounted() {
-    this.$http.get('users/members', {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
+    this.$http.get('users', {
+      params: {isMember: true},
+      headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}
+    })
       .then(response => this.memberSelectItems = response.data)
       .catch(e => $handleNetworkError(e))
 

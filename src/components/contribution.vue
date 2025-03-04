@@ -23,13 +23,13 @@
         for which they will receive payment information by email.
       </p>
       <p>
-        The membership fees for the academic year
+        The member fees for the academic year
         {{ formatPeriod(contributionPeriod) }} are:
       </p>
       <ul>
-        <li><b>{{ formatCurrency(contributionPeriod.fullYearFee) }}</b> for a full year membership</li>
-        <li><b>{{ formatCurrency(contributionPeriod.halfYearFee) }}</b> for a half-year membership*</li>
-        <li><b>{{ formatCurrency(contributionPeriod.alumniFee) }}</b> for an Alumni membership</li>
+        <li><b>{{ formatCurrency(contributionPeriod.fullYearFee) }}</b> for a full year member</li>
+        <li><b>{{ formatCurrency(contributionPeriod.halfYearFee) }}</b> for a half-year member*</li>
+        <li><b>{{ formatCurrency(contributionPeriod.alumniFee) }}</b> for an Alumni member</li>
       </ul>
       <p class="text-body-1">
         <br>
@@ -40,7 +40,7 @@
           </strong>
           <br><br>
         </span>
-        <span><strong>*A half-year membership can only be obtained between the months of February and July.</strong></span>
+        <span><strong>*A half-year member can only be obtained between the months of February and July.</strong></span>
       </p>
     </div>
   </div>

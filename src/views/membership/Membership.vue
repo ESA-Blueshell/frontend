@@ -21,7 +21,7 @@
             >Discord server</a>,
             and social media accounts to find out more about Blueshell Esports! By obtaining
             Blueshell
-            membership you get:
+            member you get:
           </p>
           <ul class="text-body-1">
             <li>Exclusive access to our members-only online or offline events;</li>
@@ -30,7 +30,7 @@
           </ul>
           <p class="text-body-1">
             <br>
-            Regular membership lasts for a year, starting from September 1st till August 31st of the
+            Regular member lasts for a year, starting from September 1st till August 31st of the
             following year. Furthermore, it is <b>not</b> required to have a Union Card in order to
             become a member of Blueshell.
           </p>
@@ -41,7 +41,7 @@
             rounded
             style="font-size: 30px;height: 50px;"
             size="x-large"
-            @click="$goto('membership/signup')"
+            @click="$goto('member/signup')"
           >
             Become a member!
           </v-btn>

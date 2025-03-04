@@ -86,36 +86,40 @@ export default {
       nativeEvent.stopPropagation()
     },
     getEvents(month) {
-      // Format to yyyy-mm
-      const formattedMonth = `${month.getFullYear()}-${String(month.getMonth() + 1).padStart(2, '0')}`;
+      // Get first and last day of the month in yyyy-MM-dd format
+      const fromDate = new Date(month.getFullYear(), month.getMonth(), 1);
+      const toDate = new Date(month.getFullYear(), month.getMonth(), 31);
 
-      if (!this.collectedMonths.includes(formattedMonth)) {
-        this.collectedMonths.push(formattedMonth)
+      // Format dates as yyyy-MM-dd
+      const fromFormatted = fromDate.toISOString().split('T')[0];
+      const toFormatted = toDate.toISOString().split('T')[0];
+
+      if (!this.collectedMonths.includes(fromFormatted)) {
+        this.collectedMonths.push(fromFormatted);
         setTimeout(() => this.monthsLoading++, 500);
 
-        this.$http.get('events?from=' + formattedMonth)
+        this.$http.get(`events?from=${fromFormatted}&to=${toFormatted}`)
           .then(response => {
-            let res = []
+            let res = [];
             response.data.forEach(elem => {
-                res.push({
-                  title: elem.title,
-                  details: elem.description,
-                  date: elem.startTime.substring(0, 10),
-                  start: new Date(elem.startTime),
-                  end: elem.endTime ? new Date(elem.endTime) : undefined,
-                  location: elem.location,
-                  memberPrice: elem.memberPrice,
-                  publicPrice: elem.publicPrice,
-                  googleId: elem.googleId,
-                  timed: !!elem.endTime,
-                  banner: elem.banner,
-                })
-              }
-            )
+              res.push({
+                title: elem.title,
+                details: elem.description,
+                date: elem.startTime.substring(0, 10),
+                start: new Date(elem.startTime),
+                end: elem.endTime ? new Date(elem.endTime) : undefined,
+                location: elem.location,
+                memberPrice: elem.memberPrice,
+                publicPrice: elem.publicPrice,
+                googleId: elem.googleId,
+                timed: !!elem.endTime,
+                banner: elem.banner,
+              });
+            });
             this.events.push(...res);
           })
           .then(() => this.monthsLoading--)
-          .catch(e => $handleNetworkError(e))
+          .catch(e => $handleNetworkError(e));
       }
     },
     addMonths(amount, date) {
