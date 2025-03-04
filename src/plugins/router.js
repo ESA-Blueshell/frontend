@@ -34,6 +34,7 @@ import EditSignUp from "@/views/EditSignUp.vue";
 import {createRouter, createWebHistory} from "vue-router";
 import store from './store'
 import CircuitShowdown from "@/views/events/CircuitShowdown.vue";
+import {useStore} from "vuex";
 
 
 const router = createRouter({
@@ -233,6 +234,8 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const login = store.getters.getLogin
+  console.log(store)
+  console.log(login)
   if (to.meta.requiresAuth && (login == null || store.getters.tokenExpired)) {
     next({
       path: '/login',
