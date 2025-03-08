@@ -3,8 +3,9 @@
     v-model="focus"
     :events="events"
     :show-adjacent-months="true"
-    :hide-week-number="$vuetify.display.xs"
-    :weekdays="$vuetify.display.xs ? [1,2,3,4,5] : [1,2,3,4,5,6,0]"
+    :hide-week-number="hideWeekNumber"
+    :weekdays="weekdays"
+    @click:event="showEvent"
   />
 
   <v-menu
@@ -14,119 +15,116 @@
     :activator="selectedElement"
     location="start"
   >
-    <eventDetails :selected-event="selectedEvent" />
+    <EventDetails :selected-event="selectedEvent"/>
   </v-menu>
 </template>
 
 <script>
 import {VCalendar} from 'vuetify/labs/VCalendar'
-import EventDetails from "@/components/EventDetails.vue";
-import { useLocale } from 'vuetify'
-import {$handleNetworkError} from "@/plugins/handleNetworkError";
+import EventDetails from "@/components/EventDetails.vue"
+import {useDisplay, useLocale} from 'vuetify'
+import {computed, getCurrentInstance, onMounted, ref, watch} from 'vue'
+import {DateTime} from "luxon";
 
 export default {
   name: "Calendar",
-  components: {
-    EventDetails,
-    VCalendar,
-  },
-  data: () => ({
-    // Not sure why, but focus needs to be in an array
-    focus: [new Date()],
-    selectedEvent: null,
-    selectedElement: null,
-    selectedOpen: false,
-    events: [],
-    collectedMonths: [],
-    monthsLoading: 0,
-  }),
-  watch: {
-    focus: function (newMonthArr, oldMonthArr) {
-      const newMonth = newMonthArr[0];
-      const oldMonth = oldMonthArr[0];
+  components: {EventDetails, VCalendar},
+  setup() {
+    const instance = getCurrentInstance()
+    const $http = instance.proxy.$http
+    const $handleNetworkError = instance.proxy.$handleNetworkError
 
-      if (newMonth > oldMonth) {
-        this.getEvents(this.addMonths(1, newMonth));
-      } else {
-        this.getEvents(this.addMonths(-1, newMonth));
+    const focus = ref([new Date()])
+    const selectedEvent = ref(null)
+    const selectedElement = ref(null)
+    const selectedOpen = ref(false)
+    const events = ref([])
+    const collectedMonths = ref([])
+    const monthsLoading = ref(0)
+
+    // Localization
+    const {current: localeCurrent} = useLocale()
+    localeCurrent.value = 'en-NL'
+
+    // Responsive display
+    const display = useDisplay()
+    const isXs = computed(() => display.xs.value)
+    const hideWeekNumber = computed(() => isXs.value)
+    const weekdays = computed(() =>
+      isXs.value ? [1, 2, 3, 4, 5] : [1, 2, 3, 4, 5, 6, 0]
+    )
+
+    // Event fetching
+    const getEvents = (month) => {
+      // Set date range for API call
+      const from = DateTime.fromJSDate(month).startOf("month").toISO();
+      const to = DateTime.fromJSDate(month).endOf("month").toISO();
+
+      if (collectedMonths.value.includes(from)) return;
+      console.log("collectedMonths:", collectedMonths.value)
+
+      monthsLoading.value++
+      $http.get(`events`, {params: {from, to}})
+        .then(({data}) => {
+          events.value = [
+            ...events.value,
+            ...data.map(e => ({
+              title: e.title,
+              details: e.description,
+              date: e.startTime.substring(0, 10),
+              start: new Date(e.startTime),
+              end: e.endTime ? new Date(e.endTime) : undefined,
+              location: e.location,
+              memberPrice: e.memberPrice,
+              publicPrice: e.publicPrice,
+              googleId: e.googleId,
+              timed: !!e.endTime,
+              banner: e.banner
+            }))
+          ];
+          collectedMonths.value.push(from);
+          console.log("collectedMonths after:", collectedMonths.value)
+        })
+        .catch($handleNetworkError)
+        .finally(() => monthsLoading.value--)
+    }
+
+    // Watchers
+    watch(focus, ([newMonth]) => {
+      const adjusted = new Date(newMonth)
+      adjusted.setDate(1)
+      getEvents(adjusted)
+    }, {deep: true})
+
+    // Initial load
+    onMounted(() => {
+      const initialFocus = new Date(focus.value[0])
+      initialFocus.setDate(1)
+      getEvents(initialFocus)
+    })
+
+    // Event handling
+    const showEvent = ({nativeEvent, event}) => {
+      const toggle = () => {
+        selectedEvent.value = event
+        selectedElement.value = nativeEvent.target
+        selectedOpen.value = !selectedOpen.value
       }
-    },
-  },
-  mounted() {
-    // Set the locale so weeks start on monday
-    const { current } = useLocale()
-    current.value = 'en-NL'
 
-    const focusMonth = this.focus[0];
-    focusMonth.setDate(1); // Set the date to the first of the month to prevent any weirdness regard month length
-
-    this.getEvents(focusMonth);
-    this.getEvents(this.addMonths(1, focusMonth));
-    this.getEvents(this.addMonths(-1, focusMonth));
-  },
-  methods: {
-    // idfk man i just copied this from the vuetify documentation (https://vuetifyjs.com/en/components/calendars/#events)
-    // apparently it triggers when you click on an event which is pretty neat i guess
-    showEvent({nativeEvent, event}) {
-      const open = () => {
-        this.selectedEvent = event
-        this.selectedElement = nativeEvent.target
-        setTimeout(() => {
-          this.selectedOpen = true
-        }, 10)
-      }
-
-      if (this.selectedOpen) {
-        this.selectedOpen = false
-        setTimeout(open, 10)
-      } else {
-        open()
-      }
-
+      selectedOpen.value ? setTimeout(toggle, 10) : toggle()
       nativeEvent.stopPropagation()
-    },
-    getEvents(month) {
-      // Get first and last day of the month in yyyy-MM-dd format
-      const fromDate = new Date(month.getFullYear(), month.getMonth(), 1);
-      const toDate = new Date(month.getFullYear(), month.getMonth(), 31);
+    }
 
-      // Format dates as yyyy-MM-dd
-      const fromFormatted = fromDate.toISOString().split('T')[0];
-      const toFormatted = toDate.toISOString().split('T')[0];
-
-      if (!this.collectedMonths.includes(fromFormatted)) {
-        this.collectedMonths.push(fromFormatted);
-        setTimeout(() => this.monthsLoading++, 500);
-
-        this.$http.get(`events?from=${fromFormatted}&to=${toFormatted}`)
-          .then(response => {
-            let res = [];
-            response.data.forEach(elem => {
-              res.push({
-                title: elem.title,
-                details: elem.description,
-                date: elem.startTime.substring(0, 10),
-                start: new Date(elem.startTime),
-                end: elem.endTime ? new Date(elem.endTime) : undefined,
-                location: elem.location,
-                memberPrice: elem.memberPrice,
-                publicPrice: elem.publicPrice,
-                googleId: elem.googleId,
-                timed: !!elem.endTime,
-                banner: elem.banner,
-              });
-            });
-            this.events.push(...res);
-          })
-          .then(() => this.monthsLoading--)
-          .catch(e => $handleNetworkError(e));
-      }
-    },
-    addMonths(amount, date) {
-      let res = new Date(date); // create a copy of the original date
-      res.setMonth(date.getMonth() + amount);
-      return res;
-    },
+    return {
+      focus,
+      events,
+      selectedEvent,
+      selectedElement,
+      selectedOpen,
+      showEvent,
+      hideWeekNumber,
+      weekdays
+    }
   }
 }
 </script>
