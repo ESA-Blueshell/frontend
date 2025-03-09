@@ -41,7 +41,7 @@
             rounded
             style="font-size: 30px;height: 50px;"
             size="x-large"
-            @click="$goto('member/signup')"
+            @click="$goto('membership/signup')"
           >
             Become a member!
           </v-btn>
