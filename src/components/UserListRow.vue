@@ -22,12 +22,10 @@
           style="flex-shrink: 0;"
         >
           <div
-            v-if="isMemberList"
             class="d-flex align-center"
           >
             <!--            SHOW WHETHER THE ACCOUNT IS ACTIVE      -->
             <div
-              v-if="managerType === 'member' || managerType === 'admin'"
               class="d-flex align-center mr-4"
             >
               <span class="mr-2">Enabled</span>
@@ -47,25 +45,9 @@
               </v-icon>
             </div>
 
-            <template v-if="isMemberList">
-              <!--            REMOVE MEMBERSHIP FROM A USER       -->
-              <v-btn
-                v-if="managerType === 'member'"
-                variant="text"
-                @click.stop="changeMembership(true)"
-              >
-                Make member
-              </v-btn>
-            </template>
-            <template v-else>
-              <!--              MAKE CONTRIBUTION NOT PAID      as-->
-              <v-btn
-                v-if="managerType === 'contribution'"
-                @click.stop="changeContributionPaid(false)"
-              />
+            <template v-if="!isMemberList">
               <!--            DELETE A USER       -->
               <v-btn
-                v-if="managerType === 'member' || managerType === 'admin'"
                 :disabled="user.roles.indexOf('ADMIN') !== -1"
                 color="red"
                 variant="text"
@@ -75,7 +57,35 @@
               </v-btn>
               <!--            MAKE A USER A MEMBER       -->
               <v-btn
-                v-if="managerType === 'member'"
+                variant="text"
+                @click.stop="changeMembership(true)"
+              >
+                Make member
+              </v-btn>
+            </template>
+            <template v-else>
+              <!--              CHANGE CONTRIBUTION PAID      as-->
+              <div class="d-flex align-center mr-4" v-if="contribution">
+                <span class="mr-2">Paid</span>
+                <v-icon
+                  v-if="contribution.paid"
+                  color="green"
+                  class="mr-2"
+                  @click.stop="changeContributionPaid(false)"
+                >
+                  mdi-check
+                </v-icon>
+                <v-icon
+                  v-else
+                  color="red"
+                  class="mr-2"
+                  @click.stop="changeContributionPaid(true)"
+                >
+                  mdi-close
+                </v-icon>
+              </div>
+              <!--            REMOVE MEMBERSHIP FROM A USER       -->
+              <v-btn
                 variant="text"
                 @click.stop="changeMembership(false)"
               >
@@ -84,26 +94,25 @@
             </template>
           </div>
         </div>
-
-        <v-expand-transition v-if="managerType === 'admin'">
-          <div v-if="expanded === user.id">
-            <UserComponent
-              class="mt-4"
-              :user="user"
-              @user-changed="userChanged"
-            />
-          </div>
-        </v-expand-transition>
-
-        <delete-confirmation-dialog
-          v-model="deleteDialog"
-          title="Confirm User Deletion"
-          :message="`Are you sure you want to delete ${user.fullName} (${user.username})?`"
-          @confirm="confirmDeleteUser"
-        />
       </div>
+      <v-expand-transition>
+        <div v-if="expanded === user.id">
+          <UserComponent
+            class="mt-4"
+            :user="user"
+            @user-changed="userChanged"
+          />
+        </div>
+      </v-expand-transition>
     </v-list-item>
   </div>
+
+  <delete-confirmation-dialog
+    v-model="deleteDialog"
+    title="Confirm User Deletion"
+    :message="`Are you sure you want to delete ${user.fullName} (${user.username})?`"
+    @confirm="confirmDeleteUser"
+  />
 </template>
 <script lang="ts">
 import UserComponent from '@/components/UserComponent.vue';
@@ -134,10 +143,6 @@ export default {
     isMemberList: {
       type: Boolean,
       default: false,
-    },
-    managerType: {
-      type: String,
-      required: true,
     },
   },
   emits: ['toggle-expanded', 'user-changed', 'contribution-changed', 'delete-user'],
