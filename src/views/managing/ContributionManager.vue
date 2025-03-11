@@ -19,7 +19,7 @@
         <UserList
           title="Unpaid"
           :users="unpaidMembers"
-          is-member-list
+          is-membership-list
           is-contribution-manager
           @contribution-changed="contributionChanged"
         />
@@ -28,7 +28,7 @@
           class="mt-5"
           title="Paid"
           :users="paidMembers"
-          is-member-list
+          is-membership-list
           @contribution-changed="contributionChanged"
         />
       </div>

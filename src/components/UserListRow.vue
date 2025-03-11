@@ -60,7 +60,7 @@
                 variant="text"
                 @click.stop="changeMembership(true)"
               >
-                Make member
+                Make membership
               </v-btn>
             </template>
             <template v-else>
@@ -89,7 +89,7 @@
                 variant="text"
                 @click.stop="changeMembership(false)"
               >
-                Remove member
+                Remove membership
               </v-btn>
             </template>
           </div>

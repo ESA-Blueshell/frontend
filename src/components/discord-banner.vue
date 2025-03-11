@@ -53,11 +53,11 @@
               <v-container class="px-0 pt-2">
                 <v-row style="justify-content: center">
                   <discord-user
-                    v-for="member in discordData.members"
-                    :key="member.username"
-                    :username="member.username"
-                    :status="member.status"
-                    :avatar-url="member.avatar_url"
+                    v-for="membership in discordData.members"
+                    :key="membership.username"
+                    :username="membership.username"
+                    :status="membership.status"
+                    :avatar-url="membership.avatar_url"
                     :half-width="Object.entries(channels).length > 0"
                   />
                   <discord-user
@@ -91,7 +91,7 @@
               style="border: 1px solid #A8FF00;border-radius: 10px"
             >
               <v-col
-                class="discord-member-entry"
+                class="discord-membership-entry"
                 cols="12"
               >
                 <v-icon
@@ -107,11 +107,11 @@
               </v-col>
 
               <discord-user
-                v-for="member in membersInVC[channelId]"
-                :key="member.username"
-                :username="member.username"
-                :status="member.status"
-                :avatar-url="member.avatar_url"
+                v-for="membership in membersInVC[channelId]"
+                :key="membership.username"
+                :username="membership.username"
+                :status="membership.status"
+                :avatar-url="membership.avatar_url"
                 :half-width="true"
               />
             </v-row>
@@ -140,10 +140,10 @@ export default {
         this.discordData = response.data
         this.shuffleArray(this.discordData.members)
 
-        const membersInAChannel = this.discordData.members.filter(member => member.channel_id)
+        const membersInAChannel = this.discordData.members.filter(membership => membership.channel_id)
 
         this.discordData.channels.forEach(channel => {
-          const membersInThisChannel = membersInAChannel.filter(member => member.channel_id === channel.id);
+          const membersInThisChannel = membersInAChannel.filter(membership => membership.channel_id === channel.id);
           if (membersInThisChannel.length > 0) {
             this.channels[channel.id] = channel.name
             this.membersInVC[channel.id] = membersInThisChannel

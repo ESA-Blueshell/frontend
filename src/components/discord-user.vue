@@ -11,12 +11,12 @@ const props = defineProps([
 <template>
   <v-col
     v-if="!customText"
-    class="discord-member-entry"
+    class="discord-membership-entry"
     cols="6"
     sm="4"
     :md="halfWidth ? 6 : 3"
   >
-    <div class="discord-member-image-wrapper">
+    <div class="discord-membership-image-wrapper">
       <v-lazy
         width="32px"
         height="32px"
@@ -25,16 +25,16 @@ const props = defineProps([
         <img
           :alt="`${username}'s avatar`"
           :src="avatarUrl"
-          class="discord-member-image"
+          class="discord-membership-image"
         >
       </v-lazy>
       <span
-        class="discord-member-status"
-        :class="{ 'discord-member-online': status==='online', 'discord-member-idle': status==='idle', 'discord-member-dnd': status==='dnd' }"
+        class="discord-membership-status"
+        :class="{ 'discord-membership-online': status==='online', 'discord-membership-idle': status==='idle', 'discord-membership-dnd': status==='dnd' }"
       />
     </div>
     <span
-      class="discord-member-name text-caption"
+      class="discord-membership-name text-caption"
       v-text="username"
     />
   </v-col>
@@ -42,11 +42,11 @@ const props = defineProps([
 
   <v-col
     v-else
-    class="discord-member-entry"
+    class="discord-membership-entry"
     cols="auto"
   >
     <span
-      class="discord-member-name"
+      class="discord-membership-name"
       v-text="customText"
     />
   </v-col>
@@ -54,7 +54,7 @@ const props = defineProps([
 
 <style scoped>
 
-.discord-member-entry {
+.discord-membership-entry {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -65,20 +65,20 @@ const props = defineProps([
   padding: 0 16px;
 }
 
-.discord-member-image-wrapper {
+.discord-membership-image-wrapper {
   width: 32px;
   height: 32px;
   position: relative;
   margin-right: 4px;
 }
 
-.discord-member-image {
+.discord-membership-image {
   width: 32px;
   height: 32px;
   border-radius: 16px;
 }
 
-.discord-member-status {
+.discord-membership-status {
   width: 12px;
   height: 12px;
   border-radius: 6px;
@@ -88,7 +88,7 @@ const props = defineProps([
   right: 0;
 }
 
-.discord-member-name {
+.discord-membership-name {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -99,15 +99,15 @@ const props = defineProps([
 }
 
 
-.discord-member-online {
+.discord-membership-online {
   background-color: hsl(139, 47.4%, 38%);
 }
 
-.discord-member-idle {
+.discord-membership-idle {
   background-color: hsl(38, 77%, 43%);
 }
 
-.discord-member-dnd {
+.discord-membership-dnd {
   background-color: hsl(359, 66.7%, 54.1%);
 }
 </style>

@@ -177,7 +177,7 @@
           style="border-radius: 10px"
         >
           <strong>Membership conditions</strong><br>
-          The undersigned hereby declares to be a member of Blueshell E-Sports Association Enschede until further
+          The undersigned hereby declares to be a membership of Blueshell E-Sports Association Enschede until further
           notice. He/she hereby agrees to the Statutes, privacy policy and the Domestic Regulations (Huishoudelijk
           reglement) of this association. Cancellation must take place no later than four weeks before the beginning of
           the new academic year.
@@ -258,7 +258,7 @@
       style="max-width: 600px"
     >
       <p class="text-center text-subtitle-1 font-weight-lifght">
-        Your member form has successfully been submitted!
+        Your membership form has successfully been submitted!
       </p>
     </div>
   </v-main>
@@ -433,7 +433,7 @@ export default {
         .then(() => {
           this.succeeded = true;
           const login = this.$store.getters.getLogin;
-          // If succesfull update the roles so that the user is now a member
+          // If succesfull update the roles so that the user is now a membership
           if (login) {
             this.$http
               .get(`users/${login.userId}`, {headers: {'Authorization': `Bearer ${login.token}`}})

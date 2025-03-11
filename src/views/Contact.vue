@@ -7,7 +7,7 @@
         style="max-width: 800px"
       >
         <p class="text-body-1">
-          If you want to become a member see the
+          If you want to become a membership see the
           <span
             @click="$goto('membership')"
             class="text-decoration-underline text-primary"
@@ -30,7 +30,7 @@
           board members.
         </p>
         <p class="text-body-1">
-          Do you want to ask your question in person? Usually, you can find a board member in the
+          Do you want to ask your question in person? Usually, you can find a board membership in the
           Predator Esports Lounge during the break.
         </p>
         <v-row class="mt-8">

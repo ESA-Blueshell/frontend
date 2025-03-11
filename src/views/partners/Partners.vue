@@ -16,7 +16,7 @@
         <p class="text-body-1">
           In her first year our association grew had over 120 interested people, and to provide each of these members
           with a potential contact with a company close to their interest, we are currently looking for more
-          collaborations with local companies. As our member base is getting bigger, so is the number of study
+          collaborations with local companies. As our membership base is getting bigger, so is the number of study
           backgrounds. While a large part of the members (60%) has an IT-background, all studies are currently
           represented within our community of over 200 members.
         </p>

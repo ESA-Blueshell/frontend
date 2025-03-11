@@ -27,13 +27,13 @@
 
     <v-container>
       <v-row
-        v-for="(member,i) in editingCommittee.members"
+        v-for="(membership,i) in editingCommittee.members"
         :key="i"
         dense
       >
         <v-col cols="4">
           <v-text-field
-            v-model="member.role"
+            v-model="membership.role"
             hide-details="auto"
             label="Role"
           />
@@ -41,11 +41,11 @@
         <v-col cols="8">
           <v-autocomplete
             v-if="memberSelectItems"
-            v-model="member.user"
+            v-model="membership.user"
             :item-title="user => user.discord ? `${user.fullName} (${user.discord})` : user.fullName"
             :items="memberSelectItems"
-            :rules="[v => !!v || 'Select a member',
-                     v => (!!v && editingCommittee.members.filter(member => member.user && member.user.username === v.username).length === 1) || 'A member can\'t be in the same committee twice']"
+            :rules="[v => !!v || 'Select a membership',
+                     v => (!!v && editingCommittee.members.filter(membership => membership.user && membership.user.username === v.username).length === 1) || 'A membership can\'t be in the same committee twice']"
             hide-details="auto"
             auto-select-first
             clearable
@@ -71,7 +71,7 @@
       class="mb-4"
       @click="addMember"
     >
-      Add member
+      Add membership
     </v-btn>
 
     <v-btn

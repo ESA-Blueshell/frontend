@@ -9,7 +9,7 @@
       >
         <div class="my-10">
           <p class="text-h4 font-weight-light">
-            Interested in becoming a member?
+            Interested in becoming a membership?
           </p>
 
           <p class="text-body-1">
@@ -21,18 +21,18 @@
             >Discord server</a>,
             and social media accounts to find out more about Blueshell Esports! By obtaining
             Blueshell
-            member you get:
+            membership you get:
           </p>
           <ul class="text-body-1">
             <li>Exclusive access to our members-only online or offline events;</li>
             <li>Special discounts in our events;</li>
-            <li>Full member access to our official Discord server.</li>
+            <li>Full membership access to our official Discord server.</li>
           </ul>
           <p class="text-body-1">
             <br>
-            Regular member lasts for a year, starting from September 1st till August 31st of the
+            Regular membership lasts for a year, starting from September 1st till August 31st of the
             following year. Furthermore, it is <b>not</b> required to have a Union Card in order to
-            become a member of Blueshell.
+            become a membership of Blueshell.
           </p>
 
           <v-btn
@@ -43,7 +43,7 @@
             size="x-large"
             @click="$goto('membership/signup')"
           >
-            Become a member!
+            Become a membership!
           </v-btn>
         </div>
         <div class="my-10">

@@ -45,7 +45,7 @@
                     {{ committee.name }}
                   </v-list-item-title>
                   <v-list-item-subtitle>
-                    {{ committee.members.length }} member{{ committee.members.length === 1 ? '' : 's' }}
+                    {{ committee.members.length }} membership{{ committee.members.length === 1 ? '' : 's' }}
                   </v-list-item-subtitle>
 
                   <template #append>

@@ -35,9 +35,9 @@ export default defineComponent({
       value: type,
     }));
 
-    console.log('member type opts:', memberTypeOptions)
+    console.log('membership type opts:', memberTypeOptions)
 
-    // Validation rule to ensure a member type is selected
+    // Validation rule to ensure a membership type is selected
     const requiredRule = (value: MemberType) => !!value || 'Member type is required';
 
     // Watch for changes in the selected value and emit updates
