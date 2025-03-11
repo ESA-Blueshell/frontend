@@ -30,12 +30,11 @@ const store = createStore<State>({
   state: {
     login: getJsonCookie('login') || null,
     guestData: getJsonCookie('guestData') || null,
-    statusSnackbarMessage: null,
+    statusSnackbarMessage: "",
     loggedInSnackbar: false,
   },
   mutations: {
     setLogin(state, newLogin: { username: string; roles: string[]; expiration: number; userId: number }) {
-      console.error('newLogin:', newLogin);
       state.login = newLogin;
       document.cookie = `login=${JSON.stringify(state.login)};SameSite=strict;Secure;path=/`;
       state.statusSnackbarMessage = "Welcome back " + state.login.username + "!";
@@ -48,10 +47,7 @@ const store = createStore<State>({
       state.statusSnackbarMessage = 'You are now logged out.';
     },
     setRoles(state, newRoles: string[]) {
-      console.error('state:', state);
-      console.error('setRoles:', newRoles);
       if (state.login) {
-        console.error('state.login:', state.login);
         state.login.roles = newRoles;
         document.cookie = `login=${JSON.stringify(state.login)};SameSite=strict;Secure;path=/`;
       }

@@ -36,7 +36,7 @@ export default {
   components: {TopBanner},
   data() {
     return {
-      snackbar: false,
+      snackbar: "",
       news: []
     }
   },

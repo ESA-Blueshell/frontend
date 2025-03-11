@@ -418,7 +418,7 @@
         <v-btn
           color="blue"
           variant="text"
-          @click="statusSnackbarMessage = false"
+          @click="statusSnackbarMessage = ''"
         >
           Close
         </v-btn>

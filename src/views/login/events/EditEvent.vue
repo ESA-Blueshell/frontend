@@ -1,6 +1,6 @@
 <template>
   <v-main>
-    <top-banner :title="headerTitle" />
+    <top-banner :title="headerTitle"/>
 
     <div class="mb-8">
       <div
@@ -36,54 +36,56 @@ export default {
   }),
   mounted() {
     this.$http.get('events/' + this.$route.params.id, {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
-        .then(response => {
-          if (response !== undefined) {
-            let event = response.data
+      .then(response => {
+        if (response !== undefined) {
+          let event = response.data
 
-            this.hasPromo = !!event.banner
+          this.hasPromo = !!event.banner
 
-            this.event = {
-              title: event.title,
-              location: event.location,
-              description: event.description,
+          this.event = {
+            title: event.title,
+            location: event.location,
+            description: event.description,
 
-              memberPrice: event.memberPrice ? event.memberPrice.toString() : '0',
-              publicPrice: event.publicPrice ? event.publicPrice.toString() : '0',
+            memberPrice: event.memberPrice ?? 0,
+            publicPrice: event.publicPrice ?? 0,
 
-              membersOnly: event.membersOnly,
-              visible: event.visible,
-              signUp: event.signUp,
+            membersOnly: event.membersOnly,
+            visible: event.visible,
+            signUp: event.signUp,
 
-              startDate: event.startTime.split('T')[0],
-              endDate: event.endTime.split('T')[0],
-              startTime: event.startTime.split('T')[1].slice(0, 5),
-              endTime: event.endTime.split('T')[1].slice(0, 5),
+            startDate: event.startTime.split('T')[0],
+            endDate: event.endTime.split('T')[0],
+            startTime: event.startTime.split('T')[1].slice(0, 5),
+            endTime: event.endTime.split('T')[1].slice(0, 5),
 
-              committeeId: event.committee,
-              image: event.image,
+            committeeId: event.committee,
 
-              signUpForm: event.signUpForm ? JSON.parse(event.signUpForm) : null,
-              enableSignUpForm: !!event.signUpForm,
-            }
-
-            this.headerTitle = `Edit ${event.title}`
-            this.event.endDateSame = this.event.startDate === this.event.endDate
+            signUpForm: event.signUpForm ,
+            enableSignUpForm: !!event.signUpForm,
           }
-        })
-        .catch(e => $handleNetworkError(e))
 
-    if (this.event.image) {
-      fetch(this.event.image)
-        .then(response => response.blob())
-        .then(blob => {
-          const reader = new FileReader();
-          reader.onloadend = () => {
-            this.event.base64Image = reader.result.replace('data:', '').replace(/^.+,/, '');
-            this.event.fileExtension = '.' + this.event.image.split('.').pop();
-          };
-          reader.readAsDataURL(blob);
-        });
-    }
+          this.headerTitle = `Edit ${event.title}`
+          this.event.endDateSame = this.event.startDate === this.event.endDate
+
+          // if (this.event?.image) {
+          //   fetch(this.event.image)
+          //     .then(response => response.blob())
+          //     .then(blob => {
+          //       const reader = new FileReader();
+          //       reader.onloadend = () => {
+          //         this.event.base64Image = reader.result.replace('data:', '').replace(/^.+,/, '');
+          //         this.event.fileExtension = '.' + this.event.image.split('.').pop();
+          //       };
+          //       reader.readAsDataURL(blob);
+          //     });
+          // }
+        }
+      })
+      .catch(e => {
+        console.log(e);
+        $handleNetworkError(e)
+      })
   },
   methods: {
     update(event) {
@@ -100,41 +102,11 @@ export default {
         reader.onloadend = () => {
           // Use a regex to remove data url part
           let base64Image = reader.result
-              .replace('data:', '')
-              .replace(/^.+,/, '');
+            .replace('data:', '')
+            .replace(/^.+,/, '');
           let fileExtension = '.' + event.image.name.split('.').pop();
 
           this.$http.put('events/' + this.$route.params.id,
-              {
-                title: event.title,
-                description: event.description,
-                location: event.location,
-                startTime: startTime,
-                endTime: endTime,
-                memberPrice: event.memberPrice,
-                publicPrice: event.publicPrice,
-                visible: event.visible,
-                membersOnly: event.membersOnly,
-                signUp: event.signUp,
-                committeeId: event.committeeId,
-                signUpForm: signUpForm,
-                base64Image: base64Image,
-                fileExtension: fileExtension,
-              }, {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
-              .then(response => {
-                if (response !== undefined && (response.status === 201 || response.status === 200)) {
-                  this.$router.push('../manage')
-                }
-              })
-              .catch(e => {
-                this.$refs.form.submitting = false
-                $handleNetworkError(e)
-              })
-        };
-        reader.readAsDataURL(event.image);
-
-      } else {
-        this.$http.put('events/' + this.$route.params.id,
             {
               title: event.title,
               description: event.description,
@@ -148,6 +120,8 @@ export default {
               signUp: event.signUp,
               committeeId: event.committeeId,
               signUpForm: signUpForm,
+              base64Image: base64Image,
+              fileExtension: fileExtension,
             }, {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
             .then(response => {
               if (response !== undefined && (response.status === 201 || response.status === 200)) {
@@ -158,6 +132,34 @@ export default {
               this.$refs.form.submitting = false
               $handleNetworkError(e)
             })
+        };
+        reader.readAsDataURL(event.image);
+
+      } else {
+        this.$http.put('events/' + this.$route.params.id,
+          {
+            title: event.title,
+            description: event.description,
+            location: event.location,
+            startTime: startTime,
+            endTime: endTime,
+            memberPrice: event.memberPrice,
+            publicPrice: event.publicPrice,
+            visible: event.visible,
+            membersOnly: event.membersOnly,
+            signUp: event.signUp,
+            committeeId: event.committeeId,
+            signUpForm: signUpForm,
+          }, {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
+          .then(response => {
+            if (response !== undefined && (response.status === 201 || response.status === 200)) {
+              this.$router.push('../manage')
+            }
+          })
+          .catch(e => {
+            this.$refs.form.submitting = false
+            $handleNetworkError(e)
+          })
       }
     },
   },

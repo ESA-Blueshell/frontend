@@ -91,7 +91,14 @@ export default {
   props: {
     committee: {
       type: Object,
-      default: () => null,
+      default: () => {
+        return {
+          type: 'committee',
+          name: '',
+          description: '',
+          members: [],
+        }
+      },
     },
   },
   data: () => ({
@@ -109,18 +116,17 @@ export default {
       .catch(e => $handleNetworkError(e))
 
     if (this.committee) {
-      this.editingCommittee = JSON.parse(JSON.stringify(this.committee));
-    } else {
-      this.editingCommittee = {
-        name: '',
-        description: '',
-        members: [],
-      }
+      this.editingCommittee = this.committee;
     }
   },
   methods: {
     addMember() {
-      this.editingCommittee.members.push({role: '', user: null})
+      this.editingCommittee.members.push({
+        role: '',
+        user: null,
+        type: 'committeeMember',
+        committeeId: this.editingCommittee.id
+      })
     },
     async submit() {
       const {valid} = await this.$refs.form.validate()
@@ -131,7 +137,7 @@ export default {
 
       this.$emit('submitting')
 
-      if (!this.committee) {
+      if (!this.editingCommittee.id) {
         this.$http.post('committees',
           JSON.stringify(this.editingCommittee),
           {
