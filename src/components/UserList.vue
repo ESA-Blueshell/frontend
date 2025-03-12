@@ -33,7 +33,7 @@
         <UserListRow
           :user="user"
           :expanded="expanded"
-          :is-membership-list="isMemberList"
+          :is-member-list="isMemberList"
           :contributions="contributions"
           @toggle-expanded="toggleExpanded"
           @contribution-changed="contributionChanged"

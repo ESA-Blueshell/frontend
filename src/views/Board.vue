@@ -24,53 +24,53 @@
               />
 
               <template
-                v-for="(membership, i) in board.members"
-                :key="membership.name"
+                v-for="(member, i) in board.members"
+                :key="member.name"
               >
                 <div
-                  v-if="membership.image"
+                  v-if="member.image"
                   class="mb-12 mt-16"
-                  :style="getMemberCardStyle(i, membership.image)"
+                  :style="getMemberCardStyle(i, member.image)"
                 >
                   <div
-                    class="membership-info"
+                    class="member-info"
                     :style="getMemberInfoStyle(i)"
                   >
                     <p
                       class="text-h2"
                       :class="{ 'text-right': i % 2 === 1 }"
                     >
-                      {{ membership.name }}
+                      {{ member.name }}
                     </p>
                     <p
                       class="text-subtitle-1 mt-n6"
                       :class="{ 'text-right': i % 2 === 1 }"
                     >
-                      {{ membership.title }}
+                      {{ member.title }}
                     </p>
                     <p :class="{ 'text-right': i % 2 === 1 }">
-                      {{ membership.description }}
+                      {{ member.description }}
                     </p>
                   </div>
                 </div>
                 <div
                   v-else
-                  class="mb-12 mt-16 membership-info"
+                  class="mb-12 mt-16 member-info"
                 >
                   <p
                     class="text-h2"
                     :class="{ 'text-right': i % 2 === 1 }"
                   >
-                    {{ membership.name }}
+                    {{ member.name }}
                   </p>
                   <p
                     class="text-subtitle-1 mt-6"
                     :class="{ 'text-right': i % 2 === 1 }"
                   >
-                    {{ membership.title }}
+                    {{ member.title }}
                   </p>
                   <p :class="{ 'text-right': i % 2 === 1 }">
-                    {{ membership.description }}
+                    {{ member.description }}
                   </p>
                 </div>
               </template>
@@ -102,53 +102,53 @@
                   />
 
                   <template
-                    v-for="(membership, i) in board.members"
-                    :key="membership.name"
+                    v-for="(member, i) in board.members"
+                    :key="member.name"
                   >
                     <div
-                      v-if="membership.image"
+                      v-if="member.image"
                       class="mb-12 mt-16"
-                      :style="getMemberCardStyle(i, membership.image)"
+                      :style="getMemberCardStyle(i, member.image)"
                     >
                       <div
-                        class="membership-info"
+                        class="member-info"
                         :style="getMemberInfoStyle(i)"
                       >
                         <p
                           class="text-h2"
                           :class="{ 'text-right': i % 2 === 1 }"
                         >
-                          {{ membership.name }}
+                          {{ member.name }}
                         </p>
                         <p
                           class="text-subtitle-1 mt-n6"
                           :class="{ 'text-right': i % 2 === 1 }"
                         >
-                          {{ membership.title }}
+                          {{ member.title }}
                         </p>
                         <p :class="{ 'text-right': i % 2 === 1 }">
-                          {{ membership.description }}
+                          {{ member.description }}
                         </p>
                       </div>
                     </div>
                     <div
                       v-else
-                      class="mb-12 mt-16 membership-info"
+                      class="mb-12 mt-16 member-info"
                     >
                       <p
                         class="text-h2"
                         :class="{ 'text-right': i % 2 === 1 }"
                       >
-                        {{ membership.name }}
+                        {{ member.name }}
                       </p>
                       <p
                         class="text-subtitle-1 mt-6"
                         :class="{ 'text-right': i % 2 === 1 }"
                       >
-                        {{ membership.title }}
+                        {{ member.title }}
                       </p>
                       <p :class="{ 'text-right': i % 2 === 1 }">
-                        {{ membership.description }}
+                        {{ member.description }}
                       </p>
                     </div>
                   </template>
@@ -228,7 +228,7 @@ export default {
               name: "Jesse van Gameren",
               title: "Treasurer and Commissioner of Esports Affairs",
               description:
-                "Hello fellow people! My name is Jesse van Gameren and I am the Treasurer and Commissioner of Esports affairs of Blueshell this year. Currently, I am in my third year of Industrial Engineering and Management. I became a membership of Blueshell 2 years ago after being invited to a few events where I found a great community! I like to play games and do just about anything, as long as it's with friends. After joining more events and committees, I wanted to try something new – to learn more myself and give back to the community that gives me so much joy. Let’s make this a wonderful year to remember!",
+                "Hello fellow people! My name is Jesse van Gameren and I am the Treasurer and Commissioner of Esports affairs of Blueshell this year. Currently, I am in my third year of Industrial Engineering and Management. I became a member of Blueshell 2 years ago after being invited to a few events where I found a great community! I like to play games and do just about anything, as long as it's with friends. After joining more events and committees, I wanted to try something new – to learn more myself and give back to the community that gives me so much joy. Let’s make this a wonderful year to remember!",
               image: $require("@/assets/board7pics/jesse.jpg"),
             },
             {
@@ -242,7 +242,7 @@ export default {
               name: "Sanne van Kooten",
               title: "Officer of External Affairs",
               description:
-                "Hello! I am Sanne van Kooten, and I am this year's Officer of External Affairs! Currently, I’m a fourth-year Biomedical Engineering bachelor. In addition to being creative and visiting concerts, I also love gaming. I joined Blueshell in the second year of my studies after participating in the Nintendo pubquiz during the kick-off, and I was immediately enthusiastic. After joining a few committees, I decided it was time to do something bigger – like being a board membership. I look forward to creating an even bigger gaming community with lots of fun events!",
+                "Hello! I am Sanne van Kooten, and I am this year's Officer of External Affairs! Currently, I’m a fourth-year Biomedical Engineering bachelor. In addition to being creative and visiting concerts, I also love gaming. I joined Blueshell in the second year of my studies after participating in the Nintendo pubquiz during the kick-off, and I was immediately enthusiastic. After joining a few committees, I decided it was time to do something bigger – like being a board member. I look forward to creating an even bigger gaming community with lots of fun events!",
               image: $require("@/assets/board7pics/sanne.jpg"),
             },
           ]

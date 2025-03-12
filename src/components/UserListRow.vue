@@ -60,12 +60,15 @@
                 variant="text"
                 @click.stop="changeMembership(true)"
               >
-                Make membership
+                Make member
               </v-btn>
             </template>
             <template v-else>
               <!--              CHANGE CONTRIBUTION PAID      as-->
-              <div class="d-flex align-center mr-4" v-if="contribution">
+              <div
+                v-if="contribution"
+                class="d-flex align-center mr-4"
+              >
                 <span class="mr-2">Paid</span>
                 <v-icon
                   v-if="contribution.paid"

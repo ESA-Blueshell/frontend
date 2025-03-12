@@ -32,7 +32,7 @@
           title="Members"
           :users="members"
           :expanded="expanded"
-          is-membership-list
+          is-member-list
           :contributions="contributions"
           @contribution-changed="contributionChanged"
           @toggle-expanded="toggleExpanded"
