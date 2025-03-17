@@ -30,7 +30,7 @@ const store = createStore<State>({
   state: {
     login: getJsonCookie('login') || null,
     guestData: getJsonCookie('guestData') || null,
-    statusSnackbarMessage: "",
+    statusSnackbarMessage: null,
     loggedInSnackbar: false,
   },
   mutations: {

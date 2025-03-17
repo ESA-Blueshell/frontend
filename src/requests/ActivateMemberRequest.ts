@@ -1,6 +1,6 @@
-import type Model from "../models/Model";
+import type BaseModel from "../models/BaseModel";
 
-export default interface ActivateMemberRequest extends Model {
+export default interface ActivateMemberRequest extends BaseModel {
   username: string;
   token: string;
   password: string;

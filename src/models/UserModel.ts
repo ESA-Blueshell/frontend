@@ -1,4 +1,4 @@
-import type Model from "./Model";
+import type BaseModel from "./BaseModel";
 import type ContributionModel from "./ContributionModel";
 import type AuthorityModel from "./AuthorityModel";
 
@@ -8,7 +8,7 @@ export enum MemberType {
   REGULAR='REGULAR'
 }
 
-export default interface UserModel extends Model {
+export default interface UserModel extends BaseModel {
   username: string;
   firstName: string;
   lastName: string;

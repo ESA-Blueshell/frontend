@@ -29,7 +29,7 @@ export default defineComponent({
     // Initialize the selected value with the prop
     const selected = ref<MemberType>(props.modelValue);
 
-    // Preprocess MemberType enum to create display text
+    // Preprocess MemberType.ts enum to create display text
     const memberTypeOptions = Object.values(MemberType).map((type) => ({
       text: `${type.charAt(0)}${type.slice(1).toLowerCase()}`, // Capitalize first letter
       value: type,

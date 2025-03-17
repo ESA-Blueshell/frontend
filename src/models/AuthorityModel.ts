@@ -1,5 +1,5 @@
-import type Model from "./Model";
+import type BaseModel from "./BaseModel";
 
-export default interface AuthorityModel extends Model {
+export default interface AuthorityModel extends BaseModel {
   authority: string;
 }

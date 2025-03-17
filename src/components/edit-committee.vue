@@ -45,7 +45,7 @@
             :item-title="user => user.discord ? `${user.fullName} (${user.discord})` : user.fullName"
             :items="memberSelectItems"
             :rules="[v => !!v || 'Select a membership',
-                     v => (!!v && editingCommittee.members.filter(membership => membership.user && membership.user.username === v.username).length === 1) || 'A membership can\'t be in the same committee twice']"
+                     v => (!!v && editingCommittee.members.filter(ms => ms.user && ms.user.username === v.username).length === 1) || 'A membership can\'t be in the same committee twice']"
             hide-details="auto"
             auto-select-first
             clearable

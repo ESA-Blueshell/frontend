@@ -3,7 +3,7 @@ import {Store} from 'vuex';
 import store, {type State} from "../plugins/store";
 import api from "../plugins/api";
 import {$handleNetworkError} from "../plugins/handleNetworkError";
-import type Model from "../models/Model";
+import type BaseModel from "../models/BaseModel";
 
 export default class BaseService {
   protected axios: AxiosInstance = api;
@@ -53,7 +53,7 @@ export default class BaseService {
 
   // Basic POST method for creation or actions
   protected async post({model, action, id, params = {}}: {
-    model: Model;
+    model: BaseModel;
     action?: string,
     id?: number;
     params?: object
@@ -82,7 +82,7 @@ export default class BaseService {
 
   // Basic PUT method for updates with optional action
   protected async put({model, action, params = {}}: {
-    model: Model; action?: string, params?: object
+    model: BaseModel; action?: string, params?: object
   }): Promise<AxiosResponse> {
     let path = `${this.baseUrl}/${model.id}`;
     if (action) {
@@ -108,7 +108,7 @@ export default class BaseService {
   }
 
   // Basic DELETE method
-  public async delete(model: Model): Promise<AxiosResponse> {
+  public async delete(model: BaseModel): Promise<AxiosResponse> {
     try {
       return await this.axios.delete(`${this.baseUrl}/${model.id}`, this.authHeader());
     } catch (e) {

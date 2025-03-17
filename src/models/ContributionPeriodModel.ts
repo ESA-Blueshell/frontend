@@ -1,6 +1,6 @@
-import type Model from "./Model";
+import type BaseModel from "./BaseModel";
 
-export default interface ContributionPeriodModel extends Model{
+export default interface ContributionPeriodModel extends BaseModel{
   startDate: string;
   endDate: string;
   halfYearFee: number;
