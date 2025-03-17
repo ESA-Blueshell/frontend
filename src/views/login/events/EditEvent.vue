@@ -67,19 +67,6 @@ export default {
 
           this.headerTitle = `Edit ${event.title}`
           this.event.endDateSame = this.event.startDate === this.event.endDate
-
-          // if (this.event?.image) {
-          //   fetch(this.event.image)
-          //     .then(response => response.blob())
-          //     .then(blob => {
-          //       const reader = new FileReader();
-          //       reader.onloadend = () => {
-          //         this.event.base64Image = reader.result.replace('data:', '').replace(/^.+,/, '');
-          //         this.event.fileExtension = '.' + this.event.image.split('.').pop();
-          //       };
-          //       reader.readAsDataURL(blob);
-          //     });
-          // }
         }
       })
       .catch(e => {

@@ -1,7 +1,7 @@
 import BaseService from './BaseService';
 import type ContributionPeriodModel from "../models/ContributionPeriodModel";
 import type ContributionModel from "@/models/ContributionModel";
-import type UserModel from "@/models/UserModel";
+import type UserModel from "@/models/User";
 
 export default class ContributionPeriodService extends BaseService {
   constructor() {

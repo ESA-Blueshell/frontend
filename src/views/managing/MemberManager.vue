@@ -50,7 +50,7 @@ import ContributionPeriodList from '@/components/ContributionPeriodList.vue';
 import UserList from '@/components/UserList.vue';
 import UserService from "@/services/UserService";
 import type ContributionModel from "@/models/ContributionModel";
-import type UserModel from "@/models/UserModel";
+import type UserModel from "@/models/User";
 import ContributionPeriodService from "@/services/ContributionPeriodService";
 
 export default defineComponent({

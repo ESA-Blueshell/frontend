@@ -121,7 +121,7 @@
 import UserComponent from '@/components/UserComponent.vue';
 import UserService from "@/services/UserService";
 import ContributionService from "@/services/ContributionService";
-import type UserModel from "@/models/UserModel";
+import type UserModel from "@/models/User";
 import type ContributionModel from "@/models/ContributionModel";
 import {computed, ref, toRefs} from 'vue';
 import DeleteConfirmationDialog from "@/components/DeletionConfirmationDialog.vue";

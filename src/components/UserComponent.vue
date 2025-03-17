@@ -228,7 +228,7 @@ import {ref, onMounted} from 'vue';
 import {VPhoneInput} from 'v-phone-input';
 import moment from 'moment';
 import store from '@/plugins/store';
-import type UserModel from "@/models/UserModel";
+import type UserModel from "@/models/User";
 import UserService from "@/services/UserService";
 import type {VForm} from "vuetify/components";
 import {type CountryCode, parsePhoneNumber, type PhoneNumber} from 'libphonenumber-js/max';

@@ -1,6 +1,6 @@
 import type BaseModel from "./BaseModel";
-import type ContributionModel from "./ContributionModel";
-import type AuthorityModel from "./AuthorityModel";
+import type {Contribution} from "@/models/Contribution";
+import type Authority from "./Authority";
 
 export enum MemberType {
   ALUMNI='ALUMNI',
@@ -8,7 +8,7 @@ export enum MemberType {
   REGULAR='REGULAR'
 }
 
-export default interface UserModel extends BaseModel {
+export default interface User extends BaseModel {
   username: string;
   firstName: string;
   lastName: string;
@@ -43,9 +43,9 @@ export default interface UserModel extends BaseModel {
   ehbo?: boolean;
   contactId?: number;
   bhv?: boolean;
-  contribution: ContributionModel;
+  contribution: Contribution;
   fullName: string;
-  authorities: AuthorityModel[];
+  authorities: Authority[];
   accountNonLocked: boolean;
   accountNonExpired: boolean;
   credentialsNonExpired: boolean;

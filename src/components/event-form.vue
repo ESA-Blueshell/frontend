@@ -20,27 +20,6 @@ const store = useStore()
 const eventForm = ref(null)
 const signUpForm = ref(null)
 
-function submit() {
-  //TODO: do this differently
-  if (event.value.endDateSame) {
-    event.value.endDate = event.value.startDate
-  }
-  if (event.value.image > 0) {
-    event.value.image = URL.createObjectURL(this.event.image)
-  } else {
-    event.value.image = null
-  }
-
-  if (eventForm.value.validate()) {
-    submitting.value = true;
-
-    emits('submit', event.value);
-  } else {
-    alert('The form is invalid.');
-  }
-}
-
-
 const event = ref(props.initialEvent !== undefined
   ? JSON.parse(JSON.stringify(props.initialEvent))
   : {
@@ -61,7 +40,7 @@ const event = ref(props.initialEvent !== undefined
     endTime: '',
 
     committeeId: '',
-    image: null,
+    banner: null,
 
     signUpForm: null,
 
@@ -69,12 +48,37 @@ const event = ref(props.initialEvent !== undefined
     endDateSame: true,
   })
 
+
+async function submit() {
+  // If endDateSame is true, copy the startDate into endDate
+  if (event.value.endDateSame) {
+    event.value.endDate = event.value.startDate;
+  }
+
+  // Process the image: check if a file is provided and get its URL
+  if (event.value.image && event.value.image.size > 0) {
+    event.value.image = URL.createObjectURL(event.value.image);
+  } else {
+    event.value.image = null;
+  }
+
+  // Validate the form asynchronously, similar to the membership form
+  const {valid} = await eventForm.value.validate();
+  if (!valid) {
+    return;
+  }
+
+  submitting.value = true;
+  emits('submit', event.value);
+}
+
+
 // Save some data to know what changed to give the user a warning
 const wasPublic = ref(event.value.visible)
 const hadSignUp = ref(event.value.signUp)
 const oldEnableSignUpForm = ref(event.value.enableSignUpForm)
 
-const valid = ref(false)
+const valid = ref(true)
 const submitting = ref(false)
 
 // Get user's committees
@@ -322,7 +326,6 @@ function toggleSignUpForm() {
 
 
     <v-btn
-      :disabled="!valid"
       :loading="submitting"
       block
       class="mt-4 mx-3"

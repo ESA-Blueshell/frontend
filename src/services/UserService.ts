@@ -1,5 +1,5 @@
 import BaseService from './BaseService';
-import type UserModel from "../models/UserModel";
+import type UserModel from "../models/User";
 import type ActivateUserRequest from "@/requests/ActivateUserRequest";
 import type ActivateMemberRequest from "@/requests/ActivateMemberRequest";
 import {AxiosError} from "axios";
