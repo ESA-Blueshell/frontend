@@ -1,41 +1,28 @@
-import BaseService from './BaseService';
-import type Contribution from "../models/Contribution";
+import BaseService from "./BaseService";
+import type Contribution from "@/models/Contribution";
 
 export default class ContributionService extends BaseService {
   constructor() {
-    super('/contributions');
+    super("/contributions");
   }
 
-  // Get all contributions or a specific contribution by ID
-  public async getContributions(id?: number): Promise<Contribution[]> {
-    return super.get({id}).then((response) => response.data as Contribution[]);
+  async createContribution(contribution: Contribution): Promise<Contribution> {
+    return this.post(contribution);
   }
 
-  // Get contributions by period ID
-  public async getContributionsByPeriod(periodId: number): Promise<Contribution[]> {
-    return this.get({params: {periodId}})
-      .then((response) => response.data as Contribution[]);
+  async markAsPaid(id: number, paid: boolean): Promise<Contribution> {
+    return this.put({ paid }, `/${id}/paid`);
   }
 
-  // Mark a contribution as paid (custom action)
-  public async changeContributionPaid(contribution: Contribution, paid: boolean): Promise<Contribution> {
-    return this.put({
-      model: contribution,
-      action: 'paid',
-      params: {paid}
-    }).then((response) => response.data as Contribution);
+  async getByPeriod(periodId: number): Promise<Contribution[]> {
+    return this.get("", { contributionPeriodId: periodId });
   }
 
-  // Create a new contribution
-  public async createContribution(contribution: Contribution): Promise<Contribution> {
-    return super.post({
-      model: contribution
-    }).then((response) => response.data as Contribution);
+  async deleteContribution(id: number): Promise<void> {
+    return this.delete(`/${id}`);
   }
 
-  // Update an existing contribution
-  public async updateContribution(contribution: Contribution): Promise<Contribution> {
-    return super.put({model: contribution})
-      .then((response) => response.data as Contribution);
+  async sendReminder(periodId: number): Promise<void> {
+    return this.post(null, `/contributionPeriods/${periodId}/remind`);
   }
 }

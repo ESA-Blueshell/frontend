@@ -1,9 +1,9 @@
-import {AxiosError, type AxiosInstance, type AxiosResponse} from 'axios';
+// ./src/services/BaseService.ts
+import { AxiosError, type AxiosInstance } from 'axios';
 import {Store} from 'vuex';
 import store, {type State} from "../plugins/store";
-import api from "../plugins/api";
-import {$handleNetworkError} from "@/plugins/handleNetworkError";
-import type BaseModel from "../models/BaseModel";
+import api from "@/plugins/api";
+import { $handleNetworkError } from "@/plugins/handleNetworkError";
 
 export default class BaseService {
   protected axios: AxiosInstance = api;
@@ -14,114 +14,68 @@ export default class BaseService {
     this.baseUrl = baseUrl;
   }
 
-  // Helper function to get token and attach headers
   protected authHeader() {
     const login = this.store.getters.getLogin;
-
-    if (login) {
-      return {headers: {Authorization: `Bearer ${login.token}`}};
-    } else {
-      return {};
-    }
+    return login ? { headers: { Authorization: `Bearer ${login.token}` } } : {};
   }
 
-  // Basic GET method with optional ID or action
-  protected async get({id, action, params = {}}: {
-    id?: number, action?: string, params?: object
-  }): Promise<AxiosResponse> {
-    let path = this.baseUrl;
-    if (id) {
-      path += `/${id}`;
-    }
-    if (action) {
-      path += `/${action}`;
-    }
+  protected async get<T>(path = "", params = {}): Promise<T> {
     try {
-      return await this.axios.get(path, {
-        ...params,
+      const response = await this.axios.get(`${this.baseUrl}${path}`, {
         ...this.authHeader(),
+        params
       });
+      return response.data;
     } catch (e) {
-      if (e instanceof AxiosError) {
-        if (e.response?.data?.message) {
-          store.commit('setStatusSnackbarMessage', e.response.data.message);
-        } else {
-          $handleNetworkError(e);
-        }
-      }
+      this.handleError(e);
       throw e;
     }
   }
 
-  // Basic POST method for creation or actions
-  protected async post({model, action, id, params = {}}: {
-    model: BaseModel;
-    action?: string,
-    id?: number;
-    params?: object
-  }): Promise<AxiosResponse> {
-    let path = this.baseUrl;
-    if (id) {
-      path += `/${id}`;
-    }
-    if (action) {
-      path += `/${action}`;
-    }
+  protected async post<T>(data: unknown, path = "", params = {}): Promise<T> {
     try {
-      return await this.axios.post(path, model, {
-        params,
-        ...this.authHeader()
+      const response = await this.axios.post(`${this.baseUrl}${path}`, data, {
+        ...this.authHeader(),
+        params
       });
+      return response.data;
     } catch (e) {
-      if (e instanceof AxiosError) {
-        if (e.response?.data?.message) {
-          store.commit('setStatusSnackbarMessage', e.response.data.message);
-        } else {
-          $handleNetworkError(e);
-        }
-      }
+      this.handleError(e);
       throw e;
     }
   }
 
-  // Basic PUT method for updates with optional action
-  protected async put({model, action, params = {}}: {
-    model: BaseModel; action?: string, params?: object
-  }): Promise<AxiosResponse> {
-    let path = `${this.baseUrl}/${model.id}`;
-    if (action) {
-      path += `/${action}`;
-    }
+  protected async put<T>(data: unknown, path = "", params = {}): Promise<T> {
     try {
-      return await this.axios.put(path, model, {
-        params,
-        ...this.authHeader()
+      const response = await this.axios.put(`${this.baseUrl}${path}`, data, {
+        ...this.authHeader(),
+        params
       });
+      return response.data;
     } catch (e) {
-      if (e instanceof AxiosError) {
-        if (e.response?.data?.message) {
-          store.commit('setStatusSnackbarMessage', e.response.data.message);
-        } else {
-          $handleNetworkError(e);
-        }
-      }
+      this.handleError(e);
       throw e;
     }
   }
 
-  // Basic DELETE method
-  public async delete(model: BaseModel): Promise<AxiosResponse> {
+  protected async delete(path = "", params = {}): Promise<void> {
     try {
-      return await this.axios.delete(`${this.baseUrl}/${model.id}`, this.authHeader());
+      await this.axios.delete(`${this.baseUrl}${path}`, {
+        ...this.authHeader(),
+        params
+      });
     } catch (e) {
-      if (e instanceof AxiosError) {
-        if (e.response?.data?.message) {
-          store.commit('setStatusSnackbarMessage', e.response.data.message);
-        } else {
-          $handleNetworkError(e);
-        }
-      }
+      this.handleError(e);
       throw e;
+    }
+  }
+
+  private handleError(e: unknown) {
+    if (e instanceof AxiosError) {
+      const message = e.response?.data?.message || e.message;
+      this.store.commit('setStatusSnackbarMessage', message);
+    } else {
+      $handleNetworkError(e);
     }
   }
 }

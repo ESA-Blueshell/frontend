@@ -22,11 +22,16 @@ export default defineConfig({
   },
   plugins: [
     vue(),
-    vuetify({ autoImport: true })
+    vuetify({ autoImport: true }),
   ],
+  optimizeDeps: {
+    exclude: [
+      'vuetify',
+    ]
+  },
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
     extensions: ['.vue', '.ts', '.js']
   },

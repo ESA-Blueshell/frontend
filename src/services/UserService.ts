@@ -1,53 +1,47 @@
-import BaseService from './BaseService';
-import type UserModel from "../models/User";
-import type ActivateUserRequest from "@/requests/ActivateUserRequest";
-import type ActivateMemberRequest from "@/requests/ActivateMemberRequest";
+import BaseService from "./BaseService";
+import type AdvancedUser from "@/models/user/AdvancedUser";
+import type ActivationRequest from "@/models/requests/ActivationRequest";
+import type PasswordResetRequest from "@/models/requests/PasswordResetRequest";
+import type { Role } from "@/models/enums/Role";
 
 export default class UserService extends BaseService {
   constructor() {
-    super('/users')
+    super("/users");
   }
 
-  public async getUsers(): Promise<UserModel[]> {
-    return super.get({}).then((response) => response.data as UserModel[]);
+  async getUsers(isMember?: boolean): Promise<AdvancedUser[]> {
+    return this.get("", { isMember });
   }
 
-  public async getUser(id: number): Promise<UserModel[]> {
-    return super.get({id}).then((response) => response.data as UserModel[]);
+  async createUser(user: AdvancedUser): Promise<AdvancedUser> {
+    return this.post(user);
   }
 
-  async setMembership(user: UserModel, isMember: boolean): Promise<UserModel> {
-    return this.put({model: user, action: 'membership', params: {isMember}})
-      .then((response) => response.data as UserModel)
+  async updateUser(id: number, user: AdvancedUser): Promise<AdvancedUser> {
+    return this.put(user, `/${id}`);
   }
 
-  async syncWithBrevo(user: UserModel): Promise<UserModel> {
-    return this.put({model: user, action: 'brevo'})
-      .then((response) => response.data as UserModel);
+  async resetPassword(username: string): Promise<void> {
+    return this.post(null, "/reset", { username });
   }
 
-  async update(user: UserModel): Promise<UserModel> {
-    return this.put({model: user})
-      .then((response) => response.data as UserModel);
+  async activate(request: ActivationRequest): Promise<void> {
+    return this.post(request, "/activate");
   }
 
-  async create(user: UserModel): Promise<UserModel> {
-    return this.post({model: user})
-      .then((response) => response.data as UserModel);
+  async setPassword(request: PasswordResetRequest): Promise<void> {
+    return this.post(request, "/password");
   }
 
-  async adminCreate(user: UserModel): Promise<UserModel> {
-    return this.post({model: user, action: 'admin'})
-      .then((response) => response.data as UserModel);
+  async toggleRole(userId: number, role: Role): Promise<AdvancedUser> {
+    return this.put(null, `/${userId}/roles`, { role });
   }
 
-  async activateMember(user: ActivateMemberRequest): Promise<void> {
-    return this.post({model: user, action: 'activateMember'})
-      .then(response => response.data);
+  async deleteUser(userId: number): Promise<void> {
+    return this.delete(`/${userId}`);
   }
 
-  async activateUser(user: ActivateUserRequest): Promise<void> {
-    return this.post({model: user, action: 'activate'})
-      .then(response => response.data);
+  async getFromBrevo(email: string): Promise<AdvancedUser> {
+    return this.get("/brevo", { email });
   }
 }

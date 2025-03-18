@@ -8,7 +8,7 @@ import type { RouteLocationRaw } from 'vue-router';
  * Handles network errors from axios requests and shows appropriate user feedback
  * @param error The axios error object
  */
-export function $handleNetworkError(error: AxiosError): void {
+export function $handleNetworkError(error: any): void {
   let errorMessage: string;
   const currentRoute = router.currentRoute.value;
 

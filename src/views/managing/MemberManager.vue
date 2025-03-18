@@ -49,9 +49,8 @@ import TopBanner from '@/components/top-banner.vue';
 import ContributionPeriodList from '@/components/ContributionPeriodList.vue';
 import UserList from '@/components/UserList.vue';
 import UserService from "@/services/UserService";
-import type ContributionModel from "@/models/ContributionModel";
-import type UserModel from "@/models/User";
-import ContributionPeriodService from "@/services/ContributionPeriodService";
+import type {Contribution, AdvancedUser} from "@/models";
+import {ContributionService} from "@/services";
 
 export default defineComponent({
   name: 'MemberManager',
@@ -61,14 +60,14 @@ export default defineComponent({
     UserList,
   },
   setup() {
-    const members = ref([] as UserModel[]);
-    const nonMembers = ref([] as UserModel[]);
-    const users = ref([] as UserModel[]);
-    const contributions = ref([] as ContributionModel[]);
+    const members = ref([] as User[]);
+    const nonMembers = ref([] as User[]);
+    const users = ref([] as AdvancedUser[]);
+    const contributions = ref([] as Contribution[]);
     const expanded = ref(0);
     const search = ref('');
     const userService = new UserService();
-    const contributionPeriodService = new ContributionPeriodService();
+    const contributionService = new ContributionService();
     const selectedPeriodId = ref(0)
 
     if ('scrollRestoration' in window.history) {
@@ -81,7 +80,7 @@ export default defineComponent({
       updateMembers();
     };
 
-    const isSearched = (user: UserModel) => {
+    const isSearched = (user: User) => {
       if (!search.value) {
         return true
       }
@@ -108,7 +107,7 @@ export default defineComponent({
       updateMembers();
     });
 
-    const deleteUser = (user: UserModel) => {
+    const deleteUser = (user: User) => {
       users.value = users.value.filter((u) => u.id !== user.id);
       updateMembers();
     };
@@ -117,23 +116,18 @@ export default defineComponent({
       expanded.value = userId === expanded.value ? 0 : userId;
     };
 
-    const userChanged = async (user: UserModel) => {
+    const userChanged = async (user: User) => {
       const index = users.value.findIndex((u) => u.id === user.id);
       if (index !== -1) {
         users.value.splice(index, 1, user);
       } else {
         users.value.push(user);
-        const contribution = await contributionPeriodService.getContributionForUser(selectedPeriodId.value, user);
-        contributionChanged(contribution);
+        contributions.value = await contributionService.getByPeriod(selectedPeriodId.value);
       }
       updateMembers();
     };
 
-    const contributionsChanged = (newContributions: ContributionModel[]) => {
-      contributions.value = newContributions;
-    };
-
-    const contributionChanged = (updatedContribution: ContributionModel) => {
+    const contributionChanged = (updatedContribution: Contribution) => {
       const index = contributions.value.findIndex((c) => c.id === updatedContribution.id);
       if (index !== -1) {
         contributions.value.splice(index, 1, updatedContribution);
@@ -143,7 +137,7 @@ export default defineComponent({
     };
 
     const selectedPeriodIdChanged = async (periodId: number) => {
-      contributions.value = await contributionPeriodService.getContributions(periodId);
+      contributions.value = await contributionService.getByPeriod(periodId);
       selectedPeriodId.value = periodId;
     }
 
@@ -160,7 +154,6 @@ export default defineComponent({
       deleteUser,
       toggleExpanded,
       userChanged,
-      contributionsChanged,
       contributionChanged,
       selectedPeriodIdChanged,
     };
