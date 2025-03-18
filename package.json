@@ -2,6 +2,7 @@
   "name": "blueshell-frontend",
   "version": "0.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "build": "vue-tsc --noEmit && vite build",
     "dev": "tsc && vite --host",
@@ -46,7 +47,7 @@
     "eslint": "^9.22.0",
     "eslint-plugin-vue": "^10.0.0",
     "eslint-plugin-vuetify": "^2.5.0",
-    "sass": "^1.79.5",
+    "sass": "^1.86.0",
     "typescript": "^5.6.3",
     "vite": "^5.4.8",
     "vite-plugin-vuetify": "^2.0.4",

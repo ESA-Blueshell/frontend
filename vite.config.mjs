@@ -1,7 +1,7 @@
 import vue from '@vitejs/plugin-vue'
 import vuetify from 'vite-plugin-vuetify'
 import { defineConfig } from 'vite'
-import { fileURLToPath, URL } from 'node:url'
+import { fileURLToPath } from 'node:url'
 
 export default defineConfig({
   build: {
@@ -10,7 +10,13 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        additionalData: `@import "@/styles/settings.scss";`
+        additionalData: `
+          @use "@/styles/settings" as *;
+          @use "vuetify/styles" as *;
+        `,
+        sassOptions: {
+          api: 'modern'
+        }
       }
     }
   },
@@ -19,7 +25,9 @@ export default defineConfig({
     vuetify({ autoImport: true })
   ],
   resolve: {
-    alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) },
+    alias: {
+      '@': fileURLToPath(new URL('./src', import.meta.url))
+    },
     extensions: ['.vue', '.ts', '.js']
   },
   server: {
