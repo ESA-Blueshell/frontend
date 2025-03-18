@@ -50,10 +50,10 @@ function formatEventTime(event) {
       {{ event.membersOnly ? 'Members only' : '' }}
     </div>
 
-    <div v-html="event.description ? $markdownToHtml(event.description) : 'No description...'" />
+    <div v-html="event.description ? $markdownToHtml(event.description) : 'No description...'"/>
 
     <template #append>
-      <slot name="append" />
+      <slot name="append"/>
     </template>
   </v-list-item>
 </template>

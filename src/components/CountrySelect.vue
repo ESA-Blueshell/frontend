@@ -25,7 +25,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import {ref} from 'vue';
 import {countries, getEmojiFlag} from 'countries-list';
 
 const selectedCountry = ref<string | null>(null);

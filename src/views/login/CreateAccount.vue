@@ -1,6 +1,6 @@
 <template>
   <v-main>
-    <top-banner title="Create Account" />
+    <top-banner title="Create Account"/>
 
     <div
       v-if="!succeeded"
@@ -97,7 +97,7 @@
             />
           </v-col>
         </v-row>
-        <v-spacer />
+        <v-spacer/>
         <v-col cols="auto">
           <v-btn
             :loading="clicked"

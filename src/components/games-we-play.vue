@@ -44,7 +44,7 @@
             :height="$vuetify.display.smAndUp ? '69px' : '54px'"
             :options="{'threshold':0.1}"
           >
-            <v-img :src="game.icon" />
+            <v-img :src="game.icon"/>
           </v-lazy>
         </div>
       </div>

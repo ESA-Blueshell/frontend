@@ -1,6 +1,6 @@
 <template>
   <v-main>
-    <top-banner title="Activate Account" />
+    <top-banner title="Activate Account"/>
 
     <div class="mx-3">
       <div
@@ -40,7 +40,7 @@
               @click:append="showPass = !showPass"
             />
             <v-row>
-              <v-spacer />
+              <v-spacer/>
               <v-col cols="auto">
                 <v-btn
                   :disabled="!valid"

@@ -48,11 +48,10 @@
 
 <script setup>
 import {ref, onMounted, computed} from 'vue';
-import moment from 'moment';
 import {useStore} from 'vuex';
 import axios from 'axios';
 import {$handleNetworkError} from "@/plugins/handleNetworkError";
-
+import { DateTime, Interval } from 'luxon';
 
 // Initialize Vuex store
 const store = useStore();
@@ -72,14 +71,11 @@ const euros = new Intl.NumberFormat('nl-NL', {style: 'currency', currency: 'EUR'
 // Function to format the period
 const formatPeriod = (period) => {
   if (!period || !period.startDate || !period.endDate) return 'N/A';
-  const start = moment(period.startDate).format('YYYY');
-  const end = moment(period.endDate).format('YYYY');
-  if (currentPeriod.value) {
-    return `${start}/${end}`;
-  } else {
-    return `${start}/${end}*`;
-  }
+  const start = DateTime.fromISO(period.startDate).toFormat('yyyy');
+  const end = DateTime.fromISO(period.endDate).toFormat('yyyy');
+  return currentPeriod.value ? `${start}/${end}` : `${start}/${end}*`;
 };
+
 
 // Function to format currency
 const formatCurrency = (amount) => {
@@ -99,9 +95,12 @@ const getContributionPeriod = async () => {
     }
 
     // Find the current period where today's date is between startDate and endDate (inclusive)
-    const current = periods.find(period =>
-      moment().isBetween(period.startDate, period.endDate, undefined, '[]') // '[]' makes it inclusive
-    );
+    const now = DateTime.now();
+    const current = periods.find(period => {
+      const start = DateTime.fromISO(period.startDate);
+      const end = DateTime.fromISO(period.endDate);
+      return Interval.fromDateTimes(start, end).contains(now);
+    });
 
     if (current) {
       contributionPeriod.value = current;

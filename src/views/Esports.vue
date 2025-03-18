@@ -1,6 +1,6 @@
 <template>
   <v-main>
-    <top-banner title="Esports" />
+    <top-banner title="Esports"/>
     <div class="mx-3">
       <div
         class="mx-auto my-10"
@@ -22,10 +22,10 @@
         </p>
         <p class="text-body-1">
           For more info contact the esports affairs (on discord) or send a mail to <b><a
-            href="mailto:esports@blueshell.utwente.nl"
-            target="_blank"
-            class="text-decoration-none"
-          >esports@blueshell.utwente.nl</a></b>
+          href="mailto:esports@blueshell.utwente.nl"
+          target="_blank"
+          class="text-decoration-none"
+        >esports@blueshell.utwente.nl</a></b>
         </p>
         <p class="text-body-1">
           Currently in Blueshell, there are teams for CS:GO, LoL and Rocket League. To find out the current teams in

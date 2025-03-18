@@ -1,6 +1,6 @@
 <template>
   <v-main>
-    <main-banner />
+    <main-banner/>
 
     <v-container>
       <div
@@ -61,14 +61,14 @@
       </v-row>
     </v-container>
 
-    <discord-banner />
+    <discord-banner/>
 
     <games-we-play
       :games="games"
       class="pt-3 pb-3"
     />
 
-    <socials-banner />
+    <socials-banner/>
 
     <v-container class="mt-10 mb-16">
       <p class="mx-auto text-center text-h2">
@@ -248,7 +248,7 @@ export default {
   cursor: pointer;
 }
 
-.icon{
+.icon {
   transition: transform .2s;
 }
 

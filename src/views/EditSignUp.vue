@@ -62,7 +62,7 @@ async function deleteSignUp() {
 
 <template>
   <v-main>
-    <top-banner title="Edit sign-up" />
+    <top-banner title="Edit sign-up"/>
     <div
       class="mx-auto my-10"
       style="max-width: 800px"
@@ -71,7 +71,7 @@ async function deleteSignUp() {
         <v-expand-transition>
           <div v-if="event">
             <v-list>
-              <event-list-item :event="event" />
+              <event-list-item :event="event"/>
             </v-list>
 
             <p class="mt-8">
@@ -109,7 +109,7 @@ async function deleteSignUp() {
                     text="Are you sure you want to cancel your sign-up for this event?"
                   >
                     <template #actions>
-                      <v-spacer />
+                      <v-spacer/>
                       <v-btn
                         class="ml-auto"
                         variant="text"

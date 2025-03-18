@@ -26,7 +26,7 @@
           English
         </v-btn>
       </v-col>
-      <v-divider />
+      <v-divider/>
     </v-row>
 
     <!-- Domestic Regulations -->
@@ -55,7 +55,7 @@
           English
         </v-btn>
       </v-col>
-      <v-divider />
+      <v-divider/>
     </v-row>
 
     <!-- Privacy Policy -->
@@ -84,7 +84,7 @@
           English
         </v-btn>
       </v-col>
-      <v-divider />
+      <v-divider/>
     </v-row>
 
     <!-- Code of Conduct -->
@@ -113,7 +113,7 @@
           English
         </v-btn>
       </v-col>
-      <v-divider />
+      <v-divider/>
     </v-row>
 
     <!-- Cookie Policy (Only English) -->
@@ -136,7 +136,7 @@
           English
         </v-btn>
       </v-col>
-      <v-divider />
+      <v-divider/>
     </v-row>
   </div>
 </template>

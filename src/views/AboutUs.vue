@@ -1,6 +1,6 @@
 <template>
   <v-main>
-    <top-banner title="Association" />
+    <top-banner title="Association"/>
     <div class="mx-3">
       <div
         class="mx-auto my-10"
@@ -56,7 +56,7 @@
 
 <script>
 import TopBanner from "@/components/top-banner";
-import { DateTime } from "luxon";
+import {DateTime} from "luxon";
 
 // Helper function to convert a number to its ordinal word
 function getOrdinalWord(n) {
@@ -78,7 +78,7 @@ function getOrdinalWord(n) {
 
 export default {
   name: "AboutUs",
-  components: { TopBanner },
+  components: {TopBanner},
   computed: {
     boardYear() {
       return Math.floor(

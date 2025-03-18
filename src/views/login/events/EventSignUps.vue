@@ -1,6 +1,6 @@
 <template>
   <v-main>
-    <top-banner :title="eventName ? eventName+' sign-ups' : 'Sign-ups'" />
+    <top-banner :title="eventName ? eventName+' sign-ups' : 'Sign-ups'"/>
     <div class="mx-3">
       <div
         class="mx-auto my-10"
@@ -53,7 +53,8 @@
               v-for="response in responses"
               :key="response.discord"
             >
-              <b>{{ response.fullName }}:</b> {{ response.formAnswers[i].map(answer => question.options[answer]).join(', ') }}
+              <b>{{ response.fullName }}:</b>
+              {{ response.formAnswers[i].map(answer => question.options[answer]).join(', ') }}
             </p>
             <v-container>
               <div
@@ -89,7 +90,7 @@
                     </v-expand-transition>
                   </v-container>
                 </v-row>
-                <v-divider :key="'div'+j" />
+                <v-divider :key="'div'+j"/>
               </div>
             </v-container>
           </template>
@@ -114,17 +115,17 @@ export default {
   }),
   mounted() {
     this.$http.get('events/' + this.$route.params.id, {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
-        .then(response => {
-          this.eventName = response.data.title
-          this.signUpForm = JSON.parse(response.data.signUpForm)
-        })
-        .catch(e => $handleNetworkError(e))
+      .then(response => {
+        this.eventName = response.data.title
+        this.signUpForm = JSON.parse(response.data.signUpForm)
+      })
+      .catch(e => $handleNetworkError(e))
     this.$http.get('events/signups/all/' + this.$route.params.id, {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
-        .then(response => {
-          this.responses = response.data
-          this.responses.forEach(response => response.formAnswers = JSON.parse(response.formAnswers))
-        })
-        .catch(e => $handleNetworkError(e))
+      .then(response => {
+        this.responses = response.data
+        this.responses.forEach(response => response.formAnswers = JSON.parse(response.formAnswers))
+      })
+      .catch(e => $handleNetworkError(e))
   },
   methods: {
     toggle(i, j) {

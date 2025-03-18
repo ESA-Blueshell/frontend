@@ -18,7 +18,7 @@ $accent: rgb(var(--v-theme-accent));
   background-color: #1E1E1E;
 }
 
-.v-snackbar__wrapper.v-theme--dark.v-snackbar--variant-elevated{
+.v-snackbar__wrapper.v-theme--dark.v-snackbar--variant-elevated {
   background-color: rgb(var(--v-theme-wallpaper));
   outline: 1px $accent solid;
   color: white;
@@ -101,11 +101,9 @@ CSS MOMENT
 }
 
 
-
 .v-overlay .text-h4 {
   font-family: "Fugaz One", sans-serif !important;
 }
-
 
 
 .v-application {

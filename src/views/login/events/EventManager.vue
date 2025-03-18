@@ -1,6 +1,6 @@
 <template>
   <v-main>
-    <top-banner title="Event Manager" />
+    <top-banner title="Event Manager"/>
     <div
       class="mx-auto my-10"
       style="max-width: 800px"

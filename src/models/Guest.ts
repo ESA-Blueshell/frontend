@@ -1,6 +1,6 @@
 import type BaseModel from "@/models/BaseModel";
 
-export interface Guest extends BaseModel {
+export default interface Guest extends BaseModel {
   id: number;
   name?: string;
   discord?: string;

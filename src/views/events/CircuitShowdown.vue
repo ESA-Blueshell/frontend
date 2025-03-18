@@ -57,7 +57,7 @@ export default {
 
 <template>
   <v-main>
-    <top-banner title="Circuit Showdown" />
+    <top-banner title="Circuit Showdown"/>
     <div
       class="mx-auto my-3"
       style="max-width: 800px"
@@ -67,51 +67,53 @@ export default {
       </p>
       <p class="text-body-1">
         This is a competition hosted within Blueshell where teams compete in the games that are currently competitively
-        being played by the teams of Blueshell. Teams generally focus on their own game and it’s hard for them to compete
-        among each other, this will be the opportunity to do so. All to prove what team is the best team in our association.
+        being played by the teams of Blueshell. Teams generally focus on their own game and it’s hard for them to
+        compete
+        among each other, this will be the opportunity to do so. All to prove what team is the best team in our
+        association.
       </p>
       <div class="table-container">
         <v-table>
           <thead>
-            <tr>
-              <th>Group A</th>
-              <th>Score</th>
-            </tr>
+          <tr>
+            <th>Group A</th>
+            <th>Score</th>
+          </tr>
           </thead>
           <tbody>
-            <tr
-              v-for="teamScore in groupAScores"
-              :key="teamScore.name"
-            >
-              <td class="table-cell--name">
-                {{ teamScore.name }}
-              </td>
-              <td class="table-cell--score">
-                {{ teamScore.score }}
-              </td>
-            </tr>
+          <tr
+            v-for="teamScore in groupAScores"
+            :key="teamScore.name"
+          >
+            <td class="table-cell--name">
+              {{ teamScore.name }}
+            </td>
+            <td class="table-cell--score">
+              {{ teamScore.score }}
+            </td>
+          </tr>
           </tbody>
         </v-table>
 
         <v-table>
           <thead>
-            <tr>
-              <th>Group B</th>
-              <th>Score</th>
-            </tr>
+          <tr>
+            <th>Group B</th>
+            <th>Score</th>
+          </tr>
           </thead>
           <tbody>
-            <tr
-              v-for="teamScore in groupBScores"
-              :key="teamScore.name"
-            >
-              <td class="table-cell--name">
-                {{ teamScore.name }}
-              </td>
-              <td class="table-cell--score">
-                {{ teamScore.score }}
-              </td>
-            </tr>
+          <tr
+            v-for="teamScore in groupBScores"
+            :key="teamScore.name"
+          >
+            <td class="table-cell--name">
+              {{ teamScore.name }}
+            </td>
+            <td class="table-cell--score">
+              {{ teamScore.score }}
+            </td>
+          </tr>
           </tbody>
         </v-table>
       </div>
@@ -120,25 +122,25 @@ export default {
       <h4>Week 1</h4>
       <v-table>
         <thead>
-          <tr>
-            <th>Team 1</th>
-            <th>Score</th>
-            <th>Team 2</th>
-          </tr>
+        <tr>
+          <th>Team 1</th>
+          <th>Score</th>
+          <th>Team 2</th>
+        </tr>
         </thead>
         <tbody>
-          <tr
-            v-for="match in playoffs"
-            :key="match.team1 + match.team2"
-          >
-            <td class="table-cell--match-team-name">
-              {{ match.team1 }}
-            </td>
-            <td>{{ match.score }}</td>
-            <td class="table-cell--match-team-name">
-              {{ match.team2 }}
-            </td>
-          </tr>
+        <tr
+          v-for="match in playoffs"
+          :key="match.team1 + match.team2"
+        >
+          <td class="table-cell--match-team-name">
+            {{ match.team1 }}
+          </td>
+          <td>{{ match.score }}</td>
+          <td class="table-cell--match-team-name">
+            {{ match.team2 }}
+          </td>
+        </tr>
         </tbody>
       </v-table>
     </div>

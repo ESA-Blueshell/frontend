@@ -168,7 +168,7 @@
         </v-btn>
       </div>
 
-      <v-spacer />
+      <v-spacer/>
 
       <div style="height: 90%;display: flex;align-items: center;flex-wrap: nowrap;">
         <!--  Dark mode toggle    -->
@@ -267,7 +267,7 @@
           <v-list-item to="/documents">
             Documents
           </v-list-item>
-          <v-divider class="mb-1" />
+          <v-divider class="mb-1"/>
         </v-list-group>
 
 
@@ -291,7 +291,7 @@
           >
             Circuit Showdown
           </v-list-item>
-          <v-divider class="mb-1" />
+          <v-divider class="mb-1"/>
         </v-list-group>
 
         <v-list-group>
@@ -318,7 +318,7 @@
           <v-list-item to="/esports/trackmania">
             Trackmania
           </v-list-item>
-          <v-divider class="mb-1" />
+          <v-divider class="mb-1"/>
         </v-list-group>
 
         <v-list-group>
@@ -333,7 +333,7 @@
           <v-list-item to="/partners/el-nino">
             El Niño – Digital Development
           </v-list-item>
-          <v-divider dark />
+          <v-divider dark/>
         </v-list-group>
 
         <v-list-item to="/contact">
@@ -387,9 +387,9 @@
     </v-navigation-drawer>
 
 
-    <router-view />
+    <router-view/>
 
-    <bs-footer />
+    <bs-footer/>
 
 
     <v-snackbar
@@ -413,7 +413,7 @@
       v-model="statusSnackbarMessage"
       timeout="10000"
     >
-      <span v-html="statusSnackbarMessage" />
+      <span v-html="statusSnackbarMessage"/>
       <template #actions>
         <v-btn
           color="blue"
@@ -451,17 +451,17 @@
 </template>
 
 <script lang="ts">
-import { ref, computed, onMounted } from 'vue'
-import { useStore } from 'vuex'
-import { useRouter, useRoute } from 'vue-router'
-import { useTheme, useDisplay } from 'vuetify'
+import {ref, computed, onMounted} from 'vue'
+import {useStore} from 'vuex'
+import {useRouter, useRoute} from 'vue-router'
+import {useTheme, useDisplay} from 'vuetify'
 import axios from 'axios'
 import BsFooter from "@/components/bs-footer.vue";
-import { $goto } from "@/plugins/goto";
-import { $handleNetworkError } from "@/plugins/handleNetworkError";
+import {$goto} from "@/plugins/goto";
+import {$handleNetworkError} from "@/plugins/handleNetworkError";
 
 export default {
-  components: { BsFooter },
+  components: {BsFooter},
   setup() {
     const drawer = ref(false);
     const poggers = ref(false);
@@ -523,7 +523,7 @@ export default {
       console.log("loginData:", loginData);
       if (loginData) {
         axios
-          .get(`users/${loginData.userId}`, { headers: { 'Authorization': `Bearer ${loginData.token}` } })
+          .get(`users/${loginData.userId}`, {headers: {'Authorization': `Bearer ${loginData.token}`}})
           .then(response => {
             store.commit('setRoles', response.data.roles)
           })

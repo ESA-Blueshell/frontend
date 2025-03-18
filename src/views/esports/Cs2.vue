@@ -1,6 +1,6 @@
 <template>
   <v-main>
-    <top-banner title="Counter-Strike 2" />
+    <top-banner title="Counter-Strike 2"/>
     <div class="mx-3">
       <div
         class="mx-auto my-10"
@@ -13,7 +13,7 @@
         </p>
       </div>
     </div>
-    <team :team="hypers" />
+    <team :team="hypers"/>
   </v-main>
 </template>
 

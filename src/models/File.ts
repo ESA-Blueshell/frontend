@@ -2,7 +2,7 @@ import type BaseModel from "@/models/BaseModel";
 import type {FileType} from "@/models/enums/FileType";
 
 
-export interface File extends BaseModel {
+export default interface File extends BaseModel {
   id?: number;
   name?: string;
   url?: string;

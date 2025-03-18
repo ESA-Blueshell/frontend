@@ -1,11 +1,11 @@
 import type BaseModel from "./BaseModel";
-import type {Contribution} from "@/models/Contribution";
+import type Contribution from "@/models/Contribution";
 import type Authority from "./Authority";
 
 export enum MemberType {
-  ALUMNI='ALUMNI',
-  HONORARY='HONORARY',
-  REGULAR='REGULAR'
+  ALUMNI = 'ALUMNI',
+  HONORARY = 'HONORARY',
+  REGULAR = 'REGULAR'
 }
 
 export default interface User extends BaseModel {

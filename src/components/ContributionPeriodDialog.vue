@@ -48,7 +48,7 @@
         </v-form>
       </v-card-text>
       <v-card-actions>
-        <v-spacer />
+        <v-spacer/>
         <v-btn
           v-if="isEditing"
           color="red"
@@ -79,11 +79,11 @@ import {
   toRefs,
   watch,
 } from 'vue';
-import { $handleNetworkError } from '@/plugins/handleNetworkError';
-import moment from 'moment';
+import {$handleNetworkError} from '@/plugins/handleNetworkError';
+import { DateTime } from 'luxon';
 import type ContributionPeriodModel from '@/models/ContributionPeriodModel';
 import ContributionPeriodService from '@/services/ContributionPeriodService';
-import type { VForm } from 'vuetify/components';
+import type {VForm} from 'vuetify/components';
 
 export default defineComponent({
   name: 'ContributionPeriodDialog',
@@ -106,7 +106,7 @@ export default defineComponent({
     },
   },
   emits: ['update:modelValue', 'refresh-periods', 'delete'],
-  setup(props, { emit }) {
+  setup(props, {emit}) {
     const showDialog = computed({
       get: () => props.modelValue,
       set: (value) => emit('update:modelValue', value),
@@ -126,7 +126,7 @@ export default defineComponent({
     ];
     const formRef = ref<VForm>();
 
-    const { contributionPeriods, selectedPeriod } = toRefs(props);
+    const {contributionPeriods, selectedPeriod} = toRefs(props);
 
     const contributionPeriodService = new ContributionPeriodService();
 
@@ -159,25 +159,21 @@ export default defineComponent({
 
       // Find the latest end date among other periods
       const latestEndDate = otherPeriods.reduce((latest, period) => {
-        const periodEndDate = moment(period.endDate);
-        return periodEndDate.isAfter(latest) ? periodEndDate : latest;
-      }, moment(otherPeriods[0].endDate));
+        const periodEndDate = DateTime.fromISO(period.endDate);
+        return periodEndDate > latest ? periodEndDate : latest;
+      }, DateTime.fromISO(otherPeriods[0].endDate));
 
-      return moment(startDate).isSameOrAfter(latestEndDate);
+      return DateTime.fromISO(startDate) >= latestEndDate;
     };
 
     const isValidStartDate = (startDate: string): boolean => {
-      if (!form.endDate) {
-        return true;
-      }
-      return moment(startDate).isBefore(form.endDate);
+      if (!form.endDate) return true;
+      return DateTime.fromISO(startDate) < DateTime.fromISO(form.endDate);
     };
 
     const isValidEndDate = (endDate: string): boolean => {
-      if (!form.startDate) {
-        return true;
-      }
-      return moment(endDate).isAfter(form.startDate);
+      if (!form.startDate) return true;
+      return DateTime.fromISO(endDate) > DateTime.fromISO(form.startDate);
     };
 
     const saveContributionPeriod = async () => {
@@ -254,6 +250,7 @@ export default defineComponent({
 .v-col:first-child {
   padding-left: 0;
 }
+
 .v-col:last-child {
   padding-right: 0;
 }

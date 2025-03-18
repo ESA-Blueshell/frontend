@@ -1,6 +1,6 @@
 import type BaseModel from "@/models/BaseModel";
 
-export interface Membership extends BaseModel {
+export default interface Membership extends BaseModel {
   id?: number;
   date?: string;
   city?: string;

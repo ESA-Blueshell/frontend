@@ -1,6 +1,6 @@
 <template>
   <v-main>
-    <top-banner :title="headerTitle" />
+    <top-banner :title="headerTitle"/>
 
     <div class="mb-8">
       <div
@@ -44,41 +44,11 @@ export default {
         reader.onloadend = () => {
           // Use a regex to remove data url part
           let base64Image = reader.result
-              .replace('data:', '')
-              .replace(/^.+,/, '');
+            .replace('data:', '')
+            .replace(/^.+,/, '');
           let fileExtension = '.' + event.image.name.split('.').pop();
 
           this.$http.post('events',
-              {
-                title: event.title,
-                description: event.description,
-                location: event.location,
-                startTime: startTime,
-                endTime: endTime,
-                memberPrice: event.memberPrice,
-                publicPrice: event.publicPrice,
-                visible: event.visible,
-                membersOnly: event.membersOnly,
-                signUp: event.signUp,
-                committeeId: event.committeeId,
-                signUpForm: signUpForm,
-                base64Image: base64Image,
-                fileExtension: fileExtension,
-              }, {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
-              .then(response => {
-                if (response !== undefined && (response.status === 201 || response.status === 200)) {
-                  $goto('manage')
-                }
-              })
-              .catch(e => {
-                this.$refs.form.submitting = false
-                $handleNetworkError(e)
-              })
-        };
-        reader.readAsDataURL(event.image);
-
-      } else {
-        this.$http.post('events',
             {
               title: event.title,
               description: event.description,
@@ -92,14 +62,44 @@ export default {
               signUp: event.signUp,
               committeeId: event.committeeId,
               signUpForm: signUpForm,
-
+              base64Image: base64Image,
+              fileExtension: fileExtension,
             }, {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
             .then(response => {
               if (response !== undefined && (response.status === 201 || response.status === 200)) {
-                this.$router.push('manage')
+                $goto('manage')
               }
             })
-            .catch(e => $handleNetworkError(e))
+            .catch(e => {
+              this.$refs.form.submitting = false
+              $handleNetworkError(e)
+            })
+        };
+        reader.readAsDataURL(event.image);
+
+      } else {
+        this.$http.post('events',
+          {
+            title: event.title,
+            description: event.description,
+            location: event.location,
+            startTime: startTime,
+            endTime: endTime,
+            memberPrice: event.memberPrice,
+            publicPrice: event.publicPrice,
+            visible: event.visible,
+            membersOnly: event.membersOnly,
+            signUp: event.signUp,
+            committeeId: event.committeeId,
+            signUpForm: signUpForm,
+
+          }, {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
+          .then(response => {
+            if (response !== undefined && (response.status === 201 || response.status === 200)) {
+              this.$router.push('manage')
+            }
+          })
+          .catch(e => $handleNetworkError(e))
       }
 
 

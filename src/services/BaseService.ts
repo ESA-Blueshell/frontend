@@ -2,7 +2,7 @@ import {AxiosError, type AxiosInstance, type AxiosResponse} from 'axios';
 import {Store} from 'vuex';
 import store, {type State} from "../plugins/store";
 import api from "../plugins/api";
-import {$handleNetworkError} from "../plugins/handleNetworkError";
+import {$handleNetworkError} from "@/plugins/handleNetworkError";
 import type BaseModel from "../models/BaseModel";
 
 export default class BaseService {
@@ -42,10 +42,12 @@ export default class BaseService {
         ...this.authHeader(),
       });
     } catch (e) {
-      if (e instanceof AxiosError && e.response?.data?.message) {
-        store.commit('setStatusSnackbarMessage', e.response.data.message);
-      } else {
-        $handleNetworkError(e);
+      if (e instanceof AxiosError) {
+        if (e.response?.data?.message) {
+          store.commit('setStatusSnackbarMessage', e.response.data.message);
+        } else {
+          $handleNetworkError(e);
+        }
       }
       throw e;
     }
@@ -71,10 +73,12 @@ export default class BaseService {
         ...this.authHeader()
       });
     } catch (e) {
-      if (e instanceof AxiosError && e.response?.data?.message) {
-        store.commit('setStatusSnackbarMessage', e.response.data.message);
-      } else {
-        $handleNetworkError(e);
+      if (e instanceof AxiosError) {
+        if (e.response?.data?.message) {
+          store.commit('setStatusSnackbarMessage', e.response.data.message);
+        } else {
+          $handleNetworkError(e);
+        }
       }
       throw e;
     }
@@ -94,14 +98,12 @@ export default class BaseService {
         ...this.authHeader()
       });
     } catch (e) {
-      if (e instanceof AxiosError && e.response?.data) {
+      if (e instanceof AxiosError) {
         if (e.response?.data?.message) {
           store.commit('setStatusSnackbarMessage', e.response.data.message);
-        }  else {
-          store.commit('setStatusSnackbarMessage', e.response.data);
+        } else {
+          $handleNetworkError(e);
         }
-      } else {
-        $handleNetworkError(e);
       }
       throw e;
     }
@@ -112,10 +114,12 @@ export default class BaseService {
     try {
       return await this.axios.delete(`${this.baseUrl}/${model.id}`, this.authHeader());
     } catch (e) {
-      if (e instanceof AxiosError && e.response?.data?.message) {
-        store.commit('setStatusSnackbarMessage', e.response.data.message);
-      } else {
-        $handleNetworkError(e);
+      if (e instanceof AxiosError) {
+        if (e.response?.data?.message) {
+          store.commit('setStatusSnackbarMessage', e.response.data.message);
+        } else {
+          $handleNetworkError(e);
+        }
       }
       throw e;
     }

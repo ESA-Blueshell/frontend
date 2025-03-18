@@ -150,9 +150,9 @@
       </v-row>
       <v-row>
         <v-col cols="6">
-          <MemberTypeSelect v-model="userData.memberType" />
+          <MemberTypeSelect v-model="userData.memberType"/>
         </v-col>
-        <v-col cols="6" />
+        <v-col cols="6"/>
       </v-row>
       <!-- Last Row: Checkboxes and Save Button -->
       <v-row
@@ -226,7 +226,7 @@
 <script lang="ts">
 import {ref, onMounted} from 'vue';
 import {VPhoneInput} from 'v-phone-input';
-import moment from 'moment';
+import { DateTime } from 'luxon';
 import store from '@/plugins/store';
 import type UserModel from "@/models/User";
 import UserService from "@/services/UserService";
@@ -321,7 +321,7 @@ export default {
 
     onMounted(() => {
       if (userData.value.dateOfBirth) {
-        userData.value.dateOfBirth = moment(userData.value.dateOfBirth).format('YYYY-MM-DD');
+        userData.value.dateOfBirth = DateTime.fromISO(userData.value.dateOfBirth).toISODate();
       }
     });
 

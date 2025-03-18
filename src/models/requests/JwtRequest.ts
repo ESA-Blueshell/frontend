@@ -1,7 +1,7 @@
-import type BaseModel from "./BaseModel";
+import type BaseModel from "@/models/BaseModel";
 
 
 export default interface JwtRequest extends BaseModel {
-username?: string;
-password?: string;
+  username?: string;
+  password?: string;
 }

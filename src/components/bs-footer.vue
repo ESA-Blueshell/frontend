@@ -80,7 +80,7 @@ const textLinks = [
           />
         </div>
 
-        <v-spacer />
+        <v-spacer/>
 
         <div>
           SITECIE GANG &copy; {{ new Date().getFullYear() }}

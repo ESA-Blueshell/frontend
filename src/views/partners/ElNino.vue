@@ -1,6 +1,6 @@
 <template>
   <v-main>
-    <top-banner title="El Niño – Digital Development" />
+    <top-banner title="El Niño – Digital Development"/>
     <div class="mx-3">
       <div
         class="mx-auto my-10"
@@ -15,7 +15,7 @@
                 class="mb-6"
               />
             </v-col>
-            <v-spacer />
+            <v-spacer/>
             <v-col>
               <p class="text-h4 font-weight-light">
                 Locations

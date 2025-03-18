@@ -1,36 +1,29 @@
-import {FlatCompat} from "@eslint/eslintrc"
-import pluginVue from "eslint-plugin-vue"
-import pluginVuetify from "eslint-plugin-vuetify"
-import eslint from "@eslint/js";
-import tseslint from "typescript-eslint";
-
-const compat = new FlatCompat({
-    config: pluginVuetify.configs.recommended,
-})
-
+import eslint from '@eslint/js'
+import tseslint from 'typescript-eslint'
+import vueParser from 'vue-eslint-parser'
+import pluginVue from 'eslint-plugin-vue'
+import pluginVuetify from 'eslint-plugin-vuetify'
 
 export default tseslint.config(
     eslint.configs.recommended,
     ...tseslint.configs.recommended,
-    ...pluginVue.configs["flat/essential"],
-    ...pluginVue.configs["flat/recommended"],
-    ...pluginVue.configs["flat/strongly-recommended"],
-    ...compat.extends("plugin:vue/base"),
+    ...pluginVue.configs['flat/recommended'],
     {
         plugins: {
-            'typescript-eslint': tseslint.plugin,
+            vue: pluginVue,
+            vuetify: pluginVuetify
         },
         languageOptions: {
+            parser: vueParser,
             parserOptions: {
                 parser: tseslint.parser,
-                project: './tsconfig.eslint.json',
+                project: './tsconfig.json',
                 extraFileExtensions: ['.vue'],
-                sourceType: 'module',
-            },
+            }
         },
         rules: {
-            "vue/no-deprecated-slot-attribute": "off",
-        },
-        ignores: ["src/**/*.js", "eslint.config.mjs"]
-    },
-);
+            'vuetify/no-deprecated-classes': 'error',
+            'vue/multi-word-component-names': 'off'
+        }
+    }
+)

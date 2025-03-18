@@ -1,6 +1,6 @@
 <template>
   <v-main>
-    <top-banner title="Board" />
+    <top-banner title="Board"/>
     <div class="mx-3">
       <div
         class="mx-auto my-10"

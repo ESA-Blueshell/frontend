@@ -1,6 +1,6 @@
 <template>
   <v-main>
-    <top-banner title="Member Manager" />
+    <top-banner title="Member Manager"/>
 
     <div class="mx-3">
       <div
@@ -36,7 +36,7 @@
   </v-main>
 </template>
 <script lang="ts">
-import { ref, watch, onMounted, defineComponent } from 'vue';
+import {ref, watch, onMounted, defineComponent} from 'vue';
 import TopBanner from '@/components/top-banner.vue';
 import ContributionPeriodList from '@/components/ContributionPeriodList.vue';
 import UserList from '@/components/UserList.vue';

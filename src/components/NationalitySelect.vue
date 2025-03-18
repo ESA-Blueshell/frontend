@@ -39,8 +39,9 @@
 >
 import {ref, watch} from 'vue';
 import {countries, getEmojiFlag, type TCountryCode} from 'countries-list';
-import { getName, registerLocale } from 'i18n-nationality';
+import {getName, registerLocale} from 'i18n-nationality';
 import enLocale from 'i18n-nationality/langs/en.json';
+
 registerLocale(enLocale);
 
 // Define the props and emits for v-model binding

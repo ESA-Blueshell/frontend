@@ -187,8 +187,10 @@ function moveDown(array, i) {
 <style scoped lang="scss">
 @use '../styles/settings';
 
-.form{
+.form {
   border-radius: settings.$border-radius-root;
-  border-width: 1px;border-color: rgb(var(--v-theme-accent)); border-style: solid;
+  border-width: 1px;
+  border-color: rgb(var(--v-theme-accent));
+  border-style: solid;
 }
 </style>

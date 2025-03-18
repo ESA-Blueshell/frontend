@@ -73,12 +73,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref } from 'vue';
+import {defineComponent, onMounted, ref} from 'vue';
 import ContributionPeriodDialog from '@/components/ContributionPeriodDialog.vue';
 import DeleteConfirmationDialog from '@/components/DeletionConfirmationDialog.vue';
 import ContributionPeriodService from '@/services/ContributionPeriodService';
-import moment from 'moment';
 import type ContributionPeriodModel from '@/models/ContributionPeriodModel';
+import { DateTime } from 'luxon';
 
 export default defineComponent({
   name: 'ContributionPeriodList',
@@ -87,7 +87,7 @@ export default defineComponent({
     DeleteConfirmationDialog,
   },
   emits: ['selected-period-id-changed'],
-  setup(props, { emit }) {
+  setup(props, {emit}) {
     const contributionPeriods = ref([] as ContributionPeriodModel[]);
     const selectedPeriodId = ref(0);
     const hoveredPeriodId = ref(0);
@@ -98,11 +98,9 @@ export default defineComponent({
     const contributionPeriodService = new ContributionPeriodService();
 
     const formatPeriod = (period: ContributionPeriodModel) => {
-      if (!period) {
-        return '';
-      }
-      const start = moment(period.startDate).format('DD/MM/YYYY');
-      const end = moment(period.endDate).format('DD/MM/YYYY');
+      if (!period) return '';
+      const start = DateTime.fromISO(period.startDate).toFormat('dd/MM/yyyy');
+      const end = DateTime.fromISO(period.endDate).toFormat('dd/MM/yyyy');
       return `${start} - ${end}`;
     };
 

@@ -1,6 +1,6 @@
 <template>
   <v-main>
-    <top-banner title="Reset password" />
+    <top-banner title="Reset password"/>
 
     <div
       class="mx-auto mt-10"
@@ -29,7 +29,7 @@
           />
 
           <v-row>
-            <v-spacer />
+            <v-spacer/>
             <v-col cols="auto">
               <v-btn
                 :disabled="!valid"

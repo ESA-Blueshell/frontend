@@ -1,7 +1,7 @@
 import type BaseModel from "@/models/BaseModel";
-import type {SimpleUser} from "@/models/Models";
+import type SimpleUser from "@/models/user/SimpleUser";
 
-export interface CommitteeMember extends BaseModel {
+export default interface CommitteeMember extends BaseModel {
   role?: string;
   userId?: number;
   user?: SimpleUser;

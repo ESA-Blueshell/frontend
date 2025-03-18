@@ -1,6 +1,6 @@
 <template>
   <v-main>
-    <top-banner title="League of Legends" />
+    <top-banner title="League of Legends"/>
     <div class="mx-3">
       <div
         class="mx-auto my-10"
@@ -14,7 +14,7 @@
       </div>
     </div>
 
-    <team :team="scaling" />
+    <team :team="scaling"/>
     <team
       :team="housecats"
       name-right="true"

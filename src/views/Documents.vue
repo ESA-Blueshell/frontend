@@ -2,7 +2,7 @@
   <v-main>
     <top-banner title="Documents"/>
     <div class="mx-auto my-5" style="max-width: 800px">
-        <document-table/>
+      <document-table/>
     </div>
   </v-main>
 </template>
@@ -14,7 +14,7 @@ import {$require} from "@/plugins/require";
 
 export default {
   name: "Documents",
-  components: { TopBanner, DocumentTable },
+  components: {TopBanner, DocumentTable},
   methods: {
     $require
   }

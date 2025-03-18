@@ -234,8 +234,6 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const login = store.getters.getLogin
-  console.log(store)
-  console.log(login)
   if (to.meta.requiresAuth && (login == null || store.getters.tokenExpired)) {
     next({
       path: '/login',

@@ -1,6 +1,6 @@
 <template>
   <v-main>
-    <top-banner title="Rocket League" />
+    <top-banner title="Rocket League"/>
     <div class="mx-3">
       <div
         class="mx-auto my-10"
@@ -12,12 +12,12 @@
         </p>
       </div>
     </div>
-    <team :team="oogway" />
+    <team :team="oogway"/>
     <team
       :team="squirtles"
       name-right="true"
     />
-    <team :team="turtles" />
+    <team :team="turtles"/>
     <team
       :team="tadpole"
       name-right="true"

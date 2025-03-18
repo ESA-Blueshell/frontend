@@ -13,8 +13,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watch } from 'vue';
-import { MemberType } from "@/models/User"; // Ensure the correct path
+import {defineComponent, ref, watch} from 'vue';
+import {MemberType} from "@/models/User"; // Ensure the correct path
 
 export default defineComponent({
   name: 'MemberTypeSelect',
@@ -25,7 +25,7 @@ export default defineComponent({
     },
   },
   emits: ['update:modelValue'],
-  setup(props, { emit }) {
+  setup(props, {emit}) {
     // Initialize the selected value with the prop
     const selected = ref<MemberType>(props.modelValue);
 

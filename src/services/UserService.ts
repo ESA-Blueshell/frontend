@@ -2,8 +2,6 @@ import BaseService from './BaseService';
 import type UserModel from "../models/User";
 import type ActivateUserRequest from "@/requests/ActivateUserRequest";
 import type ActivateMemberRequest from "@/requests/ActivateMemberRequest";
-import {AxiosError} from "axios";
-import store from "@/plugins/store";
 
 export default class UserService extends BaseService {
   constructor() {

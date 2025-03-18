@@ -1,6 +1,6 @@
 <template>
   <v-main>
-    <top-banner title="My account" />
+    <top-banner title="My account"/>
     <div class="mx-3">
       <div
         class="mx-auto my-10"
@@ -36,7 +36,7 @@
             v-model="valid"
           >
             <v-row>
-              <v-spacer />
+              <v-spacer/>
               <v-col cols="auto">
                 <v-tooltip
                   location="top"
@@ -189,7 +189,7 @@
               label="Study"
             />
             <v-row>
-              <v-spacer />
+              <v-spacer/>
               <v-col cols="auto">
                 <v-tooltip
                   location="top"
@@ -212,7 +212,7 @@
 
 
         <!--    TODO: make this beautiful. Maybe use skeleton loading elements?-->
-        <v-progress-circular v-else />
+        <v-progress-circular v-else/>
       </div>
     </div>
   </v-main>
@@ -224,7 +224,7 @@ import TopBanner from "@/components/top-banner";
 import {$handleNetworkError} from "@/plugins/handleNetworkError";
 import {VPhoneInput} from "v-phone-input";
 import {ref} from "vue";
-import moment from "moment";
+import { DateTime } from 'luxon';
 
 export default {
   name: "Account",
@@ -253,9 +253,9 @@ export default {
     this.$http.get(`users/${login.userId}`, {headers: {'Authorization': `Bearer ${login.token}`}})
       .then(response => {
         this.accountData = response.data
-        if (this.accountData.dateOfBirth) {
-          this.accountData.dateOfBirth = moment(this.accountData.dateOfBirth).format('YYYY-MM-DD')
-        }
+          if (this.accountData.dateOfBirth) {
+            this.accountData.dateOfBirth = DateTime.fromISO(this.accountData.dateOfBirth).toISODate();
+          }
         this.oldAccountData = this.copyObject(this.accountData)
       })
       .catch(e => $handleNetworkError(e))
@@ -292,6 +292,7 @@ export default {
 .v-col:first-child {
   padding-left: 0;
 }
+
 .v-col:last-child {
   padding-right: 0;
 }

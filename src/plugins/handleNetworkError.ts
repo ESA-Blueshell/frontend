@@ -1,33 +1,37 @@
-import router from "@/plugins/router";
-import store from "@/plugins/store";
+import { AxiosError } from 'axios';
+// @ts-ignore
+import router from './router';
+import store from '@/plugins/store';
+import type { RouteLocationRaw } from 'vue-router';
 
 /**
- * This function is used to handle network errors. It is used as a catch function in axios requests.
- *
- * @param {AxiosError} error
+ * Handles network errors from axios requests and shows appropriate user feedback
+ * @param error The axios error object
  */
-export function $handleNetworkError(error) {
-  // If the request got rejected, go to the login page to get some permissions
-  // Otherwise, set the networkError value in vuex to show the snackbar saying there is an error and rethrow
-  let errorMessage;
-  if (error.response) {
+export function $handleNetworkError(error: AxiosError): void {
+  let errorMessage: string;
+  const currentRoute = router.currentRoute.value;
 
+  if (error.response) {
     switch (error.response.status) {
       case 400:
         errorMessage = "Uhhhh, looks like a bad request (error 400)... Not sure how this happened. Please report this in the <a href='https://discord.com/channels/324285132133629963/1020245710987350047' target=\"_blank\" class=\"text-decoration-none\">Sitecie suggestions channel on discord</a>.";
         break;
       case 401:
         errorMessage = "Woah there, looks like you're not logged in (anymore). Just log in and try again.";
-        if (!this.$route.fullPath.startsWith("/login")) {
-          router.push({
+        if (!currentRoute.fullPath.startsWith("/login")) {
+          const redirect: RouteLocationRaw = {
             path: '/login',
-            query: {redirect: this.$route.query.redirect || this.$route.fullPath}
-          })
+            query: {
+              redirect: currentRoute.query.redirect || currentRoute.fullPath
+            }
+          };
+          router.push(redirect);
         }
         break;
       case 403:
         errorMessage = "Woah there, you don't have enough authority to access this. Go to jail and DO NOT PASS GO, DO NOT COLLECT $200.";
-        router.push({path: '/account',});
+        router.push({ path: '/account' });
         break;
       case 404:
         errorMessage = "Uhhhhhhh 404 moment. This resource doesn't exist anymore. Please report this in the <a href='https://discord.com/channels/324285132133629963/1020245710987350047' target=\"_blank\" class=\"text-decoration-none\">Sitecie suggestions channel on discord</a> if you think this is an error.";
@@ -48,8 +52,11 @@ export function $handleNetworkError(error) {
         errorMessage = `Oh no. An error happened that we don't know about (error code ${error.response.status}). Please report this in the <a href='https://discord.com/channels/324285132133629963/1020245710987350047' target="_blank" class="text-decoration-none">Sitecie suggestions channel on discord</a>.`;
         break;
     }
+  } else if (error.request) {
+    errorMessage = "Oh no. The request was made but no response was received. Please check your internet connection.";
   } else {
     errorMessage = "Oh no. An error happened that we don't know about. Please report this in the <a href='https://discord.com/channels/324285132133629963/1020245710987350047' target=\"_blank\" class=\"text-decoration-none\">Sitecie suggestions channel on discord</a>.";
   }
-  store.commit('setStatusSnackbarMessage', errorMessage)
+
+  store.commit('setStatusSnackbarMessage', errorMessage);
 }

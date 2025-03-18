@@ -1,6 +1,6 @@
 import type BaseModel from "@/models/BaseModel";
 
-export interface Event extends BaseModel {
+export default interface Event extends BaseModel {
   id?: number;
   committeeId?: number;
   title: string;

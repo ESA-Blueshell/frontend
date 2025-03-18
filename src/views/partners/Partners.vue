@@ -1,6 +1,6 @@
 <template>
   <v-main>
-    <top-banner title="Partners" />
+    <top-banner title="Partners"/>
     <div class="mx-3">
       <div
         class="mx-auto my-10"
@@ -28,10 +28,10 @@
         </p>
         <p class="text-body-1 font-weight-bold">
           Mail: <a
-            href="mailto:external-affairs@blueshell.utwente.nl"
-            target="_blank"
-            class="text-decoration-none"
-          >external-affairs@blueshell.utwente.nl</a>
+          href="mailto:external-affairs@blueshell.utwente.nl"
+          target="_blank"
+          class="text-decoration-none"
+        >external-affairs@blueshell.utwente.nl</a>
         </p>
       </div>
     </div>

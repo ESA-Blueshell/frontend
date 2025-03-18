@@ -61,7 +61,7 @@ export default {
 
             committeeId: event.committee,
 
-            signUpForm: event.signUpForm ,
+            signUpForm: event.signUpForm,
             enableSignUpForm: !!event.signUpForm,
           }
 

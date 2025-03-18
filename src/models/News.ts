@@ -1,6 +1,6 @@
 import type BaseModel from "@/models/BaseModel";
 
-export interface News extends BaseModel {
+export default interface News extends BaseModel {
   id?: string;
   creatorId: string;
   creatorUsername?: string;
