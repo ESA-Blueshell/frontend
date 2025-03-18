@@ -25,7 +25,7 @@ import EventSignUps from "@/views/login/events/EventSignUps.vue";
 import CommitteeManager from "@/views/login/CommitteeManager.vue";
 import CreateAccount from "@/views/login/CreateAccount.vue";
 import ActivateAccount from "@/views/login/ActivateAccount.vue";
-import MemberManager from "@/views/managing/MemberManager.vue";
+import MemberManager from "@/views/login/member/MemberManager.vue";
 import RocketLeague from "@/views/esports/RocketLeague.vue";
 import ForgotPassword from "@/views/login/ForgotPassword.vue";
 import ResetPassword from "@/views/login/ResetPassword.vue";

@@ -79,10 +79,10 @@ import {
   toRefs,
   watch,
 } from 'vue';
-import {$handleNetworkError} from '@/plugins/handleNetworkError';
+import {$handleNetworkError} from '@/plugins/handleNetworkError.ts';
 import { DateTime } from 'luxon';
 import type ContributionPeriodModel from '@/models/ContributionPeriodModel';
-import ContributionPeriodService from '@/services/ContributionPeriodService';
+import ContributionPeriodService from '@/services/ContributionPeriodService.ts';
 import type {VForm} from 'vuetify/components';
 
 export default defineComponent({

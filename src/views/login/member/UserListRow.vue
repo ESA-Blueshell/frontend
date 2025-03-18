@@ -55,13 +55,6 @@
               >
                 Delete
               </v-btn>
-              <!--            MAKE A USER A MEMBER       -->
-              <v-btn
-                variant="text"
-                @click.stop="changeMembership(true)"
-              >
-                Make member
-              </v-btn>
             </template>
             <template v-else>
               <!--              CHANGE CONTRIBUTION PAID      as-->
@@ -87,14 +80,15 @@
                   mdi-close
                 </v-icon>
               </div>
-              <!--            REMOVE MEMBERSHIP FROM A USER       -->
-              <v-btn
-                variant="text"
-                @click.stop="changeMembership(false)"
-              >
-                Remove membership
-              </v-btn>
+
             </template>
+            <!--            TOGGLE MEMBERSHIP       -->
+            <v-btn
+              variant="text"
+              @click.stop="toggleMembership()"
+            >
+              {{ user.roles.includes(Role.MEMBER) ? "Remove membership" : "Make member" }}
+            </v-btn>
           </div>
         </div>
       </div>
@@ -119,20 +113,20 @@
 </template>
 <script lang="ts">
 import UserComponent from '@/components/UserComponent.vue';
-import UserService from "@/services/UserService";
-import ContributionService from "@/services/ContributionService";
-import type UserModel from "@/models/User";
+import UserService from "@/services/UserService.ts";
+import ContributionService from "@/services/ContributionService.ts";
 import type ContributionModel from "@/models/ContributionModel";
 import {computed, ref, toRefs} from 'vue';
 import DeleteConfirmationDialog from "@/components/DeletionConfirmationDialog.vue";
-import store from "@/plugins/store";
+import store from "@/plugins/store.ts";
+import {type AdvancedUser, Role} from "@/models";
 
 export default {
   name: 'UserListRow',
   components: {UserComponent, DeleteConfirmationDialog},
   props: {
     user: {
-      type: Object as () => UserModel,
+      type: Object as () => AdvancedUser,
       required: true,
     },
     contributions: {
@@ -161,8 +155,8 @@ export default {
       emit('toggle-expanded', props.user.id);
     };
 
-    const changeMembership = async (isMember: boolean) => {
-      const userData: UserModel = await userService.setMembership(user.value, isMember);
+    const toggleMembership = async () => {
+      const userData: AdvancedUser = await userService.toggleRole(user.value.id as number, Role.MEMBER);
       userChanged(userData)
     };
 
@@ -172,16 +166,16 @@ export default {
 
     const confirmDeleteUser = async () => {
       deleteDialog.value = false;
-      await userService.delete(props.user);
+      await userService.deleteUser(props.user.id as number);
       emit('delete-user', props.user);
     };
 
     const addToBrevo = async () => {
-      const userData: UserModel = await userService.syncWithBrevo(user.value);
+      const userData: AdvancedUser = await userService.syncWithBrevo(user.value);
       userChanged(userData)
     };
 
-    const userChanged = (userData: UserModel) => {
+    const userChanged = (userData: AdvancedUser) => {
       console.error("USER CHANGED IN USER LIST ROW")
       emit('user-changed', userData);
     }
@@ -192,7 +186,7 @@ export default {
 
     const changeContributionPaid = async (paid: boolean) => {
       if (contribution.value) {
-        const changedContribution = await contributionService.changeContributionPaid(contribution.value, paid)
+        const changedContribution = await contributionService.markAsPaid(contribution.value.id as number, paid)
         emit('contribution-changed', changedContribution);
       }
     };
@@ -203,11 +197,12 @@ export default {
       deleteUser,
       confirmDeleteUser,
       toggleExpanded,
-      changeMembership,
+      toggleMembership,
       changeContributionPaid,
       addToBrevo,
       disableDelete,
       userChanged,
+      Role
     };
   },
 }

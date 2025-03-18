@@ -11,7 +11,7 @@ export default class ContributionService extends BaseService {
   }
 
   async markAsPaid(id: number, paid: boolean): Promise<Contribution> {
-    return this.put({ paid }, `/${id}/paid`);
+    return this.put({  }, `/${id}/paid`, { paid});
   }
 
   async getByPeriod(periodId: number): Promise<Contribution[]> {
