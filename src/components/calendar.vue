@@ -130,10 +130,12 @@ export default {
 </script>
 
 <style lang="scss">
-@use '../styles/settings';
+@use '@/styles/settings' as settings;
+@use "sass:map";
+
 
 .v-calendar {
-  @media #{map-get(settings.$display-breakpoints, 'xs')} {
+  @media #{map.get(settings.$display-breakpoints, 'xs')} {
     .v-calendar-header__title {
       font-size: 6vw;
     }
@@ -195,7 +197,7 @@ export default {
       border-bottom-left-radius: settings.$border-radius-root;
     }
 
-    @media #{map-get(settings.$display-breakpoints, 'xs')} {
+    @media #{map.get(settings.$display-breakpoints, 'xs')} {
       :nth-last-child(5 of .v-calendar-month__day) {
         border-bottom-left-radius: settings.$border-radius-root;
       }
