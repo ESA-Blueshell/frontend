@@ -33,7 +33,7 @@
           <v-text-field
             v-model="userData.prefix"
             :disabled="disableEdit"
-            label="Prefix"
+            label="Surname Prefix"
           />
         </v-col>
         <v-col cols="4">
@@ -210,7 +210,7 @@
               <v-btn
                 x-small
                 icon="mdi-content-save"
-                :disabled="!valid || disableEdit"
+                :disabled="disableEdit"
                 :loading="submitting"
                 v-bind="props"
                 @click="save"
@@ -322,13 +322,13 @@ export default {
 
     onMounted(() => {
       if (userData.value.dateOfBirth) {
-        userData.value.dateOfBirth = DateTime.fromISO(userData.value.dateOfBirth).toISODate();
+        userData.value.dateOfBirth = DateTime.fromISO(userData.value.dateOfBirth).toISODate() as string;
       }
     });
 
     const save = async () => {
-      const isValid = await form.value?.validate();
-      if (!isValid) return;
+      const result = await form.value?.validate();
+      if (!result || !result.valid) return;
 
       submitting.value = true;
 
@@ -340,6 +340,7 @@ export default {
         }
         submitting.value = false;
         emit('user-changed', userData.value);
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
       } catch (e: unknown) {
         submitting.value = false;
       }

@@ -68,20 +68,32 @@ function downloadFile() {
         ref="fileInput"
         type="file"
         @change="onFileSelected"
-      />
+      >
 
       <label for="fileTypeSelect">Select File Type:</label>
-      <select id="fileTypeSelect" v-model="fileType">
-        <option v-for="type in Object.values(FileType)" :key="type" :value="type">
+      <select
+        id="fileTypeSelect"
+        v-model="fileType"
+      >
+        <option
+          v-for="type in Object.values(FileType)"
+          :key="type"
+          :value="type"
+        >
           {{ type }}
         </option>
       </select>
 
-      <button @click="uploadFile">Upload File</button>
+      <button @click="uploadFile">
+        Upload File
+      </button>
     </div>
 
     <!-- Download Section -->
-    <div class="download-section" v-if="selectedFile">
+    <div
+      v-if="selectedFile"
+      class="download-section"
+    >
       <h3>File: {{ selectedFile.name }}</h3>
       <!-- Preview image if file type is not DOCUMENT -->
       <img
@@ -89,8 +101,10 @@ function downloadFile() {
         :src="previewUrl"
         alt="Preview"
         style="max-width:200px; max-height:200px;"
-      />
-      <button @click="downloadFile">Download File</button>
+      >
+      <button @click="downloadFile">
+        Download File
+      </button>
     </div>
   </div>
 </template>
