@@ -7,3 +7,4 @@ export { default as FileService } from "./FileService";
 export { default as NewsService } from "./NewsService";
 export { default as SponsorService } from "./SponsorService";
 export { default as UserService } from "./UserService";
+export { default as MembershipService } from "./MembershipService"

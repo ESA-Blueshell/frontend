@@ -17,7 +17,7 @@
         />
 
         <UserList
-          title="Non-membership users"
+          title="Non-member users"
           :users="nonMembers"
           :expanded="expanded"
           :contributions="contributions"

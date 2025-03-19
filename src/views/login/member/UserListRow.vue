@@ -1,4 +1,44 @@
 <template>
+  <v-dialog
+    v-model="showStartModal"
+    max-width="500"
+  >
+    <v-card>
+      <v-card-title class="text-h5">
+        Start Membership
+      </v-card-title>
+      <v-card-text>
+        <v-row>
+          <v-text-field
+            v-model="startDate"
+            :max="new Date().toISOString()"
+            label="Start Date"
+            type="date"
+            required
+          />
+        </v-row>
+        <v-row>
+          <member-type-select v-model="memberType"/>
+        </v-row>
+      </v-card-text>
+      <v-card-actions>
+        <v-spacer />
+        <v-btn
+          color="secondary"
+          @click="showStartModal = false"
+        >
+          Cancel
+        </v-btn>
+        <v-btn
+          color="primary"
+          :loading="isSubmitting"
+          @click="confirmStartMembership"
+        >
+          Confirm
+        </v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-dialog>
   <div>
     <v-list-item>
       <div
@@ -48,7 +88,7 @@
             <template v-if="!isMemberList">
               <!--            DELETE A USER       -->
               <v-btn
-                :disabled="user.roles.indexOf('ADMIN') !== -1"
+                :disabled="user?.roles?.includes(Role.ADMIN)"
                 color="red"
                 variant="text"
                 @click.stop="deleteUser()"
@@ -85,21 +125,21 @@
             <v-btn
               v-if="user?.membership?.endDate"
               variant="text"
-              @click.stop="toggleMembership()"
+              @click.stop="resumeMembership()"
             >
               Resume Membership
             </v-btn>
             <v-btn
               v-else-if="user?.membership?.startDate"
               variant="text"
-              @click.stop="toggleMembership()"
+              @click.stop="endMembership()"
             >
               End Membership
             </v-btn>
             <v-btn
               v-else
               variant="text"
-              @click.stop="toggleMembership()"
+              @click.stop="startMembership()"
             >
               Start Membership
             </v-btn>
@@ -127,24 +167,25 @@
 </template>
 <script lang="ts">
 import UserEdit from '@/components/UserEdit.vue';
-import UserService from "@/services/UserService.ts";
-import ContributionService from "@/services/ContributionService.ts";
-import type ContributionModel from "@/models/ContributionModel";
+import {ContributionService, UserService, MembershipService} from "@/services";
+import {type Contribution, type Membership, MemberType} from "@/models";
 import {computed, ref, toRefs} from 'vue';
-import DeleteConfirmationDialog from "@/components/DeletionConfirmationDialog.vue";
+import DeleteConfirmationDialog from "@/components/DeletionConfirmationDialog";
 import store from "@/plugins/store.ts";
 import {type AdvancedUser, Role} from "@/models";
+import {DateTime} from 'luxon';
+import MemberTypeSelect from "@/components/MemberTypeSelect.vue";
 
 export default {
   name: 'UserListRow',
-  components: {UserEdit, DeleteConfirmationDialog},
+  components: {MemberTypeSelect, UserEdit, DeleteConfirmationDialog},
   props: {
     user: {
       type: Object as () => AdvancedUser,
       required: true,
     },
     contributions: {
-      type: Array as () => ContributionModel[],
+      type: Array as () => Contribution[],
       default: () => [],
     },
     expanded: {
@@ -163,7 +204,12 @@ export default {
     const deleteDialog = ref(false);
     const userService: UserService = new UserService();
     const contributionService: ContributionService = new ContributionService();
+    const membershipService: MembershipService = new MembershipService();
     const {user, contributions} = toRefs(props);
+    const showStartModal = ref(false);
+    const startDate = ref(DateTime.now().toISODate());
+    const memberType = ref(MemberType.REGULAR);
+    const isSubmitting = ref(false);
 
     const toggleExpanded = () => {
       emit('toggle-expanded', props.user.id);
@@ -174,8 +220,49 @@ export default {
       userChanged(userData)
     };
 
-    const createMembership = async () => {
+    const startMembership = () => {
+      showStartModal.value = true;
+    };
 
+    const confirmStartMembership = async () => {
+      try {
+        isSubmitting.value = true;
+        const newMembership = await membershipService.createMembership({
+          type: 'MembershipDTO',
+          userId: props.user.id as number,
+          memberType: memberType.value,
+          startDate: DateTime.fromISO(startDate.value).toISO() as string,
+          endDate: undefined
+        });
+
+        const changedUser = {
+          ...props.user,
+          membership: newMembership
+        };
+        userChanged(changedUser);
+        showStartModal.value = false;
+      } finally {
+        isSubmitting.value = false;
+      }
+    };
+
+
+    const endMembership = async () => {
+      const membership: Membership = user.value.membership as Membership;
+      membership.endDate = DateTime.now().toISO().toString();
+      const changedMembership: Membership = await membershipService.updateMembership(membership.id as number, membership);
+      const changedUser: AdvancedUser = user.value;
+      changedUser.membership = changedMembership;
+      userChanged(changedUser)
+    }
+
+    const resumeMembership = async () => {
+      const membership: Membership = user.value.membership as Membership;
+      membership.endDate = undefined;
+      const changedMembership: Membership = await membershipService.updateMembership(membership.id as number, membership);
+      const changedUser: AdvancedUser = user.value;
+      changedUser.membership = changedMembership;
+      userChanged(changedUser)
     }
 
     const deleteUser = () => {
@@ -188,13 +275,7 @@ export default {
       emit('delete-user', props.user);
     };
 
-    const addToBrevo = async () => {
-      const userData: AdvancedUser = await userService.syncWithBrevo(user.value);
-      userChanged(userData)
-    };
-
     const userChanged = (userData: AdvancedUser) => {
-      console.error("USER CHANGED IN USER LIST ROW")
       emit('user-changed', userData);
     }
 
@@ -217,10 +298,17 @@ export default {
       toggleExpanded,
       toggleMembership,
       changeContributionPaid,
-      addToBrevo,
+      endMembership,
+      resumeMembership,
+      startMembership,
       disableDelete,
       userChanged,
-      Role
+      Role,
+      showStartModal,
+      startDate,
+      isSubmitting,
+      confirmStartMembership,
+      memberType
     };
   },
 }

@@ -81,8 +81,8 @@ import {
 } from 'vue';
 import {$handleNetworkError} from '@/plugins/handleNetworkError.ts';
 import { DateTime } from 'luxon';
-import type ContributionPeriodModel from '@/models/ContributionPeriodModel';
-import ContributionPeriodService from '@/services/ContributionPeriodService.ts';
+import type {ContributionPeriod} from '@/models';
+import {ContributionPeriodService} from '@/services';
 import type {VForm} from 'vuetify/components';
 
 export default defineComponent({
@@ -97,11 +97,11 @@ export default defineComponent({
       required: true,
     },
     selectedPeriod: {
-      type: Object as () => ContributionPeriodModel | null,
+      type: Object as () => ContributionPeriod | null,
       default: null,
     },
     contributionPeriods: {
-      type: Array as () => ContributionPeriodModel[],
+      type: Array as () => ContributionPeriod[],
       default: () => [],
     },
   },
@@ -112,7 +112,7 @@ export default defineComponent({
       set: (value) => emit('update:modelValue', value),
     });
 
-    const form = reactive<ContributionPeriodModel>({
+    const form = reactive<ContributionPeriod>({
       id: props.selectedPeriod?.id || 0,
       startDate: '',
       endDate: '',
@@ -185,9 +185,9 @@ export default defineComponent({
 
       try {
         if (props.isEditing) {
-          await contributionPeriodService.updateContributionPeriod(form);
+          await contributionPeriodService.updatePeriod(form.id as number, form);
         } else {
-          await contributionPeriodService.createContributionPeriod(form);
+          await contributionPeriodService.createPeriod(form);
         }
         emit('refresh-periods');
         closeDialog();
