@@ -77,9 +77,9 @@
 import {defineComponent, onMounted, ref} from 'vue';
 import ContributionPeriodDialog from '@/views/login/member/ContributionPeriodDialog.vue';
 import DeleteConfirmationDialog from '@/components/DeletionConfirmationDialog.vue';
-import ContributionPeriodService from '@/services/ContributionPeriodService.ts';
-import type ContributionPeriodModel from '@/models/ContributionPeriodModel';
-import { DateTime } from 'luxon';
+import {ContributionPeriodService} from '@/services';
+import type {ContributionPeriod} from '@/models';
+import {DateTime} from 'luxon';
 
 export default defineComponent({
   name: 'ContributionPeriodList',
@@ -89,16 +89,16 @@ export default defineComponent({
   },
   emits: ['selected-period-id-changed'],
   setup(props, {emit}) {
-    const contributionPeriods = ref([] as ContributionPeriodModel[]);
+    const contributionPeriods = ref([] as ContributionPeriod[]);
     const selectedPeriodId = ref(0);
     const hoveredPeriodId = ref(0);
     const deleteDialog = ref(false);
-    const selectedPeriod = ref({} as ContributionPeriodModel);
+    const selectedPeriod = ref({} as ContributionPeriod);
     const isEditing = ref(false);
     const showAddPeriodDialog = ref(false);
     const contributionPeriodService = new ContributionPeriodService();
 
-    const formatPeriod = (period: ContributionPeriodModel) => {
+    const formatPeriod = (period: ContributionPeriod) => {
       if (!period) return '';
       const start = DateTime.fromISO(period.startDate).toFormat('dd/MM/yyyy');
       const end = DateTime.fromISO(period.endDate).toFormat('dd/MM/yyyy');
@@ -115,11 +115,11 @@ export default defineComponent({
 
     const openAddPeriodDialog = () => {
       isEditing.value = false;
-      selectedPeriod.value = {} as ContributionPeriodModel;
+      selectedPeriod.value = {} as ContributionPeriod;
       showAddPeriodDialog.value = true;
     };
 
-    const openEditPeriodDialog = (period: ContributionPeriodModel) => {
+    const openEditPeriodDialog = (period: ContributionPeriod) => {
       isEditing.value = true;
       selectedPeriod.value = period;
       showAddPeriodDialog.value = true;
@@ -133,7 +133,7 @@ export default defineComponent({
       await contributionPeriodService.delete(selectedPeriod.value);
       isEditing.value = false;
       deleteDialog.value = false;
-      selectedPeriod.value = {} as ContributionPeriodModel;
+      selectedPeriod.value = {} as ContributionPeriod;
       selectedPeriodId.value = 0;
       await getContributionPeriods();
     };

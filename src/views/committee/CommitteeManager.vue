@@ -146,7 +146,7 @@
 import BannerTop from "@/components/BannerTop.vue";
 import CommitteeEdit from "@/views/committee/CommitteeEdit.vue";
 import {$require} from "@/plugins/require.js";
-import {$handleNetworkError} from "@/plugins/handleNetworkError.js";
+import {$handleNetworkError} from "@/plugins/handleNetworkError";
 
 export default {
   name: "CommitteeManager",

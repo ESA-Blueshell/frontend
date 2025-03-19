@@ -1,8 +1,8 @@
 import BaseService from "./BaseService";
-import type AdvancedUser from "@/models/user/AdvancedUser";
+import type {AdvancedUser} from "@/models";
 import type ActivationRequest from "@/models/requests/ActivationRequest";
 import type PasswordResetRequest from "@/models/requests/PasswordResetRequest";
-import type { Role } from "@/models/enums/Role";
+import type {Role} from "@/models/enums/Role";
 
 export default class UserService extends BaseService {
   constructor() {
@@ -10,7 +10,7 @@ export default class UserService extends BaseService {
   }
 
   async getUsers(isMember?: boolean): Promise<AdvancedUser[]> {
-    return this.get("", { isMember });
+    return this.get("", {isMember});
   }
 
   async getUser(id: number): Promise<AdvancedUser> {
@@ -26,7 +26,7 @@ export default class UserService extends BaseService {
   }
 
   async resetPassword(username: string): Promise<void> {
-    return this.post(null, "/reset", { username });
+    return this.post(null, "/reset", {username});
   }
 
   async activate(request: ActivationRequest): Promise<void> {
@@ -38,7 +38,7 @@ export default class UserService extends BaseService {
   }
 
   async toggleRole(userId: number, role: Role): Promise<AdvancedUser> {
-    return this.put(null, `/${userId}/roles`, { role });
+    return this.put(null, `/${userId}/roles`, {role});
   }
 
   async deleteUser(userId: number): Promise<void> {
@@ -46,6 +46,6 @@ export default class UserService extends BaseService {
   }
 
   async getFromBrevo(email: string): Promise<AdvancedUser> {
-    return this.get("/brevo", { email });
+    return this.get("/brevo", {email});
   }
 }

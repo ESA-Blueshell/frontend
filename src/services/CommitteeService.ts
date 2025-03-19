@@ -1,7 +1,6 @@
 // ./src/services/CommitteeService.ts
 import BaseService from "./BaseService";
-import type Committee from "@/models/Committee";
-import type CommitteeMember from "@/models/CommitteeMember";
+import type {CommitteeMember, Committee} from "@/models";
 
 export default class CommitteeService extends BaseService {
   constructor() {
