@@ -1,6 +1,6 @@
 <template>
   <v-main>
-    <top-banner title="Trackmania"/>
+    <top-banner title="Trackmania" />
     <div class="mx-3">
       <div
         class="mx-auto my-10"
@@ -14,7 +14,7 @@
         </p>
       </div>
     </div>
-    <team :team="blueshell"/>
+    <team :team="blueshell" />
   </v-main>
 </template>
 

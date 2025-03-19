@@ -1,6 +1,6 @@
 <template>
   <v-main>
-    <top-banner title="My account"/>
+    <top-banner title="My account" />
     <div class="mx-3">
       <div
         class="mx-auto my-10"
@@ -36,7 +36,7 @@
             v-model="valid"
           >
             <v-row>
-              <v-spacer/>
+              <v-spacer />
               <v-col cols="auto">
                 <v-tooltip
                   location="top"
@@ -189,7 +189,7 @@
               label="Study"
             />
             <v-row>
-              <v-spacer/>
+              <v-spacer />
               <v-col cols="auto">
                 <v-tooltip
                   location="top"
@@ -212,7 +212,7 @@
 
 
         <!--    TODO: make this beautiful. Maybe use skeleton loading elements?-->
-        <v-progress-circular v-else/>
+        <v-progress-circular v-else />
       </div>
     </div>
   </v-main>

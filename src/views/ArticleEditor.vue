@@ -1,6 +1,6 @@
 <template>
   <v-main>
-    <top-banner title="article editor"/>
+    <top-banner title="article editor" />
     <div
       class="mx-auto my-10"
       style="max-width: 800px"

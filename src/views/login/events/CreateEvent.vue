@@ -1,6 +1,6 @@
 <template>
   <v-main>
-    <top-banner :title="headerTitle"/>
+    <top-banner :title="headerTitle" />
 
     <div class="mb-8">
       <div

@@ -16,7 +16,7 @@
           Follow us on Social Media
         </p>
       </v-col>
-      <v-spacer/>
+      <v-spacer />
       <v-col md="auto">
         <v-btn
           v-for="social in socials"

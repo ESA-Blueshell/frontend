@@ -1,6 +1,6 @@
 <template>
   <v-main>
-    <top-banner title="Member Manager"/>
+    <top-banner title="Member Manager" />
 
     <div class="mx-3">
       <div

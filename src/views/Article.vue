@@ -1,6 +1,6 @@
 <template>
   <v-main>
-    <top-banner title="news"/>
+    <top-banner title="news" />
     <div
       class="mx-auto my-10"
       style="max-width: 800px"
@@ -11,7 +11,7 @@
       <p class="text-h4 font-weight-thin">
         {{ news.title }}
       </p>
-      <p v-html="news.content"/>
+      <p v-html="news.content" />
       <h5>
         By <b>{{ news.creatorUsername }}</b>,
         {{ news.postedAt ? news.postedAt.slice(0, 10) : '' }}

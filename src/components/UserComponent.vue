@@ -150,9 +150,9 @@
       </v-row>
       <v-row>
         <v-col cols="6">
-          <MemberTypeSelect v-model="userData.memberType"/>
+          <MemberTypeSelect v-model="userData.memberType" />
         </v-col>
-        <v-col cols="6"/>
+        <v-col cols="6" />
       </v-row>
       <!-- Last Row: Checkboxes and Save Button -->
       <v-row

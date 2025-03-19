@@ -1,6 +1,6 @@
 <template>
   <v-main>
-    <top-banner :title="eventName ? eventName+' sign-ups' : 'Sign-ups'"/>
+    <top-banner :title="eventName ? eventName+' sign-ups' : 'Sign-ups'" />
     <div class="mx-3">
       <div
         class="mx-auto my-10"
@@ -90,7 +90,7 @@
                     </v-expand-transition>
                   </v-container>
                 </v-row>
-                <v-divider :key="'div'+j"/>
+                <v-divider :key="'div'+j" />
               </div>
             </v-container>
           </template>

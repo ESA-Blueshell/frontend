@@ -1,6 +1,6 @@
 <template>
   <v-main>
-    <top-banner title="News"/>
+    <top-banner title="News" />
 
     <div class="mx-3">
       <div
@@ -9,10 +9,10 @@
       >
         <p class="text-h4 font-weight-light">
           Subscribe to the monthly <a
-          href="https://e0b439d3.sibforms.com/serve/MUIEAIqizJ5g_Rr8BTIJ87Y5ig2C01AXGSiJCeW1VbDKfPRmZ62U6xG90StYCYm7jBUENcyoymK3NG26fqqC_Zj1M8qdIbMeJYr1Kuom0Ph9gOjfvoosc7Ty4rjHv7lQEg04HFGjVKQiUYHN_QFpY_PlzXjZoqwFV-5qiY5VNjLforWZ_luKK4TgS7yONAix1AHKTBLKIF0M6LWN"
-          target="_blank"
-          class="text-decoration-none"
-        > Blueshell newsletter</a> to stay up to date with events and the association!
+            href="https://e0b439d3.sibforms.com/serve/MUIEAIqizJ5g_Rr8BTIJ87Y5ig2C01AXGSiJCeW1VbDKfPRmZ62U6xG90StYCYm7jBUENcyoymK3NG26fqqC_Zj1M8qdIbMeJYr1Kuom0Ph9gOjfvoosc7Ty4rjHv7lQEg04HFGjVKQiUYHN_QFpY_PlzXjZoqwFV-5qiY5VNjLforWZ_luKK4TgS7yONAix1AHKTBLKIF0M6LWN"
+            target="_blank"
+            class="text-decoration-none"
+          > Blueshell newsletter</a> to stay up to date with events and the association!
         </p>
       </div>
     </div>
@@ -53,7 +53,7 @@
             </div>
           </v-list-item>
 
-          <v-divider v-if="i !== (news.length - 1)"/>
+          <v-divider v-if="i !== (news.length - 1)" />
         </div>
       </v-list>
     </div>

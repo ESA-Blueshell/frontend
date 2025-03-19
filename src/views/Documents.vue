@@ -1,8 +1,11 @@
 <template>
   <v-main>
-    <top-banner title="Documents"/>
-    <div class="mx-auto my-5" style="max-width: 800px">
-      <document-table/>
+    <top-banner title="Documents" />
+    <div
+      class="mx-auto my-5"
+      style="max-width: 800px"
+    >
+      <document-table />
     </div>
   </v-main>
 </template>

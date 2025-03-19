@@ -3,7 +3,7 @@
 const iconLinks = [
   {
     icon: 'mdi-email',
-    href: 'mailto:blueshellesports@gmail.com',
+    href: 'mailto:board@blueshell.utwente.nl',
   },
   {
     icon: 'mdi-instagram',
@@ -76,11 +76,12 @@ const textLinks = [
             :key="link.href"
             :href="link.href"
             target="_blank"
-            v-text="link.text"
-          />
+          >
+            {{ link.text }}
+          </v-btn>
         </div>
 
-        <v-spacer/>
+        <v-spacer />
 
         <div>
           SITECIE GANG &copy; {{ new Date().getFullYear() }}
@@ -115,8 +116,9 @@ const textLinks = [
           :key="link.href"
           :href="link.href"
           target="_blank"
-          v-text="link.text"
-        />
+        >
+          {{ link.text }}
+        </v-btn>
       </div>
 
 

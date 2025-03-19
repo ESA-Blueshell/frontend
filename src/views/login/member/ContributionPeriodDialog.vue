@@ -48,7 +48,7 @@
         </v-form>
       </v-card-text>
       <v-card-actions>
-        <v-spacer/>
+        <v-spacer />
         <v-btn
           v-if="isEditing"
           color="red"

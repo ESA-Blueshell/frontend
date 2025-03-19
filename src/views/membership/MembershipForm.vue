@@ -1,6 +1,6 @@
 <template>
   <v-main>
-    <top-banner title="Membership Form"/>
+    <top-banner title="Membership Form" />
 
     <div
       v-if="!succeeded"
@@ -55,7 +55,7 @@
             v-model="form.nationality"
             cols="4"
           />
-          <country-select/>
+          <country-select />
         </v-row>
         <v-row>
           <v-col cols="6">
@@ -171,7 +171,7 @@
             />
           </v-col>
         </v-row>
-        <v-spacer/>
+        <v-spacer />
         <v-sheet
           class="pa-4"
           style="border-radius: 10px"
@@ -183,9 +183,9 @@
           the new academic year.
           <br>
           <br>
-          <document-table/>
+          <document-table />
           <br>
-          <contribution is-form/>
+          <contribution is-form />
           <v-row
             class="mt-4"
             style="width: 100%;"
@@ -238,7 +238,7 @@
           </v-row>
         </v-sheet>
         <v-row>
-          <v-spacer/>
+          <v-spacer />
           <v-col cols="auto">
             <v-btn
               :loading="clicked"

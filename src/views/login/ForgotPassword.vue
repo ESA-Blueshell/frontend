@@ -1,6 +1,6 @@
 <template>
   <v-main>
-    <top-banner title="Forgot Password"/>
+    <top-banner title="Forgot Password" />
 
 
     <div class="mx-3">
@@ -25,7 +25,7 @@
               @keydown.enter="sendResetMail"
             />
             <v-row>
-              <v-spacer/>
+              <v-spacer />
               <v-col cols="auto">
                 <v-btn
                   :disabled="!valid"

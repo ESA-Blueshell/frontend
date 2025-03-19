@@ -15,7 +15,7 @@
     :activator="selectedElement"
     location="start"
   >
-    <EventDetails :selected-event="selectedEvent"/>
+    <EventDetails :selected-event="selectedEvent" />
   </v-menu>
 </template>
 

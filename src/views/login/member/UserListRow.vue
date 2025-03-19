@@ -80,7 +80,6 @@
                   mdi-close
                 </v-icon>
               </div>
-
             </template>
             <!--            TOGGLE MEMBERSHIP       -->
             <v-btn

@@ -16,7 +16,7 @@
             Join us on our Discord server
           </p>
         </v-col>
-        <v-spacer/>
+        <v-spacer />
         <v-col cols="auto">
           <v-btn
             color="primary"
@@ -70,7 +70,7 @@
           </div>
         </v-col>
 
-        <v-spacer/>
+        <v-spacer />
 
         <v-col
           v-if="Object.entries(channels).length > 0"

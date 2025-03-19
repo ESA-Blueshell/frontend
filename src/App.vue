@@ -168,7 +168,7 @@
         </v-btn>
       </div>
 
-      <v-spacer/>
+      <v-spacer />
 
       <div style="height: 90%;display: flex;align-items: center;flex-wrap: nowrap;">
         <!--  Dark mode toggle    -->
@@ -267,7 +267,7 @@
           <v-list-item to="/documents">
             Documents
           </v-list-item>
-          <v-divider class="mb-1"/>
+          <v-divider class="mb-1" />
         </v-list-group>
 
 
@@ -291,7 +291,7 @@
           >
             Circuit Showdown
           </v-list-item>
-          <v-divider class="mb-1"/>
+          <v-divider class="mb-1" />
         </v-list-group>
 
         <v-list-group>
@@ -318,7 +318,7 @@
           <v-list-item to="/esports/trackmania">
             Trackmania
           </v-list-item>
-          <v-divider class="mb-1"/>
+          <v-divider class="mb-1" />
         </v-list-group>
 
         <v-list-group>
@@ -333,7 +333,7 @@
           <v-list-item to="/partners/el-nino">
             El Niño – Digital Development
           </v-list-item>
-          <v-divider dark/>
+          <v-divider dark />
         </v-list-group>
 
         <v-list-item to="/contact">
@@ -344,7 +344,7 @@
       <template #append>
         <v-btn
           icon="mdi-email"
-          href="mailto:blueshellesports@gmail.com"
+          href="mailto:board@blueshell.utwente.nl"
           variant="plain"
           style="width: calc(100%/3)"
         />
@@ -387,9 +387,9 @@
     </v-navigation-drawer>
 
 
-    <router-view/>
+    <router-view />
 
-    <bs-footer/>
+    <bs-footer />
 
 
     <v-snackbar
@@ -413,7 +413,7 @@
       v-model="statusSnackbarMessage"
       timeout="10000"
     >
-      <span v-html="statusSnackbarMessage"/>
+      <span v-html="statusSnackbarMessage" />
       <template #actions>
         <v-btn
           color="blue"

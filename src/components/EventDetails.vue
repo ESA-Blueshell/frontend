@@ -22,7 +22,7 @@
         />
       </marquee-text>
 
-      <v-spacer/>
+      <v-spacer />
       <v-tooltip
         text="Find location"
         location="bottom"
@@ -79,7 +79,7 @@
         No description...
       </p>
       <!-- Starting time of the event -->
-      <v-divider class="my-2"/>
+      <v-divider class="my-2" />
       <p>
         <b>When</b>
         <br>
@@ -98,10 +98,10 @@
       <!-- Only show this part if there is a price for this event -->
       <!-- I want to die -->
       <v-divider
-        v-if="selectedEvent.memberPrice !== 0 && selectedEvent.publicPrice !== 0 && selectedEvent.memberPrice !== '' && selectedEvent.publicPrice !== '' && selectedEvent.memberPrice !== null && selectedEvent.publicPrice !== null"
+        v-if="selectedEvent.memberPrice"
       />
       <p
-        v-if="selectedEvent.memberPrice !== 0 && selectedEvent.publicPrice !== 0 && selectedEvent.memberPrice !== '' && selectedEvent.publicPrice !== '' && selectedEvent.memberPrice !== null && selectedEvent.publicPrice !== null"
+        v-if="selectedEvent.memberPrice"
         class="mt-4"
       >
         <b>Price</b><br>

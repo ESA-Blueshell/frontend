@@ -7,9 +7,9 @@
       <v-card-title class="text-h5">
         {{ title }}
       </v-card-title>
-      <v-card-text v-html="message"/>
+      <v-card-text v-html="message" />
       <v-card-actions>
-        <v-spacer/>
+        <v-spacer />
         <v-btn
           color="red"
           @click="confirm"

@@ -23,7 +23,7 @@
             />
           </div>
         </v-expand-transition>
-        <v-divider/>
+        <v-divider />
       </div>
       <!-- Existing Users -->
       <div
@@ -40,7 +40,7 @@
           @user-changed="userChanged"
           @delete-user="deleteUser"
         />
-        <v-divider/>
+        <v-divider />
       </div>
     </v-list>
   </div>

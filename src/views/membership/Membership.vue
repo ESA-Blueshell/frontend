@@ -1,6 +1,6 @@
 <template>
   <v-main>
-    <top-banner title="Membership"/>
+    <top-banner title="Membership" />
 
     <div class="mx-3">
       <div
@@ -15,10 +15,10 @@
           <p class="text-body-1">
             You are definitely in the right place! If you are still unsure, be sure to check out the
             rest of our website, <a
-            href="https://discord.gg/23YMFQy"
-            target="_blank"
-            class="text-decoration-none"
-          >Discord server</a>,
+              href="https://discord.gg/23YMFQy"
+              target="_blank"
+              class="text-decoration-none"
+            >Discord server</a>,
             and social media accounts to find out more about Blueshell Esports! By obtaining
             Blueshell
             membership you get:
@@ -47,7 +47,7 @@
           </v-btn>
         </div>
         <div class="my-10">
-          <contribution/>
+          <contribution />
         </div>
       </div>
     </div>

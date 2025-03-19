@@ -1,6 +1,6 @@
 <template>
   <v-main>
-    <top-banner title="Valorant"/>
+    <top-banner title="Valorant" />
     <div class="mx-3">
       <div
         class="mx-auto my-10"
@@ -13,12 +13,12 @@
         </p>
       </div>
     </div>
-    <team :team="tempra"/>
+    <team :team="tempra" />
     <team
       :team="spicywater"
       name-right="true"
     />
-    <team :team="icywater"/>
+    <team :team="icywater" />
   </v-main>
 </template>
 

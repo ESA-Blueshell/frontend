@@ -43,9 +43,10 @@
         </v-slide-group>
       </v-col>
       <v-col cols="1">
-        <v-btn icon
-               class="ml-auto"
-               @click="openAddPeriodDialog"
+        <v-btn
+          icon
+          class="ml-auto"
+          @click="openAddPeriodDialog"
         >
           <v-icon>mdi-plus</v-icon>
         </v-btn>
