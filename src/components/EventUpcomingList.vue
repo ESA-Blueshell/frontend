@@ -200,8 +200,8 @@
 </template>
 
 <script lang="ts">
-import EventSignUpForm from "@/components/EventSignUpForm.vue";
-import EventListItem from "@/components/EventListItem.vue";
+import EventSignUpForm from "@/components/EventSignUpForm";
+import EventListItem from "@/components/EventListItem";
 import axios from "axios";
 import {$goto} from "@/plugins/goto";
 import {createEvent} from 'ics'

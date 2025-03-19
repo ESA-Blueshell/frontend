@@ -99,8 +99,8 @@ export default defineComponent({
     };
 
     const updateMembers = () => {
-      members.value = users.value.filter((user) => user.roles.includes(Role.MEMBER) && isSearched(user));
-      nonMembers.value = users.value.filter((user) => !user.roles.includes(Role.MEMBER) && isSearched(user));
+      members.value = users.value.filter((user) => user?.membership && !user.membership?.endDate && isSearched(user));
+      nonMembers.value = users.value.filter((user) => (!user?.membership || user?.membership?.endDate) && isSearched(user));
     };
 
     watch(search, () => {

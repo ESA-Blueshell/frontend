@@ -14,7 +14,7 @@ export default interface AdvancedUser extends SimpleUser {
   country?: string;
   nationality?: string;
   signature?: File;
-  member?: Membership;
+  membership?: Membership;
   newsletter?: boolean;
   photoConsent?: boolean;
   ehbo?: boolean;
@@ -25,5 +25,6 @@ export default interface AdvancedUser extends SimpleUser {
   createdAt?: string;
   gender?: string;
   study?: string;
+  studentNumber?: string;
   password?: string;
 }

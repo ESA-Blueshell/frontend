@@ -17,7 +17,7 @@
         </v-list-item>
         <v-expand-transition>
           <div v-if="expanded === -1">
-            <UserComponent
+            <UserEdit
               class="mt-4"
               @user-changed="userChanged"
             />
@@ -48,20 +48,19 @@
 
 <script lang="ts">
 import UserListRow from './UserListRow.vue';
-import type ContributionModel from "@/models/ContributionModel";
-import type AdvancedUser from "@/models";
+import type {AdvancedUser, Contribution} from "@/models";
 import UserEdit from "@/components/UserEdit.vue";
 
 export default {
   name: 'UserList',
-  components: {UserComponent: UserEdit, UserListRow},
+  components: {UserEdit, UserListRow},
   props: {
     title: {
       type: String,
       required: true,
     },
     contributions: {
-      type: Array as () => ContributionModel[],
+      type: Array as () => Contribution[],
       default: () => [],
     },
     users: {
@@ -88,7 +87,7 @@ export default {
       emit('toggle-expanded', userId);
     };
 
-    const contributionChanged = (contribution: ContributionModel) => {
+    const contributionChanged = (contribution: Contribution) => {
       emit('contribution-changed', contribution);
     }
 

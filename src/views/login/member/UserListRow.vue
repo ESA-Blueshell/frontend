@@ -83,10 +83,25 @@
             </template>
             <!--            TOGGLE MEMBERSHIP       -->
             <v-btn
+              v-if="user?.membership?.endDate"
               variant="text"
               @click.stop="toggleMembership()"
             >
-              {{ user.roles.includes(Role.MEMBER) ? "Remove membership" : "Make member" }}
+              Resume Membership
+            </v-btn>
+            <v-btn
+              v-else-if="user?.membership?.startDate"
+              variant="text"
+              @click.stop="toggleMembership()"
+            >
+              End Membership
+            </v-btn>
+            <v-btn
+              v-else
+              variant="text"
+              @click.stop="toggleMembership()"
+            >
+              Start Membership
             </v-btn>
           </div>
         </div>
@@ -158,6 +173,10 @@ export default {
       const userData: AdvancedUser = await userService.toggleRole(user.value.id as number, Role.MEMBER);
       userChanged(userData)
     };
+
+    const createMembership = async () => {
+
+    }
 
     const deleteUser = () => {
       deleteDialog.value = true;

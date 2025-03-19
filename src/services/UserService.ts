@@ -13,6 +13,10 @@ export default class UserService extends BaseService {
     return this.get("", { isMember });
   }
 
+  async getUser(id: number): Promise<AdvancedUser> {
+    return this.get(`/${id}`);
+  }
+
   async createUser(user: AdvancedUser): Promise<AdvancedUser> {
     return this.post(user);
   }

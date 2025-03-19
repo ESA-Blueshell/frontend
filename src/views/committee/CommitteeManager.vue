@@ -144,9 +144,9 @@
 
 <script>
 import BannerTop from "@/components/BannerTop.vue";
-import CommitteeEdit from "@/components/CommitteeEdit.vue";
-import {$require} from "@/plugins/require";
-import {$handleNetworkError} from "@/plugins/handleNetworkError";
+import CommitteeEdit from "@/views/committee/CommitteeEdit.vue";
+import {$require} from "@/plugins/require.js";
+import {$handleNetworkError} from "@/plugins/handleNetworkError.js";
 
 export default {
   name: "CommitteeManager",

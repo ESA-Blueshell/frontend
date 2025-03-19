@@ -84,11 +84,14 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import type { VForm } from 'vuetify/components';
-import type { Committee, User } from '@/models';
+import type { Committee, SimpleUser } from '@/models';
 import { UserService, CommitteeService } from '@/services';
 
 const props = defineProps<{
-  committee: Committee;
+  committee: {
+    type: Committee,
+    required: false,
+  };
 }>();
 
 const emit = defineEmits<{
@@ -97,7 +100,7 @@ const emit = defineEmits<{
 }>();
 
 const valid = ref(false);
-const members = ref<User[]>([]);
+const members = ref<SimpleUser[]>([]);
 const form = ref<VForm | null>(null);
 const userService = new UserService();
 const committeeService = new CommitteeService();
@@ -105,7 +108,7 @@ const committeeService = new CommitteeService();
 // Create a local copy of the committee to avoid direct prop mutation
 const localCommittee = ref<Committee>({
   ...props.committee,
-  members: [...props.committee.members.map(m => ({ ...m }))]
+  members: props.committee?.members ? [...props.committee.members.map(m => ({ ...m }))] : [],
 });
 
 // Fetch members on mount
