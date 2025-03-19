@@ -39,11 +39,11 @@
 </template>
 
 <script>
-import TopBanner from "@/components/top-banner";
+import BannerTop from "@/components/BannerTop.vue";
 
 export default {
   name: "Partners",
-  components: {TopBanner}
+  components: {TopBanner: BannerTop}
 }
 </script>
 

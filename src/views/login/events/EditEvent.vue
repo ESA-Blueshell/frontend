@@ -22,13 +22,13 @@
 
 
 <script>
-import TopBanner from '@/components/top-banner';
-import EventForm from "@/components/event-form";
+import BannerTop from '@/components/BannerTop.vue';
+import EventEdit from "@/components/EventEdit.vue";
 import {$handleNetworkError} from "@/plugins/handleNetworkError";
 
 export default {
   name: 'EditEvent',
-  components: {EventForm, TopBanner},
+  components: {EventForm: EventEdit, TopBanner: BannerTop},
   data: () => ({
     event: null,
     hasPromo: false,

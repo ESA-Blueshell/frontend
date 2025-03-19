@@ -11,13 +11,13 @@
 </template>
 
 <script>
-import TopBanner from "@/components/top-banner";
+import BannerTop from "@/components/BannerTop.vue";
 import DocumentTable from "@/components/DocumentTable";
 import {$require} from "@/plugins/require";
 
 export default {
   name: "Documents",
-  components: {TopBanner, DocumentTable},
+  components: {TopBanner: BannerTop, DocumentTable},
   methods: {
     $require
   }

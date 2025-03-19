@@ -235,7 +235,7 @@ import {type CountryCode, parsePhoneNumber, type PhoneNumber} from 'libphonenumb
 import MemberTypeSelect from "@/components/MemberTypeSelect.vue";
 
 export default {
-  name: 'UserComponent',
+  name: 'UserEdit',
   components: {MemberTypeSelect, VPhoneInput},
   props: {
     editing: {

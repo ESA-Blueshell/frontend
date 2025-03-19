@@ -23,12 +23,12 @@
 </template>
 
 <script>
-import TopBanner from "../../components/top-banner";
-import Team from "@/components/team";
+import BannerTop from "../../components/BannerTop.vue";
+import Team from "@/components/Team.vue";
 import {$require} from "@/plugins/require";
 
 export default {
-  components: {Team, TopBanner},
+  components: {Team: Team, TopBanner: BannerTop},
   data: () => {
     return {
       tempra: {

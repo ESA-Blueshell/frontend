@@ -61,14 +61,14 @@
 </template>
 
 <script>
-import TopBanner from "@/components/top-banner";
-import EventManageList from "@/components/event-manage-list";
+import BannerTop from "@/components/BannerTop.vue";
+import EventManageList from "@/components/EventManageList.vue";
 import {$require} from "@/plugins/require";
 import {$handleNetworkError} from "@/plugins/handleNetworkError";
 
 export default {
   name: "EventManager",
-  components: {EventManageList, TopBanner},
+  components: {EventManageList: EventManageList, TopBanner: BannerTop},
   data: () => ({
     events: [],
     pastEvents: [],

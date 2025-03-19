@@ -143,14 +143,14 @@
 </template>
 
 <script>
-import TopBanner from "@/components/top-banner";
-import EditCommittee from "@/components/edit-committee";
+import BannerTop from "@/components/BannerTop.vue";
+import CommitteeEdit from "@/components/CommitteeEdit.vue";
 import {$require} from "@/plugins/require";
 import {$handleNetworkError} from "@/plugins/handleNetworkError";
 
 export default {
   name: "CommitteeManager",
-  components: {EditCommittee, TopBanner},
+  components: {EditCommittee: CommitteeEdit, TopBanner: BannerTop},
   data: () => ({
     committees: [],
     committeeToDelete: null,

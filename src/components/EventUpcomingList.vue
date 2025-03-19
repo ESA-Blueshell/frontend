@@ -28,7 +28,7 @@
                       <span v-if="submittingId === event.id">
                         Submitting...
                       </span>
-                      <span v-else-if="eventIdToSignUpForm[event.id] !== undefined">
+                      <span v-else-if="eventSignups[event.id] !== undefined">
                         Signed up!
                       </span>
                       <span v-else-if="$store.getters.isLoggedIn && event.signUp">
@@ -41,7 +41,7 @@
                 <v-col class="pa-0">
                   <template v-if="event.signUp">
                     <v-row
-                      v-if="$store.getters.isLoggedIn && !event.signUpForm && eventIdToSignUpForm[event.id] !== undefined"
+                      v-if="$store.getters.isLoggedIn && !event.signUpForm && eventSignups[event.id] !== undefined"
                     >
                       <v-tooltip
                         text="Cancel sign-up"
@@ -61,7 +61,7 @@
                       </v-tooltip>
                     </v-row>
                     <v-row
-                      v-else-if="$store.getters.isLoggedIn && !event.signUpForm && eventIdToSignUpForm[event.id] === undefined"
+                      v-else-if="$store.getters.isLoggedIn && !event.signUpForm && eventSignups[event.id] === undefined"
                     >
                       <v-tooltip
                         text="Sign Up"
@@ -83,7 +83,7 @@
                     <template v-else-if="event.signUpForm && ($store.getters.isLoggedIn || !event.membersOnly)">
                       <v-row>
                         <v-tooltip
-                          v-if="$store.getters.isLoggedIn && eventIdToSignUpForm[event.id] !== undefined"
+                          v-if="$store.getters.isLoggedIn && eventSignups[event.id] !== undefined"
                           location="left"
                           text="Cancel sign-up"
                         >
@@ -103,7 +103,7 @@
                       <v-row>
                         <v-tooltip
                           location="left"
-                          :text="eventIdToSignUpForm[event.id] !== undefined ?
+                          :text="eventSignups[event.id] !== undefined ?
                             'Edit sign-up form' :
                             signingUpFor !== event.id ?
                               'Fill in sign-up form' :
@@ -181,7 +181,7 @@
             class="form-border mx-auto rounded-b"
           >
             <sign-up-form
-              :answers-string="eventIdToSignUpForm[event.id]"
+              :answers-string="eventSignups[event.id]"
               :event="event"
               class="form mx-auto"
               :show-guest-form="!$store.getters.isLoggedIn"
@@ -199,28 +199,31 @@
   </v-expand-transition>
 </template>
 
-<script>
-import SignUpForm from "@/components/sign-up-form";
+<script lang="ts">
+import EventSignUpForm from "@/components/EventSignUpForm.vue";
 import EventListItem from "@/components/EventListItem.vue";
 import axios from "axios";
-import {$handleNetworkError} from "@/plugins/handleNetworkError";
 import {$goto} from "@/plugins/goto";
 import {createEvent} from 'ics'
+import { EventService, EventSignUpService } from '@/services';
+import store from '@/plugins/store';
 
 export default {
-  name: "UpcomingEventsList",
-  components: {EventListItem, SignUpForm},
+  name: "EventUpcomingList",
+  components: {EventListItem, SignUpForm: EventSignUpForm},
   data: () => ({
     events: [],
-    eventIdToSignUpForm: {},
+    eventSignups: {},
     signingUpFor: null,
     submittingId: null,
     expandedEvent: null,
+    eventService: new EventService(),
+    signUpService: new EventSignUpService(),
   }),
   mounted() {
-    this.$http.get('events/upcoming')
+    this.eventService.getUpcomingEvents()
       .then(response => {
-        this.events = response.data
+        this.events = response;
 
         // Scroll to event with the given ID if a hash is present in the URL
         if (this.$route.hash) {
@@ -232,12 +235,10 @@ export default {
           }, 50)
         }
       })
-      .catch(e => $handleNetworkError(e))
 
-    if (this.$store.getters.isLoggedIn) {
-      this.$http.get('events/signups', {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
-        .then(response => response.data.forEach(signUp => this.eventIdToSignUpForm[signUp.event] = signUp.formAnswers))
-        .catch(e => $handleNetworkError(e));
+    if (store.getters.isLoggedIn) {
+      this.signUpService.getSignUps()
+        .then(response => this.eventSignups = Object.groupBy(response, (signup) => signup.eventId));
     }
   },
   methods: {
@@ -257,14 +258,14 @@ export default {
       await this.handleSubmit(eventId, async () => {
         await this.$http.post('events/signups/' + eventId, '', {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
 
-        this.eventIdToSignUpForm[eventId] = null
+        this.eventSignups[eventId] = null
       })
     },
     async removeSignUp(eventId) {
       await this.handleSubmit(eventId, async () => {
         await this.$http.delete('events/signups/' + eventId, {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
 
-        delete this.eventIdToSignUpForm[eventId]
+        delete this.eventSignups[eventId]
       })
     },
     async submitSignUpForm(eventId, {answers, guestData}) {
@@ -276,7 +277,7 @@ export default {
           const response = await axios.post(`events/signups/${eventId}`, JSON.stringify(answers.value),
             {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`, 'Content-Type': 'text/plain'}})
 
-          this.eventIdToSignUpForm[eventId] = response.data.formAnswers;
+          this.eventSignups[eventId] = response.data.formAnswers;
         } else {
 
           this.$store.commit('saveGuestData', guestData.value)
@@ -286,7 +287,7 @@ export default {
           await axios.post(`events/signups/${eventId}/guest`, JSON.stringify(guestData.value),
             {headers: {'Content-Type': 'application/json'}})
 
-          this.eventIdToSignUpForm[eventId] = null;
+          this.eventSignups[eventId] = null;
         }
       })
     },

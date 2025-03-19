@@ -49,12 +49,12 @@
 <script lang="ts">
 import UserListRow from './UserListRow.vue';
 import type ContributionModel from "@/models/ContributionModel";
-import type UserModel from "@/models/User.ts";
-import UserComponent from "@/components/UserComponent.vue";
+import type AdvancedUser from "@/models";
+import UserEdit from "@/components/UserEdit.vue";
 
 export default {
   name: 'UserList',
-  components: {UserComponent, UserListRow},
+  components: {UserComponent: UserEdit, UserListRow},
   props: {
     title: {
       type: String,
@@ -65,7 +65,7 @@ export default {
       default: () => [],
     },
     users: {
-      type: Array as () => UserModel[],
+      type: Array as () => AdvancedUser[],
       default: () => [],
     },
     expanded: {
@@ -92,12 +92,12 @@ export default {
       emit('contribution-changed', contribution);
     }
 
-    const userChanged = (user: UserModel) => {
+    const userChanged = (user: AdvancedUser) => {
       toggleExpanded(0);
       emit('user-changed', user);
     };
 
-    const deleteUser = (user: UserModel) => {
+    const deleteUser = (user: AdvancedUser) => {
       emit('delete-user', user);
     };
 

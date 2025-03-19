@@ -123,12 +123,12 @@
 </template>
 
 <script>
-import DiscordUser from "@/components/discord-user.vue";
+import DiscordUser from "@/components/DiscordUser.vue";
 import {$require} from "@/plugins/require.js";
 
 export default {
   name: "DiscordBanner",
-  components: {DiscordUser},
+  components: {DiscordUser: DiscordUser},
   data: () => ({
     discordData: null,
     channels: {},

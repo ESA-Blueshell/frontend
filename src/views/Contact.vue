@@ -77,11 +77,11 @@
 </template>
 
 <script>
-import TopBanner from "@/components/top-banner";
+import BannerTop from "@/components/BannerTop.vue";
 import {$goto} from "@/plugins/goto";
 
 export default {
-  components: {TopBanner},
+  components: {TopBanner: BannerTop},
   data: () => ({
     mapLoading: true,
   }),

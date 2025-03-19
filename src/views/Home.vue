@@ -101,15 +101,15 @@
 
 <script>
 
-import MainBanner from "@/components/main-banner";
-import DiscordBanner from "@/components/discord-banner";
-import SocialsBanner from "@/components/socials-banner";
-import GamesWePlay from "@/components/games-we-play";
+import BannerMain from "@/components/BannerMain.vue";
+import DiscordBanner from "@/components/DiscordBanner.vue";
+import BannerSocials from "@/components/BannerSocials.vue";
+import GamesWePlay from "@/components/GamesWePlay.vue";
 import {$require} from "@/plugins/require";
 import {$goto} from "@/plugins/goto";
 
 export default {
-  components: {GamesWePlay, SocialsBanner, DiscordBanner, MainBanner},
+  components: {GamesWePlay: GamesWePlay, SocialsBanner: BannerSocials, DiscordBanner: DiscordBanner, MainBanner: BannerMain},
   data() {
     return {
       hoveredGame: null,

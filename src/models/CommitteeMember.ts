@@ -2,6 +2,7 @@ import type BaseModel from "@/models/BaseModel";
 import type SimpleUser from "@/models/user/SimpleUser";
 
 export default interface CommitteeMember extends BaseModel {
+  id?: number;
   role?: string;
   userId?: number;
   user?: SimpleUser;

@@ -55,7 +55,7 @@
 </template>
 
 <script>
-import TopBanner from "@/components/top-banner";
+import BannerTop from "@/components/BannerTop.vue";
 import {DateTime} from "luxon";
 
 // Helper function to convert a number to its ordinal word
@@ -78,7 +78,7 @@ function getOrdinalWord(n) {
 
 export default {
   name: "AboutUs",
-  components: {TopBanner},
+  components: {TopBanner: BannerTop},
   computed: {
     boardYear() {
       return Math.floor(

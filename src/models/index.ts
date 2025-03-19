@@ -23,8 +23,6 @@ export type { default as File } from './File';
 // User Management
 export type { default as Guest } from './Guest';
 export type { default as Membership } from './Membership';
-export type { default as AdvancedUser } from './User';
-export { MemberType } from './User';
 export type { default as AdvancedUser } from './user/AdvancedUser';
 export type { default as SimpleUser } from './user/SimpleUser';
 

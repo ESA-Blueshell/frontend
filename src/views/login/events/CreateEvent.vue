@@ -19,14 +19,14 @@
 
 
 <script>
-import TopBanner from '@/components/top-banner';
-import EventForm from "@/components/event-form";
+import BannerTop from '@/components/BannerTop.vue';
+import EventEdit from "@/components/EventEdit.vue";
 import {$goto} from "@/plugins/goto";
 import {$handleNetworkError} from "@/plugins/handleNetworkError";
 
 export default {
   name: 'CreateEvent',
-  components: {EventForm, TopBanner},
+  components: {EventForm: EventEdit, TopBanner: BannerTop},
   data: () => ({
     headerTitle: 'Create Event'
   }),

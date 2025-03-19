@@ -19,21 +19,18 @@
   </v-menu>
 </template>
 
-<script>
+<script lang="ts">
+import { EventService } from '@/services';
 import {VCalendar} from 'vuetify/labs/VCalendar'
 import EventDetails from "@/components/EventDetails.vue"
 import {useDisplay, useLocale} from 'vuetify'
-import {computed, getCurrentInstance, onMounted, ref, watch} from 'vue'
+import {computed, onMounted, ref, watch} from 'vue'
 import {DateTime} from "luxon";
 
 export default {
   name: "Calendar",
   components: {EventDetails, VCalendar},
   setup() {
-    const instance = getCurrentInstance()
-    const $http = instance.proxy.$http
-    const $handleNetworkError = instance.proxy.$handleNetworkError
-
     const focus = ref([new Date()])
     const selectedEvent = ref(null)
     const selectedElement = ref(null)
@@ -41,6 +38,7 @@ export default {
     const events = ref([])
     const collectedMonths = ref([])
     const monthsLoading = ref(0)
+    const eventService = new EventService();
 
     // Localization
     const {current: localeCurrent} = useLocale()
@@ -61,11 +59,10 @@ export default {
       const to = DateTime.fromJSDate(month).endOf("month").toISO();
 
       if (collectedMonths.value.includes(from)) return;
-      console.log("collectedMonths:", collectedMonths.value)
 
       monthsLoading.value++
-      $http.get(`events`, {params: {from, to}})
-        .then(({data}) => {
+      eventService.getEvents(from, to)
+        .then((data) => {
           events.value = [
             ...events.value,
             ...data.map(e => ({
@@ -83,9 +80,7 @@ export default {
             }))
           ];
           collectedMonths.value.push(from);
-          console.log("collectedMonths after:", collectedMonths.value)
         })
-        .catch($handleNetworkError)
         .finally(() => monthsLoading.value--)
     }
 

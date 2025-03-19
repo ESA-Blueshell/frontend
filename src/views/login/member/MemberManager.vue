@@ -45,7 +45,7 @@
 </template>
 <script lang="ts">
 import {ref, watch, onMounted, defineComponent} from 'vue';
-import TopBanner from '@/components/top-banner.vue';
+import BannerTop from '@/components/BannerTop.vue';
 import ContributionPeriodList from '@/views/login/member/ContributionPeriodList.vue';
 import UserList from '@/views/login/member/UserList.vue';
 import UserService from "@/services/UserService.ts";
@@ -55,7 +55,7 @@ import {ContributionService} from "@/services";
 export default defineComponent({
   name: 'MemberManager',
   components: {
-    TopBanner,
+    TopBanner: BannerTop,
     ContributionPeriodList,
     UserList,
   },

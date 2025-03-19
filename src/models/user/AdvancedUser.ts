@@ -1,7 +1,7 @@
 import type SimpleUser from "@/models/user/SimpleUser";
 import type {Role} from "@/models/enums/Role";
 import type Membership from "@/models/Membership";
-import type {MemberType} from "@/models/User";
+import { MemberType } from "@/models/enums/MemberType.ts"
 
 export default interface AdvancedUser extends SimpleUser {
   initials?: string;

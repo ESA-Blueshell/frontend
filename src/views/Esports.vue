@@ -55,11 +55,11 @@
 </template>
 
 <script>
-import TopBanner from "@/components/top-banner.vue";
+import BannerTop from "@/components/BannerTop.vue";
 import {$require} from "@/plugins/require";
 
 export default {
-  components: {TopBanner},
+  components: {TopBanner: BannerTop},
   data() {
     return {
       games: [

@@ -101,12 +101,12 @@
 </template>
 
 <script>
-import TopBanner from "@/components/top-banner";
+import BannerTop from "@/components/BannerTop.vue";
 import {$handleNetworkError} from "@/plugins/handleNetworkError";
 
 export default {
   name: "EventSignUps",
-  components: {TopBanner},
+  components: {TopBanner: BannerTop},
   data: () => ({
     signUpForm: [],
     responses: [],

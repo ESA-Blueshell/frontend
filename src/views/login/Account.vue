@@ -220,7 +220,7 @@
 
 <script>
 
-import TopBanner from "@/components/top-banner";
+import BannerTop from "@/components/BannerTop.vue";
 import {$handleNetworkError} from "@/plugins/handleNetworkError";
 import {VPhoneInput} from "v-phone-input";
 import {ref} from "vue";
@@ -228,7 +228,7 @@ import { DateTime } from 'luxon';
 
 export default {
   name: "Account",
-  components: {VPhoneInput, TopBanner},
+  components: {VPhoneInput, TopBanner: BannerTop},
   setup() {
     const phone = ref('');
     return {phone};

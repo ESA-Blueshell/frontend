@@ -185,7 +185,7 @@
           <br>
           <document-table />
           <br>
-          <contribution is-form />
+          <contribution-period is-form />
           <v-row
             class="mt-4"
             style="width: 100%;"
@@ -265,12 +265,12 @@
 </template>
 
 <script>
-import TopBanner from "@/components/top-banner";
+import BannerTop from "@/components/BannerTop.vue";
 import {ref} from "vue";
 import { DateTime } from 'luxon';
 import {VPhoneInput} from "v-phone-input";
 import {$handleNetworkError} from "@/plugins/handleNetworkError";
-import Contribution from "@/components/contribution.vue";
+import ContributionPeriodComponent from "@/components/ContributionPeriodComponent.vue";
 import {$goto} from "@/plugins/goto";
 import NationalitySelect from "@/components/NationalitySelect.vue";
 import CountrySelect from "@/components/CountrySelect.vue";
@@ -281,9 +281,9 @@ export default {
     CountrySelect,
     NationalitySelect,
     DocumentTable,
-    Contribution,
+    ContributionPeriod: ContributionPeriodComponent,
     VPhoneInput,
-    TopBanner,
+    TopBanner: BannerTop,
   },
   setup() {
     const signaturePad = ref(null);

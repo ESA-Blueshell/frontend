@@ -1,13 +1,12 @@
-<script setup>
-import {$handleNetworkError} from "@/plugins/handleNetworkError";
+<script setup lang="ts">
 import {computed, ref} from "vue";
-import axios from "axios";
-import {useStore} from "vuex";
-import SignUpFormEditor from "@/components/sign-up-form-editor.vue";
+import EventSignUpFormEdit from "@/components/EventSignUpFormEdit.vue";
+import { CommitteeService } from '@/services';
+import { type Event } from '@/models';
 
 const props = defineProps({
   initialEvent: {
-    type: Object,
+    type: Object as () => Event ,
   },
   hasPromo: {
     type: Boolean,
@@ -15,8 +14,7 @@ const props = defineProps({
   }
 })
 const emits = defineEmits(['submit', 'title'])
-const store = useStore()
-
+const committeeService = new CommitteeService();
 const eventForm = ref(null)
 const signUpForm = ref(null)
 
@@ -83,9 +81,8 @@ const submitting = ref(false)
 
 // Get user's committees
 const committees = ref([])
-axios.get('committees?isMember=true', {headers: {'Authorization': `Bearer ${store.getters.getLogin.token}`}})
-  .then(response => committees.value = response.data)
-  .catch(e => $handleNetworkError(e))
+committeeService.getCommittees(true)
+  .then(response => committees.value = response)
 
 
 const priceRules = [
@@ -302,7 +299,7 @@ function toggleSignUpForm() {
       </v-row>
       <v-row v-if="event.enableSignUpForm">
         <v-col>
-          <sign-up-form-editor
+          <event-sign-up-form-edit
             ref="signUpForm"
             :initial-form="event.signUpForm"
             @change="(newForm) => event.signUpForm = newForm"

@@ -1,3 +1,80 @@
+<script setup lang="ts">
+import {ref, onMounted} from 'vue';
+import {$handleNetworkError} from "@/plugins/handleNetworkError";
+import { DateTime, Interval } from 'luxon';
+import { ContributionPeriodService } from '@/services';
+import { type ContributionPeriod } from "@/models";
+
+// Reactive variables
+const contributionPeriod = ref(null); // Initialize as null
+const currentPeriod = ref(false);
+const loading = ref(true); // Loading state
+const error = ref(null); // Error state
+
+// Number formatter for Euro currency
+const euros = new Intl.NumberFormat('nl-NL', {style: 'currency', currency: 'EUR'});
+const contributionPeriodService = new ContributionPeriodService();
+
+// Function to format the period
+const formatPeriod = (period) => {
+  if (!period || !period.startDate || !period.endDate) return 'N/A';
+  const start = DateTime.fromISO(period.startDate).toFormat('yyyy');
+  const end = DateTime.fromISO(period.endDate).toFormat('yyyy');
+  return currentPeriod.value ? `${start}/${end}` : `${start}/${end}*`;
+};
+
+
+// Function to format currency
+const formatCurrency = (amount) => {
+  if (amount === null || amount === undefined) return '€0.00';
+  return euros.format(amount);
+};
+
+// Function to fetch the current contribution period
+const getContributionPeriod = async () => {
+  try {
+    const periods: Promise<ContributionPeriod[]> = await contributionPeriodService.getContributionPeriods();
+
+    // Ensure response.data is an array
+    if (!Array.isArray(periods)) {
+      throw new Error('Invalid data format for contribution periods.');
+    }
+
+    // Find the current period where today's date is between startDate and endDate (inclusive)
+    const now = DateTime.now();
+    const current = periods.find(period => {
+      const start = DateTime.fromISO(period.startDate);
+      const end = DateTime.fromISO(period.endDate);
+      return Interval.fromDateTimes(start, end).contains(now);
+    });
+
+    if (current) {
+      contributionPeriod.value = current;
+      currentPeriod.value = true;
+    } else if (periods.length > 0) {
+      // If no current period, use the latest period (assuming the last in the array is the latest)
+      contributionPeriod.value = periods.at(-1); // ES2022 method
+      currentPeriod.value = false;
+    } else {
+      // No periods available
+      contributionPeriod.value = null;
+      currentPeriod.value = false;
+    }
+  } catch (err) {
+    // Capture and set error message
+    error.value = err.response?.data?.message || err.message || 'Unknown error occurred.';
+    $handleNetworkError(err);
+  } finally {
+    // Update loading state
+    loading.value = false;
+  }
+};
+
+// Fetch the current contribution period on component mount
+onMounted(() => {
+  getContributionPeriod();
+});
+</script>
 <template>
   <div>
     <strong>Contribution</strong><br>
@@ -45,93 +122,9 @@
     </div>
   </div>
 </template>
-
-<script setup>
-import {ref, onMounted, computed} from 'vue';
-import {useStore} from 'vuex';
-import axios from 'axios';
-import {$handleNetworkError} from "@/plugins/handleNetworkError";
-import { DateTime, Interval } from 'luxon';
-
-// Initialize Vuex store
-const store = useStore();
-
-// Accessing the login token from Vuex store using a computed property
-const loginToken = computed(() => store.getters.getLogin.token);
-
-// Reactive variables
-const contributionPeriod = ref(null); // Initialize as null
-const currentPeriod = ref(false);
-const loading = ref(true); // Loading state
-const error = ref(null); // Error state
-
-// Number formatter for Euro currency
-const euros = new Intl.NumberFormat('nl-NL', {style: 'currency', currency: 'EUR'});
-
-// Function to format the period
-const formatPeriod = (period) => {
-  if (!period || !period.startDate || !period.endDate) return 'N/A';
-  const start = DateTime.fromISO(period.startDate).toFormat('yyyy');
-  const end = DateTime.fromISO(period.endDate).toFormat('yyyy');
-  return currentPeriod.value ? `${start}/${end}` : `${start}/${end}*`;
-};
-
-
-// Function to format currency
-const formatCurrency = (amount) => {
-  if (amount === null || amount === undefined) return '€0.00';
-  return euros.format(amount);
-};
-
-// Function to fetch the current contribution period
-const getContributionPeriod = async () => {
-  try {
-    const response = await axios.get('/contributionPeriods');
-
-    // Ensure response.data is an array
-    const periods = response.data;
-    if (!Array.isArray(periods)) {
-      throw new Error('Invalid data format for contribution periods.');
-    }
-
-    // Find the current period where today's date is between startDate and endDate (inclusive)
-    const now = DateTime.now();
-    const current = periods.find(period => {
-      const start = DateTime.fromISO(period.startDate);
-      const end = DateTime.fromISO(period.endDate);
-      return Interval.fromDateTimes(start, end).contains(now);
-    });
-
-    if (current) {
-      contributionPeriod.value = current;
-      currentPeriod.value = true;
-    } else if (periods.length > 0) {
-      // If no current period, use the latest period (assuming the last in the array is the latest)
-      contributionPeriod.value = periods.at(-1); // ES2022 method
-      currentPeriod.value = false;
-    } else {
-      // No periods available
-      contributionPeriod.value = null;
-      currentPeriod.value = false;
-    }
-  } catch (err) {
-    // Capture and set error message
-    error.value = err.response?.data?.message || err.message || 'Unknown error occurred.';
-    $handleNetworkError(err);
-  } finally {
-    // Update loading state
-    loading.value = false;
-  }
-};
-
-// Fetch the current contribution period on component mount
-onMounted(() => {
-  getContributionPeriod();
-});
-</script>
-<script>
+<script lang="ts">
 export default {
-  name: 'Contribution',
+  name: 'ContributionPeriodComponent',
   props: {
     isForm: {
       type: Boolean,

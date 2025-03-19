@@ -125,12 +125,12 @@
 </template>
 
 <script>
-import TopBanner from "@/components/top-banner";
+import BannerTop from "@/components/BannerTop.vue";
 import {$handleNetworkError} from "@/plugins/handleNetworkError";
 import {ref} from "vue";
 
 export default {
-  components: {TopBanner},
+  components: {TopBanner: BannerTop},
   setup() {
     const phone = ref('');
     return {phone};

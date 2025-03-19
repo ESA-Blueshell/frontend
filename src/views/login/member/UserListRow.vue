@@ -93,7 +93,7 @@
       </div>
       <v-expand-transition>
         <div v-if="expanded === user.id">
-          <UserComponent
+          <UserEdit
             class="mt-4"
             :user="user"
             @user-changed="userChanged"
@@ -111,7 +111,7 @@
   />
 </template>
 <script lang="ts">
-import UserComponent from '@/components/UserComponent.vue';
+import UserEdit from '@/components/UserEdit.vue';
 import UserService from "@/services/UserService.ts";
 import ContributionService from "@/services/ContributionService.ts";
 import type ContributionModel from "@/models/ContributionModel";
@@ -122,7 +122,7 @@ import {type AdvancedUser, Role} from "@/models";
 
 export default {
   name: 'UserListRow',
-  components: {UserComponent, DeleteConfirmationDialog},
+  components: {UserEdit, DeleteConfirmationDialog},
   props: {
     user: {
       type: Object as () => AdvancedUser,
