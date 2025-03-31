@@ -174,7 +174,7 @@ import DeleteConfirmationDialog from "@/components/DeletionConfirmationDialog";
 import store from "@/plugins/store.ts";
 import {type AdvancedUser, Role} from "@/models";
 import {DateTime} from 'luxon';
-import MemberTypeSelect from "@/components/MemberTypeSelect.vue";
+import MemberTypeSelect from "@/components/select/MemberTypeSelect.vue";
 
 export default {
   name: 'UserListRow',

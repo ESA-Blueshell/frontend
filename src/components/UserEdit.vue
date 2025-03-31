@@ -135,18 +135,11 @@
         </v-col>
       </v-row>
       <v-row>
-        <v-col cols="6">
-          <v-text-field
-            v-model="userData.country"
-            label="Country"
-          />
-        </v-col>
-        <v-col cols="6">
-          <v-text-field
-            v-model="userData.nationality"
-            label="Nationality"
-          />
-        </v-col>
+        <nationality-select
+          v-model="userData.nationality"
+          cols="4"
+        />
+        <country-select v-model="userData.country"/>
       </v-row>
       <v-row>
         <v-col cols="6">
@@ -232,11 +225,13 @@ import {type AdvancedUser} from "@/models";
 import UserService from "@/services/UserService";
 import type {VForm} from "vuetify/components";
 import {type CountryCode, parsePhoneNumber, type PhoneNumber} from 'libphonenumber-js/max';
-import MemberTypeSelect from "@/components/MemberTypeSelect.vue";
+import MemberTypeSelect from "@/components/select/MemberTypeSelect.vue";
+import NationalitySelect from "@/components/select/NationalitySelect.vue";
+import CountrySelect from "@/components/select/CountrySelect.vue";
 
 export default {
   name: 'UserEdit',
-  components: {MemberTypeSelect, VPhoneInput},
+  components: {CountrySelect, NationalitySelect, MemberTypeSelect, VPhoneInput},
   props: {
     editing: {
       type: Boolean,

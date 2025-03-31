@@ -272,8 +272,8 @@ import {VPhoneInput} from "v-phone-input";
 import {$handleNetworkError} from "@/plugins/handleNetworkError";
 import ContributionPeriodComponent from "@/components/ContributionPeriodComponent.vue";
 import {$goto} from "@/plugins/goto";
-import NationalitySelect from "@/components/NationalitySelect.vue";
-import CountrySelect from "@/components/CountrySelect.vue";
+import NationalitySelect from "@/components/select/NationalitySelect.vue";
+import CountrySelect from "@/components/select/CountrySelect.vue";
 import DocumentTable from "@/components/DocumentTable.vue";
 
 export default {
