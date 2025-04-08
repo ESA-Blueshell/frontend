@@ -1,12 +1,12 @@
 import BaseService from "./BaseService";
-import type EventSignUp from "@/models/EventSignup";
+import type EventSignUp from "@/models/EventSignUp.ts";
 
 export default class EventSignUpService extends BaseService {
   constructor() {
     super("/events");
   }
 
-  async getEventSignups(eventId: number): Promise<EventSignUp[]> {
+  async getEventSignUps(eventId: number): Promise<EventSignUp[]> {
     return this.get(`/${eventId}/signups`);
   }
 
@@ -22,8 +22,8 @@ export default class EventSignUpService extends BaseService {
     return this.put(signUp, `/${eventId}/signups`);
   }
 
-  async deleteSignUp(eventId: number, accessToken?: string): Promise<void> {
-    return this.delete(`/${eventId}/signups`, { accessToken });
+  async deleteSignUp(eventSignUpId: number, accessToken?: string): Promise<void> {
+    return this.delete(`/signups/${eventSignUpId}`, { accessToken });
   }
 
   async getByAccessToken(accessToken: string): Promise<EventSignUp> {

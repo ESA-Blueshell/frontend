@@ -153,7 +153,7 @@ onMounted(async () => {
 
     const [event, signups] = await Promise.all([
       eventService.getEvent(route.params.id),
-      eventSignupService.getEventSignups(route.params.id)
+      eventSignupService.getEventSignUps(route.params.id)
     ])
 
     eventName.value = (event as Event).title

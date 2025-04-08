@@ -16,8 +16,8 @@ import EventSignUpService from '@/services/EventSignUpService'
 
 // Types
 import type Event from '@/models/Event'
-import type EventSignUp from '@/models/EventSignup'
-import type { FormAnswer } from '@/models/EventSignup'
+import type EventSignUp from '@/models/EventSignUp.ts'
+import type { FormAnswer } from '@/models/EventSignUp.ts'
 
 // Track loaded events: null => not loaded yet, [] => loaded but empty
 const events = ref<Event[] | null>(null)
@@ -60,14 +60,8 @@ onMounted(async () => {
   // 2) If logged in, get current signups
   if (isLoggedIn.value) {
     const signups = await signUpService.getSignups()
-    // "Group by" eventId => formAnswers
-    const grouped = signups.reduce((acc, signup) => {
-      if (signup.eventId != null) {
-        acc[signup.eventId] = signup.formAnswers
-      }
-      return acc
-    }, {} as Record<number, FormAnswer[] | undefined>)
-    eventSignups.value = grouped
+    eventSignups.value = Object.groupBy(signups, (s) => s.eventId)
+    console.log(eventSignups.value)
   }
 
   // 3) Scroll if route.hash is present
@@ -93,15 +87,20 @@ async function handleSubmit(eventId: number, fn: () => Promise<void>) {
   }
 }
 
-/**
- * Simple sign-up (no form-based questions).
- */
-async function signUp(eventId: number) {
-  await handleSubmit(eventId, async () => {
-    const signUp: EventSignUp = { eventId }
-    await signUpService.createSignUp(eventId, signUp)
-    eventSignups.value[eventId] = [] // or null, or an empty array
-  })
+async function signUp(eventId: number, eventSignUp: EventSignUp | undefined) {
+  if (eventSignUp?.id) {
+    await signUpService.updateSignUp(eventId, eventSignUp)
+  } else {
+    if (eventSignUp == undefined) {
+      eventSignUp = {
+        type: 'EventSignUpDTO',
+        formAnswers: [],
+      }
+    }
+
+    await signUpService.createSignUp(eventId, eventSignUp)
+  }
+  eventSignups.value[eventId] = []
 }
 
 /**
@@ -109,7 +108,11 @@ async function signUp(eventId: number) {
  */
 async function removeSignUp(eventId: number) {
   await handleSubmit(eventId, async () => {
-    await signUpService.deleteSignUp(eventId, token.value)
+    console.log('eventId:', eventId)
+    const eventSignUp: EventSignUp = eventSignups.value[eventId][0];
+    console.log('eventSignup:', eventSignUp);
+
+    await signUpService.deleteSignUp(eventSignUp?.eventId, token.value)
     delete eventSignups.value[eventId]
   })
 }
@@ -270,7 +273,7 @@ async function copyShareLink(event: Event) {
                     <template v-if="event.signUp">
                       <!-- Simple signup: no form -->
                       <v-row
-                        v-if="isLoggedIn && !event.signUpForm && eventSignups[event.id] !== undefined"
+                        v-if="isLoggedIn && !event.signUpForm.length && eventSignups[event.id] !== undefined"
                       >
                         <v-tooltip
                           location="left"
@@ -290,7 +293,7 @@ async function copyShareLink(event: Event) {
                       </v-row>
 
                       <v-row
-                        v-else-if="isLoggedIn && !event.signUpForm && eventSignups[event.id] === undefined"
+                        v-else-if="isLoggedIn && !event.signUpForm.length && eventSignups[event.id] === undefined"
                       >
                         <v-tooltip
                           location="left"
