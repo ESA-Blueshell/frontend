@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import {$goto} from "@/plugins/goto";
+import {$goto} from "@/plugins/goto.js";
 
 export default {
   name: 'MainBanner',

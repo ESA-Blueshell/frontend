@@ -39,11 +39,11 @@
 </template>
 
 <script>
-import BannerTop from "@/components/BannerTop.vue";
+import TopBanner from "@/components/banners/TopBanner.vue";
 import Calendar from "@/components/Calendar.vue"
-import EventUpcomingList from "@/components/EventUpcomingList.vue";
+import EventUpcomingList from "@/components/events/EventUpcomingList.vue";
 
 export default {
-  components: {UpcomingEventsList: EventUpcomingList, TopBanner: BannerTop, Calendar: Calendar}
+  components: {UpcomingEventsList: EventUpcomingList, TopBanner: TopBanner, Calendar: Calendar}
 }
 </script>

@@ -1,5 +1,5 @@
 <script setup>
-import {$markdownToHtml} from "@/plugins/markdownToHtml";
+import {$markdownToHtml} from "@/plugins/markdownToHtml.js";
 
 const props = defineProps(['event'])
 

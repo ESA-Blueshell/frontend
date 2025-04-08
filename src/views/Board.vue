@@ -163,11 +163,11 @@
 </template>
 
 <script>
-import BannerTop from "@/components/BannerTop.vue";
+import TopBanner from "@/components/banners/TopBanner.vue";
 import {$require} from "@/plugins/require";
 
 export default {
-  components: {TopBanner: BannerTop},
+  components: {TopBanner: TopBanner},
   data() {
     return {
       expandedBoards: {},

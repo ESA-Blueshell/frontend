@@ -1,8 +1,8 @@
 <script>
-import BannerTop from "@/components/BannerTop.vue";
+import TopBanner from "@/components/banners/TopBanner.vue";
 
 export default {
-  components: {TopBanner: BannerTop},
+  components: {TopBanner: TopBanner},
   data() {
     return {
       groupAScores: [

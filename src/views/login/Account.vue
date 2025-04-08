@@ -47,7 +47,7 @@
 
 <script>
 
-import BannerTop from "@/components/BannerTop.vue";
+import TopBanner from "@/components/banners/TopBanner.vue";
 import {$handleNetworkError} from "@/plugins/handleNetworkError";
 import {VPhoneInput} from "v-phone-input";
 import {ref} from "vue";
@@ -57,7 +57,7 @@ import { UserService } from "@/services";
 
 export default {
   name: "Account",
-  components: {UserEdit, VPhoneInput, TopBanner: BannerTop},
+  components: {UserEdit, VPhoneInput, TopBanner: TopBanner},
   setup() {
     const phone = ref('');
     return {phone};

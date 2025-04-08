@@ -200,13 +200,13 @@
 </template>
 
 <script lang="ts">
-import EventSignUpForm from "@/components/EventSignUpForm";
-import EventListItem from "@/components/EventListItem";
+import EventSignUpForm from "@/components/events/EventSignUpForm.vue";
+import EventListItem from "@/components/events/EventListItem.vue";
 import axios from "axios";
 import {$goto} from "@/plugins/goto";
 import {createEvent} from 'ics'
 import { EventService, EventSignUpService } from '@/services';
-import store from '@/plugins/store';
+import store from '@/plugins/store.ts';
 
 export default {
   name: "EventUpcomingList",

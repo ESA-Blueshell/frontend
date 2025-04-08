@@ -46,11 +46,11 @@
   </v-main>
 </template>
 <script>
-import BannerTop from "@/components/BannerTop.vue";
+import TopBanner from "@/components/banners/TopBanner.vue";
 import {$handleNetworkError} from "@/plugins/handleNetworkError";
 
 export default {
-  components: {TopBanner: BannerTop},
+  components: {TopBanner: TopBanner},
   data: () => {
     return {
       committees: []

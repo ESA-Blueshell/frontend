@@ -113,8 +113,8 @@
 </template>
 <script>
 import MarqueeText from 'vue-marquee-text-component'
-import {$goto} from "@/plugins/goto";
-import {$markdownToHtml} from "@/plugins/markdownToHtml";
+import {$goto} from "@/plugins/goto.js";
+import {$markdownToHtml} from "@/plugins/markdownToHtml.js";
 
 export default {
   name: 'EventDetails',

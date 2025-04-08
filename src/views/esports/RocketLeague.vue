@@ -26,12 +26,12 @@
 </template>
 
 <script>
-import BannerTop from "../../components/BannerTop.vue";
+import TopBanner from "../../components/banners/TopBanner.vue";
 import Team from "@/components/Team.vue";
 import {$require} from "@/plugins/require";
 
 export default {
-  components: {Team: Team, TopBanner: BannerTop},
+  components: {Team: Team, TopBanner: TopBanner},
   data: () => {
     return {
       oogway: {

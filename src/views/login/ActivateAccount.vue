@@ -66,12 +66,12 @@
 <script lang="ts">
 import {ref, computed, onMounted} from 'vue';
 import {useRoute, useRouter} from 'vue-router';
-import BannerTop from '@/components/BannerTop.vue';
+import TopBanner from '@/components/banners/TopBanner.vue';
 import UserService from '@/services/UserService';
 import type {VForm} from 'vuetify/components';
 
 export default {
-  components: {TopBanner: BannerTop},
+  components: {TopBanner: TopBanner},
   setup() {
     // Reactive form data
     const form = ref({

@@ -456,12 +456,12 @@ import {useStore} from 'vuex'
 import {useRouter, useRoute} from 'vue-router'
 import {useTheme, useDisplay} from 'vuetify'
 import axios from 'axios'
-import BannerFooter from "@/components/BannerFooter.vue";
+import FooterBanner from "@/components/banners/FooterBanner.vue";
 import {$goto} from "@/plugins/goto";
 import {$handleNetworkError} from "@/plugins/handleNetworkError";
 
 export default {
-  components: {BsFooter: BannerFooter},
+  components: {BsFooter: FooterBanner},
   setup() {
     const drawer = ref(false);
     const poggers = ref(false);

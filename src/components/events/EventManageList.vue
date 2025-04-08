@@ -6,13 +6,13 @@
     <template #activator="{ props: dialog }">
       <v-list>
         <div
-          v-for="(event,i) in events"
-          :key="event.title+event.startTime"
+          v-for="(event, i) in events"
+          :key="event.title + event.startTime"
         >
           <event-list-item :event="event">
             <template #append>
               <p
-                v-if="$vuetify.display.smAndUp"
+                v-if="display.smAndUp"
                 class="ml-4"
               >
                 {{ idToCommittee[event.committee] }}
@@ -32,10 +32,11 @@
                       variant="plain"
                       :disabled="!event.signUp"
                       v-bind="props"
-                      @click="$router.push('signups/'+event.id)"
+                      @click="router.push('signups/' + event.id)"
                     />
                   </template>
                 </v-tooltip>
+
                 <v-tooltip
                   location="left"
                   text="Edit event"
@@ -45,10 +46,11 @@
                       icon="mdi-pencil"
                       variant="plain"
                       v-bind="props"
-                      @click="$router.push('edit/'+event.id)"
+                      @click="router.push('edit/' + event.id)"
                     />
                   </template>
                 </v-tooltip>
+
                 <v-tooltip
                   location="left"
                   text="Delete event"
@@ -74,7 +76,6 @@
       </v-list>
     </template>
 
-
     <v-card>
       <v-card-title>
         <p class="text-h5">
@@ -89,7 +90,7 @@
         <v-spacer />
         <v-btn
           variant="text"
-          @click="eventToDelete=null"
+          @click="eventToDelete = null"
         >
           No
         </v-btn>
@@ -105,26 +106,43 @@
   </v-dialog>
 </template>
 
-<script>
-import EventListItem from "@/components/EventListItem.vue";
-import {$handleNetworkError} from "@/plugins/handleNetworkError";
+<script setup lang="ts">
+import {ref} from 'vue'
+import {useRouter} from 'vue-router'
+import {EventService} from "@/services";
+import {defineProps} from 'vue'
+import type {Event} from "@/models"
+import {defineOptions} from 'vue'
+import EventListItem from '@/components/events/EventListItem.vue'
+import {useDisplay} from "vuetify";
 
-export default {
-  name: "EventManageList",
-  components: {EventListItem},
-  props: ["events", "idToCommittee"],
-  data: () => ({
-    eventToDelete: null,
-  }),
-  methods: {
-    deleteEvent() {
-      this.$http.delete('events/' + this.eventToDelete.id, {headers: {'Authorization': `Bearer ${this.$store.getters.getLogin.token}`}})
-        .then(() => {
-          this.events = this.events.filter(event => event.id !== this.eventToDelete.id)
-          this.eventToDelete = null
-        })
-        .catch(e => $handleNetworkError(e))
-    },
-  }
+defineOptions({name: 'EventManageList'})
+const display = useDisplay()
+
+
+const props = defineProps<{
+  initialEvents: Event[],
+  idToCommittee,
+}>()
+
+const events = ref<Event[]>(props.initialEvents)
+const eventToDelete = ref<Event>()
+const eventService = new EventService()
+
+// Access router and store if you still need them
+const router = useRouter()
+
+function deleteEvent(): void {
+  if (!eventToDelete.value) return
+
+  eventService.deleteEvent(eventToDelete.value.id as number)
+    .then(() => {
+      events.value = events.value.filter((e) => e.id !== eventToDelete.value?.id);
+      eventToDelete.value = undefined
+    })
 }
 </script>
+
+<style scoped>
+/* Your styles here if needed */
+</style>

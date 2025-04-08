@@ -11,11 +11,11 @@
 </template>
 
 <script>
-import BannerTop from "@/components/BannerTop.vue";
+import TopBanner from "@/components/banners/TopBanner.vue";
 
 export default {
   name: "ArticleEditor",
-  components: {TopBanner: BannerTop}
+  components: {TopBanner: TopBanner}
 }
 </script>
 

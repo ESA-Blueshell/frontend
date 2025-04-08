@@ -1,6 +1,6 @@
 <template>
   <v-main>
-    <banner-top title="Membership" />
+    <top-banner title="Membership" />
 
     <div class="mx-3">
       <div
@@ -55,7 +55,7 @@
 </template>
 
 <script setup>
-import BannerTop from "@/components/BannerTop.vue";
+import TopBanner from "@/components/banners/TopBanner.vue";
 import {$goto} from "@/plugins/goto";
 import ContributionPeriodComponent from "@/components/ContributionPeriodComponent.vue";
 </script>

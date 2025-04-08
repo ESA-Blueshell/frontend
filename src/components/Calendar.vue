@@ -22,7 +22,7 @@
 <script lang="ts">
 import { EventService } from '@/services';
 import {VCalendar} from 'vuetify/labs/VCalendar'
-import EventDetails from "@/components/EventDetails.vue"
+import EventDetails from "@/components/events/EventDetails.vue"
 import {useDisplay, useLocale} from 'vuetify'
 import {computed, onMounted, ref, watch} from 'vue'
 import {DateTime} from "luxon";

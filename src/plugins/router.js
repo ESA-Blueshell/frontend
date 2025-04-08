@@ -18,7 +18,6 @@ import NotFound from "@/views/NotFound.vue";
 import Login from "@/views/login/Login.vue";
 import Account from "@/views/login/Account.vue";
 import ArticleEditor from "@/views/ArticleEditor.vue";
-import CreateEvent from "@/views/events/CreateEvent.vue";
 import EventManager from "@/views/events/EventManager.vue";
 import EditEvent from "@/views/events/EditEvent.vue";
 import EventSignUps from "@/views/events/EventSignUps.vue";
@@ -186,7 +185,7 @@ const router = createRouter({
     {
       path: '/events/create',
       name: 'createEvent',
-      component: CreateEvent,
+      component: EditEvent,
       meta: {requiresAuth: true}
     },
     {

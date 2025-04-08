@@ -265,7 +265,7 @@
 </template>
 
 <script>
-import BannerTop from "@/components/BannerTop.vue";
+import TopBanner from "@/components/banners/TopBanner.vue";
 import {ref} from "vue";
 import { DateTime } from 'luxon';
 import {VPhoneInput} from "v-phone-input";
@@ -283,7 +283,7 @@ export default {
     DocumentTable,
     ContributionPeriod: ContributionPeriodComponent,
     VPhoneInput,
-    TopBanner: BannerTop,
+    TopBanner: TopBanner,
   },
   setup() {
     const signaturePad = ref(null);

@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import {reactive, ref, watch} from "vue";
 
 const props = defineProps({
@@ -17,8 +17,6 @@ const form = reactive(props.initialForm
   : [])
 
 watch(form, async (newForm) => {
-  console.log('Form changed')
-  console.log(newForm)
   emits('change', newForm)
 })
 
@@ -185,7 +183,7 @@ function moveDown(array, i) {
 </template>
 
 <style scoped lang="scss">
-@use '../styles/settings';
+@use '../../styles/settings';
 
 .form {
   border-radius: settings.$border-radius-root;

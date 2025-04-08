@@ -1,10 +1,10 @@
 <script setup>
 import {useRoute, useRouter} from "vue-router";
-import BannerTop from "@/components/BannerTop.vue";
+import TopBanner from "@/components/banners/TopBanner.vue";
 import axios from "axios";
 import {ref} from "vue";
-import EventListItem from "@/components/EventListItem.vue";
-import EventSignUpForm from "@/components/EventSignUpForm.vue";
+import EventListItem from "@/components/events/EventListItem.vue";
+import EventSignUpForm from "@/components/events/EventSignUpForm.vue";
 import {useStore} from "vuex";
 import {$handleNetworkError} from "@/plugins/handleNetworkError";
 import {$goto} from "@/plugins/goto";
@@ -62,7 +62,7 @@ async function deleteSignUp() {
 
 <template>
   <v-main>
-    <banner-top title="Edit sign-up" />
+    <top-banner title="Edit sign-up" />
     <div
       class="mx-auto my-10"
       style="max-width: 800px"

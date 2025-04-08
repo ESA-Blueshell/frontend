@@ -69,7 +69,7 @@
       class="mb-4"
       @click="addMember"
     >
-      Add membership
+      Add member
     </v-btn>
 
     <v-btn
@@ -84,11 +84,12 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import type { VForm } from 'vuetify/components';
-import type { Committee, SimpleUser } from '@/models';
+import type {Committee, CommitteeMember, SimpleUser} from '@/models';
 import { UserService, CommitteeService } from '@/services';
 
 const props = defineProps<{
   committee: {
+    members: CommitteeMember[];
     type: Committee,
     required: false,
   };
@@ -109,6 +110,7 @@ const committeeService = new CommitteeService();
 const localCommittee = ref<Committee>({
   ...props.committee,
   members: props.committee?.members ? [...props.committee.members.map(m => ({ ...m }))] : [],
+  type: 'committee'
 });
 
 // Fetch members on mount
@@ -119,7 +121,7 @@ onMounted(async () => {
 const addMember = () => {
   localCommittee.value.members.push({
     role: '',
-    user: null,
+    user: {} as SimpleUser,
     type: 'committeeMember',
     committeeId: localCommittee.value.id
   });
