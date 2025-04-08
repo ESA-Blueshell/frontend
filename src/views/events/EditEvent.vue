@@ -3,7 +3,6 @@ import { ref, computed, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import TopBanner from '@/components/banners/TopBanner.vue';
 import EventForm from '@/components/events/EventForm.vue';
-import { $goto } from '@/plugins/goto';
 import { EventService } from '@/services';
 import type { Event } from '@/models';
 import { useRouter} from "vue-router";

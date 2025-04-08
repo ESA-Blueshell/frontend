@@ -6,8 +6,12 @@ export default class EventSignUpService extends BaseService {
     super("/events");
   }
 
-  async getSignUps(eventId: number): Promise<EventSignUp[]> {
+  async getEventSignups(eventId: number): Promise<EventSignUp[]> {
     return this.get(`/${eventId}/signups`);
+  }
+
+  async getSignups(): Promise<EventSignUp[]> {
+    return this.get("/signups");
   }
 
   async createSignUp(eventId: number, signUp: EventSignUp): Promise<EventSignUp> {

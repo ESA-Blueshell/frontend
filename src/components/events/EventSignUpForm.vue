@@ -1,24 +1,5 @@
-<script setup>
-import {ref} from "vue";
-import {useStore} from "vuex";
-import axios from "axios";
+<script setup lang="ts">
 
-const store = useStore()
-const answersForm = ref(null)
-const guestForm = ref(null)
-const emit = defineEmits(['submit'])
-const props = defineProps({
-  event: Object,
-  answersString: String,
-  showGuestForm: {
-    type: Boolean,
-    required: true,
-  },
-  buttonLoading: {
-    type: Boolean,
-    default: false,
-  },
-})
 /*
   eventId is the id of the event that form will be submitted for.
 
@@ -44,39 +25,82 @@ const props = defineProps({
   - an array with the selected checkboxes. The array can contain any Number from 0 to i-1 for i options for each of the selected option
 */
 
-const answers = ref(
-  props.answersString
-    ? JSON.parse(props.answersString)
-    : props.event.signUpForm
-      ? Array.from(JSON.parse(props.event.signUpForm),
-        question => question.type === 'open'
-          ? ''
-          : question.type === 'checkbox'
-            ? []
-            : null)
-      : null)
 
-const guestData = ref(store.getters.getGuestData ?? {
-  name: '',
-  discord: '',
-  email: '',
-})
+import {ref} from 'vue'
+import {useStore} from 'vuex'
+import type {Event, FormQuestion, FormAnswer} from '@/models'
 
-const form = ref(props.event.signUpForm ? JSON.parse(props.event.signUpForm) : null)
+const emit = defineEmits(['submit'])
 
+interface Props {
+  event: Event
+  // If provided, we assume it's already a valid set of answers
+  initialFormAnswers?: FormAnswer[]
+  showGuestForm: boolean
+  buttonLoading?: boolean
+}
 
+const props = defineProps<Props>()
+
+const store = useStore()
+
+/**
+ * If `props.answersString` is provided, assume it’s already a valid array/object of answers.
+ * Otherwise, if `props.event.signUpForm` is present, build an initial answers array according
+ * to the question type. If neither is present, set answers to null.
+ */
+const formAnswers = ref(
+  props.initialFormAnswers
+  ?? props.event.signUpForm?.map((question: FormQuestion) => {
+    if (question.type === 'open') return ''
+    if (question.type === 'checkbox') return []
+    return null // For radio or anything else
+  })
+)
+
+/**
+ * If the user is not logged in, we allow them to enter temporary guest data
+ */
+const guestData = ref(
+  store.getters.getGuestData ?? {
+    name: '',
+    discord: '',
+    email: ''
+  }
+)
+
+/**
+ * The sign-up form structure for the event.
+ * We assume `props.event.signUpForm` is already an array of question objects.
+ */
+const form = ref(props.event.signUpForm || null)
+
+/**
+ * Validates both the answers form and the guest form, then emits "submit"
+ * with the collected data if valid.
+ */
 async function validate() {
-  const formValid = answersForm.value ? (await answersForm.value.validate()).valid : true;
-  const guestFormValid = guestForm.value ? (await guestForm.value.validate()).valid : true;
+  const formValid = answersForm.value ? (await answersForm.value.validate()).valid : true
+  const guestFormValid = guestForm.value ? (await guestForm.value.validate()).valid : true
 
   if (formValid && guestFormValid) {
-    emit('submit', {answers: answers, guestData: guestData})
+    emit('submit', {
+      answers: formAnswers,
+      guestData: guestData
+    })
   }
 }
+
+/**
+ * Refs pointing to <v-form> so we can call validate() on them
+ */
+const answersForm = ref(null)
+const guestForm = ref(null)
 </script>
 
 <template>
   <div>
+    <!-- GUEST FORM (shown if user is not logged in) -->
     <v-form
       v-if="props.showGuestForm"
       ref="guestForm"
@@ -106,12 +130,13 @@ async function validate() {
       />
     </v-form>
 
+    <!-- ANSWERS FORM -->
     <v-form
-      v-if="answers !== null"
+      v-if="formAnswers !== null"
       ref="answersForm"
     >
       <div
-        v-for="(question,i) in form"
+        v-for="(question, i) in form"
         :key="i"
         class="mb-4"
       >
@@ -119,33 +144,36 @@ async function validate() {
           {{ question.prompt }}
         </p>
 
+        <!-- Open Question -->
         <v-text-field
           v-if="question.type === 'open'"
-          v-model="answers[i]"
+          v-model="formAnswers[i]"
           :rules="[v => !!v || 'An answer is required']"
           class="pt-0"
           hide-details="auto"
         />
 
+        <!-- Radio Question -->
         <v-radio-group
           v-else-if="question.type === 'radio'"
-          v-model="answers[i]"
+          v-model="formAnswers[i]"
           :rules="[v => v != null || 'An answer is required']"
           hide-details="auto"
         >
           <v-radio
-            v-for="(option,j) in question.options"
+            v-for="(option, j) in question.options"
             :key="j"
             :label="option"
             :value="j"
           />
         </v-radio-group>
 
+        <!-- Checkbox Question -->
         <v-checkbox
-          v-for="(option,j) in question.options"
+          v-for="(option, j) in question.options"
           v-else-if="question.type === 'checkbox'"
           :key="j"
-          v-model="answers[i]"
+          v-model="formAnswers[i]"
           :label="option"
           :value="j"
           hide-details
@@ -153,17 +181,18 @@ async function validate() {
       </div>
     </v-form>
 
+    <!-- SUBMIT BUTTON -->
     <v-btn
       :block="true"
       :loading="buttonLoading"
       @click="validate"
     >
-      {{ answersString ? 'Update' : 'Save' }} sign-up form
+      {{ props.initialFormAnswers ? 'Update' : 'Save' }} sign-up form
     </v-btn>
   </div>
 </template>
 
-<style>
+<style scoped>
 .v-checkbox .v-selection-control {
   min-height: 40px !important;
 }

@@ -51,8 +51,8 @@
 
     <!-- Promo image -->
     <img
-      v-if="selectedEvent.banner"
-      :src="selectedEvent.banner"
+      v-if="selectedEvent.banner.url"
+      :src="selectedEvent.banner.url"
       style="width: 100%; object-fit: contain"
       alt="promo image for the event"
     >
@@ -184,46 +184,6 @@ export default {
       } else {
         $goto(encodeURI('https://www.google.com/maps/search/?api=1&query=' + this.selectedEvent.location));
       }
-    },
-
-
-    // -------- THIS METHOD WAS LEFT IN THE CODE, NOT SURE IF IT IS USEFUL ANYMORE --------
-    // Clean up the given description
-    // 1. turn newlines into html <br>
-    // 2. remove lines starting with 'location: ', 'time: ', etc.
-    cleanup(description) {
-      // If string is not html, replace all newlines with <br>
-      if (!description.match(/<\/?[a-z][\s\S]*>/i)) {
-        description = description.replace(/\n/g, '<br>');
-      }
-      let splitDesc = description.split('<br>');
-      let res = '';
-      splitDesc.forEach((line) => {
-        // Check if the line starts with 'location: ', 'time: ', etc. if it does, skip this line
-        if (!line.toLowerCase().startsWith('location:') && !line.toLowerCase().startsWith('time:') && !line.toLowerCase().startsWith('type:')) {
-          //If we want to add the line. We will have to fix links
-          //If the line is already html, we still want to change it such that it opens the link in a new tab.
-          if (line.match(this.htmlRegex)) {
-            line = line.replace(/<a /g, '<a target="_blank" ')
-          } else if (line.split(' ').some((word) => word.match(this.linkRegex))) {
-            // Otherwise we check if there is even a link in this line.
-            // If there is, go through all words in the line and reaplace each link with a proper html element
-            let lineRes = "";
-            line.split(' ').forEach((word) => {
-              if (word.match(this.linkRegex)) {
-                lineRes += `  <a href="${word}" target="_blank">${word}</a>`;
-              } else {
-                lineRes += ` ${word}`;
-              }
-            });
-            lineRes.replace(' ', '');
-            line = lineRes;
-          }
-          // Add the line to the result
-          res += '<br>' + line;
-        }
-      });
-      return res.replace('<br>', '');
     },
   },
 }

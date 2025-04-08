@@ -15,7 +15,8 @@ export type { default as ContributionPeriod } from './ContributionPeriod';
 // Event Models
 export type { default as Event } from './Event';
 export type { default as EventFeedback } from './EventFeedback';
-export type { default as EventSignUp } from './EventSignup';
+export type { default as EventSignUp, FormAnswer } from './EventSignup';
+export type { default as FormQuestion, QuestionType } from './FormQuestion';
 
 // File Management
 export type { default as File } from './File';

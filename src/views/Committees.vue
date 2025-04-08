@@ -36,9 +36,7 @@
             {{ committee.name }}
           </v-expansion-panel-title>
           <v-expansion-panel-text>
-            <p>
-              {{ committee.description }}
-            </p>
+            <p v-html="$markdownToHtml(committee.description)" />
           </v-expansion-panel-text>
         </v-expansion-panel>
       </v-expansion-panels>
@@ -48,6 +46,7 @@
 <script>
 import TopBanner from "@/components/banners/TopBanner.vue";
 import {$handleNetworkError} from "@/plugins/handleNetworkError";
+import {$markdownToHtml} from "@/plugins/markdownToHtml.js";
 
 export default {
   components: {TopBanner: TopBanner},
@@ -68,7 +67,8 @@ export default {
         }
       })
       .catch(e => $handleNetworkError(e))
-  }
+  },
+  methods: {$markdownToHtml}
 }
 </script>
 

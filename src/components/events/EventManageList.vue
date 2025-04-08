@@ -110,9 +110,7 @@
 import {ref} from 'vue'
 import {useRouter} from 'vue-router'
 import {EventService} from "@/services";
-import {defineProps} from 'vue'
 import type {Event} from "@/models"
-import {defineOptions} from 'vue'
 import EventListItem from '@/components/events/EventListItem.vue'
 import {useDisplay} from "vuetify";
 
