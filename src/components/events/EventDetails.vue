@@ -62,9 +62,8 @@
       <p v-if="selectedEvent.details">
         <!-- In the span is the actual text of the event -->
         <!-- If the expand variable is true show the fill message, otherwise only show the first 100 words -->
-        <span
-          v-html="expand || !longDescription ? $markdownToHtml(selectedEvent.details) : $markdownToHtml(firstHundredWords)+'...'"
-        />
+        <!-- eslint-disable-next-line vue/no-v-html -->
+        <span v-html="expand || !longDescription ? $markdownToHtml(selectedEvent.details) : $markdownToHtml(firstHundredWords)+'...'" />
         <!-- Only show the "read more" if the message is long -->
         <!-- If it's clicked expand will be set to true and the full message will be shown -->
         <br v-if="!expand && longDescription">
@@ -114,7 +113,7 @@
 <script>
 import MarqueeText from 'vue-marquee-text-component'
 import {$goto} from "@/plugins/goto.js";
-import {$markdownToHtml} from "@/plugins/markdownToHtml.js";
+import $markdownToHtml from "@/plugins/markdownToHtml.ts";
 
 export default {
   name: 'EventDetails',

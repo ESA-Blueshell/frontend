@@ -7,7 +7,7 @@
       ref="title"
       v-model="localCommittee.name"
       :rules="[v => !!v || 'Name is required']"
-      label="Committee name"
+      label="CommitteeModel name"
       required
     />
 
@@ -84,13 +84,13 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import type { VForm } from 'vuetify/components';
-import type {Committee, CommitteeMember, SimpleUser} from '@/models';
+import type {CommitteeModel, CommitteeMemberModel, SimpleUserModel} from '@/models';
 import { UserService, CommitteeService } from '@/services';
 
 const props = defineProps<{
   committee: {
-    members: CommitteeMember[];
-    type: Committee,
+    members: CommitteeMemberModel[];
+    type: CommitteeModel,
     required: false,
   };
 }>();
@@ -101,13 +101,13 @@ const emit = defineEmits<{
 }>();
 
 const valid = ref(false);
-const members = ref<SimpleUser[]>([]);
+const members = ref<SimpleUserModel[]>([]);
 const form = ref<VForm | null>(null);
 const userService = new UserService();
 const committeeService = new CommitteeService();
 
 // Create a local copy of the committee to avoid direct prop mutation
-const localCommittee = ref<Committee>({
+const localCommittee = ref<CommitteeModel>({
   ...props.committee,
   members: props.committee?.members ? [...props.committee.members.map(m => ({ ...m }))] : [],
   type: 'committee'
@@ -121,7 +121,7 @@ onMounted(async () => {
 const addMember = () => {
   localCommittee.value.members.push({
     role: '',
-    user: {} as SimpleUser,
+    user: {} as SimpleUserModel,
     type: 'committeeMember',
     committeeId: localCommittee.value.id
   });

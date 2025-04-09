@@ -110,7 +110,7 @@
 import {ref} from 'vue'
 import {useRouter} from 'vue-router'
 import {EventService} from "@/services";
-import type {Event} from "@/models"
+import type {EventModel} from "@/models"
 import EventListItem from '@/components/events/EventListItem.vue'
 import {useDisplay} from "vuetify";
 
@@ -119,12 +119,12 @@ const display = useDisplay()
 
 
 const props = defineProps<{
-  initialEvents: Event[],
+  initialEvents: EventModel[],
   idToCommittee,
 }>()
 
-const events = ref<Event[]>(props.initialEvents)
-const eventToDelete = ref<Event>()
+const events = ref<EventModel[]>(props.initialEvents)
+const eventToDelete = ref<EventModel>()
 const eventService = new EventService()
 
 // Access router and store if you still need them

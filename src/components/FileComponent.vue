@@ -1,11 +1,11 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
 import { FileType } from '@/models/enums/FileType';
-import type File from '@/models/File';
+import type FileModel from '@/models/FileModel.ts';
 
 // References and reactive state
 const fileInput = ref<HTMLInputElement | null>(null);
-const selectedFile = ref<File | null>(null);
+const selectedFile = ref<FileModel | null>(null);
 const previewUrl = ref<string | null>(null);
 // Default file type (can be changed via the select)
 const fileType = ref<FileType>(FileType.DOCUMENT);
@@ -62,7 +62,7 @@ function downloadFile() {
   <div class="file-component">
     <!-- Upload Section -->
     <div class="upload-section">
-      <label for="fileInput">Select File:</label>
+      <label for="fileInput">Select FileModel:</label>
       <input
         id="fileInput"
         ref="fileInput"
@@ -70,7 +70,7 @@ function downloadFile() {
         @change="onFileSelected"
       >
 
-      <label for="fileTypeSelect">Select File Type:</label>
+      <label for="fileTypeSelect">Select FileModel Type:</label>
       <select
         id="fileTypeSelect"
         v-model="fileType"
@@ -85,7 +85,7 @@ function downloadFile() {
       </select>
 
       <button @click="uploadFile">
-        Upload File
+        Upload FileModel
       </button>
     </div>
 
@@ -94,7 +94,7 @@ function downloadFile() {
       v-if="selectedFile"
       class="download-section"
     >
-      <h3>File: {{ selectedFile.name }}</h3>
+      <h3>FileModel: {{ selectedFile.name }}</h3>
       <!-- Preview image if file type is not DOCUMENT -->
       <img
         v-if="selectedFile.fileType !== FileType.DOCUMENT && previewUrl"
@@ -103,7 +103,7 @@ function downloadFile() {
         style="max-width:200px; max-height:200px;"
       >
       <button @click="downloadFile">
-        Download File
+        Download FileModel
       </button>
     </div>
   </div>

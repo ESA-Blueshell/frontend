@@ -5,7 +5,7 @@
   >
     <v-card>
       <v-card-title>
-        <span class="text-h5">{{ isEditing ? 'Edit Contribution Period' : 'Add Contribution Period' }}</span>
+        <span class="text-h5">{{ isEditing ? 'Edit ContributionModel Period' : 'Add ContributionModel Period' }}</span>
       </v-card-title>
       <v-card-text>
         <v-form ref="formRef">
@@ -81,7 +81,7 @@ import {
 } from 'vue';
 import {$handleNetworkError} from '@/plugins/handleNetworkError.ts';
 import { DateTime } from 'luxon';
-import type {ContributionPeriod} from '@/models';
+import type {ContributionPeriodModel} from '@/models';
 import {ContributionPeriodService} from '@/services';
 import type {VForm} from 'vuetify/components';
 
@@ -97,11 +97,11 @@ export default defineComponent({
       required: true,
     },
     selectedPeriod: {
-      type: Object as () => ContributionPeriod | null,
+      type: Object as () => ContributionPeriodModel | null,
       default: null,
     },
     contributionPeriods: {
-      type: Array as () => ContributionPeriod[],
+      type: Array as () => ContributionPeriodModel[],
       default: () => [],
     },
   },
@@ -112,7 +112,7 @@ export default defineComponent({
       set: (value) => emit('update:modelValue', value),
     });
 
-    const form = reactive<ContributionPeriod>({
+    const form = reactive<ContributionPeriodModel>({
       id: props.selectedPeriod?.id || 0,
       startDate: '',
       endDate: '',

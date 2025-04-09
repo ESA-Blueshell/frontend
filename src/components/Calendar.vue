@@ -42,7 +42,7 @@ export default {
 
     // Localization
     const {current: localeCurrent} = useLocale()
-    localeCurrent.value = 'en-NL'
+    localeCurrent.value = 'en-GB'
 
     // Responsive display
     const display = useDisplay()
@@ -52,7 +52,7 @@ export default {
       isXs.value ? [1, 2, 3, 4, 5] : [1, 2, 3, 4, 5, 6, 0]
     )
 
-    // Event fetching
+    // EventModel fetching
     const getEvents = (month) => {
       // Set date range for API call
       const from = DateTime.fromJSDate(month).startOf("month").toISO();
@@ -98,7 +98,7 @@ export default {
       getEvents(initialFocus)
     })
 
-    // Event handling
+    // EventModel handling
     const showEvent = ({nativeEvent, event}) => {
       const toggle = () => {
         selectedEvent.value = event

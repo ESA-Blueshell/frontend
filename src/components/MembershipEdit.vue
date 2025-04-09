@@ -72,7 +72,7 @@ import { defineComponent } from 'vue';
 import { DateTime } from 'luxon';
 import DocumentTable from "@/components/DocumentTable";
 import ContributionPeriod from "@/components/ContributionPeriodComponent";
-import type { Membership } from "@/models/Membership";
+import type { MembershipModel } from "@/models/MembershipModel.ts";
 
 export default defineComponent({
   name: "MembershipEdit",

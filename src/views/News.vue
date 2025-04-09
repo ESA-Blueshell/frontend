@@ -1,6 +1,6 @@
 <template>
   <v-main>
-    <top-banner title="News" />
+    <top-banner title="NewsModel" />
 
     <div class="mx-3">
       <div

@@ -1,5 +1,5 @@
 import BaseService from "./BaseService";
-import type {AdvancedUser} from "@/models";
+import type {AdvancedUserModel} from "@/models";
 import type ActivationRequest from "@/models/requests/ActivationRequest";
 import type PasswordResetRequest from "@/models/requests/PasswordResetRequest";
 import type {Role} from "@/models/enums/Role";
@@ -9,19 +9,19 @@ export default class UserService extends BaseService {
     super("/users");
   }
 
-  async getUsers(isMember?: boolean): Promise<AdvancedUser[]> {
+  async getUsers(isMember?: boolean): Promise<AdvancedUserModel[]> {
     return this.get("", {isMember});
   }
 
-  async getUser(id: number): Promise<AdvancedUser> {
+  async getUser(id: number): Promise<AdvancedUserModel> {
     return this.get(`/${id}`);
   }
 
-  async createUser(user: AdvancedUser): Promise<AdvancedUser> {
+  async createUser(user: AdvancedUserModel): Promise<AdvancedUserModel> {
     return this.post(user);
   }
 
-  async updateUser(id: number, user: AdvancedUser): Promise<AdvancedUser> {
+  async updateUser(id: number, user: AdvancedUserModel): Promise<AdvancedUserModel> {
     return this.put(user, `/${id}`);
   }
 
@@ -37,7 +37,7 @@ export default class UserService extends BaseService {
     return this.post(request, "/password");
   }
 
-  async toggleRole(userId: number, role: Role): Promise<AdvancedUser> {
+  async toggleRole(userId: number, role: Role): Promise<AdvancedUserModel> {
     return this.put(null, `/${userId}/roles`, {role});
   }
 
@@ -45,7 +45,7 @@ export default class UserService extends BaseService {
     return this.delete(`/${userId}`);
   }
 
-  async getFromBrevo(email: string): Promise<AdvancedUser> {
+  async getFromBrevo(email: string): Promise<AdvancedUserModel> {
     return this.get("/brevo", {email});
   }
 }

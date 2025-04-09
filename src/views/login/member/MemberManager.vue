@@ -49,7 +49,7 @@ import TopBanner from '@/components/banners/TopBanner.vue';
 import ContributionPeriodList from '@/views/login/member/ContributionPeriodList.vue';
 import UserList from '@/views/login/member/UserList.vue';
 import UserService from "@/services/UserService.ts";
-import {type Contribution, type AdvancedUser, Role} from "@/models";
+import {type ContributionModel, type AdvancedUserModel, Role} from "@/models";
 import {ContributionService} from "@/services";
 
 export default defineComponent({
@@ -60,10 +60,10 @@ export default defineComponent({
     UserList,
   },
   setup() {
-    const members = ref([] as AdvancedUser[]);
-    const nonMembers = ref([] as AdvancedUser[]);
-    const users = ref([] as AdvancedUser[]);
-    const contributions = ref([] as Contribution[]);
+    const members = ref([] as AdvancedUserModel[]);
+    const nonMembers = ref([] as AdvancedUserModel[]);
+    const users = ref([] as AdvancedUserModel[]);
+    const contributions = ref([] as ContributionModel[]);
     const expanded = ref(0);
     const search = ref('');
     const userService = new UserService();
@@ -80,7 +80,7 @@ export default defineComponent({
       updateMembers();
     };
 
-    const isSearched = (user: AdvancedUser) => {
+    const isSearched = (user: AdvancedUserModel) => {
       if (!search.value) {
         return true
       }
@@ -107,7 +107,7 @@ export default defineComponent({
       updateMembers();
     });
 
-    const deleteUser = (user: AdvancedUser) => {
+    const deleteUser = (user: AdvancedUserModel) => {
       users.value = users.value.filter((u) => u.id !== user.id);
       updateMembers();
     };
@@ -116,7 +116,7 @@ export default defineComponent({
       expanded.value = userId === expanded.value ? 0 : userId;
     };
 
-    const userChanged = async (user: AdvancedUser) => {
+    const userChanged = async (user: AdvancedUserModel) => {
       const index = users.value.findIndex((u) => u.id === user.id);
       if (index !== -1) {
         users.value.splice(index, 1, user);
@@ -127,7 +127,7 @@ export default defineComponent({
       updateMembers();
     };
 
-    const contributionChanged = (updatedContribution: Contribution) => {
+    const contributionChanged = (updatedContribution: ContributionModel) => {
       const index = contributions.value.findIndex((c) => c.id === updatedContribution.id);
       if (index !== -1) {
         contributions.value.splice(index, 1, updatedContribution);

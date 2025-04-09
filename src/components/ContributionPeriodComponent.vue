@@ -3,7 +3,7 @@ import {ref, onMounted} from 'vue';
 import {$handleNetworkError} from "@/plugins/handleNetworkError";
 import { DateTime, Interval } from 'luxon';
 import { ContributionPeriodService } from '@/services';
-import { type ContributionPeriod } from "@/models";
+import { type ContributionPeriodModel } from "@/models";
 
 // Reactive variables
 const contributionPeriod = ref(null); // Initialize as null
@@ -33,7 +33,7 @@ const formatCurrency = (amount) => {
 // Function to fetch the current contribution period
 const getContributionPeriod = async () => {
   try {
-    const periods: Promise<ContributionPeriod[]> = await contributionPeriodService.getContributionPeriods();
+    const periods: Promise<ContributionPeriodModel[]> = await contributionPeriodService.getContributionPeriods();
 
     // Ensure response.data is an array
     if (!Array.isArray(periods)) {
@@ -77,7 +77,7 @@ onMounted(() => {
 </script>
 <template>
   <div>
-    <strong>Contribution</strong><br>
+    <strong>ContributionModel</strong><br>
 
     <!-- Loading State -->
     <div v-if="loading">
@@ -92,7 +92,7 @@ onMounted(() => {
       Error fetching contribution information: {{ error }}
     </div>
 
-    <!-- Display Contribution Information -->
+    <!-- Display ContributionModel Information -->
     <div v-else>
       <p v-if="$props.isForm">
         The undersigned understands that they will need to pay the {{ formatPeriod(contributionPeriod) }} contribution

@@ -1,5 +1,5 @@
 import BaseService from "./BaseService";
-import type File from "@/models/File";
+import type FileModel from "@/models/FileModel.ts";
 
 export default class FileService extends BaseService {
   constructor() {
@@ -22,7 +22,7 @@ export default class FileService extends BaseService {
     return response.data;
   }
 
-  async uploadFile(file: File): Promise<File> {
+  async uploadFile(file: FileModel): Promise<FileModel> {
     const formData = new FormData();
     formData.append("file", new Blob([file.base64Content!]), file.fileName);
     return this.post(formData);

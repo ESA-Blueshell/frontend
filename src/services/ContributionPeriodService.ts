@@ -1,21 +1,21 @@
 import BaseService from "./BaseService";
-import type ContributionPeriod from "@/models/ContributionPeriod";
-import type Contribution from "@/models/Contribution.ts";
+import type ContributionPeriodModel from "@/models/ContributionPeriodModel.ts";
+import type ContributionModel from "@/models/ContributionModel.ts";
 
 export default class ContributionPeriodService extends BaseService {
   constructor() {
     super("/contributionPeriods");
   }
 
-  async getContributionPeriods(): Promise<ContributionPeriod[]> {
+  async getContributionPeriods(): Promise<ContributionPeriodModel[]> {
     return this.get();
   }
 
-  async createPeriod(period: ContributionPeriod): Promise<ContributionPeriod> {
+  async createPeriod(period: ContributionPeriodModel): Promise<ContributionPeriodModel> {
     return this.post(period);
   }
 
-  async updatePeriod(id: number, period: ContributionPeriod): Promise<ContributionPeriod> {
+  async updatePeriod(id: number, period: ContributionPeriodModel): Promise<ContributionPeriodModel> {
     return this.put(period, `/${id}`);
   }
 
@@ -23,7 +23,7 @@ export default class ContributionPeriodService extends BaseService {
     return this.delete(`/${id}`);
   }
 
-  async getPeriodContributions(id: number): Promise<Contribution[]> {
+  async getPeriodContributions(id: number): Promise<ContributionModel[]> {
     return this.get(`/${id}/contributions`);
   }
 }

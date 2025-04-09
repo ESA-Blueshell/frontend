@@ -168,11 +168,11 @@
 <script lang="ts">
 import UserEdit from '@/components/UserEdit.vue';
 import {ContributionService, UserService, MembershipService} from "@/services";
-import {type Contribution, type Membership, MemberType} from "@/models";
+import {type ContributionModel, type MembershipModel, MemberType} from "@/models";
 import {computed, ref, toRefs} from 'vue';
 import DeleteConfirmationDialog from "@/components/DeletionConfirmationDialog";
 import store from "@/plugins/store.ts";
-import {type AdvancedUser, Role} from "@/models";
+import {type AdvancedUserModel, Role} from "@/models";
 import {DateTime} from 'luxon';
 import MemberTypeSelect from "@/components/select/MemberTypeSelect.vue";
 
@@ -181,11 +181,11 @@ export default {
   components: {MemberTypeSelect, UserEdit, DeleteConfirmationDialog},
   props: {
     user: {
-      type: Object as () => AdvancedUser,
+      type: Object as () => AdvancedUserModel,
       required: true,
     },
     contributions: {
-      type: Array as () => Contribution[],
+      type: Array as () => ContributionModel[],
       default: () => [],
     },
     expanded: {
@@ -216,7 +216,7 @@ export default {
     };
 
     const toggleMembership = async () => {
-      const userData: AdvancedUser = await userService.toggleRole(user.value.id as number, Role.MEMBER);
+      const userData: AdvancedUserModel = await userService.toggleRole(user.value.id as number, Role.MEMBER);
       userChanged(userData)
     };
 
@@ -248,19 +248,19 @@ export default {
 
 
     const endMembership = async () => {
-      const membership: Membership = user.value.membership as Membership;
+      const membership: MembershipModel = user.value.membership as MembershipModel;
       membership.endDate = DateTime.now().toISO().toString();
-      const changedMembership: Membership = await membershipService.updateMembership(membership.id as number, membership);
-      const changedUser: AdvancedUser = user.value;
+      const changedMembership: MembershipModel = await membershipService.updateMembership(membership.id as number, membership);
+      const changedUser: AdvancedUserModel = user.value;
       changedUser.membership = changedMembership;
       userChanged(changedUser)
     }
 
     const resumeMembership = async () => {
-      const membership: Membership = user.value.membership as Membership;
+      const membership: MembershipModel = user.value.membership as MembershipModel;
       membership.endDate = undefined;
-      const changedMembership: Membership = await membershipService.updateMembership(membership.id as number, membership);
-      const changedUser: AdvancedUser = user.value;
+      const changedMembership: MembershipModel = await membershipService.updateMembership(membership.id as number, membership);
+      const changedUser: AdvancedUserModel = user.value;
       changedUser.membership = changedMembership;
       userChanged(changedUser)
     }
@@ -275,7 +275,7 @@ export default {
       emit('delete-user', props.user);
     };
 
-    const userChanged = (userData: AdvancedUser) => {
+    const userChanged = (userData: AdvancedUserModel) => {
       emit('user-changed', userData);
     }
 

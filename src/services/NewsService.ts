@@ -1,5 +1,5 @@
 import BaseService from "./BaseService";
-import type News from "@/models/News";
+import type NewsModel from "@/models/NewsModel.ts";
 import type {Page, Pageable} from "@/models/Pageable.ts";
 
 export default class NewsService extends BaseService {
@@ -7,19 +7,19 @@ export default class NewsService extends BaseService {
     super("/news");
   }
 
-  async getNews(): Promise<News[]> {
+  async getNews(): Promise<NewsModel[]> {
     return this.get();
   }
 
-  async getNewsPageable(pageable: Pageable): Promise<Page<News>> {
+  async getNewsPageable(pageable: Pageable): Promise<Page<NewsModel>> {
     return this.get("/pageable", pageable);
   }
 
-  async createNews(news: News): Promise<News> {
+  async createNews(news: NewsModel): Promise<NewsModel> {
     return this.post(news);
   }
 
-  async updateNews(id: string, news: News): Promise<News> {
+  async updateNews(id: string, news: NewsModel): Promise<NewsModel> {
     return this.put(news, `/${id}`);
   }
 

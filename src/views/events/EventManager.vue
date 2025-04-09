@@ -1,7 +1,7 @@
 <template>
   <!-- Render a loading indicator (or whatever you prefer) until data is fetched -->
   <v-main v-if="isLoaded">
-    <top-banner title="Event Manager" />
+    <top-banner title="EventModel Manager" />
 
     <div
       class="mx-auto my-10"
@@ -75,7 +75,7 @@ import TopBanner from '@/components/banners/TopBanner.vue'
 import EventManageList from '@/components/events/EventManageList.vue'
 import { EventService, CommitteeService } from '@/services/index.js'
 import { $require } from '@/plugins/require'
-import type { Event, Committee } from "@/models";
+import type { EventModel, CommitteeModel } from "@/models";
 import { useDisplay } from "vuetify";
 
 // Local “groupBy” helper if you don't have a built-in one
@@ -87,9 +87,9 @@ function groupById<T extends { id: string | number }>(items: T[]): Record<string
 }
 
 // Reactive references for data
-const events = ref<Event[]>([])
-const pastEvents = ref<Committee[]>([])
-const idToCommittee = ref<Record<number, Committee>>({})
+const events = ref<EventModel[]>([])
+const pastEvents = ref<CommitteeModel[]>([])
+const idToCommittee = ref<Record<number, CommitteeModel>>({})
 const noCommittees = ref(false)
 // Track if data has finished loading
 const isLoaded = ref(false)

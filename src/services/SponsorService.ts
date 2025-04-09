@@ -1,20 +1,20 @@
 import BaseService from "./BaseService";
-import type Sponsor from "@/models/Sponsor";
+import type SponsorModel from "@/models/SponsorModel.ts";
 
 export default class SponsorService extends BaseService {
   constructor() {
     super("/sponsors");
   }
 
-  async getSponsors(): Promise<Sponsor[]> {
+  async getSponsors(): Promise<SponsorModel[]> {
     return this.get();
   }
 
-  async createSponsor(sponsor: Sponsor): Promise<Sponsor> {
+  async createSponsor(sponsor: SponsorModel): Promise<SponsorModel> {
     return this.post(sponsor);
   }
 
-  async updateSponsor(id: number, sponsor: Sponsor): Promise<Sponsor> {
+  async updateSponsor(id: number, sponsor: SponsorModel): Promise<SponsorModel> {
     return this.put(sponsor, `/${id}`);
   }
 

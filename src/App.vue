@@ -413,7 +413,8 @@
       v-model="statusSnackbarMessage"
       timeout="10000"
     >
-      <span v-html="statusSnackbarMessage" />
+      <!-- eslint-disable-next-line vue/no-v-html -->
+      <span v-html="DOMPurify.sanitize(statusSnackbarMessage)" />
       <template #actions>
         <v-btn
           color="blue"
@@ -459,6 +460,7 @@ import axios from 'axios'
 import FooterBanner from "@/components/banners/FooterBanner.vue";
 import {$goto} from "@/plugins/goto";
 import {$handleNetworkError} from "@/plugins/handleNetworkError";
+import DOMPurify from "dompurify";
 
 export default {
   components: {BsFooter: FooterBanner},
@@ -575,7 +577,8 @@ export default {
       acceptCookies,
       theme,
     }
-  }
+  },
+  methods: {DOMPurify}
 }
 </script>
 

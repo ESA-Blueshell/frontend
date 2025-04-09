@@ -139,7 +139,7 @@
           v-model="userData.nationality"
           cols="4"
         />
-        <country-select v-model="userData.country"/>
+        <country-select v-model="userData.country" />
       </v-row>
       <v-row>
         <v-col cols="6">
@@ -221,7 +221,7 @@ import {ref, onMounted} from 'vue';
 import {VPhoneInput} from 'v-phone-input';
 import {DateTime} from 'luxon';
 import store from '@/plugins/store';
-import {type AdvancedUser} from "@/models";
+import {type AdvancedUserModel} from "@/models";
 import UserService from "@/services/UserService";
 import type {VForm} from "vuetify/components";
 import {type CountryCode, parsePhoneNumber, type PhoneNumber} from 'libphonenumber-js/max';
@@ -244,11 +244,11 @@ export default {
       default: false,
     },
     modelValue: {
-      type: Object as () => AdvancedUser,
+      type: Object as () => AdvancedUserModel,
       default: null,
     },
     user: {
-      type: Object as () => AdvancedUser,
+      type: Object as () => AdvancedUserModel,
       required: false,
       default: () => ({
         type: 'advanced',
@@ -275,7 +275,7 @@ export default {
     const roles = store.getters.getLogin?.roles;
     const disableEdit = !roles || !(roles.includes('BOARD') || roles.includes('ADMIN'));
     const userService = new UserService();
-    const userData = ref(props.user as AdvancedUser);
+    const userData = ref(props.user as AdvancedUserModel);
     const country = ref<CountryCode>('NL'); // Default country code
 
     const valid = ref(true);

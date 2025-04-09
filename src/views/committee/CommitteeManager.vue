@@ -1,6 +1,6 @@
 <template>
   <v-main>
-    <top-banner title="Committee Manager" />
+    <top-banner title="CommitteeModel Manager" />
     <div class="mx-3">
       <div
         class="mx-auto my-10"

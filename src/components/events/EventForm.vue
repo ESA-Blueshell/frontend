@@ -2,7 +2,7 @@
 import {ref, computed} from 'vue';
 import EventSignUpFormEdit from '@/components/events/EventSignUpFormEdit.vue';
 import {CommitteeService} from '@/services';
-import {type Committee, type Event} from '@/models';
+import {type CommitteeModel, type EventModel} from '@/models';
 import {EventService} from '@/services';
 import {$handleNetworkError} from "@/plugins/handleNetworkError.ts";
 import {useStore} from 'vuex';
@@ -11,7 +11,7 @@ import type {VForm} from "vuetify/components";
 
 const props = defineProps({
   initialEvent: {
-    type: Object as () => Event,
+    type: Object as () => EventModel,
     default: () => null
   },
   hasPromo: {
@@ -35,7 +35,7 @@ const submitting = ref(false);
 // --------------------
 // 1) Initialize event
 // --------------------
-function getDefaultEvent(): Event {
+function getDefaultEvent(): EventModel {
   return {
     id: undefined,
     type: 'EventDTO',
@@ -56,14 +56,14 @@ function getDefaultEvent(): Event {
   };
 }
 
-function initializeEvent(): Event {
+function initializeEvent(): EventModel {
   return {
     ...getDefaultEvent(),
     ...(props.initialEvent || {}),
   };
 }
 
-const event = ref<Event>(initializeEvent());
+const event = ref<EventModel>(initializeEvent());
 
 // -------------------------------------------------------------
 // 2) Convert existing ISO date/time → separate date + time vars
@@ -91,7 +91,7 @@ const hadSignUp = ref<boolean>(event.value.signUp || false);
 const oldEnableSignUpForm = ref<boolean>(enableSignupForm.value);
 
 // Committees
-const committees = ref<Committee[]>([]);
+const committees = ref<CommitteeModel[]>([]);
 committeeService.getCommittees(true).then((response) => (committees.value = response));
 
 // Price rules
@@ -142,8 +142,8 @@ async function submit() {
     // (If you need to send JSON string, do: JSON.stringify(event.value.signUpForm))
     payload.signUpForm = event.value.signUpForm ?? [];
 
-    // If we have a promo image as a File, convert it to base64
-    // if (event.value.banner && event.value.banner instanceof File) {
+    // If we have a promo image as a FileModel, convert it to base64
+    // if (event.value.banner && event.value.banner instanceof FileModel) {
     //   const base64Image = await toBase64(event.value.banner);
     //   const fileExtension = '.' + event.value.banner.name.split('.').pop();
     //   (payload as any).base64Image = base64Image;
@@ -170,7 +170,7 @@ async function submit() {
   }
 }
 
-// function toBase64(file: File) {
+// function toBase64(file: FileModel) {
 //   return new Promise<string>((resolve, reject) => {
 //     const reader = new FileReader();
 //     reader.readAsDataURL(file);
@@ -218,7 +218,7 @@ function toggleSignUpForm() {
             ref="title"
             v-model="event.title"
             :rules="[v => !!v || 'Title is required']"
-            label="Event name"
+            label="EventModel name"
             required
             @update:model-value="emits('title', event.title)"
           />
@@ -341,7 +341,7 @@ function toggleSignUpForm() {
             v-model="endTime"
             :rules="[
               v => (!!v || !event.visible) || 'End time is required for public events',
-              v => (!!v && new Date(`${startDate} ${startTime}`) < new Date(`${endDateDisplay} ${v}`)) || 'Event must end after it starts'
+              v => (!!v && new Date(`${startDate} ${startTime}`) < new Date(`${endDateDisplay} ${v}`)) || 'EventModel must end after it starts'
             ]"
             label="End time"
             prepend-icon="mdi-clock"
@@ -350,7 +350,7 @@ function toggleSignUpForm() {
         </v-col>
       </v-row>
 
-      <!-- Committee + File Input -->
+      <!-- CommitteeModel + FileModel Input -->
       <v-row>
         <v-col>
           <v-select

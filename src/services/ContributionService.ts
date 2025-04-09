@@ -1,20 +1,20 @@
 import BaseService from "./BaseService";
-import type Contribution from "@/models/Contribution";
+import type ContributionModel from "@/models/ContributionModel.ts";
 
 export default class ContributionService extends BaseService {
   constructor() {
     super("/contributions");
   }
 
-  async createContribution(contribution: Contribution): Promise<Contribution> {
+  async createContribution(contribution: ContributionModel): Promise<ContributionModel> {
     return this.post(contribution);
   }
 
-  async markAsPaid(id: number, paid: boolean): Promise<Contribution> {
+  async markAsPaid(id: number, paid: boolean): Promise<ContributionModel> {
     return this.put({  }, `/${id}/paid`, { paid});
   }
 
-  async getByPeriod(periodId: number): Promise<Contribution[]> {
+  async getByPeriod(periodId: number): Promise<ContributionModel[]> {
     return this.get("", { contributionPeriodId: periodId });
   }
 

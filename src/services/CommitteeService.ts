@@ -1,21 +1,21 @@
 // ./src/services/CommitteeService.ts
 import BaseService from "./BaseService";
-import type {CommitteeMember, Committee} from "@/models";
+import type {CommitteeMemberModel, CommitteeModel} from "@/models";
 
 export default class CommitteeService extends BaseService {
   constructor() {
     super("/committees");
   }
 
-  async getCommittees(isMember?: boolean): Promise<Committee[]> {
+  async getCommittees(isMember?: boolean): Promise<CommitteeModel[]> {
     return this.get("", { isMember });
   }
 
-  async createCommittee(committee: Committee): Promise<Committee> {
+  async createCommittee(committee: CommitteeModel): Promise<CommitteeModel> {
     return this.post(committee);
   }
 
-  async updateCommittee(id: number, committee: Committee): Promise<Committee> {
+  async updateCommittee(id: number, committee: CommitteeModel): Promise<CommitteeModel> {
     return this.put(committee, `/${id}`);
   }
 
@@ -23,7 +23,7 @@ export default class CommitteeService extends BaseService {
     return this.delete(`/${id}`);
   }
 
-  async getMembers(committeeId: number): Promise<CommitteeMember[]> {
+  async getMembers(committeeId: number): Promise<CommitteeMemberModel[]> {
     return this.get(`/${committeeId}/members`);
   }
 }

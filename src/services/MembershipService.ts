@@ -1,24 +1,24 @@
 import BaseService from "./BaseService";
-import type {Membership} from "@/models";
+import type {MembershipModel} from "@/models";
 
 export default class MembershipServiceService extends BaseService {
   constructor() {
     super("/memberships");
   }
 
-  async getMemberships(): Promise<Membership[]> {
+  async getMemberships(): Promise<MembershipModel[]> {
     return this.get();
   }
 
-  async getMembership(id: number): Promise<Membership> {
+  async getMembership(id: number): Promise<MembershipModel> {
     return this.get(`/${id}`);
   }
 
-  async createMembership(membership: Membership): Promise<Membership> {
+  async createMembership(membership: MembershipModel): Promise<MembershipModel> {
     return this.post(membership);
   }
 
-  async updateMembership(id: number, membership: Membership): Promise<Membership> {
+  async updateMembership(id: number, membership: MembershipModel): Promise<MembershipModel> {
     return this.put(membership, `/${id}`);
   }
 }

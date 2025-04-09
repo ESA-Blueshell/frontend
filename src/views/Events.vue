@@ -41,9 +41,9 @@
 <script>
 import TopBanner from "@/components/banners/TopBanner.vue";
 import Calendar from "@/components/Calendar.vue"
-import EventUpcomingList from "@/components/events/EventUpcomingList.vue";
+import EventList from "@/components/events/EventList.vue";
 
 export default {
-  components: {UpcomingEventsList: EventUpcomingList, TopBanner: TopBanner, Calendar: Calendar}
+  components: {UpcomingEventsList: EventList, TopBanner: TopBanner, Calendar: Calendar}
 }
 </script>

@@ -4,14 +4,14 @@ import { useRoute } from 'vue-router';
 import TopBanner from '@/components/banners/TopBanner.vue';
 import EventForm from '@/components/events/EventForm.vue';
 import { EventService } from '@/services';
-import type { Event } from '@/models';
+import type { EventModel } from '@/models';
 import { useRouter} from "vue-router";
 
 const eventService = new EventService();
 const route = useRoute();
 const router = useRouter();
 // This holds the event data once fetched (or newly created)
-const eventData = ref<Event | null>(null);
+const eventData = ref<EventModel | null>(null);
 
 // Reactive title for top banner
 const headerTitle = ref('');
@@ -22,7 +22,7 @@ const isEditing = computed(() => Boolean(route.params.id));
 onMounted(async () => {
   if (isEditing.value) {
     // We are editing
-    headerTitle.value = 'Edit Event';
+    headerTitle.value = 'Edit EventModel';
     try {
       const id = Number(route.params.id);
       eventData.value = await eventService.getEvent(id);
@@ -32,7 +32,7 @@ onMounted(async () => {
     }
   } else {
     // We are creating
-    headerTitle.value = 'Create Event';
+    headerTitle.value = 'Create EventModel';
     // Initialize a blank event object
     eventData.value = {
       id: undefined,
@@ -46,7 +46,7 @@ onMounted(async () => {
       signUp: false,
       banner: undefined,
       signUpForm: [],
-    } as Event;
+    } as EventModel;
   }
 });
 

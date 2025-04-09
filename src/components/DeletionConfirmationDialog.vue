@@ -7,7 +7,8 @@
       <v-card-title class="text-h5">
         {{ title }}
       </v-card-title>
-      <v-card-text v-html="message" />
+      <!-- eslint-disable-next-line vue/no-v-html -->
+      <v-card-text v-html="DOMPurify.sanitize(message)" />
       <v-card-actions>
         <v-spacer />
         <v-btn
@@ -26,6 +27,7 @@
 
 <script>
 import {computed, defineComponent} from 'vue';
+import DOMPurify from "dompurify";
 
 export default defineComponent({
   name: 'DeleteConfirmationDialog',
@@ -55,5 +57,6 @@ export default defineComponent({
       confirm,
     };
   },
+  methods: {DOMPurify},
 });
 </script>

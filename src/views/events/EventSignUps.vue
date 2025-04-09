@@ -116,7 +116,7 @@ import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import TopBanner from '@/components/banners/TopBanner.vue'
 import { EventService, EventSignUpService } from '@/services'
-import type { Event, EventSignUp } from '@/models'
+import type { EventModel, EventSignUpModel } from '@/models'
 
 // Provide an interface for sign-up form items if you prefer more structure
 interface SignUpFormItem {
@@ -128,7 +128,7 @@ interface SignUpFormItem {
 // Refs for reactive data
 const eventName = ref<string | null>(null)
 const signUpForm = ref<SignUpFormItem[]>([])
-const responses = ref<EventSignUp[]>([])
+const responses = ref<EventSignUpModel[]>([])
 
 // This tracks expanded rows for the checkbox question
 // We'll store them as `'i-j'` strings
@@ -156,8 +156,8 @@ onMounted(async () => {
       eventSignupService.getEventSignUps(route.params.id)
     ])
 
-    eventName.value = (event as Event).title
-    signUpForm.value = (event as Event).signUpForm
+    eventName.value = (event as EventModel).title
+    signUpForm.value = (event as EventModel).signUpForm
     responses.value = signups
   } catch (err) {
     // Handle errors as desired

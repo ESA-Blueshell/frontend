@@ -48,7 +48,7 @@
 
 <script lang="ts">
 import UserListRow from './UserListRow.vue';
-import type {AdvancedUser, Contribution} from "@/models";
+import type {AdvancedUserModel, ContributionModel} from "@/models";
 import UserEdit from "@/components/UserEdit.vue";
 
 export default {
@@ -60,11 +60,11 @@ export default {
       required: true,
     },
     contributions: {
-      type: Array as () => Contribution[],
+      type: Array as () => ContributionModel[],
       default: () => [],
     },
     users: {
-      type: Array as () => AdvancedUser[],
+      type: Array as () => AdvancedUserModel[],
       default: () => [],
     },
     expanded: {
@@ -87,16 +87,16 @@ export default {
       emit('toggle-expanded', userId);
     };
 
-    const contributionChanged = (contribution: Contribution) => {
+    const contributionChanged = (contribution: ContributionModel) => {
       emit('contribution-changed', contribution);
     }
 
-    const userChanged = (user: AdvancedUser) => {
+    const userChanged = (user: AdvancedUserModel) => {
       toggleExpanded(0);
       emit('user-changed', user);
     };
 
-    const deleteUser = (user: AdvancedUser) => {
+    const deleteUser = (user: AdvancedUserModel) => {
       emit('delete-user', user);
     };
 

@@ -1,32 +1,32 @@
 import BaseService from "./BaseService";
-import type Event from "@/models/Event";
+import type EventModel from "@/models/EventModel.ts";
 
 export default class EventService extends BaseService {
   constructor() {
     super("/events");
   }
 
-  async createEvent(event: Event): Promise<Event> {
+  async createEvent(event: EventModel): Promise<EventModel> {
     return this.post(event);
   }
 
-  async getEvent(id: number): Promise<Event> {
+  async getEvent(id: number): Promise<EventModel> {
     return this.get(`/${id}`);
   }
 
-  async getEvents(from?: string, to?: string): Promise<Event[]> {
+  async getEvents(from?: string, to?: string): Promise<EventModel[]> {
     return this.get("", { from, to });
   }
 
-  async getUpcomingEvents(editable = false): Promise<Event[]> {
+  async getUpcomingEvents(editable = false): Promise<EventModel[]> {
     return this.get("/upcoming", { editable });
   }
 
-  async getPastEvents(editable = false): Promise<Event[]> {
+  async getPastEvents(editable = false): Promise<EventModel[]> {
     return this.get("/past", { editable });
   }
 
-  async updateEvent(id: number, event: Event): Promise<Event> {
+  async updateEvent(id: number, event: EventModel): Promise<EventModel> {
     return this.put(event, `/${id}`);
   }
 
