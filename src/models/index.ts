@@ -1,35 +1,32 @@
-// ./src/models/index.ts
-
 // Base Models
-export type { default as Authority } from './Authority';
 export type { default as BaseModel } from './BaseModel';
 
-// Committee Models
-export type { default as Committee } from './Committee';
-export type { default as CommitteeMember } from './CommitteeMember';
+// CommitteeModel Models
+export { type default as Committee, defaultCommittee } from './CommitteeModel.ts';
+export { type default as CommitteeMember, defaultCommitteeMember } from './CommitteeMemberModel.ts';
 
 // Financial Models
-export type { default as Contribution } from './Contribution';
-export type { default as ContributionPeriod } from './ContributionPeriod';
+export { type default as Contribution, defaultContribution } from './ContributionModel.ts';
+export { type default as ContributionPeriod, defaultContributionPeriod } from './ContributionPeriodModel.ts';
 
-// Event Models
-export type { default as Event } from './Event';
-export type { default as EventFeedback } from './EventFeedback';
-export type { default as EventSignUp, FormAnswer } from './EventSignUp.ts';
-export type { default as FormQuestion, QuestionType } from './FormQuestion';
+// EventModel Models
+export { type default as Event, defaultEvent } from './EventModel.ts';
+export { type default as EventFeedback, defaultEventFeedback } from './EventFeedbackModel.ts';
+export { type default as EventSignUp, defaultEventSignUp, type FormAnswer } from './EventSignUpModel.ts';
+export { type default as FormQuestion, defaultFormQuestion, type QuestionType } from './FormQuestionModel.ts';
 
-// File Management
-export type { default as File } from './File';
+// FileModel Management
+export type { default as File } from './FileModel.ts';
 
 // User Management
-export type { default as Guest } from './Guest';
-export type { default as Membership } from './Membership';
-export type { default as AdvancedUser } from './user/AdvancedUser';
-export type { default as SimpleUser } from './user/SimpleUser';
+export { type default as Guest, defaultGuest } from './GuestModel.ts';
+export { type default as Membership, defaultMembership } from './MembershipModel.ts';
+export { type default as AdvancedUser, defaultAdvancedUser } from './user/AdvancedUserModel.ts';
+export { type default as SimpleUser, defaultSimpleUser } from './user/SimpleUserModel.ts';
 
 // Content Models
-export type { default as News } from './News';
-export type { default as Sponsor } from './Sponsor';
+export { type default as News, defaultNews } from './NewsModel.ts';
+export { type default as Sponsor, defaultSponsor } from './SponsorModel.ts';
 
 // Enums (runtime exports)
 export * from './enums/EventType';
