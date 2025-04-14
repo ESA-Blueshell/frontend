@@ -2,11 +2,11 @@
 import { AxiosError, type AxiosInstance } from 'axios';
 import {Store} from 'vuex';
 import store, {type State} from "../plugins/store";
-import api from "@/plugins/api";
 import { $handleNetworkError } from "@/plugins/handleNetworkError";
+import apiGateway from "@/plugins/apigateway.ts";
 
-export default class BaseService {
-  protected axios: AxiosInstance = api;
+export default class BaseApiGatewayService {
+  protected axios: AxiosInstance = apiGateway;
   protected store: Store<State> = store;
   protected baseUrl: string;
 

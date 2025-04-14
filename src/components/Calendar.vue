@@ -42,7 +42,7 @@ export default {
 
     // Localization
     const {current: localeCurrent} = useLocale()
-    localeCurrent.value = 'en-GB'
+    localeCurrent.value = 'en'
 
     // Responsive display
     const display = useDisplay()
@@ -55,8 +55,8 @@ export default {
     // EventModel fetching
     const getEvents = (month) => {
       // Set date range for API call
-      const from = DateTime.fromJSDate(month).startOf("month").toISO();
-      const to = DateTime.fromJSDate(month).endOf("month").toISO();
+      const from: string = DateTime.fromJSDate(month).startOf("month").toISO();
+      const to: string = DateTime.fromJSDate(month).endOf("month").toISO();
 
       if (collectedMonths.value.includes(from)) return;
 

@@ -58,6 +58,9 @@
             <v-list-item to="/committees">
               Committees
             </v-list-item>
+            <v-list-item to="/blogs">
+              Newsletters
+            </v-list-item>
             <v-list-item to="/documents">
               Documents
             </v-list-item>
@@ -522,7 +525,6 @@ export default {
       }
 
       const loginData = login.value;
-      console.log("loginData:", loginData);
       if (loginData) {
         axios
           .get(`users/${loginData.userId}`, {headers: {'Authorization': `Bearer ${loginData.token}`}})
@@ -576,9 +578,9 @@ export default {
       logOut,
       acceptCookies,
       theme,
+      DOMPurify
     }
   },
-  methods: {DOMPurify}
 }
 </script>
 

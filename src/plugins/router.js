@@ -34,6 +34,8 @@ import {createRouter, createWebHistory} from "vue-router";
 import store from './store'
 import CircuitShowdown from "@/views/events/CircuitShowdown.vue";
 import {useStore} from "vuex";
+import BlogDetails from "@/components/BlogDetails.vue";
+import Blogs from "@/views/Blogs.vue";
 
 
 const router = createRouter({
@@ -221,6 +223,16 @@ const router = createRouter({
       name: 'memberManager',
       component: MemberManager,
       meta: {requiresAuth: true}
+    },
+    {
+      path: '/blogs',
+      name: 'BlogList',
+      component: Blogs
+    },
+    {
+      path: '/blogs/:id',
+      name: 'BlogDetails',
+      component: BlogDetails
     },
     {
       path: '/:pathMatch(.*)*',

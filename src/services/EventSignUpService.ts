@@ -1,7 +1,7 @@
-import BaseService from "./BaseService";
+import BaseApiService from "./BaseApiService.ts";
 import type EventSignUpModel from "@/models/EventSignUpModel.ts";
 
-export default class EventSignUpService extends BaseService {
+export default class EventSignUpService extends BaseApiService {
   constructor() {
     super("/events");
   }

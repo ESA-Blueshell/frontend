@@ -19,6 +19,7 @@ export default interface EventModel extends BaseModel {
   signUp?: boolean;
   banner?: FileModel;
   signUpForm?: FormQuestionModel[];
+  googleId?: string;
 }
 
 export const defaultEvent: EventModel = {

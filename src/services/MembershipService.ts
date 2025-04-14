@@ -1,7 +1,7 @@
-import BaseService from "./BaseService";
+import BaseApiService from "./BaseApiService.ts";
 import type {MembershipModel} from "@/models";
 
-export default class MembershipServiceService extends BaseService {
+export default class MembershipServiceService extends BaseApiService {
   constructor() {
     super("/memberships");
   }

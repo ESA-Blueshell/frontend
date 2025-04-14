@@ -1,7 +1,7 @@
-import BaseService from "./BaseService";
+import BaseApiService from "./BaseApiService.ts";
 import type SponsorModel from "@/models/SponsorModel.ts";
 
-export default class SponsorService extends BaseService {
+export default class SponsorService extends BaseApiService {
   constructor() {
     super("/sponsors");
   }
