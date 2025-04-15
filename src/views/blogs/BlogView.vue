@@ -1,9 +1,12 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
-import { useRoute } from 'vue-router'
-import type BlogModel from '@/models/BlogModel'
+import {ref, onMounted} from 'vue'
+import {useRoute, useRouter} from 'vue-router'
+import type BlogModel from '@/models/BlogModel.ts'
 import BlogService from '@/services/BlogService.ts'
+import DOMPurify from "dompurify";
 
+
+const router = useRouter();
 // Create an instance of our BlogService
 const blogService = new BlogService()
 
@@ -12,7 +15,7 @@ const blog = ref<BlogModel | null>(null)
 
 // Grab the "id" from the route (assuming your route is set up with :id)
 const route = useRoute()
-const blogId = Number(route.params.id) // Convert to number (if stored as string)
+const blogId = String(route.params.id)
 
 // Fetch the blog when component mounts
 onMounted(async () => {
@@ -22,24 +25,32 @@ onMounted(async () => {
     console.error(`Error fetching blog with id ${blogId}:`, error)
   }
 })
+
 </script>
-
 <template>
-  <div>
-    <!-- Show the blog if it’s loaded, otherwise show "Loading..." -->
-    <div v-if="blog">
-      <h1>{{ blog.title }}</h1>
-      <p>Published at: {{ blog.published_at }}</p>
-
-      <!-- Safely render raw HTML. Adjust as needed for security. -->
-      <div v-html="blog.html" />
+  <v-main>
+    <div
+      v-if="blog"
+      class="mx-3 align-center"
+    >
+      <iframe
+        :srcdoc="blog.html"
+        frameborder="0"
+        style="width: 100%; height: 100vh;"
+      />
     </div>
-    <div v-else>
-      Loading...
+    <div
+      v-else
+      class="text-center py-10"
+    >
+      <v-progress-circular
+        indeterminate
+        color="primary"
+      />
     </div>
-  </div>
+  </v-main>
 </template>
 
 <style scoped>
-/* Your CSS styles here */
+
 </style>

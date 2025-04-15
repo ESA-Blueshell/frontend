@@ -6,7 +6,7 @@ export default class BlogService extends BaseApiGatewayService {
     super("/blogs");
   }
 
-  async getBlog(id: number): Promise<BlogModel> {
+  async getBlog(id: string): Promise<BlogModel> {
     return this.get(`/${id}`);
   }
 

@@ -34,8 +34,8 @@ import {createRouter, createWebHistory} from "vue-router";
 import store from './store'
 import CircuitShowdown from "@/views/events/CircuitShowdown.vue";
 import {useStore} from "vuex";
-import BlogDetails from "@/components/BlogDetails.vue";
-import Blogs from "@/views/Blogs.vue";
+import BlogView from "@/views/blogs/BlogView.vue";
+import BlogsView from "@/views/blogs/BlogsView.vue";
 
 
 const router = createRouter({
@@ -227,12 +227,12 @@ const router = createRouter({
     {
       path: '/blogs',
       name: 'BlogList',
-      component: Blogs
+      component: BlogsView
     },
     {
       path: '/blogs/:id',
-      name: 'BlogDetails',
-      component: BlogDetails
+      name: 'BlogView',
+      component: BlogView
     },
     {
       path: '/:pathMatch(.*)*',

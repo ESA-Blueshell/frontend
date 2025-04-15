@@ -1,14 +1,16 @@
 import type BaseModel from "@/models/BaseModel";
 
 export default interface BlogModel extends BaseModel {
+  id?: string;
   title: string;
   html: string;
-  published_at: string;
+  publishedAt: string;
 }
 
 export const defaultBlog: BlogModel = {
   type: 'BlogDTO',
+  id: '',
   title: '',
   html: '',
-  published_at: '',
+  publishedAt: '',
 };
