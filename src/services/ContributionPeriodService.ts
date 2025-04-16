@@ -4,7 +4,7 @@ import type ContributionModel from "@/models/ContributionModel.ts";
 
 export default class ContributionPeriodService extends BaseApiService {
   constructor() {
-    super("/contributionPeriods");
+    super("/api/contributionPeriods");
   }
 
   async getContributionPeriods(): Promise<ContributionPeriodModel[]> {

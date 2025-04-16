@@ -3,7 +3,7 @@ import type EventSignUpModel from "@/models/EventSignUpModel.ts";
 
 export default class EventSignUpService extends BaseApiService {
   constructor() {
-    super("/events");
+    super("/api/events");
   }
 
   async getEventSignUps(eventId: number): Promise<EventSignUpModel[]> {

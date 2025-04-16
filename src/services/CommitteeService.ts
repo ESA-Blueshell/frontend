@@ -4,7 +4,7 @@ import type {CommitteeMemberModel, CommitteeModel} from "@/models";
 
 export default class CommitteeService extends BaseApiService {
   constructor() {
-    super("/committees");
+    super("/api/committees");
   }
 
   async getCommittees(isMember?: boolean): Promise<CommitteeModel[]> {

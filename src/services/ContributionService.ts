@@ -3,7 +3,7 @@ import type ContributionModel from "@/models/ContributionModel.ts";
 
 export default class ContributionService extends BaseApiService {
   constructor() {
-    super("/contributions");
+    super("/api/contributions");
   }
 
   async createContribution(contribution: ContributionModel): Promise<ContributionModel> {

@@ -3,7 +3,7 @@ import type EventModel from "@/models/EventModel.ts";
 
 export default class EventService extends BaseApiService {
   constructor() {
-    super("/events");
+    super("/api/events");
   }
 
   async createEvent(event: EventModel): Promise<EventModel> {

@@ -3,7 +3,7 @@ import type FileModel from "@/models/FileModel.ts";
 
 export default class FileService extends BaseApiService {
   constructor() {
-    super("/files");
+    super("/api/files");
   }
 
   async downloadFile(filename: string): Promise<Blob> {

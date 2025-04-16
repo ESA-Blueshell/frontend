@@ -3,7 +3,7 @@ import type SponsorModel from "@/models/SponsorModel.ts";
 
 export default class SponsorService extends BaseApiService {
   constructor() {
-    super("/sponsors");
+    super("/api/sponsors");
   }
 
   async getSponsors(): Promise<SponsorModel[]> {

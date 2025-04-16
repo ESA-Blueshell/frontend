@@ -3,7 +3,7 @@ import type {MembershipModel} from "@/models";
 
 export default class MembershipServiceService extends BaseApiService {
   constructor() {
-    super("/memberships");
+    super("/api/memberships");
   }
 
   async getMemberships(): Promise<MembershipModel[]> {

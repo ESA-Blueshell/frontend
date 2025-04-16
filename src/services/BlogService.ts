@@ -1,7 +1,7 @@
 import type BlogModel from "@/models/BlogModel.ts";
-import BaseApiGatewayService from "@/services/BaseApiGatewayService.ts";
+import BaseService from "@/services/BaseApiService.ts";
 
-export default class BlogService extends BaseApiGatewayService {
+export default class BlogService extends BaseService {
   constructor() {
     super("/blogs");
   }

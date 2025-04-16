@@ -6,7 +6,7 @@ import type {Role} from "@/models/enums/Role";
 
 export default class UserService extends BaseApiService {
   constructor() {
-    super("/users");
+    super("/api/users");
   }
 
   async getUsers(isMember?: boolean): Promise<AdvancedUserModel[]> {

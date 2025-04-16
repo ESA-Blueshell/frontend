@@ -4,7 +4,7 @@ import type {Page, Pageable} from "@/models/Pageable.ts";
 
 export default class NewsService extends BaseApiService {
   constructor() {
-    super("/news");
+    super("/api/news");
   }
 
   async getNews(): Promise<NewsModel[]> {
