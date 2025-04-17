@@ -11,7 +11,8 @@
       <p class="text-h4 font-weight-thin">
         {{ news.title }}
       </p>
-      <p v-html="news.content" />
+      <!-- eslint-disable-next-line vue/no-v-html -->
+      <p v-html="DOMPurify.sanitize(news.content)" />
       <h5>
         By <b>{{ news.creatorUsername }}</b>,
         {{ news.postedAt ? news.postedAt.slice(0, 10) : '' }}
@@ -29,24 +30,26 @@
 </template>
 
 <script>
-import TopBanner from "@/components/top-banner";
+import TopBanner from "@/components/banners/TopBanner.vue";
 import {$handleNetworkError} from "@/plugins/handleNetworkError";
+import DOMPurify from "dompurify";
 
 export default {
   components: {TopBanner},
   data() {
     return {
-      snackbar: false,
+      snackbar: "",
       news: []
     }
   },
   mounted() {
     this.$http
-        .get('news/' + this.$route.params.id)
-        .then(response => this.news = response.data)
-        .catch(e => $handleNetworkError(e))
+      .get('news/' + this.$route.params.id)
+      .then(response => this.news = response.data)
+      .catch(e => $handleNetworkError(e))
   },
   methods: {
+    DOMPurify,
     thisURL() {
       return document.URL
     }

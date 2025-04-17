@@ -9,7 +9,7 @@ export function $goto(url) {
   if (url.includes('https://') || url.includes('http://')) {
     window.open(url, '_blank').focus();
   } else {
-    window.scrollTo(0,0);
+    window.scrollTo(0, 0);
     router.push(url);
   }
 }

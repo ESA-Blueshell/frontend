@@ -2,7 +2,7 @@
   <v-app>
     <v-app-bar theme="dark">
       <v-btn
-        v-if="$vuetify.display.mdAndDown"
+        v-if="display.mdAndDown"
         class="ml-2"
         icon="mdi-menu"
         @click="drawer = !drawer"
@@ -18,7 +18,7 @@
       </router-link>
 
       <div
-        v-if="$vuetify.display.lgAndUp"
+        v-if="display.lgAndUp"
         style="height: 90%"
       >
         <v-btn
@@ -58,6 +58,9 @@
             <v-list-item to="/committees">
               Committees
             </v-list-item>
+            <v-list-item to="/blogs">
+              Newsletters
+            </v-list-item>
             <v-list-item to="/documents">
               Documents
             </v-list-item>
@@ -85,7 +88,7 @@
               Events
             </v-list-item>
             <v-list-item
-              v-if="$store.getters.isLoggedIn && $store.getters.isActive"
+              v-if="isLoggedIn && isActive"
               to="/events/manage"
             >
               Manage events
@@ -174,15 +177,15 @@
         <!--  Dark mode toggle    -->
         <v-btn
           class="mr-2"
-          :icon="$vuetify.theme.global.current.dark ? 'mdi-moon-waxing-crescent' : 'mdi-white-balance-sunny'"
-          :color="$vuetify.theme.global.current.dark ? 'accent' : 'white'"
-          :class="{'roll-on': $vuetify.theme.global.current.dark,'roll-off': !$vuetify.theme.global.current.dark }"
+          :icon="isDarkMode ? 'mdi-moon-waxing-crescent' : 'mdi-white-balance-sunny'"
+          :color="isDarkMode ? 'accent' : 'white'"
+          :class="{'roll-on': isDarkMode,'roll-off': !isDarkMode }"
           @click="toggleDarkMode"
         />
 
         <!-- LOGIN BUTTON/ACCOUNT DROPDOWN MENU -->
         <v-btn
-          v-if="!$store.getters.isLoggedIn"
+          v-if="!isLoggedIn"
           class="bar-button ma-0 mr-2"
           to="/login"
         >
@@ -208,19 +211,19 @@
               Account
             </v-list-item>
             <v-list-item
-              v-if="$store.getters.isBoard"
+              v-if="isBoard"
               to="/members/manage"
             >
               Manage members
             </v-list-item>
             <v-list-item
-              v-if="$store.getters.isBoard"
+              v-if="isBoard"
               to="/committees/manage"
             >
               Manage committees
             </v-list-item>
             <v-list-item
-              v-if="$store.getters.isBoard || $store.getters.isActive"
+              v-if="isBoard || isActive"
               to="/events/manage"
             >
               Manage events
@@ -281,7 +284,7 @@
             Events
           </v-list-item>
           <v-list-item
-            v-if="$store.getters.isLoggedIn && $store.getters.isActive"
+            v-if="isLoggedIn && isActive"
             to="/events/manage"
           >
             Manage events
@@ -333,7 +336,7 @@
           <v-list-item to="/partners/el-nino">
             El Niño – Digital Development
           </v-list-item>
-          <v-divider dark></v-divider>
+          <v-divider dark />
         </v-list-group>
 
         <v-list-item to="/contact">
@@ -344,7 +347,7 @@
       <template #append>
         <v-btn
           icon="mdi-email"
-          href="mailto:blueshellesports@gmail.com"
+          href="mailto:board@blueshell.utwente.nl"
           variant="plain"
           style="width: calc(100%/3)"
         />
@@ -413,12 +416,13 @@
       v-model="statusSnackbarMessage"
       timeout="10000"
     >
-      <span v-html="statusSnackbarMessage" />
+      <!-- eslint-disable-next-line vue/no-v-html -->
+      <span v-html="DOMPurify.sanitize(statusSnackbarMessage)" />
       <template #actions>
         <v-btn
           color="blue"
           variant="text"
-          @click="statusSnackbarMessage = false"
+          @click="statusSnackbarMessage = ''"
         >
           Close
         </v-btn>
@@ -450,110 +454,133 @@
   </v-app>
 </template>
 
-<script>
+<script lang="ts">
+import {ref, computed, onMounted} from 'vue'
+import {useStore} from 'vuex'
+import {useRouter, useRoute} from 'vue-router'
+import {useTheme, useDisplay} from 'vuetify'
+import axios from 'axios'
+import FooterBanner from "@/components/banners/FooterBanner.vue";
 import {$goto} from "@/plugins/goto";
-import BsFooter from "@/components/bs-footer.vue";
 import {$handleNetworkError} from "@/plugins/handleNetworkError";
+import DOMPurify from "dompurify";
 
 export default {
-  components: {BsFooter},
-  data: ()=> ({
-      drawer: false,
-      poggers: false,
-      showCookieSnackbar: false,
-  }),
-  computed: {
-    statusSnackbarMessage: {
-      get() {
-        return this.$store.state.statusSnackbarMessage
-      },
-      set(message) {
-        this.$store.commit('setStatusSnackbarMessage', message)
-      }
-    },
-  },
-  mounted() {
-    // Cookie garbage
-    if (localStorage.getItem('esa-blueshell.nl:cookiesAccepted') !== 'true') {
-      this.showCookieSnackbar = true
-    }
+  components: {BsFooter: FooterBanner},
+  setup() {
+    const drawer = ref(false);
+    const poggers = ref(false);
+    const showCookieSnackbar = ref(false);
+    const store = useStore();
+    const router = useRouter();
+    const route = useRoute();
+    const theme = useTheme();
+    const display = useDisplay();
 
-    // Get account data for the chance that the user's roles have been updated
-    // (so they don't have to log in and out for it)
-    const login = this.$store.getters.getLogin
-    if (login) {
-      this.$http
-        .get(`users/${login.userId}`, {headers: {'Authorization': `Bearer ${login.token}`}})
-        .then(response => {
-          this.$store.commit('setRoles', response.data.roles)
-        })
-        .catch(e => {
-          if (e.response?.status === 401) {
-            this.$store.commit('statusSnackbarMessage', 'Login expired. You have been logged out.')
-            this.$store.commit('logout')
-            if (this.$route.meta.requiresAuth) {
-              $goto('/')
-            }
-          } else {
-            $handleNetworkError(e)
-          }
-        })
-    }
-
-
-    let keysPressed = [];
-    window.addEventListener('keydown', event => {
-      if (event.key) {
-        const key = event.key.toLowerCase();
-        keysPressed.push(key);
-        if (keysPressed.toString().endsWith("arrowup,arrowup,arrowdown,arrowdown,arrowleft,arrowright,arrowleft,arrowright,b,a,enter")) {
-          this.poggers = true
-          alert("BIG SITECIE ENERGY")
-          //todo: make epic easter eggerino
-        }
-      }
+    const statusSnackbarMessage = computed({
+      get: () => store.state.statusSnackbarMessage,
+      set: (message) => store.commit('setStatusSnackbarMessage', message)
     });
 
-    // Check user's dark mode preference
-    if (!localStorage.getItem('esa-blueshell.nl:darkMode')) {
-      this.checkPrefersColorScheme();
-    }
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => this.checkPrefersColorScheme())
+    const isLoggedIn = computed(() => store.getters.isLoggedIn);
+    const isActive = computed(() => store.getters.isActive);
+    const isBoard = computed(() => store.getters.isBoard);
+    const login = computed(() => store.getters.getLogin);
 
-    this.$vuetify.theme.global.name = localStorage.getItem('esa-blueshell.nl:darkMode') === 'true' ? 'dark' : 'light'
-  },
-  methods: {
-    checkPrefersColorScheme() {
+    const isDarkMode = computed(() => theme.global.current.value.dark);
+
+    const checkPrefersColorScheme = () => {
       if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        this.setDarkMode(true)
+        setDarkMode(true)
       } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
-        this.setDarkMode(false)
+        setDarkMode(false)
       }
-    },
-    setDarkMode(dark) {
-      localStorage.setItem('esa-blueshell.nl:darkMode', dark)
-      this.$vuetify.theme.global.name = dark ? 'dark' : 'light'
-    },
-    toggleDarkMode() {
-      this.setDarkMode(!this.$vuetify.theme.global.current.dark)
-    },
-    logOut() {
-      // Let the cookie expire and redirect if the page is logged in only
+    }
+
+    const setDarkMode = (dark: boolean) => {
+      localStorage.setItem('esa-blueshell.nl:darkMode', dark.toString())
+      theme.global.name.value = dark ? 'dark' : 'light'
+    }
+
+    const toggleDarkMode = () => {
+      setDarkMode(!theme.global.current.value.dark)
+    }
+
+    const logOut = () => {
       document.cookie = 'login=;expires=Thu, 01 Jan 1970 00:00:01 GMT'
-      this.$store.commit('logout')
-      if (this.$route.meta.requiresAuth) {
+      store.commit('logout')
+      if (route.meta.requiresAuth) {
         $goto('/')
       }
-    },
-    acceptCookies() {
+    }
+
+    const acceptCookies = () => {
       localStorage.setItem('esa-blueshell.nl:cookiesAccepted', 'true')
-      this.showCookieSnackbar = false
-    },
-    showSnackbar(message) {
-      this.snackbar = true;
-      this.snackbarText = message
-    },
-  }
+      showCookieSnackbar.value = false
+    }
+
+    onMounted(() => {
+      if (localStorage.getItem('esa-blueshell.nl:cookiesAccepted') !== 'true') {
+        showCookieSnackbar.value = true;
+      }
+
+      const loginData = login.value;
+      if (loginData) {
+        axios
+          .get(`users/${loginData.userId}`, {headers: {'Authorization': `Bearer ${loginData.token}`}})
+          .then(response => {
+            store.commit('setRoles', response.data.roles)
+          })
+          .catch(e => {
+            if (e.response?.status === 401) {
+              store.commit('statusSnackbarMessage', 'Login expired. You have been logged out.')
+              store.commit('logout')
+              if (route.meta.requiresAuth) {
+                $goto('/')
+              }
+            } else {
+              $handleNetworkError(e)
+            }
+          })
+      }
+
+      let keysPressed: string[] = [];
+      window.addEventListener('keydown', event => {
+        if (event.key) {
+          const key = event.key.toLowerCase();
+          keysPressed.push(key);
+          if (keysPressed.toString().endsWith("arrowup,arrowup,arrowdown,arrowdown,arrowleft,arrowright,arrowleft,arrowright,b,a,enter")) {
+            poggers.value = true;
+            alert("BIG SITECIE ENERGY")
+          }
+        }
+      });
+
+      if (!localStorage.getItem('esa-blueshell.nl:darkMode')) {
+        checkPrefersColorScheme();
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => checkPrefersColorScheme())
+
+      theme.global.name.value = localStorage.getItem('esa-blueshell.nl:darkMode') === 'true' ? 'dark' : 'light'
+    });
+
+    return {
+      drawer,
+      poggers,
+      showCookieSnackbar,
+      statusSnackbarMessage,
+      display,
+      isLoggedIn,
+      isActive,
+      isBoard,
+      isDarkMode,
+      toggleDarkMode,
+      logOut,
+      acceptCookies,
+      theme,
+      DOMPurify
+    }
+  },
 }
 </script>
 

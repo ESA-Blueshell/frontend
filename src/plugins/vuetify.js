@@ -3,9 +3,12 @@ import '@mdi/font/css/materialdesignicons.css'
 import '@/styles/main.scss'
 // Composables
 import {createVuetify} from 'vuetify'
-
+import en from 'vuetify/lib/locale/en.mjs'
 
 export default createVuetify({
+  locale: {
+    locale: en,
+  },
   theme: {
     options: {customProperties: true},
 

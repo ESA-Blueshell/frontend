@@ -1,10 +1,10 @@
 <script setup>
 import {useRoute, useRouter} from "vue-router";
-import TopBanner from "@/components/top-banner.vue";
+import TopBanner from "@/components/banners/TopBanner.vue";
 import axios from "axios";
 import {ref} from "vue";
-import EventListItem from "@/components/EventListItem.vue";
-import SignUpForm from "@/components/sign-up-form.vue";
+import EventListItem from "@/components/events/EventListItem.vue";
+import EventSignUpForm from "@/components/events/EventSignUpForm.vue";
 import {useStore} from "vuex";
 import {$handleNetworkError} from "@/plugins/handleNetworkError";
 import {$goto} from "@/plugins/goto";
@@ -81,7 +81,7 @@ async function deleteSignUp() {
               the "Cancel sign-up" button at the bottom of the page.
             </p>
 
-            <sign-up-form
+            <event-sign-up-form
               v-if="signUp?.formAnswers"
               :event="event"
               :answers-string="signUp.formAnswers"

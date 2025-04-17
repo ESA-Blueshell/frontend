@@ -10,15 +10,14 @@ import VueAxios from 'vue-axios'
 
 import 'flag-icons/css/flag-icons.min.css';
 import 'v-phone-input/dist/v-phone-input.css';
-import { createVPhoneInput } from 'v-phone-input';
+import {createVPhoneInput} from 'v-phone-input';
 
 const vPhoneInput = createVPhoneInput({
   countryIconMode: 'svg',
 });
 
-// Axios.defaults.baseURL = "http://localhost:8080/api/"
-Axios.defaults.baseURL = "https://esa-blueshell.nl/api/"
-
+Axios.defaults.baseURL = "http://localhost:8080/api/"
+// Axios.defaults.baseURL = "https://esa-blueshell.nl/api/"
 
 
 const app = createApp(App)

@@ -18,14 +18,13 @@ import NotFound from "@/views/NotFound.vue";
 import Login from "@/views/login/Login.vue";
 import Account from "@/views/login/Account.vue";
 import ArticleEditor from "@/views/ArticleEditor.vue";
-import CreateEvent from "@/views/login/events/CreateEvent.vue";
-import EventManager from "@/views/login/events/EventManager.vue";
-import EditEvent from "@/views/login/events/EditEvent.vue";
-import EventSignUps from "@/views/login/events/EventSignUps.vue";
-import CommitteeManager from "@/views/login/CommitteeManager.vue";
+import EventManager from "@/views/events/EventManager.vue";
+import EditEvent from "@/views/events/EditEvent.vue";
+import EventSignUps from "@/views/events/EventSignUps.vue";
+import CommitteeManager from "@/views/committee/CommitteeManager.vue";
 import CreateAccount from "@/views/login/CreateAccount.vue";
-import EnableAccount from "@/views/login/EnableAccount.vue";
-import MemberManager from "@/views/login/MemberManager.vue";
+import ActivateAccount from "@/views/login/ActivateAccount.vue";
+import MemberManager from "@/views/login/member/MemberManager.vue";
 import RocketLeague from "@/views/esports/RocketLeague.vue";
 import ForgotPassword from "@/views/login/ForgotPassword.vue";
 import ResetPassword from "@/views/login/ResetPassword.vue";
@@ -34,6 +33,9 @@ import EditSignUp from "@/views/EditSignUp.vue";
 import {createRouter, createWebHistory} from "vue-router";
 import store from './store'
 import CircuitShowdown from "@/views/events/CircuitShowdown.vue";
+import {useStore} from "vuex";
+import BlogView from "@/views/blogs/BlogView.vue";
+import BlogsView from "@/views/blogs/BlogsView.vue";
 
 
 const router = createRouter({
@@ -163,9 +165,9 @@ const router = createRouter({
       component: CreateAccount,
     },
     {
-      path: '/account/enable',
-      name: 'enableAccount',
-      component: EnableAccount
+      path: '/account/activate',
+      name: 'activateAccount',
+      component: ActivateAccount
     },
     {
       path: '/account/articleEditor',
@@ -185,7 +187,7 @@ const router = createRouter({
     {
       path: '/events/create',
       name: 'createEvent',
-      component: CreateEvent,
+      component: EditEvent,
       meta: {requiresAuth: true}
     },
     {
@@ -221,6 +223,16 @@ const router = createRouter({
       name: 'memberManager',
       component: MemberManager,
       meta: {requiresAuth: true}
+    },
+    {
+      path: '/blogs',
+      name: 'BlogList',
+      component: BlogsView
+    },
+    {
+      path: '/blogs/:id',
+      name: 'BlogView',
+      component: BlogView
     },
     {
       path: '/:pathMatch(.*)*',

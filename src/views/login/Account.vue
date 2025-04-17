@@ -1,13 +1,13 @@
 <template>
   <v-main>
-    <top-banner title="My account" />
+    <top-banner title="My account"/>
     <div class="mx-3">
       <div
         class="mx-auto my-10"
         style="max-width: 800px"
       >
         <p class="text-h3">
-          Hello {{ accountData != null ? accountData.firstName : '' }}!
+          Hello {{ user != null ? user.firstName : '' }}!
         </p>
 
         <p>
@@ -30,189 +30,16 @@
           give it a description and add any members to it.
         </p>
 
-        <div v-if="accountData">
-          <v-form
-            ref="form"
-            v-model="valid"
-          >
-            <v-row>
-              <v-spacer />
-              <v-col cols="auto">
-                <v-tooltip
-                  location="top"
-                  text="Save changes"
-                >
-                  <template #activator="{ props }">
-                    <v-btn
-                      icon="mdi-content-save"
-                      :disabled="!valid"
-                      :loading="submitting"
-                      v-bind="props"
-                      @click="save"
-                    />
-                  </template>
-                </v-tooltip>
-              </v-col>
-            </v-row>
-
-            <v-text-field
-              v-model="accountData.username"
-              disabled
-              label="Username"
-            />
-            <v-row>
-              <v-col cols="2">
-                <v-text-field
-                  v-model="accountData.initials"
-                  disabled
-                  label="initials"
-                />
-              </v-col>
-              <v-col cols="4">
-                <v-text-field
-                  v-model="accountData.firstName"
-                  disabled
-                  label="First name"
-                />
-              </v-col>
-              <v-col cols="2">
-                <v-text-field
-                  v-model="accountData.prefix"
-                  disabled
-                  label="Prefix"
-                />
-              </v-col>
-              <v-col cols="4">
-                <v-text-field
-                  v-model="accountData.lastName"
-                  disabled
-                  label="Last name"
-                />
-              </v-col>
-            </v-row>
-
-            <v-text-field
-              v-model="accountData.email"
-              disabled
-              label="E-mail"
-            />
-            <v-text-field
-              v-model="accountData.address"
-              label="Address"
-            />
-            <v-row>
-              <v-col cols="10">
-                <v-text-field
-                  v-model="accountData.city"
-                  label="City"
-                />
-              </v-col>
-              <v-col cols="2">
-                <v-text-field
-                  v-model="accountData.postalCode"
-                  label="Postal code"
-                />
-              </v-col>
-            </v-row>
-            <v-phone-input
-              v-model="accountData.phoneNumber"
-              label="Phone number"
-              :mode="'international'"
-              :default-country="'nl'"
-              placeholder="Phone Number"
-            />
-            <v-text-field
-              v-model="accountData.studentNumber"
-              label="Student number"
-            />
-            <v-text-field
-              v-model="accountData.dateOfBirth"
-              label="Date of birth"
-              type="date"
-            />
-            <v-text-field
-              v-model="accountData.discord"
-              label="Discord username"
-            />
-            <v-text-field
-              v-model="accountData.steamid"
-              label="Steam ID"
-            />
-            <v-row>
-              <v-col>
-                <v-checkbox
-                  v-model="accountData.newsletter"
-                  label="Subscribe to newsletter"
-                />
-              </v-col>
-              <v-col>
-                <v-checkbox
-                  v-model="accountData.photoConsent"
-                  label="Give consent for your photo to be taken at events"
-                />
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col cols="6">
-                <v-checkbox
-                  v-model="accountData.ehbo"
-                  label="You have a EHBO Diploma"
-                />
-              </v-col>
-              <v-col cols="6">
-                <v-checkbox
-                  v-model="accountData.bhv"
-                  label="You have a BHV Diploma"
-                />
-              </v-col>
-            </v-row>
-            <v-text-field
-              v-model="accountData.gender"
-              label="Gender"
-            />
-            <v-row>
-              <v-col>
-                <v-text-field
-                  v-model="accountData.country"
-                  label="Country"
-                />
-              </v-col>
-              <v-col>
-                <v-text-field
-                  v-model="accountData.nationality"
-                  label="Nationality"
-                />
-              </v-col>
-            </v-row>
-            <v-text-field
-              v-model="accountData.study"
-              label="Study"
-            />
-            <v-row>
-              <v-spacer />
-              <v-col cols="auto">
-                <v-tooltip
-                  location="top"
-                  text="Save changes"
-                >
-                  <template #activator="{ props }">
-                    <v-btn
-                      icon="mdi-content-save"
-                      :disabled="!valid"
-                      :loading="submitting"
-                      v-bind="props"
-                      @click="save"
-                    />
-                  </template>
-                </v-tooltip>
-              </v-col>
-            </v-row>
-          </v-form>
+        <div v-if="user">
+          <UserEdit
+            :user="user"
+            editing
+          />
         </div>
 
 
         <!--    TODO: make this beautiful. Maybe use skeleton loading elements?-->
-        <v-progress-circular v-else />
+        <v-progress-circular v-else/>
       </div>
     </div>
   </v-main>
@@ -220,37 +47,45 @@
 
 <script>
 
-import TopBanner from "@/components/top-banner";
+import TopBanner from "@/components/banners/TopBanner.vue";
 import {$handleNetworkError} from "@/plugins/handleNetworkError";
 import {VPhoneInput} from "v-phone-input";
 import {ref} from "vue";
-import moment from "moment";
+import {DateTime} from 'luxon';
+import UserEdit from "@/components/UserEdit.vue";
+import { UserService } from "@/services";
 
 export default {
   name: "Account",
-  components: {VPhoneInput, TopBanner},
+  components: {UserEdit, VPhoneInput, TopBanner: TopBanner},
   setup() {
     const phone = ref('');
     return {phone};
   },
   data: () => ({
-    accountData: null,
-    oldAccountData: null,
+    user: null,
     valid: true,
-    submitting: false
+    submitting: false,
+    userService: new UserService(),
   }),
   mounted() {
     const login = this.$store.getters.getLogin
 
+    this.userService.getUser(login.userId)
+      .then(user => {
+        this.user = user;
+        if (user.dateOfBirth) {
+          this.user.dateOfBirth = DateTime.fromISO(user.dateOfBirth);
+        }
+      })
+
     this.$http.get(`users/${login.userId}`, {headers: {'Authorization': `Bearer ${login.token}`}})
       .then(response => {
-        this.accountData = response.data
-        if (this.accountData.dateOfBirth) {
-          this.accountData.dateOfBirth = moment(this.accountData.dateOfBirth).format('YYYY-MM-DD')
+        this.user = response.data
+        if (this.user.dateOfBirth) {
+          this.user.dateOfBirth = DateTime.fromISO(this.user.dateOfBirth).toISODate();
         }
-        this.oldAccountData = this.copyObject(this.accountData)
       })
-      .catch(e => $handleNetworkError(e))
   },
   methods: {
     copyObject(obj) {
@@ -266,7 +101,7 @@ export default {
       this.submitting = true
       //Send new user object to backend
       const login = this.$store.getters.getLogin
-      this.$http.put(`users/${login.userId}`, this.accountData, {headers: {'Authorization': `Bearer ${login.token}`}})
+      this.$http.put(`users/${login.userId}`, this.user, {headers: {'Authorization': `Bearer ${login.token}`}})
         .then(() => this.submitting = false)
         .catch(e => {
           if (e.response?.status === 400) {
@@ -284,6 +119,7 @@ export default {
 .v-col:first-child {
   padding-left: 0;
 }
+
 .v-col:last-child {
   padding-right: 0;
 }

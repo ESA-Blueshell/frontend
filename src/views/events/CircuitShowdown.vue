@@ -1,8 +1,8 @@
 <script>
-import TopBanner from "@/components/top-banner.vue";
+import TopBanner from "@/components/banners/TopBanner.vue";
 
 export default {
-  components: {TopBanner},
+  components: {TopBanner: TopBanner},
   data() {
     return {
       groupAScores: [
@@ -67,8 +67,10 @@ export default {
       </p>
       <p class="text-body-1">
         This is a competition hosted within Blueshell where teams compete in the games that are currently competitively
-        being played by the teams of Blueshell. Teams generally focus on their own game and it’s hard for them to compete
-        among each other, this will be the opportunity to do so. All to prove what team is the best team in our association.
+        being played by the teams of Blueshell. Teams generally focus on their own game and it’s hard for them to
+        compete
+        among each other, this will be the opportunity to do so. All to prove what team is the best team in our
+        association.
       </p>
       <div class="table-container">
         <v-table>

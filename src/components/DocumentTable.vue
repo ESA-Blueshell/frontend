@@ -141,7 +141,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import {$require} from "@/plugins/require.js";
 
 /**

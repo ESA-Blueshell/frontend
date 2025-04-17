@@ -101,15 +101,15 @@
 
 <script>
 
-import MainBanner from "@/components/main-banner";
-import DiscordBanner from "@/components/discord-banner";
-import SocialsBanner from "@/components/socials-banner";
-import GamesWePlay from "@/components/games-we-play";
+import MainBanner from "@/components/banners/MainBanner.vue";
+import DiscordBanner from "@/components/DiscordBanner.vue";
+import SocialsBanner from "@/components/banners/SocialsBanner.vue";
+import GamesWePlay from "@/components/GamesWePlay.vue";
 import {$require} from "@/plugins/require";
 import {$goto} from "@/plugins/goto";
 
 export default {
-  components: {GamesWePlay, SocialsBanner, DiscordBanner, MainBanner},
+  components: {GamesWePlay: GamesWePlay, SocialsBanner: SocialsBanner, DiscordBanner: DiscordBanner, MainBanner: MainBanner},
   data() {
     return {
       hoveredGame: null,
@@ -248,7 +248,7 @@ export default {
   cursor: pointer;
 }
 
-.icon{
+.icon {
   transition: transform .2s;
 }
 

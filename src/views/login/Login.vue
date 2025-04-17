@@ -68,11 +68,11 @@
 </template>
 
 <script>
-import TopBanner from "@/components/top-banner";
+import TopBanner from "@/components/banners/TopBanner.vue";
 import {$handleNetworkError} from "@/plugins/handleNetworkError";
 
 export default {
-  components: {TopBanner},
+  components: {TopBanner: TopBanner},
   data: () => ({
     valid: false,
     loading: false,
@@ -98,23 +98,23 @@ export default {
         this.loading = true
         // Send authenticate request
         this.$http.post('authenticate', {username: this.username, password: this.password})
-            .then(response => {
-              // Store response
-              this.$store.commit('setLogin', response.data)
-              // Go to redirect page or home page
-              this.$router.push(this.$route.query.redirect || '/')
-            })
-            .catch(e => {
-              // Show Incorrect login snackbar
-              if (e.response?.status === 401) {
-                this.$store.commit('setStatusSnackbarMessage', 'Incorrect login credentials. Please double check your username and password.')
-              } else {
-                $handleNetworkError(e)
-              }
-            })
-            .finally(() => {
-              this.loading = false
-            })
+          .then(response => {
+            // Store response
+            this.$store.commit('setLogin', response.data)
+            // Go to redirect page or home page
+            this.$router.push(this.$route.query.redirect || '/')
+          })
+          .catch(e => {
+            // Show Incorrect login snackbar
+            if (e.response?.status === 401) {
+              this.$store.commit('setStatusSnackbarMessage', 'Incorrect login credentials. Please double check your username and password.')
+            } else {
+              $handleNetworkError(e)
+            }
+          })
+          .finally(() => {
+            this.loading = false
+          })
       }
     },
   }

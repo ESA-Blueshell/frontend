@@ -34,7 +34,7 @@
             <v-text-field
               ref="prefix"
               v-model="form.prefix"
-              label="Prefix"
+              label="Surname Prefix"
             />
           </v-col>
           <v-col cols="8">
@@ -42,7 +42,7 @@
               ref="lastName"
               v-model="form.lastName"
               :rules="lastNameRules"
-              label="Last name"
+              label="Surname"
             />
           </v-col>
         </v-row>
@@ -125,12 +125,12 @@
 </template>
 
 <script>
-import TopBanner from "@/components/top-banner";
+import TopBanner from "@/components/banners/TopBanner.vue";
 import {$handleNetworkError} from "@/plugins/handleNetworkError";
 import {ref} from "vue";
 
 export default {
-  components: {TopBanner},
+  components: {TopBanner: TopBanner},
   setup() {
     const phone = ref('');
     return {phone};
@@ -160,10 +160,12 @@ export default {
       v => !!v || 'First name is required',
     ],
     lastNameRules: [
-      v => !!v || 'Last name is required',
+      v => !!v || 'Surname is required',
     ],
     passwordRules: [
       v => !!v || 'Password is required',
+      (v) => v.length >= 8 || 'Password must be at least 8 characters',
+
     ],
     emailRules: [
       v => !!v || 'Email is required',
@@ -185,7 +187,7 @@ export default {
       this.clicked = true
 
       // Send authenticate request
-      this.$http.post('createAccount', this.form)
+      this.$http.post('users/create', this.form)
         .then(() => {
           this.succeeded = true
         })

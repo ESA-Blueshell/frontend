@@ -37,7 +37,7 @@
               ref="prefix"
               v-model="form.prefix"
               :disabled="loggedIn"
-              label="Prefix"
+              label="Surname Prefix"
             />
           </v-col>
           <v-col cols="8">
@@ -46,9 +46,16 @@
               v-model="form.lastName"
               :disabled="loggedIn"
               :rules="lastNameRules"
-              label="Last name"
+              label="Surname"
             />
           </v-col>
+        </v-row>
+        <v-row>
+          <nationality-select
+            v-model="form.nationality"
+            cols="4"
+          />
+          <country-select />
         </v-row>
         <v-row>
           <v-col cols="6">
@@ -178,7 +185,7 @@
           <br>
           <document-table />
           <br>
-          <contribution is-form />
+          <contribution-period is-form />
           <v-row
             class="mt-4"
             style="width: 100%;"
@@ -258,21 +265,25 @@
 </template>
 
 <script>
-import TopBanner from "@/components/top-banner";
+import TopBanner from "@/components/banners/TopBanner.vue";
 import {ref} from "vue";
-import moment from "moment";
+import { DateTime } from 'luxon';
 import {VPhoneInput} from "v-phone-input";
 import {$handleNetworkError} from "@/plugins/handleNetworkError";
-import Contribution from "@/components/contribution.vue";
+import ContributionPeriodComponent from "@/components/ContributionPeriodComponent.vue";
 import {$goto} from "@/plugins/goto";
+import NationalitySelect from "@/components/select/NationalitySelect.vue";
+import CountrySelect from "@/components/select/CountrySelect.vue";
 import DocumentTable from "@/components/DocumentTable.vue";
 
 export default {
   components: {
+    CountrySelect,
+    NationalitySelect,
     DocumentTable,
-    Contribution,
+    ContributionPeriod: ContributionPeriodComponent,
     VPhoneInput,
-    TopBanner,
+    TopBanner: TopBanner,
   },
   setup() {
     const signaturePad = ref(null);
@@ -287,6 +298,7 @@ export default {
     form: {
       username: null,
       password: null,
+      passwordAgain: null,
       email: null,
       firstName: null,
       lastName: null,
@@ -303,7 +315,7 @@ export default {
       newsletter: false,
 
       signatureCity: null,
-      signatureDate: moment().format('YYYY-MM-DD'),
+      signatureDate: DateTime.now().toISODate(),
       signature: null,
     },
     usernameRules: [
@@ -317,10 +329,11 @@ export default {
       v => !!v || 'First name is required',
     ],
     lastNameRules: [
-      v => !!v || 'Last name is required',
+      v => !!v || 'Surname is required',
     ],
     passwordRules: [
       v => !!v || 'Password is required',
+      (v) => v.length >= 8 || 'Password must be at least 8 characters',
     ],
     dateOfBirthRules: [
       v => !!v || 'Date of birth is required',
@@ -411,10 +424,10 @@ export default {
       const login = this.$store.getters.getLogin;
 
       var request = null;
-      if (!!login) {
+      if (login) {
         request = this.$http.put(`users/${login.userId}`, this.form, {headers: {'Authorization': `Bearer ${login.token}`}})
       } else {
-        request = this.$http.post('createAccount', this.form)
+        request = this.$http.post('users', this.form)
       }
       request
         .then(() => {
@@ -444,3 +457,13 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.v-col:first-child {
+  padding-left: 0;
+}
+
+.v-col:last-child {
+  padding-right: 0;
+}
+</style>

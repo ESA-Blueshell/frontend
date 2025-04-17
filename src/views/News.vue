@@ -1,6 +1,6 @@
 <template>
   <v-main>
-    <top-banner title="News" />
+    <top-banner title="NewsModel" />
 
     <div class="mx-3">
       <div
@@ -22,7 +22,7 @@
       style="max-width: 800px"
     >
       <v-skeleton-loader
-        v-if="news === []"
+        v-if="news?.length === 0"
         type="card"
       />
       <v-list v-else>
@@ -68,11 +68,11 @@
   </v-main>
 </template>
 <script>
-import TopBanner from "@/components/top-banner";
+import TopBanner from "@/components/banners/TopBanner.vue";
 import {$handleNetworkError} from "@/plugins/handleNetworkError";
 
 export default {
-  components: {TopBanner},
+  components: {TopBanner: TopBanner},
   data() {
     return {
       news: [],

@@ -36,9 +36,8 @@
             {{ committee.name }}
           </v-expansion-panel-title>
           <v-expansion-panel-text>
-            <p>
-              {{ committee.description }}
-            </p>
+            <!-- eslint-disable-next-line vue/no-v-html -->
+            <p v-html="$markdownToHtml(committee.description)" />
           </v-expansion-panel-text>
         </v-expansion-panel>
       </v-expansion-panels>
@@ -46,11 +45,12 @@
   </v-main>
 </template>
 <script>
-import TopBanner from "@/components/top-banner";
+import TopBanner from "@/components/banners/TopBanner.vue";
 import {$handleNetworkError} from "@/plugins/handleNetworkError";
+import $markdownToHtml from "@/plugins/markdownToHtml.ts";
 
 export default {
-  components: {TopBanner},
+  components: {TopBanner: TopBanner},
   data: () => {
     return {
       committees: []
@@ -68,7 +68,8 @@ export default {
         }
       })
       .catch(e => $handleNetworkError(e))
-  }
+  },
+  methods: {$markdownToHtml}
 }
 </script>
 

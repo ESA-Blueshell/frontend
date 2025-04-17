@@ -55,11 +55,11 @@
 </template>
 
 <script>
-import TopBanner from "@/components/top-banner";
+import TopBanner from "@/components/banners/TopBanner.vue";
 import {$handleNetworkError} from "@/plugins/handleNetworkError";
 
 export default {
-  components: {TopBanner},
+  components: {TopBanner: TopBanner},
   data: () => ({
     username: '',
     valid: false,

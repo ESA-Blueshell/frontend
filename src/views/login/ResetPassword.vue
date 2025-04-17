@@ -53,11 +53,11 @@
 </template>
 
 <script>
-import TopBanner from "@/components/top-banner";
+import TopBanner from "@/components/banners/TopBanner.vue";
 import {$handleNetworkError} from "@/plugins/handleNetworkError";
 
 export default {
-  components: {TopBanner},
+  components: {TopBanner: TopBanner},
   data: () => ({
     valid: false,
     loading: false,
@@ -66,6 +66,7 @@ export default {
     passwordAgain: "",
     passwordRules: [
       v => !!v || 'Password is required',
+      (v) => v.length >= 8 || 'Password must be at least 8 characters',
     ],
     showPass: false,
   }),
