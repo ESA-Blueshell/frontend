@@ -47,9 +47,9 @@ const store = createStore<State>({
     isLoggedIn: (s) => !!s.login,
     tokenExpired: (s) => !s.login || Date.now() > s.login.expiration,
 
-    isBoard:  (s) => s.login?.roles.includes('BOARD'),
-    isActive: (s) => s.login?.roles.includes('COMMITTEE'),
-    isMember: (s) => s.login?.roles.includes('MEMBER'),
+    isBoard:  (s) => s.login?.roles?.includes('BOARD'),
+    isActive: (s) => s.login?.roles?.includes('COMMITTEE'),
+    isMember: (s) => s.login?.roles?.includes('MEMBER'),
   },
 });
 export default store;
