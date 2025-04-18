@@ -97,7 +97,7 @@ export default {
       if (this.$refs.form.validate()) {
         this.loading = true
         // Send authenticate request
-        this.$http.post('authenticate', {username: this.username, password: this.password})
+        this.$http.post('auth', {username: this.username, password: this.password})
           .then(response => {
             // Store response
             this.$store.commit('setLogin', response.data)
