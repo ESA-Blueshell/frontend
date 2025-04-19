@@ -4,7 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "vue-tsc --noEmit && vite build",
+    "build": "vite build",
+    "typescheck": "vue-tsc --noEmit",
     "dev": "tsc && vite --host",
     "lint": "eslint . --fix",
     "preview": "tsc && vite preview"
