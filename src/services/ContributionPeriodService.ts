@@ -1,8 +1,8 @@
-import BaseApiService from "./BaseApiService.ts";
+import BaseService from "./BaseService.ts";
 import type ContributionPeriodModel from "@/models/ContributionPeriodModel.ts";
 import type ContributionModel from "@/models/ContributionModel.ts";
 
-export default class ContributionPeriodService extends BaseApiService {
+export default class ContributionPeriodService extends BaseService {
   constructor() {
     super("/api/contributionPeriods");
   }

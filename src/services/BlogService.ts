@@ -1,5 +1,5 @@
 import type BlogModel from "@/models/BlogModel.ts";
-import BaseService from "@/services/BaseApiService.ts";
+import BaseService from "@/services/BaseService.ts";
 
 export default class BlogService extends BaseService {
   constructor() {

@@ -8,6 +8,7 @@ export type State = {
   guestData: Record<string, unknown> | null;
   statusSnackbarMessage: string | null;
   loggedInSnackbar: boolean;
+  xsrfToken: string | null;
 };
 
 const store = createStore<State>({
@@ -16,6 +17,7 @@ const store = createStore<State>({
     guestData: readJsonCookie('guestData'),
     statusSnackbarMessage: null,
     loggedInSnackbar: false,
+    xsrfToken: null,
   },
   mutations: {
     setLogin(state, payload: Login) {
@@ -30,7 +32,7 @@ const store = createStore<State>({
     },
     setRoles(state, roles: string[]) {
       if (state.login) {
-        state.login = { ...state.login, roles };     // new object keeps reactivity intact
+        state.login = { ...state.login, roles };
         writeJsonCookie('login', state.login);
       }
     },
@@ -41,15 +43,19 @@ const store = createStore<State>({
       writeJsonCookie('guestData', data);
       state.guestData = data;
     },
+    setXsrfToken(state, token: string | null) {
+      state.xsrfToken = token;
+    },
   },
   getters: {
     getLogin: (s) => s.login,
     isLoggedIn: (s) => !!s.login,
     tokenExpired: (s) => !s.login || Date.now() > s.login.expiration,
-
-    isBoard:  (s) => s.login?.roles.includes('BOARD'),
+    isBoard: (s) => s.login?.roles.includes('BOARD'),
     isActive: (s) => s.login?.roles.includes('COMMITTEE'),
     isMember: (s) => s.login?.roles.includes('MEMBER'),
+    getXsrfToken: (s) => s.xsrfToken,
   },
 });
+
 export default store;

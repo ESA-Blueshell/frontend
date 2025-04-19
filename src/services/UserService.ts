@@ -1,10 +1,10 @@
-import BaseApiService from "./BaseApiService.ts";
+import BaseService from "./BaseService.ts";
 import type {AdvancedUserModel} from "@/models";
 import type ActivationRequest from "@/models/requests/ActivationRequest";
 import type PasswordResetRequest from "@/models/requests/PasswordResetRequest";
 import type {Role} from "@/models/enums/Role";
 
-export default class UserService extends BaseApiService {
+export default class UserService extends BaseService {
   constructor() {
     super("/api/users");
   }

@@ -1,8 +1,8 @@
 // ./src/services/CommitteeService.ts
-import BaseApiService from "./BaseApiService.ts";
+import BaseService from "./BaseService.ts";
 import type {CommitteeMemberModel, CommitteeModel} from "@/models";
 
-export default class CommitteeService extends BaseApiService {
+export default class CommitteeService extends BaseService {
   constructor() {
     super("/api/committees");
   }

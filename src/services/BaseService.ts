@@ -5,7 +5,7 @@ import store, {type State} from "../plugins/store";
 import api from "@/plugins/api";
 import { $handleNetworkError } from "@/plugins/handleNetworkError";
 
-export default class BaseApiService {
+export default class BaseService {
   protected axios: AxiosInstance = api;
   protected store: Store<State> = store;
   protected baseUrl: string;

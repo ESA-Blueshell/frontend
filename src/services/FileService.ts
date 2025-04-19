@@ -1,7 +1,7 @@
-import BaseApiService from "./BaseApiService.ts";
+import BaseService from "./BaseService.ts";
 import type FileModel from "@/models/FileModel.ts";
 
-export default class FileService extends BaseApiService {
+export default class FileService extends BaseService {
   constructor() {
     super("/api/files");
   }

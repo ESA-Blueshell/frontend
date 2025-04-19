@@ -1,8 +1,8 @@
-import BaseApiService from "./BaseApiService.ts";
+import BaseService from "./BaseService.ts";
 import type NewsModel from "@/models/NewsModel.ts";
 import type {Page, Pageable} from "@/models/Pageable.ts";
 
-export default class NewsService extends BaseApiService {
+export default class NewsService extends BaseService {
   constructor() {
     super("/api/news");
   }
